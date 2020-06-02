@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">prayer-times</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="label.unknown_location">Unknown Location</string>
+
+    <string name="last_update_time_key">last_update_time_key</string>
+
+    <string name="FAJR">Sobh (Fajr)</string>
+    <string name="DHOHR">Dohr</string>
+    <string name="ASR">Asr</string>
+    <string name="MAGHRIB">Maghreb</string>
+    <string name="ICHA">Icha</string>
+
+    <string name="adthan_notification_channel_id">ADHAN_CHANNEL_ID</string>
+    <string name="adthan_notification_channel_name">Adthan Timer</string>
+    <string name="adthan_notification_channel_description">Adthan Timer</string>
+</resources>

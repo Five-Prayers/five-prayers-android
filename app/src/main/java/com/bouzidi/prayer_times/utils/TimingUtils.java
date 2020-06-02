@@ -99,12 +99,12 @@ public class TimingUtils {
         return Math.abs(endCal.getTime().getTime() - cal.getTime().getTime());
     }
 
-    public static String formatTime(long time) {
+    public static String formatTimeForTimer(long time) {
         long seconds = time / 1000;
         long minutes = seconds / 60;
         long hours = minutes / 60;
 
-        return String.format(Locale.getDefault(), "%1$02d", Math.abs(hours)) + ":" + String.format(Locale.getDefault(), "%1$02d", Math.abs(minutes % 60)) + ":" + String.format(Locale.getDefault(), "%1$02d", Math.abs(seconds % 60));
+        return "- " + String.format(Locale.getDefault(), "%1$02d", Math.abs(hours)) + ":" + String.format(Locale.getDefault(), "%1$02d", Math.abs(minutes % 60)) + " min";
     }
 
     public static String formatDate(int day, String monthName, int year) {

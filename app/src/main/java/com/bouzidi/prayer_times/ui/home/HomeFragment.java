@@ -21,8 +21,10 @@ import com.bouzidi.prayer_times.utils.PrayerUtils;
 import com.bouzidi.prayer_times.utils.TimingUtils;
 import com.mikhaellopez.circularprogressbar.CircularProgressBar;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -153,27 +155,29 @@ public class HomeFragment extends Fragment {
 
         prayerNametextView.setText(prayerName);
         prayerTimetextView.setText(nextPrayerTime);
-        timeRemainingTextView.setText(TimingUtils.formatTime(timeRemaining));
+        timeRemainingTextView.setText(TimingUtils.formatTimeForTimer(timeRemaining));
 
         startAnimationTimer(timeRemaining, timeBetween, dayPrayer);
     }
 
     private void updateDateTextViews(DayPrayer dayPrayer) {
+        String hijriMonth = mainActivity.getResources().getString(
+                getResources().getIdentifier("hijri_month_" + dayPrayer.getHijriMonthNumber(), "string", mainActivity.getPackageName()));
+
         String hijriDate = TimingUtils.formatDate(
                 dayPrayer.getHijriDay(),
-                "Shawwal",
+                hijriMonth,
                 dayPrayer.getHijriYear()
         );
 
-        String gregorianDate = TimingUtils.formatDate(
-                dayPrayer.getGregorianDay(),
-                "May",
-                dayPrayer.getGregorianYear()
-        );
+        Date todayDate = Calendar.getInstance().getTime();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE dd MMMM, yyyy", Locale.getDefault());
+        SimpleDateFormat TimeZoneFormat = new SimpleDateFormat("ZZZZZ", Locale.getDefault());
+        String gregorianDate = simpleDateFormat.format(todayDate);
 
         hijriTextView.setText(hijriDate);
         gregorianTextView.setText(gregorianDate);
-        String locationText = dayPrayer.getCity() + "," + dayPrayer.getCountry();
+        String locationText = dayPrayer.getCity() + ", " + dayPrayer.getCountry() + " (" + TimeZoneFormat.format(todayDate) + ")";
         locationTextView.setText(locationText);
     }
 
@@ -182,10 +186,10 @@ public class HomeFragment extends Fragment {
     }
 
     private void startAnimationTimer(final long timeRemaining, final long timeBetween, final DayPrayer dayPrayer) {
-        circularProgressBar.setProgressWithAnimation(getProgressBarPercentage(timeRemaining, timeBetween), 500L);
-        TimeRemainingCTimer = new CountDownTimer(timeRemaining, 1000L) {
+        circularProgressBar.setProgressWithAnimation(getProgressBarPercentage(timeRemaining, timeBetween), 1000L);
+        TimeRemainingCTimer = new CountDownTimer(timeRemaining, 1000L * 60) {
             public void onTick(long millisUntilFinished) {
-                timeRemainingTextView.setText(TimingUtils.formatTime(millisUntilFinished));
+                timeRemainingTextView.setText(TimingUtils.formatTimeForTimer(millisUntilFinished));
                 circularProgressBar.setProgress(getProgressBarPercentage(timeRemaining, timeBetween));
             }
 

@@ -7,13 +7,26 @@
 
     <string name="last_update_time_key">last_update_time_key</string>
 
-    <string name="FAJR">Sobh (Fajr)</string>
-    <string name="DHOHR">Dohr</string>
-    <string name="ASR">Asr</string>
-    <string name="MAGHRIB">Maghreb</string>
-    <string name="ICHA">Icha</string>
+    <string name="FAJR">A`Sobh (Fajr)</string>
+    <string name="DHOHR">A`Dohr</string>
+    <string name="ASR">Al Asr</string>
+    <string name="MAGHRIB">Al Maghreb</string>
+    <string name="ICHA">Al Ichaa</string>
 
     <string name="adthan_notification_channel_id">ADHAN_CHANNEL_ID</string>
     <string name="adthan_notification_channel_name">Adthan Timer</string>
     <string name="adthan_notification_channel_description">Adthan Timer</string>
+
+    <string name="hijri_month_1">Mouharram</string>
+    <string name="hijri_month_2">Safar</string>
+    <string name="hijri_month_3">Rabii al awal</string>
+    <string name="hijri_month_4">Rabii ath-thani</string>
+    <string name="hijri_month_5">Joumada al oula</string>
+    <string name="hijri_month_6">Joumada ath-thania</string>
+    <string name="hijri_month_7">Rajab</string>
+    <string name="hijri_month_8">Chaabane</string>
+    <string name="hijri_month_9">Ramadan</string>
+    <string name="hijri_month_10">Chawwal</string>
+    <string name="hijri_month_11">Dhou al qi`da</string>
+    <string name="hijri_month_12">Dhou al-hijja</string>
 </resources>

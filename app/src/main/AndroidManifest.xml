@@ -25,7 +25,7 @@
         </activity>
         <service android:name=".location.address.LocationAddressHelper" />
 
-        <receiver android:name=".alarm.AlarmReceiver"/>
-        <receiver android:name=".alarm.NotificationDismissedReceiver"/>
+        <receiver android:name=".notifier.NotifierReceiver"/>
+        <receiver android:name=".notifier.NotificationDismissedReceiver"/>
     </application>
 </manifest>

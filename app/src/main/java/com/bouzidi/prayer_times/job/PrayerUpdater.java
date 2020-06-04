@@ -5,7 +5,7 @@ import android.content.SharedPreferences;
 import android.location.Location;
 import android.location.LocationManager;
 
-import com.bouzidi.prayer_times.alarm.AlarmHelper;
+import com.bouzidi.prayer_times.notifier.NotifierHelper;
 import com.bouzidi.prayer_times.location.address.LocationAddressHelper;
 import com.bouzidi.prayer_times.timings.CalculationMethodEnum;
 import com.bouzidi.prayer_times.timings.DayPrayer;
@@ -61,7 +61,7 @@ public class PrayerUpdater extends Worker {
                         .subscribeWith(new DisposableSingleObserver<DayPrayer>() {
                             @Override
                             public void onSuccess(DayPrayer dayPrayer) {
-                                AlarmHelper.scheduleNextPrayerAlarms(context, dayPrayer);
+                                NotifierHelper.scheduleNextPrayerAlarms(context, dayPrayer);
                             }
 
                             @Override

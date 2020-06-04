@@ -7,6 +7,7 @@
     <color name="textPrimary">@color/mine_shaft</color>
     <color name="textSecondary">@color/boulder</color>
 
+    <color name="transparent">#00000000</color>
     <color name="slate_gray">#738497</color>
     <color name="ebony_clay">#213040</color>
     <color name="mirage">#1C2C3B</color>

@@ -8,11 +8,13 @@ import android.util.Log;
 
 import com.bouzidi.prayer_times.timings.CalculationMethodEnum;
 import com.bouzidi.prayer_times.timings.DayPrayer;
-import com.bouzidi.prayer_times.timings.Prayer;
 import com.bouzidi.prayer_times.timings.PrayerEnum;
 import com.bouzidi.prayer_times.timings.aladhan.AladhanDate;
 import com.bouzidi.prayer_times.timings.aladhan.AladhanTimings;
 import com.bouzidi.prayer_times.timings.aladhan.AladhanTodayTimingsResponse;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class PrayerRegistry {
 
@@ -95,13 +97,14 @@ public class PrayerRegistry {
         boolean first = cursor.moveToFirst();
 
         if (first) {
-            Prayer[] prayers = {
-                    new Prayer(PrayerEnum.FAJR, cursor.getString(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_FAJR_TIMING))),
-                    new Prayer(PrayerEnum.DHOHR, cursor.getString(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_DHOHR_TIMING))),
-                    new Prayer(PrayerEnum.ASR, cursor.getString(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_ASR_TIMING))),
-                    new Prayer(PrayerEnum.MAGHRIB, cursor.getString(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_MAGHRIB_TIMING))),
-                    new Prayer(PrayerEnum.ICHA, cursor.getString(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_ICHA_TIMING)))
-            };
+            Map<PrayerEnum, String> timings = new LinkedHashMap<>(5);
+
+            timings.put(PrayerEnum.FAJR, cursor.getString(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_FAJR_TIMING)));
+            timings.put(PrayerEnum.DHOHR, cursor.getString(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_DHOHR_TIMING)));
+            timings.put(PrayerEnum.ASR, cursor.getString(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_ASR_TIMING)));
+            timings.put(PrayerEnum.MAGHRIB, cursor.getString(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_MAGHRIB_TIMING)));
+            timings.put(PrayerEnum.ICHA, cursor.getString(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_ICHA_TIMING)));
+
 
             dayPrayer = new DayPrayer(
                     cursor.getString(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_DATE)),
@@ -114,7 +117,7 @@ public class PrayerRegistry {
                     cursor.getInt(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_GREGORIAN_MONTH_NUMBER)),
                     cursor.getInt(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_GREGORIAN_YEAR))
             );
-            dayPrayer.setPrayers(prayers);
+            dayPrayer.setTimings(timings);
         }
 
         return dayPrayer;

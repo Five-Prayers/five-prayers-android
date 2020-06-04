@@ -1,31 +1,40 @@
 package com.bouzidi.prayer_times.utils;
 
-import com.bouzidi.prayer_times.timings.Prayer;
 import com.bouzidi.prayer_times.timings.PrayerEnum;
 
 import java.util.Date;
+import java.util.Map;
+import java.util.Objects;
 
 import androidx.annotation.NonNull;
 
 public class PrayerUtils {
 
-    public static int getNextPrayerIndex(@NonNull Prayer[] prayers, @NonNull Date currentTime) {
-        int index = -1;
+    public static PrayerEnum getNextPrayer(@NonNull Map<PrayerEnum, String> prayers, @NonNull Date currentTime) {
+        if (TimingUtils.isBeforeTiming(currentTime, Objects.requireNonNull(prayers.get(PrayerEnum.FAJR)))) {
+            return PrayerEnum.FAJR;
+        } else if (TimingUtils.isBetweenTiming(Objects.requireNonNull(prayers.get(PrayerEnum.FAJR)), currentTime, Objects.requireNonNull(prayers.get(PrayerEnum.DHOHR)))) {
+            return PrayerEnum.DHOHR;
+        } else if (TimingUtils.isBetweenTiming(Objects.requireNonNull(prayers.get(PrayerEnum.DHOHR)), currentTime, Objects.requireNonNull(prayers.get(PrayerEnum.ASR)))) {
+            return PrayerEnum.ASR;
+        } else if (TimingUtils.isBetweenTiming(Objects.requireNonNull(prayers.get(PrayerEnum.ASR)), currentTime, Objects.requireNonNull(prayers.get(PrayerEnum.MAGHRIB)))) {
+            return PrayerEnum.MAGHRIB;
+        } else
+            return PrayerEnum.ICHA;
+    }
 
-        for (int i = 0; i < prayers.length; i++) {
-            index = i;
-            if (prayers[i].getKey().equals(PrayerEnum.FAJR) && TimingUtils.isBeforeTiming(currentTime, prayers[i].getTiming())) {
-                return 0;
-            }
-
-            if (prayers[i].getKey().equals(PrayerEnum.ICHA) && TimingUtils.isAfterTiming(currentTime, prayers[i].getTiming())) {
-                return -1;
-            }
-
-            if (TimingUtils.isBetweenTiming(prayers[i].getTiming(), currentTime, prayers[i + 1].getTiming())) {
-                return i + 1;
-            }
+    public static PrayerEnum getPreviousPrayerKey(PrayerEnum key) {
+        switch (key) {
+            case FAJR:
+                return PrayerEnum.ICHA;
+            case DHOHR:
+                return PrayerEnum.FAJR;
+            case ASR:
+                return PrayerEnum.DHOHR;
+            case MAGHRIB:
+                return PrayerEnum.ASR;
+            default:
+                return PrayerEnum.MAGHRIB;
         }
-        return index;
     }
 }

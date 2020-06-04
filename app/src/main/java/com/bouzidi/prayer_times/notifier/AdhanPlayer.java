@@ -1,4 +1,4 @@
-package com.bouzidi.prayer_times.alarm;
+package com.bouzidi.prayer_times.notifier;
 
 import android.content.ContentResolver;
 import android.content.Context;

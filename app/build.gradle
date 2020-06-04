@@ -51,6 +51,7 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 
     //Circular Progress Bar
+    //https://github.com/lopspower/CircularProgressBar
     implementation 'com.mikhaellopez:circularprogressbar:3.0.3'
 
     testImplementation 'junit:junit:4.12'

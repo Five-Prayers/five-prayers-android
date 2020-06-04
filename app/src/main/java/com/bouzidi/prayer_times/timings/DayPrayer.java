@@ -1,5 +1,7 @@
 package com.bouzidi.prayer_times.timings;
 
+import java.util.Map;
+
 public class DayPrayer {
 
     private String date;
@@ -14,7 +16,7 @@ public class DayPrayer {
     private int gregorianMonthNumber;
     private int gregorianYear;
 
-    private Prayer[] prayers;
+    private Map<PrayerEnum, String> timings;
 
     public DayPrayer(String date, String city, String country, int hijriDay, int hijriMonthNumber, int hijriYear,
                      int gregorianDay, int gregorianMonthNumber,
@@ -55,14 +57,6 @@ public class DayPrayer {
         return gregorianYear;
     }
 
-    public Prayer[] getPrayers() {
-        return prayers;
-    }
-
-    public void setPrayers(Prayer[] prayers) {
-        this.prayers = prayers;
-    }
-
     public String getDate() {
         return date;
     }
@@ -73,5 +67,13 @@ public class DayPrayer {
 
     public String getCountry() {
         return country;
+    }
+
+    public Map<PrayerEnum, String> getTimings() {
+        return timings;
+    }
+
+    public void setTimings(Map<PrayerEnum, String> timings) {
+        this.timings = timings;
     }
 }

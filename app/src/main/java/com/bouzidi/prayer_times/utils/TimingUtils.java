@@ -61,7 +61,7 @@ public class TimingUtils {
         return cal.after(startCal) && cal.before(endCal);
     }
 
-    public static long getTimingBetween(String startTiming, String endTiming, boolean endTimingOnNextDay) {
+    public static long getTimingBetween(String startTiming, String endTiming) {
         String[] startParts = startTiming.split(":");
         Calendar startCal = Calendar.getInstance();
         startCal.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startParts[0]));
@@ -72,22 +72,14 @@ public class TimingUtils {
         endCal.set(Calendar.HOUR_OF_DAY, Integer.parseInt(endParts[0]));
         endCal.set(Calendar.MINUTE, Integer.parseInt(endParts[1]));
 
-        if (endTimingOnNextDay) {
-            endCal.add(Calendar.DAY_OF_MONTH, -1);
-        }
-
         return Math.abs(endCal.getTime().getTime() - startCal.getTime().getTime());
     }
 
-    public static long getRemainingTiming(Date now, String endTiming, boolean endTimingOnNextDay) {
+    public static long getRemainingTiming(Date now, String endTiming) {
         String[] endParts = endTiming.split(":");
         Calendar endCal = Calendar.getInstance();
         endCal.set(Calendar.HOUR_OF_DAY, Integer.parseInt(endParts[0]));
         endCal.set(Calendar.MINUTE, Integer.parseInt(endParts[1]));
-
-        if (endTimingOnNextDay) {
-            endCal.add(Calendar.DAY_OF_MONTH, 1);
-        }
 
         Calendar nowCal = Calendar.getInstance();
         nowCal.setTime(now);

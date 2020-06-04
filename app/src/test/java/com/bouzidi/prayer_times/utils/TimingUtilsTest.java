@@ -13,16 +13,17 @@ public class TimingUtilsTest {
 
     @Test
     public void isBeforeTiming() {
-        //assertTrue(TimingUtils.isBeforeTiming(getDate(2, 0), "03:00"));
-        //assertTrue(TimingUtils.isBeforeTiming(getDate(22, 0), "00:30"));
-        assertFalse(TimingUtils.isBeforeTiming(getDate(22, 0), "10:30"));
-       // assertTrue(TimingUtils.isBeforeTiming(getDate(0, 10), "11:30"));
+        assertTrue(TimingUtils.isBeforeTiming(getDate(2, 0), "03:00", false));
+        assertTrue(TimingUtils.isBeforeTiming(getDate(22, 0), "00:05", true));
+        assertFalse(TimingUtils.isBeforeTiming(getDate(22, 0), "10:30", false));
+        assertFalse(TimingUtils.isBeforeTiming(getDate(14, 5), "14:03", false));
+        assertTrue(TimingUtils.isBeforeTiming(getDate(0, 10), "00:05", true));
     }
 
     @Test
     public void isAfterTiming() {
-        assertTrue(TimingUtils.isBeforeTiming(getDate(2, 0), "03:00"));
-        assertTrue(TimingUtils.isBeforeTiming(getDate(22, 0), "00:30"));
+         assertFalse(TimingUtils.isAfterTiming(getDate(2, 0), "03:00"));
+         assertTrue(TimingUtils.isAfterTiming(getDate(3, 0), "00:30"));
     }
 
     @NotNull

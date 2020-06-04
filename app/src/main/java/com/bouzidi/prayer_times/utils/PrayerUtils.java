@@ -11,7 +11,8 @@ import androidx.annotation.NonNull;
 public class PrayerUtils {
 
     public static PrayerEnum getNextPrayer(@NonNull Map<PrayerEnum, String> prayers, @NonNull Date currentTime) {
-        if (TimingUtils.isBeforeTiming(currentTime, Objects.requireNonNull(prayers.get(PrayerEnum.FAJR)))) {
+
+        if (TimingUtils.isBeforeTiming(currentTime, Objects.requireNonNull(prayers.get(PrayerEnum.FAJR)), false)) {
             return PrayerEnum.FAJR;
         } else if (TimingUtils.isBetweenTiming(Objects.requireNonNull(prayers.get(PrayerEnum.FAJR)), currentTime, Objects.requireNonNull(prayers.get(PrayerEnum.DHOHR)))) {
             return PrayerEnum.DHOHR;

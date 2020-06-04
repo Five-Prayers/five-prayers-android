@@ -9,36 +9,22 @@ public class TimingUtils {
 
     private static final String ADHAN_API_DEFAULT_FORMAT = "dd-MM-YYYY";
 
-    public static boolean isBeforeTiming(Date now, String endTiming) {
+    public static boolean isBeforeTiming(Date now, String endTiming, boolean endTimingAfterMidnight) {
         String[] endParts = endTiming.split(":");
         Calendar endCal = Calendar.getInstance();
+
+        endCal.setTime(now);
         endCal.set(Calendar.HOUR_OF_DAY, Integer.parseInt(endParts[0]));
         endCal.set(Calendar.MINUTE, Integer.parseInt(endParts[1]));
+
+        if (endTimingAfterMidnight) {
+            endCal.add(Calendar.DAY_OF_MONTH, 1);
+        }
 
         Calendar nowCal = Calendar.getInstance();
         nowCal.setTime(now);
 
-        Calendar cal = Calendar.getInstance();
-        cal.set(Calendar.HOUR_OF_DAY, nowCal.get(Calendar.HOUR_OF_DAY));
-        cal.set(Calendar.MINUTE, nowCal.get(Calendar.MINUTE));
-
-        return cal.before(endCal);
-    }
-
-    public static boolean isAfterTiming(Date now, String endTiming) {
-        String[] endParts = endTiming.split(":");
-        Calendar endCal = Calendar.getInstance();
-        endCal.set(Calendar.HOUR_OF_DAY, Integer.parseInt(endParts[0]));
-        endCal.set(Calendar.MINUTE, Integer.parseInt(endParts[1]));
-
-        Calendar nowCal = Calendar.getInstance();
-        nowCal.setTime(now);
-
-        Calendar cal = Calendar.getInstance();
-        cal.set(Calendar.HOUR_OF_DAY, nowCal.get(Calendar.HOUR_OF_DAY));
-        cal.set(Calendar.MINUTE, nowCal.get(Calendar.MINUTE));
-
-        return cal.after(endCal);
+        return nowCal.before(endCal);
     }
 
     public static boolean isBetweenTiming(String startTiming, Date now, String endTiming) {
@@ -89,6 +75,20 @@ public class TimingUtils {
         cal.set(Calendar.MINUTE, nowCal.get(Calendar.MINUTE));
 
         return Math.abs(endCal.getTime().getTime() - cal.getTime().getTime());
+    }
+
+    public static boolean isBeforeOnSameDay(String startTiming, String endTiming) {
+        String[] startParts = startTiming.split(":");
+        Calendar startCal = Calendar.getInstance();
+        startCal.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startParts[0]));
+        startCal.set(Calendar.MINUTE, Integer.parseInt(startParts[1]));
+
+        String[] endParts = endTiming.split(":");
+        Calendar endCal = Calendar.getInstance();
+        endCal.set(Calendar.HOUR_OF_DAY, Integer.parseInt(endParts[0]));
+        endCal.set(Calendar.MINUTE, Integer.parseInt(endParts[1]));
+
+        return startCal.before(endCal);
     }
 
     public static String formatTimeForTimer(long time) {

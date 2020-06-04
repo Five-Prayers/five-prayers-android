@@ -22,11 +22,20 @@ public class NotifierHelper {
         Calendar calendar = Calendar.getInstance();
 
         Map<PrayerEnum, String> timings = dayPrayer.getTimings();
-        int alarmIndex = 0;
 
         for (PrayerEnum key : timings.keySet()) {
             String timing = Objects.requireNonNull(timings.get(key));
-            if (TimingUtils.isBeforeTiming(calendar.getTime(), timing)) {
+            boolean isTimingAfterMidnight = false;
+
+            if (key.equals(PrayerEnum.MAGHRIB)) {
+                isTimingAfterMidnight = dayPrayer.isMaghribAfterMidnight();
+            }
+
+            if (key.equals(PrayerEnum.ICHA)) {
+                isTimingAfterMidnight = dayPrayer.isIchaAfterMidnight();
+            }
+
+            if (TimingUtils.isBeforeTiming(calendar.getTime(), timing, isTimingAfterMidnight)) {
                 AlarmManager alarmMgr = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
                 Intent intent = new Intent(context, NotifierReceiver.class);
                 intent.putExtra("prayerKey", key.toString());
@@ -40,6 +49,10 @@ public class NotifierHelper {
                 calendar.set(Calendar.MINUTE, Integer.parseInt(endParts[1]));
                 calendar.set(Calendar.SECOND, 0);
                 calendar.set(Calendar.MILLISECOND, 0);
+
+                if (isTimingAfterMidnight) {
+                    calendar.add(Calendar.DAY_OF_MONTH, 1);
+                }
 
                 if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                     alarmMgr.setExact(AlarmManager.RTC, calendar.getTimeInMillis(), alarmIntent);

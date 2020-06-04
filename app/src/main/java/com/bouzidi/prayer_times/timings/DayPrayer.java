@@ -18,6 +18,9 @@ public class DayPrayer {
 
     private Map<PrayerEnum, String> timings;
 
+    private boolean maghribAfterMidnight;
+    private boolean ichaAfterMidnight;
+
     public DayPrayer(String date, String city, String country, int hijriDay, int hijriMonthNumber, int hijriYear,
                      int gregorianDay, int gregorianMonthNumber,
                      int gregorianYear) {
@@ -75,5 +78,21 @@ public class DayPrayer {
 
     public void setTimings(Map<PrayerEnum, String> timings) {
         this.timings = timings;
+    }
+
+    public boolean isMaghribAfterMidnight() {
+        return maghribAfterMidnight;
+    }
+
+    public void setMaghribAfterMidnight(boolean maghribAfterMidnight) {
+        this.maghribAfterMidnight = maghribAfterMidnight;
+    }
+
+    public boolean isIchaAfterMidnight() {
+        return ichaAfterMidnight;
+    }
+
+    public void setIchaAfterMidnight(boolean ichaAfterMidnight) {
+        this.ichaAfterMidnight = ichaAfterMidnight;
     }
 }

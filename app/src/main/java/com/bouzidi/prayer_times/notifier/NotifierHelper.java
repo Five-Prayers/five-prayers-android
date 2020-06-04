@@ -20,10 +20,13 @@ public class NotifierHelper {
 
     public static void scheduleNextPrayerAlarms(Context context, DayPrayer dayPrayer) {
         Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
 
         Map<PrayerEnum, String> timings = dayPrayer.getTimings();
 
+        int index = 0;
         for (PrayerEnum key : timings.keySet()) {
+            index++;
             String timing = Objects.requireNonNull(timings.get(key));
             boolean isTimingAfterMidnight = false;
 
@@ -41,7 +44,7 @@ public class NotifierHelper {
                 intent.putExtra("prayerKey", key.toString());
                 intent.putExtra("prayerTiming", timing);
                 intent.putExtra("notificationId", 1);
-                PendingIntent alarmIntent = PendingIntent.getBroadcast(context, 1, intent, FLAG_UPDATE_CURRENT);
+                PendingIntent alarmIntent = PendingIntent.getBroadcast(context, index, intent, FLAG_UPDATE_CURRENT);
 
                 String[] endParts = timing.split(":");
 
@@ -54,10 +57,11 @@ public class NotifierHelper {
                     calendar.add(Calendar.DAY_OF_MONTH, 1);
                 }
 
+                alarmMgr.cancel(alarmIntent);
                 if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                    alarmMgr.setExact(AlarmManager.RTC, calendar.getTimeInMillis(), alarmIntent);
+                    alarmMgr.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), alarmIntent);
                 } else {
-                    alarmMgr.set(AlarmManager.RTC, calendar.getTimeInMillis(), alarmIntent);
+                    alarmMgr.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), alarmIntent);
                 }
             }
         }

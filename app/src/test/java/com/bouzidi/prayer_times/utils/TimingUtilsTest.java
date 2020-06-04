@@ -20,12 +20,6 @@ public class TimingUtilsTest {
         assertTrue(TimingUtils.isBeforeTiming(getDate(0, 10), "00:05", true));
     }
 
-    @Test
-    public void isAfterTiming() {
-         assertFalse(TimingUtils.isAfterTiming(getDate(2, 0), "03:00"));
-         assertTrue(TimingUtils.isAfterTiming(getDate(3, 0), "00:30"));
-    }
-
     @NotNull
     private Date getDate(int hour, int minute) {
         Calendar calendar = Calendar.getInstance();

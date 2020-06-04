@@ -4,17 +4,41 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/purple_gradient_background"
+    android:background="@drawable/white_blue_mosque_gradient_background"
     tools:context=".ui.home.HomeFragment">
 
+    <TextView
+        android:id="@+id/sunrise_timing_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="06:00"
+        android:textColor="@color/stratos"
+        android:textSize="@dimen/text_large"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/imageView3"
+        app:layout_constraintStart_toStartOf="@+id/imageView3"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+    <TextView
+        android:id="@+id/sunset_timing_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="21:46"
+        android:textColor="@color/stratos"
+        android:textSize="@dimen/text_large"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/imageView2"
+        app:layout_constraintStart_toStartOf="@+id/imageView2"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
     <TextView
         android:id="@+id/icha_timing_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="00:04"
-        android:textColor="@color/colorPrimaryLight"
         android:textSize="@dimen/text_large"
+        android:textColor="@color/stratos"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/ichaa_clock_view"
         app:layout_constraintStart_toStartOf="@+id/ichaa_clock_view"
         app:layout_constraintTop_toBottomOf="@+id/ichaa_clock_view" />
@@ -24,8 +48,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Al Ichaa"
-        android:textColor="@color/colorPrimaryLight"
         android:textSize="@dimen/text_large"
+        android:textColor="@color/stratos"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/ichaa_clock_view"
         app:layout_constraintEnd_toEndOf="@+id/ichaa_clock_view"
         app:layout_constraintStart_toStartOf="@+id/ichaa_clock_view" />
@@ -35,8 +60,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="14:05"
-        android:textColor="@color/colorPrimaryLight"
         android:textSize="@dimen/text_large"
+        android:textColor="@color/stratos"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/dohr_clock_view"
         app:layout_constraintStart_toStartOf="@+id/dohr_clock_view"
         app:layout_constraintTop_toBottomOf="@+id/dohr_clock_view" />
@@ -45,24 +71,27 @@
         android:id="@+id/locationTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
         android:drawableLeft="@drawable/ic_location_20"
         android:text="Colombes, France"
-        android:textColor="@color/colorPrimaryLight"
+        android:inputType="textCapSentences"
+        android:fontFamily="sans-serif-condensed"
+        android:textColor="@color/stratos"
         android:textSize="@dimen/text_smlarge"
-        android:textStyle="normal"
-        app:layout_constraintBottom_toTopOf="@+id/nextPrayerConstraintLayout"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.9" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/fajr_label_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="A'Sobh"
-        android:textColor="@color/colorPrimaryLight"
         android:textSize="@dimen/text_large"
+        android:textColor="@color/stratos"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/farj_clock_view"
         app:layout_constraintEnd_toEndOf="@+id/farj_clock_view"
         app:layout_constraintStart_toStartOf="@+id/farj_clock_view" />
@@ -72,86 +101,91 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="A'Dohr"
-        android:textColor="@color/colorPrimaryLight"
         android:textSize="@dimen/text_large"
+        android:textColor="@color/stratos"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/dohr_clock_view"
         app:layout_constraintEnd_toEndOf="@+id/dohr_clock_view"
         app:layout_constraintStart_toStartOf="@+id/dohr_clock_view" />
+
+    <TextView
+        android:id="@+id/gregorianTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:text="mon 21 Nov, 2020"
+        android:fontFamily="sans-serif-condensed"
+        android:textColor="@color/stratos"
+        android:textSize="@dimen/text_smlarge"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/hijriTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="22 Safar, 1438"
+        android:textColor="@color/textSecondary"
+        android:textSize="@dimen/text_large"
+        android:textStyle="normal"
+        android:fontFamily="sans-serif-condensed"
+        app:layout_constraintEnd_toEndOf="@+id/gregorianTextView"
+        app:layout_constraintStart_toStartOf="@+id/gregorianTextView"
+        app:layout_constraintTop_toBottomOf="@+id/gregorianTextView" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/nextPrayerConstraintLayout"
         android:layout_width="190dp"
         android:layout_height="190dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/datesConstraintLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.16000003">
-
-        <TextView
-            android:id="@+id/nextPrayertitleTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Next Prayer"
-            android:textSize="@dimen/text_smlarge"
-            android:textColor="@color/textPrimary"
-            android:textStyle="normal"
-            app:layout_constraintBottom_toTopOf="@+id/prayerNametextView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.7" />
-
-        <TextView
-            android:id="@+id/prayerNametextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Al Maghrib"
-            android:textColor="@color/colorPrimaryLight"
-            android:textSize="@dimen/text_xxlarge"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/prayerTimetextView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/circularProgressBar"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="1.0">
 
         <TextView
             android:id="@+id/prayerTimetextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="13:48"
-            android:textColor="#E91E63"
+            android:textColor="@color/stratos"
             android:textSize="@dimen/text_xxxlarge"
             android:textStyle="bold"
+            android:fontFamily="sans-serif-condensed"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.7" />
+            app:layout_constraintVertical_bias="0.25" />
 
         <TextView
             android:id="@+id/timeRemainingTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="- 04:15 min"
-            android:textColor="@color/textPrimary"
+            android:layout_marginTop="18dp"
+            android:layout_marginBottom="28dp"
+            android:text="- 04:15:50"
+            android:textColor="#530101"
             android:textSize="@dimen/text_large"
             android:textStyle="normal"
+            android:fontFamily="sans-serif-condensed"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.504"
             app:layout_constraintStart_toStartOf="@+id/circularProgressBar"
-            app:layout_constraintTop_toBottomOf="@+id/prayerTimetextView"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toBottomOf="@+id/prayerNametextView" />
 
         <com.mikhaellopez.circularprogressbar.CircularProgressBar
             android:id="@+id/circularProgressBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:cpb_background_progressbar_color="@color/flirt"
+            app:cpb_background_progressbar_color="#EAF2F4"
             app:cpb_background_progressbar_width="5dp"
             app:cpb_progress_direction="to_right"
-            app:cpb_progressbar_color="@color/amaranth"
+            app:cpb_progressbar_color="@color/dodger_blue"
             app:cpb_progressbar_width="10dp"
             app:cpb_round_border="true"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -161,45 +195,31 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.0" />
 
+        <TextView
+            android:id="@+id/prayerNametextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Al Maghrib"
+            android:textColor="@color/stratos"
+            android:fontFamily="sans-serif-condensed"
+            android:textSize="@dimen/text_xxlarge"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/circularProgressBar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/prayerTimetextView" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/datesConstraintLayout"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nextPrayerConstraintLayout"
-        app:layout_constraintVertical_bias="0.00999999">
-
-        <TextView
-            android:id="@+id/gregorianTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Mon 21 Nov, 2020"
-            android:textColor="@color/colorPrimaryLight"
-            android:textSize="@dimen/text_smlarge"
-            android:textStyle="normal"
-            app:layout_constraintBottom_toTopOf="@+id/hijriTextView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/hijriTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="22 Safar, 1438"
-            android:textColor="@color/textPrimary"
-            android:textSize="@dimen/text_smlarge"
-            android:textStyle="normal"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/gregorianTextView"
-            app:layout_constraintVertical_bias="0.25" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.43">
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -256,8 +276,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="03:21"
-        android:textColor="@color/colorPrimaryLight"
         android:textSize="@dimen/text_large"
+        android:textColor="@color/stratos"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/farj_clock_view"
         app:layout_constraintStart_toStartOf="@+id/farj_clock_view"
         app:layout_constraintTop_toBottomOf="@+id/farj_clock_view" />
@@ -267,8 +288,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Al Asr"
-        android:textColor="@color/colorPrimaryLight"
         android:textSize="@dimen/text_large"
+        android:textColor="@color/stratos"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/asr_clock_view"
         app:layout_constraintEnd_toEndOf="@+id/asr_clock_view"
         app:layout_constraintStart_toStartOf="@+id/asr_clock_view" />
@@ -278,8 +300,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="18:07"
-        android:textColor="@color/colorPrimaryLight"
         android:textSize="@dimen/text_large"
+        android:textColor="@color/stratos"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/asr_clock_view"
         app:layout_constraintStart_toStartOf="@+id/asr_clock_view"
         app:layout_constraintTop_toBottomOf="@+id/asr_clock_view" />
@@ -289,8 +312,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Al Maghreb"
-        android:textColor="@color/colorPrimaryLight"
         android:textSize="@dimen/text_large"
+        android:textColor="@color/stratos"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/maghreb_clock_view"
         app:layout_constraintEnd_toEndOf="@+id/maghreb_clock_view"
         app:layout_constraintStart_toStartOf="@+id/maghreb_clock_view" />
@@ -300,10 +324,31 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="21:46"
-        android:textColor="@color/colorPrimaryLight"
         android:textSize="@dimen/text_large"
+        android:textColor="@color/stratos"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/maghreb_clock_view"
         app:layout_constraintStart_toStartOf="@+id/maghreb_clock_view"
         app:layout_constraintTop_toBottomOf="@+id/maghreb_clock_view" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_sunet"
+        app:layout_constraintBottom_toBottomOf="@+id/nextPrayerConstraintLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/nextPrayerConstraintLayout"
+        app:layout_constraintTop_toTopOf="@+id/nextPrayerConstraintLayout" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_sunrise"
+        app:layout_constraintBottom_toBottomOf="@+id/nextPrayerConstraintLayout"
+        app:layout_constraintEnd_toStartOf="@+id/nextPrayerConstraintLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/nextPrayerConstraintLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

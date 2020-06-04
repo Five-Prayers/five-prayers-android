@@ -14,7 +14,7 @@ import java.util.Calendar;
 public class ClockView extends View {
 
     private Calendar calendar = Calendar.getInstance();
-    private int color = Color.GREEN;
+    private int color = 0xFF17C5FF;
     private int height, width = 0;
     private int padding = 0;
     private int fontSize = 0;

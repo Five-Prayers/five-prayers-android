@@ -22,6 +22,8 @@ import com.bouzidi.prayer_times.utils.PrayerUtils;
 import com.bouzidi.prayer_times.utils.TimingUtils;
 import com.mikhaellopez.circularprogressbar.CircularProgressBar;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -69,13 +71,13 @@ public class HomeFragment extends Fragment {
     private TextView ichaLabel;
     private Date todayDate;
 
+    @Nullable
+    @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
-
-
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -178,7 +180,7 @@ public class HomeFragment extends Fragment {
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.HOUR, Integer.parseInt(hour));
         calendar.set(Calendar.MINUTE, Integer.valueOf(minute));
-        clock.setColor(0xFF9B0493);
+        clock.setColor(0xFF17C5FF);
         clock.setCalendar(calendar);
     }
 
@@ -222,10 +224,10 @@ public class HomeFragment extends Fragment {
         SimpleDateFormat TimeZoneFormat = new SimpleDateFormat("ZZZZZ", Locale.getDefault());
         String gregorianDate = simpleDateFormat.format(todayDate);
 
-        hijriTextView.setText(hijriDate);
-        gregorianTextView.setText(gregorianDate);
-        String locationText = dayPrayer.getCity() + ", " + dayPrayer.getCountry() + " (" + TimeZoneFormat.format(todayDate) + ")";
-        locationTextView.setText(locationText);
+        hijriTextView.setText(StringUtils.capitalize(hijriDate));
+        gregorianTextView.setText(StringUtils.capitalize(gregorianDate));
+        String locationText = dayPrayer.getCity(); // + ", " + dayPrayer.getCountry() + " (" + TimeZoneFormat.format(todayDate) + ")";
+        locationTextView.setText(StringUtils.capitalize(locationText));
     }
 
     private float getProgressBarPercentage(long timeRemaining, long timeBetween) {
@@ -234,7 +236,7 @@ public class HomeFragment extends Fragment {
 
     private void startAnimationTimer(final long timeRemaining, final long timeBetween, final DayPrayer dayPrayer) {
         circularProgressBar.setProgressWithAnimation(getProgressBarPercentage(timeRemaining, timeBetween), 1000L);
-        TimeRemainingCTimer = new CountDownTimer(timeRemaining, 1000L * 60) {
+        TimeRemainingCTimer = new CountDownTimer(timeRemaining, 1000L) {
             public void onTick(long millisUntilFinished) {
                 timeRemainingTextView.setText(TimingUtils.formatTimeForTimer(millisUntilFinished));
                 circularProgressBar.setProgress(getProgressBarPercentage(timeRemaining, timeBetween));

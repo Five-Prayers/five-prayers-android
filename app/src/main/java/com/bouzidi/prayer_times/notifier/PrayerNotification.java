@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 
+import com.bouzidi.prayer_times.MainActivity;
 import com.bouzidi.prayer_times.R;
 
 import androidx.core.app.NotificationCompat;
@@ -40,16 +41,20 @@ class PrayerNotification {
     static void createNotification(Context context, Intent intent) {
         int notificationId = intent.getIntExtra("notificationId", 0);
         String prayerTiming = intent.getStringExtra("prayerTiming");
+        String prayerKey = intent.getStringExtra("prayerKey");
 
         String prayerName = context.getResources().getString(
-                context.getResources().getIdentifier(intent.getStringExtra("prayerKey"),
+                context.getResources().getIdentifier(prayerKey,
                         "string", context.getPackageName()));
 
+        PendingIntent pendingIntent = getNotificationIntent(context);
+
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "ADHAN_CHANNEL_ID")
-                .setSmallIcon(R.drawable.ic_notifications_black_24dp)
+                .setSmallIcon(R.drawable.ic_tower_mosque)
                 .setContentTitle("Prayer Time !")
                 .setAutoCancel(true)
                 .setDeleteIntent(createOnDismissedIntent(context, notificationId))
+                .setContentIntent(pendingIntent)
                 .setContentText(prayerName + " : " + prayerTiming);
 
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
@@ -62,6 +67,16 @@ class PrayerNotification {
         }
 
         notificationManager.notify(notificationId, builder.build());
+    }
+
+    private static PendingIntent getNotificationIntent(Context context) {
+        Intent notificationIntent = new Intent(context, MainActivity.class);
+
+        notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+                | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+
+        return PendingIntent.getActivity(context, 0,
+                notificationIntent, 0);
     }
 
     private static PendingIntent createOnDismissedIntent(Context context, int notificationId) {

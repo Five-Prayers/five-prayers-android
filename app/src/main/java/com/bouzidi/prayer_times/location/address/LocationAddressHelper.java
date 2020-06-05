@@ -99,7 +99,7 @@ public class LocationAddressHelper {
     }
 
     private static boolean isAddressObsolete(Address lastKnownAddress, double latitude, double longitude) {
-        if (lastKnownAddress.getLatitude() != 0 && lastKnownAddress.getLongitude() != 0) {
+        if (lastKnownAddress.getLocality() != null) {
 
             Location LastKnownLocation = new Location("");
             LastKnownLocation.setLatitude(lastKnownAddress.getLatitude());

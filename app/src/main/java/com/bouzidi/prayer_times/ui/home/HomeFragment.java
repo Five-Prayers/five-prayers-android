@@ -1,6 +1,5 @@
 package com.bouzidi.prayer_times.ui.home;
 
-import android.location.Location;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.LayoutInflater;
@@ -10,13 +9,9 @@ import android.widget.TextView;
 
 import com.bouzidi.prayer_times.MainActivity;
 import com.bouzidi.prayer_times.R;
-import com.bouzidi.prayer_times.location.address.LocationAddressHelper;
-import com.bouzidi.prayer_times.location.tracker.LocationTrackerHelper;
 import com.bouzidi.prayer_times.notifier.NotifierHelper;
-import com.bouzidi.prayer_times.timings.CalculationMethodEnum;
 import com.bouzidi.prayer_times.timings.DayPrayer;
 import com.bouzidi.prayer_times.timings.PrayerEnum;
-import com.bouzidi.prayer_times.timings.PrayerHelper;
 import com.bouzidi.prayer_times.ui.clock.ClockView;
 import com.bouzidi.prayer_times.utils.PrayerUtils;
 import com.bouzidi.prayer_times.utils.TimingUtils;
@@ -34,10 +29,8 @@ import java.util.Objects;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-import io.reactivex.rxjava3.disposables.CompositeDisposable;
-import io.reactivex.rxjava3.observers.DisposableSingleObserver;
-import io.reactivex.rxjava3.schedulers.Schedulers;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 
 public class HomeFragment extends Fragment {
 
@@ -51,7 +44,6 @@ public class HomeFragment extends Fragment {
 
     private CountDownTimer TimeRemainingCTimer = null;
     private MainActivity mainActivity;
-    private CompositeDisposable disposable;
 
     private ClockView fajrClock;
     private ClockView dohrClock;
@@ -71,76 +63,62 @@ public class HomeFragment extends Fragment {
     private TextView ichaLabel;
     private Date todayDate;
 
+    private HomeViewModel dashboardViewModel;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        dashboardViewModel =
+                ViewModelProviders.of(this).get(HomeViewModel.class);
+
+        View root = inflater.inflate(R.layout.fragment_home, container, false);
+
+        initializeViews(root);
+
+        dashboardViewModel.getDayPrayers().observe(getViewLifecycleOwner(), new Observer<DayPrayer>() {
+            @Override
+            public void onChanged(@Nullable DayPrayer dayPrayer) {
+                updateNextPrayerViews(dayPrayer);
+                updateDatesTextViews(dayPrayer);
+                updateTimingsTextViews(dayPrayer);
+                NotifierHelper.scheduleNextPrayerAlarms(mainActivity, dayPrayer);
+            }
+        });
+        return root;
     }
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    private void initializeViews(View root) {
         mainActivity = (MainActivity) getActivity();
 
         todayDate = Calendar.getInstance().getTime();
 
-        locationTextView = mainActivity.findViewById(R.id.locationTextView);
-        hijriTextView = mainActivity.findViewById(R.id.hijriTextView);
-        gregorianTextView = mainActivity.findViewById(R.id.gregorianTextView);
-        prayerNametextView = mainActivity.findViewById(R.id.prayerNametextView);
-        prayerTimetextView = mainActivity.findViewById(R.id.prayerTimetextView);
-        timeRemainingTextView = mainActivity.findViewById(R.id.timeRemainingTextView);
-        circularProgressBar = mainActivity.findViewById(R.id.circularProgressBar);
+        locationTextView = root.findViewById(R.id.locationTextView);
+        hijriTextView = root.findViewById(R.id.hijriTextView);
+        gregorianTextView = root.findViewById(R.id.gregorianTextView);
+        prayerNametextView = root.findViewById(R.id.prayerNametextView);
+        prayerTimetextView = root.findViewById(R.id.prayerTimetextView);
+        timeRemainingTextView = root.findViewById(R.id.timeRemainingTextView);
+        circularProgressBar = root.findViewById(R.id.circularProgressBar);
 
-        fajrClock = mainActivity.findViewById(R.id.farj_clock_view);
-        dohrClock = mainActivity.findViewById(R.id.dohr_clock_view);
-        asrClock = mainActivity.findViewById(R.id.asr_clock_view);
-        maghribClock = mainActivity.findViewById(R.id.maghreb_clock_view);
-        ichaClock = mainActivity.findViewById(R.id.ichaa_clock_view);
+        fajrClock = root.findViewById(R.id.farj_clock_view);
+        dohrClock = root.findViewById(R.id.dohr_clock_view);
+        asrClock = root.findViewById(R.id.asr_clock_view);
+        maghribClock = root.findViewById(R.id.maghreb_clock_view);
+        ichaClock = root.findViewById(R.id.ichaa_clock_view);
 
-        fajrTimingTextView = mainActivity.findViewById(R.id.fajr_timing_text_view);
-        dohrTimingTextView = mainActivity.findViewById(R.id.dohr_timing_text_view);
-        asrTimingTextView = mainActivity.findViewById(R.id.asr_timing_text_view);
-        maghribTimingTextView = mainActivity.findViewById(R.id.maghrib_timing_text_view);
-        ichaTimingTextView = mainActivity.findViewById(R.id.icha_timing_text_view);
+        fajrTimingTextView = root.findViewById(R.id.fajr_timing_text_view);
+        dohrTimingTextView = root.findViewById(R.id.dohr_timing_text_view);
+        asrTimingTextView = root.findViewById(R.id.asr_timing_text_view);
+        maghribTimingTextView = root.findViewById(R.id.maghrib_timing_text_view);
+        ichaTimingTextView = root.findViewById(R.id.icha_timing_text_view);
 
-        fajrLabel = mainActivity.findViewById(R.id.fajr_label_text_view);
-        dohrLabel = mainActivity.findViewById(R.id.dohr_label_text_view);
-        asrLabel = mainActivity.findViewById(R.id.asr_label_text_view);
-        maghribLabel = mainActivity.findViewById(R.id.maghrib_label_text_view);
-        ichaLabel = mainActivity.findViewById(R.id.icha_label_text_view);
-
-        Location location = LocationTrackerHelper.getLocation(mainActivity);
-
-        disposable = new CompositeDisposable();
-        disposable.add(
-                LocationAddressHelper.getAddressFromLocation(location.getLatitude(), location.getLongitude(), mainActivity)
-                        .flatMap(
-                                address ->
-                                        PrayerHelper.getTimingsByCity(
-                                                todayDate,
-                                                address.getLocality(),
-                                                address.getCountryName(),
-                                                CalculationMethodEnum.getDefault(),
-                                                mainActivity
-                                        ))
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribeWith(new DisposableSingleObserver<DayPrayer>() {
-                            @Override
-                            public void onSuccess(DayPrayer dayPrayer) {
-                                updateNextPrayerViews(dayPrayer);
-                                updateDatesTextViews(dayPrayer);
-                                updateTimingsTextViews(dayPrayer);
-                                NotifierHelper.scheduleNextPrayerAlarms(mainActivity, dayPrayer);
-                            }
-
-                            @Override
-                            public void onError(@io.reactivex.rxjava3.annotations.NonNull Throwable e) {
-
-                            }
-                        }));
+        fajrLabel = root.findViewById(R.id.fajr_label_text_view);
+        dohrLabel = root.findViewById(R.id.dohr_label_text_view);
+        asrLabel = root.findViewById(R.id.asr_label_text_view);
+        maghribLabel = root.findViewById(R.id.maghrib_label_text_view);
+        ichaLabel = root.findViewById(R.id.icha_label_text_view);
     }
 
     private void updateTimingsTextViews(DayPrayer dayPrayer) {
@@ -187,7 +165,6 @@ public class HomeFragment extends Fragment {
     @Override
     public void onDestroy() {
         cancelTimer();
-        disposable.dispose();
         super.onDestroy();
     }
 

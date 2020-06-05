@@ -1,5 +1,8 @@
 package com.bouzidi.prayer_times.timings;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import java.util.Map;
 
 public class DayPrayer {
@@ -20,6 +23,8 @@ public class DayPrayer {
 
     private boolean maghribAfterMidnight;
     private boolean ichaAfterMidnight;
+
+    private CalculationMethodEnum calculationMethodEnum;
 
     public DayPrayer(String date, String city, String country, int hijriDay, int hijriMonthNumber, int hijriYear,
                      int gregorianDay, int gregorianMonthNumber,
@@ -94,5 +99,39 @@ public class DayPrayer {
 
     public void setIchaAfterMidnight(boolean ichaAfterMidnight) {
         this.ichaAfterMidnight = ichaAfterMidnight;
+    }
+
+    public CalculationMethodEnum getCalculationMethodEnum() {
+        return calculationMethodEnum;
+    }
+
+    public void setCalculationMethodEnum(CalculationMethodEnum calculationMethodEnum) {
+        this.calculationMethodEnum = calculationMethodEnum;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        DayPrayer dayPrayer = (DayPrayer) o;
+
+        return new EqualsBuilder()
+                .append(date, dayPrayer.date)
+                .append(city, dayPrayer.city)
+                .append(country, dayPrayer.country)
+                .append(calculationMethodEnum, dayPrayer.calculationMethodEnum)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(date)
+                .append(city)
+                .append(country)
+                .append(calculationMethodEnum)
+                .toHashCode();
     }
 }

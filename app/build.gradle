@@ -5,7 +5,7 @@ android {
 
 
     defaultConfig {
-        applicationId "com.bouzidi.prayer_times"
+        applicationId "com.bouzidi.prayertimes"
         minSdkVersion 16
         targetSdkVersion 28
         versionCode 1

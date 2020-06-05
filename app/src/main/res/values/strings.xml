@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">prayer-times</string>
+    <string name="app_name">Five Prayers</string>
     <string name="title_home">Prayer</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>

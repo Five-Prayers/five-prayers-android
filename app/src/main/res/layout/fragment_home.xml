@@ -223,7 +223,7 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.bouzidi.prayer_times.ui.clock.ClockView
+    <com.bouzidi.prayertimes.ui.clock.ClockView
         android:id="@+id/farj_clock_view"
         android:layout_width="90dp"
         android:layout_height="90dp"
@@ -234,7 +234,7 @@
         app:layout_constraintTop_toBottomOf="@+id/datesConstraintLayout"
         app:layout_constraintVertical_bias="0.20999998" />
 
-    <com.bouzidi.prayer_times.ui.clock.ClockView
+    <com.bouzidi.prayertimes.ui.clock.ClockView
         android:id="@+id/dohr_clock_view"
         android:layout_width="90dp"
         android:layout_height="90dp"
@@ -244,7 +244,7 @@
         app:layout_constraintTop_toBottomOf="@+id/datesConstraintLayout"
         app:layout_constraintVertical_bias="0.20999998" />
 
-    <com.bouzidi.prayer_times.ui.clock.ClockView
+    <com.bouzidi.prayertimes.ui.clock.ClockView
         android:id="@+id/asr_clock_view"
         android:layout_width="90dp"
         android:layout_height="90dp"
@@ -253,7 +253,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fajr_timing_text_view" />
 
-    <com.bouzidi.prayer_times.ui.clock.ClockView
+    <com.bouzidi.prayertimes.ui.clock.ClockView
         android:id="@+id/maghreb_clock_view"
         android:layout_width="90dp"
         android:layout_height="90dp"
@@ -262,7 +262,7 @@
         app:layout_constraintStart_toEndOf="@+id/asr_clock_view"
         app:layout_constraintTop_toBottomOf="@+id/fajr_timing_text_view" />
 
-    <com.bouzidi.prayer_times.ui.clock.ClockView
+    <com.bouzidi.prayertimes.ui.clock.ClockView
         android:id="@+id/ichaa_clock_view"
         android:layout_width="90dp"
         android:layout_height="90dp"

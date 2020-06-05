@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.bouzidi.prayertimes.MainActivity;
 import com.bouzidi.prayertimes.R;
 import com.bouzidi.prayertimes.notifier.NotifierHelper;
+import com.bouzidi.prayertimes.timings.ComplementaryTimingEnum;
 import com.bouzidi.prayertimes.timings.DayPrayer;
 import com.bouzidi.prayertimes.timings.PrayerEnum;
 import com.bouzidi.prayertimes.ui.clock.ClockView;
@@ -29,21 +30,33 @@ import java.util.Objects;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 public class HomeFragment extends Fragment {
 
+    private Date todayDate;
+    private CountDownTimer TimeRemainingCTimer;
+    private MainActivity mainActivity;
+
+    private TextView countryTextView;
     private TextView locationTextView;
     private TextView hijriTextView;
     private TextView gregorianTextView;
     private TextView prayerNametextView;
     private TextView prayerTimetextView;
     private TextView timeRemainingTextView;
-    private CircularProgressBar circularProgressBar;
-
-    private CountDownTimer TimeRemainingCTimer = null;
-    private MainActivity mainActivity;
+    private TextView fajrTimingTextView;
+    private TextView dohrTimingTextView;
+    private TextView asrTimingTextView;
+    private TextView maghribTimingTextView;
+    private TextView ichaTimingTextView;
+    private TextView sunriseTimingTextView;
+    private TextView sunsetTimingTextView;
+    private TextView fajrLabel;
+    private TextView dohrLabel;
+    private TextView asrLabel;
+    private TextView maghribLabel;
+    private TextView ichaLabel;
 
     private ClockView fajrClock;
     private ClockView dohrClock;
@@ -51,40 +64,24 @@ public class HomeFragment extends Fragment {
     private ClockView maghribClock;
     private ClockView ichaClock;
 
-    private TextView fajrTimingTextView;
-    private TextView dohrTimingTextView;
-    private TextView asrTimingTextView;
-    private TextView maghribTimingTextView;
-    private TextView ichaTimingTextView;
-    private TextView fajrLabel;
-    private TextView dohrLabel;
-    private TextView asrLabel;
-    private TextView maghribLabel;
-    private TextView ichaLabel;
-    private Date todayDate;
-
-    private HomeViewModel dashboardViewModel;
+    private CircularProgressBar circularProgressBar;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        dashboardViewModel =
-                ViewModelProviders.of(this).get(HomeViewModel.class);
+        HomeViewModel dashboardViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
 
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
         initializeViews(root);
 
-        dashboardViewModel.getDayPrayers().observe(getViewLifecycleOwner(), new Observer<DayPrayer>() {
-            @Override
-            public void onChanged(@Nullable DayPrayer dayPrayer) {
-                updateNextPrayerViews(dayPrayer);
-                updateDatesTextViews(dayPrayer);
-                updateTimingsTextViews(dayPrayer);
-                NotifierHelper.scheduleNextPrayerAlarms(mainActivity, dayPrayer);
-            }
+        dashboardViewModel.getDayPrayers().observe(getViewLifecycleOwner(), dayPrayer -> {
+            updateNextPrayerViews(dayPrayer);
+            updateDatesTextViews(dayPrayer);
+            updateTimingsTextViews(dayPrayer);
+            NotifierHelper.scheduleNextPrayerAlarms(mainActivity, dayPrayer);
         });
         return root;
     }
@@ -94,7 +91,8 @@ public class HomeFragment extends Fragment {
 
         todayDate = Calendar.getInstance().getTime();
 
-        locationTextView = root.findViewById(R.id.locationTextView);
+        locationTextView = root.findViewById(R.id.location_text_view);
+        countryTextView = root.findViewById(R.id.country_text_view);
         hijriTextView = root.findViewById(R.id.hijriTextView);
         gregorianTextView = root.findViewById(R.id.gregorianTextView);
         prayerNametextView = root.findViewById(R.id.prayerNametextView);
@@ -113,6 +111,9 @@ public class HomeFragment extends Fragment {
         asrTimingTextView = root.findViewById(R.id.asr_timing_text_view);
         maghribTimingTextView = root.findViewById(R.id.maghrib_timing_text_view);
         ichaTimingTextView = root.findViewById(R.id.icha_timing_text_view);
+
+        sunriseTimingTextView = root.findViewById(R.id.sunrise_timing_text_view);
+        sunsetTimingTextView = root.findViewById(R.id.sunset_timing_text_view);
 
         fajrLabel = root.findViewById(R.id.fajr_label_text_view);
         dohrLabel = root.findViewById(R.id.dohr_label_text_view);
@@ -142,6 +143,9 @@ public class HomeFragment extends Fragment {
         maghribTimingTextView.setText(maghribTiming);
         ichaTimingTextView.setText(ichaTiming);
 
+        sunriseTimingTextView.setText(dayPrayer.getComplementaryTiming().get(ComplementaryTimingEnum.SUNRISE));
+        sunsetTimingTextView.setText(dayPrayer.getComplementaryTiming().get(ComplementaryTimingEnum.SUNSET));
+
         fajrLabel.setText(R.string.FAJR);
         dohrLabel.setText(R.string.DHOHR);
         asrLabel.setText(R.string.ASR);
@@ -150,14 +154,13 @@ public class HomeFragment extends Fragment {
     }
 
     private String[] getTimingPart(String timing) {
-        String[] parts = timing.split(":");
-        return parts;
+        return timing.split(":");
     }
 
     private void updateClockTime(ClockView clock, String hour, String minute) {
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.HOUR, Integer.parseInt(hour));
-        calendar.set(Calendar.MINUTE, Integer.valueOf(minute));
+        calendar.set(Calendar.MINUTE, Integer.parseInt(minute));
         clock.setColor(0xFF17C5FF);
         clock.setCalendar(calendar);
     }
@@ -199,11 +202,14 @@ public class HomeFragment extends Fragment {
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE dd MMMM, yyyy", Locale.getDefault());
         SimpleDateFormat TimeZoneFormat = new SimpleDateFormat("ZZZZZ", Locale.getDefault());
-        String gregorianDate = simpleDateFormat.format(todayDate);
+
+        String gregorianDate = simpleDateFormat.format(new Date(dayPrayer.getTimestamp()));
 
         hijriTextView.setText(StringUtils.capitalize(hijriDate));
         gregorianTextView.setText(StringUtils.capitalize(gregorianDate));
-        String locationText = dayPrayer.getCity(); // + ", " + dayPrayer.getCountry() + " (" + TimeZoneFormat.format(todayDate) + ")";
+        String locationText = dayPrayer.getCity();
+        String country = dayPrayer.getCountry() + " (" + TimeZoneFormat.format(todayDate) + ")";
+        countryTextView.setText(StringUtils.capitalize(country));
         locationTextView.setText(StringUtils.capitalize(locationText));
     }
 

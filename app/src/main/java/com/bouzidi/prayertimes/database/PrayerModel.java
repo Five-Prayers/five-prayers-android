@@ -7,6 +7,7 @@ class PrayerModel implements BaseColumns {
     static final String TABLE_NAME = "prayer_timing";
 
     static final String COLUMN_NAME_DATE = "date_time";
+    static final String COLUMN_NAME_DATE_TIMESTAMP = "date_timestamp";
     static final String COLUMN_NAME_CITY = "city";
     static final String COLUMN_NAME_COUNTRY = "country";
     static final String COLUMN_NAME_CALCULATION_METHOD = "calculation_method";
@@ -25,10 +26,16 @@ class PrayerModel implements BaseColumns {
     static final String COLUMN_NAME_MAGHRIB_TIMING = "maghrib_timing";
     static final String COLUMN_NAME_ICHA_TIMING = "icha_timing";
 
+    static final String COLUMN_NAME_SUNRISE_TIMING = "sunrise_timing";
+    static final String COLUMN_NAME_SUNSET_TIMING = "sunset_timing";
+    static final String COLUMN_NAME_MIDNIGHT_TIMING = "midnight_timing";
+    static final String COLUMN_NAME_IMSAK_TIMING = "imsak_timing";
+
     static final String SQL_CREATE_TABLE =
             "CREATE TABLE " + TABLE_NAME + " (" +
                     _ID + " INTEGER PRIMARY KEY," +
                     COLUMN_NAME_DATE + " TEXT," +
+                    COLUMN_NAME_DATE_TIMESTAMP + " INTEGER," +
                     COLUMN_NAME_CITY + " TEXT," +
                     COLUMN_NAME_COUNTRY + " TEXT," +
                     COLUMN_NAME_CALCULATION_METHOD + " INTEGER," +
@@ -43,6 +50,10 @@ class PrayerModel implements BaseColumns {
                     COLUMN_NAME_ASR_TIMING + " TEXT," +
                     COLUMN_NAME_MAGHRIB_TIMING + " TEXT," +
                     COLUMN_NAME_ICHA_TIMING + " TEXT," +
+                    COLUMN_NAME_SUNRISE_TIMING + " TEXT," +
+                    COLUMN_NAME_SUNSET_TIMING + " TEXT," +
+                    COLUMN_NAME_MIDNIGHT_TIMING + " TEXT," +
+                    COLUMN_NAME_IMSAK_TIMING + " TEXT," +
                     " UNIQUE(" + COLUMN_NAME_DATE + "," + COLUMN_NAME_CITY + "," + COLUMN_NAME_CALCULATION_METHOD + ")" +
                     ")";
 

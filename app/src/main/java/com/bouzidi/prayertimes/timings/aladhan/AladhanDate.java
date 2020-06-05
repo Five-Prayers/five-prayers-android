@@ -2,6 +2,7 @@ package com.bouzidi.prayertimes.timings.aladhan;
 
 public class AladhanDate {
 
+    private long timestamp;
     private AladhanDateType hijri;
     private AladhanDateType gregorian;
 
@@ -19,5 +20,13 @@ public class AladhanDate {
 
     public void setGregorian(AladhanDateType gregorian) {
         this.gregorian = gregorian;
+    }
+
+    public long getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(long timestamp) {
+        this.timestamp = timestamp;
     }
 }

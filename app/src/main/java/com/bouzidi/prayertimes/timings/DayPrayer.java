@@ -8,6 +8,7 @@ import java.util.Map;
 public class DayPrayer {
 
     private String date;
+    private long timestamp;
     private String city;
     private String country;
 
@@ -20,17 +21,19 @@ public class DayPrayer {
     private int gregorianYear;
 
     private Map<PrayerEnum, String> timings;
+    private Map<ComplementaryTimingEnum, String> complementaryTiming;
 
     private boolean maghribAfterMidnight;
     private boolean ichaAfterMidnight;
 
     private CalculationMethodEnum calculationMethodEnum;
 
-    public DayPrayer(String date, String city, String country, int hijriDay, int hijriMonthNumber, int hijriYear,
+    public DayPrayer(String date, long timestamp, String city, String country, int hijriDay, int hijriMonthNumber, int hijriYear,
                      int gregorianDay, int gregorianMonthNumber,
                      int gregorianYear) {
 
         this.date = date;
+        this.timestamp = timestamp;
         this.city = city;
         this.country = country;
         this.hijriDay = hijriDay;
@@ -107,6 +110,18 @@ public class DayPrayer {
 
     public void setCalculationMethodEnum(CalculationMethodEnum calculationMethodEnum) {
         this.calculationMethodEnum = calculationMethodEnum;
+    }
+
+    public Map<ComplementaryTimingEnum, String> getComplementaryTiming() {
+        return complementaryTiming;
+    }
+
+    public void setComplementaryTiming(Map<ComplementaryTimingEnum, String> complementaryTiming) {
+        this.complementaryTiming = complementaryTiming;
+    }
+
+    public long getTimestamp() {
+        return timestamp;
     }
 
     @Override

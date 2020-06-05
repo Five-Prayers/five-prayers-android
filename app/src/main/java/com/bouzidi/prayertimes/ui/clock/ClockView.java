@@ -67,10 +67,12 @@ public class ClockView extends View {
 
     public void setColor(int color) {
         this.color = color;
+        invalidate();
     }
 
     public void setCalendar(Calendar calendar) {
         this.calendar = calendar;
+        invalidate();
     }
 
     private void drawHand(Canvas canvas, double loc, boolean isHour) {

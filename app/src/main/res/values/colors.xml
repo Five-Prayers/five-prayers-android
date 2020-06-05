@@ -1,18 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-<!--    <color name="colorPrimary">@color/flirt</color>-->
-<!--    <color name="colorPrimaryDark">@color/flirt</color>-->
-<!--    <color name="colorPrimaryLight">@color/french_lilac</color>-->
-<!--    <color name="colorAccent">@color/pigment_indigo</color>-->
-<!--    <color name="textPrimary">@color/mine_shaft</color>-->
-<!--    <color name="textSecondary">@color/boulder</color>-->
-
     <color name="colorPrimary">@color/dodger_blue</color>
     <color name="colorPrimaryDark">@color/dodger_blue</color>
     <color name="colorPrimaryLight">@color/dodger_blue</color>
     <color name="colorAccent">@color/aquamarine_blue</color>
     <color name="textPrimary">@color/mine_shaft</color>
     <color name="textSecondary">@color/boulder</color>
+
+    <color name="sunrise">@color/turbo</color>
+    <color name="sunset">@color/scarlet</color>
 
     <color name="transparent">#00000000</color>
     <color name="slate_gray">#738497</color>
@@ -32,6 +28,8 @@
     <color name="aquamarine_blue">#6DE3D1</color>
     <color name="dodger_blue">#17C5FF</color>
     <color name="stratos">#000C59</color>
+    <color name="scarlet">#FF3700</color>
+    <color name="turbo">#FFE500</color>
 
     <color name="bottomBackground">#F4F6FA</color>
 </resources>

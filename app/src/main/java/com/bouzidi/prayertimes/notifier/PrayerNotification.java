@@ -50,7 +50,7 @@ class PrayerNotification {
         PendingIntent pendingIntent = getNotificationIntent(context);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "ADHAN_CHANNEL_ID")
-                .setSmallIcon(R.drawable.ic_tower_mosque)
+                .setSmallIcon(R.drawable.ic_mosque_24dp)
                 .setContentTitle("Prayer Time !")
                 .setAutoCancel(true)
                 .setDeleteIntent(createOnDismissedIntent(context, notificationId))

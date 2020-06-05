@@ -346,9 +346,10 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_sunet"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/ic_sunset_24dp"
+        android:tint="@color/sunset"
         app:layout_constraintBottom_toBottomOf="@+id/nextPrayerConstraintLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/nextPrayerConstraintLayout"
@@ -356,9 +357,10 @@
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_sunrise"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/ic_sunrise_24dp"
+        android:tint="@color/sunrise"
         app:layout_constraintBottom_toBottomOf="@+id/nextPrayerConstraintLayout"
         app:layout_constraintEnd_toStartOf="@+id/nextPrayerConstraintLayout"
         app:layout_constraintStart_toStartOf="parent"

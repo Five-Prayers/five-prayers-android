@@ -24,6 +24,9 @@ public class NotifierHelper {
 
         Map<PrayerEnum, String> timings = dayPrayer.getTimings();
 
+        boolean ignoreAarmUpdate = false;
+        boolean betweenMidgntAndFajr = TimingUtils.isBetweenTiming("00:00", calendar.getTime(), Objects.requireNonNull(timings.get(PrayerEnum.FAJR)));
+
         int index = 0;
         for (PrayerEnum key : timings.keySet()) {
             index++;
@@ -32,13 +35,15 @@ public class NotifierHelper {
 
             if (key.equals(PrayerEnum.MAGHRIB)) {
                 isTimingAfterMidnight = dayPrayer.isMaghribAfterMidnight();
+                ignoreAarmUpdate = isTimingAfterMidnight && betweenMidgntAndFajr;
             }
 
             if (key.equals(PrayerEnum.ICHA)) {
                 isTimingAfterMidnight = dayPrayer.isIchaAfterMidnight();
+                ignoreAarmUpdate = isTimingAfterMidnight && betweenMidgntAndFajr;
             }
 
-            if (TimingUtils.isBeforeTiming(calendar.getTime(), timing, isTimingAfterMidnight)) {
+            if (TimingUtils.isBeforeTiming(calendar.getTime(), timing, isTimingAfterMidnight) && !ignoreAarmUpdate) {
                 AlarmManager alarmMgr = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
                 Intent intent = new Intent(context, NotifierReceiver.class);
                 intent.putExtra("prayerKey", key.toString());

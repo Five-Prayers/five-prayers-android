@@ -12,12 +12,22 @@ import static org.junit.Assert.assertTrue;
 public class TimingUtilsTest {
 
     @Test
-    public void isBeforeTiming() {
-        assertTrue(TimingUtils.isBeforeTiming(getDate(2, 0), "03:00", false));
-        assertTrue(TimingUtils.isBeforeTiming(getDate(22, 0), "00:05", true));
-        assertFalse(TimingUtils.isBeforeTiming(getDate(22, 0), "10:30", false));
-        assertFalse(TimingUtils.isBeforeTiming(getDate(14, 5), "14:03", false));
-        assertTrue(TimingUtils.isBeforeTiming(getDate(0, 10), "00:05", true));
+    public void isBeforeOrEqualsTiming() {
+        assertTrue(TimingUtils.isBeforeOrEqualsTiming(getDate(2, 0), "03:00", false));
+        assertTrue(TimingUtils.isBeforeOrEqualsTiming(getDate(22, 0), "00:05", true));
+        assertFalse(TimingUtils.isBeforeOrEqualsTiming(getDate(22, 0), "10:30", false));
+        assertFalse(TimingUtils.isBeforeOrEqualsTiming(getDate(14, 5), "14:03", false));
+        assertTrue(TimingUtils.isBeforeOrEqualsTiming(getDate(0, 10), "00:05", true));
+        assertTrue(TimingUtils.isBeforeOrEqualsTiming(getDate(20, 10), "20:10", false));
+    }
+
+    @Test
+    public void isBetweenTiming() {
+        assertTrue(TimingUtils.isBetweenTiming("01:30", getDate(2, 0), "03:00"));
+        assertTrue(TimingUtils.isBetweenTiming("02:00", getDate(2, 0), "03:00"));
+        assertTrue(TimingUtils.isBetweenTiming("01:30", getDate(2, 0), "02:00"));
+        assertFalse(TimingUtils.isBetweenTiming("01:30", getDate(2, 1), "02:00"));
+        assertFalse(TimingUtils.isBetweenTiming("02:01", getDate(2, 0), "03:00"));
     }
 
     @NotNull

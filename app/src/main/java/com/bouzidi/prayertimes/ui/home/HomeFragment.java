@@ -208,8 +208,14 @@ public class HomeFragment extends Fragment {
         PrayerEnum nextPrayerKey = PrayerUtils.getNextPrayer(timings, todayDate);
         PrayerEnum previousPrayerKey = PrayerUtils.getPreviousPrayerKey(nextPrayerKey);
 
-        long timeRemaining = TimingUtils.getRemainingTiming(todayDate, Objects.requireNonNull(timings.get(nextPrayerKey)));
-        long timeBetween = TimingUtils.getTimingBetween(Objects.requireNonNull(timings.get(previousPrayerKey)), Objects.requireNonNull(timings.get(nextPrayerKey)));
+        boolean nextTimingAfterMidnight = false;
+
+        if ((PrayerEnum.ICHA.equals(nextPrayerKey) && dayPrayer.isIchaAfterMidnight())) {
+            nextTimingAfterMidnight = true;
+        }
+
+        long timeRemaining = TimingUtils.getRemainingTiming(todayDate, Objects.requireNonNull(timings.get(nextPrayerKey)), nextTimingAfterMidnight);
+        long timeBetween = TimingUtils.getTimingBetween(Objects.requireNonNull(timings.get(previousPrayerKey)), Objects.requireNonNull(timings.get(nextPrayerKey)), nextTimingAfterMidnight);
 
         String prayerName = mainActivity.getResources().getString(
                 getResources().getIdentifier(nextPrayerKey.toString(), "string", mainActivity.getPackageName()));

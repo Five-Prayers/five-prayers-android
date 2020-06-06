@@ -24,16 +24,20 @@ public class PrayerUtilsTest {
         prayers.put(PrayerEnum.ICHA, "00:21");
 
         assertEquals(PrayerEnum.FAJR, PrayerUtils.getNextPrayer(prayers, getDate(2, 0)));
+        assertEquals(PrayerEnum.DHOHR, PrayerUtils.getNextPrayer(prayers, getDate(3, 28)));
 
         assertEquals(PrayerEnum.DHOHR, PrayerUtils.getNextPrayer(prayers, getDate(3, 29)));
+        assertEquals(PrayerEnum.ASR, PrayerUtils.getNextPrayer(prayers, getDate(12, 59)));
 
         assertEquals(PrayerEnum.ASR, PrayerUtils.getNextPrayer(prayers, getDate(13, 0)));
+        assertEquals(PrayerEnum.MAGHRIB, PrayerUtils.getNextPrayer(prayers, getDate(16, 55)));
 
         assertEquals(PrayerEnum.MAGHRIB, PrayerUtils.getNextPrayer(prayers, getDate(16, 56)));
+        assertEquals(PrayerEnum.ICHA, PrayerUtils.getNextPrayer(prayers, getDate(20, 12)));
 
         assertEquals(PrayerEnum.ICHA, PrayerUtils.getNextPrayer(prayers, getDate(22, 5)));
-
         assertEquals(PrayerEnum.ICHA, PrayerUtils.getNextPrayer(prayers, getDate(22, 22)));
+        assertEquals(PrayerEnum.FAJR, PrayerUtils.getNextPrayer(prayers, getDate(0, 21)));
     }
 
     @Test

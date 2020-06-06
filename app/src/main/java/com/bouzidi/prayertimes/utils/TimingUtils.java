@@ -27,6 +27,24 @@ public class TimingUtils {
         return nowCal.before(endCal) || nowCal.equals(endCal);
     }
 
+    public static boolean isStrictlyBeforeTiming(Date now, String endTiming, boolean endTimingAfterMidnight) {
+        String[] endParts = endTiming.split(":");
+        Calendar endCal = Calendar.getInstance();
+
+        endCal.setTime(now);
+        endCal.set(Calendar.HOUR_OF_DAY, Integer.parseInt(endParts[0]));
+        endCal.set(Calendar.MINUTE, Integer.parseInt(endParts[1]));
+
+        if (endTimingAfterMidnight) {
+            endCal.add(Calendar.DAY_OF_MONTH, 1);
+        }
+
+        Calendar nowCal = Calendar.getInstance();
+        nowCal.setTime(now);
+
+        return nowCal.before(endCal);
+    }
+
     public static boolean isBetweenTiming(String startTiming, Date now, String endTiming) {
         String[] startParts = startTiming.split(":");
         Calendar startCal = Calendar.getInstance();
@@ -44,7 +62,7 @@ public class TimingUtils {
         cal.set(Calendar.HOUR_OF_DAY, nowCal.get(Calendar.HOUR_OF_DAY));
         cal.set(Calendar.MINUTE, nowCal.get(Calendar.MINUTE));
 
-        return (cal.after(startCal) || cal.equals(startCal)) && (cal.before(endCal) || cal.equals(endCal));
+        return (cal.after(startCal) && cal.before(endCal)) || cal.equals(startCal);
     }
 
     public static long getTimingBetween(String startTiming, String endTiming, boolean endTimingAfterMidnight) {

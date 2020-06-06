@@ -30,6 +30,7 @@ public class HomeViewModel extends AndroidViewModel {
 
     public HomeViewModel(@NonNull Application application) {
         super(application);
+        todayDate = Calendar.getInstance().getTime();
         mDayPrayers = new MutableLiveData<>();
         setLiveData(application.getApplicationContext());
     }
@@ -47,33 +48,33 @@ public class HomeViewModel extends AndroidViewModel {
     private void setLiveData(Context context) {
         Location location = LocationTrackerHelper.getLocation(context);
 
-        todayDate = Calendar.getInstance().getTime();
-
         compositeDisposable = new CompositeDisposable();
-        compositeDisposable.add(
-                LocationAddressHelper.getAddressFromLocation(location.getLatitude(), location.getLongitude(), context)
-                        .flatMap(
-                                address ->
-                                        PrayerHelper.getTimingsByCity(
-                                                todayDate,
-                                                address.getLocality(),
-                                                address.getCountryName(),
-                                                CalculationMethodEnum.getDefault(),
-                                                context
-                                        ))
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribeWith(new DisposableSingleObserver<DayPrayer>() {
-                            @Override
-                            public void onSuccess(DayPrayer dayPrayer) {
-                                mDayPrayers.postValue(dayPrayer);
-                            }
+        if (location != null) {
+            compositeDisposable.add(
+                    LocationAddressHelper.getAddressFromLocation(location.getLatitude(), location.getLongitude(), context)
+                            .flatMap(
+                                    address ->
+                                            PrayerHelper.getTimingsByCity(
+                                                    todayDate,
+                                                    address.getLocality(),
+                                                    address.getCountryName(),
+                                                    CalculationMethodEnum.getDefault(),
+                                                    context
+                                            ))
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribeWith(new DisposableSingleObserver<DayPrayer>() {
+                                @Override
+                                public void onSuccess(DayPrayer dayPrayer) {
+                                    mDayPrayers.postValue(dayPrayer);
+                                }
 
-                            @Override
-                            public void onError(@io.reactivex.rxjava3.annotations.NonNull Throwable e) {
-                                //TODO Handle Error
-                                int toto = 0;
-                            }
-                        }));
+                                @Override
+                                public void onError(@io.reactivex.rxjava3.annotations.NonNull Throwable e) {
+                                    //TODO Handle Error
+                                    int toto = 0;
+                                }
+                            }));
+        }
     }
 }

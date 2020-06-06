@@ -36,13 +36,14 @@ public class LocationTrackerHelper {
 
         Location location = tracker.getPossiblyStaleLocation();
 
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        UserPreferencesUtils.putDouble(editor, "last_known_latitude", location.getLatitude());
-        UserPreferencesUtils.putDouble(editor, "last_known_longitude", location.getLongitude());
+        if (location != null) {
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            UserPreferencesUtils.putDouble(editor, "last_known_latitude", location.getLatitude());
+            UserPreferencesUtils.putDouble(editor, "last_known_longitude", location.getLongitude());
 
-        editor.putBoolean("is_location_obsolete", false);
-        editor.apply();
-
+            editor.putBoolean("is_location_obsolete", false);
+            editor.apply();
+        }
         return location;
     }
 }

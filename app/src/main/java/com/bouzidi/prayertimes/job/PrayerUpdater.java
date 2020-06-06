@@ -1,12 +1,14 @@
 package com.bouzidi.prayertimes.job;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
 
-import com.bouzidi.prayertimes.notifier.NotifierHelper;
 import com.bouzidi.prayertimes.location.address.LocationAddressHelper;
+import com.bouzidi.prayertimes.notifier.NotifierHelper;
 import com.bouzidi.prayertimes.timings.CalculationMethodEnum;
 import com.bouzidi.prayertimes.timings.DayPrayer;
 import com.bouzidi.prayertimes.timings.PrayerHelper;
@@ -15,6 +17,7 @@ import com.bouzidi.prayertimes.utils.UserPreferencesUtils;
 import java.util.Calendar;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
 import androidx.work.Data;
 import androidx.work.Worker;
 import androidx.work.WorkerParameters;
@@ -88,6 +91,9 @@ public class PrayerUpdater extends Worker {
         boolean isGPSEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
         boolean isNetworkEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
 
+        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return null;
+        }
         if (!isGPSEnabled && !isNetworkEnabled) {
             return null;
         }

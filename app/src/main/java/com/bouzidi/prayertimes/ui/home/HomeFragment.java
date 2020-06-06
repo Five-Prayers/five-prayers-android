@@ -1,10 +1,16 @@
 package com.bouzidi.prayertimes.ui.home;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bouzidi.prayertimes.MainActivity;
@@ -32,8 +38,12 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class HomeFragment extends Fragment {
 
+    private final int disabledColor = 0xFFD81B60;
+    private final int enabledColor = 0xFF00C167;
     private Date todayDate;
     private CountDownTimer TimeRemainingCTimer;
     private MainActivity mainActivity;
@@ -65,17 +75,25 @@ public class HomeFragment extends Fragment {
     private ClockView ichaClock;
 
     private CircularProgressBar circularProgressBar;
+    private String adhanCallsPreferences;
+    private String adhanCallKeyPart;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
+        mainActivity = (MainActivity) getActivity();
+        todayDate = Calendar.getInstance().getTime();
+
+        adhanCallsPreferences = mainActivity.getResources().getString(R.string.adthan_calls_shared_preferences);
+        adhanCallKeyPart = mainActivity.getResources().getString(R.string.adthan_call_enabled_key);
+
         HomeViewModel dashboardViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
 
-        View root = inflater.inflate(R.layout.fragment_home, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_home, container, false);
 
-        initializeViews(root);
+        initializeViews(rootView);
 
         dashboardViewModel.getDayPrayers().observe(getViewLifecycleOwner(), dayPrayer -> {
             updateNextPrayerViews(dayPrayer);
@@ -83,43 +101,62 @@ public class HomeFragment extends Fragment {
             updateTimingsTextViews(dayPrayer);
             NotifierHelper.scheduleNextPrayerAlarms(mainActivity, dayPrayer);
         });
-        return root;
+        return rootView;
     }
 
-    private void initializeViews(View root) {
-        mainActivity = (MainActivity) getActivity();
+    @Override
+    public void onDestroy() {
+        cancelTimer();
+        super.onDestroy();
+    }
 
-        todayDate = Calendar.getInstance().getTime();
+    private void initializeViews(View rootView) {
+        locationTextView = rootView.findViewById(R.id.location_text_view);
+        countryTextView = rootView.findViewById(R.id.country_text_view);
+        hijriTextView = rootView.findViewById(R.id.hijriTextView);
+        gregorianTextView = rootView.findViewById(R.id.gregorianTextView);
+        prayerNametextView = rootView.findViewById(R.id.prayerNametextView);
+        prayerTimetextView = rootView.findViewById(R.id.prayerTimetextView);
+        timeRemainingTextView = rootView.findViewById(R.id.timeRemainingTextView);
+        circularProgressBar = rootView.findViewById(R.id.circularProgressBar);
 
-        locationTextView = root.findViewById(R.id.location_text_view);
-        countryTextView = root.findViewById(R.id.country_text_view);
-        hijriTextView = root.findViewById(R.id.hijriTextView);
-        gregorianTextView = root.findViewById(R.id.gregorianTextView);
-        prayerNametextView = root.findViewById(R.id.prayerNametextView);
-        prayerTimetextView = root.findViewById(R.id.prayerTimetextView);
-        timeRemainingTextView = root.findViewById(R.id.timeRemainingTextView);
-        circularProgressBar = root.findViewById(R.id.circularProgressBar);
+        fajrClock = rootView.findViewById(R.id.farj_clock_view);
+        dohrClock = rootView.findViewById(R.id.dohr_clock_view);
+        asrClock = rootView.findViewById(R.id.asr_clock_view);
+        maghribClock = rootView.findViewById(R.id.maghreb_clock_view);
+        ichaClock = rootView.findViewById(R.id.ichaa_clock_view);
 
-        fajrClock = root.findViewById(R.id.farj_clock_view);
-        dohrClock = root.findViewById(R.id.dohr_clock_view);
-        asrClock = root.findViewById(R.id.asr_clock_view);
-        maghribClock = root.findViewById(R.id.maghreb_clock_view);
-        ichaClock = root.findViewById(R.id.ichaa_clock_view);
+        fajrTimingTextView = rootView.findViewById(R.id.fajr_timing_text_view);
 
-        fajrTimingTextView = root.findViewById(R.id.fajr_timing_text_view);
-        dohrTimingTextView = root.findViewById(R.id.dohr_timing_text_view);
-        asrTimingTextView = root.findViewById(R.id.asr_timing_text_view);
-        maghribTimingTextView = root.findViewById(R.id.maghrib_timing_text_view);
-        ichaTimingTextView = root.findViewById(R.id.icha_timing_text_view);
+        ImageView fajrCallImageView = rootView.findViewById(R.id.fajr_call_image_view);
+        initializeImageViewIcon(fajrCallImageView, PrayerEnum.FAJR);
 
-        sunriseTimingTextView = root.findViewById(R.id.sunrise_timing_text_view);
-        sunsetTimingTextView = root.findViewById(R.id.sunset_timing_text_view);
+        ImageView dohrCallImageView = rootView.findViewById(R.id.dohr_call_image_view);
+        initializeImageViewIcon(dohrCallImageView, PrayerEnum.DHOHR);
 
-        fajrLabel = root.findViewById(R.id.fajr_label_text_view);
-        dohrLabel = root.findViewById(R.id.dohr_label_text_view);
-        asrLabel = root.findViewById(R.id.asr_label_text_view);
-        maghribLabel = root.findViewById(R.id.maghrib_label_text_view);
-        ichaLabel = root.findViewById(R.id.icha_label_text_view);
+        ImageView asrCallImageView = rootView.findViewById(R.id.asr_call_image_view);
+        initializeImageViewIcon(asrCallImageView, PrayerEnum.ASR);
+
+        ImageView maghrebCallImageView = rootView.findViewById(R.id.maghrib_call_image_view);
+        initializeImageViewIcon(maghrebCallImageView, PrayerEnum.MAGHRIB);
+
+        ImageView ichaCallImageView = rootView.findViewById(R.id.icha_call_image_view);
+        initializeImageViewIcon(ichaCallImageView, PrayerEnum.ICHA);
+
+
+        dohrTimingTextView = rootView.findViewById(R.id.dohr_timing_text_view);
+        asrTimingTextView = rootView.findViewById(R.id.asr_timing_text_view);
+        maghribTimingTextView = rootView.findViewById(R.id.maghreb_timing_text_view);
+        ichaTimingTextView = rootView.findViewById(R.id.icha_timing_text_view);
+
+        sunriseTimingTextView = rootView.findViewById(R.id.sunrise_timing_text_view);
+        sunsetTimingTextView = rootView.findViewById(R.id.sunset_timing_text_view);
+
+        fajrLabel = rootView.findViewById(R.id.fajr_label_text_view);
+        dohrLabel = rootView.findViewById(R.id.dohr_label_text_view);
+        asrLabel = rootView.findViewById(R.id.asr_label_text_view);
+        maghribLabel = rootView.findViewById(R.id.maghrib_label_text_view);
+        ichaLabel = rootView.findViewById(R.id.icha_label_text_view);
     }
 
     private void updateTimingsTextViews(DayPrayer dayPrayer) {
@@ -163,12 +200,6 @@ public class HomeFragment extends Fragment {
         calendar.set(Calendar.MINUTE, Integer.parseInt(minute));
         clock.setColor(0xFF17C5FF);
         clock.setCalendar(calendar);
-    }
-
-    @Override
-    public void onDestroy() {
-        cancelTimer();
-        super.onDestroy();
     }
 
     private void updateNextPrayerViews(DayPrayer dayPrayer) {
@@ -235,5 +266,41 @@ public class HomeFragment extends Fragment {
     private void cancelTimer() {
         if (TimeRemainingCTimer != null)
             TimeRemainingCTimer.cancel();
+    }
+
+    private void initializeImageViewIcon(ImageView fajrCallImageView, PrayerEnum prayerEnum) {
+        SharedPreferences sharedPreferences = mainActivity.getSharedPreferences(adhanCallsPreferences, MODE_PRIVATE);
+        String callPreferenceKey = prayerEnum.toString() + adhanCallKeyPart;
+
+        boolean fajrCallEnabled = sharedPreferences.getBoolean(callPreferenceKey, true);
+
+        fajrCallImageView.setImageResource(fajrCallEnabled ? R.drawable.ic_notifications_24dp : R.drawable.ic_notifications_off_24dp);
+        fajrCallImageView.setColorFilter(fajrCallEnabled ? enabledColor : disabledColor);
+
+        setOnClickListener(fajrCallImageView, callPreferenceKey);
+    }
+
+    private void setOnClickListener(ImageView imageView, String callPreferenceKey) {
+        imageView.setOnClickListener(view -> {
+            SharedPreferences sharedPreferences = mainActivity.getSharedPreferences(adhanCallsPreferences, MODE_PRIVATE);
+
+            Vibrator vibe = (Vibrator) mainActivity.getSystemService(Context.VIBRATOR_SERVICE);
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                vibe.vibrate(VibrationEffect.createOneShot(10, VibrationEffect.DEFAULT_AMPLITUDE));
+            } else {
+                vibe.vibrate(10);
+            }
+
+            boolean adhanCallEnabled = sharedPreferences.getBoolean(callPreferenceKey, true);
+
+            imageView.setImageResource(adhanCallEnabled ? R.drawable.ic_notifications_off_24dp : R.drawable.ic_notifications_24dp);
+            imageView.setColorFilter(adhanCallEnabled ? disabledColor : enabledColor);
+
+            SharedPreferences.Editor edit = sharedPreferences.edit();
+
+            edit.putBoolean(callPreferenceKey, !adhanCallEnabled);
+            edit.apply();
+        });
     }
 }

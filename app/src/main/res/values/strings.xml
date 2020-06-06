@@ -17,6 +17,9 @@
     <string name="adthan_notification_channel_name">Adthan Timer</string>
     <string name="adthan_notification_channel_description">Adthan Timer</string>
 
+    <string name="adthan_calls_shared_preferences">ADTHAN_CALLS</string>
+    <string name="adthan_call_enabled_key">_ADTHAN_CALL_ENABLED</string>
+
     <string name="hijri_month_1">Mouharram</string>
     <string name="hijri_month_2">Safar</string>
     <string name="hijri_month_3">Rabii al awal</string>

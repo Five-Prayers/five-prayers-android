@@ -59,12 +59,7 @@ class PrayerNotification {
 
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
 
-        final SharedPreferences sharedPreferences = context.getSharedPreferences("notification", MODE_PRIVATE);
-
-        boolean notificationAdhanEnabled = sharedPreferences.getBoolean("notification_adhan_enabled", true);
-        if (notificationAdhanEnabled) {
-            AdhanPlayer.playAdhan(context);
-        }
+        setupAdhanCall(context, prayerKey);
 
         notificationManager.notify(notificationId, builder.build());
     }
@@ -85,5 +80,18 @@ class PrayerNotification {
 
         return PendingIntent.getBroadcast(context.getApplicationContext(),
                 notificationId, intent, PendingIntent.FLAG_ONE_SHOT);
+    }
+
+    private static void setupAdhanCall(Context context, String prayerKey) {
+        String adhanCallsPreferences = context.getResources().getString(R.string.adthan_calls_shared_preferences);
+        String adhanCallKeyPart = context.getResources().getString(R.string.adthan_call_enabled_key);
+        String callPreferenceKey = prayerKey + adhanCallKeyPart;
+
+        final SharedPreferences sharedPreferences = context.getSharedPreferences(adhanCallsPreferences, MODE_PRIVATE);
+        boolean callEnabled = sharedPreferences.getBoolean(callPreferenceKey, true);
+
+        if (callEnabled) {
+            AdhanPlayer.playAdhan(context);
+        }
     }
 }

@@ -26,7 +26,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class AladhanAPIService {
 
-    private static final String BASE_URL = "http://api.aladhan.com/v1/";
+    private static final String BASE_URL = "https://api.aladhan.com/v1/";
     private static final int CACHE_MAX_SIZE = 10 * 1024 * 1024; //10Mo
     private static final int CACHE_MAX_AGE = 1; // 1Day
     private static final int CACHE_MAX_STALE = 1; // 1Day

@@ -15,7 +15,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ArcgisAPIService {
 
-    private static final String BASE_URL = "http://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/";
+    private static final String BASE_URL = "https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/";
     private static ArcgisAPIService arcgisReverseGeocodeService;
 
     private ArcgisAPIService() {

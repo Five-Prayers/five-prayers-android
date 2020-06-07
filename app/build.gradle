@@ -57,7 +57,9 @@ dependencies {
     //https://github.com/lopspower/CircularProgressBar
     implementation 'com.mikhaellopez:circularprogressbar:3.0.3'
 
-    //"Icon made by Freepik (http://www.freepik.com) from www.flaticon.com"
+    //Skeleton Layout
+    //https://github.com/Faltenreich/SkeletonLayout
+    implementation 'com.faltenreich:skeletonlayout:2.0.1'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'

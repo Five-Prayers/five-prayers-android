@@ -25,6 +25,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 public class HomeViewModel extends AndroidViewModel {
 
     private MutableLiveData<DayPrayer> mDayPrayers;
+    private MutableLiveData<Boolean> mLocationAvailable;
     private Date todayDate;
     private CompositeDisposable compositeDisposable;
 
@@ -32,11 +33,16 @@ public class HomeViewModel extends AndroidViewModel {
         super(application);
         todayDate = Calendar.getInstance().getTime();
         mDayPrayers = new MutableLiveData<>();
+        mLocationAvailable = new MutableLiveData<>();
         setLiveData(application.getApplicationContext());
     }
 
     LiveData<DayPrayer> getDayPrayers() {
         return mDayPrayers;
+    }
+
+    LiveData<Boolean> isLocationAvailable() {
+        return mLocationAvailable;
     }
 
     @Override
@@ -48,8 +54,10 @@ public class HomeViewModel extends AndroidViewModel {
     private void setLiveData(Context context) {
         Location location = LocationTrackerHelper.getLocation(context);
 
-        compositeDisposable = new CompositeDisposable();
-        if (location != null) {
+        if (location == null) {
+            mLocationAvailable.setValue(false);
+        } else {
+            compositeDisposable = new CompositeDisposable();
             compositeDisposable.add(
                     LocationAddressHelper.getAddressFromLocation(location.getLatitude(), location.getLongitude(), context)
                             .flatMap(

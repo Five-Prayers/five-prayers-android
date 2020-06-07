@@ -11,18 +11,22 @@ import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bouzidi.prayertimes.MainActivity;
 import com.bouzidi.prayertimes.R;
+import com.bouzidi.prayertimes.network.NetworkUtil;
 import com.bouzidi.prayertimes.notifier.NotifierHelper;
 import com.bouzidi.prayertimes.timings.ComplementaryTimingEnum;
 import com.bouzidi.prayertimes.timings.DayPrayer;
 import com.bouzidi.prayertimes.timings.PrayerEnum;
+import com.bouzidi.prayertimes.ui.AlertHelper;
 import com.bouzidi.prayertimes.ui.clock.ClockView;
 import com.bouzidi.prayertimes.utils.PrayerUtils;
 import com.bouzidi.prayertimes.utils.TimingUtils;
+import com.faltenreich.skeletonlayout.Skeleton;
 import com.mikhaellopez.circularprogressbar.CircularProgressBar;
 
 import org.apache.commons.lang3.StringUtils;
@@ -78,6 +82,7 @@ public class HomeFragment extends Fragment {
     private CircularProgressBar circularProgressBar;
     private String adhanCallsPreferences;
     private String adhanCallKeyPart;
+    private Skeleton skeleton;
 
     @Nullable
     @Override
@@ -96,11 +101,33 @@ public class HomeFragment extends Fragment {
 
         initializeViews(rootView);
 
+        skeleton.showSkeleton();
+
+        dashboardViewModel.isLocationAvailable().observe(getViewLifecycleOwner(), locationAvailable -> {
+            if (!locationAvailable) {
+                AlertHelper.displayAlert(mainActivity, "Location Unavailable",
+                        "Cannot get current Location, please verify your settings or set location manually in parameters section");
+            }
+        });
+
         dashboardViewModel.getDayPrayers().observe(getViewLifecycleOwner(), dayPrayer -> {
             updateNextPrayerViews(dayPrayer);
             updateDatesTextViews(dayPrayer);
             updateTimingsTextViews(dayPrayer);
             NotifierHelper.scheduleNextPrayerAlarms(mainActivity, dayPrayer);
+            skeleton.showOriginal();
+        });
+
+        ViewTreeObserver observer = rootView.getViewTreeObserver();
+        observer.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+
+            @Override
+            public void onGlobalLayout() {
+                rootView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                if (!NetworkUtil.hasNetwork(mainActivity)) {
+                    AlertHelper.displayAlert(mainActivity, "Network Unavailable", "Please turn on network to get prayer timings");
+                }
+            }
         });
         return rootView;
     }
@@ -112,6 +139,8 @@ public class HomeFragment extends Fragment {
     }
 
     private void initializeViews(View rootView) {
+        skeleton = rootView.findViewById(R.id.skeletonLayout);
+
         locationTextView = rootView.findViewById(R.id.location_text_view);
         countryTextView = rootView.findViewById(R.id.country_text_view);
         hijriTextView = rootView.findViewById(R.id.hijriTextView);

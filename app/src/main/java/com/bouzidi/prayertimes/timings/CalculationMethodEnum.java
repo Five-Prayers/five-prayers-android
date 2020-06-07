@@ -27,6 +27,6 @@ public enum CalculationMethodEnum {
     }
 
     public static CalculationMethodEnum getDefault() {
-        return MUSLIM_WORLD_LEAGUE;
+        return UNION_ORGANIZATION_ISLAMIC_DE_FRANCE;
     }
 }

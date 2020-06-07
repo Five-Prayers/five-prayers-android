@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -237,15 +238,16 @@ public class HomeFragment extends Fragment {
                 dayPrayer.getHijriYear()
         );
 
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE dd MMMM, yyyy", Locale.getDefault());
-        SimpleDateFormat TimeZoneFormat = new SimpleDateFormat("ZZZZZ", Locale.getDefault());
+        SimpleDateFormat timeZoneFormat = new SimpleDateFormat("ZZZZZ", Locale.getDefault());
 
-        String gregorianDate = simpleDateFormat.format(new Date(dayPrayer.getTimestamp()));
+        Calendar cal = Calendar.getInstance(Locale.getDefault());
+        cal.setTimeInMillis(dayPrayer.getTimestamp() * 1000);
+        String gregorianDate = DateFormat.format("EEE dd MMMM, yyyy", cal).toString();
 
         hijriTextView.setText(StringUtils.capitalize(hijriDate));
         gregorianTextView.setText(StringUtils.capitalize(gregorianDate));
         String locationText = dayPrayer.getCity();
-        String country = dayPrayer.getCountry() + " (" + TimeZoneFormat.format(todayDate) + ")";
+        String country = dayPrayer.getCountry() + " (" + timeZoneFormat.format(cal.getTime()) + ")";
         countryTextView.setText(StringUtils.capitalize(country));
         locationTextView.setText(StringUtils.capitalize(locationText));
     }

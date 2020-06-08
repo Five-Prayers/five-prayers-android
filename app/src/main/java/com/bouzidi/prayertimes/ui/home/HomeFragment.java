@@ -103,11 +103,8 @@ public class HomeFragment extends Fragment {
 
         skeleton.showSkeleton();
 
-        dashboardViewModel.isLocationAvailable().observe(getViewLifecycleOwner(), locationAvailable -> {
-            if (!locationAvailable) {
-                AlertHelper.displayAlert(mainActivity, "Location Unavailable",
-                        "Cannot get current Location, please verify your settings or set location manually in parameters section");
-            }
+        dashboardViewModel.getError().observe(getViewLifecycleOwner(), error -> {
+            AlertHelper.displayAlert(mainActivity, "Error", error);
         });
 
         dashboardViewModel.getDayPrayers().observe(getViewLifecycleOwner(), dayPrayer -> {

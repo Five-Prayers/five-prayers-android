@@ -4,8 +4,8 @@ import android.app.Application;
 import android.content.Context;
 import android.location.Location;
 
-import com.bouzidi.prayertimes.location.address.LocationAddressHelper;
-import com.bouzidi.prayertimes.location.tracker.LocationTrackerHelper;
+import com.bouzidi.prayertimes.location.address.AddressHelper;
+import com.bouzidi.prayertimes.location.tracker.LocationHelper;
 import com.bouzidi.prayertimes.timings.CalculationMethodEnum;
 import com.bouzidi.prayertimes.timings.DayPrayer;
 import com.bouzidi.prayertimes.timings.PrayerHelper;
@@ -26,6 +26,7 @@ public class HomeViewModel extends AndroidViewModel {
 
     private MutableLiveData<DayPrayer> mDayPrayers;
     private MutableLiveData<Boolean> mLocationAvailable;
+    private MutableLiveData<String> mErrorMessage;
     private Date todayDate;
     private CompositeDisposable compositeDisposable;
 
@@ -34,6 +35,7 @@ public class HomeViewModel extends AndroidViewModel {
         todayDate = Calendar.getInstance().getTime();
         mDayPrayers = new MutableLiveData<>();
         mLocationAvailable = new MutableLiveData<>();
+        mErrorMessage = new MutableLiveData<>();
         setLiveData(application.getApplicationContext());
     }
 
@@ -45,6 +47,10 @@ public class HomeViewModel extends AndroidViewModel {
         return mLocationAvailable;
     }
 
+    LiveData<String> getError() {
+        return mErrorMessage;
+    }
+
     @Override
     protected void onCleared() {
         compositeDisposable.dispose();
@@ -52,14 +58,14 @@ public class HomeViewModel extends AndroidViewModel {
     }
 
     private void setLiveData(Context context) {
-        Location location = LocationTrackerHelper.getLocation(context);
+        Location location = LocationHelper.getLocation(context);
 
         if (location == null) {
-            mLocationAvailable.setValue(false);
+            mLocationAvailable.postValue(false);
         } else {
             compositeDisposable = new CompositeDisposable();
             compositeDisposable.add(
-                    LocationAddressHelper.getAddressFromLocation(location.getLatitude(), location.getLongitude(), context)
+                    AddressHelper.getAddressFromLocation(location.getLatitude(), location.getLongitude(), context)
                             .flatMap(
                                     address ->
                                             PrayerHelper.getTimingsByCity(
@@ -79,8 +85,7 @@ public class HomeViewModel extends AndroidViewModel {
 
                                 @Override
                                 public void onError(@io.reactivex.rxjava3.annotations.NonNull Throwable e) {
-                                    //TODO Handle Error
-                                    int toto = 0;
+                                    mErrorMessage.setValue(e.getMessage());
                                 }
                             }));
         }

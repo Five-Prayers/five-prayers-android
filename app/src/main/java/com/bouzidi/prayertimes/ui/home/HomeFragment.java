@@ -15,6 +15,11 @@ import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
+
 import com.bouzidi.prayertimes.MainActivity;
 import com.bouzidi.prayertimes.R;
 import com.bouzidi.prayertimes.network.NetworkUtil;
@@ -32,16 +37,12 @@ import com.mikhaellopez.circularprogressbar.CircularProgressBar;
 import org.apache.commons.lang3.StringUtils;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -49,7 +50,7 @@ public class HomeFragment extends Fragment {
 
     private final int disabledColor = 0xFFD81B60;
     private final int enabledColor = 0xFF00C167;
-    private Date todayDate;
+    private LocalDateTime todayDate;
     private CountDownTimer TimeRemainingCTimer;
     private MainActivity mainActivity;
 
@@ -90,7 +91,7 @@ public class HomeFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
 
         mainActivity = (MainActivity) getActivity();
-        todayDate = Calendar.getInstance().getTime();
+        todayDate = LocalDateTime.now();
 
         adhanCallsPreferences = mainActivity.getResources().getString(R.string.adthan_calls_shared_preferences);
         adhanCallKeyPart = mainActivity.getResources().getString(R.string.adthan_call_enabled_key);
@@ -187,28 +188,33 @@ public class HomeFragment extends Fragment {
     }
 
     private void updateTimingsTextViews(DayPrayer dayPrayer) {
-        Map<PrayerEnum, String> timings = dayPrayer.getTimings();
+        Map<PrayerEnum, LocalDateTime> timings = dayPrayer.getTimings();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
 
-        String fajrTiming = timings.get(PrayerEnum.FAJR);
-        String dohrTiming = timings.get(PrayerEnum.DHOHR);
-        String asrTiming = timings.get(PrayerEnum.ASR);
-        String maghribTiming = timings.get(PrayerEnum.MAGHRIB);
-        String ichaTiming = timings.get(PrayerEnum.ICHA);
+        LocalDateTime fajrTiming = timings.get(PrayerEnum.FAJR);
+        LocalDateTime dohrTiming = timings.get(PrayerEnum.DHOHR);
+        LocalDateTime asrTiming = timings.get(PrayerEnum.ASR);
+        LocalDateTime maghribTiming = timings.get(PrayerEnum.MAGHRIB);
+        LocalDateTime ichaTiming = timings.get(PrayerEnum.ICHA);
 
-        updateClockTime(fajrClock, getTimingPart(Objects.requireNonNull(fajrTiming))[0], getTimingPart(Objects.requireNonNull(fajrTiming))[1]);
-        updateClockTime(dohrClock, getTimingPart(Objects.requireNonNull(dohrTiming))[0], getTimingPart(Objects.requireNonNull(dohrTiming))[1]);
-        updateClockTime(asrClock, getTimingPart(Objects.requireNonNull(asrTiming))[0], getTimingPart(Objects.requireNonNull(asrTiming))[1]);
-        updateClockTime(maghribClock, getTimingPart(Objects.requireNonNull(maghribTiming))[0], getTimingPart(Objects.requireNonNull(maghribTiming))[1]);
-        updateClockTime(ichaClock, getTimingPart(Objects.requireNonNull(ichaTiming))[0], getTimingPart(Objects.requireNonNull(ichaTiming))[1]);
+        updateClockTime(fajrClock, fajrTiming.getHour(), fajrTiming.getMinute());
+        updateClockTime(dohrClock, dohrTiming.getHour(), dohrTiming.getMinute());
+        updateClockTime(asrClock, asrTiming.getHour(), asrTiming.getMinute());
+        updateClockTime(maghribClock, maghribTiming.getHour(), maghribTiming.getMinute());
+        updateClockTime(ichaClock, ichaTiming.getHour(), ichaTiming.getMinute());
 
-        fajrTimingTextView.setText(fajrTiming);
-        dohrTimingTextView.setText(dohrTiming);
-        asrTimingTextView.setText(asrTiming);
-        maghribTimingTextView.setText(maghribTiming);
-        ichaTimingTextView.setText(ichaTiming);
 
-        sunriseTimingTextView.setText(dayPrayer.getComplementaryTiming().get(ComplementaryTimingEnum.SUNRISE));
-        sunsetTimingTextView.setText(dayPrayer.getComplementaryTiming().get(ComplementaryTimingEnum.SUNSET));
+        fajrTimingTextView.setText(fajrTiming.format(formatter));
+        dohrTimingTextView.setText(dohrTiming.format(formatter));
+        asrTimingTextView.setText(asrTiming.format(formatter));
+        maghribTimingTextView.setText(maghribTiming.format(formatter));
+        ichaTimingTextView.setText(ichaTiming.format(formatter));
+
+        LocalDateTime sunriseTiming = dayPrayer.getComplementaryTiming().get(ComplementaryTimingEnum.SUNRISE);
+        LocalDateTime sunsetTiming = dayPrayer.getComplementaryTiming().get(ComplementaryTimingEnum.SUNSET);
+
+        sunriseTimingTextView.setText(sunriseTiming.format(formatter));
+        sunsetTimingTextView.setText(sunsetTiming.format(formatter));
 
         fajrLabel.setText(R.string.FAJR);
         dohrLabel.setText(R.string.DHOHR);
@@ -221,34 +227,29 @@ public class HomeFragment extends Fragment {
         return timing.split(":");
     }
 
-    private void updateClockTime(ClockView clock, String hour, String minute) {
+    private void updateClockTime(ClockView clock, int hour, int minute) {
         Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR, Integer.parseInt(hour));
-        calendar.set(Calendar.MINUTE, Integer.parseInt(minute));
+        calendar.set(Calendar.HOUR, hour);
+        calendar.set(Calendar.MINUTE, minute);
         clock.setColor(0xFF17C5FF);
         clock.setCalendar(calendar);
     }
 
     private void updateNextPrayerViews(DayPrayer dayPrayer) {
-        Map<PrayerEnum, String> timings = dayPrayer.getTimings();
+        Map<PrayerEnum, LocalDateTime> timings = dayPrayer.getTimings();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
 
-        PrayerEnum nextPrayerKey = PrayerUtils.getNextPrayer(timings, todayDate);
+        PrayerEnum nextPrayerKey = PrayerUtils.getNextPrayer(timings, LocalDateTime.now());
         PrayerEnum previousPrayerKey = PrayerUtils.getPreviousPrayerKey(nextPrayerKey);
 
-        boolean nextTimingAfterMidnight = false;
-
-        if ((PrayerEnum.ICHA.equals(nextPrayerKey) && dayPrayer.isIchaAfterMidnight())) {
-            nextTimingAfterMidnight = true;
-        }
-
-        long timeRemaining = TimingUtils.getRemainingTiming(todayDate, Objects.requireNonNull(timings.get(nextPrayerKey)), nextTimingAfterMidnight);
-        long timeBetween = TimingUtils.getTimingBetween(Objects.requireNonNull(timings.get(previousPrayerKey)), Objects.requireNonNull(timings.get(nextPrayerKey)), nextTimingAfterMidnight);
+        long timeRemaining = TimingUtils.getTimingBetween(todayDate, Objects.requireNonNull(timings.get(nextPrayerKey)));
+        long timeBetween = TimingUtils.getTimingBetween(Objects.requireNonNull(timings.get(previousPrayerKey)), Objects.requireNonNull(timings.get(nextPrayerKey)));
 
         String prayerName = mainActivity.getResources().getString(
                 getResources().getIdentifier(nextPrayerKey.toString(), "string", mainActivity.getPackageName()));
 
         prayerNametextView.setText(prayerName);
-        prayerTimetextView.setText(timings.get(nextPrayerKey));
+        prayerTimetextView.setText(timings.get(nextPrayerKey).format(formatter));
         timeRemainingTextView.setText(TimingUtils.formatTimeForTimer(timeRemaining));
 
         startAnimationTimer(timeRemaining, timeBetween, dayPrayer);

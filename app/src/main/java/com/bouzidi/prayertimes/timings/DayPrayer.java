@@ -3,6 +3,7 @@ package com.bouzidi.prayertimes.timings;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
+import java.time.LocalDateTime;
 import java.util.Map;
 
 public class DayPrayer {
@@ -20,11 +21,8 @@ public class DayPrayer {
     private int gregorianMonthNumber;
     private int gregorianYear;
 
-    private Map<PrayerEnum, String> timings;
-    private Map<ComplementaryTimingEnum, String> complementaryTiming;
-
-    private boolean maghribAfterMidnight;
-    private boolean ichaAfterMidnight;
+    private Map<PrayerEnum, LocalDateTime> timings;
+    private Map<ComplementaryTimingEnum, LocalDateTime> complementaryTiming;
 
     private CalculationMethodEnum calculationMethodEnum;
 
@@ -80,28 +78,12 @@ public class DayPrayer {
         return country;
     }
 
-    public Map<PrayerEnum, String> getTimings() {
+    public Map<PrayerEnum, LocalDateTime> getTimings() {
         return timings;
     }
 
-    public void setTimings(Map<PrayerEnum, String> timings) {
+    public void setTimings(Map<PrayerEnum, LocalDateTime> timings) {
         this.timings = timings;
-    }
-
-    public boolean isMaghribAfterMidnight() {
-        return maghribAfterMidnight;
-    }
-
-    public void setMaghribAfterMidnight(boolean maghribAfterMidnight) {
-        this.maghribAfterMidnight = maghribAfterMidnight;
-    }
-
-    public boolean isIchaAfterMidnight() {
-        return ichaAfterMidnight;
-    }
-
-    public void setIchaAfterMidnight(boolean ichaAfterMidnight) {
-        this.ichaAfterMidnight = ichaAfterMidnight;
     }
 
     public CalculationMethodEnum getCalculationMethodEnum() {
@@ -112,11 +94,11 @@ public class DayPrayer {
         this.calculationMethodEnum = calculationMethodEnum;
     }
 
-    public Map<ComplementaryTimingEnum, String> getComplementaryTiming() {
+    public Map<ComplementaryTimingEnum, LocalDateTime> getComplementaryTiming() {
         return complementaryTiming;
     }
 
-    public void setComplementaryTiming(Map<ComplementaryTimingEnum, String> complementaryTiming) {
+    public void setComplementaryTiming(Map<ComplementaryTimingEnum, LocalDateTime> complementaryTiming) {
         this.complementaryTiming = complementaryTiming;
     }
 

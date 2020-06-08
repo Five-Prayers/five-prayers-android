@@ -15,6 +15,7 @@ import com.bouzidi.prayertimes.timings.aladhan.AladhanTimings;
 import com.bouzidi.prayertimes.timings.aladhan.AladhanTodayTimingsResponse;
 import com.bouzidi.prayertimes.utils.TimingUtils;
 
+import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -105,8 +106,8 @@ public class PrayerRegistry {
         boolean first = cursor.moveToFirst();
 
         if (first) {
-            Map<PrayerEnum, String> timings = new LinkedHashMap<>(5);
-            Map<ComplementaryTimingEnum, String> complementaryTiming = new LinkedHashMap<>(4);
+            Map<PrayerEnum, LocalDateTime> timings = new LinkedHashMap<>(5);
+            Map<ComplementaryTimingEnum, LocalDateTime> complementaryTiming = new LinkedHashMap<>(4);
 
             String fajrTiming = cursor.getString(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_FAJR_TIMING));
             String dohrTiming = cursor.getString(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_DHOHR_TIMING));
@@ -119,19 +120,10 @@ public class PrayerRegistry {
             String midnightTiming = cursor.getString(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_MIDNIGHT_TIMING));
             String imsakTiming = cursor.getString(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_IMSAK_TIMING));
 
-            timings.put(PrayerEnum.FAJR, fajrTiming);
-            timings.put(PrayerEnum.DHOHR, dohrTiming);
-            timings.put(PrayerEnum.ASR, asrTiming);
-            timings.put(PrayerEnum.MAGHRIB, maghribTiming);
-            timings.put(PrayerEnum.ICHA, ichaTiming);
-
-            complementaryTiming.put(ComplementaryTimingEnum.SUNRISE, sunriseTiming);
-            complementaryTiming.put(ComplementaryTimingEnum.SUNSET, sunsetTiming);
-            complementaryTiming.put(ComplementaryTimingEnum.MIDNIGHT, midnightTiming);
-            complementaryTiming.put(ComplementaryTimingEnum.IMSAK, imsakTiming);
+            String dateStr = cursor.getString(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_DATE));
 
             dayPrayer = new DayPrayer(
-                    cursor.getString(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_DATE)),
+                    dateStr,
                     cursor.getLong(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_DATE_TIMESTAMP)),
                     cursor.getString(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_CITY)),
                     cursor.getString(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_COUNTRY)),
@@ -143,10 +135,19 @@ public class PrayerRegistry {
                     cursor.getInt(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_GREGORIAN_YEAR))
             );
 
+            timings.put(PrayerEnum.FAJR, TimingUtils.transformTimingToDate(fajrTiming, dateStr, false));
+            timings.put(PrayerEnum.DHOHR, TimingUtils.transformTimingToDate(dohrTiming, dateStr, false));
+            timings.put(PrayerEnum.ASR, TimingUtils.transformTimingToDate(asrTiming, dateStr, false));
+            timings.put(PrayerEnum.MAGHRIB, TimingUtils.transformTimingToDate(maghribTiming, dateStr, TimingUtils.isBeforeOnSameDay(maghribTiming, dohrTiming)));
+            timings.put(PrayerEnum.ICHA, TimingUtils.transformTimingToDate(ichaTiming, dateStr, TimingUtils.isBeforeOnSameDay(ichaTiming, dohrTiming)));
+
+            complementaryTiming.put(ComplementaryTimingEnum.SUNRISE, TimingUtils.transformTimingToDate(sunriseTiming, dateStr, false));
+            complementaryTiming.put(ComplementaryTimingEnum.SUNSET, TimingUtils.transformTimingToDate(sunsetTiming, dateStr, TimingUtils.isBeforeOnSameDay(ichaTiming, dohrTiming)));
+            complementaryTiming.put(ComplementaryTimingEnum.MIDNIGHT, TimingUtils.transformTimingToDate(midnightTiming, dateStr, TimingUtils.isBeforeOnSameDay(midnightTiming, dohrTiming)));
+            complementaryTiming.put(ComplementaryTimingEnum.IMSAK, TimingUtils.transformTimingToDate(imsakTiming, dateStr, false));
+
             dayPrayer.setTimings(timings);
             dayPrayer.setComplementaryTiming(complementaryTiming);
-            dayPrayer.setMaghribAfterMidnight(TimingUtils.isBeforeOnSameDay(maghribTiming, dohrTiming));
-            dayPrayer.setIchaAfterMidnight(TimingUtils.isBeforeOnSameDay(ichaTiming, dohrTiming));
         }
 
         return dayPrayer;

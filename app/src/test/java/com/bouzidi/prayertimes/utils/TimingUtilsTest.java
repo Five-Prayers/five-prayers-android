@@ -21,15 +21,6 @@ public class TimingUtilsTest {
         assertTrue(TimingUtils.isBeforeOrEqualsTiming(getDate(20, 10), "20:10", false));
     }
 
-    @Test
-    public void isBetweenTiming() {
-        assertTrue(TimingUtils.isBetweenTiming("01:30", getDate(2, 0), "03:00"));
-        assertTrue(TimingUtils.isBetweenTiming("00:00", getDate(2, 0), "03:00"));
-        assertFalse(TimingUtils.isBetweenTiming("01:30", getDate(2, 0), "02:00"));
-        assertFalse(TimingUtils.isBetweenTiming("01:30", getDate(2, 1), "02:00"));
-        assertFalse(TimingUtils.isBetweenTiming("02:01", getDate(2, 0), "03:00"));
-    }
-
     @NotNull
     private Date getDate(int hour, int minute) {
         Calendar calendar = Calendar.getInstance();

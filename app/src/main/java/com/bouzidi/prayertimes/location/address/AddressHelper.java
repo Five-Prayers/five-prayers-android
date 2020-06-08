@@ -25,32 +25,39 @@ public class AddressHelper {
 
     private static final int MINIMUM_DISTANCE_FOR_OBSOLESCENCE = 1000 * 20;
 
-    public static Single<Address> getAddressFromLocation(final double latitude,
-                                                         final double longitude,
+    public static Single<Address> getAddressFromLocation(final Location location,
                                                          final Context context) {
 
         return Single.create(emitter -> {
+            if (location == null) {
+                Log.e(AddressHelper.class.getName(), "Location is null");
+                emitter.onError(new Exception("Location is null"));
+            } else {
+                double latitude = location.getLatitude();
+                double longitude = location.getLongitude();
 
-            Address lastKnownAddress = getLastKnownAddress(context);
+                Address lastKnownAddress = getLastKnownAddress(context);
 
-            if (!isAddressObsolete(lastKnownAddress, latitude, longitude)) {
-                emitter.onSuccess(lastKnownAddress);
+                if (!isAddressObsolete(lastKnownAddress, latitude, longitude)) {
+                    emitter.onSuccess(lastKnownAddress);
+                }
+
+                Thread thread = new Thread(() -> {
+                    try {
+                        Address geocoderAddresses = getGeocoderAddresses(latitude, longitude, context);
+                        if (geocoderAddresses != null) {
+                            emitter.onSuccess(geocoderAddresses);
+                        } else {
+                            emitter.onSuccess(getArcgisAddress(latitude, longitude, context));
+                        }
+                    } catch (Exception e) {
+                        Log.e(AddressHelper.class.getName(), "Unable connect to get address", e);
+                        emitter.onError(e);
+                    }
+                });
+                thread.start();
             }
 
-            Thread thread = new Thread(() -> {
-                try {
-                    Address geocoderAddresses = getGeocoderAddresses(latitude, longitude, context);
-                    if (geocoderAddresses != null) {
-                        emitter.onSuccess(geocoderAddresses);
-                    } else {
-                        emitter.onSuccess(getArcgisAddress(latitude, longitude, context));
-                    }
-                } catch (Exception e) {
-                    Log.e(AddressHelper.class.getName(), "Unable connect to get address", e);
-                    emitter.onError(e);
-                }
-            });
-            thread.start();
         });
     }
 

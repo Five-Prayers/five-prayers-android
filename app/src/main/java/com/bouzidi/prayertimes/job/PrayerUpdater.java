@@ -1,7 +1,6 @@
 package com.bouzidi.prayertimes.job;
 
 import android.content.Context;
-import android.location.Location;
 
 import com.bouzidi.prayertimes.location.address.AddressHelper;
 import com.bouzidi.prayertimes.location.tracker.LocationHelper;
@@ -34,24 +33,19 @@ public class PrayerUpdater extends Worker {
     @NotNull
     @Override
     public Result doWork() {
-        Location location = LocationHelper.getLocation(context);
-
-        if (location == null) {
-            return Result.failure();
-        }
-
         CompositeDisposable disposable = new CompositeDisposable();
         disposable.add(
-                AddressHelper.getAddressFromLocation(location.getLatitude(), location.getLongitude(), context)
-                        .flatMap(
-                                address ->
-                                        PrayerHelper.fetchTimingsByCity(
-                                                Calendar.getInstance().getTime(),
-                                                address.getLocality(),
-                                                address.getCountryName(),
-                                                CalculationMethodEnum.getDefault(),
-                                                context
-                                        ))
+                LocationHelper.getLocation(context)
+                        .flatMap(location ->
+                                AddressHelper.getAddressFromLocation(location, context)
+                        ).flatMap(address ->
+                        PrayerHelper.getTimingsByCity(
+                                Calendar.getInstance().getTime(),
+                                address.getLocality(),
+                                address.getCountryName(),
+                                CalculationMethodEnum.getDefault(),
+                                context
+                        ))
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribeWith(new DisposableSingleObserver<DayPrayer>() {

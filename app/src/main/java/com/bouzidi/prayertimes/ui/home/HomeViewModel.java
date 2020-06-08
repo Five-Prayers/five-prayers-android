@@ -2,7 +2,6 @@ package com.bouzidi.prayertimes.ui.home;
 
 import android.app.Application;
 import android.content.Context;
-import android.location.Location;
 
 import com.bouzidi.prayertimes.location.address.AddressHelper;
 import com.bouzidi.prayertimes.location.tracker.LocationHelper;
@@ -58,36 +57,31 @@ public class HomeViewModel extends AndroidViewModel {
     }
 
     private void setLiveData(Context context) {
-        Location location = LocationHelper.getLocation(context);
+        compositeDisposable = new CompositeDisposable();
+        compositeDisposable.add(
+                LocationHelper.getLocation(context)
+                        .flatMap(location ->
+                                AddressHelper.getAddressFromLocation(location, context)
+                        ).flatMap(address ->
+                        PrayerHelper.getTimingsByCity(
+                                todayDate,
+                                address.getLocality(),
+                                address.getCountryName(),
+                                CalculationMethodEnum.getDefault(),
+                                context
+                        ))
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribeWith(new DisposableSingleObserver<DayPrayer>() {
+                            @Override
+                            public void onSuccess(DayPrayer dayPrayer) {
+                                mDayPrayers.postValue(dayPrayer);
+                            }
 
-        if (location == null) {
-            mLocationAvailable.postValue(false);
-        } else {
-            compositeDisposable = new CompositeDisposable();
-            compositeDisposable.add(
-                    AddressHelper.getAddressFromLocation(location.getLatitude(), location.getLongitude(), context)
-                            .flatMap(
-                                    address ->
-                                            PrayerHelper.getTimingsByCity(
-                                                    todayDate,
-                                                    address.getLocality(),
-                                                    address.getCountryName(),
-                                                    CalculationMethodEnum.getDefault(),
-                                                    context
-                                            ))
-                            .subscribeOn(Schedulers.io())
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .subscribeWith(new DisposableSingleObserver<DayPrayer>() {
-                                @Override
-                                public void onSuccess(DayPrayer dayPrayer) {
-                                    mDayPrayers.postValue(dayPrayer);
-                                }
-
-                                @Override
-                                public void onError(@io.reactivex.rxjava3.annotations.NonNull Throwable e) {
-                                    mErrorMessage.setValue(e.getMessage());
-                                }
-                            }));
-        }
+                            @Override
+                            public void onError(@io.reactivex.rxjava3.annotations.NonNull Throwable e) {
+                                mErrorMessage.setValue(e.getMessage());
+                            }
+                        }));
     }
 }

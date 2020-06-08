@@ -42,14 +42,4 @@ public class PrayerUtils {
                 return PrayerEnum.MAGHRIB;
         }
     }
-
-    private static boolean isIchaAfterMidnight(@NonNull Map<PrayerEnum, String> prayers) {
-        return TimingUtils.isBeforeOnSameDay(Objects.requireNonNull(prayers.get(PrayerEnum.ICHA)), Objects.requireNonNull(prayers.get(PrayerEnum.DHOHR)));
-    }
-
-    private static boolean isMaghribAfterMidnight(@NonNull Map<PrayerEnum, String> prayers) {
-        return TimingUtils.isBeforeOnSameDay(Objects.requireNonNull(prayers.get(PrayerEnum.MAGHRIB)), Objects.requireNonNull(prayers.get(PrayerEnum.DHOHR)));
-    }
-
-
 }

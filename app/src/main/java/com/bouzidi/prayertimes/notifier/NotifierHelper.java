@@ -43,7 +43,7 @@ public class NotifierHelper {
                 ignoreAarmUpdate = isTimingAfterMidnight && betweenMidgntAndFajr;
             }
 
-            if (TimingUtils.isStrictlyBeforeTiming(calendar.getTime(), timing, isTimingAfterMidnight) && !ignoreAarmUpdate) {
+            if (TimingUtils.isStrictlyBeforeTiming(calendar.getTime(), timing) && !ignoreAarmUpdate) {
                 AlarmManager alarmMgr = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
                 Intent intent = new Intent(context, NotifierReceiver.class);
                 intent.putExtra("prayerKey", key.toString());

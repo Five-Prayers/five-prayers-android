@@ -24,7 +24,7 @@ public class TimingUtilsTest {
     @Test
     public void isBetweenTiming() {
         assertTrue(TimingUtils.isBetweenTiming("01:30", getDate(2, 0), "03:00"));
-        assertTrue(TimingUtils.isBetweenTiming("02:00", getDate(2, 0), "03:00"));
+        assertTrue(TimingUtils.isBetweenTiming("00:00", getDate(2, 0), "03:00"));
         assertFalse(TimingUtils.isBetweenTiming("01:30", getDate(2, 0), "02:00"));
         assertFalse(TimingUtils.isBetweenTiming("01:30", getDate(2, 1), "02:00"));
         assertFalse(TimingUtils.isBetweenTiming("02:01", getDate(2, 0), "03:00"));

@@ -9,6 +9,20 @@ public class TimingUtils {
 
     private static final String ADHAN_API_DEFAULT_FORMAT = "dd-MM-YYYY";
 
+    public static boolean isAfterOrEqualsTiming(Date now, String endTiming) {
+        String[] endParts = endTiming.split(":");
+        Calendar endCal = Calendar.getInstance();
+
+        endCal.setTime(now);
+        endCal.set(Calendar.HOUR_OF_DAY, Integer.parseInt(endParts[0]));
+        endCal.set(Calendar.MINUTE, Integer.parseInt(endParts[1]));
+
+        Calendar nowCal = Calendar.getInstance();
+        nowCal.setTime(now);
+
+        return nowCal.after(endCal) || nowCal.equals(endCal);
+    }
+
     public static boolean isBeforeOrEqualsTiming(Date now, String endTiming, boolean endTimingAfterMidnight) {
         String[] endParts = endTiming.split(":");
         Calendar endCal = Calendar.getInstance();
@@ -27,17 +41,13 @@ public class TimingUtils {
         return nowCal.before(endCal) || nowCal.equals(endCal);
     }
 
-    public static boolean isStrictlyBeforeTiming(Date now, String endTiming, boolean endTimingAfterMidnight) {
+    public static boolean isStrictlyBeforeTiming(Date now, String endTiming) {
         String[] endParts = endTiming.split(":");
         Calendar endCal = Calendar.getInstance();
 
         endCal.setTime(now);
         endCal.set(Calendar.HOUR_OF_DAY, Integer.parseInt(endParts[0]));
         endCal.set(Calendar.MINUTE, Integer.parseInt(endParts[1]));
-
-        if (endTimingAfterMidnight) {
-            endCal.add(Calendar.DAY_OF_MONTH, 1);
-        }
 
         Calendar nowCal = Calendar.getInstance();
         nowCal.setTime(now);
@@ -62,7 +72,7 @@ public class TimingUtils {
         cal.set(Calendar.HOUR_OF_DAY, nowCal.get(Calendar.HOUR_OF_DAY));
         cal.set(Calendar.MINUTE, nowCal.get(Calendar.MINUTE));
 
-        return (cal.after(startCal) && cal.before(endCal)) || cal.equals(startCal);
+        return (cal.after(startCal) && cal.before(endCal));
     }
 
     public static long getTimingBetween(String startTiming, String endTiming, boolean endTimingAfterMidnight) {

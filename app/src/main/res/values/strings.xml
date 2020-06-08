@@ -32,4 +32,9 @@
     <string name="hijri_month_10">Chawwal</string>
     <string name="hijri_month_11">Dhou al qi`da</string>
     <string name="hijri_month_12">Dhou al-hijja</string>
+
+    <string name="gps_settings_title" translatable="true">GPS settings</string>
+    <string name="gps_settings_text" translatable="false">GPS is not enabled. Do you want to go to settings menu?</string>
+    <string name="settings_button_ok" translatable="false">Settings</string>
+    <string name="settings_button_cancel" translatable="false">Cancel</string>
 </resources>

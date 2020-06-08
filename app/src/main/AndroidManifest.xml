@@ -24,7 +24,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <service android:name="com.bouzidi.prayertimes.location.address.LocationAddressHelper" />
+        <service android:name="com.bouzidi.prayertimes.location.address.AddressHelper" />
 
         <receiver android:name="com.bouzidi.prayertimes.notifier.NotifierReceiver"/>
         <receiver android:name="com.bouzidi.prayertimes.notifier.NotificationDismissedReceiver"/>

@@ -21,7 +21,7 @@ import io.reactivex.rxjava3.core.Single;
 
 import static android.content.Context.MODE_PRIVATE;
 
-public class LocationAddressHelper {
+public class AddressHelper {
 
     private static final int MINIMUM_DISTANCE_FOR_OBSOLESCENCE = 1000 * 20;
 
@@ -46,8 +46,8 @@ public class LocationAddressHelper {
                         emitter.onSuccess(getArcgisAddress(latitude, longitude, context));
                     }
                 } catch (Exception e) {
-                    Log.e(LocationAddressHelper.class.getName(), "Unable connect to get address", e);
-                    emitter.onSuccess(lastKnownAddress);
+                    Log.e(AddressHelper.class.getName(), "Unable connect to get address", e);
+                    emitter.onError(e);
                 }
             });
             thread.start();

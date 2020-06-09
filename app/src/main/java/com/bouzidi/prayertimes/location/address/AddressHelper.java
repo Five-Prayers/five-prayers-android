@@ -7,7 +7,7 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.util.Log;
 
-import com.bouzidi.prayertimes.exceptions.TimingsException;
+import com.bouzidi.prayertimes.exceptions.LocationException;
 import com.bouzidi.prayertimes.location.arcgis.ArcgisAPIService;
 import com.bouzidi.prayertimes.location.arcgis.ArcgisReverseGeocodeResponse;
 import com.bouzidi.prayertimes.network.NetworkUtil;
@@ -33,7 +33,7 @@ public class AddressHelper {
         return Single.create(emitter -> {
             if (location == null) {
                 Log.e(AddressHelper.class.getName(), "Location is null");
-                emitter.onError(new Exception("Location is null"));
+                emitter.onError(new LocationException("Location is null"));
             } else {
                 double latitude = location.getLatitude();
                 double longitude = location.getLongitude();
@@ -54,11 +54,11 @@ public class AddressHelper {
                                 emitter.onSuccess(lastKnownAddress);
                             } else {
                                 Log.e(AddressHelper.class.getName(), "Unable connect to get address");
-                                emitter.onError(new TimingsException("Unable connect to get address"));
+                                emitter.onError(new LocationException("Unable connect to get address"));
                             }
                         } catch (Exception e) {
                             Log.e(AddressHelper.class.getName(), "Unable connect to get address from API", e);
-                            emitter.onError(e);
+                            emitter.onError(new LocationException("Unable connect to get address from API", e));
                         }
                     });
                     thread.start();
@@ -99,14 +99,14 @@ public class AddressHelper {
     }
 
     @NotNull
-    private static Address getLastKnownAddress(Context context) {
+    static Address getLastKnownAddress(Context context) {
         final SharedPreferences sharedPreferences = context.getSharedPreferences("location", MODE_PRIVATE);
         final String locality = sharedPreferences.getString("last_known_locality", null);
         final String country = sharedPreferences.getString("last_known_country", null);
         final double latitude = UserPreferencesUtils.getDouble(sharedPreferences, "last_known_latitude", 0);
         final double longitude = UserPreferencesUtils.getDouble(sharedPreferences, "last_known_longitude", 0);
 
-        Address address = new Address(Locale.getDefault());
+        Address address = new Address(Locale.CANADA);
         address.setCountryName(country);
         address.setLocality(locality);
         address.setLatitude(latitude);
@@ -115,7 +115,7 @@ public class AddressHelper {
         return address;
     }
 
-    private static boolean isAddressObsolete(Address lastKnownAddress, double latitude, double longitude) {
+    static boolean isAddressObsolete(Address lastKnownAddress, double latitude, double longitude) {
         if (lastKnownAddress.getLocality() != null) {
 
             Location LastKnownLocation = new Location("");

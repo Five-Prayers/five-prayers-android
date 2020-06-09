@@ -123,7 +123,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onGlobalLayout() {
                 rootView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                if (!NetworkUtil.hasNetwork(mainActivity)) {
+                if (!NetworkUtil.isNetworkAvailable(mainActivity)) {
                     AlertHelper.displayAlert(mainActivity, "Network Unavailable", "Please turn on network to get prayer timings");
                 }
             }

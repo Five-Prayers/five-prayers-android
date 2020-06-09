@@ -7,8 +7,10 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.util.Log;
 
+import com.bouzidi.prayertimes.exceptions.TimingsException;
 import com.bouzidi.prayertimes.location.arcgis.ArcgisAPIService;
 import com.bouzidi.prayertimes.location.arcgis.ArcgisReverseGeocodeResponse;
+import com.bouzidi.prayertimes.network.NetworkUtil;
 import com.bouzidi.prayertimes.utils.UserPreferencesUtils;
 
 import org.jetbrains.annotations.NotNull;
@@ -40,24 +42,28 @@ public class AddressHelper {
 
                 if (!isAddressObsolete(lastKnownAddress, latitude, longitude)) {
                     emitter.onSuccess(lastKnownAddress);
-                }
-
-                Thread thread = new Thread(() -> {
-                    try {
-                        Address geocoderAddresses = getGeocoderAddresses(latitude, longitude, context);
-                        if (geocoderAddresses != null) {
-                            emitter.onSuccess(geocoderAddresses);
-                        } else {
-                            emitter.onSuccess(getArcgisAddress(latitude, longitude, context));
+                } else {
+                    Thread thread = new Thread(() -> {
+                        try {
+                            Address geocoderAddresses = getGeocoderAddresses(latitude, longitude, context);
+                            if (geocoderAddresses != null) {
+                                emitter.onSuccess(geocoderAddresses);
+                            } else if (getArcgisAddress(latitude, longitude, context) != null) {
+                                emitter.onSuccess(getArcgisAddress(latitude, longitude, context));
+                            } else if (lastKnownAddress.getLocality() != null) {
+                                emitter.onSuccess(lastKnownAddress);
+                            } else {
+                                Log.e(AddressHelper.class.getName(), "Unable connect to get address");
+                                emitter.onError(new TimingsException("Unable connect to get address"));
+                            }
+                        } catch (Exception e) {
+                            Log.e(AddressHelper.class.getName(), "Unable connect to get address from API", e);
+                            emitter.onError(e);
                         }
-                    } catch (Exception e) {
-                        Log.e(AddressHelper.class.getName(), "Unable connect to get address", e);
-                        emitter.onError(e);
-                    }
-                });
-                thread.start();
+                    });
+                    thread.start();
+                }
             }
-
         });
     }
 
@@ -73,19 +79,23 @@ public class AddressHelper {
         return null;
     }
 
-    @NotNull
     private static Address getArcgisAddress(double latitude, double longitude, Context context) throws IOException {
         ArcgisAPIService arcgisReverseGeocodeService = ArcgisAPIService.getInstance();
-        ArcgisReverseGeocodeResponse response = arcgisReverseGeocodeService.getAddressFromLocation(latitude, longitude);
 
-        Address address = new Address(Locale.getDefault());
-        address.setCountryName(response.getAddress().getCountryCode());
-        address.setLocality(response.getAddress().getCity());
-        address.setPostalCode(response.getAddress().getPostal());
+        if (NetworkUtil.isNetworkAvailable(context)) {
+            ArcgisReverseGeocodeResponse response = arcgisReverseGeocodeService.getAddressFromLocation(latitude, longitude);
 
-        updateUserPreferences(context, address);
+            Address address = new Address(Locale.getDefault());
+            address.setCountryName(response.getAddress().getCountryCode());
+            address.setLocality(response.getAddress().getCity());
+            address.setPostalCode(response.getAddress().getPostal());
 
-        return address;
+            updateUserPreferences(context, address);
+
+            return address;
+        }
+
+        return null;
     }
 
     @NotNull
@@ -129,5 +139,4 @@ public class AddressHelper {
         editor.putString("last_known_country", address.getCountryName());
         editor.apply();
     }
-
 }

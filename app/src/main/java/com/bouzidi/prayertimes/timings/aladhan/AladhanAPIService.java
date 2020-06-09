@@ -101,7 +101,7 @@ public class AladhanAPIService {
         return chain -> {
             Request request = chain.request();
 
-            if (!NetworkUtil.hasNetwork(context)) {
+            if (!NetworkUtil.isNetworkAvailable(context)) {
                 CacheControl cacheControl = new CacheControl.Builder()
                         .maxStale(CACHE_MAX_STALE, TimeUnit.DAYS)
                         .onlyIfCached()

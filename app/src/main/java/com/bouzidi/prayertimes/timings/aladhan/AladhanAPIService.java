@@ -11,7 +11,7 @@ import com.google.gson.GsonBuilder;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Cache;
@@ -42,7 +42,7 @@ public class AladhanAPIService {
         return aladhanAPIService;
     }
 
-    public AladhanTodayTimingsResponse getTimingsByCity(final Date date, final String city, final String country,
+    public AladhanTodayTimingsResponse getTimingsByCity(final LocalDate localDate, final String city, final String country,
                                                         final CalculationMethodEnum method,
                                                         final Context context) throws IOException {
 
@@ -66,7 +66,7 @@ public class AladhanAPIService {
 
         Call<AladhanTodayTimingsResponse> call
                 = aladhanAPIResource
-                .getTimingsByCity(TimingUtils.formatDate(date), city, country, method.getValue());
+                .getTimingsByCity(TimingUtils.formatDateForAdhanAPI(localDate), city, country, method.getValue());
 
         return call.execute().body();
     }

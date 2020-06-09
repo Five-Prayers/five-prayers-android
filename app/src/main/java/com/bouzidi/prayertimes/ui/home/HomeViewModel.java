@@ -3,19 +3,19 @@ package com.bouzidi.prayertimes.ui.home;
 import android.app.Application;
 import android.content.Context;
 
+import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+
 import com.bouzidi.prayertimes.location.address.AddressHelper;
 import com.bouzidi.prayertimes.location.tracker.LocationHelper;
 import com.bouzidi.prayertimes.timings.CalculationMethodEnum;
 import com.bouzidi.prayertimes.timings.DayPrayer;
 import com.bouzidi.prayertimes.timings.PrayerHelper;
 
-import java.util.Calendar;
-import java.util.Date;
+import java.time.LocalDate;
 
-import androidx.annotation.NonNull;
-import androidx.lifecycle.AndroidViewModel;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.observers.DisposableSingleObserver;
@@ -26,12 +26,12 @@ public class HomeViewModel extends AndroidViewModel {
     private MutableLiveData<DayPrayer> mDayPrayers;
     private MutableLiveData<Boolean> mLocationAvailable;
     private MutableLiveData<String> mErrorMessage;
-    private Date todayDate;
+    private LocalDate todayDate;
     private CompositeDisposable compositeDisposable;
 
     public HomeViewModel(@NonNull Application application) {
         super(application);
-        todayDate = Calendar.getInstance().getTime();
+        todayDate = LocalDate.now();
         mDayPrayers = new MutableLiveData<>();
         mLocationAvailable = new MutableLiveData<>();
         mErrorMessage = new MutableLiveData<>();

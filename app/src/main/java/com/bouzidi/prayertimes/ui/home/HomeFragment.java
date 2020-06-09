@@ -31,6 +31,7 @@ import com.bouzidi.prayertimes.ui.AlertHelper;
 import com.bouzidi.prayertimes.ui.clock.ClockView;
 import com.bouzidi.prayertimes.utils.PrayerUtils;
 import com.bouzidi.prayertimes.utils.TimingUtils;
+import com.bouzidi.prayertimes.utils.UiUtils;
 import com.faltenreich.skeletonlayout.Skeleton;
 import com.mikhaellopez.circularprogressbar.CircularProgressBar;
 
@@ -242,15 +243,15 @@ public class HomeFragment extends Fragment {
         PrayerEnum nextPrayerKey = PrayerUtils.getNextPrayer(timings, LocalDateTime.now());
         PrayerEnum previousPrayerKey = PrayerUtils.getPreviousPrayerKey(nextPrayerKey);
 
-        long timeRemaining = TimingUtils.getTimingBetween(todayDate, Objects.requireNonNull(timings.get(nextPrayerKey)));
-        long timeBetween = TimingUtils.getTimingBetween(Objects.requireNonNull(timings.get(previousPrayerKey)), Objects.requireNonNull(timings.get(nextPrayerKey)));
+        long timeRemaining = TimingUtils.getTimeBetween(todayDate, Objects.requireNonNull(timings.get(nextPrayerKey)));
+        long timeBetween = TimingUtils.getTimeBetween(Objects.requireNonNull(timings.get(previousPrayerKey)), Objects.requireNonNull(timings.get(nextPrayerKey)));
 
         String prayerName = mainActivity.getResources().getString(
                 getResources().getIdentifier(nextPrayerKey.toString(), "string", mainActivity.getPackageName()));
 
         prayerNametextView.setText(prayerName);
         prayerTimetextView.setText(timings.get(nextPrayerKey).format(formatter));
-        timeRemainingTextView.setText(TimingUtils.formatTimeForTimer(timeRemaining));
+        timeRemainingTextView.setText(UiUtils.formatTimeForTimer(timeRemaining));
 
         startAnimationTimer(timeRemaining, timeBetween, dayPrayer);
     }
@@ -259,7 +260,7 @@ public class HomeFragment extends Fragment {
         String hijriMonth = mainActivity.getResources().getString(
                 getResources().getIdentifier("hijri_month_" + dayPrayer.getHijriMonthNumber(), "string", mainActivity.getPackageName()));
 
-        String hijriDate = TimingUtils.formatDate(
+        String hijriDate = UiUtils.formatHijriDate(
                 dayPrayer.getHijriDay(),
                 hijriMonth,
                 dayPrayer.getHijriYear()
@@ -287,7 +288,7 @@ public class HomeFragment extends Fragment {
         circularProgressBar.setProgressWithAnimation(getProgressBarPercentage(timeRemaining, timeBetween), 1000L);
         TimeRemainingCTimer = new CountDownTimer(timeRemaining, 1000L) {
             public void onTick(long millisUntilFinished) {
-                timeRemainingTextView.setText(TimingUtils.formatTimeForTimer(millisUntilFinished));
+                timeRemainingTextView.setText(UiUtils.formatTimeForTimer(millisUntilFinished));
                 circularProgressBar.setProgress(getProgressBarPercentage(timeRemaining, timeBetween));
             }
 

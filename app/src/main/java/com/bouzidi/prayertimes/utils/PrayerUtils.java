@@ -1,14 +1,12 @@
 package com.bouzidi.prayertimes.utils;
 
+import androidx.annotation.NonNull;
+
 import com.bouzidi.prayertimes.timings.PrayerEnum;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.Map;
 import java.util.Objects;
-
-import androidx.annotation.NonNull;
 
 public class PrayerUtils {
 

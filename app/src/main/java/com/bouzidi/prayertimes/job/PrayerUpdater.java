@@ -2,6 +2,10 @@ package com.bouzidi.prayertimes.job;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
+import androidx.work.Worker;
+import androidx.work.WorkerParameters;
+
 import com.bouzidi.prayertimes.location.address.AddressHelper;
 import com.bouzidi.prayertimes.location.tracker.LocationHelper;
 import com.bouzidi.prayertimes.notifier.NotifierHelper;
@@ -11,11 +15,8 @@ import com.bouzidi.prayertimes.timings.PrayerHelper;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Calendar;
+import java.time.LocalDate;
 
-import androidx.annotation.NonNull;
-import androidx.work.Worker;
-import androidx.work.WorkerParameters;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.observers.DisposableSingleObserver;
@@ -40,7 +41,7 @@ public class PrayerUpdater extends Worker {
                                 AddressHelper.getAddressFromLocation(location, context)
                         ).flatMap(address ->
                         PrayerHelper.getTimingsByCity(
-                                Calendar.getInstance().getTime(),
+                                LocalDate.now(),
                                 address.getLocality(),
                                 address.getCountryName(),
                                 CalculationMethodEnum.getDefault(),

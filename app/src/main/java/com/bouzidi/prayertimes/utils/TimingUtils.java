@@ -14,7 +14,7 @@ import java.util.Locale;
 public class TimingUtils {
 
     public static final String ADHAN_API_DEFAULT_FORMAT = "dd-MM-yyyy";
-    public static final String TIMING_DEFAULT_FORMAT = "hh:mm:ss";
+    public static final String TIMING_DEFAULT_FORMAT = "hh:mm";
 
     public static LocalDateTime transformTimingToDate(String timing, String dateStr, boolean timingAfterMidnight) {
         String[] timingParts = timing.split(":");

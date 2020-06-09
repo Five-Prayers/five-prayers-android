@@ -91,9 +91,9 @@ public class TimingUtilsTest {
     @Test
     public void formatTiming() {
         LocalDateTime localDateTime = LocalDateTime.of(2020, 5, 14, 4, 50);
-        assertEquals("04:50:00", TimingUtils.formatTiming(localDateTime));
+        assertEquals("04:50", TimingUtils.formatTiming(localDateTime));
 
-        LocalDateTime localDateTime2 = LocalDateTime.of(2020, 5, 14, 4, 50, 48);
-        assertEquals("04:50:48", TimingUtils.formatTiming(localDateTime2));
+        LocalDateTime localDateTime2 = LocalDateTime.of(2020, 5, 14, 4, 50);
+        assertEquals("04:50", TimingUtils.formatTiming(localDateTime2));
     }
 }

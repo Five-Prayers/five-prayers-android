@@ -3,8 +3,12 @@ package com.bouzidi.prayertimes.location.tracker;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.location.Location;
+import android.util.Log;
 
+import com.bouzidi.prayertimes.exceptions.LocationException;
 import com.bouzidi.prayertimes.utils.UserPreferencesUtils;
+
+import org.jetbrains.annotations.NotNull;
 
 import io.reactivex.rxjava3.core.Single;
 
@@ -31,22 +35,41 @@ public class LocationHelper {
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     UserPreferencesUtils.putDouble(editor, "last_known_latitude", newLatitude);
                     UserPreferencesUtils.putDouble(editor, "last_known_longitude", newLongitude);
-
                     editor.apply();
 
                     emitter.onSuccess(newLocation);
-                } else {
-                    emitter.onError(new Exception("Unable to get location from providers"));
+
+                    Log.i(LocationHelper.class.getName(), "Get location from tracker");
+                } else if (lastKnownLatitude > 0 && lastKnownLongitude > 0) {
+
+                    Location lastKnownLocation = getLocation(lastKnownLatitude, lastKnownLongitude);
+
+                    emitter.onSuccess(lastKnownLocation);
+
+                    Log.w(LocationHelper.class.getName(), "Cannot get location from tracker, use last known location");
                 }
-            } else if (lastKnownLatitude >= 0 || lastKnownLongitude >= 0) {
-                Location lastKnownLocation = new Location("");
-                lastKnownLocation.setLatitude(lastKnownLatitude);
-                lastKnownLocation.setLongitude(lastKnownLongitude);
+            } else if (lastKnownLatitude > 0 && lastKnownLongitude > 0) {
+
+                Location lastKnownLocation = getLocation(lastKnownLatitude, lastKnownLongitude);
+
                 emitter.onSuccess(lastKnownLocation);
+
+                Log.w(LocationHelper.class.getName(), "Location tracker not available, use last known location");
             } else {
                 gpsTracker.showSettingsAlert();
-                emitter.onError(new Exception("Unable to find location"));
+
+                emitter.onError(new LocationException("Unable to find location"));
+
+                Log.e(LocationHelper.class.getName(), "Location tracker not available, use last known location");
             }
         });
+    }
+
+    @NotNull
+    private static Location getLocation(double lastKnownLatitude, double lastKnownLongitude) {
+        Location lastKnownLocation = new Location("");
+        lastKnownLocation.setLatitude(lastKnownLatitude);
+        lastKnownLocation.setLongitude(lastKnownLongitude);
+        return lastKnownLocation;
     }
 }

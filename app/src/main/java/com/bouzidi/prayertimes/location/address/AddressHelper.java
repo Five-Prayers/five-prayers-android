@@ -33,7 +33,7 @@ public class AddressHelper {
         return Single.create(emitter -> {
             if (location == null) {
                 Log.e(AddressHelper.class.getName(), "Location is null");
-                emitter.onError(new LocationException("Location is null"));
+                emitter.onError(new LocationException("Cannot get Address from null Location"));
             } else {
                 double latitude = location.getLatitude();
                 double longitude = location.getLongitude();
@@ -87,6 +87,7 @@ public class AddressHelper {
 
             Address address = new Address(Locale.getDefault());
             address.setCountryName(response.getAddress().getCountryCode());
+            address.setCountryCode(response.getAddress().getCountryCode());
             address.setLocality(response.getAddress().getCity());
             address.setPostalCode(response.getAddress().getPostal());
 
@@ -94,19 +95,18 @@ public class AddressHelper {
 
             return address;
         }
-
         return null;
     }
 
     @NotNull
-    static Address getLastKnownAddress(Context context) {
+    private static Address getLastKnownAddress(Context context) {
         final SharedPreferences sharedPreferences = context.getSharedPreferences("location", MODE_PRIVATE);
         final String locality = sharedPreferences.getString("last_known_locality", null);
         final String country = sharedPreferences.getString("last_known_country", null);
         final double latitude = UserPreferencesUtils.getDouble(sharedPreferences, "last_known_latitude", 0);
         final double longitude = UserPreferencesUtils.getDouble(sharedPreferences, "last_known_longitude", 0);
 
-        Address address = new Address(Locale.CANADA);
+        Address address = new Address(Locale.getDefault());
         address.setCountryName(country);
         address.setLocality(locality);
         address.setLatitude(latitude);
@@ -115,7 +115,7 @@ public class AddressHelper {
         return address;
     }
 
-    static boolean isAddressObsolete(Address lastKnownAddress, double latitude, double longitude) {
+    private static boolean isAddressObsolete(Address lastKnownAddress, double latitude, double longitude) {
         if (lastKnownAddress.getLocality() != null) {
 
             Location LastKnownLocation = new Location("");

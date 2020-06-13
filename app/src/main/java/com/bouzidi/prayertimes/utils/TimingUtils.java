@@ -39,6 +39,14 @@ public class TimingUtils {
         return Math.abs(dur.toMillis());
     }
 
+    public static long getTimeBetweenTwoPrayer(LocalDateTime startTiming, LocalDateTime endTiming) {
+        if (startTiming.isAfter(endTiming)) {
+            endTiming = endTiming.plusDays(1);
+        }
+        Duration dur = Duration.between(startTiming, endTiming);
+        return Math.abs(dur.toMillis());
+    }
+
     public static boolean isBeforeOnSameDay(String startTiming, String endTiming) {
         String[] startParts = startTiming.split(":");
         Calendar startCal = Calendar.getInstance();

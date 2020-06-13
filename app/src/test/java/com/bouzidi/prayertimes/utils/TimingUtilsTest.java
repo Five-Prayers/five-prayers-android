@@ -52,6 +52,15 @@ public class TimingUtilsTest {
     }
 
     @Test
+    public void getTimeBetweenTwoPrayer() {
+        LocalDateTime startTime = LocalDateTime.of(2020, 5, 14, 23, 50);
+        LocalDateTime endTime = LocalDateTime.of(2020, 5, 14, 3, 0);
+
+        assertEquals(1000 * 60 * 190, TimingUtils.getTimeBetweenTwoPrayer(startTime, endTime));
+        assertEquals(TimingUtils.getTimeBetweenTwoPrayer(endTime, startTime), 1000 * 60 * 1250);
+    }
+
+    @Test
     public void isBeforeOnSameDay() {
         assertTrue(TimingUtils.isBeforeOnSameDay("00:15", "15:12"));
         assertTrue(TimingUtils.isBeforeOnSameDay("00:15", "23:40"));

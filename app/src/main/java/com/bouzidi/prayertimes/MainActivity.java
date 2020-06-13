@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navView, navController);
 
         PeriodicWorkRequest periodicWorkRequest =
-                new PeriodicWorkRequest.Builder(PrayerUpdater.class, 15, TimeUnit.MINUTES, 12, TimeUnit.MINUTES)
+                new PeriodicWorkRequest.Builder(PrayerUpdater.class, 60, TimeUnit.MINUTES, 50, TimeUnit.MINUTES)
                         .build();
 
         WorkManager.getInstance(this)

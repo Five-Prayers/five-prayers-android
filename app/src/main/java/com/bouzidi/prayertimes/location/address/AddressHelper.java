@@ -25,7 +25,7 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class AddressHelper {
 
-    private static final int MINIMUM_DISTANCE_FOR_OBSOLESCENCE = 1000 * 20;
+    private static final int MINIMUM_DISTANCE_FOR_OBSOLESCENCE = 1000; //1KM
 
     public static Single<Address> getAddressFromLocation(final Location location,
                                                          final Context context) {

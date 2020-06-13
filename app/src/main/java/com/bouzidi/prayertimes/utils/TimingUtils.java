@@ -40,7 +40,7 @@ public class TimingUtils {
     }
 
     public static long getTimeBetweenTwoPrayer(LocalDateTime startTiming, LocalDateTime endTiming) {
-        if (startTiming.isAfter(endTiming)) {
+        if (startTiming.isAfter(endTiming)) { //Mean that the next prayer is on the next day.
             endTiming = endTiming.plusDays(1);
         }
         Duration dur = Duration.between(startTiming, endTiming);

@@ -29,14 +29,6 @@ public class LocationHelper {
                 Location newLocation = gpsTracker.getLocation();
 
                 if (newLocation != null) {
-                    double newLatitude = newLocation.getLatitude();
-                    double newLongitude = newLocation.getLongitude();
-
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    UserPreferencesUtils.putDouble(editor, "last_known_latitude", newLatitude);
-                    UserPreferencesUtils.putDouble(editor, "last_known_longitude", newLongitude);
-                    editor.apply();
-
                     emitter.onSuccess(newLocation);
 
                     Log.i(LocationHelper.class.getName(), "Get location from tracker");

@@ -78,16 +78,9 @@ public class LocationHelperTest {
         TestObserver<Location> locationTestObserver = new TestObserver<>();
         locationSingle.subscribe(locationTestObserver);
 
-        SharedPreferences sharedPreferences = applicationContext.getSharedPreferences("location", MODE_PRIVATE);
-        double lastKnownLatitude = UserPreferencesUtils.getDouble(sharedPreferences, "last_known_latitude", 0);
-        double lastKnownLongitude = UserPreferencesUtils.getDouble(sharedPreferences, "last_known_longitude", 0);
-
         locationTestObserver.await();
         locationTestObserver.assertComplete();
         locationTestObserver.assertValue(newLocation);
-
-        Assert.assertEquals(0.12, lastKnownLatitude, 0);
-        Assert.assertEquals(3.14, lastKnownLongitude, 0);
     }
 
     @Test

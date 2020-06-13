@@ -12,6 +12,7 @@ import androidx.test.core.app.ApplicationProvider;
 import com.bouzidi.prayertimes.exceptions.LocationException;
 import com.bouzidi.prayertimes.location.arcgis.ArcgisAPIService;
 import com.bouzidi.prayertimes.location.arcgis.ArcgisAddressResponse;
+import com.bouzidi.prayertimes.location.arcgis.ArcgisLocation;
 import com.bouzidi.prayertimes.location.arcgis.ArcgisReverseGeocodeResponse;
 import com.bouzidi.prayertimes.network.NetworkUtil;
 import com.bouzidi.prayertimes.utils.UserPreferencesUtils;
@@ -433,8 +434,13 @@ public class AddressHelperTest {
         address.setCountryCode("UK");
         address.setPostal("99100");
 
+        ArcgisLocation location = new ArcgisLocation();
+        location.setX(51.508515);
+        location.setY(-0.1254872);
+
         ArcgisReverseGeocodeResponse arcgisReverseGeocodeResponse = new ArcgisReverseGeocodeResponse();
         arcgisReverseGeocodeResponse.setAddress(address);
+        arcgisReverseGeocodeResponse.setLocation(location);
 
         Mockito.when(ArcgisAPIService.getInstance()).thenReturn(mArcgisAPIService);
         Mockito.when(mArcgisAPIService.getAddressFromLocation(anyDouble(), anyDouble()))
@@ -448,7 +454,9 @@ public class AddressHelperTest {
 
         SharedPreferences sharedPreferences = applicationContext.getSharedPreferences("location", MODE_PRIVATE);
         String lastKnownCountry = sharedPreferences.getString("last_known_country", null);
-        String lastKnownLocality = sharedPreferences.getString("last_known_locality",  null);
+        String lastKnownLocality = sharedPreferences.getString("last_known_locality", null);
+        double lastKnownLatitude = UserPreferencesUtils.getDouble(sharedPreferences, "last_known_latitude", 0);
+        double lastKnownLongitude = UserPreferencesUtils.getDouble(sharedPreferences, "last_known_longitude", 0);
 
         //Then
         assertNotNull(result);
@@ -458,6 +466,8 @@ public class AddressHelperTest {
         assertEquals("99100", result.getPostalCode());
         assertEquals("London", lastKnownLocality);
         assertEquals("UK", lastKnownCountry);
+        assertEquals(51.508515, lastKnownLatitude, 0);
+        assertEquals(-0.1254872, lastKnownLongitude, 0);
     }
 
     @Test
@@ -499,7 +509,9 @@ public class AddressHelperTest {
 
         SharedPreferences sharedPreferences = applicationContext.getSharedPreferences("location", MODE_PRIVATE);
         String lastKnownCountry = sharedPreferences.getString("last_known_country", null);
-        String lastKnownLocality = sharedPreferences.getString("last_known_locality",  null);
+        String lastKnownLocality = sharedPreferences.getString("last_known_locality", null);
+        double lastKnownLatitude = UserPreferencesUtils.getDouble(sharedPreferences, "last_known_latitude", 0);
+        double lastKnownLongitude = UserPreferencesUtils.getDouble(sharedPreferences, "last_known_longitude", 0);
 
         //Then
         assertNotNull(result);
@@ -509,6 +521,8 @@ public class AddressHelperTest {
         assertEquals("99100", result.getPostalCode());
         assertEquals("London", lastKnownLocality);
         assertEquals("United Kingdom", lastKnownCountry);
+        assertEquals(51.508515, lastKnownLatitude, 0);
+        assertEquals(-0.1254872, lastKnownLongitude, 0);
     }
 
     @Test

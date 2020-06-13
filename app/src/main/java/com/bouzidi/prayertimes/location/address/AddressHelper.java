@@ -90,6 +90,8 @@ public class AddressHelper {
             address.setCountryCode(response.getAddress().getCountryCode());
             address.setLocality(response.getAddress().getCity());
             address.setPostalCode(response.getAddress().getPostal());
+            address.setLatitude(response.getLocation().getX());
+            address.setLongitude(response.getLocation().getY());
 
             updateUserPreferences(context, address);
 
@@ -137,6 +139,8 @@ public class AddressHelper {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("last_known_locality", address.getLocality());
         editor.putString("last_known_country", address.getCountryName());
+        UserPreferencesUtils.putDouble(editor, "last_known_latitude", address.getLatitude());
+        UserPreferencesUtils.putDouble(editor, "last_known_longitude", address.getLongitude());
         editor.apply();
     }
 }

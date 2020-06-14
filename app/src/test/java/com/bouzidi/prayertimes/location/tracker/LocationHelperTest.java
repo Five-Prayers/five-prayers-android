@@ -27,7 +27,6 @@ import org.robolectric.annotation.Config;
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.observers.TestObserver;
 
-import static android.content.Context.MODE_PRIVATE;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyString;
 

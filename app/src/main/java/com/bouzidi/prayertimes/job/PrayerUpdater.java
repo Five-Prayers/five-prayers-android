@@ -3,8 +3,8 @@ package com.bouzidi.prayertimes.job;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
-import androidx.work.Worker;
 import androidx.work.WorkerParameters;
+import androidx.work.rxjava3.RxWorker;
 
 import com.bouzidi.prayertimes.location.address.AddressHelper;
 import com.bouzidi.prayertimes.location.tracker.LocationHelper;
@@ -13,16 +13,11 @@ import com.bouzidi.prayertimes.timings.CalculationMethodEnum;
 import com.bouzidi.prayertimes.timings.DayPrayer;
 import com.bouzidi.prayertimes.timings.PrayerHelper;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.time.LocalDate;
 
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-import io.reactivex.rxjava3.disposables.CompositeDisposable;
-import io.reactivex.rxjava3.observers.DisposableSingleObserver;
-import io.reactivex.rxjava3.schedulers.Schedulers;
+import io.reactivex.rxjava3.core.Single;
 
-public class PrayerUpdater extends Worker {
+public class PrayerUpdater extends RxWorker {
 
     private Context context;
 
@@ -31,11 +26,10 @@ public class PrayerUpdater extends Worker {
         this.context = context;
     }
 
-    @NotNull
+    @NonNull
     @Override
-    public Result doWork() {
-        CompositeDisposable disposable = new CompositeDisposable();
-        disposable.add(
+    public Single<Result> createWork() {
+        Single<DayPrayer> dayPrayerSingle =
                 LocationHelper.getLocation(context)
                         .flatMap(location ->
                                 AddressHelper.getAddressFromLocation(location, context)
@@ -46,20 +40,11 @@ public class PrayerUpdater extends Worker {
                                 address.getCountryName(),
                                 CalculationMethodEnum.getDefault(),
                                 context
-                        ))
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribeWith(new DisposableSingleObserver<DayPrayer>() {
-                            @Override
-                            public void onSuccess(DayPrayer dayPrayer) {
-                                NotifierHelper.scheduleNextPrayerAlarms(context, dayPrayer);
-                            }
+                        ));
 
-                            @Override
-                            public void onError(@NonNull Throwable e) {
-                            }
-                        }));
-
-        return Result.success();
+        return dayPrayerSingle
+                .doOnSuccess(dayPrayer -> NotifierHelper.scheduleNextPrayerAlarms(context, dayPrayer))
+                .map(dayPrayer -> Result.success())
+                .onErrorReturn(error -> Result.failure());
     }
 }

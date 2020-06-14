@@ -32,6 +32,6 @@ public class MainActivity extends AppCompatActivity {
                         .build();
 
         WorkManager.getInstance(this)
-                .enqueueUniquePeriodicWork("Prayer updater", ExistingPeriodicWorkPolicy.REPLACE, periodicWorkRequest);
+                .enqueueUniquePeriodicWork("Prayer updater", ExistingPeriodicWorkPolicy.KEEP, periodicWorkRequest);
     }
 }

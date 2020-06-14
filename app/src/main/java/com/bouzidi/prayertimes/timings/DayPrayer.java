@@ -26,6 +26,9 @@ public class DayPrayer {
 
     private CalculationMethodEnum calculationMethodEnum;
 
+    public DayPrayer() {
+    }
+
     public DayPrayer(String date, long timestamp, String city, String country, int hijriDay, int hijriMonthNumber, int hijriYear,
                      int gregorianDay, int gregorianMonthNumber,
                      int gregorianYear) {

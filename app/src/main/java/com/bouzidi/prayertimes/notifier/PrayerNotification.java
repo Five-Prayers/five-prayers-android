@@ -8,11 +8,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 
-import com.bouzidi.prayertimes.MainActivity;
-import com.bouzidi.prayertimes.R;
-
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+
+import com.bouzidi.prayertimes.MainActivity;
+import com.bouzidi.prayertimes.R;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -91,7 +91,7 @@ class PrayerNotification {
         boolean callEnabled = sharedPreferences.getBoolean(callPreferenceKey, true);
 
         if (callEnabled) {
-            AdhanPlayer.playAdhan(context);
+            AdhanPlayer.getInstance(context).playAdhan();
         }
     }
 }

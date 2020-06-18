@@ -16,12 +16,17 @@ public class TimingUtilsTest {
 
     @Test
     public void transformTimingToDate() {
-
-        LocalDateTime localDateTime = TimingUtils.transformTimingToDate("12:50", "13-05-2020", false);
+        LocalDateTime localDateTime = TimingUtils.transformTimingToDate("12:50 (BST)", "13-05-2020", false);
         assertTrue(localDateTime.isEqual(LocalDateTime.of(2020, 5, 13, 12, 50)));
+
+        LocalDateTime localDateTime2 = TimingUtils.transformTimingToDate("12:50", "13-05-2020", false);
+        assertTrue(localDateTime2.isEqual(LocalDateTime.of(2020, 5, 13, 12, 50)));
 
         LocalDateTime localDateTimeAfterMidnight = TimingUtils.transformTimingToDate("12:50", "13-05-2020", true);
         assertTrue(localDateTimeAfterMidnight.isEqual(LocalDateTime.of(2020, 5, 14, 12, 50)));
+
+        LocalDateTime localDateTimeAfterMidnight2 = TimingUtils.transformTimingToDate("12:50 (EST)", "13-05-2020", true);
+        assertTrue(localDateTimeAfterMidnight2.isEqual(LocalDateTime.of(2020, 5, 14, 12, 50)));
     }
 
     @Test
@@ -104,5 +109,15 @@ public class TimingUtilsTest {
 
         LocalDateTime localDateTime2 = LocalDateTime.of(2020, 5, 14, 4, 50);
         assertEquals("04:50", TimingUtils.formatTiming(localDateTime2));
+    }
+
+    @Test
+    public void getLocalDateFromTimestamps(){
+        int timestamps = 1491379261;
+        LocalDate localDate = TimingUtils.getLocalDateFromTimestamps(timestamps * 1000L);
+
+        assertEquals(5, localDate.getDayOfMonth());
+        assertEquals(4, localDate.getMonthValue());
+        assertEquals(2017, localDate.getYear());
     }
 }

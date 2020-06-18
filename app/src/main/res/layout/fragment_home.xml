@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <com.faltenreich.skeletonlayout.SkeletonLayout
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/skeletonLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,7 +10,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/white_blue_mosque_gradient_background"
@@ -66,7 +66,9 @@
             android:textSize="@dimen/text_smlarge"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:drawableStart="@drawable/ic_location_20"
+            tools:ignore="TextViewEdits" />
 
         <TextView
             android:id="@+id/country_text_view"

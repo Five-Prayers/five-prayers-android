@@ -10,13 +10,16 @@ import com.bouzidi.prayertimes.timings.CalculationMethodEnum;
 import com.bouzidi.prayertimes.timings.ComplementaryTimingEnum;
 import com.bouzidi.prayertimes.timings.DayPrayer;
 import com.bouzidi.prayertimes.timings.PrayerEnum;
+import com.bouzidi.prayertimes.timings.aladhan.AladhanCalendarResponse;
+import com.bouzidi.prayertimes.timings.aladhan.AladhanData;
 import com.bouzidi.prayertimes.timings.aladhan.AladhanDate;
 import com.bouzidi.prayertimes.timings.aladhan.AladhanTimings;
-import com.bouzidi.prayertimes.timings.aladhan.AladhanTodayTimingsResponse;
 import com.bouzidi.prayertimes.utils.TimingUtils;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 public class PrayerRegistry {
@@ -35,18 +38,17 @@ public class PrayerRegistry {
         return prayerRegistry;
     }
 
-    public long savePrayerTiming(String dateString,
-                                 String city,
+    public long savePrayerTiming(String city,
                                  String country,
                                  CalculationMethodEnum calculationMethod,
-                                 AladhanTodayTimingsResponse aladhanTodayTimingsResponse) {
+                                 AladhanData data) {
 
         Log.i(PrayerRegistry.class.getName(), "Inserting new Timings rows");
 
         SQLiteDatabase db = databaseHelper.getWritableDatabase();
 
-        AladhanDate aladhanDate = aladhanTodayTimingsResponse.getData().getDate();
-        AladhanTimings aladhanTimings = aladhanTodayTimingsResponse.getData().getTimings();
+        AladhanDate aladhanDate = data.getDate();
+        AladhanTimings aladhanTimings = data.getTimings();
 
         ContentValues values = new ContentValues();
         values.put(PrayerModel.COLUMN_NAME_DATE, aladhanDate.getGregorian().getDate());
@@ -81,8 +83,6 @@ public class PrayerRegistry {
     public DayPrayer getPrayerTimings(String dateString, String city, CalculationMethodEnum calculationMethodEnum) {
         Log.i(PrayerRegistry.class.getName(), "Getting Timings rows");
 
-        DayPrayer dayPrayer = null;
-
         SQLiteDatabase db = databaseHelper.getReadableDatabase();
 
         String selection = PrayerModel.COLUMN_NAME_DATE + " = ?" +
@@ -105,50 +105,108 @@ public class PrayerRegistry {
 
         boolean first = cursor.moveToFirst();
 
+        DayPrayer dayPrayer = null;
+
         if (first) {
-            Map<PrayerEnum, LocalDateTime> timings = new LinkedHashMap<>(5);
-            Map<ComplementaryTimingEnum, LocalDateTime> complementaryTiming = new LinkedHashMap<>(4);
-
-            String fajrTiming = cursor.getString(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_FAJR_TIMING));
-            String dohrTiming = cursor.getString(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_DHOHR_TIMING));
-            String asrTiming = cursor.getString(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_ASR_TIMING));
-            String maghribTiming = cursor.getString(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_MAGHRIB_TIMING));
-            String ichaTiming = cursor.getString(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_ICHA_TIMING));
-
-            String sunriseTiming = cursor.getString(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_SUNRISE_TIMING));
-            String sunsetTiming = cursor.getString(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_SUNSET_TIMING));
-            String midnightTiming = cursor.getString(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_MIDNIGHT_TIMING));
-            String imsakTiming = cursor.getString(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_IMSAK_TIMING));
-
-            String dateStr = cursor.getString(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_DATE));
-
-            dayPrayer = new DayPrayer(
-                    dateStr,
-                    cursor.getLong(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_DATE_TIMESTAMP)),
-                    cursor.getString(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_CITY)),
-                    cursor.getString(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_COUNTRY)),
-                    cursor.getInt(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_HIJRI_DAY)),
-                    cursor.getInt(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_HIJRI_MONTH_NUMBER)),
-                    cursor.getInt(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_HIJRI_YEAR)),
-                    cursor.getInt(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_GREGORIAN_DAY)),
-                    cursor.getInt(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_GREGORIAN_MONTH_NUMBER)),
-                    cursor.getInt(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_GREGORIAN_YEAR))
-            );
-
-            timings.put(PrayerEnum.FAJR, TimingUtils.transformTimingToDate(fajrTiming, dateStr, false));
-            timings.put(PrayerEnum.DHOHR, TimingUtils.transformTimingToDate(dohrTiming, dateStr, false));
-            timings.put(PrayerEnum.ASR, TimingUtils.transformTimingToDate(asrTiming, dateStr, false));
-            timings.put(PrayerEnum.MAGHRIB, TimingUtils.transformTimingToDate(maghribTiming, dateStr, TimingUtils.isBeforeOnSameDay(maghribTiming, dohrTiming)));
-            timings.put(PrayerEnum.ICHA, TimingUtils.transformTimingToDate(ichaTiming, dateStr, TimingUtils.isBeforeOnSameDay(ichaTiming, dohrTiming)));
-
-            complementaryTiming.put(ComplementaryTimingEnum.SUNRISE, TimingUtils.transformTimingToDate(sunriseTiming, dateStr, false));
-            complementaryTiming.put(ComplementaryTimingEnum.SUNSET, TimingUtils.transformTimingToDate(sunsetTiming, dateStr, TimingUtils.isBeforeOnSameDay(ichaTiming, dohrTiming)));
-            complementaryTiming.put(ComplementaryTimingEnum.MIDNIGHT, TimingUtils.transformTimingToDate(midnightTiming, dateStr, TimingUtils.isBeforeOnSameDay(midnightTiming, dohrTiming)));
-            complementaryTiming.put(ComplementaryTimingEnum.IMSAK, TimingUtils.transformTimingToDate(imsakTiming, dateStr, false));
-
-            dayPrayer.setTimings(timings);
-            dayPrayer.setComplementaryTiming(complementaryTiming);
+            dayPrayer = createDayPrayer(cursor);
         }
+
+        return dayPrayer;
+    }
+
+    public void saveCalendar(String city,
+                             String country,
+                             CalculationMethodEnum calculationMethod,
+                             AladhanCalendarResponse aladhanCalendarResponse
+    ) {
+
+        for (AladhanData aladhanData : aladhanCalendarResponse.getData()) {
+            savePrayerTiming(city, country, calculationMethod, aladhanData);
+        }
+    }
+
+    public List<DayPrayer> getPrayerCalendar(String city, int monthNumber, int year, CalculationMethodEnum calculationMethodEnum) {
+        Log.i(PrayerRegistry.class.getName(), "Getting Calendar rows");
+
+        List<DayPrayer> monthPrayer = new ArrayList<>();
+        SQLiteDatabase db = databaseHelper.getReadableDatabase();
+
+        String selection = PrayerModel.COLUMN_NAME_GREGORIAN_MONTH_NUMBER + " = ?" +
+                " AND " + PrayerModel.COLUMN_NAME_GREGORIAN_YEAR + " = ?" +
+                " AND " + PrayerModel.COLUMN_NAME_CITY + " = ?" +
+                " AND " + PrayerModel.COLUMN_NAME_CALCULATION_METHOD + " = ?";
+        String[] selectionArgs = {String.valueOf(monthNumber), String.valueOf(year), city, String.valueOf(calculationMethodEnum.getValue())};
+
+        String sortOrder =
+                PrayerModel.COLUMN_NAME_GREGORIAN_DAY + " ASC";
+
+        Cursor cursor = db.query(
+                PrayerModel.TABLE_NAME,
+                null,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                sortOrder
+        );
+
+        Log.e("timing", LocalDateTime.now().toString());
+        if (cursor.moveToFirst()) {
+            do {
+
+                monthPrayer.add(createDayPrayer(cursor));
+            } while (cursor.moveToNext());
+        }
+        Log.e("timing end", LocalDateTime.now().toString());
+
+        return monthPrayer;
+    }
+
+    private DayPrayer createDayPrayer(Cursor cursor) {
+        DayPrayer dayPrayer = null;
+
+        Map<PrayerEnum, LocalDateTime> timings = new LinkedHashMap<>(5);
+        Map<ComplementaryTimingEnum, LocalDateTime> complementaryTiming = new LinkedHashMap<>(4);
+
+        String fajrTiming = cursor.getString(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_FAJR_TIMING));
+        String dohrTiming = cursor.getString(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_DHOHR_TIMING));
+        String asrTiming = cursor.getString(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_ASR_TIMING));
+        String maghribTiming = cursor.getString(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_MAGHRIB_TIMING));
+        String ichaTiming = cursor.getString(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_ICHA_TIMING));
+
+        String sunriseTiming = cursor.getString(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_SUNRISE_TIMING));
+        String sunsetTiming = cursor.getString(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_SUNSET_TIMING));
+        String midnightTiming = cursor.getString(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_MIDNIGHT_TIMING));
+        String imsakTiming = cursor.getString(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_IMSAK_TIMING));
+
+        String dateStr = cursor.getString(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_DATE));
+
+        dayPrayer = new DayPrayer(
+                dateStr,
+                cursor.getLong(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_DATE_TIMESTAMP)),
+                cursor.getString(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_CITY)),
+                cursor.getString(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_COUNTRY)),
+                cursor.getInt(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_HIJRI_DAY)),
+                cursor.getInt(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_HIJRI_MONTH_NUMBER)),
+                cursor.getInt(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_HIJRI_YEAR)),
+                cursor.getInt(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_GREGORIAN_DAY)),
+                cursor.getInt(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_GREGORIAN_MONTH_NUMBER)),
+                cursor.getInt(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_GREGORIAN_YEAR))
+        );
+
+        timings.put(PrayerEnum.FAJR, TimingUtils.transformTimingToDate(fajrTiming, dateStr, false));
+        timings.put(PrayerEnum.DHOHR, TimingUtils.transformTimingToDate(dohrTiming, dateStr, false));
+        timings.put(PrayerEnum.ASR, TimingUtils.transformTimingToDate(asrTiming, dateStr, false));
+        timings.put(PrayerEnum.MAGHRIB, TimingUtils.transformTimingToDate(maghribTiming, dateStr, TimingUtils.isBeforeOnSameDay(maghribTiming, dohrTiming)));
+        timings.put(PrayerEnum.ICHA, TimingUtils.transformTimingToDate(ichaTiming, dateStr, TimingUtils.isBeforeOnSameDay(ichaTiming, dohrTiming)));
+
+        complementaryTiming.put(ComplementaryTimingEnum.SUNRISE, TimingUtils.transformTimingToDate(sunriseTiming, dateStr, false));
+        complementaryTiming.put(ComplementaryTimingEnum.SUNSET, TimingUtils.transformTimingToDate(sunsetTiming, dateStr, TimingUtils.isBeforeOnSameDay(ichaTiming, dohrTiming)));
+        complementaryTiming.put(ComplementaryTimingEnum.MIDNIGHT, TimingUtils.transformTimingToDate(midnightTiming, dateStr, TimingUtils.isBeforeOnSameDay(midnightTiming, dohrTiming)));
+        complementaryTiming.put(ComplementaryTimingEnum.IMSAK, TimingUtils.transformTimingToDate(imsakTiming, dateStr, false));
+
+        dayPrayer.setTimings(timings);
+        dayPrayer.setComplementaryTiming(complementaryTiming);
 
         return dayPrayer;
     }

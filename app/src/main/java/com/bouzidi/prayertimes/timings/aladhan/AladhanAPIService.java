@@ -71,6 +71,36 @@ public class AladhanAPIService {
         return call.execute().body();
     }
 
+    public AladhanCalendarResponse getCalendarByCity(final String city, final String country,
+                                                     final int month, final int year,
+                                                     final CalculationMethodEnum method,
+                                                     final Context context) throws IOException {
+
+        final OkHttpClient.Builder httpClient =
+                new OkHttpClient.Builder()
+                        .addInterceptor(provideOfflineCacheInterceptor(context))
+                        .addNetworkInterceptor(provideCacheInterceptor())
+                        .cache(provideCache(context));
+
+        Gson gson = new GsonBuilder()
+                .setLenient()
+                .create();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .client(httpClient.build())
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build();
+
+        AladhanAPIResource aladhanAPIResource = retrofit.create(AladhanAPIResource.class);
+
+        Call<AladhanCalendarResponse> call
+                = aladhanAPIResource
+                .getCalendarByCity(city, country, month, year, false, method.getValue());
+
+        return call.execute().body();
+    }
+
     private static Cache provideCache(final Context context) {
         Cache cache = null;
         try {

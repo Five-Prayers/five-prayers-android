@@ -16,8 +16,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ui.calendar.CalendarActivity"></activity>
         <activity
-            android:name="com.bouzidi.prayertimes.MainActivity"
+            android:name=".MainActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,8 +27,8 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name="com.bouzidi.prayertimes.notifier.NotifierReceiver" />
-        <receiver android:name="com.bouzidi.prayertimes.notifier.NotificationDismissedReceiver" />
+        <receiver android:name=".notifier.NotifierReceiver" />
+        <receiver android:name=".notifier.NotificationDismissedReceiver" />
         <receiver
             android:name=".notifier.NotifierBootReceiver"
             android:enabled="true">
@@ -36,4 +37,5 @@
             </intent-filter>
         </receiver>
     </application>
+
 </manifest>

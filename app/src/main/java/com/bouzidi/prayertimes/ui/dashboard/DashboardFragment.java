@@ -1,5 +1,6 @@
 package com.bouzidi.prayertimes.ui.dashboard;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bouzidi.prayertimes.R;
+import com.bouzidi.prayertimes.ui.calendar.CalendarActivity;
 
 import java.util.ArrayList;
 
@@ -35,16 +37,20 @@ public class DashboardFragment extends Fragment {
         int images[] = {R.drawable.ic_compass_24dp, R.drawable.ic_calendar_24dp, R.drawable.ic_alah_24dp, R.drawable.ic_quran_24dp,
                 R.drawable.ic_donation_24dp, R.drawable.ic_dua_hands};
 
+        Intent intents[] = {null, new Intent(getActivity(), CalendarActivity.class), null, null,
+                null, null};
+
         for (int count = 0; count < heads.length; count++) {
             DashModel dashModel = new DashModel();
             dashModel.setHead(heads[count]);
             dashModel.setSub(subs[count]);
             dashModel.setImage(images[count]);
+            dashModel.setIntent(intents[count]);
             dashModelArrayList.add(dashModel);
             //this should be retrieved in our adapter
         }
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity().getApplicationContext(), 2));
-        dashAdapter = new DashAdapter(dashModelArrayList);
+        dashAdapter = new DashAdapter(dashModelArrayList, getActivity());
         recyclerView.setHasFixedSize(true);
 
         recyclerView.setAdapter(dashAdapter);

@@ -1,5 +1,7 @@
 package com.bouzidi.prayertimes.ui.dashboard;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,14 +17,16 @@ import java.util.ArrayList;
 public class DashAdapter extends RecyclerView.Adapter<DashAdapter.ViewHolder> {
 
     ArrayList<DashModel> dashModelArrayList;
+    private Activity activity;
 
-    public DashAdapter(ArrayList<DashModel> dashModelArrayList) {
+    public DashAdapter(ArrayList<DashModel> dashModelArrayList, Activity activity) {
         this.dashModelArrayList = dashModelArrayList;
+        this.activity = activity;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.dashboard_list_items,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.dashboard_list_items, parent, false);
         return new ViewHolder(view);
     }
 
@@ -38,6 +42,10 @@ public class DashAdapter extends RecyclerView.Adapter<DashAdapter.ViewHolder> {
         int ret_image = dashModelArrayList.get(position).getImage();
         holder.set_image(ret_image);
 
+        Intent intent = dashModelArrayList.get(position).getIntent();
+        if (intent != null) {
+            holder.setOnclickListener(intent);
+        }
     }
 
     @Override
@@ -45,34 +53,34 @@ public class DashAdapter extends RecyclerView.Adapter<DashAdapter.ViewHolder> {
         return dashModelArrayList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView header,sub_header;
+        TextView header, sub_header;
         ImageView images;
-        View myView;
+        View itemView;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            myView = itemView;
+            this.itemView = itemView;
         }
 
-        public void setheader(String h)
-        {
-            header = myView.findViewById(R.id.header);
+        public void setheader(String h) {
+            header = itemView.findViewById(R.id.header);
             header.setText(h);
         }
 
-        public void set_sub(String s)
-        {
-            sub_header = myView.findViewById(R.id.sub_header);
+        public void set_sub(String s) {
+            sub_header = itemView.findViewById(R.id.sub_header);
             sub_header.setText(s);
         }
-        public void set_image(int i)
-        {
-            images = myView.findViewById(R.id.dash_image);
+
+        public void set_image(int i) {
+            images = itemView.findViewById(R.id.dash_image);
             images.setImageResource(i);
         }
 
-
+        public void setOnclickListener(Intent targetIntent) {
+            itemView.setOnClickListener(v -> activity.startActivity(targetIntent));
+        }
     }
 }

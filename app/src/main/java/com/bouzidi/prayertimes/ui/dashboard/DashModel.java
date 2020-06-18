@@ -1,8 +1,11 @@
 package com.bouzidi.prayertimes.ui.dashboard;
 
+import android.content.Intent;
+
 public class DashModel {
     private String head, sub;
     private int image;
+    private Intent intent;
 
     public DashModel() {
     }
@@ -35,5 +38,13 @@ public class DashModel {
 
     public void setImage(int image) {
         this.image = image;
+    }
+
+    public Intent getIntent() {
+        return intent;
+    }
+
+    public void setIntent(Intent intent) {
+        this.intent = intent;
     }
 }

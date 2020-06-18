@@ -47,6 +47,7 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment:2.2.2'
     implementation 'androidx.navigation:navigation-ui:2.2.2'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
     implementation "androidx.work:work-runtime:2.3.4"
     implementation "androidx.work:work-rxjava3:2.4.0-beta01"
 
@@ -70,6 +71,9 @@ dependencies {
 
     //Skeleton Layout: https://github.com/Faltenreich/SkeletonLayout
     implementation 'com.faltenreich:skeletonlayout:2.0.1'
+
+    //Table View : https://github.com/ISchwarz23/SortableTableView
+    implementation 'de.codecrafters.tableview:tableview:2.8.0'
 
     //Testing
     testImplementation 'junit:junit:4.12'

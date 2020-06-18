@@ -3,6 +3,7 @@ package com.bouzidi.prayertimes.utils;
 import org.jetbrains.annotations.NotNull;
 
 import java.time.Duration;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -10,14 +11,16 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class TimingUtils {
 
     public static final String ADHAN_API_DEFAULT_FORMAT = "dd-MM-yyyy";
-    public static final String TIMING_DEFAULT_FORMAT = "hh:mm";
+    public static final String TIMING_DEFAULT_FORMAT = "HH:mm";
 
     public static LocalDateTime transformTimingToDate(String timing, String dateStr, boolean timingAfterMidnight) {
-        String[] timingParts = timing.split(":");
+        String[] timingParts = getTimingParts(timing);
 
         DateTimeFormatter f = DateTimeFormatter.ofPattern(ADHAN_API_DEFAULT_FORMAT, Locale.getDefault());
         LocalDateTime localDateTime = LocalDate.parse(dateStr, f).
@@ -28,6 +31,19 @@ public class TimingUtils {
         }
 
         return localDateTime;
+    }
+
+    @NotNull
+    private static String[] getTimingParts(String timingStr) {
+        String[] result = new String[2];
+        Pattern p = Pattern.compile("([0-9]{1,2}):([0-9]{1,2})");
+        Matcher m = p.matcher(timingStr);
+
+        if (m.find()) {
+            result[0] = m.group(1);
+            result[1] = m.group(2);
+        }
+        return result;
     }
 
     public static boolean isBetweenTiming(@NotNull LocalDateTime startTiming, @NotNull LocalDateTime now, @NotNull LocalDateTime endTiming) {
@@ -48,12 +64,12 @@ public class TimingUtils {
     }
 
     public static boolean isBeforeOnSameDay(String startTiming, String endTiming) {
-        String[] startParts = startTiming.split(":");
+        String[] startParts = getTimingParts(startTiming);
         Calendar startCal = Calendar.getInstance();
         startCal.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startParts[0]));
         startCal.set(Calendar.MINUTE, Integer.parseInt(startParts[1]));
 
-        String[] endParts = endTiming.split(":");
+        String[] endParts = getTimingParts(endTiming);
         Calendar endCal = Calendar.getInstance();
         endCal.set(Calendar.HOUR_OF_DAY, Integer.parseInt(endParts[0]));
         endCal.set(Calendar.MINUTE, Integer.parseInt(endParts[1]));
@@ -74,5 +90,9 @@ public class TimingUtils {
     public static String formatTiming(LocalDateTime localDateTime) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(TIMING_DEFAULT_FORMAT, Locale.getDefault());
         return localDateTime.format(formatter);
+    }
+
+    public static LocalDate getLocalDateFromTimestamps(long timestamps) {
+        return Instant.ofEpochMilli(timestamps).atZone(ZoneId.systemDefault()).toLocalDate();
     }
 }

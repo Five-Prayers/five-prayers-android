@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
-import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +17,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.bouzidi.prayertimes.MainActivity;
 import com.bouzidi.prayertimes.R;
@@ -37,11 +36,10 @@ import com.mikhaellopez.circularprogressbar.CircularProgressBar;
 
 import org.apache.commons.lang3.StringUtils;
 
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 
@@ -97,7 +95,7 @@ public class HomeFragment extends Fragment {
         adhanCallsPreferences = mainActivity.getResources().getString(R.string.adthan_calls_shared_preferences);
         adhanCallKeyPart = mainActivity.getResources().getString(R.string.adthan_call_enabled_key);
 
-        HomeViewModel dashboardViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
+        HomeViewModel dashboardViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
 
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
 
@@ -266,16 +264,14 @@ public class HomeFragment extends Fragment {
                 dayPrayer.getHijriYear()
         );
 
-        SimpleDateFormat timeZoneFormat = new SimpleDateFormat("ZZZZZ", Locale.getDefault());
-
-        Calendar cal = Calendar.getInstance(Locale.getDefault());
-        cal.setTimeInMillis(dayPrayer.getTimestamp() * 1000);
-        String gregorianDate = DateFormat.format("EEE dd MMMM, yyyy", cal).toString();
+        LocalDate localDate = TimingUtils.getLocalDateFromTimestamps(dayPrayer.getTimestamp() * 1000L);
+        String gregorianDate = UiUtils.formatReadableGregorianDate(localDate);
+        String timezone = UiUtils.formatReadableTimezone(localDate);
 
         hijriTextView.setText(StringUtils.capitalize(hijriDate));
         gregorianTextView.setText(StringUtils.capitalize(gregorianDate));
         String locationText = dayPrayer.getCity();
-        String country = dayPrayer.getCountry() + " (" + timeZoneFormat.format(cal.getTime()) + ")";
+        String country = dayPrayer.getCountry() + " (" + timezone + ")";
         countryTextView.setText(StringUtils.capitalize(country));
         locationTextView.setText(StringUtils.capitalize(locationText));
     }

@@ -1,13 +1,13 @@
 <resources>
-    <string name="app_name">Five Prayers</string>
-    <string name="title_home">Prayers</string>
+    <string name="app_name">Cinq Prières</string>
+    <string name="title_home">Prières</string>
     <string name="title_dashboard">Services</string>
-    <string name="title_settings">Settings</string>
+    <string name="title_settings">Paramètres</string>
     <string name="label.unknown_location">Unknown Location</string>
 
     <string name="last_update_time_key">last_update_time_key</string>
 
-    <string name="SUNRISE">Sunrise</string>
+    <string name="SUNRISE">Chorouk</string>
     <string name="FAJR">As`Sobh (Fajr)</string>
     <string name="DHOHR">Ad`Dohr</string>
     <string name="ASR">Al Asr</string>

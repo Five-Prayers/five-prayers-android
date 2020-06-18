@@ -1,6 +1,7 @@
 package com.bouzidi.prayertimes.utils;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
@@ -10,6 +11,7 @@ public class UiUtils {
     private static final String GREGORIAN_MONTH_YEAR_FORMAT = "MMMM yyyy";
     private static final String GREGORIAN_READABLE_FORMAT = "EEE dd MMMM, yyyy";
     private static final String TIME_ZONE_READABLE_FORMAT = "ZZZZZ";
+    private static final String TIMING_FORMAT = "HH:mm";
 
     public static String formatTimeForTimer(long time) {
         long seconds = time / 1000;
@@ -22,6 +24,11 @@ public class UiUtils {
     public static String formatShortDate(LocalDate localDate) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(GREGORIAN_MONTH_YEAR_FORMAT, Locale.getDefault());
         return localDate.format(formatter);
+    }
+
+    public static String formatTiming(LocalDateTime localDateTime) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(TIMING_FORMAT, Locale.getDefault());
+        return localDateTime.format(formatter);
     }
 
     public static String formatReadableGregorianDate(ZonedDateTime zonedDateTime) {

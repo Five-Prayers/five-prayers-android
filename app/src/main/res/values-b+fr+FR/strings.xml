@@ -5,6 +5,8 @@
     <string name="title_settings">Paramètres</string>
     <string name="label.unknown_location">Unknown Location</string>
 
+    <string name="calendar_view_title">Calendrier mensuel des heures de prière</string>
+
     <string name="last_update_time_key">last_update_time_key</string>
 
     <string name="SUNRISE">Chorouk</string>

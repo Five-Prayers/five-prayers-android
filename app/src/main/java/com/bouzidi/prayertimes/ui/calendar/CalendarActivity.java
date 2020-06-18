@@ -1,7 +1,9 @@
 package com.bouzidi.prayertimes.ui.calendar;
 
+import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -46,13 +48,24 @@ public class CalendarActivity extends AppCompatActivity {
 
         CalendarViewModel calendarViewModel = new ViewModelProvider(this).get(CalendarViewModel.class);
 
-        ImageView closeImageView = findViewById(R.id.close_image_view);
-        closeImageView.setOnClickListener(v -> this.finish());
+        ImageView backImageView = findViewById(R.id.back_image_view);
+        backImageView.setFocusable(true);
+        backImageView.setClickable(true);
+        backImageView.setOnClickListener(v -> this.finish());
 
         tableView = findViewById(R.id.tableView);
 
+        SharedPreferences sharedPreferences = getSharedPreferences("location", MODE_PRIVATE);
+
+        TextView locationTextView = findViewById(R.id.location_text_view);
+        locationTextView.setText(StringUtils.capitalize(sharedPreferences.getString("last_known_locality", "")));
+
+        TextView titleTextView = findViewById(R.id.title_text_view);
+        titleTextView.setText(R.string.calendar_view_title);
+
         TextView dateTextView = findViewById(R.id.date_text_view);
         dateTextView.setText(StringUtils.capitalize(UiUtils.formatShortDate(LocalDate.now())));
+
         createTableView();
 
         calendarViewModel.getCalendar().observe(this, this::populateTableView);
@@ -121,11 +134,18 @@ public class CalendarActivity extends AppCompatActivity {
         @Override
         public Drawable getRowBackground(final int rowIndex, final String[] dayPrayer) {
             int rowColor;
+            Drawable drawable;
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                drawable = getResources().getDrawable(R.drawable.shape_rectangle_solid, getTheme());
+            } else {
+                drawable = getResources().getDrawable(R.drawable.shape_rectangle_solid);
+            }
 
             if (dayPrayer[0].equals(String.valueOf(LocalDate.now().getDayOfMonth()))) {
-                rowColor = getResources().getColor(R.color.colorAccent);
+                return drawable;
             } else if (rowIndex % 2 == 0) {
-                rowColor = getResources().getColor(R.color.polar);
+                rowColor = getResources().getColor(R.color.dew);
             } else {
                 rowColor = getResources().getColor(R.color.white);
             }

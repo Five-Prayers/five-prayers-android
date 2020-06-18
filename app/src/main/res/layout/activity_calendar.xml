@@ -16,47 +16,19 @@
         table:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/close_image_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:src="@drawable/ic_close_24dp"
-            android:tint="@color/scarlet"
-            table:layout_constraintBottom_toBottomOf="parent"
-            table:layout_constraintEnd_toEndOf="parent"
-            table:layout_constraintHorizontal_bias="1.0"
-            table:layout_constraintStart_toStartOf="parent"
-            table:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/title_layout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        table:layout_constraintEnd_toEndOf="parent"
-        table:layout_constraintStart_toStartOf="parent"
-        table:layout_constraintTop_toBottomOf="@+id/navigation_layout">
-
-        <TextView
-            android:id="@+id/date_text_view"
+            android:id="@+id/back_image_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:fontFamily="sans-serif-condensed"
-            android:text="Juillet 2020"
-            android:textColor="@color/stratos"
-            android:textSize="@dimen/text_smlarge"
-            android:textStyle="bold"
+            android:clickable="true"
+            android:src="@drawable/ic_back_24p"
             table:layout_constraintBottom_toBottomOf="parent"
             table:layout_constraintEnd_toEndOf="parent"
             table:layout_constraintHorizontal_bias="0.0"
             table:layout_constraintStart_toStartOf="parent"
-            table:layout_constraintTop_toTopOf="parent" />
+            table:layout_constraintTop_toTopOf="parent"
+            android:focusable="true" />
 
         <TextView
             android:id="@+id/location_text_view"
@@ -71,17 +43,57 @@
             android:text="Colombes"
             android:textColor="@color/stratos"
             android:textSize="@dimen/text_smlarge"
-            android:textStyle="bold"
             table:layout_constraintBottom_toBottomOf="parent"
             table:layout_constraintEnd_toEndOf="parent"
             table:layout_constraintHorizontal_bias="1.0"
-            table:layout_constraintStart_toStartOf="parent"
+            table:layout_constraintStart_toEndOf="@+id/back_image_view"
             table:layout_constraintTop_toTopOf="parent"
             tools:ignore="TextViewEdits" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/title_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        table:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+        table:layout_constraintEnd_toEndOf="parent"
+        table:layout_constraintStart_toStartOf="parent"
+        table:layout_constraintTop_toBottomOf="@+id/navigation_layout">
+
+        <TextView
+            android:id="@+id/title_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:text="Monthly Prayer Times Calendar"
+            android:textColor="@color/stratos"
+            android:textSize="@dimen/text_large"
+            android:textStyle="bold"
+            table:layout_constraintEnd_toEndOf="parent"
+            table:layout_constraintHorizontal_bias="0.0"
+            table:layout_constraintStart_toStartOf="parent"
+            table:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/date_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="sans-serif-condensed"
+            android:text="Juillet 2020"
+            android:textColor="@color/stratos"
+            android:textSize="@dimen/text_smlarge"
+            table:layout_constraintBottom_toBottomOf="parent"
+            table:layout_constraintEnd_toEndOf="parent"
+            table:layout_constraintStart_toStartOf="parent"
+            table:layout_constraintTop_toBottomOf="@+id/title_text_view" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
@@ -98,8 +110,8 @@
             table:layout_constraintEnd_toEndOf="parent"
             table:layout_constraintStart_toStartOf="parent"
             table:layout_constraintTop_toTopOf="parent"
-            table:tableView_headerColor="@color/colorPrimary"
-            table:tableView_headerElevation="10">
+            table:tableView_headerColor="@color/white"
+            table:tableView_headerElevation="15">
 
         </de.codecrafters.tableview.TableView>
     </androidx.constraintlayout.widget.ConstraintLayout>

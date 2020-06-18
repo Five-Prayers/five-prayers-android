@@ -5,6 +5,7 @@ import org.junit.Test;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.Date;
 
 import static org.junit.Assert.assertEquals;
@@ -114,10 +115,21 @@ public class TimingUtilsTest {
     @Test
     public void getLocalDateFromTimestamps(){
         int timestamps = 1491379261;
-        LocalDate localDate = TimingUtils.getLocalDateFromTimestamps(timestamps * 1000L);
+        LocalDate localDate = TimingUtils.getLocalDateFromTimestamps(timestamps);
 
         assertEquals(5, localDate.getDayOfMonth());
         assertEquals(4, localDate.getMonthValue());
         assertEquals(2017, localDate.getYear());
+    }
+
+    @Test
+    public void getLocalDateTimeFromTimestamps() {
+        int timestamps = 1491379261;
+        ZonedDateTime zonedDateTime = TimingUtils.getZonedDateTimeFromTimestamps(timestamps);
+        assertEquals(10, zonedDateTime.getHour());
+        assertEquals(1, zonedDateTime.getMinute());
+        assertEquals(5, zonedDateTime.getDayOfMonth());
+        assertEquals(4, zonedDateTime.getMonthValue());
+        assertEquals(2017, zonedDateTime.getYear());
     }
 }

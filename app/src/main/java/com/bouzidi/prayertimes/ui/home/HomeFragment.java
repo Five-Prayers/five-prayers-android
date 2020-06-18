@@ -36,8 +36,8 @@ import com.mikhaellopez.circularprogressbar.CircularProgressBar;
 
 import org.apache.commons.lang3.StringUtils;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Map;
@@ -264,9 +264,9 @@ public class HomeFragment extends Fragment {
                 dayPrayer.getHijriYear()
         );
 
-        LocalDate localDate = TimingUtils.getLocalDateFromTimestamps(dayPrayer.getTimestamp() * 1000L);
-        String gregorianDate = UiUtils.formatReadableGregorianDate(localDate);
-        String timezone = UiUtils.formatReadableTimezone(localDate);
+        ZonedDateTime zonedDateTime = TimingUtils.getZonedDateTimeFromTimestamps(dayPrayer.getTimestamp());
+        String gregorianDate = UiUtils.formatReadableGregorianDate(zonedDateTime);
+        String timezone = UiUtils.formatReadableTimezone(zonedDateTime);
 
         hijriTextView.setText(StringUtils.capitalize(hijriDate));
         gregorianTextView.setText(StringUtils.capitalize(gregorianDate));

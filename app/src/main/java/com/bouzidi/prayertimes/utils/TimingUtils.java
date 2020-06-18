@@ -93,6 +93,10 @@ public class TimingUtils {
     }
 
     public static LocalDate getLocalDateFromTimestamps(long timestamps) {
-        return Instant.ofEpochMilli(timestamps).atZone(ZoneId.systemDefault()).toLocalDate();
+        return Instant.ofEpochSecond(timestamps).atZone(ZoneId.systemDefault()).toLocalDate();
+    }
+
+    public static ZonedDateTime getZonedDateTimeFromTimestamps(long timestamps) {
+        return ZonedDateTime.ofInstant(Instant.ofEpochSecond(timestamps), ZoneId.systemDefault());
     }
 }

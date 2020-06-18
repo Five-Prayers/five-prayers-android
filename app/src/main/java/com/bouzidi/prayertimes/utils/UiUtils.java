@@ -1,6 +1,7 @@
 package com.bouzidi.prayertimes.utils;
 
 import java.time.LocalDate;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
@@ -23,14 +24,14 @@ public class UiUtils {
         return localDate.format(formatter);
     }
 
-    public static String formatReadableGregorianDate(LocalDate localDate) {
+    public static String formatReadableGregorianDate(ZonedDateTime zonedDateTime) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(GREGORIAN_READABLE_FORMAT, Locale.getDefault());
-        return localDate.format(formatter);
+        return zonedDateTime.format(formatter);
     }
 
-    public static String formatReadableTimezone(LocalDate localDate) {
+    public static String formatReadableTimezone(ZonedDateTime zonedDateTime) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(TIME_ZONE_READABLE_FORMAT, Locale.getDefault());
-        return localDate.format(formatter);
+        return zonedDateTime.format(formatter);
     }
 
     public static String formatHijriDate(int day, String monthName, int year) {

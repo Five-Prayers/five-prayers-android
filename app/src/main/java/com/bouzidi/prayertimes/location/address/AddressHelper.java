@@ -90,8 +90,8 @@ public class AddressHelper {
             address.setCountryCode(response.getAddress().getCountryCode());
             address.setLocality(response.getAddress().getCity());
             address.setPostalCode(response.getAddress().getPostal());
-            address.setLatitude(response.getLocation().getX());
-            address.setLongitude(response.getLocation().getY());
+            address.setLatitude(response.getLocation().getY());
+            address.setLongitude(response.getLocation().getX());
 
             updateUserPreferences(context, address);
 

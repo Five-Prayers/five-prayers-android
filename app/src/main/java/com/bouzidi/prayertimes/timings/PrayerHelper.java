@@ -12,7 +12,7 @@ import com.bouzidi.prayertimes.utils.TimingUtils;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.time.YearMonth;
 import java.util.List;
 
 import io.reactivex.rxjava3.core.Single;
@@ -65,9 +65,6 @@ public class PrayerHelper {
 
         return Single.create(emitter -> {
             Thread thread = new Thread(() -> {
-
-                Log.e("prayer helper start", LocalDateTime.now().toString());
-
                 List<DayPrayer> prayerCalendar;
 
                 if (city == null || country == null) {
@@ -76,7 +73,7 @@ public class PrayerHelper {
                 } else {
                     prayerCalendar = prayerRegistry.getPrayerCalendar(city, month, year, method);
 
-                    if (prayerCalendar.size() > 0) {
+                    if (prayerCalendar.size() == YearMonth.of(year, month).lengthOfMonth()) {
                         emitter.onSuccess(prayerCalendar);
                     } else {
                         try {
@@ -93,7 +90,6 @@ public class PrayerHelper {
                         }
                     }
                 }
-                Log.e("prayer helper end", LocalDateTime.now().toString());
             });
             thread.start();
         });

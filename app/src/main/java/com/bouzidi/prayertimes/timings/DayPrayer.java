@@ -3,10 +3,11 @@ package com.bouzidi.prayertimes.timings;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Map;
 
-public class DayPrayer {
+public class DayPrayer implements Serializable {
 
     private String date;
     private long timestamp;

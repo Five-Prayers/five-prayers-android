@@ -181,6 +181,8 @@ public class PrayerRegistry {
 
         String dateStr = cursor.getString(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_DATE));
 
+        int calculationMethodId = cursor.getInt(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_CALCULATION_METHOD));
+
         dayPrayer = new DayPrayer(
                 dateStr,
                 cursor.getLong(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_DATE_TIMESTAMP)),
@@ -207,6 +209,7 @@ public class PrayerRegistry {
 
         dayPrayer.setTimings(timings);
         dayPrayer.setComplementaryTiming(complementaryTiming);
+        dayPrayer.setCalculationMethodEnum(CalculationMethodEnum.getByMethodId(calculationMethodId));
 
         return dayPrayer;
     }

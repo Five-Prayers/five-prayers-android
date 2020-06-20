@@ -7,9 +7,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
+import android.support.v4.media.session.MediaSessionCompat;
+import android.support.v4.media.session.PlaybackStateCompat;
 
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+import androidx.media.VolumeProviderCompat;
 
 import com.bouzidi.prayertimes.MainActivity;
 import com.bouzidi.prayertimes.R;
@@ -92,6 +95,29 @@ class PrayerNotification {
 
         if (callEnabled) {
             AdhanPlayer.getInstance(context).playAdhan();
+            setMediaSession(context);
         }
+    }
+
+    private static void setMediaSession(Context context) {
+        MediaSessionCompat mediaSession = new MediaSessionCompat(context, "PrayerNotification");
+        mediaSession.setPlaybackState(new PlaybackStateCompat.Builder()
+                .setState(PlaybackStateCompat.STATE_PLAYING, 0, 0)
+                .build());
+
+        VolumeProviderCompat myVolumeProvider =
+                new VolumeProviderCompat(VolumeProviderCompat.VOLUME_CONTROL_RELATIVE, 100, 50) {
+                    @Override
+                    public void onAdjustVolume(int direction) {
+                        if (direction == -1) {
+                            AdhanPlayer.getInstance(context).stopAdhan();
+                            mediaSession.release();
+                        }
+                    }
+                };
+        mediaSession.setPlaybackToRemote(myVolumeProvider);
+        mediaSession.setActive(true);
+
+        AdhanPlayer.getInstance(context).setOnCompletionListener(mp -> mediaSession.release());
     }
 }

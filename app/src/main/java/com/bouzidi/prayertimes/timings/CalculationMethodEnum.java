@@ -29,4 +29,11 @@ public enum CalculationMethodEnum {
     public static CalculationMethodEnum getDefault() {
         return UMM_AL_QURA_UNIVERSITY_MAKKAH;
     }
+
+    public static CalculationMethodEnum getByMethodId(int id) {
+        for (CalculationMethodEnum e : values()) {
+            if (e.methodId == id) return e;
+        }
+        return getDefault();
+    }
 }

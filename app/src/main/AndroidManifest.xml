@@ -16,7 +16,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.calendar.CalendarActivity"></activity>
+        <activity android:name=".ui.calendar.CalendarActivity" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name">
@@ -36,6 +36,8 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
+
+        <service android:name=".notifier.NotifierService" />
     </application>
 
 </manifest>

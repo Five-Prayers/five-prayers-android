@@ -1,6 +1,7 @@
 package com.bouzidi.prayertimes.ui.home;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
@@ -22,7 +23,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.bouzidi.prayertimes.MainActivity;
 import com.bouzidi.prayertimes.R;
 import com.bouzidi.prayertimes.network.NetworkUtil;
-import com.bouzidi.prayertimes.notifier.NotifierHelper;
+import com.bouzidi.prayertimes.notifier.NotifierService;
 import com.bouzidi.prayertimes.timings.ComplementaryTimingEnum;
 import com.bouzidi.prayertimes.timings.DayPrayer;
 import com.bouzidi.prayertimes.timings.PrayerEnum;
@@ -110,7 +111,8 @@ public class HomeFragment extends Fragment {
             updateNextPrayerViews(dayPrayer);
             updateDatesTextViews(dayPrayer);
             updateTimingsTextViews(dayPrayer);
-            NotifierHelper.scheduleNextPrayerAlarms(mainActivity, dayPrayer);
+            startNotifierService(dayPrayer);
+
             skeleton.showOriginal();
         });
 
@@ -301,10 +303,10 @@ public class HomeFragment extends Fragment {
         fajrCallImageView.setImageResource(fajrCallEnabled ? R.drawable.ic_notifications_24dp : R.drawable.ic_notifications_off_24dp);
         fajrCallImageView.setColorFilter(fajrCallEnabled ? enabledColor : disabledColor);
 
-        setOnClickListener(fajrCallImageView, callPreferenceKey);
+        setNotifImgOnClickListener(fajrCallImageView, callPreferenceKey);
     }
 
-    private void setOnClickListener(ImageView imageView, String callPreferenceKey) {
+    private void setNotifImgOnClickListener(ImageView imageView, String callPreferenceKey) {
         imageView.setOnClickListener(view -> {
             SharedPreferences sharedPreferences = mainActivity.getSharedPreferences(adhanCallsPreferences, MODE_PRIVATE);
 
@@ -326,5 +328,13 @@ public class HomeFragment extends Fragment {
             edit.putBoolean(callPreferenceKey, !adhanCallEnabled);
             edit.apply();
         });
+    }
+
+    private void startNotifierService(DayPrayer dayPrayer) {
+        Intent intent = new Intent(mainActivity, NotifierService.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("dayPrayer", dayPrayer);
+        intent.putExtras(bundle);
+        mainActivity.startService(intent);
     }
 }

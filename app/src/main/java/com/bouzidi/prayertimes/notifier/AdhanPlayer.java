@@ -28,7 +28,7 @@ public class AdhanPlayer {
             mediaPlayer.setLooping(false);
             mediaPlayer.prepare();
         } catch (IOException e) {
-            Log.e("AdhanPlayer", "Cannot play Adhan");
+            Log.e("AdhanPlayer", "Cannot play Adhan", e);
         }
     }
 
@@ -40,8 +40,9 @@ public class AdhanPlayer {
     }
 
     public void playAdhan() {
-        if (!mediaPlayer.isPlaying())
+        if (!mediaPlayer.isPlaying()) {
             mediaPlayer.start();
+        }
     }
 
     public void stopAdhan() {
@@ -50,16 +51,20 @@ public class AdhanPlayer {
         }
     }
 
+    public void setOnCompletionListener(MediaPlayer.OnCompletionListener listener) {
+        mediaPlayer.setOnCompletionListener(listener);
+    }
+
     private void setAudioAttribute(MediaPlayer mediaPlayer) {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
             AudioAttributes.Builder builder = new AudioAttributes.Builder();
-            builder.setUsage(AudioAttributes.USAGE_NOTIFICATION);
+            builder.setUsage(AudioAttributes.USAGE_ALARM);
             builder.setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION);
-            builder.setLegacyStreamType(AudioManager.STREAM_NOTIFICATION);
+            builder.setLegacyStreamType(AudioManager.STREAM_ALARM);
 
             mediaPlayer.setAudioAttributes(builder.build());
         } else {
-            mediaPlayer.setAudioStreamType(AudioManager.STREAM_NOTIFICATION);
+            mediaPlayer.setAudioStreamType(AudioManager.STREAM_ALARM);
         }
     }
 }

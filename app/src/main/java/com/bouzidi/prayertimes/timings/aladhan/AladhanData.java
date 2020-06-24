@@ -4,6 +4,7 @@ public class AladhanData {
 
     private AladhanDate date;
     private AladhanTimings timings;
+    private AladhanMeta meta;
 
     public AladhanDate getDate() {
         return date;
@@ -19,5 +20,13 @@ public class AladhanData {
 
     public void setTimings(AladhanTimings timings) {
         this.timings = timings;
+    }
+
+    public AladhanMeta getMeta() {
+        return meta;
+    }
+
+    public void setMeta(AladhanMeta meta) {
+        this.meta = meta;
     }
 }

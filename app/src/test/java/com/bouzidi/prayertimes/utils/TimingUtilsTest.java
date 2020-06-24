@@ -125,8 +125,8 @@ public class TimingUtilsTest {
     @Test
     public void getLocalDateTimeFromTimestamps() {
         int timestamps = 1491379261;
-        ZonedDateTime zonedDateTime = TimingUtils.getZonedDateTimeFromTimestamps(timestamps);
-        assertEquals(10, zonedDateTime.getHour());
+        ZonedDateTime zonedDateTime = TimingUtils.getZonedDateTimeFromTimestamps(timestamps, "Africa/Casablanca");
+        assertEquals(9, zonedDateTime.getHour());
         assertEquals(1, zonedDateTime.getMinute());
         assertEquals(5, zonedDateTime.getDayOfMonth());
         assertEquals(4, zonedDateTime.getMonthValue());

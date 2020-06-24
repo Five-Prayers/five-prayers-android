@@ -258,7 +258,7 @@ public class HomeFragment extends Fragment {
                 dayPrayer.getHijriYear()
         );
 
-        ZonedDateTime zonedDateTime = TimingUtils.getZonedDateTimeFromTimestamps(dayPrayer.getTimestamp());
+        ZonedDateTime zonedDateTime = TimingUtils.getZonedDateTimeFromTimestamps(dayPrayer.getTimestamp(), dayPrayer.getTimezone());
         String gregorianDate = UiUtils.formatReadableGregorianDate(zonedDateTime);
         String timezone = UiUtils.formatReadableTimezone(zonedDateTime);
 

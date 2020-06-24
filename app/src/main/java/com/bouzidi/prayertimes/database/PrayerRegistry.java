@@ -53,6 +53,7 @@ public class PrayerRegistry {
         ContentValues values = new ContentValues();
         values.put(PrayerModel.COLUMN_NAME_DATE, aladhanDate.getGregorian().getDate());
         values.put(PrayerModel.COLUMN_NAME_DATE_TIMESTAMP, aladhanDate.getTimestamp());
+        values.put(PrayerModel.COLUMN_NAME_TIMEZONE, data.getMeta().getTimezone());
 
         values.put(PrayerModel.COLUMN_NAME_CITY, city);
         values.put(PrayerModel.COLUMN_NAME_COUNTRY, country);
@@ -77,6 +78,10 @@ public class PrayerRegistry {
         values.put(PrayerModel.COLUMN_NAME_MIDNIGHT_TIMING, aladhanTimings.getMidnight());
         values.put(PrayerModel.COLUMN_NAME_IMSAK_TIMING, aladhanTimings.getImsak());
 
+        values.put(PrayerModel.COLUMN_NAME_LATITUDE, data.getMeta().getLatitude());
+        values.put(PrayerModel.COLUMN_NAME_LONGITUDE, data.getMeta().getLongitude());
+
+
         return db.insertWithOnConflict(PrayerModel.TABLE_NAME, null, values, SQLiteDatabase.CONFLICT_IGNORE);
     }
 
@@ -85,6 +90,7 @@ public class PrayerRegistry {
 
         SQLiteDatabase db = databaseHelper.getReadableDatabase();
 
+        //TODO ADD country
         String selection = PrayerModel.COLUMN_NAME_DATE + " = ?" +
                 " AND " + PrayerModel.COLUMN_NAME_CITY + " = ?" +
                 " AND " + PrayerModel.COLUMN_NAME_CALCULATION_METHOD + " = ?";
@@ -210,6 +216,9 @@ public class PrayerRegistry {
         dayPrayer.setTimings(timings);
         dayPrayer.setComplementaryTiming(complementaryTiming);
         dayPrayer.setCalculationMethodEnum(CalculationMethodEnum.getByMethodId(calculationMethodId));
+        dayPrayer.setTimezone(cursor.getString(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_TIMEZONE)));
+        dayPrayer.setLatitude(cursor.getDouble(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_LATITUDE)));
+        dayPrayer.setLongitude(cursor.getDouble(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_LONGITUDE)));
 
         return dayPrayer;
     }

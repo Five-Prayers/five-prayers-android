@@ -43,8 +43,32 @@
     <string name="hijri_month_11">Dhou al qi`da</string>
     <string name="hijri_month_12">Dhou al-hijja</string>
 
+    <string name="method_shia_ithna_ansari">Shia Ithna Ashari, Leva Research Institute, Qum</string>
+    <string name="method_university_of_islamic_sciences_karachi">University of Islamic Sciences, Karachi</string>
+    <string name="method_islamic_society_of_north_america">Islamic Society of North America </string>
+    <string name="method_muslim_world_league">Muslim World League</string>
+    <string name="method_umm_al_qura_university_makkah">Umm al-Qura University</string>
+    <string name="method_egyptian_general_authority_of_survey">Egyptian General Authority of Survey</string>
+    <string name="method_institute_of_geophysics_university_of_tehran">Institute of Geophysics, University of Tehran</string>
+    <string name="method_gulf_region">Gulf Region</string>
+    <string name="method_kuwait">Kuwait</string>
+    <string name="method_qatar">Qatar</string>
+    <string name="method_majlis_ugama_islam_singapura">Majlis Ugama Islam Singapura</string>
+    <string name="method_union_organization_islamic_de_france">L\'Union des Organisations Islamiques de France (UOIF)</string>
+    <string name="method_diyanet_isleri_baskanligi_turkey">Diyanet İşleri Başkanlığı - Turkey</string>
+    <string name="method_spiritual_administration_of_muslims_of_russia">Spiritual Administration of Muslims of Russia</string>
+
     <string name="gps_settings_title" translatable="true">GPS settings</string>
     <string name="gps_settings_text" translatable="false">GPS is not enabled. Do you want to go to settings menu?</string>
     <string name="settings_button_ok" translatable="false">Settings</string>
     <string name="settings_button_cancel" translatable="false">Cancel</string>
+    <string name="title_location_preference_section">Location</string>
+    <string name="title_checkbox_location_preference">Set location manually</string>
+    <string name="title_edit_text_location_preference">Actual location</string>
+    <string name="summary_edit_text_location_preference">Colombes, France</string>
+    <string name="dialog_title_edit_text_location_preference">Search your City</string>
+    <string name="title_prayer_timings_section">Prayer timings calculation</string>
+    <string name="title_list_preference">List Preference</string>
+    <string name="dialog_title_list_preference">Dialog List Preference</string>
+    <string name="title_intent_preference">Intent Preference</string>
 </resources>

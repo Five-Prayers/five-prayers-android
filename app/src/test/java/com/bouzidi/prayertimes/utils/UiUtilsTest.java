@@ -35,14 +35,14 @@ public class UiUtilsTest {
     @Test
     public void formatReadableGregorianDate() {
         int timestamps = 1491379261;
-        String str = UiUtils.formatReadableGregorianDate(TimingUtils.getZonedDateTimeFromTimestamps(timestamps));
+        String str = UiUtils.formatReadableGregorianDate(TimingUtils.getZonedDateTimeFromTimestamps(timestamps, "Africa/Casablanca"));
         assertEquals("mer. 05 avril, 2017", str);
     }
 
     @Test
     public void formatReadableTimezone() {
         int timestamps = 1491379261;
-        String str = UiUtils.formatReadableTimezone(TimingUtils.getZonedDateTimeFromTimestamps(timestamps));
-        assertEquals("+02:00", str);
+        String str = UiUtils.formatReadableTimezone(TimingUtils.getZonedDateTimeFromTimestamps(timestamps, "Africa/Casablanca"));
+        assertEquals("+01:00", str);
     }
 }

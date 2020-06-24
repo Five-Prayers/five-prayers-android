@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="entries_calculation_method_list_preference">
+        <item>@string/method_shia_ithna_ansari</item>
+        <item>@string/method_university_of_islamic_sciences_karachi</item>
+        <item>@string/method_islamic_society_of_north_america</item>
+        <item>@string/method_muslim_world_league</item>
+        <item>@string/method_umm_al_qura_university_makkah</item>
+        <item>@string/method_egyptian_general_authority_of_survey</item>
+        <item>@string/method_institute_of_geophysics_university_of_tehran</item>
+        <item>@string/method_gulf_region</item>
+        <item>@string/method_kuwait</item>
+        <item>@string/method_qatar</item>
+        <item>@string/method_majlis_ugama_islam_singapura</item>
+        <item>@string/method_union_organization_islamic_de_france</item>
+        <item>@string/method_diyanet_isleri_baskanligi_turkey</item>
+        <item>@string/method_spiritual_administration_of_muslims_of_russia</item>
+    </string-array>
+    <string-array name="entryvalues_calculation_method_list_preference">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+    </string-array>
+</resources>

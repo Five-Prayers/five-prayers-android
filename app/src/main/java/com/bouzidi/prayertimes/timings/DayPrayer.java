@@ -11,6 +11,7 @@ public class DayPrayer implements Serializable {
 
     private String date;
     private long timestamp;
+    private String timezone;
     private String city;
     private String country;
 
@@ -26,6 +27,9 @@ public class DayPrayer implements Serializable {
     private Map<ComplementaryTimingEnum, LocalDateTime> complementaryTiming;
 
     private CalculationMethodEnum calculationMethodEnum;
+
+    private double latitude;
+    private double longitude;
 
     public DayPrayer() {
     }
@@ -108,6 +112,30 @@ public class DayPrayer implements Serializable {
 
     public long getTimestamp() {
         return timestamp;
+    }
+
+    public String getTimezone() {
+        return timezone;
+    }
+
+    public void setTimezone(String timezone) {
+        this.timezone = timezone;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
     }
 
     @Override

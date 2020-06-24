@@ -7,6 +7,8 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.util.Log;
 
+import androidx.preference.PreferenceManager;
+
 import com.bouzidi.prayertimes.exceptions.LocationException;
 import com.bouzidi.prayertimes.location.arcgis.ArcgisAPIService;
 import com.bouzidi.prayertimes.location.arcgis.ArcgisReverseGeocodeResponse;
@@ -30,8 +32,14 @@ public class AddressHelper {
     public static Single<Address> getAddressFromLocation(final Location location,
                                                          final Context context) {
 
+        final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        boolean locationSetManually = defaultSharedPreferences.getBoolean("location_set_manually", false);
+
         return Single.create(emitter -> {
-            if (location == null) {
+            if (locationSetManually) {
+                Address lastKnownAddress = getLastKnownAddress(context);
+                emitter.onSuccess(lastKnownAddress);
+            } else if (location == null) {
                 Log.e(AddressHelper.class.getName(), "Location is null");
                 emitter.onError(new LocationException("Cannot get Address from null Location"));
             } else {
@@ -65,6 +73,21 @@ public class AddressHelper {
                 }
             }
         });
+    }
+
+    public static void updateUserPreferences(Context context, Address address) {
+        final SharedPreferences sharedPreferences = context.getSharedPreferences("location", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("last_known_locality", address.getLocality());
+        editor.putString("last_known_country", address.getCountryName());
+        UserPreferencesUtils.putDouble(editor, "last_known_latitude", address.getLatitude());
+        UserPreferencesUtils.putDouble(editor, "last_known_longitude", address.getLongitude());
+        editor.apply();
+
+        final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor defaultEditor = defaultSharedPreferences.edit();
+        defaultEditor.putString("location_edit_text_preference", address.getLocality() + ", " + address.getCountryName());
+        defaultEditor.apply();
     }
 
     private static Address getGeocoderAddresses(double latitude, double longitude, Context context) throws IOException {
@@ -132,15 +155,5 @@ public class AddressHelper {
             return distance > MINIMUM_DISTANCE_FOR_OBSOLESCENCE;
         }
         return true;
-    }
-
-    private static void updateUserPreferences(Context context, Address address) {
-        final SharedPreferences sharedPreferences = context.getSharedPreferences("location", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("last_known_locality", address.getLocality());
-        editor.putString("last_known_country", address.getCountryName());
-        UserPreferencesUtils.putDouble(editor, "last_known_latitude", address.getLatitude());
-        UserPreferencesUtils.putDouble(editor, "last_known_longitude", address.getLongitude());
-        editor.apply();
     }
 }

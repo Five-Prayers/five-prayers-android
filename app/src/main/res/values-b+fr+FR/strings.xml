@@ -47,4 +47,28 @@
     <string name="gps_settings_text" translatable="false">GPS is not enabled. Do you want to go to settings menu?</string>
     <string name="settings_button_ok" translatable="false">Settings</string>
     <string name="settings_button_cancel" translatable="false">Cancel</string>
+
+    <string name="method_shia_ithna_ansari">Shia Ithna Ashari, Leva Research Institute, Qum</string>
+    <string name="method_university_of_islamic_sciences_karachi">Université des sciences de Karachi</string>
+    <string name="method_islamic_society_of_north_america">Société Islamique d\'Amérique du Nord</string>
+    <string name="method_muslim_world_league">La Ligue islamique mondiale</string>
+    <string name="method_umm_al_qura_university_makkah">Umm al-Qura University - La Mecque</string>
+    <string name="method_egyptian_general_authority_of_survey">Egyptian General Authority of Survey</string>
+    <string name="method_institute_of_geophysics_university_of_tehran">L\'institut de géophisyque de Téhéran</string>
+    <string name="method_gulf_region">la région du Golfe</string>
+    <string name="method_kuwait">Koweït</string>
+    <string name="method_qatar">Qatar</string>
+    <string name="method_majlis_ugama_islam_singapura">Majlis Ugama Islam Singapura</string>
+    <string name="method_union_organization_islamic_de_france">L\'Union des Organisations Islamiques de France (UOIF)</string>
+    <string name="method_diyanet_isleri_baskanligi_turkey">Présidence des affaires religieuses - Turquie</string>
+    <string name="method_spiritual_administration_of_muslims_of_russia">Spiritual Administration of Muslims of Russia</string>
+
+    <string name="title_location_preference_section">Localisation</string>
+    <string name="title_checkbox_location_preference">Saisir votre localisation manuellement</string>
+    <string name="title_edit_text_location_preference">Loclisation actuelle</string>
+    <string name="dialog_title_edit_text_location_preference">Rechercher votre ville</string>
+    <string name="title_prayer_timings_section">Calcul des prières</string>
+    <string name="title_list_preference">Méthode de calcule</string>
+    <string name="dialog_title_list_preference">Méthode de calcule</string>
+    <string name="title_intent_preference">Intent Preference</string>
 </resources>

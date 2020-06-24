@@ -96,7 +96,12 @@ public class TimingUtils {
         return Instant.ofEpochSecond(timestamps).atZone(ZoneId.systemDefault()).toLocalDate();
     }
 
-    public static ZonedDateTime getZonedDateTimeFromTimestamps(long timestamps) {
-        return ZonedDateTime.ofInstant(Instant.ofEpochSecond(timestamps), ZoneId.systemDefault());
+    public static ZonedDateTime getZonedDateTimeFromTimestamps(long timestamps, String zoneName) {
+        ZoneId zoneId = null;
+
+        if (ZoneId.getAvailableZoneIds().contains(zoneName)) {
+            zoneId = ZoneId.of(zoneName);
+        }
+        return ZonedDateTime.ofInstant(Instant.ofEpochSecond(timestamps), (zoneId != null) ? zoneId : ZoneId.systemDefault());
     }
 }

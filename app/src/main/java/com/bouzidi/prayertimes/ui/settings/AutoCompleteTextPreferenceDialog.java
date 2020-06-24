@@ -17,7 +17,6 @@ import android.widget.ProgressBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.preference.PreferenceDialogFragmentCompat;
 
-import com.bouzidi.prayertimes.R;
 import com.bouzidi.prayertimes.location.SearchHelper;
 import com.bouzidi.prayertimes.location.address.AddressHelper;
 import com.bouzidi.prayertimes.location.photon.Feature;
@@ -36,13 +35,17 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 public class AutoCompleteTextPreferenceDialog extends PreferenceDialogFragmentCompat {
 
     private static final int TRIGGER_AUTO_COMPLETE = 100;
-    private static final long AUTO_COMPLETE_DELAY = 500;
+    private static final long AUTO_COMPLETE_DELAY = 750;
+    private static final int SEARCH_RESULTS_LIMIT = 5;
+
     private Handler handler;
     private AutoSuggestAdapter autoSuggestAdapter;
+    private Context context;
 
     private final AutoCompleteTextPreference preference;
     private AutoCompleteLoading mEditText;
     private boolean isSelectedText;
+    private Address selectedAddress;
 
     public AutoCompleteTextPreferenceDialog(AutoCompleteTextPreference preference) {
         this.preference = preference;
@@ -66,14 +69,14 @@ public class AutoCompleteTextPreferenceDialog extends PreferenceDialogFragmentCo
 
     @Override
     protected View onCreateDialogView(Context context) {
-        mEditText = new AutoCompleteLoading(context);
+        this.context = context;
+        mEditText = new AutoCompleteLoading(this.context);
 
-        autoSuggestAdapter = new AutoSuggestAdapter(context, android.R.layout.simple_dropdown_item_1line);
+        autoSuggestAdapter = new AutoSuggestAdapter(this.context, android.R.layout.simple_dropdown_item_1line);
 
-        ProgressBar progressBar = new ProgressBar(context, null, android.R.attr.progressBarStyleSmall);
+        ProgressBar progressBar = new ProgressBar(this.context, null, android.R.attr.progressBarStyleSmall);
         progressBar.setBackgroundColor(0xFF6DE3D1);
         progressBar.setIndeterminate(true);
-        progressBar.setIndeterminateDrawable(getResources().getDrawable(R.drawable.progress));
 
         mEditText.setThreshold(3);
         mEditText.setPaddingRelative(20, 30, 30, 20);
@@ -85,8 +88,7 @@ public class AutoCompleteTextPreferenceDialog extends PreferenceDialogFragmentCo
                     isSelectedText = true;
 
                     AutoSuggestAdapter adapter = (AutoSuggestAdapter) mEditText.getAdapter();
-                    Address address = adapter.getAddress(position);
-                    AddressHelper.updateUserPreferences(context, address);
+                    selectedAddress = adapter.getAddress(position);
                 });
 
         mEditText.addTextChangedListener(new TextWatcher() {
@@ -131,10 +133,7 @@ public class AutoCompleteTextPreferenceDialog extends PreferenceDialogFragmentCo
             Button neutralButton = dialog.getButton(DialogInterface.BUTTON_NEUTRAL);
             if (neutralButton != null) {
                 neutralButton.setOnClickListener(
-                        new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                            }
+                        v -> {
                         });
             }
         }
@@ -146,6 +145,7 @@ public class AutoCompleteTextPreferenceDialog extends PreferenceDialogFragmentCo
             String textValue = mEditText.getText().toString();
             if (preference.callChangeListener(textValue) && isSelectedText) {
                 preference.setText(textValue);
+                AddressHelper.updateUserPreferences(context, selectedAddress);
             }
         }
     }
@@ -153,14 +153,14 @@ public class AutoCompleteTextPreferenceDialog extends PreferenceDialogFragmentCo
     private void retrieveData(String str) {
         CompositeDisposable compositeDisposable = new CompositeDisposable();
         compositeDisposable.add(
-                SearchHelper.searchForLocation(str, 5)
+                SearchHelper.searchForLocation(str, SEARCH_RESULTS_LIMIT)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribeWith(new DisposableSingleObserver<List<Feature>>() {
                             @Override
                             public void onSuccess(List<Feature> features) {
-                                ArrayList<String> stringList = new ArrayList<>(5);
-                                ArrayList<Address> addresses = new ArrayList<>(5);
+                                ArrayList<String> stringList = new ArrayList<>(SEARCH_RESULTS_LIMIT);
+                                ArrayList<Address> addresses = new ArrayList<>(SEARCH_RESULTS_LIMIT);
                                 for (Feature feature : features) {
                                     String locality = feature.getProperties().getName();
                                     String country = feature.getProperties().getCountry();

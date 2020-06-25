@@ -38,7 +38,8 @@ public class PrayerRegistry {
         return prayerRegistry;
     }
 
-    public long savePrayerTiming(String city,
+    public long savePrayerTiming(String LocalDateString,
+                                 String city,
                                  String country,
                                  CalculationMethodEnum calculationMethod,
                                  AladhanData data) {
@@ -51,7 +52,7 @@ public class PrayerRegistry {
         AladhanTimings aladhanTimings = data.getTimings();
 
         ContentValues values = new ContentValues();
-        values.put(PrayerModel.COLUMN_NAME_DATE, aladhanDate.getGregorian().getDate());
+        values.put(PrayerModel.COLUMN_NAME_DATE, LocalDateString);
         values.put(PrayerModel.COLUMN_NAME_DATE_TIMESTAMP, aladhanDate.getTimestamp());
         values.put(PrayerModel.COLUMN_NAME_TIMEZONE, data.getMeta().getTimezone());
 
@@ -127,7 +128,7 @@ public class PrayerRegistry {
     ) {
 
         for (AladhanData aladhanData : aladhanCalendarResponse.getData()) {
-            savePrayerTiming(city, country, calculationMethod, aladhanData);
+            savePrayerTiming(aladhanData.getDate().getGregorian().getDate(), city, country, calculationMethod, aladhanData);
         }
     }
 

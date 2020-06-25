@@ -42,7 +42,7 @@ public class AladhanAPIService {
         return aladhanAPIService;
     }
 
-    public AladhanTodayTimingsResponse getTimingsByCity(final LocalDate localDate, final String city, final String country,
+    public AladhanTodayTimingsResponse getTimingsByCity(final String LocalDateString, final String city, final String country,
                                                         final CalculationMethodEnum method,
                                                         final Context context) throws IOException {
 
@@ -66,7 +66,7 @@ public class AladhanAPIService {
 
         Call<AladhanTodayTimingsResponse> call
                 = aladhanAPIResource
-                .getTimingsByCity(TimingUtils.formatDateForAdhanAPI(localDate), city, country, method.getValue());
+                .getTimingsByCity(LocalDateString, city, country, method.getValue());
 
         return call.execute().body();
     }

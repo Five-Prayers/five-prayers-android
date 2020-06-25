@@ -33,16 +33,17 @@ public class PrayerHelper {
                     Log.e(PrayerHelper.class.getName(), "Cannot find timings with null attribute");
                     emitter.onError(new TimingsException("Cannot find timings with null attributes"));
                 } else {
-                    prayerTimings = prayerRegistry.getPrayerTimings(TimingUtils.formatDateForAdhanAPI(localDate), city, method);
+                    String LocalDateString = TimingUtils.formatDateForAdhanAPI(localDate);
+                    prayerTimings = prayerRegistry.getPrayerTimings(LocalDateString, city, method);
 
                     if (prayerTimings != null) {
                         emitter.onSuccess(prayerTimings);
                     } else {
                         try {
                             AladhanAPIService aladhanAPIService = AladhanAPIService.getInstance();
-                            AladhanTodayTimingsResponse timingsByCity = aladhanAPIService.getTimingsByCity(localDate, city, country, method, context);
-                            prayerRegistry.savePrayerTiming(city, country, method, timingsByCity.getData());
-                            prayerTimings = prayerRegistry.getPrayerTimings(TimingUtils.formatDateForAdhanAPI(localDate), city, method);
+                            AladhanTodayTimingsResponse timingsByCity = aladhanAPIService.getTimingsByCity(LocalDateString, city, country, method, context);
+                            prayerRegistry.savePrayerTiming(LocalDateString, city, country, method, timingsByCity.getData());
+                            prayerTimings = prayerRegistry.getPrayerTimings(LocalDateString, city, method);
 
                             emitter.onSuccess(prayerTimings);
 
@@ -89,32 +90,6 @@ public class PrayerHelper {
                             emitter.onError(e);
                         }
                     }
-                }
-            });
-            thread.start();
-        });
-    }
-
-    public static Single<DayPrayer> fetchTimingsByCity(final LocalDate localDate, final String city, final String country,
-                                                       final CalculationMethodEnum method, final Context context) {
-
-        final PrayerRegistry prayerRegistry = PrayerRegistry.getInstance(context);
-
-        return Single.create(emitter -> {
-            Thread thread = new Thread(() -> {
-
-                DayPrayer prayerTimings;
-
-                try {
-                    AladhanAPIService aladhanAPIService = AladhanAPIService.getInstance();
-                    AladhanTodayTimingsResponse timingsByCity = aladhanAPIService.getTimingsByCity(localDate, city, country, method, context);
-                    prayerRegistry.savePrayerTiming(city, country, method, timingsByCity.getData());
-                    prayerTimings = prayerRegistry.getPrayerTimings(TimingUtils.formatDateForAdhanAPI(localDate), city, method);
-
-                    emitter.onSuccess(prayerTimings);
-
-                } catch (IOException e) {
-                    e.printStackTrace();
                 }
             });
             thread.start();

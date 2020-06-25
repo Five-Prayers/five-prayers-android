@@ -60,7 +60,6 @@ public class CalendarViewModel extends AndroidViewModel {
                                 address.getCountryName(),
                                 todayDate.getMonthValue(),
                                 todayDate.getYear(),
-                                CalculationMethodEnum.getDefault(),
                                 context
                         ))
                         .subscribeOn(Schedulers.io())

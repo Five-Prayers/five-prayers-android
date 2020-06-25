@@ -38,7 +38,6 @@ public class PrayerUpdater extends RxWorker {
                                 LocalDate.now(),
                                 address.getLocality(),
                                 address.getCountryName(),
-                                CalculationMethodEnum.getDefault(),
                                 context
                         ));
 

@@ -1,7 +1,10 @@
 package com.bouzidi.prayertimes.timings;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
+
+import androidx.preference.PreferenceManager;
 
 import com.bouzidi.prayertimes.database.PrayerRegistry;
 import com.bouzidi.prayertimes.exceptions.TimingsException;
@@ -14,13 +17,17 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.List;
+import java.util.Objects;
 
 import io.reactivex.rxjava3.core.Single;
 
 public class PrayerHelper {
 
-    public static Single<DayPrayer> getTimingsByCity(final LocalDate localDate, final String city, final String country,
-                                                     final CalculationMethodEnum method, final Context context) {
+    public static Single<DayPrayer> getTimingsByCity(final LocalDate localDate, final String city,
+                                                     final String country,
+                                                     final Context context) {
+
+        CalculationMethodEnum method = getCalculationMethod(context);
 
         final PrayerRegistry prayerRegistry = PrayerRegistry.getInstance(context);
 
@@ -58,9 +65,11 @@ public class PrayerHelper {
         });
     }
 
-    public static Single<List<DayPrayer>> getCalendarByCity(final String city, final String country, int month, int year,
-                                                            final CalculationMethodEnum method, final Context context) {
+    public static Single<List<DayPrayer>> getCalendarByCity(final String city, final String country,
+                                                            int month, int year,
+                                                            final Context context) {
 
+        CalculationMethodEnum method = getCalculationMethod(context);
 
         final PrayerRegistry prayerRegistry = PrayerRegistry.getInstance(context);
 
@@ -94,5 +103,12 @@ public class PrayerHelper {
             });
             thread.start();
         });
+    }
+
+    private static CalculationMethodEnum getCalculationMethod(Context context) {
+        final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        String timingsCalculationMethodId = defaultSharedPreferences.getString("timings_calculation_method", String.valueOf(CalculationMethodEnum.getDefault().getValue()));
+
+        return CalculationMethodEnum.getByMethodId(Integer.parseInt(Objects.requireNonNull(timingsCalculationMethodId)));
     }
 }

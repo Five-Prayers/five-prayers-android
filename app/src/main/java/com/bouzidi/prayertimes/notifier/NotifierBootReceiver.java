@@ -36,7 +36,6 @@ public class NotifierBootReceiver extends BroadcastReceiver {
                                     LocalDate.now(),
                                     address.getLocality(),
                                     address.getCountryName(),
-                                    CalculationMethodEnum.getDefault(),
                                     context
                             ))
                             .subscribeOn(Schedulers.io())

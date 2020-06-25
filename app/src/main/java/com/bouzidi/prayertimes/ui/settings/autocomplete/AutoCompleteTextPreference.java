@@ -1,4 +1,4 @@
-package com.bouzidi.prayertimes.ui.settings;
+package com.bouzidi.prayertimes.ui.settings.autocomplete;
 
 import android.content.Context;
 import android.util.AttributeSet;

@@ -67,7 +67,6 @@ public class HomeViewModel extends AndroidViewModel {
                                 todayDate,
                                 address.getLocality(),
                                 address.getCountryName(),
-                                CalculationMethodEnum.getDefault(),
                                 context
                         ))
                         .subscribeOn(Schedulers.io())

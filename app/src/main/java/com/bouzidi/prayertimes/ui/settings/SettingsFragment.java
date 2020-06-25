@@ -7,6 +7,8 @@ import androidx.fragment.app.DialogFragment;
 import androidx.preference.Preference;
 
 import com.bouzidi.prayertimes.R;
+import com.bouzidi.prayertimes.ui.settings.autocomplete.AutoCompleteTextPreference;
+import com.bouzidi.prayertimes.ui.settings.autocomplete.AutoCompleteTextPreferenceDialog;
 import com.takisoft.preferencex.PreferenceFragmentCompat;
 
 public class SettingsFragment extends PreferenceFragmentCompat {

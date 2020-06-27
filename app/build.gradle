@@ -83,6 +83,9 @@ dependencies {
     //https://github.com/Cutta/GifView
     implementation 'com.github.Cutta:GifView:1.4'
 
+    //https://github.com/travijuu/NumberPicker
+    implementation 'com.github.travijuu:numberpicker:1.0.7'
+
     //Testing
     testImplementation 'junit:junit:4.12'
     testImplementation 'androidx.test:core:1.2.0'

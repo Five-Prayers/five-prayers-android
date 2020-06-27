@@ -65,10 +65,11 @@
 
     <string name="title_location_preference_section">Localisation</string>
     <string name="title_checkbox_location_preference">Saisir votre localisation manuellement</string>
-    <string name="title_edit_text_location_preference">Loclisation actuelle</string>
+    <string name="title_edit_text_location_preference">Localisation actuelle</string>
     <string name="dialog_title_edit_text_location_preference">Rechercher votre ville</string>
     <string name="title_prayer_timings_section">Calcul des prières</string>
-    <string name="title_list_preference">Méthode de calcule</string>
-    <string name="dialog_title_list_preference">Méthode de calcule</string>
-    <string name="title_intent_preference">Intent Preference</string>
+    <string name="title_list_preference">Méthode de calcul</string>
+    <string name="dialog_title_list_preference">Méthode de calcul</string>
+    <string name="title_edit_text_timing_adjustment_preference">Ajuster les horaires de prière</string>
+    <string name="dialog_title_edit_text_timing_adjustment_preference">Ajustement des horaires (en minutes)</string>
 </resources>

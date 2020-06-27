@@ -10,7 +10,7 @@
             android:key="location_set_manually"
             android:title="@string/title_checkbox_location_preference" />
 
-        <com.bouzidi.prayertimes.ui.settings.autocomplete.AutoCompleteTextPreference
+        <com.bouzidi.prayertimes.ui.settings.method.AutoCompleteTextPreference
             android:key="location_edit_text_preference"
             android:title="@string/title_edit_text_location_preference"
             app:useSimpleSummaryProvider="true"
@@ -31,11 +31,10 @@
             app:useSimpleSummaryProvider="true"
             android:defaultValue="3"/>
 
-        <Preference
-            android:title="@string/title_intent_preference">
-            <intent android:action="android.intent.action.VIEW"
-                android:data="http://codepath.com/" />
-        </Preference>
+        <com.bouzidi.prayertimes.ui.settings.timings.NumberPickerPreference
+            android:key="number_preference"
+            android:title="@string/title_edit_text_timing_adjustment_preference"
+            android:dialogTitle="@string/dialog_title_edit_text_timing_adjustment_preference" />
 
     </PreferenceCategory>
 

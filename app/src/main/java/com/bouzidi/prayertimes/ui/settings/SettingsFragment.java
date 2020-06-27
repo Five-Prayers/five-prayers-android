@@ -7,8 +7,10 @@ import androidx.fragment.app.DialogFragment;
 import androidx.preference.Preference;
 
 import com.bouzidi.prayertimes.R;
-import com.bouzidi.prayertimes.ui.settings.autocomplete.AutoCompleteTextPreference;
-import com.bouzidi.prayertimes.ui.settings.autocomplete.AutoCompleteTextPreferenceDialog;
+import com.bouzidi.prayertimes.ui.settings.method.AutoCompleteTextPreference;
+import com.bouzidi.prayertimes.ui.settings.method.AutoCompleteTextPreferenceDialog;
+import com.bouzidi.prayertimes.ui.settings.timings.NumberPickerPreference;
+import com.bouzidi.prayertimes.ui.settings.timings.NumberPickerPreferenceDialog;
 import com.takisoft.preferencex.PreferenceFragmentCompat;
 
 public class SettingsFragment extends PreferenceFragmentCompat {
@@ -23,8 +25,13 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     @Override
     public void onDisplayPreferenceDialog(Preference preference) {
         DialogFragment dialogFragment = null;
+
         if (preference instanceof AutoCompleteTextPreference) {
             dialogFragment = new AutoCompleteTextPreferenceDialog((AutoCompleteTextPreference) preference);
+        }
+
+        if (preference instanceof NumberPickerPreference) {
+            dialogFragment = new NumberPickerPreferenceDialog((NumberPickerPreference) preference);
         }
 
         if (dialogFragment != null) {

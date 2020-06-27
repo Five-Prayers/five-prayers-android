@@ -1,4 +1,4 @@
-package com.bouzidi.prayertimes.ui.settings.autocomplete;
+package com.bouzidi.prayertimes.ui.settings.method;
 
 import android.content.Context;
 import android.location.Address;
@@ -41,12 +41,6 @@ public class AutoSuggestAdapter extends ArrayAdapter<String> implements Filterab
         return mlistData.get(position);
     }
 
-    /**
-     * Used to Return the full object directly from adapter.
-     *
-     * @param position
-     * @return
-     */
     public Address getAddress(int position) {
         return mlistAddress.get(position);
     }

@@ -65,10 +65,10 @@
     <string name="title_location_preference_section">Location</string>
     <string name="title_checkbox_location_preference">Set location manually</string>
     <string name="title_edit_text_location_preference">Actual location</string>
-    <string name="summary_edit_text_location_preference">Colombes, France</string>
     <string name="dialog_title_edit_text_location_preference">Search your City</string>
     <string name="title_prayer_timings_section">Prayer timings calculation</string>
     <string name="title_list_preference">List Preference</string>
     <string name="dialog_title_list_preference">Dialog List Preference</string>
-    <string name="title_intent_preference">Intent Preference</string>
+    <string name="title_edit_text_timing_adjustment_preference">Adjust prayer timings</string>
+    <string name="dialog_title_edit_text_timing_adjustment_preference">Timings adjustment (in minutes)</string>
 </resources>

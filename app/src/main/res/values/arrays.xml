@@ -32,4 +32,16 @@
         <item>13</item>
         <item>14</item>
     </string-array>
+
+    <string-array name="entries_latitude_adjustment_method_list_preference">
+        <item>@string/latitude_adjustment_method_middle_of_the_night</item>
+        <item>@string/latitude_adjustment_method_one_seventh</item>
+        <item>@string/latitude_adjustment_method_angle_based</item>
+    </string-array>
+    <string-array name="entryvalues_latitude_adjustment_method_list_preference">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
 </resources>

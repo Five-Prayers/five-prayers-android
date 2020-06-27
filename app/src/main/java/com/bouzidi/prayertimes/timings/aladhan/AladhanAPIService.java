@@ -40,8 +40,11 @@ public class AladhanAPIService {
         return aladhanAPIService;
     }
 
-    public AladhanTodayTimingsResponse getTimingsByCity(final String LocalDateString, final String city, final String country,
+    public AladhanTodayTimingsResponse getTimingsByCity(final String LocalDateString, final String city,
+                                                        final String country,
                                                         final CalculationMethodEnum method,
+                                                        final int latitudeAdjustmentMethod,
+                                                        final int adjustment,
                                                         final String tune,
                                                         final Context context) throws IOException {
 
@@ -65,7 +68,7 @@ public class AladhanAPIService {
 
         Call<AladhanTodayTimingsResponse> call
                 = aladhanAPIResource
-                .getTimingsByCity(LocalDateString, city, country, method.getValue(), tune);
+                .getTimingsByCity(LocalDateString, city, country, method.getValue(), latitudeAdjustmentMethod, adjustment, tune);
 
         return call.execute().body();
     }
@@ -73,6 +76,8 @@ public class AladhanAPIService {
     public AladhanCalendarResponse getCalendarByCity(final String city, final String country,
                                                      final int month, final int year,
                                                      final CalculationMethodEnum method,
+                                                     final int latitudeAdjustmentMethod,
+                                                     final int adjustment,
                                                      final String tune,
                                                      final Context context) throws IOException {
 
@@ -96,7 +101,7 @@ public class AladhanAPIService {
 
         Call<AladhanCalendarResponse> call
                 = aladhanAPIResource
-                .getCalendarByCity(city, country, month, year, false, method.getValue(), tune);
+                .getCalendarByCity(city, country, month, year, false, method.getValue(), latitudeAdjustmentMethod, adjustment, tune);
 
         return call.execute().body();
     }

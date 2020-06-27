@@ -42,6 +42,8 @@ public class PrayerRegistry {
                                  String city,
                                  String country,
                                  CalculationMethodEnum calculationMethod,
+                                 int latitudeAdjustmentMethod,
+                                 int hijriAdjustment,
                                  String tune,
                                  AladhanData data) {
 
@@ -81,6 +83,8 @@ public class PrayerRegistry {
         values.put(PrayerModel.COLUMN_NAME_IMSAK_TIMING, aladhanTimings.getImsak());
 
         values.put(PrayerModel.COLUMN_NAME_TIMINGS_TUNE, tune);
+        values.put(PrayerModel.COLUMN_NAME_LATITUDE_ADJUSTMENT_METHOD, latitudeAdjustmentMethod);
+        values.put(PrayerModel.COLUMN_NAME_HIJRI_ADJUSTMENT, hijriAdjustment);
 
         values.put(PrayerModel.COLUMN_NAME_LATITUDE, data.getMeta().getLatitude());
         values.put(PrayerModel.COLUMN_NAME_LONGITUDE, data.getMeta().getLongitude());
@@ -89,7 +93,12 @@ public class PrayerRegistry {
         return db.insertWithOnConflict(PrayerModel.TABLE_NAME, null, values, SQLiteDatabase.CONFLICT_IGNORE);
     }
 
-    public DayPrayer getPrayerTimings(String dateString, String city, String country, CalculationMethodEnum calculationMethodEnum, String tune) {
+    public DayPrayer getPrayerTimings(String dateString, String city, String country,
+                                      CalculationMethodEnum calculationMethodEnum,
+                                      int latitudeAdjustmentMethod,
+                                      int hijriAdjustment,
+                                      String tune) {
+
         Log.i(PrayerRegistry.class.getName(), "Getting Timings rows");
 
         SQLiteDatabase db = databaseHelper.getReadableDatabase();
@@ -98,6 +107,8 @@ public class PrayerRegistry {
                 " AND " + PrayerModel.COLUMN_NAME_CITY + " = ?" +
                 " AND " + PrayerModel.COLUMN_NAME_COUNTRY + " = ?" +
                 " AND " + PrayerModel.COLUMN_NAME_CALCULATION_METHOD + " = ?" +
+                " AND " + PrayerModel.COLUMN_NAME_LATITUDE_ADJUSTMENT_METHOD + " = ?" +
+                " AND " + PrayerModel.COLUMN_NAME_HIJRI_ADJUSTMENT + " = ?" +
                 " AND " + PrayerModel.COLUMN_NAME_TIMINGS_TUNE + " = ?";
 
         String[] selectionArgs = {
@@ -105,6 +116,8 @@ public class PrayerRegistry {
                 city,
                 country,
                 String.valueOf(calculationMethodEnum.getValue()),
+                String.valueOf(latitudeAdjustmentMethod),
+                String.valueOf(hijriAdjustment),
                 tune
         };
 
@@ -135,16 +148,23 @@ public class PrayerRegistry {
     public void saveCalendar(String city,
                              String country,
                              CalculationMethodEnum calculationMethod,
+                             int latitudeAdjustmentMethod,
+                             int hijriAdjustment,
                              String tune,
                              AladhanCalendarResponse aladhanCalendarResponse
     ) {
 
         for (AladhanData aladhanData : aladhanCalendarResponse.getData()) {
-            savePrayerTiming(aladhanData.getDate().getGregorian().getDate(), city, country, calculationMethod, tune, aladhanData);
+            savePrayerTiming(aladhanData.getDate().getGregorian().getDate(), city, country, calculationMethod, latitudeAdjustmentMethod, hijriAdjustment, tune, aladhanData);
         }
     }
 
-    public List<DayPrayer> getPrayerCalendar(String city, String country, int monthNumber, int year, CalculationMethodEnum calculationMethodEnum, String tune) {
+    public List<DayPrayer> getPrayerCalendar(String city, String country, int monthNumber, int year,
+                                             CalculationMethodEnum calculationMethodEnum,
+                                             int latitudeAdjustmentMethod,
+                                             int hijriAdjustment,
+                                             String tune) {
+
         Log.i(PrayerRegistry.class.getName(), "Getting Calendar rows");
 
         List<DayPrayer> monthPrayer = new ArrayList<>();
@@ -155,6 +175,8 @@ public class PrayerRegistry {
                 " AND " + PrayerModel.COLUMN_NAME_CITY + " = ?" +
                 " AND " + PrayerModel.COLUMN_NAME_COUNTRY + " = ?" +
                 " AND " + PrayerModel.COLUMN_NAME_CALCULATION_METHOD + " = ?" +
+                " AND " + PrayerModel.COLUMN_NAME_LATITUDE_ADJUSTMENT_METHOD + " = ?" +
+                " AND " + PrayerModel.COLUMN_NAME_HIJRI_ADJUSTMENT + " = ?" +
                 " AND " + PrayerModel.COLUMN_NAME_TIMINGS_TUNE + " = ?";
 
         String[] selectionArgs = {
@@ -163,6 +185,8 @@ public class PrayerRegistry {
                 city,
                 country,
                 String.valueOf(calculationMethodEnum.getValue()),
+                String.valueOf(latitudeAdjustmentMethod),
+                String.valueOf(hijriAdjustment),
                 tune
         };
 

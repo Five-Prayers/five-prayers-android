@@ -36,6 +36,23 @@
             android:title="@string/title_edit_text_timing_adjustment_preference"
             android:dialogTitle="@string/dialog_title_edit_text_timing_adjustment_preference" />
 
+        <ListPreference
+            android:key="timings_latitude_adjustment_method"
+            android:title="@string/title_latitude_adjustment_method"
+            android:dialogTitle="@string/dialog_title_latitude_adjustment_method"
+            android:entries="@array/entries_latitude_adjustment_method_list_preference"
+            android:entryValues="@array/entryvalues_latitude_adjustment_method_list_preference"
+            app:useSimpleSummaryProvider="true"
+            android:defaultValue="3"/>
+
     </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/calendar">
+        <com.bouzidi.prayertimes.ui.settings.hijri.HijriDayAdjustmentPreference
+            android:key="hijri_day_adjustment"
+            android:title="@string/title_hijri_day_adjustment_preference"
+            android:dialogTitle="@string/dialog_title_hijri_day_adjustment_preference" />
+    </PreferenceCategory>
+
 
 </PreferenceScreen>

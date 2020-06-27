@@ -12,13 +12,19 @@ public interface AladhanAPIResource {
                                                        @Query("city") String city,
                                                        @Query("country") String country,
                                                        @Query("method") int method,
+                                                       @Query("latitudeAdjustmentMethod") int latitudeAdjustmentMethod,
+                                                       @Query("adjustment") int adjustment,
                                                        @Query("tune") String tune);
 
     @GET("timings/{date_or_timestamp}")
     Call<AladhanTodayTimingsResponse> getTimingsByLatLong(@Path("date_or_timestamp") String date,
                                                           @Query("latitude") String latitude,
                                                           @Query("longitude") Double longitude,
-                                                          @Query("method") int method);
+                                                          @Query("method") int method,
+                                                          @Query("latitudeAdjustmentMethod") int latitudeAdjustmentMethod,
+                                                          @Query("adjustment") int adjustment,
+                                                          @Query("tune") String tune
+    );
 
     @GET("calendarByCity")
     Call<AladhanCalendarResponse> getCalendarByCity(@Query("city") String city,
@@ -27,6 +33,8 @@ public interface AladhanAPIResource {
                                                     @Query("year") int year,
                                                     @Query("annual") boolean annual,
                                                     @Query("method") int method,
+                                                    @Query("latitudeAdjustmentMethod") int latitudeAdjustmentMethod,
+                                                    @Query("adjustment") int adjustment,
                                                     @Query("tune") String tune
     );
 }

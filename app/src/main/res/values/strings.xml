@@ -71,4 +71,13 @@
     <string name="dialog_title_list_preference">Dialog List Preference</string>
     <string name="title_edit_text_timing_adjustment_preference">Adjust prayer timings</string>
     <string name="dialog_title_edit_text_timing_adjustment_preference">Timings adjustment (in minutes)</string>
+
+    <string name="latitude_adjustment_method_middle_of_the_night">Middle of the Night</string>
+    <string name="latitude_adjustment_method_one_seventh">One Seventh</string>
+    <string name="latitude_adjustment_method_angle_based">Angle Based</string>
+    <string name="title_latitude_adjustment_method" >Adjusting times in higher latitudes</string>
+    <string name="dialog_title_latitude_adjustment_method">Choose a method</string>
+    <string name="calendar">Calendar</string>
+    <string name="title_hijri_day_adjustment_preference">Hijri date adjustment</string>
+    <string name="dialog_title_hijri_day_adjustment_preference">Adjust Hijri date</string>
 </resources>

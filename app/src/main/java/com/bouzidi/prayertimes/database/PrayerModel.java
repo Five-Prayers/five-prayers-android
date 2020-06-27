@@ -36,6 +36,8 @@ class PrayerModel implements BaseColumns {
     static final String COLUMN_NAME_LONGITUDE = "longitude";
 
     static final String COLUMN_NAME_TIMINGS_TUNE = "timings_tune";
+    static final String COLUMN_NAME_LATITUDE_ADJUSTMENT_METHOD = "latitude_adjustment_method";
+    static final String COLUMN_NAME_HIJRI_ADJUSTMENT = "hijri_adjustment";
 
     static final String SQL_CREATE_TABLE =
             "CREATE TABLE " + TABLE_NAME + " (" +
@@ -64,11 +66,15 @@ class PrayerModel implements BaseColumns {
                     COLUMN_NAME_MIDNIGHT_TIMING + " TEXT," +
                     COLUMN_NAME_IMSAK_TIMING + " TEXT," +
                     COLUMN_NAME_TIMINGS_TUNE + " TEXT," +
+                    COLUMN_NAME_LATITUDE_ADJUSTMENT_METHOD + " INTEGER," +
+                    COLUMN_NAME_HIJRI_ADJUSTMENT + " INTEGER," +
                     " UNIQUE(" +
                     COLUMN_NAME_DATE + "," +
                     COLUMN_NAME_CITY + "," +
                     COLUMN_NAME_COUNTRY + "," +
                     COLUMN_NAME_TIMINGS_TUNE + "," +
+                    COLUMN_NAME_LATITUDE_ADJUSTMENT_METHOD + "," +
+                    COLUMN_NAME_HIJRI_ADJUSTMENT + "," +
                     COLUMN_NAME_CALCULATION_METHOD + ")" +
                     ")";
 

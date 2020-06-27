@@ -28,6 +28,9 @@ public class PrayerHelper {
                                                      final Context context) {
 
         CalculationMethodEnum method = getCalculationMethod(context);
+        String tune = getTune(context);
+        int latitudeAdjustmentMethod = getLatitudeAdjustmentMethod(context);
+        int hijriAdjustment = getHijriAdjustment(context);
 
         final PrayerRegistry prayerRegistry = PrayerRegistry.getInstance(context);
 
@@ -41,16 +44,16 @@ public class PrayerHelper {
                     emitter.onError(new TimingsException("Cannot find timings with null attributes"));
                 } else {
                     String LocalDateString = TimingUtils.formatDateForAdhanAPI(localDate);
-                    prayerTimings = prayerRegistry.getPrayerTimings(LocalDateString, city, country, method, getTune(context));
+                    prayerTimings = prayerRegistry.getPrayerTimings(LocalDateString, city, country, method, latitudeAdjustmentMethod, hijriAdjustment, tune);
 
                     if (prayerTimings != null) {
                         emitter.onSuccess(prayerTimings);
                     } else {
                         try {
                             AladhanAPIService aladhanAPIService = AladhanAPIService.getInstance();
-                            AladhanTodayTimingsResponse timingsByCity = aladhanAPIService.getTimingsByCity(LocalDateString, city, country, method, getTune(context), context);
-                            prayerRegistry.savePrayerTiming(LocalDateString, city, country, method, getTune(context), timingsByCity.getData());
-                            prayerTimings = prayerRegistry.getPrayerTimings(LocalDateString, city, country, method, getTune(context));
+                            AladhanTodayTimingsResponse timingsByCity = aladhanAPIService.getTimingsByCity(LocalDateString, city, country, method, latitudeAdjustmentMethod, hijriAdjustment, tune, context);
+                            prayerRegistry.savePrayerTiming(LocalDateString, city, country, method, latitudeAdjustmentMethod, hijriAdjustment, tune, timingsByCity.getData());
+                            prayerTimings = prayerRegistry.getPrayerTimings(LocalDateString, city, country, method, latitudeAdjustmentMethod, hijriAdjustment, tune);
 
                             emitter.onSuccess(prayerTimings);
 
@@ -71,6 +74,8 @@ public class PrayerHelper {
 
         CalculationMethodEnum method = getCalculationMethod(context);
         String tune = getTune(context);
+        int latitudeAdjustmentMethod = getLatitudeAdjustmentMethod(context);
+        int hijriAdjustment = getHijriAdjustment(context);
 
         final PrayerRegistry prayerRegistry = PrayerRegistry.getInstance(context);
 
@@ -82,17 +87,17 @@ public class PrayerHelper {
                     Log.e(PrayerHelper.class.getName(), "Cannot find calendar with null attribute");
                     emitter.onError(new TimingsException("Cannot find calendar with null attributes"));
                 } else {
-                    prayerCalendar = prayerRegistry.getPrayerCalendar(city, country, month, year, method, tune);
+                    prayerCalendar = prayerRegistry.getPrayerCalendar(city, country, month, year, method, latitudeAdjustmentMethod, hijriAdjustment, tune);
 
                     if (prayerCalendar.size() == YearMonth.of(year, month).lengthOfMonth()) {
                         emitter.onSuccess(prayerCalendar);
                     } else {
                         try {
                             AladhanAPIService aladhanAPIService = AladhanAPIService.getInstance();
-                            AladhanCalendarResponse calendarByCity = aladhanAPIService.getCalendarByCity(city, country, month, year, method, tune, context);
-                            prayerRegistry.saveCalendar(city, country, method, tune, calendarByCity);
+                            AladhanCalendarResponse calendarByCity = aladhanAPIService.getCalendarByCity(city, country, month, year, method, latitudeAdjustmentMethod, hijriAdjustment, tune, context);
+                            prayerRegistry.saveCalendar(city, country, method, latitudeAdjustmentMethod, hijriAdjustment, tune, calendarByCity);
 
-                            prayerCalendar = prayerRegistry.getPrayerCalendar(city, country, month, year, method, tune);
+                            prayerCalendar = prayerRegistry.getPrayerCalendar(city, country, month, year, method, latitudeAdjustmentMethod, hijriAdjustment, tune);
 
                             emitter.onSuccess(prayerCalendar);
                         } catch (IOException e) {
@@ -123,5 +128,18 @@ public class PrayerHelper {
         int ichaTimingAdjustment = sharedPreferences.getInt("icha_timing_adjustment", 0);
 
         return "0," + fajrTimingAdjustment + ",0," + dohrTimingAdjustment + "," + asrTimingAdjustment + "," + maghrebTimingAdjustment + ",0," + ichaTimingAdjustment + ",0";
+    }
+
+
+    private static int getHijriAdjustment(Context context) {
+        final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+
+        return defaultSharedPreferences.getInt("hijri_day_adjustment", 0);
+    }
+
+    private static int getLatitudeAdjustmentMethod(Context context) {
+        final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        String latitudeAdjustmentMethod = defaultSharedPreferences.getString("timings_latitude_adjustment_method", "3");
+        return Integer.parseInt(Objects.requireNonNull(latitudeAdjustmentMethod));
     }
 }

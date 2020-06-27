@@ -7,6 +7,8 @@ import androidx.fragment.app.DialogFragment;
 import androidx.preference.Preference;
 
 import com.bouzidi.prayertimes.R;
+import com.bouzidi.prayertimes.ui.settings.hijri.HijriDayAdjustmentPreference;
+import com.bouzidi.prayertimes.ui.settings.hijri.HijriDayAdjustmentPreferenceDialog;
 import com.bouzidi.prayertimes.ui.settings.method.AutoCompleteTextPreference;
 import com.bouzidi.prayertimes.ui.settings.method.AutoCompleteTextPreferenceDialog;
 import com.bouzidi.prayertimes.ui.settings.timings.NumberPickerPreference;
@@ -29,9 +31,11 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         if (preference instanceof AutoCompleteTextPreference) {
             dialogFragment = new AutoCompleteTextPreferenceDialog((AutoCompleteTextPreference) preference);
         }
-
         if (preference instanceof NumberPickerPreference) {
             dialogFragment = new NumberPickerPreferenceDialog((NumberPickerPreference) preference);
+        }
+        if (preference instanceof HijriDayAdjustmentPreference) {
+            dialogFragment = new HijriDayAdjustmentPreferenceDialog((HijriDayAdjustmentPreference) preference);
         }
 
         if (dialogFragment != null) {

@@ -35,6 +35,8 @@ class PrayerModel implements BaseColumns {
     static final String COLUMN_NAME_LATITUDE = "latitude";
     static final String COLUMN_NAME_LONGITUDE = "longitude";
 
+    static final String COLUMN_NAME_TIMINGS_TUNE = "timings_tune";
+
     static final String SQL_CREATE_TABLE =
             "CREATE TABLE " + TABLE_NAME + " (" +
                     _ID + " INTEGER PRIMARY KEY," +
@@ -43,6 +45,8 @@ class PrayerModel implements BaseColumns {
                     COLUMN_NAME_TIMEZONE + " TEXT," +
                     COLUMN_NAME_CITY + " TEXT," +
                     COLUMN_NAME_COUNTRY + " TEXT," +
+                    COLUMN_NAME_LATITUDE + " REAL," +
+                    COLUMN_NAME_LONGITUDE + " REAL," +
                     COLUMN_NAME_CALCULATION_METHOD + " INTEGER," +
                     COLUMN_NAME_GREGORIAN_DAY + " INTEGER," +
                     COLUMN_NAME_GREGORIAN_MONTH_NUMBER + " INTEGER," +
@@ -59,9 +63,13 @@ class PrayerModel implements BaseColumns {
                     COLUMN_NAME_SUNSET_TIMING + " TEXT," +
                     COLUMN_NAME_MIDNIGHT_TIMING + " TEXT," +
                     COLUMN_NAME_IMSAK_TIMING + " TEXT," +
-                    COLUMN_NAME_LATITUDE + " REAL," +
-                    COLUMN_NAME_LONGITUDE + " REAL," +
-                    " UNIQUE(" + COLUMN_NAME_DATE + "," + COLUMN_NAME_CITY + "," + COLUMN_NAME_CALCULATION_METHOD + ")" +
+                    COLUMN_NAME_TIMINGS_TUNE + " TEXT," +
+                    " UNIQUE(" +
+                    COLUMN_NAME_DATE + "," +
+                    COLUMN_NAME_CITY + "," +
+                    COLUMN_NAME_COUNTRY + "," +
+                    COLUMN_NAME_TIMINGS_TUNE + "," +
+                    COLUMN_NAME_CALCULATION_METHOD + ")" +
                     ")";
 
     static final String SQL_DELETE_TABLE = "DROP TABLE IF EXISTS " + TABLE_NAME;

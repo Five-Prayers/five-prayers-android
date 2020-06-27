@@ -42,6 +42,7 @@ public class PrayerRegistry {
                                  String city,
                                  String country,
                                  CalculationMethodEnum calculationMethod,
+                                 String tune,
                                  AladhanData data) {
 
         Log.i(PrayerRegistry.class.getName(), "Inserting new Timings rows");
@@ -79,6 +80,8 @@ public class PrayerRegistry {
         values.put(PrayerModel.COLUMN_NAME_MIDNIGHT_TIMING, aladhanTimings.getMidnight());
         values.put(PrayerModel.COLUMN_NAME_IMSAK_TIMING, aladhanTimings.getImsak());
 
+        values.put(PrayerModel.COLUMN_NAME_TIMINGS_TUNE, tune);
+
         values.put(PrayerModel.COLUMN_NAME_LATITUDE, data.getMeta().getLatitude());
         values.put(PrayerModel.COLUMN_NAME_LONGITUDE, data.getMeta().getLongitude());
 
@@ -86,16 +89,24 @@ public class PrayerRegistry {
         return db.insertWithOnConflict(PrayerModel.TABLE_NAME, null, values, SQLiteDatabase.CONFLICT_IGNORE);
     }
 
-    public DayPrayer getPrayerTimings(String dateString, String city, CalculationMethodEnum calculationMethodEnum) {
+    public DayPrayer getPrayerTimings(String dateString, String city, String country, CalculationMethodEnum calculationMethodEnum, String tune) {
         Log.i(PrayerRegistry.class.getName(), "Getting Timings rows");
 
         SQLiteDatabase db = databaseHelper.getReadableDatabase();
 
-        //TODO ADD country
         String selection = PrayerModel.COLUMN_NAME_DATE + " = ?" +
                 " AND " + PrayerModel.COLUMN_NAME_CITY + " = ?" +
-                " AND " + PrayerModel.COLUMN_NAME_CALCULATION_METHOD + " = ?";
-        String[] selectionArgs = {dateString, city, String.valueOf(calculationMethodEnum.getValue())};
+                " AND " + PrayerModel.COLUMN_NAME_COUNTRY + " = ?" +
+                " AND " + PrayerModel.COLUMN_NAME_CALCULATION_METHOD + " = ?" +
+                " AND " + PrayerModel.COLUMN_NAME_TIMINGS_TUNE + " = ?";
+
+        String[] selectionArgs = {
+                dateString,
+                city,
+                country,
+                String.valueOf(calculationMethodEnum.getValue()),
+                tune
+        };
 
         String sortOrder =
                 PrayerModel._ID + " DESC";
@@ -124,15 +135,16 @@ public class PrayerRegistry {
     public void saveCalendar(String city,
                              String country,
                              CalculationMethodEnum calculationMethod,
+                             String tune,
                              AladhanCalendarResponse aladhanCalendarResponse
     ) {
 
         for (AladhanData aladhanData : aladhanCalendarResponse.getData()) {
-            savePrayerTiming(aladhanData.getDate().getGregorian().getDate(), city, country, calculationMethod, aladhanData);
+            savePrayerTiming(aladhanData.getDate().getGregorian().getDate(), city, country, calculationMethod, tune, aladhanData);
         }
     }
 
-    public List<DayPrayer> getPrayerCalendar(String city, int monthNumber, int year, CalculationMethodEnum calculationMethodEnum) {
+    public List<DayPrayer> getPrayerCalendar(String city, String country, int monthNumber, int year, CalculationMethodEnum calculationMethodEnum, String tune) {
         Log.i(PrayerRegistry.class.getName(), "Getting Calendar rows");
 
         List<DayPrayer> monthPrayer = new ArrayList<>();
@@ -141,8 +153,18 @@ public class PrayerRegistry {
         String selection = PrayerModel.COLUMN_NAME_GREGORIAN_MONTH_NUMBER + " = ?" +
                 " AND " + PrayerModel.COLUMN_NAME_GREGORIAN_YEAR + " = ?" +
                 " AND " + PrayerModel.COLUMN_NAME_CITY + " = ?" +
-                " AND " + PrayerModel.COLUMN_NAME_CALCULATION_METHOD + " = ?";
-        String[] selectionArgs = {String.valueOf(monthNumber), String.valueOf(year), city, String.valueOf(calculationMethodEnum.getValue())};
+                " AND " + PrayerModel.COLUMN_NAME_COUNTRY + " = ?" +
+                " AND " + PrayerModel.COLUMN_NAME_CALCULATION_METHOD + " = ?" +
+                " AND " + PrayerModel.COLUMN_NAME_TIMINGS_TUNE + " = ?";
+
+        String[] selectionArgs = {
+                String.valueOf(monthNumber),
+                String.valueOf(year),
+                city,
+                country,
+                String.valueOf(calculationMethodEnum.getValue()),
+                tune
+        };
 
         String sortOrder =
                 PrayerModel.COLUMN_NAME_GREGORIAN_DAY + " ASC";

@@ -5,13 +5,11 @@ import android.util.Log;
 
 import com.bouzidi.prayertimes.network.NetworkUtil;
 import com.bouzidi.prayertimes.timings.CalculationMethodEnum;
-import com.bouzidi.prayertimes.utils.TimingUtils;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.io.File;
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Cache;
@@ -44,6 +42,7 @@ public class AladhanAPIService {
 
     public AladhanTodayTimingsResponse getTimingsByCity(final String LocalDateString, final String city, final String country,
                                                         final CalculationMethodEnum method,
+                                                        final String tune,
                                                         final Context context) throws IOException {
 
         final OkHttpClient.Builder httpClient =
@@ -66,7 +65,7 @@ public class AladhanAPIService {
 
         Call<AladhanTodayTimingsResponse> call
                 = aladhanAPIResource
-                .getTimingsByCity(LocalDateString, city, country, method.getValue());
+                .getTimingsByCity(LocalDateString, city, country, method.getValue(), tune);
 
         return call.execute().body();
     }
@@ -74,6 +73,7 @@ public class AladhanAPIService {
     public AladhanCalendarResponse getCalendarByCity(final String city, final String country,
                                                      final int month, final int year,
                                                      final CalculationMethodEnum method,
+                                                     final String tune,
                                                      final Context context) throws IOException {
 
         final OkHttpClient.Builder httpClient =
@@ -96,7 +96,7 @@ public class AladhanAPIService {
 
         Call<AladhanCalendarResponse> call
                 = aladhanAPIResource
-                .getCalendarByCity(city, country, month, year, false, method.getValue());
+                .getCalendarByCity(city, country, month, year, false, method.getValue(), tune);
 
         return call.execute().body();
     }

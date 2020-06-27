@@ -41,16 +41,16 @@ public class PrayerHelper {
                     emitter.onError(new TimingsException("Cannot find timings with null attributes"));
                 } else {
                     String LocalDateString = TimingUtils.formatDateForAdhanAPI(localDate);
-                    prayerTimings = prayerRegistry.getPrayerTimings(LocalDateString, city, method);
+                    prayerTimings = prayerRegistry.getPrayerTimings(LocalDateString, city, country, method, getTune(context));
 
                     if (prayerTimings != null) {
                         emitter.onSuccess(prayerTimings);
                     } else {
                         try {
                             AladhanAPIService aladhanAPIService = AladhanAPIService.getInstance();
-                            AladhanTodayTimingsResponse timingsByCity = aladhanAPIService.getTimingsByCity(LocalDateString, city, country, method, context);
-                            prayerRegistry.savePrayerTiming(LocalDateString, city, country, method, timingsByCity.getData());
-                            prayerTimings = prayerRegistry.getPrayerTimings(LocalDateString, city, method);
+                            AladhanTodayTimingsResponse timingsByCity = aladhanAPIService.getTimingsByCity(LocalDateString, city, country, method, getTune(context), context);
+                            prayerRegistry.savePrayerTiming(LocalDateString, city, country, method, getTune(context), timingsByCity.getData());
+                            prayerTimings = prayerRegistry.getPrayerTimings(LocalDateString, city, country, method, getTune(context));
 
                             emitter.onSuccess(prayerTimings);
 
@@ -70,6 +70,7 @@ public class PrayerHelper {
                                                             final Context context) {
 
         CalculationMethodEnum method = getCalculationMethod(context);
+        String tune = getTune(context);
 
         final PrayerRegistry prayerRegistry = PrayerRegistry.getInstance(context);
 
@@ -81,17 +82,17 @@ public class PrayerHelper {
                     Log.e(PrayerHelper.class.getName(), "Cannot find calendar with null attribute");
                     emitter.onError(new TimingsException("Cannot find calendar with null attributes"));
                 } else {
-                    prayerCalendar = prayerRegistry.getPrayerCalendar(city, month, year, method);
+                    prayerCalendar = prayerRegistry.getPrayerCalendar(city, country, month, year, method, tune);
 
                     if (prayerCalendar.size() == YearMonth.of(year, month).lengthOfMonth()) {
                         emitter.onSuccess(prayerCalendar);
                     } else {
                         try {
                             AladhanAPIService aladhanAPIService = AladhanAPIService.getInstance();
-                            AladhanCalendarResponse calendarByCity = aladhanAPIService.getCalendarByCity(city, country, month, year, method, context);
-                            prayerRegistry.saveCalendar(city, country, method, calendarByCity);
+                            AladhanCalendarResponse calendarByCity = aladhanAPIService.getCalendarByCity(city, country, month, year, method, tune, context);
+                            prayerRegistry.saveCalendar(city, country, method, tune, calendarByCity);
 
-                            prayerCalendar = prayerRegistry.getPrayerCalendar(city, month, year, method);
+                            prayerCalendar = prayerRegistry.getPrayerCalendar(city, country, month, year, method, tune);
 
                             emitter.onSuccess(prayerCalendar);
                         } catch (IOException e) {
@@ -110,5 +111,17 @@ public class PrayerHelper {
         String timingsCalculationMethodId = defaultSharedPreferences.getString("timings_calculation_method", String.valueOf(CalculationMethodEnum.getDefault().getValue()));
 
         return CalculationMethodEnum.getByMethodId(Integer.parseInt(Objects.requireNonNull(timingsCalculationMethodId)));
+    }
+
+    private static String getTune(Context context) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("timing_adjustment", Context.MODE_PRIVATE);
+
+        int fajrTimingAdjustment = sharedPreferences.getInt("fajr_timing_adjustment", 0);
+        int dohrTimingAdjustment = sharedPreferences.getInt("dohr_timing_adjustment", 0);
+        int asrTimingAdjustment = sharedPreferences.getInt("asr_timing_adjustment", 0);
+        int maghrebTimingAdjustment = sharedPreferences.getInt("maghreb_timing_adjustment", 0);
+        int ichaTimingAdjustment = sharedPreferences.getInt("icha_timing_adjustment", 0);
+
+        return "0," + fajrTimingAdjustment + ",0," + dohrTimingAdjustment + "," + asrTimingAdjustment + "," + maghrebTimingAdjustment + ",0," + ichaTimingAdjustment + ",0";
     }
 }

@@ -1,7 +1,5 @@
 package com.bouzidi.prayertimes.timings.aladhan;
 
-import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
@@ -13,7 +11,8 @@ public interface AladhanAPIResource {
     Call<AladhanTodayTimingsResponse> getTimingsByCity(@Path("date_or_timestamp") String date,
                                                        @Query("city") String city,
                                                        @Query("country") String country,
-                                                       @Query("method") int method);
+                                                       @Query("method") int method,
+                                                       @Query("tune") String tune);
 
     @GET("timings/{date_or_timestamp}")
     Call<AladhanTodayTimingsResponse> getTimingsByLatLong(@Path("date_or_timestamp") String date,
@@ -23,9 +22,11 @@ public interface AladhanAPIResource {
 
     @GET("calendarByCity")
     Call<AladhanCalendarResponse> getCalendarByCity(@Query("city") String city,
-                                                              @Query("country") String country,
-                                                              @Query("month") int month,
-                                                              @Query("year") int year,
-                                                              @Query("annual") boolean annual,
-                                                              @Query("method") int method);
+                                                    @Query("country") String country,
+                                                    @Query("month") int month,
+                                                    @Query("year") int year,
+                                                    @Query("annual") boolean annual,
+                                                    @Query("method") int method,
+                                                    @Query("tune") String tune
+    );
 }

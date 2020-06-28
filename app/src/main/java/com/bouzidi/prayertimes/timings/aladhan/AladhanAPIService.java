@@ -8,6 +8,8 @@ import com.bouzidi.prayertimes.timings.CalculationMethodEnum;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -68,7 +70,7 @@ public class AladhanAPIService {
 
         Call<AladhanTodayTimingsResponse> call
                 = aladhanAPIResource
-                .getTimingsByCity(LocalDateString, city, country, method.getValue(), latitudeAdjustmentMethod, adjustment, tune);
+                .getTimingsByCity(LocalDateString, city, country, method.getMethodId(), getMethodSettings(method), latitudeAdjustmentMethod, adjustment, tune);
 
         return call.execute().body();
     }
@@ -101,7 +103,7 @@ public class AladhanAPIService {
 
         Call<AladhanCalendarResponse> call
                 = aladhanAPIResource
-                .getCalendarByCity(city, country, month, year, false, method.getValue(), latitudeAdjustmentMethod, adjustment, tune);
+                .getCalendarByCity(city, country, month, year, false, method.getMethodId(), getMethodSettings(method), latitudeAdjustmentMethod, adjustment, tune);
 
         return call.execute().body();
     }
@@ -149,5 +151,10 @@ public class AladhanAPIService {
 
             return chain.proceed(request);
         };
+    }
+
+    @NotNull
+    private String getMethodSettings(CalculationMethodEnum method) {
+        return method.getFajrAngle() + "," + method.getMaghribAngle() + "," + method.getIchaAngle();
     }
 }

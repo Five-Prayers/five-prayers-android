@@ -13,24 +13,36 @@
         <item>@string/method_qatar</item>
         <item>@string/method_majlis_ugama_islam_singapura</item>
         <item>@string/method_union_organization_islamic_de_france</item>
+        <item>@string/method_mosquee_de_paris_france</item>
+        <item>@string/method_france_18</item>
+        <item>@string/method_france_15</item>
         <item>@string/method_diyanet_isleri_baskanligi_turkey</item>
         <item>@string/method_spiritual_administration_of_muslims_of_russia</item>
+        <item>@string/method_moroccan_ministry_of_islamic_affairs</item>
+        <item>@string/method_algerian_ministry_of_religious_affairs_and_wakfs</item>
+        <item>@string/method_tunisian_ministry_of_religious_affairs</item>
     </string-array>
     <string-array name="entryvalues_calculation_method_list_preference">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-        <item>7</item>
-        <item>8</item>
-        <item>9</item>
-        <item>10</item>
-        <item>11</item>
-        <item>12</item>
-        <item>13</item>
-        <item>14</item>
+        <item>SHIA_ITHNA_ANSARI</item>
+        <item>UNIVERSITY_OF_ISLAMIC_SCIENCES_KARACHI</item>
+        <item>ISLAMIC_SOCIETY_OF_NORTH_AMERICA</item>
+        <item>MUSLIM_WORLD_LEAGUE</item>
+        <item>UMM_AL_QURA_UNIVERSITY_MAKKAH</item>
+        <item>EGYPTIAN_GENERAL_AUTHORITY_OF_SURVEY</item>
+        <item>INSTITUTE_OF_GEOPHYSICS_UNIVERSITY_OF_TEHRAN</item>
+        <item>GULF_REGION</item>
+        <item>KUWAIT</item>
+        <item>QATAR</item>
+        <item>MAJLIS_UGAMA_ISLAM_SINGAPURA</item>
+        <item>UNION_ORGANIZATION_ISLAMIC_DE_FRANCE</item>
+        <item>MOSQUEE_DE_PARIS_FRANCE</item>
+        <item>FRANCE_18</item>
+        <item>FRANCE_15</item>
+        <item>DIYANET_ISLERI_BASKANLIGI_TURKEY</item>
+        <item>SPIRITUAL_ADMINISTRATION_OF_MUSLIMS_OF_RUSSIA</item>
+        <item>MOROCCAN_MINISTRY_OF_ISLAMIC_AFFAIRS</item>
+        <item>ALGERIAN_MINISTRY_OF_RELIGIOUS_AFFAIRS_AND_WAKFS</item>
+        <item>TUNISIAN_MINISTRY_OF_RELIGIOUS_AFFAIRS</item>
     </string-array>
 
     <string-array name="entries_latitude_adjustment_method_list_preference">
@@ -43,5 +55,4 @@
         <item>2</item>
         <item>3</item>
     </string-array>
-
 </resources>

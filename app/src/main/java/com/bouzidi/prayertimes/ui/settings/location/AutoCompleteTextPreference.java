@@ -1,4 +1,4 @@
-package com.bouzidi.prayertimes.ui.settings.method;
+package com.bouzidi.prayertimes.ui.settings.location;
 
 import android.content.Context;
 import android.util.AttributeSet;

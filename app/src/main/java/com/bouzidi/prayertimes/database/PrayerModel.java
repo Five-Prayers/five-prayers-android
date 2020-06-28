@@ -49,7 +49,7 @@ class PrayerModel implements BaseColumns {
                     COLUMN_NAME_COUNTRY + " TEXT," +
                     COLUMN_NAME_LATITUDE + " REAL," +
                     COLUMN_NAME_LONGITUDE + " REAL," +
-                    COLUMN_NAME_CALCULATION_METHOD + " INTEGER," +
+                    COLUMN_NAME_CALCULATION_METHOD + " TEXT," +
                     COLUMN_NAME_GREGORIAN_DAY + " INTEGER," +
                     COLUMN_NAME_GREGORIAN_MONTH_NUMBER + " INTEGER," +
                     COLUMN_NAME_GREGORIAN_YEAR + " INTEGER," +

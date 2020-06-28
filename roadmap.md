@@ -1,3 +1,8 @@
+Feature
+
+- Add DB cleaner
+- Set calculation method automatically when location is set (default if unknown method) 
+
 Bugs
 
-- Fix time remaining calculation when next prayer is in next day.
+- Home sreen landscape

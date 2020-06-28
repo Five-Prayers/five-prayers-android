@@ -61,7 +61,7 @@ public class PrayerRegistry {
 
         values.put(PrayerModel.COLUMN_NAME_CITY, city);
         values.put(PrayerModel.COLUMN_NAME_COUNTRY, country);
-        values.put(PrayerModel.COLUMN_NAME_CALCULATION_METHOD, calculationMethod.getValue());
+        values.put(PrayerModel.COLUMN_NAME_CALCULATION_METHOD, String.valueOf(calculationMethod));
 
         values.put(PrayerModel.COLUMN_NAME_GREGORIAN_DAY, aladhanDate.getGregorian().getDay());
         values.put(PrayerModel.COLUMN_NAME_GREGORIAN_MONTH_NUMBER, aladhanDate.getGregorian().getMonth().getNumber());
@@ -115,7 +115,7 @@ public class PrayerRegistry {
                 dateString,
                 city,
                 country,
-                String.valueOf(calculationMethodEnum.getValue()),
+                String.valueOf(calculationMethodEnum),
                 String.valueOf(latitudeAdjustmentMethod),
                 String.valueOf(hijriAdjustment),
                 tune
@@ -184,7 +184,7 @@ public class PrayerRegistry {
                 String.valueOf(year),
                 city,
                 country,
-                String.valueOf(calculationMethodEnum.getValue()),
+                String.valueOf(calculationMethodEnum),
                 String.valueOf(latitudeAdjustmentMethod),
                 String.valueOf(hijriAdjustment),
                 tune
@@ -234,7 +234,7 @@ public class PrayerRegistry {
 
         String dateStr = cursor.getString(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_DATE));
 
-        int calculationMethodId = cursor.getInt(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_CALCULATION_METHOD));
+        String calculationMethod = cursor.getString(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_CALCULATION_METHOD));
 
         dayPrayer = new DayPrayer(
                 dateStr,
@@ -262,7 +262,7 @@ public class PrayerRegistry {
 
         dayPrayer.setTimings(timings);
         dayPrayer.setComplementaryTiming(complementaryTiming);
-        dayPrayer.setCalculationMethodEnum(CalculationMethodEnum.getByMethodId(calculationMethodId));
+        dayPrayer.setCalculationMethodEnum(CalculationMethodEnum.valueOf(calculationMethod));
         dayPrayer.setTimezone(cursor.getString(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_TIMEZONE)));
         dayPrayer.setLatitude(cursor.getDouble(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_LATITUDE)));
         dayPrayer.setLongitude(cursor.getDouble(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_LONGITUDE)));

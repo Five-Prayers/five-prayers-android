@@ -113,9 +113,9 @@ public class PrayerHelper {
 
     private static CalculationMethodEnum getCalculationMethod(Context context) {
         final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        String timingsCalculationMethodId = defaultSharedPreferences.getString("timings_calculation_method", String.valueOf(CalculationMethodEnum.getDefault().getValue()));
+        String timingsCalculationMethodId = defaultSharedPreferences.getString("timings_calculation_method", String.valueOf(CalculationMethodEnum.getDefault()));
 
-        return CalculationMethodEnum.getByMethodId(Integer.parseInt(Objects.requireNonNull(timingsCalculationMethodId)));
+        return CalculationMethodEnum.valueOf(timingsCalculationMethodId);
     }
 
     private static String getTune(Context context) {
@@ -127,7 +127,7 @@ public class PrayerHelper {
         int maghrebTimingAdjustment = sharedPreferences.getInt("maghreb_timing_adjustment", 0);
         int ichaTimingAdjustment = sharedPreferences.getInt("icha_timing_adjustment", 0);
 
-        return "0," + fajrTimingAdjustment + ",0," + dohrTimingAdjustment + "," + asrTimingAdjustment + "," + maghrebTimingAdjustment + ",0," + ichaTimingAdjustment + ",0";
+        return fajrTimingAdjustment + "," + fajrTimingAdjustment + ",0," + dohrTimingAdjustment + "," + asrTimingAdjustment + "," + maghrebTimingAdjustment + ",0," + ichaTimingAdjustment + ",0";
     }
 
 

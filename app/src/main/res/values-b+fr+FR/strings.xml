@@ -49,19 +49,25 @@
     <string name="settings_button_cancel" translatable="false">Cancel</string>
 
     <string name="method_shia_ithna_ansari">Shia Ithna Ashari, Leva Research Institute, Qum</string>
-    <string name="method_university_of_islamic_sciences_karachi">Université des sciences de Karachi</string>
+    <string name="method_university_of_islamic_sciences_karachi">Université des Sciences Islamiques - Karachi</string>
     <string name="method_islamic_society_of_north_america">Société Islamique d\'Amérique du Nord</string>
-    <string name="method_muslim_world_league">La Ligue islamique mondiale</string>
+    <string name="method_muslim_world_league">Ligue Islamique Mondiale</string>
     <string name="method_umm_al_qura_university_makkah">Umm al-Qura University - La Mecque</string>
-    <string name="method_egyptian_general_authority_of_survey">Egyptian General Authority of Survey</string>
-    <string name="method_institute_of_geophysics_university_of_tehran">L\'institut de géophisyque de Téhéran</string>
-    <string name="method_gulf_region">la région du Golfe</string>
+    <string name="method_egyptian_general_authority_of_survey">Autorité générale égyptienne</string>
+    <string name="method_institute_of_geophysics_university_of_tehran">Institut de géophisyque de Téhéran</string>
+    <string name="method_gulf_region">Région du Golfe</string>
     <string name="method_kuwait">Koweït</string>
     <string name="method_qatar">Qatar</string>
-    <string name="method_majlis_ugama_islam_singapura">Majlis Ugama Islam Singapura</string>
+    <string name="method_majlis_ugama_islam_singapura">Conseil religieux islamique de Singapour</string>
     <string name="method_union_organization_islamic_de_france">L\'Union des Organisations Islamiques de France (UOIF)</string>
     <string name="method_diyanet_isleri_baskanligi_turkey">Présidence des affaires religieuses - Turquie</string>
     <string name="method_spiritual_administration_of_muslims_of_russia">Spiritual Administration of Muslims of Russia</string>
+    <string name="method_moroccan_ministry_of_islamic_affairs">Ministere des Affaires Islamiques - Maroc</string>
+    <string name="method_mosquee_de_paris_france">Mosquée de Paris - France</string>
+    <string name="method_france_18">Angle 18° - France</string>
+    <string name="method_france_15">Angle 15° - France</string>
+    <string name="method_tunisian_ministry_of_religious_affairs">Ministère des Affaires religieuses - Tunisie</string>
+    <string name="method_algerian_ministry_of_religious_affairs_and_wakfs">Ministère des Affaires religieuses et des Wakfs - Algérie</string>
 
     <string name="title_location_preference_section">Localisation</string>
     <string name="title_checkbox_location_preference">Saisir votre localisation manuellement</string>
@@ -74,10 +80,10 @@
     <string name="dialog_title_edit_text_timing_adjustment_preference">Ajustement des horaires (en minutes)</string>
 
     <string name="latitude_adjustment_method_middle_of_the_night">Milieu de la nuit</string>
-    <string name="latitude_adjustment_method_one_seventh">Un septième</string>
+    <string name="latitude_adjustment_method_one_seventh">Le septième de la nuit</string>
     <string name="latitude_adjustment_method_angle_based">Basé sur la triangulation</string>
 
-    <string name="title_latitude_adjustment_method" >Ajustement pour les hautes latitudes</string>
+    <string name="title_latitude_adjustment_method">Ajustement pour les hautes latitudes</string>
     <string name="dialog_title_latitude_adjustment_method">Choisir une Méthode</string>
 
     <string name="calendar">Calendrier</string>

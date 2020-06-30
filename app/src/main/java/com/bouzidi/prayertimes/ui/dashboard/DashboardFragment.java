@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bouzidi.prayertimes.R;
 import com.bouzidi.prayertimes.ui.calendar.CalendarActivity;
+import com.bouzidi.prayertimes.ui.qibla.CompassActivity;
 
 import java.util.ArrayList;
 
@@ -37,7 +38,7 @@ public class DashboardFragment extends Fragment {
         int images[] = {R.drawable.ic_compass_24dp, R.drawable.ic_calendar_24dp, R.drawable.ic_alah_24dp, R.drawable.ic_quran_24dp,
                 R.drawable.ic_donation_24dp, R.drawable.ic_dua_hands};
 
-        Intent intents[] = {null, new Intent(getActivity(), CalendarActivity.class), null, null,
+        Intent intents[] = {new Intent(getActivity(), CompassActivity.class), new Intent(getActivity(), CalendarActivity.class), null, null,
                 null, null};
 
         for (int count = 0; count < heads.length; count++) {

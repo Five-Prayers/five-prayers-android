@@ -36,4 +36,6 @@
     <color name="spray">#7FDDED</color>
 
     <color name="bottomBackground">#F4F6FA</color>
+
+    <color name="app_red">#C4161C</color>
 </resources>

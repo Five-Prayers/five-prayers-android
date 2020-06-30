@@ -30,4 +30,8 @@
     <dimen name="text_xmlarge">23sp</dimen>
     <dimen name="text_xxlarge">26sp</dimen>
     <dimen name="text_xxxlarge">50sp</dimen>
+
+    <dimen name="dial">205dp</dimen>
+    <dimen name="qibla">320dp</dimen>
+    <dimen name="bottom_image">180dp</dimen>
 </resources>

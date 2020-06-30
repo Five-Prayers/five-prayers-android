@@ -86,4 +86,21 @@
     <string name="calendar">Calendar</string>
     <string name="title_hijri_day_adjustment_preference">Hijri date adjustment</string>
     <string name="dialog_title_hijri_day_adjustment_preference">Adjust Hijri date</string>
+
+    <string name="action_settings" translatable="false">Settings</string>
+    <string name="compass_dial" translatable="false">Compass Dial</string>
+    <string name="compass_hands" translatable="false">Compass Hands</string>
+    <string name="msg_permission_not_granted_yet" translatable="false">Location access not available yet</string>
+    <string name="msg_permission_granted" translatable="false">Location Access Granted</string>
+    <string name="toast_permission_required" translatable="false">This app requires Access Location</string>
+    <string name="your_location" translatable="false">Your Location: </string>
+    <string name="unable_to_get_your_location" translatable="false">Unable to get your location</string>
+    <string name="location_not_ready" translatable="false">Location not ready.</string>
+    <string name="pls_enable_location" translatable="false">Please turn on Location</string>
+    <string name="degree" translatable="false">°</string>
+    <string name="using_last_location" translatable="false">using last location.</string>
+    <string name="dialog_message_sensor_not_exist" translatable="false">Your device doesn\'t have the required sensors</string>
+    <string name="dialog_title" translatable="false">Alert</string>
+
+    <string name="title_qibla_direction" >Qibla Direction</string>
 </resources>

@@ -1,4 +1,6 @@
 <resources>
+    <string name="common.cancel">Cancel</string>
+    <string name="common.ok">OK</string>
     <string name="app_name">Five Prayers</string>
     <string name="title_home">Prayers</string>
     <string name="title_dashboard">Services</string>
@@ -100,7 +102,8 @@
     <string name="degree" translatable="false">°</string>
     <string name="using_last_location" translatable="false">using last location.</string>
     <string name="dialog_message_sensor_not_exist">Your device doesn\'t have the required sensors</string>
-    <string name="dialog_title" translatable="false">Alert</string>
+    <string name="dialog_message_sensor_not_calibrate">Please calibrate your sensors, by pointing your phone up toward the sky and move if in a figure 8 motion</string>
+    <string name="alert_dialog_title">Alert</string>
 
     <string name="title_qibla_direction" >Qibla Direction</string>
 </resources>

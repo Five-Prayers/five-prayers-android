@@ -9,14 +9,19 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
 
 /**
  * @author Gokul Swaminathan
  * @link https://github.com/JavaCafe01/MaterialCompass
- * Updated By Hicham Bouzidi Idrissi (Adding rotation vector sensor)
+ * Updated By Hicham Bouzidi Idrissi (Adding rotation vector sensor && Calibrating Dialog)
  */
 public class Compass implements SensorEventListener {
     private static final String TAG = Compass.class.getSimpleName();
+
+    private final AlertDialog calibratingDialog;
+    private boolean dialogDismissed = false;
 
     public interface CompassListener {
         void onNewAzimuth(float azimuth);
@@ -47,6 +52,8 @@ public class Compass implements SensorEventListener {
         asensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         msensor = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
         rsensor = sensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR);
+
+        calibratingDialog = createCalibratingDialog(activity);
     }
 
     public void start(Context context) {
@@ -102,6 +109,10 @@ public class Compass implements SensorEventListener {
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
+        if (accuracy <= SensorManager.SENSOR_STATUS_ACCURACY_LOW && !dialogDismissed) {
+            calibratingDialog.show();
+        }
+        calibratingDialog.hide();
     }
 
     private void getAzimuthFromRotationSensor(SensorEvent event) {
@@ -174,15 +185,30 @@ public class Compass implements SensorEventListener {
 
     private void dialogError(final Context context) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle(context.getString(com.bouzidi.prayertimes.R.string.dialog_title));
+        builder.setTitle(context.getString(com.bouzidi.prayertimes.R.string.alert_dialog_title));
         builder.setCancelable(false);
         builder.setIcon(android.R.drawable.ic_dialog_alert);
         builder.setMessage(context.getString(com.bouzidi.prayertimes.R.string.dialog_message_sensor_not_exist));
-        builder.setNegativeButton("OK", (dialog, which) -> {
+        builder.setNegativeButton(com.bouzidi.prayertimes.R.string.common_ok, (dialog, which) -> {
             dialog.dismiss();
             if (context instanceof Activity)
                 ((Activity) context).finish();
         });
         builder.create().show();
+    }
+
+    private AlertDialog createCalibratingDialog(final Activity activity) {
+        LayoutInflater inflater = activity.getLayoutInflater();
+        View dialogLayout = inflater.inflate(com.bouzidi.prayertimes.R.layout.calibrate_compass_dialog, null);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        builder.setCancelable(false);
+        builder.setView(dialogLayout);
+        builder.setMessage(activity.getString(com.bouzidi.prayertimes.R.string.dialog_message_sensor_not_calibrate));
+        builder.setNegativeButton(com.bouzidi.prayertimes.R.string.common_ok, (dialog, which) -> {
+            dialogDismissed = true;
+            dialog.dismiss();
+        });
+        return builder.create();
     }
 }

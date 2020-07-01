@@ -1,13 +1,14 @@
 package com.bouzidi.prayertimes.ui.qibla;
 
-import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Surface;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.Animation;
@@ -48,7 +49,10 @@ public class CompassActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_compass);
+
+        preventScreenOrientation();
 
         QiblaViewModel qiblaViewModel = new ViewModelProvider(this).get(QiblaViewModel.class);
 
@@ -109,6 +113,7 @@ public class CompassActivity extends AppCompatActivity {
         if (compass != null) {
             compass.stop();
         }
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
     }
 
     private void setUpViews() {
@@ -166,8 +171,8 @@ public class CompassActivity extends AppCompatActivity {
     }
 
     public void adjustArrowQiblat(float azimuth) {
-        float kiblat_derajat = GetFloat("kiblat_derajat");
-        Animation an = new RotateAnimation(-(currentAzimuth) + kiblat_derajat, -azimuth,
+        float qiblaDegree = GetFloat("qibla_degree");
+        Animation an = new RotateAnimation(-(currentAzimuth) + qiblaDegree, -azimuth,
                 Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF,
                 0.5f);
         currentAzimuth = (azimuth);
@@ -175,7 +180,7 @@ public class CompassActivity extends AppCompatActivity {
         an.setRepeatCount(0);
         an.setFillAfter(true);
         qiblatIndicator.startAnimation(an);
-        if (kiblat_derajat > 0) {
+        if (qiblaDegree > 0) {
             qiblatIndicator.setVisibility(View.VISIBLE);
         } else {
             qiblatIndicator.setVisibility(INVISIBLE);
@@ -183,9 +188,8 @@ public class CompassActivity extends AppCompatActivity {
         }
     }
 
-    @SuppressLint("MissingPermission")
     public void getBearing() {
-        float kaabaDegs = GetFloat("kiblat_derajat");
+        float kaabaDegs = GetFloat("qibla_degree");
         if (kaabaDegs > 0.0001) {
             String strYourLocation;
 
@@ -285,7 +289,7 @@ public class CompassActivity extends AppCompatActivity {
                 double x = Math.cos(myLatRad) * Math.sin(kaabaLat) - Math.sin(myLatRad) * Math.cos(kaabaLat) * Math.cos(longDiff);
                 result = (Math.toDegrees(Math.atan2(y, x)) + 360) % 360;
 
-                SaveFloat("kiblat_derajat", (float) result);
+                SaveFloat("qibla_degree", (float) result);
                 String strKaabaDirection = String.format(Locale.ENGLISH, "%.0f", (float) result)
                         + " " + getResources().getString(R.string.degree) + " " + getDirectionString((float) result);
                 tvAngle.setText(strKaabaDirection);
@@ -297,5 +301,14 @@ public class CompassActivity extends AppCompatActivity {
             tvAngle.setText(getResources().getString(R.string.pls_enable_location));
             tvYourLocation.setText(getResources().getString(R.string.pls_enable_location));
         }
+    }
+
+    private void preventScreenOrientation() {
+        if (getWindowManager().getDefaultDisplay().getRotation() == Surface.ROTATION_0)
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        if (getWindowManager().getDefaultDisplay().getRotation() == Surface.ROTATION_90)
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        if (getWindowManager().getDefaultDisplay().getRotation() == Surface.ROTATION_270)
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE);
     }
 }

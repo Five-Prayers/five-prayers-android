@@ -13,7 +13,7 @@ import android.util.Log;
 /**
  * @author Gokul Swaminathan
  * @link https://github.com/JavaCafe01/MaterialCompass
- * Updated By Hicham Bouzidi Idrissi
+ * Updated By Hicham Bouzidi Idrissi (Adding rotation vector sensor)
  */
 public class Compass implements SensorEventListener {
     private static final String TAG = Compass.class.getSimpleName();

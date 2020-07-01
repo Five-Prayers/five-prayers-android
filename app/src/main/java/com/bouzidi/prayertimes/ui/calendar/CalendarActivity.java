@@ -5,10 +5,11 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.bouzidi.prayertimes.R;
@@ -46,22 +47,18 @@ public class CalendarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
 
-        CalendarViewModel calendarViewModel = new ViewModelProvider(this).get(CalendarViewModel.class);
-
-        ImageView backImageView = findViewById(R.id.back_image_view);
-        backImageView.setFocusable(true);
-        backImageView.setClickable(true);
-        backImageView.setOnClickListener(v -> this.finish());
-
-        tableView = findViewById(R.id.tableView);
-
         SharedPreferences sharedPreferences = getSharedPreferences("location", MODE_PRIVATE);
 
-        TextView locationTextView = findViewById(R.id.location_text_view);
-        locationTextView.setText(StringUtils.capitalize(sharedPreferences.getString("last_known_locality", "")));
+        CalendarViewModel calendarViewModel = new ViewModelProvider(this).get(CalendarViewModel.class);
 
-        TextView titleTextView = findViewById(R.id.title_text_view);
-        titleTextView.setText(R.string.calendar_view_title);
+        Toolbar toolbar = findViewById(R.id.calendar_toolbar);
+        toolbar.setNavigationIcon(ContextCompat.getDrawable(this, R.drawable.ic_arrow_back));
+        toolbar.setNavigationOnClickListener(v -> finish());
+
+        String toolBarTitle = getString(R.string.calendar_view_title) + " " + sharedPreferences.getString("last_known_locality", "");
+        ((Toolbar) findViewById(R.id.calendar_toolbar)).setTitle(toolBarTitle);
+
+        tableView = findViewById(R.id.tableView);
 
         TextView dateTextView = findViewById(R.id.date_text_view);
         dateTextView.setText(StringUtils.capitalize(UiUtils.formatShortDate(LocalDate.now())));

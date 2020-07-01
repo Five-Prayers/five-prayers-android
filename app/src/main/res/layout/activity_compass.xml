@@ -19,6 +19,7 @@
         app:navigationIcon="@drawable/ic_arrow_back"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:titleTextAppearance="@style/Toolbar.TitleText"
         app:title="@string/title_qibla_direction" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -62,7 +63,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:gravity="center_horizontal"
-            android:textColor="@color/dodger_blue"
+            android:textColor="@color/stratos"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -99,7 +100,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:gravity="center_horizontal"
-            android:textColor="@color/dodger_blue"
+            android:textColor="@color/stratos"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/footer_image"
             app:layout_constraintEnd_toEndOf="parent"

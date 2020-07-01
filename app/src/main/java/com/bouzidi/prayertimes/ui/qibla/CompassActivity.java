@@ -120,26 +120,10 @@ public class CompassActivity extends AppCompatActivity {
         // Toolbar Title
         ((Toolbar) findViewById(R.id.toolbar)).setTitle(getString(R.string.title_qibla_direction));
 
-        // Toolbar Title Color
-        ((Toolbar) findViewById(R.id.toolbar)).setTitleTextColor(
-                Color.parseColor("#" + Integer.toHexString(
-                        ContextCompat.getColor(this, R.color.dodger_blue))));
-
         // Toolbar Background Color
         findViewById(R.id.toolbar).setBackgroundColor(
                 Color.parseColor("#" + Integer.toHexString(
                         ContextCompat.getColor(this, R.color.dew))));
-
-        // Qibla Degrees Text Color
-        ((TextView) findViewById(R.id.angle)).setTextColor(
-                Color.parseColor("#" + Integer.toHexString(
-                        ContextCompat.getColor(this, R.color.dodger_blue))));
-
-        // Dial
-        ((ImageView) findViewById(R.id.dial)).setImageResource(R.drawable.dial);
-
-        // Qibla Indicator
-        ((ImageView) findViewById(R.id.qibla_indicator)).setImageResource(R.drawable.qibla);
 
         // Footer Image
         findViewById(R.id.footer_image).setVisibility(View.VISIBLE);

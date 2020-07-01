@@ -2,84 +2,45 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:table="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:backgroundTint="@color/dew"
     tools:context=".ui.calendar.CalendarActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/navigation_layout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        table:layout_constraintEnd_toEndOf="parent"
-        table:layout_constraintStart_toStartOf="parent"
-        table:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/back_image_view"
-            android:layout_width="wrap_content"
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/calendar_toolbar"
+            style="@style/toolbar"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:clickable="true"
-            android:src="@drawable/ic_back_24p"
-            table:layout_constraintBottom_toBottomOf="parent"
-            table:layout_constraintEnd_toEndOf="parent"
-            table:layout_constraintHorizontal_bias="0.0"
-            table:layout_constraintStart_toStartOf="parent"
-            table:layout_constraintTop_toTopOf="parent"
-            android:focusable="true" />
-
-        <TextView
-            android:id="@+id/location_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
-            android:drawableStart="@drawable/ic_location_15"
-            android:drawableLeft="@drawable/ic_location_15"
-            android:fontFamily="sans-serif-condensed"
-            android:inputType="textCapSentences"
-            android:text="Colombes"
-            android:textColor="@color/stratos"
-            android:textSize="@dimen/text_smlarge"
-            table:layout_constraintBottom_toBottomOf="parent"
-            table:layout_constraintEnd_toEndOf="parent"
-            table:layout_constraintHorizontal_bias="1.0"
-            table:layout_constraintStart_toEndOf="@+id/back_image_view"
-            table:layout_constraintTop_toTopOf="parent"
-            tools:ignore="TextViewEdits" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            android:elevation="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="@drawable/ic_arrow_back"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:title="@string/calendar_view_title"
+            app:titleTextAppearance="@style/Toolbar.TitleText"
+            table:layout_constraintHorizontal_bias="1.0">
+        </androidx.appcompat.widget.Toolbar>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/title_layout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         table:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         table:layout_constraintEnd_toEndOf="parent"
         table:layout_constraintStart_toStartOf="parent"
-        table:layout_constraintTop_toBottomOf="@+id/navigation_layout">
+        table:layout_constraintTop_toBottomOf="@+id/calendar_toolbar">
 
-        <TextView
-            android:id="@+id/title_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:text="Monthly Prayer Times Calendar"
-            android:textColor="@color/stratos"
-            android:textSize="@dimen/text_large"
-            table:layout_constraintEnd_toEndOf="parent"
-            table:layout_constraintHorizontal_bias="0.0"
-            table:layout_constraintStart_toStartOf="parent"
-            table:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/date_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:fontFamily="sans-serif-condensed"
             android:text="Juillet 2020"
             android:textColor="@color/stratos"
@@ -88,15 +49,13 @@
             table:layout_constraintBottom_toBottomOf="parent"
             table:layout_constraintEnd_toEndOf="parent"
             table:layout_constraintStart_toStartOf="parent"
-            table:layout_constraintTop_toBottomOf="@+id/title_text_view" />
-
+            table:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="8dp"
         table:layout_constraintBottom_toBottomOf="parent"
         table:layout_constraintEnd_toEndOf="parent"
         table:layout_constraintStart_toStartOf="parent"

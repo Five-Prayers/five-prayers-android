@@ -35,7 +35,7 @@ public class DashboardFragment extends Fragment {
 
         String subs[] = {"Locate the direction of the qibla", "Times for calendar month", "99 Names of God", "Recite & Listen the Holy Quran", "How much Zakat to pay", "Recite Dua and Azkar"};
 
-        int images[] = {R.drawable.ic_compass_24dp, R.drawable.ic_calendar_24dp, R.drawable.ic_alah_24dp, R.drawable.ic_quran_24dp,
+        int images[] = {R.drawable.ic_compass_24dp, R.drawable.ic_table_24dp, R.drawable.ic_alah_24dp, R.drawable.ic_quran_24dp,
                 R.drawable.ic_donation_24dp, R.drawable.ic_dua_hands};
 
         Intent intents[] = {new Intent(getActivity(), CompassActivity.class), new Intent(getActivity(), CalendarActivity.class), null, null,

@@ -6,6 +6,39 @@
 Five Prayers Android provide a set of tools needed by any muslim around the world.
 Five Prayers Android is not Google Framework dependent, so this app can be used on devices without Google services installed.
 
+### Features
+
+* Worldwide Prayer Times
+* Different prayer times calculation methods based on <a href="https://aladhan.com">aladhan.com</a> API
+    - Shia Ithna Ashari, Leva Research Institute, Qum
+    - University of Islamic Sciences, Karachi
+    - Islamic Society of North America (ISNA)Spiritual Administration of Muslims of Russia
+    - Muslim World League (MWL)
+    - Umm al-Qura University
+    - Egyptian General Authority of Survey
+    - Institute of Geophysics, University of Tehran
+    - Gulf Region
+    - Kuwait
+    - Qatar
+    - Majlis Ugama Islam Singapura
+    - L'Union des Organisations Islamiques de France (UOIF)
+    - Mosquée de Paris - France
+    - Angle 18° - France
+    - Angle 15° - France
+    - Diyanet İşleri Başkanlığı - Turkey
+    - Spiritual Administration of Muslims of Russia
+    - Ministry of Islamic Affairs and Habous - Morocco
+    - Ministry of religious affairs - Tunisia
+    - Ministry of Religious Affairs and wakfs- Algeria
+* Prayer times Adjustement
+* Hijri Calendar.
+* Automatic or Manual location
+* Notification for prayer times 
+* Reads Adhan for prayer times
+* Switches Adhan to Silent by pressing down volume button
+* Month Prayer times table
+* Qibla direction compass
+
 ## Privacy Policy
 
 Five Prayers Android project aims to provide a private, anonymous and ads free experience for all users.

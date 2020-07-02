@@ -37,7 +37,7 @@ import static org.mockito.ArgumentMatchers.anyString;
 
 
 @RunWith(RobolectricTestRunner.class)
-@Config(maxSdk = 29)
+@Config(maxSdk = 28)
 @PowerMockIgnore({"org.mockito.*", "org.robolectric.*", "android.*"})
 @PrepareForTest({PrayerUpdater.class, AddressHelper.class, LocationHelper.class, PrayerHelper.class, NotifierHelper.class})
 public class PrayerUpdaterTest {
@@ -71,7 +71,7 @@ public class PrayerUpdaterTest {
 
         PowerMockito.when(LocationHelper.getLocation(mockContext)).thenReturn(Single.just(newLocation));
         PowerMockito.when(AddressHelper.getAddressFromLocation(newLocation, mockContext)).thenReturn(Single.just(lastKnownAddress));
-        PowerMockito.when(PrayerHelper.getTimingsByCity(any(), anyString(), anyString(), any(), any())).thenReturn(Single.just(new DayPrayer()));
+        PowerMockito.when(PrayerHelper.getTimingsByCity(any(), anyString(), anyString(), any())).thenReturn(Single.just(new DayPrayer()));
 
         PowerMockito.spy(NotifierHelper.class);
         PowerMockito
@@ -103,7 +103,7 @@ public class PrayerUpdaterTest {
 
         PowerMockito.when(LocationHelper.getLocation(mockContext)).thenReturn(Single.just(newLocation));
         PowerMockito.when(AddressHelper.getAddressFromLocation(newLocation, mockContext)).thenReturn(Single.just(lastKnownAddress));
-        PowerMockito.when(PrayerHelper.getTimingsByCity(any(), anyString(), anyString(), any(), any())).thenReturn(Single.error(new Exception()));
+        PowerMockito.when(PrayerHelper.getTimingsByCity(any(), anyString(), anyString(), any())).thenReturn(Single.error(new Exception()));
 
         PowerMockito.spy(NotifierHelper.class);
         PowerMockito
@@ -135,7 +135,7 @@ public class PrayerUpdaterTest {
 
         PowerMockito.when(LocationHelper.getLocation(mockContext)).thenReturn(Single.just(newLocation));
         PowerMockito.when(AddressHelper.getAddressFromLocation(newLocation, mockContext)).thenReturn(Single.just(lastKnownAddress));
-        PowerMockito.when(PrayerHelper.getTimingsByCity(any(), anyString(), anyString(), any(), any())).thenReturn(Single.just(new DayPrayer()));
+        PowerMockito.when(PrayerHelper.getTimingsByCity(any(), anyString(), anyString(), any())).thenReturn(Single.just(new DayPrayer()));
 
         PowerMockito.spy(NotifierHelper.class);
         PowerMockito

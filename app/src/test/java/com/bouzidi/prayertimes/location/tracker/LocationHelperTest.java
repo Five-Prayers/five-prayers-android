@@ -31,7 +31,7 @@ import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyString;
 
 @RunWith(RobolectricTestRunner.class)
-@Config(maxSdk = 29)
+@Config(maxSdk = 28)
 @PowerMockIgnore({"org.mockito.*", "org.robolectric.*", "android.*", "androidx.*"})
 @PrepareForTest({LocationHelper.class, UserPreferencesUtils.class})
 public class LocationHelperTest {

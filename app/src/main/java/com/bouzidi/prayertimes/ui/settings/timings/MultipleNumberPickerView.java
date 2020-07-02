@@ -12,6 +12,9 @@ import com.travijuu.numberpicker.library.NumberPicker;
 
 public class MultipleNumberPickerView extends ConstraintLayout {
 
+    private static final int MAX_VALUE = 30;
+    private static final int MIN_VALUE = -30;
+
     private NumberPicker fajrNumberPicker;
     private NumberPicker dohrNumberPicker;
     private NumberPicker asrNumberPicker;
@@ -32,6 +35,21 @@ public class MultipleNumberPickerView extends ConstraintLayout {
         asrNumberPicker = (NumberPicker) findViewById(R.id.asr_number_picker);
         maghrebNumberPicker = (NumberPicker) findViewById(R.id.maghreb_number_picker);
         ichaNumberPicker = (NumberPicker) findViewById(R.id.icha_number_picker);
+
+        fajrNumberPicker.setMax(MAX_VALUE);
+        fajrNumberPicker.setMin(MIN_VALUE);
+
+        dohrNumberPicker.setMax(MAX_VALUE);
+        dohrNumberPicker.setMin(MIN_VALUE);
+
+        asrNumberPicker.setMax(MAX_VALUE);
+        asrNumberPicker.setMin(MIN_VALUE);
+
+        maghrebNumberPicker.setMax(MAX_VALUE);
+        maghrebNumberPicker.setMin(MIN_VALUE);
+
+        ichaNumberPicker.setMax(MAX_VALUE);
+        ichaNumberPicker.setMin(MIN_VALUE);
     }
 
     public int getFajrNumberPickerValue() {

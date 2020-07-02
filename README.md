@@ -1,5 +1,5 @@
-# five-prayers-android
-Five Prayers Android: A set of muslim tools
+<h2 align="center"><b>Five Prayers Android</b></h2>
+<h4 align="center">A libre lightweight and ads free set of muslim tools</h4>
 
 ## Description
 

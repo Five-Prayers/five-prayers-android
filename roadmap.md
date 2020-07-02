@@ -6,5 +6,4 @@ Feature
 - manual location : add geocoder.
 Bugs
 
-- Home sreen landscape
 - change arcgis by OSM

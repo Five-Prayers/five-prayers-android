@@ -10,10 +10,9 @@ import android.location.LocationManager;
 import androidx.test.core.app.ApplicationProvider;
 
 import com.bouzidi.prayertimes.exceptions.LocationException;
-import com.bouzidi.prayertimes.location.arcgis.ArcgisAPIService;
-import com.bouzidi.prayertimes.location.arcgis.ArcgisAddressResponse;
-import com.bouzidi.prayertimes.location.arcgis.ArcgisLocation;
-import com.bouzidi.prayertimes.location.arcgis.ArcgisReverseGeocodeResponse;
+import com.bouzidi.prayertimes.location.osm.NominatimAPIService;
+import com.bouzidi.prayertimes.location.osm.NominatimAddress;
+import com.bouzidi.prayertimes.location.osm.NominatimReverseGeocodeResponse;
 import com.bouzidi.prayertimes.network.NetworkUtil;
 import com.bouzidi.prayertimes.utils.UserPreferencesUtils;
 
@@ -52,7 +51,7 @@ import static org.mockito.Matchers.anyString;
 @RunWith(RobolectricTestRunner.class)
 @Config(maxSdk = 28)
 @PowerMockIgnore({"org.mockito.*", "org.robolectric.*", "android.*", "androidx.*"})
-@PrepareForTest({AddressHelper.class, NetworkUtil.class, ArcgisAPIService.class, Geocoder.class})
+@PrepareForTest({AddressHelper.class, NetworkUtil.class, NominatimAPIService.class, Geocoder.class})
 public class AddressHelperTest {
 
     @Rule
@@ -65,7 +64,7 @@ public class AddressHelperTest {
     @Mock
     SharedPreferences.Editor mockEditor;
     @Mock
-    ArcgisAPIService mArcgisAPIService;
+    NominatimAPIService nominatimAPIService;
     @Mock
     NetworkUtil mNetworkUtil;
     @Mock
@@ -78,7 +77,7 @@ public class AddressHelperTest {
         this.sharedPrefs = Mockito.mock(SharedPreferences.class);
         this.mockEditor = Mockito.mock(SharedPreferences.Editor.class);
         this.mockContext = Mockito.mock(Context.class);
-        this.mArcgisAPIService = Mockito.mock(ArcgisAPIService.class);
+        this.nominatimAPIService = Mockito.mock(NominatimAPIService.class);
         this.mNetworkUtil = Mockito.mock(NetworkUtil.class);
         this.mGeocoder = Mockito.mock(Geocoder.class);
         this.addressHelper = Mockito.mock(AddressHelper.class);
@@ -184,7 +183,7 @@ public class AddressHelperTest {
     }
 
     @Test
-    public void getAddressFromLocation_when_address_is_obsolete_and_arcgis_available() throws Exception {
+    public void getAddressFromLocation_when_address_is_obsolete_and_nominatim_available() throws Exception {
         TestObserver<Address> addressTestObserver = new TestObserver<>();
 
         Location newLocation = new Location(LocationManager.GPS_PROVIDER);
@@ -221,14 +220,14 @@ public class AddressHelperTest {
 
         PowerMockito
                 .doReturn(address)
-                .when(AddressHelper.class, "getArcgisAddress", anyDouble(), anyDouble(), any());
+                .when(AddressHelper.class, "getNominatimAddress", anyDouble(), anyDouble(), any());
 
         addressSingle.subscribe(addressTestObserver);
 
         addressTestObserver.await();
         addressTestObserver.assertComplete();
-        addressTestObserver.assertValue(arcgisAddress -> {
-            assertEquals(address, arcgisAddress);
+        addressTestObserver.assertValue(nominatimAddress -> {
+            assertEquals(address, nominatimAddress);
             assertEquals("Marseille", address.getLocality());
             return true;
         });
@@ -267,7 +266,7 @@ public class AddressHelperTest {
 
         PowerMockito
                 .doReturn(null)
-                .when(AddressHelper.class, "getArcgisAddress", anyDouble(), anyDouble(), any());
+                .when(AddressHelper.class, "getNominatimAddress", anyDouble(), anyDouble(), any());
 
         addressSingle.subscribe(addressTestObserver);
 
@@ -310,7 +309,7 @@ public class AddressHelperTest {
 
         PowerMockito
                 .doReturn(null)
-                .when(AddressHelper.class, "getArcgisAddress", anyDouble(), anyDouble(), any());
+                .when(AddressHelper.class, "getNominatimAddress", anyDouble(), anyDouble(), any());
 
         addressSingle.subscribe(addressTestObserver);
 
@@ -348,7 +347,7 @@ public class AddressHelperTest {
 
         PowerMockito
                 .doThrow(new RuntimeException())
-                .when(AddressHelper.class, "getArcgisAddress", anyDouble(), anyDouble(), any());
+                .when(AddressHelper.class, "getNominatimAddress", anyDouble(), anyDouble(), any());
 
         addressSingle.subscribe(addressTestObserver);
 
@@ -424,33 +423,31 @@ public class AddressHelperTest {
     }
 
     @Test
-    public void getArcgisAddress_when_network_is_available() throws Exception {
+    public void getNominatimAddress_when_network_is_available() throws Exception {
         //Given
         Context applicationContext = ApplicationProvider.getApplicationContext();
         PowerMockito.mockStatic(NetworkUtil.class);
-        PowerMockito.mockStatic(ArcgisAPIService.class);
-        ArcgisAddressResponse address = new ArcgisAddressResponse();
-        address.setCity("London");
+        PowerMockito.mockStatic(NominatimAPIService.class);
+        NominatimAddress address = new NominatimAddress();
+        address.setTown("London");
         address.setCountryCode("UK");
-        address.setPostal("99100");
+        address.setCountry("United Kingdom");
+        address.setPostcode("99100");
 
-        ArcgisLocation location = new ArcgisLocation();
-        location.setX(51.508515);
-        location.setY(-0.1254872);
+        NominatimReverseGeocodeResponse nominatimReverseGeocodeResponse = new NominatimReverseGeocodeResponse();
+        nominatimReverseGeocodeResponse.setAddress(address);
+        nominatimReverseGeocodeResponse.setLat(-0.1254872);
+        nominatimReverseGeocodeResponse.setLon(51.508515);
 
-        ArcgisReverseGeocodeResponse arcgisReverseGeocodeResponse = new ArcgisReverseGeocodeResponse();
-        arcgisReverseGeocodeResponse.setAddress(address);
-        arcgisReverseGeocodeResponse.setLocation(location);
-
-        Mockito.when(ArcgisAPIService.getInstance()).thenReturn(mArcgisAPIService);
-        Mockito.when(mArcgisAPIService.getAddressFromLocation(anyDouble(), anyDouble()))
-                .thenReturn(arcgisReverseGeocodeResponse);
+        Mockito.when(NominatimAPIService.getInstance()).thenReturn(nominatimAPIService);
+        Mockito.when(nominatimAPIService.getAddressFromLocation(anyDouble(), anyDouble()))
+                .thenReturn(nominatimReverseGeocodeResponse);
         Mockito.when(NetworkUtil.isNetworkAvailable(any())).thenReturn(true);
 
         //When
         Address result = Whitebox
                 .invokeMethod(new AddressHelper(),
-                        "getArcgisAddress", 51.508515, -0.1254872, applicationContext);
+                        "getNominatimAddress", 51.508515, -0.1254872, applicationContext);
 
         SharedPreferences sharedPreferences = applicationContext.getSharedPreferences("location", MODE_PRIVATE);
         String lastKnownCountry = sharedPreferences.getString("last_known_country", null);
@@ -462,16 +459,16 @@ public class AddressHelperTest {
         assertNotNull(result);
         assertEquals("London", result.getLocality());
         assertEquals("UK", result.getCountryCode());
-        assertEquals("UK", result.getCountryName());
+        assertEquals("United Kingdom", result.getCountryName());
         assertEquals("99100", result.getPostalCode());
         assertEquals("London", lastKnownLocality);
-        assertEquals("UK", lastKnownCountry);
+        assertEquals("United Kingdom", lastKnownCountry);
         assertEquals(-0.1254872, lastKnownLatitude, 0);
         assertEquals(51.508515, lastKnownLongitude, 0);
     }
 
     @Test
-    public void getArcgisAddress_when_network_is_Not_available() throws Exception {
+    public void getNominatimAddress_when_network_is_Not_available() throws Exception {
         //Given
         PowerMockito.mockStatic(NetworkUtil.class);
         Mockito.when(NetworkUtil.isNetworkAvailable(mockContext)).thenReturn(false);
@@ -479,7 +476,7 @@ public class AddressHelperTest {
         //When
         Address result = Whitebox
                 .invokeMethod(new AddressHelper(),
-                        "getArcgisAddress", 51.508515, -0.1254872, mockContext);
+                        "getNominatimAddress", 51.508515, -0.1254872, mockContext);
 
         //Then
         assertNull(result);

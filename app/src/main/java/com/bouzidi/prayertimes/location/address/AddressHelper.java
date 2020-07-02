@@ -10,8 +10,8 @@ import android.util.Log;
 import androidx.preference.PreferenceManager;
 
 import com.bouzidi.prayertimes.exceptions.LocationException;
-import com.bouzidi.prayertimes.location.arcgis.ArcgisAPIService;
-import com.bouzidi.prayertimes.location.arcgis.ArcgisReverseGeocodeResponse;
+import com.bouzidi.prayertimes.location.osm.NominatimAPIService;
+import com.bouzidi.prayertimes.location.osm.NominatimReverseGeocodeResponse;
 import com.bouzidi.prayertimes.network.NetworkUtil;
 import com.bouzidi.prayertimes.utils.UserPreferencesUtils;
 
@@ -56,8 +56,8 @@ public class AddressHelper {
                             Address geocoderAddresses = getGeocoderAddresses(latitude, longitude, context);
                             if (geocoderAddresses != null) {
                                 emitter.onSuccess(geocoderAddresses);
-                            } else if (getArcgisAddress(latitude, longitude, context) != null) {
-                                emitter.onSuccess(getArcgisAddress(latitude, longitude, context));
+                            } else if (getNominatimAddress(latitude, longitude, context) != null) {
+                                emitter.onSuccess(getNominatimAddress(latitude, longitude, context));
                             } else if (lastKnownAddress.getLocality() != null) {
                                 emitter.onSuccess(lastKnownAddress);
                             } else {
@@ -102,19 +102,19 @@ public class AddressHelper {
         return null;
     }
 
-    private static Address getArcgisAddress(double latitude, double longitude, Context context) throws IOException {
-        ArcgisAPIService arcgisReverseGeocodeService = ArcgisAPIService.getInstance();
+    private static Address getNominatimAddress(double latitude, double longitude, Context context) throws IOException {
+        NominatimAPIService nominatimAPIService = NominatimAPIService.getInstance();
 
         if (NetworkUtil.isNetworkAvailable(context)) {
-            ArcgisReverseGeocodeResponse response = arcgisReverseGeocodeService.getAddressFromLocation(latitude, longitude);
+            NominatimReverseGeocodeResponse response = nominatimAPIService.getAddressFromLocation(latitude, longitude);
 
             Address address = new Address(Locale.getDefault());
-            address.setCountryName(response.getAddress().getCountryCode());
+            address.setCountryName(response.getAddress().getCountry());
             address.setCountryCode(response.getAddress().getCountryCode());
-            address.setLocality(response.getAddress().getCity());
-            address.setPostalCode(response.getAddress().getPostal());
-            address.setLatitude(response.getLocation().getY());
-            address.setLongitude(response.getLocation().getX());
+            address.setLocality(response.getAddress().getTown());
+            address.setPostalCode(response.getAddress().getPostcode());
+            address.setLatitude(response.getLat());
+            address.setLongitude(response.getLon());
 
             updateUserPreferences(context, address);
 

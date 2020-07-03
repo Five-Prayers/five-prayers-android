@@ -1,4 +1,4 @@
-package com.bouzidi.prayertimes.ui.calendar;
+package com.bouzidi.prayertimes.ui.timingtable;
 
 import android.app.Application;
 import android.content.Context;
@@ -10,7 +10,6 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.bouzidi.prayertimes.location.address.AddressHelper;
 import com.bouzidi.prayertimes.location.tracker.LocationHelper;
-import com.bouzidi.prayertimes.timings.CalculationMethodEnum;
 import com.bouzidi.prayertimes.timings.DayPrayer;
 import com.bouzidi.prayertimes.timings.PrayerHelper;
 
@@ -22,13 +21,13 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.observers.DisposableSingleObserver;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
-public class CalendarViewModel extends AndroidViewModel {
+public class TimingTableViewModel extends AndroidViewModel {
 
     private final LocalDate todayDate;
     private MutableLiveData<List<DayPrayer>> mCalendar;
     private CompositeDisposable compositeDisposable;
 
-    public CalendarViewModel(@NonNull Application application) {
+    public TimingTableViewModel(@NonNull Application application) {
         super(application);
         mCalendar = new MutableLiveData<>();
         todayDate = LocalDate.now();

@@ -17,7 +17,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.calendar.CalendarActivity" />
+        <activity android:name=".ui.timingtable.TimingTableActivity" />
         <activity android:name=".ui.qibla.CompassActivity" />
         <activity
             android:name=".MainActivity"

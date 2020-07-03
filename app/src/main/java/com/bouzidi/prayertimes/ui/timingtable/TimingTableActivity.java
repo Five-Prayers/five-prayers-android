@@ -1,4 +1,4 @@
-package com.bouzidi.prayertimes.ui.calendar;
+package com.bouzidi.prayertimes.ui.timingtable;
 
 import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
@@ -35,7 +35,7 @@ import de.codecrafters.tableview.providers.TableDataRowBackgroundProvider;
 import de.codecrafters.tableview.toolkit.SimpleTableDataAdapter;
 import de.codecrafters.tableview.toolkit.SimpleTableHeaderAdapter;
 
-public class CalendarActivity extends AppCompatActivity {
+public class TimingTableActivity extends AppCompatActivity {
 
     private static final int COLUMN_COUNT = 8;
     private static final int TEXT_SIZE = 11;
@@ -45,11 +45,11 @@ public class CalendarActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_calendar);
+        setContentView(R.layout.activity_timing_table);
 
         SharedPreferences sharedPreferences = getSharedPreferences("location", MODE_PRIVATE);
 
-        CalendarViewModel calendarViewModel = new ViewModelProvider(this).get(CalendarViewModel.class);
+        TimingTableViewModel timingTableViewModel = new ViewModelProvider(this).get(TimingTableViewModel.class);
 
         Toolbar toolbar = findViewById(R.id.calendar_toolbar);
         toolbar.setNavigationIcon(ContextCompat.getDrawable(this, R.drawable.ic_arrow_back));
@@ -65,7 +65,7 @@ public class CalendarActivity extends AppCompatActivity {
 
         createTableView();
 
-        calendarViewModel.getCalendar().observe(this, this::populateTableView);
+        timingTableViewModel.getCalendar().observe(this, this::populateTableView);
     }
 
     private void populateTableView(List<DayPrayer> calendar) {

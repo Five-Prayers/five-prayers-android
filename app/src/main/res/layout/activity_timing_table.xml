@@ -5,8 +5,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:backgroundTint="@color/dew"
-    tools:context=".ui.calendar.CalendarActivity">
+    android:background="@color/dew"
+    tools:context=".ui.timingtable.TimingTableActivity">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/calendar_toolbar"

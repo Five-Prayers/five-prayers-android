@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bouzidi.prayertimes.R;
+import com.bouzidi.prayertimes.ui.calendar.CalendarActivity;
 import com.bouzidi.prayertimes.ui.timingtable.TimingTableActivity;
 import com.bouzidi.prayertimes.ui.qibla.CompassActivity;
 
@@ -31,14 +32,17 @@ public class DashboardFragment extends Fragment {
         recyclerView = root.findViewById(R.id.rv1);
 
         dashModelArrayList = new ArrayList<>();
-        String heads[] = {"Qibla Direction", "Prayer Calendar", "Asma Al Husna", "The Holy Quran", "Zakat Calculator", "Dua and Azkar"};
+        String heads[] = {"Qibla Direction", "Prayer Times Table", "Hijri Calendar", "The Holy Quran", "Asma Al Husna", "Dua and Azkar"};
 
-        String subs[] = {"Locate the direction of the qibla", "Times for calendar month", "99 Names of God", "Recite & Listen the Holy Quran", "How much Zakat to pay", "Recite Dua and Azkar"};
+        String subs[] = {"Locate the direction of the Qibla", "Monthly Prayer table", "Hijri dates and Holidays", "Recite & Listen the Holy Quran", "99 Names of God", "Recite Dua and Azkar"};
 
-        int images[] = {R.drawable.ic_compass_24dp, R.drawable.ic_table_24dp, R.drawable.ic_alah_24dp, R.drawable.ic_quran_24dp,
-                R.drawable.ic_donation_24dp, R.drawable.ic_dua_hands};
+        int images[] = {R.drawable.ic_compass_24dp, R.drawable.ic_table_24dp, R.drawable.ic_calendar_24dp, R.drawable.ic_quran_24dp,
+                R.drawable.ic_alah_24dp, R.drawable.ic_dua_hands};
 
-        Intent intents[] = {new Intent(getActivity(), CompassActivity.class), new Intent(getActivity(), TimingTableActivity.class), null, null,
+        Intent intents[] = {new Intent(getActivity(), CompassActivity.class),
+                new Intent(getActivity(), TimingTableActivity.class),
+                new Intent(getActivity(), CalendarActivity.class),
+                null,
                 null, null};
 
         for (int count = 0; count < heads.length; count++) {

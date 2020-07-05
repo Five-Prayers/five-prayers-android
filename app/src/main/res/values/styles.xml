@@ -33,6 +33,12 @@
         <item name="android:textSize">19sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:fontFamily">sans-serif-condensed</item>
-        <item name="android:textColor">#000000</item>
+        <item name="android:textColor">@color/stratos</item>
+    </style>
+    <style name="Toolbar.SubTitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">sans-serif-condensed</item>
+        <item name="android:textColor">@color/flirt</item>
     </style>
 </resources>

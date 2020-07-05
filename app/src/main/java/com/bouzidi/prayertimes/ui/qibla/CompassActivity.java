@@ -58,7 +58,7 @@ public class CompassActivity extends AppCompatActivity {
 
         prefs = getSharedPreferences("", MODE_PRIVATE);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.compass_toolbar);
         toolbar.setNavigationIcon(ContextCompat.getDrawable(this, R.drawable.ic_arrow_back));
         toolbar.setNavigationOnClickListener(v -> finish());
 
@@ -118,10 +118,10 @@ public class CompassActivity extends AppCompatActivity {
 
     private void setUpViews() {
         // Toolbar Title
-        ((Toolbar) findViewById(R.id.toolbar)).setTitle(getString(R.string.title_qibla_direction));
+        ((Toolbar) findViewById(R.id.compass_toolbar)).setTitle(getString(R.string.title_qibla_direction));
 
         // Toolbar Background Color
-        findViewById(R.id.toolbar).setBackgroundColor(
+        findViewById(R.id.compass_toolbar).setBackgroundColor(
                 Color.parseColor("#" + Integer.toHexString(
                         ContextCompat.getColor(this, R.color.dew))));
 

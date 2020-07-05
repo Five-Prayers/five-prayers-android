@@ -1,5 +1,7 @@
 package com.bouzidi.prayertimes.timings.aladhan;
 
+import java.util.List;
+
 public class AladhanDateType {
 
     private String date;
@@ -8,6 +10,7 @@ public class AladhanDateType {
     private String year;
     private AladhanMonth month;
     private AladhanDesignation designation;
+    private List<String> holidays;
 
     public String getDate() {
         return date;
@@ -55,5 +58,13 @@ public class AladhanDateType {
 
     public void setDesignation(AladhanDesignation designation) {
         this.designation = designation;
+    }
+
+    public List<String> getHolidays() {
+        return holidays;
+    }
+
+    public void setHolidays(List<String> holidays) {
+        this.holidays = holidays;
     }
 }

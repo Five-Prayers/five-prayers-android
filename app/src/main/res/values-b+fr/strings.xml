@@ -22,6 +22,27 @@
     <string name="SHORT_MAGHRIB">Maghreb</string>
     <string name="SHORT_ICHA">Ichaa</string>
 
+    <string name="FIRST_DAY_OF_YEAR">Nouvel an Hijri</string>
+    <string name="YAWM_ASHURA">Yaoum Ashura</string>
+    <string name="MAWLID_A_NABAWI">Al Mawlid A Nabawi</string>
+    <string name="LAILAT_AL_MIRAJ">Lailat Al Miiraj</string>
+    <string name="MID_SHAABAN_NIGHT">Laila Al Baraah</string>
+    <string name="MID_SHAABAN">Moitié de Chaaban</string>
+    <string name="FIRST_DAY_OF_RAMADAN">1er jour de Ramadan</string>
+    <string name="FIRST_DAY_OF_LAILAT_AL_QADR">Lailat Al Qadr</string>
+    <string name="SECOND_DAY_OF_LAILAT_AL_QADR">Lailat Al Qadr</string>
+    <string name="THIRD_DAY_OF_LAILAT_AL_QADR">Lailat Al Qadr</string>
+    <string name="FOURTH_DAY_OF_LAILAT_AL_QADR">Lailat Al Qadr</string>
+    <string name="FIFTH_DAY_OF_LAILAT_AL_QADR">Lailat Al Qadr</string>
+    <string name="SIXT_DAY_OF_LAILAT_AL_QADR">Lailat Al Qadr</string>
+    <string name="EID_AL_FITR">Eid Al Fitr</string>
+    <string name="FIRST_DAY_OF_AL_Hajj">Al Hajj</string>
+    <string name="DAY_OF_ARAFAH">Jour de Arafah</string>
+    <string name="EID_AL_ADHA">Eid Al Adha</string>
+    <string name="FOURTH_DAY_OF_AL_Hajj">Al Hajj</string>
+    <string name="FIFTH_DAY_OF_AL_Hajj">Al Hajj</string>
+    <string name="SIXT_DAY_OF_AL_Hajj">Al Hajj</string>
+
     <string name="adthan_notification_channel_id">ADHAN_CHANNEL_ID</string>
     <string name="adthan_notification_channel_name">Adthan Timer</string>
     <string name="adthan_notification_channel_description">Adthan Timer</string>
@@ -32,16 +53,16 @@
     <string name="hijri">Hijri</string>
     <string name="hijri_month_1">Mouharram</string>
     <string name="hijri_month_2">Safar</string>
-    <string name="hijri_month_3">Rabii al awal</string>
-    <string name="hijri_month_4">Rabii ath-thani</string>
-    <string name="hijri_month_5">Joumada al oula</string>
-    <string name="hijri_month_6">Joumada ath-thania</string>
+    <string name="hijri_month_3">Rabii Al Awal</string>
+    <string name="hijri_month_4">Rabii Ath`Thani</string>
+    <string name="hijri_month_5">Joumada Al Oula</string>
+    <string name="hijri_month_6">Joumada Ath`Thania</string>
     <string name="hijri_month_7">Rajab</string>
     <string name="hijri_month_8">Chaabane</string>
     <string name="hijri_month_9">Ramadan</string>
     <string name="hijri_month_10">Chawwal</string>
-    <string name="hijri_month_11">Dhou al qi`da</string>
-    <string name="hijri_month_12">Dhou al-hijja</string>
+    <string name="hijri_month_11">Dhou Al Qi`da</string>
+    <string name="hijri_month_12">Dhou Al Hijja</string>
 
     <string name="gps_settings_title" translatable="true">GPS settings</string>
     <string name="gps_settings_text" translatable="false">GPS is not enabled. Do you want to go to settings menu?</string>

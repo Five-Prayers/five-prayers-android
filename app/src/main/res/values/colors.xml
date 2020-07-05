@@ -12,6 +12,7 @@
 
     <color name="transparent">#00000000</color>
     <color name="slate_gray">#738497</color>
+    <color name="gallery">#EEEEEE</color>
     <color name="ebony_clay">#213040</color>
     <color name="mirage">#1C2C3B</color>
     <color name="pickled_bluewood">#253544</color>

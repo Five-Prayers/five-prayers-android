@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="?attr/selectableItemBackground"
+    android:padding="20dp">
+
+
+    <TextView
+        android:id="@+id/item_holiday_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:drawableStart="@drawable/ic_celebration_24dp"
+        android:drawableLeft="@drawable/ic_celebration_24dp"
+        android:fontFamily="sans-serif-condensed"
+        android:inputType="textCapSentences"
+        android:textColor="@color/stratos"
+        android:textSize="@dimen/text_smlarge"
+        android:textStyle="bold"
+        tools:ignore="TextViewEdits" />
+</FrameLayout>

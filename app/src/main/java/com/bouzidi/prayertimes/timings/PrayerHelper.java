@@ -10,6 +10,7 @@ import com.bouzidi.prayertimes.database.PrayerRegistry;
 import com.bouzidi.prayertimes.exceptions.TimingsException;
 import com.bouzidi.prayertimes.timings.aladhan.AladhanAPIService;
 import com.bouzidi.prayertimes.timings.aladhan.AladhanCalendarResponse;
+import com.bouzidi.prayertimes.timings.aladhan.AladhanDate;
 import com.bouzidi.prayertimes.timings.aladhan.AladhanTodayTimingsResponse;
 import com.bouzidi.prayertimes.utils.TimingUtils;
 
@@ -62,6 +63,29 @@ public class PrayerHelper {
                             emitter.onError(e);
                         }
                     }
+                }
+            });
+            thread.start();
+        });
+    }
+
+    public static Single<List<AladhanDate>> getHijriCalendar(final int month,
+                                                             final int year,
+                                                             final Context context) {
+
+        int hijriAdjustment = getHijriAdjustment(context);
+
+        return Single.create(emitter -> {
+            Thread thread = new Thread(() -> {
+                try {
+                    AladhanAPIService aladhanAPIService = AladhanAPIService.getInstance();
+
+                    emitter.onSuccess(aladhanAPIService
+                            .getHijriCalendar(month, year, hijriAdjustment, context).getData());
+
+                } catch (IOException e) {
+                    Log.e(PrayerHelper.class.getName(), "Cannot find from aladhanAPIService");
+                    emitter.onError(e);
                 }
             });
             thread.start();

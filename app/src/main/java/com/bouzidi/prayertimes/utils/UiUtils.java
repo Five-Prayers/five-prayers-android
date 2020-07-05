@@ -8,10 +8,10 @@ import java.util.Locale;
 
 public class UiUtils {
 
-    private static final String GREGORIAN_MONTH_YEAR_FORMAT = "MMMM yyyy";
-    private static final String GREGORIAN_READABLE_FORMAT = "EEE dd MMMM, yyyy";
-    private static final String TIME_ZONE_READABLE_FORMAT = "ZZZZZ";
-    private static final String TIMING_FORMAT = "HH:mm";
+    public static final String GREGORIAN_MONTH_YEAR_FORMAT = "MMMM yyyy";
+    public static final String GREGORIAN_READABLE_FORMAT = "EEE dd MMMM, yyyy";
+    public static final String TIME_ZONE_READABLE_FORMAT = "ZZZZZ";
+    public static final String TIMING_FORMAT = "HH:mm";
 
     public static String formatTimeForTimer(long time) {
         long seconds = time / 1000;

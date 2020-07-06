@@ -105,6 +105,7 @@ dependencies {
     testImplementation 'org.powermock:powermock-api-mockito2:2.0.2'
     testImplementation "org.powermock:powermock-classloading-xstream:2.0.2"
     testImplementation 'org.robolectric:robolectric:4.3.1'
+    testImplementation 'com.squareup.assertj:assertj-android:1.2.0'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }

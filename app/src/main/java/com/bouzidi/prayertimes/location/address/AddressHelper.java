@@ -13,6 +13,8 @@ import com.bouzidi.prayertimes.exceptions.LocationException;
 import com.bouzidi.prayertimes.location.osm.NominatimAPIService;
 import com.bouzidi.prayertimes.location.osm.NominatimReverseGeocodeResponse;
 import com.bouzidi.prayertimes.network.NetworkUtil;
+import com.bouzidi.prayertimes.timings.CalculationMethodEnum;
+import com.bouzidi.prayertimes.timings.calculationmethod.CountryCalculationMethodHelper;
 import com.bouzidi.prayertimes.utils.UserPreferencesUtils;
 
 import org.jetbrains.annotations.NotNull;
@@ -80,13 +82,19 @@ public class AddressHelper {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("last_known_locality", address.getLocality());
         editor.putString("last_known_country", address.getCountryName());
+        editor.putString("last_known_country_code", address.getCountryCode());
+        editor.putString("last_known_state", address.getAddressLine(1));
+
         UserPreferencesUtils.putDouble(editor, "last_known_latitude", address.getLatitude());
         UserPreferencesUtils.putDouble(editor, "last_known_longitude", address.getLongitude());
         editor.apply();
 
+        CalculationMethodEnum calculationMethodByAddress = CountryCalculationMethodHelper.getCalculationMethodByAddress(address);
+
         final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor defaultEditor = defaultSharedPreferences.edit();
         defaultEditor.putString("location_edit_text_preference", address.getLocality() + ", " + address.getCountryName());
+        defaultEditor.putString("timings_calculation_method", calculationMethodByAddress.toString());
         defaultEditor.apply();
     }
 
@@ -111,6 +119,7 @@ public class AddressHelper {
             Address address = new Address(Locale.getDefault());
             address.setCountryName(response.getAddress().getCountry());
             address.setCountryCode(response.getAddress().getCountryCode());
+            address.setAddressLine(1, response.getAddress().getState());
             address.setLocality(response.getAddress().getTown());
             address.setPostalCode(response.getAddress().getPostcode());
             address.setLatitude(response.getLat());

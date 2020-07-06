@@ -164,7 +164,9 @@ public class AutoCompleteTextPreferenceDialog extends PreferenceDialogFragmentCo
                                 for (Feature feature : features) {
                                     String locality = feature.getProperties().getName();
                                     String country = feature.getProperties().getCountry();
-                                    boolean isPlaceType = feature.getProperties().getOsmKey().equals("place");
+                                    boolean isPlaceType =
+                                            feature.getProperties().getOsmKey().equals("place") ||
+                                                    feature.getProperties().getOsmKey().equals("boundary");
 
                                     if (isPlaceType && StringUtils.isNotBlank(locality) && StringUtils.isNotBlank(country)) {
                                         Address address = new Address(Locale.getDefault());

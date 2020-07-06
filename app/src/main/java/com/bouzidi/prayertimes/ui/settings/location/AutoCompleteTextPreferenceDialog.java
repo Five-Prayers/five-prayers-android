@@ -19,6 +19,9 @@ import androidx.preference.PreferenceDialogFragmentCompat;
 
 import com.bouzidi.prayertimes.location.SearchHelper;
 import com.bouzidi.prayertimes.location.address.AddressHelper;
+import com.bouzidi.prayertimes.location.osm.NominatimAPIService;
+import com.bouzidi.prayertimes.location.osm.NominatimAddress;
+import com.bouzidi.prayertimes.location.osm.NominatimReverseGeocodeResponse;
 import com.bouzidi.prayertimes.location.photon.Feature;
 
 import org.apache.commons.lang3.StringUtils;
@@ -28,6 +31,7 @@ import java.util.List;
 import java.util.Locale;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.observers.DisposableSingleObserver;
 import io.reactivex.rxjava3.schedulers.Schedulers;
@@ -141,11 +145,30 @@ public class AutoCompleteTextPreferenceDialog extends PreferenceDialogFragmentCo
 
     @Override
     public void onDialogClosed(boolean positiveResult) {
+        CompositeDisposable compositeDisposable = new CompositeDisposable();
+
         if (positiveResult) {
             String textValue = mEditText.getText().toString();
             if (preference.callChangeListener(textValue) && isSelectedText) {
                 preference.setText(textValue);
-                AddressHelper.updateUserPreferences(context, selectedAddress);
+                NominatimAPIService nominatimAPIService = NominatimAPIService.getInstance();
+                compositeDisposable.add(
+                        nominatimAPIService.getAddressFromLatLong(selectedAddress.getLatitude(), selectedAddress.getLongitude())
+                                .subscribeOn(Schedulers.io())
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribeWith(new DisposableSingleObserver<NominatimReverseGeocodeResponse>() {
+                                    @Override
+                                    public void onSuccess(@NonNull NominatimReverseGeocodeResponse nominatimReverseGeocodeResponse) {
+                                        NominatimAddress nominatimAddress = nominatimReverseGeocodeResponse.getAddress();
+                                        selectedAddress.setCountryCode(nominatimAddress.getCountryCode());
+                                        AddressHelper.updateUserPreferences(context, selectedAddress);
+                                    }
+
+                                    @Override
+                                    public void onError(@NonNull Throwable e) {
+                                        AddressHelper.updateUserPreferences(context, selectedAddress);
+                                    }
+                                }));
             }
         }
     }
@@ -177,6 +200,7 @@ public class AutoCompleteTextPreferenceDialog extends PreferenceDialogFragmentCo
                                         if (feature.getProperties().getState() != null) {
                                             builder.append(feature.getProperties().getState());
                                             address.setSubLocality(feature.getProperties().getState());
+                                            address.setAddressLine(1, feature.getProperties().getState());
                                             builder.append(", ");
                                         }
 

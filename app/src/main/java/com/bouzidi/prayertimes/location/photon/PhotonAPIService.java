@@ -46,10 +46,22 @@ public class PhotonAPIService {
         PhotonAPIResource photonAPIResource = retrofit.create(PhotonAPIResource.class);
 
         Call<PhotonAPIResponse> call
-                = photonAPIResource.search(str, limit);
+                = photonAPIResource.search(str, limit, getDefaultLanguage());
 
         Response<PhotonAPIResponse> response = call.execute();
 
         return response.body();
+    }
+
+    private String getDefaultLanguage() {
+        List<String> supportedLanguages = new ArrayList<>(4);
+
+        supportedLanguages.addAll(Arrays.asList("de", "en", "it", "fr"));
+        String defaultLanguage = Locale.getDefault().getLanguage();
+
+        if (supportedLanguages.contains(defaultLanguage)) {
+            return defaultLanguage;
+        }
+        return Locale.ENGLISH.getLanguage();
     }
 }

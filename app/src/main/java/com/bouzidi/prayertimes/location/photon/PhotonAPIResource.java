@@ -8,5 +8,6 @@ public interface PhotonAPIResource {
 
     @GET(".")
     Call<PhotonAPIResponse> search(@Query("q") String str,
-                                   @Query("limit") int limit);
+                                   @Query("limit") int limit,
+                                   @Query("lang") String lang);
 }

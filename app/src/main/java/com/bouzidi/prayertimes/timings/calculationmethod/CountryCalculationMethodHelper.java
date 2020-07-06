@@ -273,7 +273,10 @@ public class CountryCalculationMethodHelper {
         String countryCode = address.getCountryCode();
 
         if (countryCode != null && "FR".equals(countryCode.toUpperCase())) {
-            if ("Île-de-France".equals(address.getAddressLine(1))) {
+            if ("Ile-de-France".equalsIgnoreCase(address.getAddressLine(1)) ||
+                            "Ile-de-France".equalsIgnoreCase(address.getSubLocality()) ||
+                            "Île-de-France".equalsIgnoreCase(address.getSubLocality())
+                            || "Île-de-France".equalsIgnoreCase((address.getAddressLine(1)))) {
                 return CalculationMethodEnum.MOSQUEE_DE_PARIS_FRANCE;
             } else {
                 return CalculationMethodEnum.UNION_ORGANIZATION_ISLAMIC_DE_FRANCE;

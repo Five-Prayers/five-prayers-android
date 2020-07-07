@@ -4,7 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.bouzidi.prayertimes.network.NetworkUtil;
-import com.bouzidi.prayertimes.timings.CalculationMethodEnum;
+import com.bouzidi.prayertimes.timings.calculations.CalculationMethodEnum;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 

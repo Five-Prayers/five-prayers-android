@@ -12,6 +12,7 @@ import com.bouzidi.prayertimes.timings.aladhan.AladhanAPIService;
 import com.bouzidi.prayertimes.timings.aladhan.AladhanCalendarResponse;
 import com.bouzidi.prayertimes.timings.aladhan.AladhanDate;
 import com.bouzidi.prayertimes.timings.aladhan.AladhanTodayTimingsResponse;
+import com.bouzidi.prayertimes.timings.calculations.CalculationMethodEnum;
 import com.bouzidi.prayertimes.utils.TimingUtils;
 
 import java.io.IOException;

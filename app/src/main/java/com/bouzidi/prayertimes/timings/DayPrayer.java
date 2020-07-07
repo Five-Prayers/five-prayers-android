@@ -1,5 +1,7 @@
 package com.bouzidi.prayertimes.timings;
 
+import com.bouzidi.prayertimes.timings.calculations.CalculationMethodEnum;
+
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 

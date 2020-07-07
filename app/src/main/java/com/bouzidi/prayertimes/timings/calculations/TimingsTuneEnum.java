@@ -1,4 +1,8 @@
-package com.bouzidi.prayertimes.timings;
+package com.bouzidi.prayertimes.timings.calculations;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public enum TimingsTuneEnum {
 
@@ -34,6 +38,18 @@ public enum TimingsTuneEnum {
         this.sunset = sunset;
         this.isha = isha;
         this.midnight = midnight;
+    }
+
+    public static TimingsTuneEnum getValueByName(String name) {
+        List<String> names = Arrays
+                .stream(values())
+                .map(String::valueOf)
+                .collect(Collectors.toList());
+
+        if (names.contains(name)) {
+            return valueOf(name);
+        }
+        return DEFAULT;
     }
 
     public int getImsak() {

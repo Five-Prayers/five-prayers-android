@@ -1,4 +1,4 @@
-package com.bouzidi.prayertimes.timings;
+package com.bouzidi.prayertimes.timings.calculations;
 
 public enum CalculationMethodEnum {
     SHIA_ITHNA_ANSARI(0, "16", "4", "14"),

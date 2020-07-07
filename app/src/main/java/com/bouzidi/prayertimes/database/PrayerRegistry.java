@@ -6,7 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
-import com.bouzidi.prayertimes.timings.CalculationMethodEnum;
+import com.bouzidi.prayertimes.timings.calculations.CalculationMethodEnum;
 import com.bouzidi.prayertimes.timings.ComplementaryTimingEnum;
 import com.bouzidi.prayertimes.timings.DayPrayer;
 import com.bouzidi.prayertimes.timings.PrayerEnum;

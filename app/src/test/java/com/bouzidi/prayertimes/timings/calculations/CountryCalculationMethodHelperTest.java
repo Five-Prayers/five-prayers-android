@@ -1,8 +1,6 @@
-package com.bouzidi.prayertimes.timings.calculationmethod;
+package com.bouzidi.prayertimes.timings.calculations;
 
 import android.location.Address;
-
-import com.bouzidi.prayertimes.timings.CalculationMethodEnum;
 
 import org.assertj.core.api.Assertions;
 import org.junit.Test;

@@ -8,7 +8,6 @@ import androidx.annotation.NonNull;
 
 import com.bouzidi.prayertimes.location.address.AddressHelper;
 import com.bouzidi.prayertimes.location.tracker.LocationHelper;
-import com.bouzidi.prayertimes.timings.CalculationMethodEnum;
 import com.bouzidi.prayertimes.timings.DayPrayer;
 import com.bouzidi.prayertimes.timings.PrayerHelper;
 

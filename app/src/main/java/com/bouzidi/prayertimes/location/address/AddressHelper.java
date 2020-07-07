@@ -13,8 +13,9 @@ import com.bouzidi.prayertimes.exceptions.LocationException;
 import com.bouzidi.prayertimes.location.osm.NominatimAPIService;
 import com.bouzidi.prayertimes.location.osm.NominatimReverseGeocodeResponse;
 import com.bouzidi.prayertimes.network.NetworkUtil;
-import com.bouzidi.prayertimes.timings.CalculationMethodEnum;
-import com.bouzidi.prayertimes.timings.calculationmethod.CountryCalculationMethodHelper;
+import com.bouzidi.prayertimes.timings.calculations.CalculationMethodEnum;
+import com.bouzidi.prayertimes.timings.calculations.CalculationMethodHelper;
+import com.bouzidi.prayertimes.timings.calculations.CountryCalculationMethodHelper;
 import com.bouzidi.prayertimes.utils.UserPreferencesUtils;
 
 import org.jetbrains.annotations.NotNull;
@@ -96,6 +97,8 @@ public class AddressHelper {
         defaultEditor.putString("location_edit_text_preference", address.getLocality() + ", " + address.getCountryName());
         defaultEditor.putString("timings_calculation_method", calculationMethodByAddress.toString());
         defaultEditor.apply();
+
+        CalculationMethodHelper.updateTimingAdjustmentPreference(calculationMethodByAddress.toString(), context);
     }
 
     private static Address getGeocoderAddresses(double latitude, double longitude, Context context) throws IOException {

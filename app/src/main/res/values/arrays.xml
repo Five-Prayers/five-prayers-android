@@ -55,4 +55,22 @@
         <item>2</item>
         <item>3</item>
     </string-array>
+
+    <string-array name="entries_school_adjustment_method_list_preference">
+        <item>@string/school_adjustment_method_shafii</item>
+        <item>@string/school_adjustment_method_hanafi</item>
+    </string-array>
+    <string-array name="entryvalues_school_adjustment_method_list_preference">
+        <item>SHAFII</item>
+        <item>HANAFI</item>
+    </string-array>
+
+    <string-array name="entries_midnight_mode_adjustment_method_list_preference">
+        <item>@string/midnight_mode_adjustment_method_standard</item>
+        <item>@string/midnight_mode_adjustment_method_jafari</item>
+    </string-array>
+    <string-array name="entryvalues_midnight_mode_adjustment_method_list_preference">
+        <item>STANDARD</item>
+        <item>JAFARI</item>
+    </string-array>
 </resources>

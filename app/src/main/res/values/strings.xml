@@ -93,6 +93,7 @@
     <string name="settings_button_cancel" translatable="false">Cancel</string>
     <string name="title_location_preference_section">Location</string>
     <string name="title_checkbox_location_preference">Set location manually</string>
+    <string name="title_checkbox_calculation_preference">Adjust timings manually</string>
     <string name="title_edit_text_location_preference">Actual location</string>
     <string name="dialog_title_edit_text_location_preference">Search your City</string>
     <string name="title_prayer_timings_section">Prayer timings calculation</string>
@@ -127,4 +128,10 @@
     <string name="alert_dialog_title">Alert</string>
 
     <string name="title_qibla_direction">Qibla Direction</string>
+    <string name="school_adjustment_method_shafii">Shafii (Default)</string>
+    <string name="school_adjustment_method_hanafi">Hanafi</string>
+    <string name="title_school_adjustment_method">School</string>
+    <string name="midnight_mode_adjustment_method_standard">Default (Mid Sunset to Sunrise)</string>
+    <string name="midnight_mode_adjustment_method_jafari">Jafari (Mid Sunset to Fajr)</string>
+    <string name="title_midnight_mode_adjustment_method">Midnight mode</string>
 </resources>

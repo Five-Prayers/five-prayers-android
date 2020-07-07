@@ -22,6 +22,10 @@
         android:title="@string/title_prayer_timings_section"
         >
 
+        <CheckBoxPreference
+            android:key="CALCULATION_SET_MANUALLY_PREFERENCE"
+            android:title="@string/title_checkbox_calculation_preference" />
+
         <com.bouzidi.prayertimes.ui.settings.method.CalculationMethodPreference
             android:key="TIMINGS_CALCULATION_METHOD_PREFERENCE"
             android:title="@string/title_list_preference"
@@ -29,12 +33,14 @@
             android:entries="@array/entries_calculation_method_list_preference"
             android:entryValues="@array/entryvalues_calculation_method_list_preference"
             app:useSimpleSummaryProvider="true"
-            android:defaultValue="MUSLIM_WORLD_LEAGUE"/>
+            android:defaultValue="MUSLIM_WORLD_LEAGUE"
+            android:dependency="CALCULATION_SET_MANUALLY_PREFERENCE" />
 
         <com.bouzidi.prayertimes.ui.settings.timings.NumberPickerPreference
             android:key="number_preference"
             android:title="@string/title_edit_text_timing_adjustment_preference"
-            android:dialogTitle="@string/dialog_title_edit_text_timing_adjustment_preference" />
+            android:dialogTitle="@string/dialog_title_edit_text_timing_adjustment_preference"
+            android:dependency="CALCULATION_SET_MANUALLY_PREFERENCE" />
 
         <ListPreference
             android:key="TIMINGS_LATITUDE_ADJUSTMENT_METHOD_PREFERENCE"
@@ -43,8 +49,28 @@
             android:entries="@array/entries_latitude_adjustment_method_list_preference"
             android:entryValues="@array/entryvalues_latitude_adjustment_method_list_preference"
             app:useSimpleSummaryProvider="true"
-            android:defaultValue="3"/>
+            android:defaultValue="3"
+            android:dependency="CALCULATION_SET_MANUALLY_PREFERENCE" />
 
+        <ListPreference
+            android:key="SCHOOL_ADJUSTMENT_METHOD_PREFERENCE"
+            android:title="@string/title_school_adjustment_method"
+            android:dialogTitle="@string/dialog_title_latitude_adjustment_method"
+            android:entries="@array/entries_school_adjustment_method_list_preference"
+            android:entryValues="@array/entryvalues_school_adjustment_method_list_preference"
+            app:useSimpleSummaryProvider="true"
+            android:defaultValue="SHAFII"
+            android:dependency="CALCULATION_SET_MANUALLY_PREFERENCE" />
+
+        <ListPreference
+            android:key="MIDNIGHT_MODE_ADJUSTMENT_METHOD_PREFERENCE"
+            android:title="@string/title_midnight_mode_adjustment_method"
+            android:dialogTitle="@string/dialog_title_latitude_adjustment_method"
+            android:entries="@array/entries_midnight_mode_adjustment_method_list_preference"
+            android:entryValues="@array/entryvalues_midnight_mode_adjustment_method_list_preference"
+            app:useSimpleSummaryProvider="true"
+            android:defaultValue="STANDARD"
+            android:dependency="CALCULATION_SET_MANUALLY_PREFERENCE" />
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/calendar">

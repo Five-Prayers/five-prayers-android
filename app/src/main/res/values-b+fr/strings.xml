@@ -92,6 +92,7 @@
 
     <string name="title_location_preference_section">Localisation</string>
     <string name="title_checkbox_location_preference">Saisir votre localisation manuellement</string>
+    <string name="title_checkbox_calculation_preference">Ajuster les horaires manuellement</string>
     <string name="title_edit_text_location_preference">Localisation actuelle</string>
     <string name="dialog_title_edit_text_location_preference">Rechercher votre ville</string>
     <string name="title_prayer_timings_section">Calcul des prières</string>
@@ -112,4 +113,11 @@
     <string name="dialog_title_hijri_day_adjustment_preference">Ajuster la date Hijri</string>
 
     <string name="title_qibla_direction" >Direction de Qibla</string>
+
+    <string name="school_adjustment_method_shafii">Shafii (Par défaut)</string>
+    <string name="school_adjustment_method_hanafi">Hanafi</string>
+    <string name="title_school_adjustment_method">École</string>
+    <string name="midnight_mode_adjustment_method_standard">Par défaut (Mi-coucher du soleil au lever du soleil)</string>
+    <string name="midnight_mode_adjustment_method_jafari">Jafari (Mi-coucher du soleil à Al Fajr)</string>
+    <string name="title_midnight_mode_adjustment_method">Calcul du minuit</string>
 </resources>

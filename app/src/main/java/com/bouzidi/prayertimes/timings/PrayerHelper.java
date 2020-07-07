@@ -13,6 +13,7 @@ import com.bouzidi.prayertimes.timings.aladhan.AladhanCalendarResponse;
 import com.bouzidi.prayertimes.timings.aladhan.AladhanDate;
 import com.bouzidi.prayertimes.timings.aladhan.AladhanTodayTimingsResponse;
 import com.bouzidi.prayertimes.timings.calculations.CalculationMethodEnum;
+import com.bouzidi.prayertimes.utils.Constants;
 import com.bouzidi.prayertimes.utils.TimingUtils;
 
 import java.io.IOException;
@@ -144,13 +145,13 @@ public class PrayerHelper {
     }
 
     private static String getTune(Context context) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences("timing_adjustment", Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = context.getSharedPreferences(Constants.TIMING_ADJUSTMENT, Context.MODE_PRIVATE);
 
-        int fajrTimingAdjustment = sharedPreferences.getInt("fajr_timing_adjustment", 0);
-        int dohrTimingAdjustment = sharedPreferences.getInt("dohr_timing_adjustment", 0);
-        int asrTimingAdjustment = sharedPreferences.getInt("asr_timing_adjustment", 0);
-        int maghrebTimingAdjustment = sharedPreferences.getInt("maghreb_timing_adjustment", 0);
-        int ichaTimingAdjustment = sharedPreferences.getInt("icha_timing_adjustment", 0);
+        int fajrTimingAdjustment = sharedPreferences.getInt(Constants.FAJR_TIMING_ADJUSTMENT, 0);
+        int dohrTimingAdjustment = sharedPreferences.getInt(Constants.DOHR_TIMING_ADJUSTMENT, 0);
+        int asrTimingAdjustment = sharedPreferences.getInt(Constants.ASR_TIMING_ADJUSTMENT, 0);
+        int maghrebTimingAdjustment = sharedPreferences.getInt(Constants.MAGHREB_TIMING_ADJUSTMENT, 0);
+        int ichaTimingAdjustment = sharedPreferences.getInt(Constants.ICHA_TIMING_ADJUSTMENT, 0);
 
         return fajrTimingAdjustment + "," + fajrTimingAdjustment + ",0," + dohrTimingAdjustment + "," + asrTimingAdjustment + "," + maghrebTimingAdjustment + ",0," + ichaTimingAdjustment + ",0";
     }

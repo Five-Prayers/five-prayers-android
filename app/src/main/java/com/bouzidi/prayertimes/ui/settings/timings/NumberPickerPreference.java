@@ -7,6 +7,7 @@ import android.util.AttributeSet;
 import androidx.preference.DialogPreference;
 
 import com.bouzidi.prayertimes.R;
+import com.bouzidi.prayertimes.utils.Constants;
 
 import java.text.DecimalFormat;
 
@@ -21,26 +22,26 @@ public class NumberPickerPreference extends DialogPreference {
     public NumberPickerPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
 
-        SharedPreferences sharedPreferences = context.getSharedPreferences("timing_adjustment", Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = context.getSharedPreferences(Constants.TIMING_ADJUSTMENT, Context.MODE_PRIVATE);
 
-        fajrTimingAdjustment = sharedPreferences.getInt("fajr_timing_adjustment", 0);
-        dohrTimingAdjustment = sharedPreferences.getInt("dohr_timing_adjustment", 0);
-        asrTimingAdjustment = sharedPreferences.getInt("asr_timing_adjustment", 0);
-        maghrebTimingAdjustment = sharedPreferences.getInt("maghreb_timing_adjustment", 0);
-        ichaTimingAdjustment = sharedPreferences.getInt("icha_timing_adjustment", 0);
+        fajrTimingAdjustment = sharedPreferences.getInt(Constants.FAJR_TIMING_ADJUSTMENT, 0);
+        dohrTimingAdjustment = sharedPreferences.getInt(Constants.DOHR_TIMING_ADJUSTMENT, 0);
+        asrTimingAdjustment = sharedPreferences.getInt(Constants.ASR_TIMING_ADJUSTMENT, 0);
+        maghrebTimingAdjustment = sharedPreferences.getInt(Constants.MAGHREB_TIMING_ADJUSTMENT, 0);
+        ichaTimingAdjustment = sharedPreferences.getInt(Constants.ICHA_TIMING_ADJUSTMENT, 0);
 
         updateSummary();
     }
 
     public void persist() {
-        SharedPreferences sharedPreferences = getContext().getSharedPreferences("timing_adjustment", Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences(Constants.TIMING_ADJUSTMENT, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        editor.putInt("fajr_timing_adjustment", fajrTimingAdjustment);
-        editor.putInt("dohr_timing_adjustment", dohrTimingAdjustment);
-        editor.putInt("asr_timing_adjustment", asrTimingAdjustment);
-        editor.putInt("maghreb_timing_adjustment", maghrebTimingAdjustment);
-        editor.putInt("icha_timing_adjustment", ichaTimingAdjustment);
+        editor.putInt(Constants.FAJR_TIMING_ADJUSTMENT, fajrTimingAdjustment);
+        editor.putInt(Constants.DOHR_TIMING_ADJUSTMENT, dohrTimingAdjustment);
+        editor.putInt(Constants.ASR_TIMING_ADJUSTMENT, asrTimingAdjustment);
+        editor.putInt(Constants.MAGHREB_TIMING_ADJUSTMENT, maghrebTimingAdjustment);
+        editor.putInt(Constants.ICHA_TIMING_ADJUSTMENT, ichaTimingAdjustment);
 
         editor.apply();
 

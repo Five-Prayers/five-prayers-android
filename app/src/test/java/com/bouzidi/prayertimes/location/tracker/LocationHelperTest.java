@@ -90,8 +90,8 @@ public class LocationHelperTest {
         PowerMockito.whenNew(GPSTracker.class).withArguments(mockContext).thenReturn(gpsTracker);
         PowerMockito.mockStatic(UserPreferencesUtils.class);
 
-        Mockito.when(UserPreferencesUtils.getDouble(sharedPrefs, "last_known_latitude", 0)).thenReturn(11.6);
-        Mockito.when(UserPreferencesUtils.getDouble(sharedPrefs, "last_known_longitude", 0)).thenReturn(13.65587);
+        Mockito.when(UserPreferencesUtils.getDouble(sharedPrefs, Constants.LAST_KNOWN_LATITUDE, 0)).thenReturn(11.6);
+        Mockito.when(UserPreferencesUtils.getDouble(sharedPrefs, Constants.LAST_KNOWN_LONGITUDE, 0)).thenReturn(13.65587);
 
 
         Single<Location> locationSingle = LocationHelper.getLocation(mockContext);
@@ -115,8 +115,8 @@ public class LocationHelperTest {
 
         Mockito.when(gpsTracker.canGetLocation()).thenReturn(false);
 
-        Mockito.when(UserPreferencesUtils.getDouble(sharedPrefs, "last_known_latitude", 0)).thenReturn(11.6);
-        Mockito.when(UserPreferencesUtils.getDouble(sharedPrefs, "last_known_longitude", 0)).thenReturn(13.65587);
+        Mockito.when(UserPreferencesUtils.getDouble(sharedPrefs, Constants.LAST_KNOWN_LATITUDE, 0)).thenReturn(11.6);
+        Mockito.when(UserPreferencesUtils.getDouble(sharedPrefs, Constants.LAST_KNOWN_LONGITUDE, 0)).thenReturn(13.65587);
 
         Single<Location> locationSingle = LocationHelper.getLocation(mockContext);
 
@@ -139,8 +139,8 @@ public class LocationHelperTest {
 
         Mockito.when(gpsTracker.canGetLocation()).thenReturn(false);
 
-        Mockito.when(UserPreferencesUtils.getDouble(sharedPrefs, "last_known_latitude", 0)).thenReturn(0.);
-        Mockito.when(UserPreferencesUtils.getDouble(sharedPrefs, "last_known_longitude", 0)).thenReturn(0.);
+        Mockito.when(UserPreferencesUtils.getDouble(sharedPrefs, Constants.LAST_KNOWN_LATITUDE, 0)).thenReturn(0.);
+        Mockito.when(UserPreferencesUtils.getDouble(sharedPrefs, Constants.LAST_KNOWN_LONGITUDE, 0)).thenReturn(0.);
 
         Single<Location> locationSingle = LocationHelper.getLocation(mockContext);
 

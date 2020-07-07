@@ -139,7 +139,7 @@ public class PrayerHelper {
 
     private static CalculationMethodEnum getCalculationMethod(Context context) {
         final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        String timingsCalculationMethodId = defaultSharedPreferences.getString("timings_calculation_method", String.valueOf(CalculationMethodEnum.getDefault()));
+        String timingsCalculationMethodId = defaultSharedPreferences.getString(Constants.TIMINGS_CALCULATION_METHOD_PREFERENCE, String.valueOf(CalculationMethodEnum.getDefault()));
 
         return CalculationMethodEnum.valueOf(timingsCalculationMethodId);
     }
@@ -160,12 +160,12 @@ public class PrayerHelper {
     private static int getHijriAdjustment(Context context) {
         final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
 
-        return defaultSharedPreferences.getInt("hijri_day_adjustment", 0);
+        return defaultSharedPreferences.getInt(Constants.HIJRI_DAY_ADJUSTMENT_PREFERENCE, 0);
     }
 
     private static int getLatitudeAdjustmentMethod(Context context) {
         final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        String latitudeAdjustmentMethod = defaultSharedPreferences.getString("timings_latitude_adjustment_method", "3");
+        String latitudeAdjustmentMethod = defaultSharedPreferences.getString(Constants.TIMINGS_LATITUDE_ADJUSTMENT_METHOD_PREFERENCE, "3");
         return Integer.parseInt(Objects.requireNonNull(latitudeAdjustmentMethod));
     }
 }

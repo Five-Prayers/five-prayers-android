@@ -23,6 +23,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.preference.PreferenceManagerFix;
 
 import com.bouzidi.prayertimes.R;
+import com.bouzidi.prayertimes.utils.Constants;
 
 import java.util.Locale;
 
@@ -180,7 +181,7 @@ public class CompassActivity extends AppCompatActivity {
             if (location != null) {
                 SharedPreferences defaultSharedPreferences = PreferenceManagerFix.getDefaultSharedPreferences(this);
                 strYourLocation = getResources().getString(R.string.your_location) + " " +
-                        defaultSharedPreferences.getString("location_edit_text_preference", "");
+                        defaultSharedPreferences.getString(Constants.LOCATION_PREFERENCE, "");
             } else
                 strYourLocation = getResources().getString(R.string.unable_to_get_your_location);
             tvYourLocation.setText(strYourLocation);

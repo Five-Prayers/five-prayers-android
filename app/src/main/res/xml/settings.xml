@@ -7,15 +7,15 @@
         android:title="@string/title_location_preference_section">
 
         <CheckBoxPreference
-            android:key="location_set_manually"
+            android:key="LOCATION_SET_MANUALLY_PREFERENCE"
             android:title="@string/title_checkbox_location_preference" />
 
         <com.bouzidi.prayertimes.ui.settings.location.AutoCompleteTextPreference
-            android:key="location_edit_text_preference"
+            android:key="LOCATION_PREFERENCE"
             android:title="@string/title_edit_text_location_preference"
             app:useSimpleSummaryProvider="true"
             android:dialogTitle="@string/dialog_title_edit_text_location_preference"
-            android:dependency="location_set_manually" />
+            android:dependency="LOCATION_SET_MANUALLY_PREFERENCE" />
     </PreferenceCategory>
 
     <PreferenceCategory
@@ -23,7 +23,7 @@
         >
 
         <com.bouzidi.prayertimes.ui.settings.method.CalculationMethodPreference
-            android:key="timings_calculation_method"
+            android:key="TIMINGS_CALCULATION_METHOD_PREFERENCE"
             android:title="@string/title_list_preference"
             android:dialogTitle="@string/dialog_title_list_preference"
             android:entries="@array/entries_calculation_method_list_preference"
@@ -37,7 +37,7 @@
             android:dialogTitle="@string/dialog_title_edit_text_timing_adjustment_preference" />
 
         <ListPreference
-            android:key="timings_latitude_adjustment_method"
+            android:key="TIMINGS_LATITUDE_ADJUSTMENT_METHOD_PREFERENCE"
             android:title="@string/title_latitude_adjustment_method"
             android:dialogTitle="@string/dialog_title_latitude_adjustment_method"
             android:entries="@array/entries_latitude_adjustment_method_list_preference"
@@ -49,10 +49,8 @@
 
     <PreferenceCategory android:title="@string/calendar">
         <com.bouzidi.prayertimes.ui.settings.hijri.HijriDayAdjustmentPreference
-            android:key="hijri_day_adjustment"
+            android:key="HIJRI_DAY_ADJUSTMENT_PREFERENCE"
             android:title="@string/title_hijri_day_adjustment_preference"
             android:dialogTitle="@string/dialog_title_hijri_day_adjustment_preference" />
     </PreferenceCategory>
-
-
 </PreferenceScreen>

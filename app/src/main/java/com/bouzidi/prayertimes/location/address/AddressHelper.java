@@ -16,6 +16,7 @@ import com.bouzidi.prayertimes.network.NetworkUtil;
 import com.bouzidi.prayertimes.timings.calculations.CalculationMethodEnum;
 import com.bouzidi.prayertimes.timings.calculations.CalculationMethodHelper;
 import com.bouzidi.prayertimes.timings.calculations.CountryCalculationMethodHelper;
+import com.bouzidi.prayertimes.utils.Constants;
 import com.bouzidi.prayertimes.utils.UserPreferencesUtils;
 
 import org.jetbrains.annotations.NotNull;
@@ -36,7 +37,7 @@ public class AddressHelper {
                                                          final Context context) {
 
         final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        boolean locationSetManually = defaultSharedPreferences.getBoolean("location_set_manually", false);
+        boolean locationSetManually = defaultSharedPreferences.getBoolean(Constants.LOCATION_SET_MANUALLY_PREFERENCE, false);
 
         return Single.create(emitter -> {
             if (locationSetManually) {
@@ -79,23 +80,23 @@ public class AddressHelper {
     }
 
     public static void updateUserPreferences(Context context, Address address) {
-        final SharedPreferences sharedPreferences = context.getSharedPreferences("location", MODE_PRIVATE);
+        final SharedPreferences sharedPreferences = context.getSharedPreferences(Constants.LOCATION, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("last_known_locality", address.getLocality());
-        editor.putString("last_known_country", address.getCountryName());
-        editor.putString("last_known_country_code", address.getCountryCode());
-        editor.putString("last_known_state", address.getAddressLine(1));
+        editor.putString(Constants.LAST_KNOWN_LOCALITY, address.getLocality());
+        editor.putString(Constants.LAST_KNOWN_COUNTRY, address.getCountryName());
+        editor.putString(Constants.LAST_KNOWN_COUNTRY_CODE, address.getCountryCode());
+        editor.putString(Constants.LAST_KNOWN_STATE, address.getAddressLine(1));
 
-        UserPreferencesUtils.putDouble(editor, "last_known_latitude", address.getLatitude());
-        UserPreferencesUtils.putDouble(editor, "last_known_longitude", address.getLongitude());
+        UserPreferencesUtils.putDouble(editor, Constants.LAST_KNOWN_LATITUDE, address.getLatitude());
+        UserPreferencesUtils.putDouble(editor, Constants.LAST_KNOWN_LONGITUDE, address.getLongitude());
         editor.apply();
 
         CalculationMethodEnum calculationMethodByAddress = CountryCalculationMethodHelper.getCalculationMethodByAddress(address);
 
         final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor defaultEditor = defaultSharedPreferences.edit();
-        defaultEditor.putString("location_edit_text_preference", address.getLocality() + ", " + address.getCountryName());
-        defaultEditor.putString("timings_calculation_method", calculationMethodByAddress.toString());
+        defaultEditor.putString(Constants.LOCATION_PREFERENCE, address.getLocality() + ", " + address.getCountryName());
+        defaultEditor.putString(Constants.TIMINGS_CALCULATION_METHOD_PREFERENCE, calculationMethodByAddress.toString());
         defaultEditor.apply();
 
         CalculationMethodHelper.updateTimingAdjustmentPreference(calculationMethodByAddress.toString(), context);
@@ -137,11 +138,11 @@ public class AddressHelper {
 
     @NotNull
     private static Address getLastKnownAddress(Context context) {
-        final SharedPreferences sharedPreferences = context.getSharedPreferences("location", MODE_PRIVATE);
-        final String locality = sharedPreferences.getString("last_known_locality", null);
-        final String country = sharedPreferences.getString("last_known_country", null);
-        final double latitude = UserPreferencesUtils.getDouble(sharedPreferences, "last_known_latitude", 0);
-        final double longitude = UserPreferencesUtils.getDouble(sharedPreferences, "last_known_longitude", 0);
+        final SharedPreferences sharedPreferences = context.getSharedPreferences(Constants.LOCATION, MODE_PRIVATE);
+        final String locality = sharedPreferences.getString(Constants.LAST_KNOWN_LOCALITY, null);
+        final String country = sharedPreferences.getString(Constants.LAST_KNOWN_COUNTRY, null);
+        final double latitude = UserPreferencesUtils.getDouble(sharedPreferences, Constants.LAST_KNOWN_LATITUDE, 0);
+        final double longitude = UserPreferencesUtils.getDouble(sharedPreferences, Constants.LAST_KNOWN_LONGITUDE, 0);
 
         Address address = new Address(Locale.getDefault());
         address.setCountryName(country);

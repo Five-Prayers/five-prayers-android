@@ -6,6 +6,7 @@ import android.location.Location;
 import android.util.Log;
 
 import com.bouzidi.prayertimes.exceptions.LocationException;
+import com.bouzidi.prayertimes.utils.Constants;
 import com.bouzidi.prayertimes.utils.UserPreferencesUtils;
 
 import org.jetbrains.annotations.NotNull;
@@ -17,10 +18,10 @@ import static android.content.Context.MODE_PRIVATE;
 public class LocationHelper {
 
     public static Single<Location> getLocation(final Context context) {
-        final SharedPreferences sharedPreferences = context.getSharedPreferences("location", MODE_PRIVATE);
+        final SharedPreferences sharedPreferences = context.getSharedPreferences(Constants.LOCATION, MODE_PRIVATE);
 
-        final double lastKnownLatitude = UserPreferencesUtils.getDouble(sharedPreferences, "last_known_latitude", 0);
-        final double lastKnownLongitude = UserPreferencesUtils.getDouble(sharedPreferences, "last_known_longitude", 0);
+        final double lastKnownLatitude = UserPreferencesUtils.getDouble(sharedPreferences, Constants.LAST_KNOWN_LATITUDE, 0);
+        final double lastKnownLongitude = UserPreferencesUtils.getDouble(sharedPreferences, Constants.LAST_KNOWN_LONGITUDE, 0);
 
         GPSTracker gpsTracker = new GPSTracker(context);
 

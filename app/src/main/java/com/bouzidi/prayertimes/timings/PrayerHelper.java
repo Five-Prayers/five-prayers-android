@@ -13,6 +13,7 @@ import com.bouzidi.prayertimes.timings.aladhan.AladhanCalendarResponse;
 import com.bouzidi.prayertimes.timings.aladhan.AladhanDate;
 import com.bouzidi.prayertimes.timings.aladhan.AladhanTodayTimingsResponse;
 import com.bouzidi.prayertimes.timings.calculations.CalculationMethodEnum;
+import com.bouzidi.prayertimes.timings.calculations.LatitudeAdjustmentMethod;
 import com.bouzidi.prayertimes.utils.Constants;
 import com.bouzidi.prayertimes.utils.TimingUtils;
 
@@ -20,7 +21,6 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.List;
-import java.util.Objects;
 
 import io.reactivex.rxjava3.core.Single;
 
@@ -165,7 +165,8 @@ public class PrayerHelper {
 
     private static int getLatitudeAdjustmentMethod(Context context) {
         final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        String latitudeAdjustmentMethod = defaultSharedPreferences.getString(Constants.TIMINGS_LATITUDE_ADJUSTMENT_METHOD_PREFERENCE, "3");
-        return Integer.parseInt(Objects.requireNonNull(latitudeAdjustmentMethod));
+        String latitudeAdjustmentMethod = defaultSharedPreferences.getString(Constants.TIMINGS_LATITUDE_ADJUSTMENT_METHOD_PREFERENCE, LatitudeAdjustmentMethod.getDefault().toString());
+
+        return LatitudeAdjustmentMethod.valueOf(latitudeAdjustmentMethod).getValue();
     }
 }

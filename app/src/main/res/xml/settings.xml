@@ -49,7 +49,7 @@
             android:entries="@array/entries_latitude_adjustment_method_list_preference"
             android:entryValues="@array/entryvalues_latitude_adjustment_method_list_preference"
             app:useSimpleSummaryProvider="true"
-            android:defaultValue="3"
+            android:defaultValue="ANGLE_BASED"
             android:dependency="CALCULATION_SET_MANUALLY_PREFERENCE" />
 
         <ListPreference

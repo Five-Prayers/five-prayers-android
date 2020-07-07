@@ -51,9 +51,9 @@
         <item>@string/latitude_adjustment_method_angle_based</item>
     </string-array>
     <string-array name="entryvalues_latitude_adjustment_method_list_preference">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
+        <item>MIDDLE_OF_THE_NIGHT</item>
+        <item>ONE_SEVENTH</item>
+        <item>ANGLE_BASED</item>
     </string-array>
 
     <string-array name="entries_school_adjustment_method_list_preference">

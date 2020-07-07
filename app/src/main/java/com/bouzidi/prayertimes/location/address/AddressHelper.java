@@ -1,33 +1,22 @@
 package com.bouzidi.prayertimes.location.address;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.util.Log;
 
-import androidx.preference.PreferenceManager;
-
 import com.bouzidi.prayertimes.exceptions.LocationException;
 import com.bouzidi.prayertimes.location.osm.NominatimAPIService;
 import com.bouzidi.prayertimes.location.osm.NominatimReverseGeocodeResponse;
 import com.bouzidi.prayertimes.network.NetworkUtil;
-import com.bouzidi.prayertimes.timings.calculations.CalculationMethodEnum;
-import com.bouzidi.prayertimes.timings.calculations.CalculationMethodHelper;
-import com.bouzidi.prayertimes.timings.calculations.CountryCalculationMethodHelper;
-import com.bouzidi.prayertimes.utils.Constants;
-import com.bouzidi.prayertimes.utils.UserPreferencesUtils;
-
-import org.jetbrains.annotations.NotNull;
+import com.bouzidi.prayertimes.preferences.PreferencesHelper;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
 import io.reactivex.rxjava3.core.Single;
-
-import static android.content.Context.MODE_PRIVATE;
 
 public class AddressHelper {
 
@@ -36,12 +25,9 @@ public class AddressHelper {
     public static Single<Address> getAddressFromLocation(final Location location,
                                                          final Context context) {
 
-        final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        boolean locationSetManually = defaultSharedPreferences.getBoolean(Constants.LOCATION_SET_MANUALLY_PREFERENCE, false);
-
         return Single.create(emitter -> {
-            if (locationSetManually) {
-                Address lastKnownAddress = getLastKnownAddress(context);
+            if (PreferencesHelper.isLocationSetManually(context)) {
+                Address lastKnownAddress = PreferencesHelper.getLastKnownAddress(context);
                 emitter.onSuccess(lastKnownAddress);
             } else if (location == null) {
                 Log.e(AddressHelper.class.getName(), "Location is null");
@@ -50,7 +36,7 @@ public class AddressHelper {
                 double latitude = location.getLatitude();
                 double longitude = location.getLongitude();
 
-                Address lastKnownAddress = getLastKnownAddress(context);
+                Address lastKnownAddress = PreferencesHelper.getLastKnownAddress(context);
 
                 if (!isAddressObsolete(lastKnownAddress, latitude, longitude)) {
                     emitter.onSuccess(lastKnownAddress);
@@ -79,36 +65,13 @@ public class AddressHelper {
         });
     }
 
-    public static void updateUserPreferences(Context context, Address address) {
-        final SharedPreferences sharedPreferences = context.getSharedPreferences(Constants.LOCATION, MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(Constants.LAST_KNOWN_LOCALITY, address.getLocality());
-        editor.putString(Constants.LAST_KNOWN_COUNTRY, address.getCountryName());
-        editor.putString(Constants.LAST_KNOWN_COUNTRY_CODE, address.getCountryCode());
-        editor.putString(Constants.LAST_KNOWN_STATE, address.getAddressLine(1));
-
-        UserPreferencesUtils.putDouble(editor, Constants.LAST_KNOWN_LATITUDE, address.getLatitude());
-        UserPreferencesUtils.putDouble(editor, Constants.LAST_KNOWN_LONGITUDE, address.getLongitude());
-        editor.apply();
-
-        CalculationMethodEnum calculationMethodByAddress = CountryCalculationMethodHelper.getCalculationMethodByAddress(address);
-
-        final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        SharedPreferences.Editor defaultEditor = defaultSharedPreferences.edit();
-        defaultEditor.putString(Constants.LOCATION_PREFERENCE, address.getLocality() + ", " + address.getCountryName());
-        defaultEditor.putString(Constants.TIMINGS_CALCULATION_METHOD_PREFERENCE, calculationMethodByAddress.toString());
-        defaultEditor.apply();
-
-        CalculationMethodHelper.updateTimingAdjustmentPreference(calculationMethodByAddress.toString(), context);
-    }
-
     private static Address getGeocoderAddresses(double latitude, double longitude, Context context) throws IOException {
         Geocoder geocoder = new Geocoder(context, Locale.getDefault());
         List<Address> addressList = geocoder.getFromLocation(latitude, longitude, 1);
 
         if (addressList != null && addressList.size() > 0) {
             Address address = addressList.get(0);
-            updateUserPreferences(context, address);
+            PreferencesHelper.updateAddressPreferences(context, address);
             return address;
         }
         return null;
@@ -129,28 +92,11 @@ public class AddressHelper {
             address.setLatitude(response.getLat());
             address.setLongitude(response.getLon());
 
-            updateUserPreferences(context, address);
+            PreferencesHelper.updateAddressPreferences(context, address);
 
             return address;
         }
         return null;
-    }
-
-    @NotNull
-    private static Address getLastKnownAddress(Context context) {
-        final SharedPreferences sharedPreferences = context.getSharedPreferences(Constants.LOCATION, MODE_PRIVATE);
-        final String locality = sharedPreferences.getString(Constants.LAST_KNOWN_LOCALITY, null);
-        final String country = sharedPreferences.getString(Constants.LAST_KNOWN_COUNTRY, null);
-        final double latitude = UserPreferencesUtils.getDouble(sharedPreferences, Constants.LAST_KNOWN_LATITUDE, 0);
-        final double longitude = UserPreferencesUtils.getDouble(sharedPreferences, Constants.LAST_KNOWN_LONGITUDE, 0);
-
-        Address address = new Address(Locale.getDefault());
-        address.setCountryName(country);
-        address.setLocality(locality);
-        address.setLatitude(latitude);
-        address.setLongitude(longitude);
-
-        return address;
     }
 
     private static boolean isAddressObsolete(Address lastKnownAddress, double latitude, double longitude) {

@@ -18,11 +18,11 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.preference.PreferenceDialogFragmentCompat;
 
 import com.bouzidi.prayertimes.location.SearchHelper;
-import com.bouzidi.prayertimes.location.address.AddressHelper;
 import com.bouzidi.prayertimes.location.osm.NominatimAPIService;
 import com.bouzidi.prayertimes.location.osm.NominatimAddress;
 import com.bouzidi.prayertimes.location.osm.NominatimReverseGeocodeResponse;
 import com.bouzidi.prayertimes.location.photon.Feature;
+import com.bouzidi.prayertimes.preferences.PreferencesHelper;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -161,12 +161,12 @@ public class AutoCompleteTextPreferenceDialog extends PreferenceDialogFragmentCo
                                     public void onSuccess(@NonNull NominatimReverseGeocodeResponse nominatimReverseGeocodeResponse) {
                                         NominatimAddress nominatimAddress = nominatimReverseGeocodeResponse.getAddress();
                                         selectedAddress.setCountryCode(nominatimAddress.getCountryCode());
-                                        AddressHelper.updateUserPreferences(context, selectedAddress);
+                                        PreferencesHelper.updateAddressPreferences(context, selectedAddress);
                                     }
 
                                     @Override
                                     public void onError(@NonNull Throwable e) {
-                                        AddressHelper.updateUserPreferences(context, selectedAddress);
+                                        PreferencesHelper.updateAddressPreferences(context, selectedAddress);
                                     }
                                 }));
             }

@@ -1,10 +1,7 @@
 package com.bouzidi.prayertimes.timings;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.util.Log;
-
-import androidx.preference.PreferenceManager;
 
 import com.bouzidi.prayertimes.database.PrayerRegistry;
 import com.bouzidi.prayertimes.exceptions.TimingsException;
@@ -13,10 +10,10 @@ import com.bouzidi.prayertimes.timings.aladhan.AladhanCalendarResponse;
 import com.bouzidi.prayertimes.timings.aladhan.AladhanDate;
 import com.bouzidi.prayertimes.timings.aladhan.AladhanTodayTimingsResponse;
 import com.bouzidi.prayertimes.timings.calculations.CalculationMethodEnum;
+import com.bouzidi.prayertimes.preferences.PreferencesHelper;
 import com.bouzidi.prayertimes.timings.calculations.LatitudeAdjustmentMethod;
 import com.bouzidi.prayertimes.timings.calculations.MidnightModeAdjustmentMethod;
 import com.bouzidi.prayertimes.timings.calculations.SchoolAdjustmentMethod;
-import com.bouzidi.prayertimes.utils.Constants;
 import com.bouzidi.prayertimes.utils.TimingUtils;
 
 import java.io.IOException;
@@ -32,12 +29,12 @@ public class PrayerHelper {
                                                      final String country,
                                                      final Context context) {
 
-        CalculationMethodEnum method = getCalculationMethod(context);
-        String tune = getTune(context);
-        LatitudeAdjustmentMethod latitudeAdjustmentMethod = getLatitudeAdjustmentMethod(context);
-        SchoolAdjustmentMethod schoolAdjustmentMethod = getSchoolAdjustmentMethod(context);
-        MidnightModeAdjustmentMethod midnightModeAdjustmentMethod = getMidnightModeAdjustmentMethod(context);
-        int hijriAdjustment = getHijriAdjustment(context);
+        CalculationMethodEnum method = PreferencesHelper.getCalculationMethod(context);
+        String tune = PreferencesHelper.getTune(context);
+        LatitudeAdjustmentMethod latitudeAdjustmentMethod = PreferencesHelper.getLatitudeAdjustmentMethod(context);
+        SchoolAdjustmentMethod schoolAdjustmentMethod = PreferencesHelper.getSchoolAdjustmentMethod(context);
+        MidnightModeAdjustmentMethod midnightModeAdjustmentMethod = PreferencesHelper.getMidnightModeAdjustmentMethod(context);
+        int hijriAdjustment = PreferencesHelper.getHijriAdjustment(context);
 
         final PrayerRegistry prayerRegistry = PrayerRegistry.getInstance(context);
 
@@ -58,7 +55,7 @@ public class PrayerHelper {
                     } else {
                         try {
                             AladhanAPIService aladhanAPIService = AladhanAPIService.getInstance();
-                            AladhanTodayTimingsResponse timingsByCity = aladhanAPIService.getTimingsByCity(LocalDateString, city, country, method, latitudeAdjustmentMethod,schoolAdjustmentMethod, midnightModeAdjustmentMethod, hijriAdjustment, tune, context);
+                            AladhanTodayTimingsResponse timingsByCity = aladhanAPIService.getTimingsByCity(LocalDateString, city, country, method, latitudeAdjustmentMethod, schoolAdjustmentMethod, midnightModeAdjustmentMethod, hijriAdjustment, tune, context);
                             prayerRegistry.savePrayerTiming(LocalDateString, city, country, method, latitudeAdjustmentMethod, schoolAdjustmentMethod, midnightModeAdjustmentMethod, hijriAdjustment, tune, timingsByCity.getData());
                             prayerTimings = prayerRegistry.getPrayerTimings(LocalDateString, city, country, method, latitudeAdjustmentMethod, schoolAdjustmentMethod, midnightModeAdjustmentMethod, hijriAdjustment, tune);
 
@@ -79,7 +76,7 @@ public class PrayerHelper {
                                                              final int year,
                                                              final Context context) {
 
-        int hijriAdjustment = getHijriAdjustment(context);
+        int hijriAdjustment = PreferencesHelper.getHijriAdjustment(context);
 
         return Single.create(emitter -> {
             Thread thread = new Thread(() -> {
@@ -102,12 +99,12 @@ public class PrayerHelper {
                                                             int month, int year,
                                                             final Context context) {
 
-        CalculationMethodEnum method = getCalculationMethod(context);
-        String tune = getTune(context);
-        LatitudeAdjustmentMethod latitudeAdjustmentMethod = getLatitudeAdjustmentMethod(context);
-        SchoolAdjustmentMethod schoolAdjustmentMethod = getSchoolAdjustmentMethod(context);
-        MidnightModeAdjustmentMethod midnightModeAdjustmentMethod = getMidnightModeAdjustmentMethod(context);
-        int hijriAdjustment = getHijriAdjustment(context);
+        CalculationMethodEnum method = PreferencesHelper.getCalculationMethod(context);
+        String tune = PreferencesHelper.getTune(context);
+        LatitudeAdjustmentMethod latitudeAdjustmentMethod = PreferencesHelper.getLatitudeAdjustmentMethod(context);
+        SchoolAdjustmentMethod schoolAdjustmentMethod = PreferencesHelper.getSchoolAdjustmentMethod(context);
+        MidnightModeAdjustmentMethod midnightModeAdjustmentMethod = PreferencesHelper.getMidnightModeAdjustmentMethod(context);
+        int hijriAdjustment = PreferencesHelper.getHijriAdjustment(context);
 
         final PrayerRegistry prayerRegistry = PrayerRegistry.getInstance(context);
 
@@ -126,7 +123,7 @@ public class PrayerHelper {
                     } else {
                         try {
                             AladhanAPIService aladhanAPIService = AladhanAPIService.getInstance();
-                            AladhanCalendarResponse calendarByCity = aladhanAPIService.getCalendarByCity(city, country, month, year, method, latitudeAdjustmentMethod, schoolAdjustmentMethod, midnightModeAdjustmentMethod,hijriAdjustment, tune, context);
+                            AladhanCalendarResponse calendarByCity = aladhanAPIService.getCalendarByCity(city, country, month, year, method, latitudeAdjustmentMethod, schoolAdjustmentMethod, midnightModeAdjustmentMethod, hijriAdjustment, tune, context);
                             prayerRegistry.saveCalendar(city, country, method, latitudeAdjustmentMethod, schoolAdjustmentMethod, midnightModeAdjustmentMethod, hijriAdjustment, tune, calendarByCity);
 
                             prayerCalendar = prayerRegistry.getPrayerCalendar(city, country, month, year, method, latitudeAdjustmentMethod, schoolAdjustmentMethod, midnightModeAdjustmentMethod, hijriAdjustment, tune);
@@ -141,51 +138,5 @@ public class PrayerHelper {
             });
             thread.start();
         });
-    }
-
-    private static CalculationMethodEnum getCalculationMethod(Context context) {
-        final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        String timingsCalculationMethodId = defaultSharedPreferences.getString(Constants.TIMINGS_CALCULATION_METHOD_PREFERENCE, String.valueOf(CalculationMethodEnum.getDefault()));
-
-        return CalculationMethodEnum.valueOf(timingsCalculationMethodId);
-    }
-
-    private static String getTune(Context context) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences(Constants.TIMING_ADJUSTMENT, Context.MODE_PRIVATE);
-
-        int fajrTimingAdjustment = sharedPreferences.getInt(Constants.FAJR_TIMING_ADJUSTMENT, 0);
-        int dohrTimingAdjustment = sharedPreferences.getInt(Constants.DOHR_TIMING_ADJUSTMENT, 0);
-        int asrTimingAdjustment = sharedPreferences.getInt(Constants.ASR_TIMING_ADJUSTMENT, 0);
-        int maghrebTimingAdjustment = sharedPreferences.getInt(Constants.MAGHREB_TIMING_ADJUSTMENT, 0);
-        int ichaTimingAdjustment = sharedPreferences.getInt(Constants.ICHA_TIMING_ADJUSTMENT, 0);
-
-        return fajrTimingAdjustment + "," + fajrTimingAdjustment + ",0," + dohrTimingAdjustment + "," + asrTimingAdjustment + "," + maghrebTimingAdjustment + ",0," + ichaTimingAdjustment + ",0";
-    }
-
-    private static int getHijriAdjustment(Context context) {
-        final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-
-        return defaultSharedPreferences.getInt(Constants.HIJRI_DAY_ADJUSTMENT_PREFERENCE, 0);
-    }
-
-    private static LatitudeAdjustmentMethod getLatitudeAdjustmentMethod(Context context) {
-        final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        String latitudeAdjustmentMethod = defaultSharedPreferences.getString(Constants.TIMINGS_LATITUDE_ADJUSTMENT_METHOD_PREFERENCE, LatitudeAdjustmentMethod.getDefault().toString());
-
-        return LatitudeAdjustmentMethod.valueOf(latitudeAdjustmentMethod);
-    }
-
-    private static SchoolAdjustmentMethod getSchoolAdjustmentMethod(Context context) {
-        final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        String schoolAdjustmentMethod = defaultSharedPreferences.getString(Constants.SCHOOL_ADJUSTMENT_METHOD_PREFERENCE, SchoolAdjustmentMethod.getDefault().toString());
-
-        return SchoolAdjustmentMethod.valueOf(schoolAdjustmentMethod);
-    }
-
-    private static MidnightModeAdjustmentMethod getMidnightModeAdjustmentMethod(Context context) {
-        final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        String midnightModeAdjustmentMethod = defaultSharedPreferences.getString(Constants.MIDNIGHT_MODE_ADJUSTMENT_METHOD_PREFERENCE, MidnightModeAdjustmentMethod.getDefault().toString());
-
-        return MidnightModeAdjustmentMethod.valueOf(midnightModeAdjustmentMethod);
     }
 }

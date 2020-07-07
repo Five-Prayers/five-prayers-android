@@ -15,8 +15,8 @@ import java.util.Locale;
 @RunWith(RobolectricTestRunner.class)
 @Config(maxSdk = 28)
 @PowerMockIgnore({"org.mockito.*", "org.robolectric.*", "android.*", "androidx.*"})
-@PrepareForTest({CountryCalculationMethodHelper.class})
-public class CountryCalculationMethodHelperTest {
+@PrepareForTest({CountryCalculationMethod.class})
+public class CountryPreferencesHelperTest {
 
     @Test
     public void getCalculationMethodByAddress_when_country_code_is_null() {
@@ -26,7 +26,7 @@ public class CountryCalculationMethodHelperTest {
         address.setLocality("Paris");
         address.setAddressLine(1, "Île-de-France");
 
-        Assertions.assertThat(CountryCalculationMethodHelper.getCalculationMethodByAddress(address))
+        Assertions.assertThat(CountryCalculationMethod.getCalculationMethodByAddress(address))
                 .isEqualTo(CalculationMethodEnum.getDefault());
     }
 
@@ -39,7 +39,7 @@ public class CountryCalculationMethodHelperTest {
         address.setAddressLine(1, "Île-de-France");
         address.setCountryCode("FR");
 
-        Assertions.assertThat(CountryCalculationMethodHelper.getCalculationMethodByAddress(address))
+        Assertions.assertThat(CountryCalculationMethod.getCalculationMethodByAddress(address))
                 .isEqualTo(CalculationMethodEnum.MOSQUEE_DE_PARIS_FRANCE);
     }
 
@@ -52,7 +52,7 @@ public class CountryCalculationMethodHelperTest {
         address.setAddressLine(1, "not_IDF");
         address.setCountryCode("FR");
 
-        Assertions.assertThat(CountryCalculationMethodHelper.getCalculationMethodByAddress(address))
+        Assertions.assertThat(CountryCalculationMethod.getCalculationMethodByAddress(address))
                 .isEqualTo(CalculationMethodEnum.UNION_ORGANIZATION_ISLAMIC_DE_FRANCE);
     }
 
@@ -64,7 +64,7 @@ public class CountryCalculationMethodHelperTest {
         address.setAddressLine(1, "not_IDF");
         address.setCountryCode("KK");
 
-        Assertions.assertThat(CountryCalculationMethodHelper.getCalculationMethodByAddress(address))
+        Assertions.assertThat(CountryCalculationMethod.getCalculationMethodByAddress(address))
                 .isEqualTo(CalculationMethodEnum.getDefault());
     }
 
@@ -76,7 +76,7 @@ public class CountryCalculationMethodHelperTest {
         address.setAddressLine(1, "not_IDF");
         address.setCountryCode("MA");
 
-        Assertions.assertThat(CountryCalculationMethodHelper.getCalculationMethodByAddress(address))
+        Assertions.assertThat(CountryCalculationMethod.getCalculationMethodByAddress(address))
                 .isEqualTo(CalculationMethodEnum.MOROCCAN_MINISTRY_OF_ISLAMIC_AFFAIRS);
     }
 
@@ -88,7 +88,7 @@ public class CountryCalculationMethodHelperTest {
         address.setAddressLine(1, "not_IDF");
         address.setCountryCode("TN");
 
-        Assertions.assertThat(CountryCalculationMethodHelper.getCalculationMethodByAddress(address))
+        Assertions.assertThat(CountryCalculationMethod.getCalculationMethodByAddress(address))
                 .isEqualTo(CalculationMethodEnum.TUNISIAN_MINISTRY_OF_RELIGIOUS_AFFAIRS);
     }
 
@@ -100,7 +100,7 @@ public class CountryCalculationMethodHelperTest {
         address.setAddressLine(1, "not_IDF");
         address.setCountryCode("DZ");
 
-        Assertions.assertThat(CountryCalculationMethodHelper.getCalculationMethodByAddress(address))
+        Assertions.assertThat(CountryCalculationMethod.getCalculationMethodByAddress(address))
                 .isEqualTo(CalculationMethodEnum.ALGERIAN_MINISTRY_OF_RELIGIOUS_AFFAIRS_AND_WAKFS);
     }
 }

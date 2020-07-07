@@ -5,7 +5,7 @@ import android.util.AttributeSet;
 
 import androidx.preference.ListPreference;
 
-import com.bouzidi.prayertimes.timings.calculations.CalculationMethodHelper;
+import com.bouzidi.prayertimes.preferences.PreferencesHelper;
 
 public class CalculationMethodPreference extends ListPreference {
 
@@ -13,7 +13,7 @@ public class CalculationMethodPreference extends ListPreference {
         super(context, attrs);
 
         OnPreferenceChangeListener onPreferenceChangeListener = (preference, newValue) -> {
-            CalculationMethodHelper.updateTimingAdjustmentPreference(String.valueOf(newValue), getContext());
+            PreferencesHelper.updateTimingAdjustmentPreference(String.valueOf(newValue), getContext());
             return true;
         };
 

@@ -6,11 +6,11 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CountryCalculationMethodHelper {
+public class CountryCalculationMethod {
 
     private static final Map<String, CalculationMethodEnum> CALCULATION_METHOD_BY_COUNTRY = createMap();
 
-    private CountryCalculationMethodHelper() {
+    private CountryCalculationMethod() {
     }
 
     private static Map<String, CalculationMethodEnum> createMap() {

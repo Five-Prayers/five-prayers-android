@@ -15,6 +15,8 @@ import com.bouzidi.prayertimes.timings.aladhan.AladhanDate;
 import com.bouzidi.prayertimes.timings.aladhan.AladhanTimings;
 import com.bouzidi.prayertimes.timings.calculations.CalculationMethodEnum;
 import com.bouzidi.prayertimes.timings.calculations.LatitudeAdjustmentMethod;
+import com.bouzidi.prayertimes.timings.calculations.MidnightModeAdjustmentMethod;
+import com.bouzidi.prayertimes.timings.calculations.SchoolAdjustmentMethod;
 import com.bouzidi.prayertimes.utils.TimingUtils;
 
 import java.time.LocalDateTime;
@@ -44,6 +46,8 @@ public class PrayerRegistry {
                                  String country,
                                  CalculationMethodEnum calculationMethod,
                                  LatitudeAdjustmentMethod latitudeAdjustmentMethod,
+                                 SchoolAdjustmentMethod schoolAdjustmentMethod,
+                                 MidnightModeAdjustmentMethod midnightModeAdjustmentMethod,
                                  int hijriAdjustment,
                                  String tune,
                                  AladhanData data) {
@@ -85,6 +89,8 @@ public class PrayerRegistry {
 
         values.put(PrayerModel.COLUMN_NAME_TIMINGS_TUNE, tune);
         values.put(PrayerModel.COLUMN_NAME_LATITUDE_ADJUSTMENT_METHOD, String.valueOf(latitudeAdjustmentMethod));
+        values.put(PrayerModel.COLUMN_NAME_SCHOOL_ADJUSTMENT__METHOD, String.valueOf(schoolAdjustmentMethod));
+        values.put(PrayerModel.COLUMN_NAME_MIDNIGHT_MODE_ADJUSTMENT_METHOD, String.valueOf(midnightModeAdjustmentMethod));
         values.put(PrayerModel.COLUMN_NAME_HIJRI_ADJUSTMENT, hijriAdjustment);
 
         values.put(PrayerModel.COLUMN_NAME_LATITUDE, data.getMeta().getLatitude());
@@ -97,6 +103,8 @@ public class PrayerRegistry {
     public DayPrayer getPrayerTimings(String dateString, String city, String country,
                                       CalculationMethodEnum calculationMethodEnum,
                                       LatitudeAdjustmentMethod latitudeAdjustmentMethod,
+                                      SchoolAdjustmentMethod schoolAdjustmentMethod,
+                                      MidnightModeAdjustmentMethod midnightModeAdjustmentMethod,
                                       int hijriAdjustment,
                                       String tune) {
 
@@ -109,6 +117,8 @@ public class PrayerRegistry {
                 " AND " + PrayerModel.COLUMN_NAME_COUNTRY + " = ?" +
                 " AND " + PrayerModel.COLUMN_NAME_CALCULATION_METHOD + " = ?" +
                 " AND " + PrayerModel.COLUMN_NAME_LATITUDE_ADJUSTMENT_METHOD + " = ?" +
+                " AND " + PrayerModel.COLUMN_NAME_SCHOOL_ADJUSTMENT__METHOD + " = ?" +
+                " AND " + PrayerModel.COLUMN_NAME_MIDNIGHT_MODE_ADJUSTMENT_METHOD + " = ?" +
                 " AND " + PrayerModel.COLUMN_NAME_HIJRI_ADJUSTMENT + " = ?" +
                 " AND " + PrayerModel.COLUMN_NAME_TIMINGS_TUNE + " = ?";
 
@@ -118,6 +128,8 @@ public class PrayerRegistry {
                 country,
                 String.valueOf(calculationMethodEnum),
                 String.valueOf(latitudeAdjustmentMethod),
+                String.valueOf(schoolAdjustmentMethod),
+                String.valueOf(midnightModeAdjustmentMethod),
                 String.valueOf(hijriAdjustment),
                 tune
         };
@@ -150,19 +162,26 @@ public class PrayerRegistry {
                              String country,
                              CalculationMethodEnum calculationMethod,
                              LatitudeAdjustmentMethod latitudeAdjustmentMethod,
+                             SchoolAdjustmentMethod schoolAdjustmentMethod,
+                             MidnightModeAdjustmentMethod midnightModeAdjustmentMethod,
                              int hijriAdjustment,
                              String tune,
                              AladhanCalendarResponse aladhanCalendarResponse
     ) {
 
         for (AladhanData aladhanData : aladhanCalendarResponse.getData()) {
-            savePrayerTiming(aladhanData.getDate().getGregorian().getDate(), city, country, calculationMethod, latitudeAdjustmentMethod, hijriAdjustment, tune, aladhanData);
+            savePrayerTiming(aladhanData.getDate().getGregorian().getDate(),
+                    city, country, calculationMethod, latitudeAdjustmentMethod,
+                    schoolAdjustmentMethod, midnightModeAdjustmentMethod,
+                    hijriAdjustment, tune, aladhanData);
         }
     }
 
     public List<DayPrayer> getPrayerCalendar(String city, String country, int monthNumber, int year,
                                              CalculationMethodEnum calculationMethodEnum,
                                              LatitudeAdjustmentMethod latitudeAdjustmentMethod,
+                                             SchoolAdjustmentMethod schoolAdjustmentMethod,
+                                             MidnightModeAdjustmentMethod midnightModeAdjustmentMethod,
                                              int hijriAdjustment,
                                              String tune) {
 
@@ -177,6 +196,8 @@ public class PrayerRegistry {
                 " AND " + PrayerModel.COLUMN_NAME_COUNTRY + " = ?" +
                 " AND " + PrayerModel.COLUMN_NAME_CALCULATION_METHOD + " = ?" +
                 " AND " + PrayerModel.COLUMN_NAME_LATITUDE_ADJUSTMENT_METHOD + " = ?" +
+                " AND " + PrayerModel.COLUMN_NAME_SCHOOL_ADJUSTMENT__METHOD + " = ?" +
+                " AND " + PrayerModel.COLUMN_NAME_MIDNIGHT_MODE_ADJUSTMENT_METHOD + " = ?" +
                 " AND " + PrayerModel.COLUMN_NAME_HIJRI_ADJUSTMENT + " = ?" +
                 " AND " + PrayerModel.COLUMN_NAME_TIMINGS_TUNE + " = ?";
 
@@ -187,6 +208,8 @@ public class PrayerRegistry {
                 country,
                 String.valueOf(calculationMethodEnum),
                 String.valueOf(latitudeAdjustmentMethod),
+                String.valueOf(schoolAdjustmentMethod),
+                String.valueOf(midnightModeAdjustmentMethod),
                 String.valueOf(hijriAdjustment),
                 tune
         };

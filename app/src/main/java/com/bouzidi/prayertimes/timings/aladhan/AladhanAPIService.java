@@ -6,6 +6,8 @@ import android.util.Log;
 import com.bouzidi.prayertimes.network.NetworkUtil;
 import com.bouzidi.prayertimes.timings.calculations.CalculationMethodEnum;
 import com.bouzidi.prayertimes.timings.calculations.LatitudeAdjustmentMethod;
+import com.bouzidi.prayertimes.timings.calculations.MidnightModeAdjustmentMethod;
+import com.bouzidi.prayertimes.timings.calculations.SchoolAdjustmentMethod;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -47,7 +49,8 @@ public class AladhanAPIService {
                                                         final String country,
                                                         final CalculationMethodEnum method,
                                                         final LatitudeAdjustmentMethod latitudeAdjustmentMethod,
-                                                        final int adjustment,
+                                                        SchoolAdjustmentMethod schoolAdjustmentMethod,
+                                                        MidnightModeAdjustmentMethod midnightModeAdjustmentMethod, final int adjustment,
                                                         final String tune,
                                                         final Context context) throws IOException {
 
@@ -71,7 +74,12 @@ public class AladhanAPIService {
 
         Call<AladhanTodayTimingsResponse> call
                 = aladhanAPIResource
-                .getTimingsByCity(LocalDateString, city, country, method.getMethodId(), getMethodSettings(method), latitudeAdjustmentMethod.getValue(), adjustment, tune);
+                .getTimingsByCity(LocalDateString, city, country, method.getMethodId(),
+                        getMethodSettings(method),
+                        latitudeAdjustmentMethod.getValue(),
+                        schoolAdjustmentMethod.getValue(),
+                        midnightModeAdjustmentMethod.getValue(),
+                        adjustment, tune);
 
         return call.execute().body();
     }
@@ -80,6 +88,8 @@ public class AladhanAPIService {
                                                      final int month, final int year,
                                                      final CalculationMethodEnum method,
                                                      final LatitudeAdjustmentMethod latitudeAdjustmentMethod,
+                                                     SchoolAdjustmentMethod schoolAdjustmentMethod,
+                                                     MidnightModeAdjustmentMethod midnightModeAdjustmentMethod,
                                                      final int adjustment,
                                                      final String tune,
                                                      final Context context) throws IOException {
@@ -104,7 +114,13 @@ public class AladhanAPIService {
 
         Call<AladhanCalendarResponse> call
                 = aladhanAPIResource
-                .getCalendarByCity(city, country, month, year, false, method.getMethodId(), getMethodSettings(method), latitudeAdjustmentMethod.getValue(), adjustment, tune);
+                .getCalendarByCity(city, country, month, year, false, method.getMethodId(),
+                        getMethodSettings(method),
+                        latitudeAdjustmentMethod.getValue(),
+                        schoolAdjustmentMethod.getValue(),
+                        midnightModeAdjustmentMethod.getValue(),
+                        adjustment,
+                        tune);
 
         return call.execute().body();
     }

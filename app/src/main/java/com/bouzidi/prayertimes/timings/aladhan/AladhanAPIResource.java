@@ -14,6 +14,8 @@ public interface AladhanAPIResource {
                                                        @Query("method") int method,
                                                        @Query("methodSettings") String methodSettings,
                                                        @Query("latitudeAdjustmentMethod") int latitudeAdjustmentMethod,
+                                                       @Query("school") int school,
+                                                       @Query("midnightMode") int midnightMode,
                                                        @Query("adjustment") int adjustment,
                                                        @Query("tune") String tune);
 
@@ -24,6 +26,8 @@ public interface AladhanAPIResource {
                                                           @Query("method") int method,
                                                           @Query("methodSettings") String methodSettings,
                                                           @Query("latitudeAdjustmentMethod") int latitudeAdjustmentMethod,
+                                                          @Query("school") int school,
+                                                          @Query("midnightMode") int midnightMode,
                                                           @Query("adjustment") int adjustment,
                                                           @Query("tune") String tune
     );
@@ -37,6 +41,8 @@ public interface AladhanAPIResource {
                                                     @Query("method") int method,
                                                     @Query("methodSettings") String methodSettings,
                                                     @Query("latitudeAdjustmentMethod") int latitudeAdjustmentMethod,
+                                                    @Query("school") int school,
+                                                    @Query("midnightMode") int midnightMode,
                                                     @Query("adjustment") int adjustment,
                                                     @Query("tune") String tune
     );

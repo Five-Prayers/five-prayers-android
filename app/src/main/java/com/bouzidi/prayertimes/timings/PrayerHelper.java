@@ -32,7 +32,7 @@ public class PrayerHelper {
 
         CalculationMethodEnum method = getCalculationMethod(context);
         String tune = getTune(context);
-        int latitudeAdjustmentMethod = getLatitudeAdjustmentMethod(context);
+        LatitudeAdjustmentMethod latitudeAdjustmentMethod = getLatitudeAdjustmentMethod(context);
         int hijriAdjustment = getHijriAdjustment(context);
 
         final PrayerRegistry prayerRegistry = PrayerRegistry.getInstance(context);
@@ -100,7 +100,7 @@ public class PrayerHelper {
 
         CalculationMethodEnum method = getCalculationMethod(context);
         String tune = getTune(context);
-        int latitudeAdjustmentMethod = getLatitudeAdjustmentMethod(context);
+        LatitudeAdjustmentMethod latitudeAdjustmentMethod = getLatitudeAdjustmentMethod(context);
         int hijriAdjustment = getHijriAdjustment(context);
 
         final PrayerRegistry prayerRegistry = PrayerRegistry.getInstance(context);
@@ -156,17 +156,16 @@ public class PrayerHelper {
         return fajrTimingAdjustment + "," + fajrTimingAdjustment + ",0," + dohrTimingAdjustment + "," + asrTimingAdjustment + "," + maghrebTimingAdjustment + ",0," + ichaTimingAdjustment + ",0";
     }
 
-
     private static int getHijriAdjustment(Context context) {
         final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
 
         return defaultSharedPreferences.getInt(Constants.HIJRI_DAY_ADJUSTMENT_PREFERENCE, 0);
     }
 
-    private static int getLatitudeAdjustmentMethod(Context context) {
+    private static LatitudeAdjustmentMethod getLatitudeAdjustmentMethod(Context context) {
         final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         String latitudeAdjustmentMethod = defaultSharedPreferences.getString(Constants.TIMINGS_LATITUDE_ADJUSTMENT_METHOD_PREFERENCE, LatitudeAdjustmentMethod.getDefault().toString());
 
-        return LatitudeAdjustmentMethod.valueOf(latitudeAdjustmentMethod).getValue();
+        return LatitudeAdjustmentMethod.valueOf(latitudeAdjustmentMethod);
     }
 }

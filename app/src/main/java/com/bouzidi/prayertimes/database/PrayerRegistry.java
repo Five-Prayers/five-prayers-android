@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
-import com.bouzidi.prayertimes.timings.calculations.CalculationMethodEnum;
 import com.bouzidi.prayertimes.timings.ComplementaryTimingEnum;
 import com.bouzidi.prayertimes.timings.DayPrayer;
 import com.bouzidi.prayertimes.timings.PrayerEnum;
@@ -14,6 +13,8 @@ import com.bouzidi.prayertimes.timings.aladhan.AladhanCalendarResponse;
 import com.bouzidi.prayertimes.timings.aladhan.AladhanData;
 import com.bouzidi.prayertimes.timings.aladhan.AladhanDate;
 import com.bouzidi.prayertimes.timings.aladhan.AladhanTimings;
+import com.bouzidi.prayertimes.timings.calculations.CalculationMethodEnum;
+import com.bouzidi.prayertimes.timings.calculations.LatitudeAdjustmentMethod;
 import com.bouzidi.prayertimes.utils.TimingUtils;
 
 import java.time.LocalDateTime;
@@ -42,7 +43,7 @@ public class PrayerRegistry {
                                  String city,
                                  String country,
                                  CalculationMethodEnum calculationMethod,
-                                 int latitudeAdjustmentMethod,
+                                 LatitudeAdjustmentMethod latitudeAdjustmentMethod,
                                  int hijriAdjustment,
                                  String tune,
                                  AladhanData data) {
@@ -83,7 +84,7 @@ public class PrayerRegistry {
         values.put(PrayerModel.COLUMN_NAME_IMSAK_TIMING, aladhanTimings.getImsak());
 
         values.put(PrayerModel.COLUMN_NAME_TIMINGS_TUNE, tune);
-        values.put(PrayerModel.COLUMN_NAME_LATITUDE_ADJUSTMENT_METHOD, latitudeAdjustmentMethod);
+        values.put(PrayerModel.COLUMN_NAME_LATITUDE_ADJUSTMENT_METHOD, String.valueOf(latitudeAdjustmentMethod));
         values.put(PrayerModel.COLUMN_NAME_HIJRI_ADJUSTMENT, hijriAdjustment);
 
         values.put(PrayerModel.COLUMN_NAME_LATITUDE, data.getMeta().getLatitude());
@@ -95,7 +96,7 @@ public class PrayerRegistry {
 
     public DayPrayer getPrayerTimings(String dateString, String city, String country,
                                       CalculationMethodEnum calculationMethodEnum,
-                                      int latitudeAdjustmentMethod,
+                                      LatitudeAdjustmentMethod latitudeAdjustmentMethod,
                                       int hijriAdjustment,
                                       String tune) {
 
@@ -148,7 +149,7 @@ public class PrayerRegistry {
     public void saveCalendar(String city,
                              String country,
                              CalculationMethodEnum calculationMethod,
-                             int latitudeAdjustmentMethod,
+                             LatitudeAdjustmentMethod latitudeAdjustmentMethod,
                              int hijriAdjustment,
                              String tune,
                              AladhanCalendarResponse aladhanCalendarResponse
@@ -161,7 +162,7 @@ public class PrayerRegistry {
 
     public List<DayPrayer> getPrayerCalendar(String city, String country, int monthNumber, int year,
                                              CalculationMethodEnum calculationMethodEnum,
-                                             int latitudeAdjustmentMethod,
+                                             LatitudeAdjustmentMethod latitudeAdjustmentMethod,
                                              int hijriAdjustment,
                                              String tune) {
 

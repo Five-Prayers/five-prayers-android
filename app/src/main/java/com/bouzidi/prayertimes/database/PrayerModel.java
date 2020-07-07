@@ -66,7 +66,7 @@ class PrayerModel implements BaseColumns {
                     COLUMN_NAME_MIDNIGHT_TIMING + " TEXT," +
                     COLUMN_NAME_IMSAK_TIMING + " TEXT," +
                     COLUMN_NAME_TIMINGS_TUNE + " TEXT," +
-                    COLUMN_NAME_LATITUDE_ADJUSTMENT_METHOD + " INTEGER," +
+                    COLUMN_NAME_LATITUDE_ADJUSTMENT_METHOD + " TEXT," +
                     COLUMN_NAME_HIJRI_ADJUSTMENT + " INTEGER," +
                     " UNIQUE(" +
                     COLUMN_NAME_DATE + "," +

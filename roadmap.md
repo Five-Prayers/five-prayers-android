@@ -6,4 +6,3 @@ Feature
 - Improve notification design (add quran text).
 - manual location : add geocoder.
 - Add Holiday indication in home fragment
-- Add Splash screen

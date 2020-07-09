@@ -45,6 +45,24 @@ Five Prayers Android project aims to provide a private, anonymous and ads free e
 Therefore, the app does not collect any data without your consent. Five Prayers Android's privacy policy explains in detail what data is sent and stored when you send a crash report, 
 or a comment.
 
+## Translating
+
+Do you want to help Five Prayers Android becoming international ?
+Five Prayers Android currently supports [the following languages]( app/src/main/res).
+
+To add a new translation just add a pull request with a new `strings.xml` file inside a `values-xx` folder (where `xx` is a [two-letter ISO 639-1 language code](https://en.wikipedia.org/wiki/ISO_639-1)).
+
+An updated version of the English version translation is [available here](app/src/main/res/values/strings.xml).
+
+If a translation in your language is already available, please check it and eventually fix it (all the strings should be listed, not just a subset).
+
+## Contributing
+
+Feel free to open issues/pull requests to help me improve this project.
+
+When reporting a new Issue, make sure to attach Screenshots, Videos or GIFs of the problem you are reporting.
+When submitting a new PR, make sure tests are all green. Write new tests if necessary.
+
 ## License
 [![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](http://www.gnu.org/licenses/gpl-3.0.en.html)  
 

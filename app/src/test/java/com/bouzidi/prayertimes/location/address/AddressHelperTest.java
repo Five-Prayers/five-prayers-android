@@ -14,7 +14,7 @@ import com.bouzidi.prayertimes.location.osm.NominatimAPIService;
 import com.bouzidi.prayertimes.location.osm.NominatimAddress;
 import com.bouzidi.prayertimes.location.osm.NominatimReverseGeocodeResponse;
 import com.bouzidi.prayertimes.network.NetworkUtil;
-import com.bouzidi.prayertimes.utils.Constants;
+import com.bouzidi.prayertimes.preferences.Constants;
 import com.bouzidi.prayertimes.utils.UserPreferencesUtils;
 
 import org.junit.Before;

@@ -23,7 +23,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.preference.PreferenceManagerFix;
 
 import com.bouzidi.prayertimes.R;
-import com.bouzidi.prayertimes.utils.Constants;
+import com.bouzidi.prayertimes.preferences.Constants;
 
 import java.util.Locale;
 

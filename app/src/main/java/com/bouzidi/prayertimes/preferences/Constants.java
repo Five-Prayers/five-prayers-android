@@ -1,8 +1,9 @@
-package com.bouzidi.prayertimes.utils;
+package com.bouzidi.prayertimes.preferences;
 
 public class Constants {
 
     // Default
+    public static final String FIRST_LAUNCH = "FIRST_LAUNCH";
     public static final String LOCATION_SET_MANUALLY_PREFERENCE = "LOCATION_SET_MANUALLY_PREFERENCE";
     public static final String CALCULATION_SET_MANUALLY_PREFERENCE = "CALCULATION_SET_MANUALLY_PREFERENCE";
     public static final String LOCATION_PREFERENCE = "LOCATION_PREFERENCE";

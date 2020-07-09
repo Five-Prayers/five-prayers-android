@@ -16,7 +16,7 @@ import com.bouzidi.prayertimes.R;
 import com.bouzidi.prayertimes.timings.ComplementaryTimingEnum;
 import com.bouzidi.prayertimes.timings.DayPrayer;
 import com.bouzidi.prayertimes.timings.PrayerEnum;
-import com.bouzidi.prayertimes.utils.Constants;
+import com.bouzidi.prayertimes.preferences.Constants;
 import com.bouzidi.prayertimes.utils.TimingUtils;
 import com.bouzidi.prayertimes.utils.UiUtils;
 

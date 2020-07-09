@@ -20,7 +20,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.bouzidi.prayertimes.MainActivity;
+import com.bouzidi.prayertimes.ui.MainActivity;
 import com.bouzidi.prayertimes.R;
 import com.bouzidi.prayertimes.network.NetworkUtil;
 import com.bouzidi.prayertimes.notifier.NotifierService;

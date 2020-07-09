@@ -7,7 +7,7 @@ import android.util.AttributeSet;
 import androidx.preference.DialogPreference;
 
 import com.bouzidi.prayertimes.R;
-import com.bouzidi.prayertimes.utils.Constants;
+import com.bouzidi.prayertimes.preferences.Constants;
 
 import java.text.DecimalFormat;
 

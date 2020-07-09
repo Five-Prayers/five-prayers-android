@@ -14,7 +14,7 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.media.VolumeProviderCompat;
 
-import com.bouzidi.prayertimes.MainActivity;
+import com.bouzidi.prayertimes.ui.MainActivity;
 import com.bouzidi.prayertimes.R;
 
 import static android.content.Context.MODE_PRIVATE;

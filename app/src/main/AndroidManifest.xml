@@ -17,15 +17,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.splashscreen.SplashScreenActivity"
+        <activity
+            android:name=".Application"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
+        <activity android:name=".ui.appintro.IntroActivity" />
+        <activity android:name=".ui.splashscreen.SplashScreenActivity" />
+        <activity android:name=".ui.MainActivity" />
         <activity android:name=".ui.calendar.CalendarActivity" />
         <activity android:name=".ui.timingtable.TimingTableActivity" />
         <activity android:name=".ui.qibla.CompassActivity" />

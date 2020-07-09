@@ -6,7 +6,7 @@ import android.location.Location;
 import android.util.Log;
 
 import com.bouzidi.prayertimes.exceptions.LocationException;
-import com.bouzidi.prayertimes.utils.Constants;
+import com.bouzidi.prayertimes.preferences.Constants;
 import com.bouzidi.prayertimes.utils.UserPreferencesUtils;
 
 import org.jetbrains.annotations.NotNull;

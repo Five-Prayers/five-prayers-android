@@ -12,7 +12,6 @@ import com.bouzidi.prayertimes.timings.calculations.LatitudeAdjustmentMethod;
 import com.bouzidi.prayertimes.timings.calculations.MidnightModeAdjustmentMethod;
 import com.bouzidi.prayertimes.timings.calculations.SchoolAdjustmentMethod;
 import com.bouzidi.prayertimes.timings.calculations.TimingsTuneEnum;
-import com.bouzidi.prayertimes.utils.Constants;
 import com.bouzidi.prayertimes.utils.UserPreferencesUtils;
 
 import org.jetbrains.annotations.NotNull;
@@ -22,6 +21,19 @@ import java.util.Locale;
 import static android.content.Context.MODE_PRIVATE;
 
 public class PreferencesHelper {
+
+    public static void setFirstTimeLaunch(boolean isFirstTime, Context context) {
+        final SharedPreferences sharedPreferences = context.getSharedPreferences(Constants.LOCATION, MODE_PRIVATE);
+        SharedPreferences.Editor edit = sharedPreferences.edit();
+        edit.putBoolean(Constants.FIRST_LAUNCH, isFirstTime);
+
+        edit.apply();
+    }
+
+    public static boolean isFirstLaunch(Context context) {
+        final SharedPreferences sharedPreferences = context.getSharedPreferences(Constants.LOCATION, MODE_PRIVATE);
+        return sharedPreferences.getBoolean(Constants.FIRST_LAUNCH, true);
+    }
 
     public static CalculationMethodEnum getCalculationMethod(Context context) {
         final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);

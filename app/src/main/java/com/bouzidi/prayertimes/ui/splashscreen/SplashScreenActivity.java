@@ -25,6 +25,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 public class SplashScreenActivity extends AppCompatActivity {
 
     private CompositeDisposable compositeDisposable;
+    private final static int LOADING_TIME = 1200;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +34,7 @@ public class SplashScreenActivity extends AppCompatActivity {
 
         ProgressBar progressBar = (ProgressBar) findViewById(R.id.splash_progressbar);
         ObjectAnimator objectAnimator = ObjectAnimator.ofInt(progressBar, "progress", 100);
-        objectAnimator.setDuration(2000);
+        objectAnimator.setDuration(LOADING_TIME);
         objectAnimator.start();
 
         preloadTodayPrayerTimings(this);
@@ -42,7 +43,7 @@ public class SplashScreenActivity extends AppCompatActivity {
             @Override
             public void run() {
                 try {
-                    sleep(2000);
+                    sleep(1200);
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
                     finish();

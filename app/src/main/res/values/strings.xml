@@ -62,13 +62,6 @@
     <string name="FIFTH_DAY_OF_AL_Hajj">Al Hajj</string>
     <string name="SIXT_DAY_OF_AL_Hajj">Al Hajj</string>
 
-    <string name="adthan_notification_channel_id">ADHAN_CHANNEL_ID</string>
-    <string name="adthan_notification_channel_name">Adthan Timer</string>
-    <string name="adthan_notification_channel_description">Adthan Timer</string>
-
-    <string name="adthan_calls_shared_preferences">ADTHAN_CALLS</string>
-    <string name="adthan_call_enabled_key">_ADTHAN_CALL_ENABLED</string>
-
     <string name="hijri">Hijri</string>
     <string name="hijri_month_1">Mouharram</string>
     <string name="hijri_month_2">Safar</string>
@@ -151,4 +144,5 @@
     <string name="midnight_mode_adjustment_method_standard">Default (Mid Sunset to Sunrise)</string>
     <string name="midnight_mode_adjustment_method_jafari">Jafari (Mid Sunset to Fajr)</string>
     <string name="title_midnight_mode_adjustment_method">Midnight mode</string>
+    <string name="adthan_notification_title">It\'s time for praying</string>
 </resources>

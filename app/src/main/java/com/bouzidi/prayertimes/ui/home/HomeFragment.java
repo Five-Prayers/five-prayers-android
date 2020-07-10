@@ -23,6 +23,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.bouzidi.prayertimes.R;
 import com.bouzidi.prayertimes.network.NetworkUtil;
 import com.bouzidi.prayertimes.notifier.NotifierService;
+import com.bouzidi.prayertimes.preferences.PreferencesConstants;
 import com.bouzidi.prayertimes.timings.ComplementaryTimingEnum;
 import com.bouzidi.prayertimes.timings.DayPrayer;
 import com.bouzidi.prayertimes.timings.HijriHoliday;
@@ -94,8 +95,8 @@ public class HomeFragment extends Fragment {
         mainActivity = (MainActivity) getActivity();
         todayDate = LocalDateTime.now();
 
-        adhanCallsPreferences = mainActivity.getResources().getString(R.string.adthan_calls_shared_preferences);
-        adhanCallKeyPart = mainActivity.getResources().getString(R.string.adthan_call_enabled_key);
+        adhanCallsPreferences = PreferencesConstants.ADTHAN_CALLS_SHARED_PREFERENCES;
+        adhanCallKeyPart = PreferencesConstants.ADTHAN_CALL_ENABLED_KEY;
 
         HomeViewModel dashboardViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
 

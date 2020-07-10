@@ -13,6 +13,10 @@ public class PreferencesConstants {
     public static final String MIDNIGHT_MODE_ADJUSTMENT_METHOD_PREFERENCE = "MIDNIGHT_MODE_ADJUSTMENT_METHOD_PREFERENCE";
     public static final String HIJRI_DAY_ADJUSTMENT_PREFERENCE = "HIJRI_DAY_ADJUSTMENT_PREFERENCE";
 
+    // Adhan Call
+    public static final String ADTHAN_CALLS_SHARED_PREFERENCES = "ADTHAN_CALLS";
+    public static final String ADTHAN_CALL_ENABLED_KEY = "_ADTHAN_CALL_ENABLED";
+
     // Timings adjustment
     public static final String TIMING_ADJUSTMENT = "TIMING_ADJUSTMENT";
     public static final String FAJR_TIMING_ADJUSTMENT = "FAJR_TIMING_ADJUSTMENT";

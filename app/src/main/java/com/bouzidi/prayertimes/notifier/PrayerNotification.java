@@ -14,8 +14,9 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.media.VolumeProviderCompat;
 
-import com.bouzidi.prayertimes.ui.MainActivity;
 import com.bouzidi.prayertimes.R;
+import com.bouzidi.prayertimes.preferences.PreferencesConstants;
+import com.bouzidi.prayertimes.ui.MainActivity;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -26,9 +27,9 @@ class PrayerNotification {
 
     static void createNotificationChannel(Context context) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            CharSequence name = context.getString(R.string.adthan_notification_channel_name);
-            String description = context.getString(R.string.adthan_notification_channel_description);
-            String id = context.getString(R.string.adthan_notification_channel_id);
+            CharSequence name = NotifierConstants.ADTHAN_NOTIFICATION_CHANNEL_NAME;
+            String description = NotifierConstants.ADTHAN_NOTIFICATION_CHANNEL_DESCRIPTION;
+            String id = NotifierConstants.ADTHAN_NOTIFICATION_CHANNEL_ID;
             int importance = NotificationManager.IMPORTANCE_DEFAULT;
 
             NotificationChannel channel = new NotificationChannel(id, name, importance);
@@ -52,9 +53,9 @@ class PrayerNotification {
 
         PendingIntent pendingIntent = getNotificationIntent(context);
 
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "ADHAN_CHANNEL_ID")
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, NotifierConstants.ADTHAN_NOTIFICATION_CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_mosque_24dp)
-                .setContentTitle("Prayer Time !")
+                .setContentTitle(context.getString(R.string.adthan_notification_title))
                 .setAutoCancel(true)
                 .setDeleteIntent(createOnDismissedIntent(context, notificationId))
                 .setContentIntent(pendingIntent)
@@ -86,11 +87,10 @@ class PrayerNotification {
     }
 
     private static void setupAdhanCall(Context context, String prayerKey) {
-        String adhanCallsPreferences = context.getResources().getString(R.string.adthan_calls_shared_preferences);
-        String adhanCallKeyPart = context.getResources().getString(R.string.adthan_call_enabled_key);
+        String adhanCallKeyPart = PreferencesConstants.ADTHAN_CALL_ENABLED_KEY;
         String callPreferenceKey = prayerKey + adhanCallKeyPart;
 
-        final SharedPreferences sharedPreferences = context.getSharedPreferences(adhanCallsPreferences, MODE_PRIVATE);
+        final SharedPreferences sharedPreferences = context.getSharedPreferences(PreferencesConstants.ADTHAN_CALLS_SHARED_PREFERENCES, MODE_PRIVATE);
         boolean callEnabled = sharedPreferences.getBoolean(callPreferenceKey, true);
 
         if (callEnabled) {

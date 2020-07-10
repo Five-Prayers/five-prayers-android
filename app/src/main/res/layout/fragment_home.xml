@@ -66,12 +66,11 @@
                 android:drawableLeft="@drawable/ic_location_15"
                 android:fontFamily="sans-serif-condensed"
                 android:inputType="textCapSentences"
-                android:text="Salé"
+                android:text="Republic of the congo"
                 android:textColor="@color/stratos"
                 android:textSize="@dimen/text_smlarge"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/country_text_view"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="TextViewEdits" />
 

@@ -2,10 +2,12 @@ package com.bouzidi.prayertimes.ui.appintro;
 
 import android.Manifest;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import com.bouzidi.prayertimes.R;
 import com.bouzidi.prayertimes.preferences.PreferencesHelper;
 import com.bouzidi.prayertimes.ui.splashscreen.SplashScreenActivity;
 import com.github.appintro.AppIntro;
@@ -19,27 +21,46 @@ public class IntroActivity extends AppIntro {
         super.onCreate(savedInstanceState);
 
         addSlide(AppIntroFragment.newInstance(
-                "Welcome...",
-                "This is the first slide of the example"
+                getResources().getString(R.string.app_intro_frag_1_title),
+                getResources().getString(R.string.app_intro_frag_1_description),
+                R.drawable.ic_mosque_200dp,
+                0xFF17C5FF,
+                Color.WHITE,
+                Color.WHITE
         ));
 
         addSlide(AppIntroFragment.newInstance(
-                "...Let's get started!",
-                "In order to calculation prayer timing," +
-                        "this application need your permission to use your localisation capabilities"
+                getResources().getString(R.string.app_intro_frag_2_title),
+                getResources().getString(R.string.app_intro_frag_2_description),
+                R.drawable.ic_data_privacy_200dp,
+                0xFF17C5FF,
+                Color.WHITE,
+                Color.WHITE
+        ));
 
+
+        addSlide(AppIntroFragment.newInstance(
+                getResources().getString(R.string.app_intro_frag_3_title),
+                getResources().getString(R.string.app_intro_frag_3_description),
+                R.drawable.ic_yes_no_200dp,
+                0xFF17C5FF,
+                Color.WHITE,
+                Color.WHITE
         ));
 
         addSlide(AppIntroFragment.newInstance(
-                "...Let's get started!",
-                "The end !"
-
+                getResources().getString(R.string.app_intro_frag_4_title),
+                getResources().getString(R.string.app_intro_frag_4_description),
+                R.drawable.ic_hassan_mosque_20dp,
+                0xFF17C5FF,
+                Color.WHITE,
+                Color.WHITE
         ));
 
         String[] permissions = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION};
         askForPermissions(
                 permissions,
-                2,
+                3,
                 true);
 
 

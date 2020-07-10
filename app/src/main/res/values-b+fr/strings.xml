@@ -9,6 +9,22 @@
 
     <string name="last_update_time_key">last_update_time_key</string>
 
+    <!-- App Intro -->
+    <string name="app_intro_frag_1_title">Cinq Prières pour Android</string>
+    <string name="app_intro_frag_1_description">Un ensemble open source d\'outils islamiques, légers et sans publicité.</string>
+
+    <string name="app_intro_frag_2_title">Politique de confidentialité</string>
+    <string name="app_intro_frag_2_description">Le projet Cinq Prières pour Android vise à fournir un accès privé,
+        une expérience anonyme et sans publicité pour tous les utilisateurs. Par conséquent, l\'application ne collecte aucune donnée sans votre consentement.</string>
+
+    <string name="app_intro_frag_3_title">Nous avons besoin de votre autorisation</string>
+    <string name="app_intro_frag_3_description">Afin de calculer efficacement les horaires de prière,
+        cette application a besoin de votre autorisation pour utiliser les capacités de localisation de votre téléphone.</string>
+
+    <string name="app_intro_frag_4_title">Profitez-en !</string>
+    <string name="app_intro_frag_4_description">Cinq Prières pour Android présente de superbes fonctionnalités pour tous les utilisateurs,
+        comme: Horaires de prière dans le monde, différentes méthodes de calcul, notifications, lecture de l\'Adhan, direction de Qibla et plus encore …</string>
+
     <string name="SUNRISE">Chorouk</string>
     <string name="FAJR">As`Sobh (Fajr)</string>
     <string name="DHOHR">Ad`Dohr</string>

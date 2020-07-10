@@ -16,7 +16,7 @@ import com.bouzidi.prayertimes.R;
 import com.bouzidi.prayertimes.timings.ComplementaryTimingEnum;
 import com.bouzidi.prayertimes.timings.DayPrayer;
 import com.bouzidi.prayertimes.timings.PrayerEnum;
-import com.bouzidi.prayertimes.preferences.Constants;
+import com.bouzidi.prayertimes.preferences.PreferencesConstants;
 import com.bouzidi.prayertimes.utils.TimingUtils;
 import com.bouzidi.prayertimes.utils.UiUtils;
 
@@ -48,7 +48,7 @@ public class TimingTableActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timing_table);
 
-        SharedPreferences sharedPreferences = getSharedPreferences(Constants.LOCATION, MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences(PreferencesConstants.LOCATION, MODE_PRIVATE);
 
         TimingTableViewModel timingTableViewModel = new ViewModelProvider(this).get(TimingTableViewModel.class);
 
@@ -56,7 +56,7 @@ public class TimingTableActivity extends AppCompatActivity {
         toolbar.setNavigationIcon(ContextCompat.getDrawable(this, R.drawable.ic_arrow_back));
         toolbar.setNavigationOnClickListener(v -> finish());
 
-        String toolBarTitle = getString(R.string.calendar_view_title) + " " + sharedPreferences.getString(Constants.LAST_KNOWN_LOCALITY, "");
+        String toolBarTitle = getString(R.string.calendar_view_title) + " " + sharedPreferences.getString(PreferencesConstants.LAST_KNOWN_LOCALITY, "");
         ((Toolbar) findViewById(R.id.calendar_toolbar)).setTitle(toolBarTitle);
 
         tableView = findViewById(R.id.tableView);

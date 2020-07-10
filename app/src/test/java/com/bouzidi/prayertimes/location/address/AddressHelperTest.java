@@ -14,7 +14,7 @@ import com.bouzidi.prayertimes.location.osm.NominatimAPIService;
 import com.bouzidi.prayertimes.location.osm.NominatimAddress;
 import com.bouzidi.prayertimes.location.osm.NominatimReverseGeocodeResponse;
 import com.bouzidi.prayertimes.network.NetworkUtil;
-import com.bouzidi.prayertimes.preferences.Constants;
+import com.bouzidi.prayertimes.preferences.PreferencesConstants;
 import com.bouzidi.prayertimes.utils.UserPreferencesUtils;
 
 import org.junit.Before;
@@ -360,12 +360,12 @@ public class AddressHelperTest {
     public void getAddressFromLocation() throws Exception {
         //Given
         Context applicationContext = ApplicationProvider.getApplicationContext();
-        SharedPreferences sharedPreferences = applicationContext.getSharedPreferences(Constants.LOCATION, MODE_PRIVATE);
+        SharedPreferences sharedPreferences = applicationContext.getSharedPreferences(PreferencesConstants.LOCATION, MODE_PRIVATE);
         SharedPreferences.Editor edit = sharedPreferences.edit();
-        edit.putString(Constants.LAST_KNOWN_LOCALITY, "Colombes");
-        edit.putString(Constants.LAST_KNOWN_COUNTRY, "France");
-        UserPreferencesUtils.putDouble(edit, Constants.LAST_KNOWN_LATITUDE, 11.6);
-        UserPreferencesUtils.putDouble(edit, Constants.LAST_KNOWN_LONGITUDE, -13.65587);
+        edit.putString(PreferencesConstants.LAST_KNOWN_LOCALITY, "Colombes");
+        edit.putString(PreferencesConstants.LAST_KNOWN_COUNTRY, "France");
+        UserPreferencesUtils.putDouble(edit, PreferencesConstants.LAST_KNOWN_LATITUDE, 11.6);
+        UserPreferencesUtils.putDouble(edit, PreferencesConstants.LAST_KNOWN_LONGITUDE, -13.65587);
         edit.commit();
 
         //When
@@ -450,11 +450,11 @@ public class AddressHelperTest {
                 .invokeMethod(new AddressHelper(),
                         "getNominatimAddress", 51.508515, -0.1254872, applicationContext);
 
-        SharedPreferences sharedPreferences = applicationContext.getSharedPreferences(Constants.LOCATION, MODE_PRIVATE);
-        String lastKnownCountry = sharedPreferences.getString(Constants.LAST_KNOWN_COUNTRY, null);
-        String lastKnownLocality = sharedPreferences.getString(Constants.LAST_KNOWN_LOCALITY, null);
-        double lastKnownLatitude = UserPreferencesUtils.getDouble(sharedPreferences, Constants.LAST_KNOWN_LATITUDE, 0);
-        double lastKnownLongitude = UserPreferencesUtils.getDouble(sharedPreferences, Constants.LAST_KNOWN_LONGITUDE, 0);
+        SharedPreferences sharedPreferences = applicationContext.getSharedPreferences(PreferencesConstants.LOCATION, MODE_PRIVATE);
+        String lastKnownCountry = sharedPreferences.getString(PreferencesConstants.LAST_KNOWN_COUNTRY, null);
+        String lastKnownLocality = sharedPreferences.getString(PreferencesConstants.LAST_KNOWN_LOCALITY, null);
+        double lastKnownLatitude = UserPreferencesUtils.getDouble(sharedPreferences, PreferencesConstants.LAST_KNOWN_LATITUDE, 0);
+        double lastKnownLongitude = UserPreferencesUtils.getDouble(sharedPreferences, PreferencesConstants.LAST_KNOWN_LONGITUDE, 0);
 
         //Then
         assertNotNull(result);
@@ -505,11 +505,11 @@ public class AddressHelperTest {
                         "getGeocoderAddresses", 51.508515, -0.1254872, applicationContext);
 
 
-        SharedPreferences sharedPreferences = applicationContext.getSharedPreferences(Constants.LOCATION, MODE_PRIVATE);
-        String lastKnownCountry = sharedPreferences.getString(Constants.LAST_KNOWN_COUNTRY, null);
-        String lastKnownLocality = sharedPreferences.getString(Constants.LAST_KNOWN_LOCALITY, null);
-        double lastKnownLatitude = UserPreferencesUtils.getDouble(sharedPreferences, Constants.LAST_KNOWN_LATITUDE, 0);
-        double lastKnownLongitude = UserPreferencesUtils.getDouble(sharedPreferences, Constants.LAST_KNOWN_LONGITUDE, 0);
+        SharedPreferences sharedPreferences = applicationContext.getSharedPreferences(PreferencesConstants.LOCATION, MODE_PRIVATE);
+        String lastKnownCountry = sharedPreferences.getString(PreferencesConstants.LAST_KNOWN_COUNTRY, null);
+        String lastKnownLocality = sharedPreferences.getString(PreferencesConstants.LAST_KNOWN_LOCALITY, null);
+        double lastKnownLatitude = UserPreferencesUtils.getDouble(sharedPreferences, PreferencesConstants.LAST_KNOWN_LATITUDE, 0);
+        double lastKnownLongitude = UserPreferencesUtils.getDouble(sharedPreferences, PreferencesConstants.LAST_KNOWN_LONGITUDE, 0);
 
         //Then
         assertNotNull(result);

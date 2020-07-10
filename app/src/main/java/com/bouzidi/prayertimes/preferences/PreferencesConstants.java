@@ -1,6 +1,6 @@
 package com.bouzidi.prayertimes.preferences;
 
-public class Constants {
+public class PreferencesConstants {
 
     // Default
     public static final String FIRST_LAUNCH = "FIRST_LAUNCH";

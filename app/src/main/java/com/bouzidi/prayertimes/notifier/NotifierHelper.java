@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 
+import androidx.annotation.NonNull;
+
 import com.bouzidi.prayertimes.timings.DayPrayer;
 import com.bouzidi.prayertimes.timings.PrayerEnum;
 import com.bouzidi.prayertimes.utils.TimingUtils;
@@ -17,7 +19,7 @@ import static android.app.PendingIntent.FLAG_UPDATE_CURRENT;
 
 public class NotifierHelper {
 
-    public static void scheduleNextPrayerAlarms(Context context, DayPrayer dayPrayer) {
+    public static void scheduleNextPrayerAlarms(Context context, @NonNull DayPrayer dayPrayer) {
         Map<PrayerEnum, LocalDateTime> timings = dayPrayer.getTimings();
 
         int index = 0;

@@ -12,9 +12,10 @@ public class NotifierService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        DayPrayer dayPrayer = (DayPrayer) intent.getSerializableExtra("dayPrayer");
-        NotifierHelper.scheduleNextPrayerAlarms(getApplicationContext(), Objects.requireNonNull(dayPrayer));
-
+        if (intent != null) {
+            DayPrayer dayPrayer = (DayPrayer) intent.getSerializableExtra("dayPrayer");
+            NotifierHelper.scheduleNextPrayerAlarms(getApplicationContext(), Objects.requireNonNull(dayPrayer));
+        }
         return super.onStartCommand(intent, flags, startId);
     }
 

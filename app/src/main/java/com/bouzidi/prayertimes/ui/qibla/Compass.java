@@ -109,7 +109,7 @@ public class Compass implements SensorEventListener {
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
-        if (accuracy <= SensorManager.SENSOR_STATUS_ACCURACY_LOW && !dialogDismissed) {
+        if (accuracy <= SensorManager.SENSOR_STATUS_ACCURACY_MEDIUM && !dialogDismissed) {
             calibratingDialog.show();
         }
         calibratingDialog.hide();

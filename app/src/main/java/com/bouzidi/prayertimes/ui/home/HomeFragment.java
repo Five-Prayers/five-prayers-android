@@ -20,14 +20,15 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.bouzidi.prayertimes.ui.MainActivity;
 import com.bouzidi.prayertimes.R;
 import com.bouzidi.prayertimes.network.NetworkUtil;
 import com.bouzidi.prayertimes.notifier.NotifierService;
 import com.bouzidi.prayertimes.timings.ComplementaryTimingEnum;
 import com.bouzidi.prayertimes.timings.DayPrayer;
+import com.bouzidi.prayertimes.timings.HijriHoliday;
 import com.bouzidi.prayertimes.timings.PrayerEnum;
 import com.bouzidi.prayertimes.ui.AlertHelper;
+import com.bouzidi.prayertimes.ui.MainActivity;
 import com.bouzidi.prayertimes.ui.clock.ClockView;
 import com.bouzidi.prayertimes.utils.PrayerUtils;
 import com.bouzidi.prayertimes.utils.TimingUtils;
@@ -56,6 +57,7 @@ public class HomeFragment extends Fragment {
     private TextView countryTextView;
     private TextView locationTextView;
     private TextView hijriTextView;
+    private TextView holidayIndicatorTextView;
     private TextView gregorianTextView;
     private TextView prayerNametextView;
     private TextView prayerTimetextView;
@@ -108,8 +110,8 @@ public class HomeFragment extends Fragment {
         });
 
         dashboardViewModel.getDayPrayers().observe(getViewLifecycleOwner(), dayPrayer -> {
-            updateNextPrayerViews(dayPrayer);
             updateDatesTextViews(dayPrayer);
+            updateNextPrayerViews(dayPrayer);
             updateTimingsTextViews(dayPrayer);
             startNotifierService(dayPrayer);
 
@@ -143,6 +145,7 @@ public class HomeFragment extends Fragment {
         countryTextView = rootView.findViewById(R.id.country_text_view);
         hijriTextView = rootView.findViewById(R.id.hijriTextView);
         gregorianTextView = rootView.findViewById(R.id.gregorianTextView);
+        holidayIndicatorTextView = rootView.findViewById(R.id.holiday_indicator_text_view);
         prayerNametextView = rootView.findViewById(R.id.prayerNametextView);
         prayerTimetextView = rootView.findViewById(R.id.prayerTimetextView);
         timeRemainingTextView = rootView.findViewById(R.id.timeRemainingTextView);
@@ -249,6 +252,8 @@ public class HomeFragment extends Fragment {
     }
 
     private void updateDatesTextViews(DayPrayer dayPrayer) {
+        holidayIndicatorTextView.setVisibility(View.INVISIBLE);
+
         String hijriMonth = mainActivity.getResources().getString(
                 getResources().getIdentifier("hijri_month_" + dayPrayer.getHijriMonthNumber(), "string", mainActivity.getPackageName()));
 
@@ -268,6 +273,16 @@ public class HomeFragment extends Fragment {
         String country = dayPrayer.getCountry() + " (" + timezone + ")";
         countryTextView.setText(StringUtils.capitalize(country));
         locationTextView.setText(StringUtils.capitalize(locationText));
+
+        HijriHoliday holiday = HijriHoliday.getHoliday(dayPrayer.getHijriDay(), dayPrayer.getHijriMonthNumber());
+
+        if (holiday != null) {
+            String holidayName = getResources().getString(
+                    getResources().getIdentifier(holiday.toString(), "string", mainActivity.getPackageName()));
+
+            holidayIndicatorTextView.setText(holidayName);
+            holidayIndicatorTextView.setVisibility(View.VISIBLE);
+        }
     }
 
     private float getProgressBarPercentage(long timeRemaining, long timeBetween) {

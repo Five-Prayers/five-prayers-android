@@ -131,13 +131,14 @@
                 android:id="@+id/hijriTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
                 android:fontFamily="sans-serif-condensed"
                 android:text="22 Safar, 1438"
                 android:textColor="@color/textSecondary"
                 android:textSize="@dimen/text_large"
                 android:textStyle="normal"
-                app:layout_constraintEnd_toEndOf="@+id/gregorianTextView"
-                app:layout_constraintStart_toStartOf="@+id/gregorianTextView"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/gregorianTextView" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -222,7 +223,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.45">
+                app:layout_constraintVertical_bias="0.48000002">
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -235,7 +236,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/dohr_clock_view"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/datesConstraintLayout"
-                app:layout_constraintVertical_bias="0.20999998" />
+                app:layout_constraintVertical_bias="0.18" />
 
             <com.bouzidi.prayertimes.ui.clock.ClockView
                 android:id="@+id/dohr_clock_view"
@@ -245,7 +246,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/farj_clock_view"
                 app:layout_constraintTop_toBottomOf="@+id/datesConstraintLayout"
-                app:layout_constraintVertical_bias="0.20999998" />
+                app:layout_constraintVertical_bias="0.18" />
 
             <com.bouzidi.prayertimes.ui.clock.ClockView
                 android:id="@+id/asr_clock_view"
@@ -491,6 +492,23 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/holiday_indicator_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:drawableStart="@drawable/ic_celebration_24dp"
+                android:drawableLeft="@drawable/ic_celebration_24dp"
+                android:text="1st Day Of Ramadan"
+                android:textColor="@color/flirt"
+                android:textSize="@dimen/text_large"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/nextPrayerConstraintLayout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </com.faltenreich.skeletonlayout.SkeletonLayout>

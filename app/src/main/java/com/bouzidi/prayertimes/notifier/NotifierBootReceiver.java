@@ -23,7 +23,7 @@ public class NotifierBootReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        if (Objects.equals(intent.getAction(), "android.intent.action.BOOT_COMPLETED")) {
+        if (intent != null && Objects.equals(intent.getAction(), "android.intent.action.BOOT_COMPLETED")) {
 
             CompositeDisposable disposable = new CompositeDisposable();
             disposable.add(

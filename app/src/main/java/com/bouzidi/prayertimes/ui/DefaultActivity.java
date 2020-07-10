@@ -1,4 +1,4 @@
-package com.bouzidi.prayertimes;
+package com.bouzidi.prayertimes.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,7 +9,7 @@ import com.bouzidi.prayertimes.preferences.PreferencesHelper;
 import com.bouzidi.prayertimes.ui.appintro.IntroActivity;
 import com.bouzidi.prayertimes.ui.splashscreen.SplashScreenActivity;
 
-public class Application extends AppCompatActivity {
+public class DefaultActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

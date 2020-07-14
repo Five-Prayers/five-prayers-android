@@ -47,13 +47,11 @@ public class LocationHelper {
 
                 emitter.onSuccess(lastKnownLocation);
 
-                Log.w(LocationHelper.class.getName(), "Location tracker not available, use last known location");
+                Log.w(LocationHelper.class.getName(), "Location tracker not available, using last known location");
             } else {
-                gpsTracker.showSettingsAlert();
-
-                emitter.onError(new LocationException("Unable to find location"));
-
-                Log.e(LocationHelper.class.getName(), "Location tracker not available, use last known location");
+                emitter.onError(new LocationException("Unable to find your location: " +
+                        "Please verify that location service is enabled on your phone or set your location manually in setting section"));
+                Log.e(LocationHelper.class.getName(), "Location tracker not available");
             }
         });
     }

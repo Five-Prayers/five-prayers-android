@@ -71,7 +71,7 @@ public class PrayerUpdaterTest {
 
         PowerMockito.when(LocationHelper.getLocation(mockContext)).thenReturn(Single.just(newLocation));
         PowerMockito.when(AddressHelper.getAddressFromLocation(newLocation, mockContext)).thenReturn(Single.just(lastKnownAddress));
-        PowerMockito.when(PrayerHelper.getTimingsByCity(any(), anyString(), anyString(), any())).thenReturn(Single.just(new DayPrayer()));
+        PowerMockito.when(PrayerHelper.getTimingsByCity(any(), any(), any())).thenReturn(Single.just(new DayPrayer()));
 
         PowerMockito.spy(NotifierHelper.class);
         PowerMockito
@@ -103,7 +103,7 @@ public class PrayerUpdaterTest {
 
         PowerMockito.when(LocationHelper.getLocation(mockContext)).thenReturn(Single.just(newLocation));
         PowerMockito.when(AddressHelper.getAddressFromLocation(newLocation, mockContext)).thenReturn(Single.just(lastKnownAddress));
-        PowerMockito.when(PrayerHelper.getTimingsByCity(any(), anyString(), anyString(), any())).thenReturn(Single.error(new Exception()));
+        PowerMockito.when(PrayerHelper.getTimingsByCity(any(), any(), any())).thenReturn(Single.error(new Exception()));
 
         PowerMockito.spy(NotifierHelper.class);
         PowerMockito
@@ -135,7 +135,7 @@ public class PrayerUpdaterTest {
 
         PowerMockito.when(LocationHelper.getLocation(mockContext)).thenReturn(Single.just(newLocation));
         PowerMockito.when(AddressHelper.getAddressFromLocation(newLocation, mockContext)).thenReturn(Single.just(lastKnownAddress));
-        PowerMockito.when(PrayerHelper.getTimingsByCity(any(), anyString(), anyString(), any())).thenReturn(Single.just(new DayPrayer()));
+        PowerMockito.when(PrayerHelper.getTimingsByCity(any(), any(), any())).thenReturn(Single.just(new DayPrayer()));
 
         PowerMockito.spy(NotifierHelper.class);
         PowerMockito

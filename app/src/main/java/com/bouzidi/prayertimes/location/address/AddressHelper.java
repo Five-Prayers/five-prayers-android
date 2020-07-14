@@ -87,7 +87,7 @@ public class AddressHelper {
             address.setCountryName(response.getAddress().getCountry());
             address.setCountryCode(response.getAddress().getCountryCode());
             address.setAddressLine(1, response.getAddress().getState());
-            address.setLocality(response.getAddress().getTown());
+            address.setLocality(response.getAddress().getLocality());
             address.setPostalCode(response.getAddress().getPostcode());
             address.setLatitude(response.getLat());
             address.setLongitude(response.getLon());

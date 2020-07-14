@@ -5,7 +5,9 @@ import com.google.gson.annotations.SerializedName;
 public class NominatimAddress {
 
     private String road;
+    private String village;
     private String town;
+    private String city;
     private String municipality;
     private String county;
     private String state;
@@ -77,5 +79,33 @@ public class NominatimAddress {
 
     public void setCountryCode(String countryCode) {
         this.countryCode = countryCode;
+    }
+
+    public String getVillage() {
+        return village;
+    }
+
+    public void setVillage(String village) {
+        this.village = village;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getLocality() {
+        if (village != null) {
+            return village;
+        } else if (town != null) {
+            return town;
+        } else if (city != null) {
+            return city;
+        } else {
+            return municipality;
+        }
     }
 }

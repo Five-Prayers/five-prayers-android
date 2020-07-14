@@ -64,8 +64,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                         ).flatMap(address ->
                         PrayerHelper.getTimingsByCity(
                                 LocalDate.now(),
-                                address.getLocality(),
-                                address.getCountryName(),
+                                address,
                                 context
                         ))
                         .subscribeOn(Schedulers.io())

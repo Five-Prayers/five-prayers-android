@@ -33,8 +33,7 @@ public class NotifierBootReceiver extends BroadcastReceiver {
                             ).flatMap(address ->
                             PrayerHelper.getTimingsByCity(
                                     LocalDate.now(),
-                                    address.getLocality(),
-                                    address.getCountryName(),
+                                    address,
                                     context
                             ))
                             .subscribeOn(Schedulers.io())

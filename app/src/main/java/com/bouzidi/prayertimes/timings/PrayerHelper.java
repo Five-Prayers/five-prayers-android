@@ -1,16 +1,17 @@
 package com.bouzidi.prayertimes.timings;
 
 import android.content.Context;
+import android.location.Address;
 import android.util.Log;
 
 import com.bouzidi.prayertimes.database.PrayerRegistry;
 import com.bouzidi.prayertimes.exceptions.TimingsException;
+import com.bouzidi.prayertimes.preferences.PreferencesHelper;
 import com.bouzidi.prayertimes.timings.aladhan.AladhanAPIService;
 import com.bouzidi.prayertimes.timings.aladhan.AladhanCalendarResponse;
 import com.bouzidi.prayertimes.timings.aladhan.AladhanDate;
 import com.bouzidi.prayertimes.timings.aladhan.AladhanTodayTimingsResponse;
 import com.bouzidi.prayertimes.timings.calculations.CalculationMethodEnum;
-import com.bouzidi.prayertimes.preferences.PreferencesHelper;
 import com.bouzidi.prayertimes.timings.calculations.LatitudeAdjustmentMethod;
 import com.bouzidi.prayertimes.timings.calculations.MidnightModeAdjustmentMethod;
 import com.bouzidi.prayertimes.timings.calculations.SchoolAdjustmentMethod;
@@ -25,8 +26,8 @@ import io.reactivex.rxjava3.core.Single;
 
 public class PrayerHelper {
 
-    public static Single<DayPrayer> getTimingsByCity(final LocalDate localDate, final String city,
-                                                     final String country,
+    public static Single<DayPrayer> getTimingsByCity(final LocalDate localDate,
+                                                     final Address address,
                                                      final Context context) {
 
         CalculationMethodEnum method = PreferencesHelper.getCalculationMethod(context);
@@ -43,21 +44,21 @@ public class PrayerHelper {
 
                 DayPrayer prayerTimings;
 
-                if (localDate == null || city == null || country == null) {
+                if (localDate == null || address == null) {
                     Log.e(PrayerHelper.class.getName(), "Cannot find timings with null attribute");
                     emitter.onError(new TimingsException("Cannot find timings with null attributes"));
                 } else {
                     String LocalDateString = TimingUtils.formatDateForAdhanAPI(localDate);
-                    prayerTimings = prayerRegistry.getPrayerTimings(LocalDateString, city, country, method, latitudeAdjustmentMethod, schoolAdjustmentMethod, midnightModeAdjustmentMethod, hijriAdjustment, tune);
+                    prayerTimings = prayerRegistry.getPrayerTimings(LocalDateString, address.getLocality(), address.getCountryName(), method, latitudeAdjustmentMethod, schoolAdjustmentMethod, midnightModeAdjustmentMethod, hijriAdjustment, tune);
 
                     if (prayerTimings != null) {
                         emitter.onSuccess(prayerTimings);
                     } else {
                         try {
                             AladhanAPIService aladhanAPIService = AladhanAPIService.getInstance();
-                            AladhanTodayTimingsResponse timingsByCity = aladhanAPIService.getTimingsByCity(LocalDateString, city, country, method, latitudeAdjustmentMethod, schoolAdjustmentMethod, midnightModeAdjustmentMethod, hijriAdjustment, tune, context);
-                            prayerRegistry.savePrayerTiming(LocalDateString, city, country, method, latitudeAdjustmentMethod, schoolAdjustmentMethod, midnightModeAdjustmentMethod, hijriAdjustment, tune, timingsByCity.getData());
-                            prayerTimings = prayerRegistry.getPrayerTimings(LocalDateString, city, country, method, latitudeAdjustmentMethod, schoolAdjustmentMethod, midnightModeAdjustmentMethod, hijriAdjustment, tune);
+                            AladhanTodayTimingsResponse timingsByCity = aladhanAPIService.getTimingsByLatLong(LocalDateString, address.getLatitude(), address.getLongitude(), method, latitudeAdjustmentMethod, schoolAdjustmentMethod, midnightModeAdjustmentMethod, hijriAdjustment, tune, context);
+                            prayerRegistry.savePrayerTiming(LocalDateString, address.getLocality(), address.getCountryName(), method, latitudeAdjustmentMethod, schoolAdjustmentMethod, midnightModeAdjustmentMethod, hijriAdjustment, tune, timingsByCity.getData());
+                            prayerTimings = prayerRegistry.getPrayerTimings(LocalDateString, address.getLocality(), address.getCountryName(), method, latitudeAdjustmentMethod, schoolAdjustmentMethod, midnightModeAdjustmentMethod, hijriAdjustment, tune);
 
                             emitter.onSuccess(prayerTimings);
 
@@ -95,9 +96,10 @@ public class PrayerHelper {
         });
     }
 
-    public static Single<List<DayPrayer>> getCalendarByCity(final String city, final String country,
-                                                            int month, int year,
-                                                            final Context context) {
+    public static Single<List<DayPrayer>> getCalendarByCity(
+            final Address address,
+            int month, int year,
+            final Context context) {
 
         CalculationMethodEnum method = PreferencesHelper.getCalculationMethod(context);
         String tune = PreferencesHelper.getTune(context);
@@ -112,21 +114,21 @@ public class PrayerHelper {
             Thread thread = new Thread(() -> {
                 List<DayPrayer> prayerCalendar;
 
-                if (city == null || country == null) {
+                if (address == null) {
                     Log.e(PrayerHelper.class.getName(), "Cannot find calendar with null attribute");
                     emitter.onError(new TimingsException("Cannot find calendar with null attributes"));
                 } else {
-                    prayerCalendar = prayerRegistry.getPrayerCalendar(city, country, month, year, method, latitudeAdjustmentMethod, schoolAdjustmentMethod, midnightModeAdjustmentMethod, hijriAdjustment, tune);
+                    prayerCalendar = prayerRegistry.getPrayerCalendar(address.getLocality(), address.getCountryName(), month, year, method, latitudeAdjustmentMethod, schoolAdjustmentMethod, midnightModeAdjustmentMethod, hijriAdjustment, tune);
 
                     if (prayerCalendar.size() == YearMonth.of(year, month).lengthOfMonth()) {
                         emitter.onSuccess(prayerCalendar);
                     } else {
                         try {
                             AladhanAPIService aladhanAPIService = AladhanAPIService.getInstance();
-                            AladhanCalendarResponse calendarByCity = aladhanAPIService.getCalendarByCity(city, country, month, year, method, latitudeAdjustmentMethod, schoolAdjustmentMethod, midnightModeAdjustmentMethod, hijriAdjustment, tune, context);
-                            prayerRegistry.saveCalendar(city, country, method, latitudeAdjustmentMethod, schoolAdjustmentMethod, midnightModeAdjustmentMethod, hijriAdjustment, tune, calendarByCity);
+                            AladhanCalendarResponse calendarByCity = aladhanAPIService.getCalendarByLatLong(address.getLatitude(), address.getLongitude(), month, year, method, latitudeAdjustmentMethod, schoolAdjustmentMethod, midnightModeAdjustmentMethod, hijriAdjustment, tune, context);
+                            prayerRegistry.saveCalendar(address.getLocality(), address.getCountryName(), method, latitudeAdjustmentMethod, schoolAdjustmentMethod, midnightModeAdjustmentMethod, hijriAdjustment, tune, calendarByCity);
 
-                            prayerCalendar = prayerRegistry.getPrayerCalendar(city, country, month, year, method, latitudeAdjustmentMethod, schoolAdjustmentMethod, midnightModeAdjustmentMethod, hijriAdjustment, tune);
+                            prayerCalendar = prayerRegistry.getPrayerCalendar(address.getLocality(), address.getCountryName(), month, year, method, latitudeAdjustmentMethod, schoolAdjustmentMethod, midnightModeAdjustmentMethod, hijriAdjustment, tune);
 
                             emitter.onSuccess(prayerCalendar);
                         } catch (IOException e) {

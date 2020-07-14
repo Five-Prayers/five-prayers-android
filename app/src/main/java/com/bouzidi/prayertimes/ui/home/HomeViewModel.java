@@ -64,8 +64,7 @@ public class HomeViewModel extends AndroidViewModel {
                         ).flatMap(address ->
                         PrayerHelper.getTimingsByCity(
                                 todayDate,
-                                address.getLocality(),
-                                address.getCountryName(),
+                                address,
                                 context
                         ))
                         .subscribeOn(Schedulers.io())

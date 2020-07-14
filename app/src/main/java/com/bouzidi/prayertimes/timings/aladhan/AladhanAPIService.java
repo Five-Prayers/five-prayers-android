@@ -45,14 +45,15 @@ public class AladhanAPIService {
         return aladhanAPIService;
     }
 
-    public AladhanTodayTimingsResponse getTimingsByCity(final String LocalDateString, final String city,
-                                                        final String country,
-                                                        final CalculationMethodEnum method,
-                                                        final LatitudeAdjustmentMethod latitudeAdjustmentMethod,
-                                                        SchoolAdjustmentMethod schoolAdjustmentMethod,
-                                                        MidnightModeAdjustmentMethod midnightModeAdjustmentMethod, final int adjustment,
-                                                        final String tune,
-                                                        final Context context) throws IOException {
+    public AladhanTodayTimingsResponse getTimingsByLatLong(final String LocalDateString,
+                                                           final double latitude,
+                                                           final double longitude,
+                                                           final CalculationMethodEnum method,
+                                                           final LatitudeAdjustmentMethod latitudeAdjustmentMethod,
+                                                           SchoolAdjustmentMethod schoolAdjustmentMethod,
+                                                           MidnightModeAdjustmentMethod midnightModeAdjustmentMethod, final int adjustment,
+                                                           final String tune,
+                                                           final Context context) throws IOException {
 
         final OkHttpClient.Builder httpClient =
                 new OkHttpClient.Builder()
@@ -74,7 +75,7 @@ public class AladhanAPIService {
 
         Call<AladhanTodayTimingsResponse> call
                 = aladhanAPIResource
-                .getTimingsByCity(LocalDateString, city, country, method.getMethodId(),
+                .getTimingsByLatLong(LocalDateString, latitude, longitude, method.getMethodId(),
                         getMethodSettings(method),
                         latitudeAdjustmentMethod.getValue(),
                         schoolAdjustmentMethod.getValue(),
@@ -84,15 +85,17 @@ public class AladhanAPIService {
         return call.execute().body();
     }
 
-    public AladhanCalendarResponse getCalendarByCity(final String city, final String country,
-                                                     final int month, final int year,
-                                                     final CalculationMethodEnum method,
-                                                     final LatitudeAdjustmentMethod latitudeAdjustmentMethod,
-                                                     SchoolAdjustmentMethod schoolAdjustmentMethod,
-                                                     MidnightModeAdjustmentMethod midnightModeAdjustmentMethod,
-                                                     final int adjustment,
-                                                     final String tune,
-                                                     final Context context) throws IOException {
+    public AladhanCalendarResponse getCalendarByLatLong(
+            final double latitude,
+            final double longitude,
+            final int month, final int year,
+            final CalculationMethodEnum method,
+            final LatitudeAdjustmentMethod latitudeAdjustmentMethod,
+            SchoolAdjustmentMethod schoolAdjustmentMethod,
+            MidnightModeAdjustmentMethod midnightModeAdjustmentMethod,
+            final int adjustment,
+            final String tune,
+            final Context context) throws IOException {
 
         final OkHttpClient.Builder httpClient =
                 new OkHttpClient.Builder()
@@ -114,7 +117,7 @@ public class AladhanAPIService {
 
         Call<AladhanCalendarResponse> call
                 = aladhanAPIResource
-                .getCalendarByCity(city, country, month, year, false, method.getMethodId(),
+                .getCalendarByLatLong(latitude, longitude, month, year, false, method.getMethodId(),
                         getMethodSettings(method),
                         latitudeAdjustmentMethod.getValue(),
                         schoolAdjustmentMethod.getValue(),

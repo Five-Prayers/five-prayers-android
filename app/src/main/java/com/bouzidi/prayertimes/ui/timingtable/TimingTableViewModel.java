@@ -55,8 +55,7 @@ public class TimingTableViewModel extends AndroidViewModel {
                                 AddressHelper.getAddressFromLocation(location, context)
                         ).flatMap(address ->
                         PrayerHelper.getCalendarByCity(
-                                address.getLocality(),
-                                address.getCountryName(),
+                                address,
                                 todayDate.getMonthValue(),
                                 todayDate.getYear(),
                                 context

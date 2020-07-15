@@ -17,7 +17,7 @@ import com.takisoft.preferencex.PreferenceFragmentCompat;
 
 public class SettingsFragment extends PreferenceFragmentCompat {
 
-    private static final String AUTO_COMPLETE_TEXT_DIALOG_FRAGMENT_TAG = "AutoCompleteTextDialogFragment";
+    private static final String DIALOG_FRAGMENT_TAG = "PreferencesDialogFragment";
 
     @Override
     public void onCreatePreferencesFix(@Nullable Bundle savedInstanceState, String rootKey) {
@@ -41,7 +41,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         if (dialogFragment != null) {
             dialogFragment.setTargetFragment(this, 0);
 
-            dialogFragment.show(getParentFragmentManager(), AUTO_COMPLETE_TEXT_DIALOG_FRAGMENT_TAG);
+            dialogFragment.show(getParentFragmentManager(), DIALOG_FRAGMENT_TAG);
         } else {
             super.onDisplayPreferenceDialog(preference);
         }

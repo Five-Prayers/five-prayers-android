@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.location.Location;
 import android.util.Log;
 
+import com.bouzidi.prayertimes.R;
 import com.bouzidi.prayertimes.exceptions.LocationException;
 import com.bouzidi.prayertimes.preferences.PreferencesConstants;
 import com.bouzidi.prayertimes.utils.UserPreferencesUtils;
@@ -30,34 +31,30 @@ public class LocationHelper {
                 Location newLocation = gpsTracker.getLocation();
 
                 if (newLocation != null) {
-                    emitter.onSuccess(newLocation);
-
                     Log.i(LocationHelper.class.getName(), "Get location from tracker");
+
+                    emitter.onSuccess(newLocation);
                 } else if (lastKnownLatitude > 0 && lastKnownLongitude > 0) {
-
-                    Location lastKnownLocation = getLocation(lastKnownLatitude, lastKnownLongitude);
-
-                    emitter.onSuccess(lastKnownLocation);
-
                     Log.w(LocationHelper.class.getName(), "Cannot get location from tracker, use last known location");
+
+                    Location lastKnownLocation = getLastKnownLocation(lastKnownLatitude, lastKnownLongitude);
+                    emitter.onSuccess(lastKnownLocation);
                 }
             } else if (lastKnownLatitude > 0 && lastKnownLongitude > 0) {
 
-                Location lastKnownLocation = getLocation(lastKnownLatitude, lastKnownLongitude);
-
+                Location lastKnownLocation = getLastKnownLocation(lastKnownLatitude, lastKnownLongitude);
                 emitter.onSuccess(lastKnownLocation);
 
                 Log.w(LocationHelper.class.getName(), "Location tracker not available, using last known location");
             } else {
-                emitter.onError(new LocationException("Unable to find your location: " +
-                        "Please verify that location service is enabled on your phone or set your location manually in setting section"));
+                emitter.onError(new LocationException(context.getResources().getString(R.string.location_service_unavailable)));
                 Log.e(LocationHelper.class.getName(), "Location tracker not available");
             }
         });
     }
 
     @NotNull
-    private static Location getLocation(double lastKnownLatitude, double lastKnownLongitude) {
+    private static Location getLastKnownLocation(double lastKnownLatitude, double lastKnownLongitude) {
         Location lastKnownLocation = new Location("");
         lastKnownLocation.setLatitude(lastKnownLatitude);
         lastKnownLocation.setLongitude(lastKnownLongitude);

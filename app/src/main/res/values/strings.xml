@@ -145,4 +145,9 @@
     <string name="midnight_mode_adjustment_method_jafari">Jafari (Mid Sunset to Fajr)</string>
     <string name="title_midnight_mode_adjustment_method">Midnight mode</string>
     <string name="adthan_notification_title">It\'s time for praying</string>
+
+<!--   Errors Messages    -->
+
+    <string name="location_service_unavailable">Unable to find your location: Please verify that location service is enabled on your phone or set your location manually in the settings section</string>
+
 </resources>

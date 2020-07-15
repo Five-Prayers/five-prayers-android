@@ -133,4 +133,9 @@
     <string name="midnight_mode_adjustment_method_jafari">Jafari (Mi-coucher du soleil à Al Fajr)</string>
     <string name="title_midnight_mode_adjustment_method">Calcul du minuit</string>
     <string name="adthan_notification_title">Il est temps de prier</string>
+
+    <!--   Errors Messages    -->
+
+    <string name="location_service_unavailable">Impossible de trouver votre position: veuillez vérifier que le service de localisation est activé sur votre téléphone ou définissez votre position manuellement dans la section des paramètres</string>
+
 </resources>

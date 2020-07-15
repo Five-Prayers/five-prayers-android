@@ -6,6 +6,7 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.util.Log;
 
+import com.bouzidi.prayertimes.R;
 import com.bouzidi.prayertimes.exceptions.LocationException;
 import com.bouzidi.prayertimes.location.osm.NominatimAPIService;
 import com.bouzidi.prayertimes.location.osm.NominatimReverseGeocodeResponse;
@@ -26,13 +27,11 @@ public class AddressHelper {
                                                          final Context context) {
 
         return Single.create(emitter -> {
-            if (PreferencesHelper.isLocationSetManually(context)) {
+            boolean locationSetManually = PreferencesHelper.isLocationSetManually(context);
+            if (locationSetManually) {
                 Address lastKnownAddress = PreferencesHelper.getLastKnownAddress(context);
                 emitter.onSuccess(lastKnownAddress);
-            } else if (location == null) {
-                Log.e(AddressHelper.class.getName(), "Location is null");
-                emitter.onError(new LocationException("Cannot get Address from null Location"));
-            } else {
+            } else if (location != null) {
                 double latitude = location.getLatitude();
                 double longitude = location.getLongitude();
 
@@ -52,15 +51,18 @@ public class AddressHelper {
                                 emitter.onSuccess(lastKnownAddress);
                             } else {
                                 Log.e(AddressHelper.class.getName(), "Unable connect to get address");
-                                emitter.onError(new LocationException("Unable connect to get address"));
+                                emitter.onError(new LocationException(context.getResources().getString(R.string.enable_to_reverse_geolocalisation)));
                             }
                         } catch (Exception e) {
                             Log.e(AddressHelper.class.getName(), "Unable connect to get address from API", e);
-                            emitter.onError(new LocationException("Unable connect to get address from API", e));
+                            emitter.onError(new LocationException(context.getResources().getString(R.string.enable_to_reverse_geolocalisation)));
                         }
                     });
                     thread.start();
                 }
+            } else {
+                Log.e(AddressHelper.class.getName(), "Location is null");
+                emitter.onError(new LocationException(context.getResources().getString(R.string.location_service_unavailable)));
             }
         });
     }

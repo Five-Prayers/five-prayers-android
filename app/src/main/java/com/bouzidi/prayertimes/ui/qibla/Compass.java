@@ -185,7 +185,7 @@ public class Compass implements SensorEventListener {
 
     private void dialogError(final Context context) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle(context.getString(com.bouzidi.prayertimes.R.string.alert_dialog_title));
+        builder.setTitle(context.getString(com.bouzidi.prayertimes.R.string.common_alert));
         builder.setCancelable(false);
         builder.setIcon(android.R.drawable.ic_dialog_alert);
         builder.setMessage(context.getString(com.bouzidi.prayertimes.R.string.dialog_message_sensor_not_exist));

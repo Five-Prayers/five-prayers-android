@@ -1,6 +1,8 @@
 <resources>
     <string name="common.cancel">Annuler</string>
     <string name="common.ok">OK</string>
+    <string name="common.error">Erreur</string>
+    <string name="common_alert">Alerte</string>
 
     <string name="app_name">Cinq Prières</string>
     <string name="title_home">Prières</string>
@@ -124,7 +126,13 @@
     <string name="title_hijri_day_adjustment_preference">Ajustement de la date Hijri</string>
     <string name="dialog_title_hijri_day_adjustment_preference">Ajuster la date Hijri</string>
 
-    <string name="title_qibla_direction" >Direction de Qibla</string>
+    <string name="title_qibla_direction">Direction de Qibla</string>
+    <string name="your_location">Votre position: </string>
+    <string name="unable_to_get_your_location">Impossible d\'obtenir votre position</string>
+    <string name="location_not_ready">Service de localisation pas encore prêt</string>
+    <string name="pls_enable_location">Veuillez activer le service de localisation sur votre téléphone</string>
+    <string name="dialog_message_sensor_not_exist">Votre appareil ne dispose pas des capteurs requis</string>
+    <string name="dialog_message_sensor_not_calibrate">Veuillez calibrer vos capteurs, en pointant votre téléphone vers le haut et en le déplacant selon un mouvement de figure 8</string>
 
     <string name="school_adjustment_method_shafii">Shafii (Par défaut)</string>
     <string name="school_adjustment_method_hanafi">Hanafi</string>
@@ -137,5 +145,6 @@
     <!--   Errors Messages    -->
 
     <string name="location_service_unavailable">Impossible de trouver votre position: veuillez vérifier que le service de localisation est activé sur votre téléphone ou définissez votre position manuellement dans la section des paramètres</string>
-
+    <string name="enable_to_reverse_geolocalisation">Impossible de trouver votre position: veuillez vérifier votre connexion</string>
+    <string name="network_unavailable">Impossible de mettre à jour le calendrier de prière: veuillez vérifier votre connexion</string>
 </resources>

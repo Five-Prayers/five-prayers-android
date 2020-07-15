@@ -112,7 +112,6 @@ public class Compass implements SensorEventListener {
         if (accuracy <= SensorManager.SENSOR_STATUS_ACCURACY_MEDIUM && !dialogDismissed) {
             calibratingDialog.show();
         }
-        calibratingDialog.hide();
     }
 
     private void getAzimuthFromRotationSensor(SensorEvent event) {

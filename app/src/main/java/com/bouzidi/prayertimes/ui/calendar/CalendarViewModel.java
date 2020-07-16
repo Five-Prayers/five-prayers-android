@@ -6,7 +6,8 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
-import org.threeten.bp.LocalDate;
+import java.time.LocalDate;
+
 
 public class CalendarViewModel extends AndroidViewModel {
 

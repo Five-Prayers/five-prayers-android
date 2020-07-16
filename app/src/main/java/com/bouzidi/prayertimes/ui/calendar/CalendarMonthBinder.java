@@ -8,10 +8,10 @@ import com.kizitonwose.calendarview.model.CalendarMonth;
 import com.kizitonwose.calendarview.ui.MonthHeaderFooterBinder;
 
 import org.jetbrains.annotations.NotNull;
-import org.threeten.bp.DayOfWeek;
-import org.threeten.bp.format.TextStyle;
-import org.threeten.bp.temporal.WeekFields;
 
+import java.time.DayOfWeek;
+import java.time.format.TextStyle;
+import java.time.temporal.WeekFields;
 import java.util.Locale;
 
 public class CalendarMonthBinder implements MonthHeaderFooterBinder<MonthViewContainer> {

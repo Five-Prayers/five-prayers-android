@@ -16,7 +16,6 @@ import com.bouzidi.prayertimes.timings.PrayerHelper;
 import com.bouzidi.prayertimes.timings.aladhan.AladhanDate;
 import com.bouzidi.prayertimes.timings.aladhan.AladhanDateType;
 import com.bouzidi.prayertimes.utils.UiUtils;
-import com.jakewharton.threetenabp.AndroidThreeTen;
 import com.kizitonwose.calendarview.CalendarView;
 import com.kizitonwose.calendarview.model.CalendarMonth;
 
@@ -24,12 +23,12 @@ import org.apache.commons.lang3.StringUtils;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
-import org.threeten.bp.DayOfWeek;
-import org.threeten.bp.LocalDate;
-import org.threeten.bp.YearMonth;
-import org.threeten.bp.format.DateTimeFormatter;
-import org.threeten.bp.temporal.WeekFields;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.YearMonth;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.WeekFields;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
@@ -59,7 +58,6 @@ public class CalendarActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        AndroidThreeTen.init(this);
 
         setContentView(R.layout.activity_calendar);
 

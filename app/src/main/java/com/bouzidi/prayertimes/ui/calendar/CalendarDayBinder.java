@@ -13,8 +13,8 @@ import com.kizitonwose.calendarview.model.DayOwner;
 import com.kizitonwose.calendarview.ui.DayBinder;
 
 import org.jetbrains.annotations.NotNull;
-import org.threeten.bp.LocalDate;
 
+import java.time.LocalDate;
 import java.util.List;
 
 

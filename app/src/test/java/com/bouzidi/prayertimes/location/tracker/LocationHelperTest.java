@@ -2,12 +2,14 @@ package com.bouzidi.prayertimes.location.tracker;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.location.Location;
 import android.location.LocationManager;
 
 import androidx.test.core.app.ApplicationProvider;
 
 import com.bouzidi.prayertimes.exceptions.LocationException;
+import com.bouzidi.prayertimes.preferences.PreferencesConstants;
 import com.bouzidi.prayertimes.utils.UserPreferencesUtils;
 
 import org.junit.Assert;
@@ -51,14 +53,19 @@ public class LocationHelperTest {
     @Mock
     UserPreferencesUtils userPreferencesUtils;
 
+    @Mock
+    Resources mResources;
+
     @Before
     public void before() {
         this.gpsTracker = Mockito.mock(GPSTracker.class);
         this.sharedPrefs = Mockito.mock(SharedPreferences.class);
+        this.mResources = Mockito.mock(Resources.class);
         this.userPreferencesUtils = Mockito.mock(UserPreferencesUtils.class);
         this.mockContext = Mockito.mock(Context.class);
 
         Mockito.when(mockContext.getSharedPreferences(anyString(), anyInt())).thenReturn(sharedPrefs);
+        Mockito.when(mockContext.getResources()).thenReturn(mResources);
     }
 
     @Test
@@ -90,8 +97,8 @@ public class LocationHelperTest {
         PowerMockito.whenNew(GPSTracker.class).withArguments(mockContext).thenReturn(gpsTracker);
         PowerMockito.mockStatic(UserPreferencesUtils.class);
 
-        Mockito.when(UserPreferencesUtils.getDouble(sharedPrefs, Constants.LAST_KNOWN_LATITUDE, 0)).thenReturn(11.6);
-        Mockito.when(UserPreferencesUtils.getDouble(sharedPrefs, Constants.LAST_KNOWN_LONGITUDE, 0)).thenReturn(13.65587);
+        Mockito.when(UserPreferencesUtils.getDouble(sharedPrefs, PreferencesConstants.LAST_KNOWN_LATITUDE, 0)).thenReturn(11.6);
+        Mockito.when(UserPreferencesUtils.getDouble(sharedPrefs, PreferencesConstants.LAST_KNOWN_LONGITUDE, 0)).thenReturn(13.65587);
 
 
         Single<Location> locationSingle = LocationHelper.getLocation(mockContext);
@@ -115,8 +122,8 @@ public class LocationHelperTest {
 
         Mockito.when(gpsTracker.canGetLocation()).thenReturn(false);
 
-        Mockito.when(UserPreferencesUtils.getDouble(sharedPrefs, Constants.LAST_KNOWN_LATITUDE, 0)).thenReturn(11.6);
-        Mockito.when(UserPreferencesUtils.getDouble(sharedPrefs, Constants.LAST_KNOWN_LONGITUDE, 0)).thenReturn(13.65587);
+        Mockito.when(UserPreferencesUtils.getDouble(sharedPrefs, PreferencesConstants.LAST_KNOWN_LATITUDE, 0)).thenReturn(11.6);
+        Mockito.when(UserPreferencesUtils.getDouble(sharedPrefs, PreferencesConstants.LAST_KNOWN_LONGITUDE, 0)).thenReturn(13.65587);
 
         Single<Location> locationSingle = LocationHelper.getLocation(mockContext);
 
@@ -134,13 +141,15 @@ public class LocationHelperTest {
 
     @Test
     public void getLocation_when_tracker_not_available_and_last_location_is_null() throws Exception {
+        Mockito.when(mResources.getString(anyInt())).thenReturn("Error Message");
+
         PowerMockito.whenNew(GPSTracker.class).withArguments(mockContext).thenReturn(gpsTracker);
         PowerMockito.mockStatic(UserPreferencesUtils.class);
 
         Mockito.when(gpsTracker.canGetLocation()).thenReturn(false);
 
-        Mockito.when(UserPreferencesUtils.getDouble(sharedPrefs, Constants.LAST_KNOWN_LATITUDE, 0)).thenReturn(0.);
-        Mockito.when(UserPreferencesUtils.getDouble(sharedPrefs, Constants.LAST_KNOWN_LONGITUDE, 0)).thenReturn(0.);
+        Mockito.when(UserPreferencesUtils.getDouble(sharedPrefs, PreferencesConstants.LAST_KNOWN_LATITUDE, 0)).thenReturn(0.);
+        Mockito.when(UserPreferencesUtils.getDouble(sharedPrefs, PreferencesConstants.LAST_KNOWN_LONGITUDE, 0)).thenReturn(0.);
 
         Single<Location> locationSingle = LocationHelper.getLocation(mockContext);
 

@@ -1,11 +1,12 @@
 Feature
 
-- When change setting manually and back to auto, settings are not updated. 
+- Set default settings based on location only after intro.
+- Give the possibility to set location manually in intro if user dont accept to share their position
+- clean user preferences
+- manual location : add geocoder.
 - Add bug reports
 - Handle other error msg
-- Set calculation method automatically vs user preferences - clean
 - Add London prayer API
 - Improve notification design (add quran text).
-- manual location : add geocoder.
 - Add DB cleaner
 - Add offline calculations

@@ -106,7 +106,6 @@
 
     <string name="title_location_preference_section">Localisation</string>
     <string name="title_checkbox_location_preference">Saisir votre localisation manuellement</string>
-    <string name="title_checkbox_calculation_preference">Ajuster les horaires manuellement</string>
     <string name="title_edit_text_location_preference">Localisation actuelle</string>
     <string name="dialog_title_edit_text_location_preference">Rechercher votre ville</string>
     <string name="title_prayer_timings_section">Calcul des prières</string>

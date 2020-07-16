@@ -81,10 +81,9 @@ public class PreferencesHelper {
         return MidnightModeAdjustmentMethod.valueOf(midnightModeAdjustmentMethod);
     }
 
-    public static void updateCalculationMethodPreferenceByAddress(String methodName, Context context) {
-        if (!isCalculationSetManually(context)) {
+    private static void updateCalculationMethodPreferenceByAddress(String methodName, Context context) {
+        if (!isCalculationPreferenceInitialized(context)) {
             final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-            defaultSharedPreferences.getBoolean(PreferencesConstants.CALCULATION_SET_MANUALLY_PREFERENCE, false);
             SharedPreferences.Editor defaultEditor = defaultSharedPreferences.edit();
             defaultEditor.putString(PreferencesConstants.TIMINGS_CALCULATION_METHOD_PREFERENCE, methodName);
             defaultEditor.apply();
@@ -109,7 +108,7 @@ public class PreferencesHelper {
     }
 
     public static void updateTimingAdjustmentPreference(String methodName, Context context) {
-        if (!isCalculationSetManually(context)) {
+        if (!isCalculationPreferenceInitialized(context)) {
             TimingsTuneEnum timingsTuneEnum = TimingsTuneEnum.getValueByName(methodName);
 
             SharedPreferences sharedPreferences = context.getSharedPreferences(PreferencesConstants.TIMING_ADJUSTMENT, Context.MODE_PRIVATE);
@@ -139,18 +138,19 @@ public class PreferencesHelper {
 
         CalculationMethodEnum calculationMethodByAddress = CountryCalculationMethod.getCalculationMethodByAddress(address);
 
+        PreferencesHelper.updateCalculationMethodPreferenceByAddress(String.valueOf(calculationMethodByAddress), context);
+        PreferencesHelper.updateTimingAdjustmentPreference(String.valueOf(calculationMethodByAddress), context);
+
         final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor defaultEditor = defaultSharedPreferences.edit();
         defaultEditor.putString(PreferencesConstants.LOCATION_PREFERENCE, address.getLocality() + ", " + address.getCountryName());
+        defaultEditor.putBoolean(PreferencesConstants.CALCULATION_PREFERENCES_INITIALIZED, true);
         defaultEditor.apply();
-
-        PreferencesHelper.updateCalculationMethodPreferenceByAddress(String.valueOf(calculationMethodByAddress), context);
-        PreferencesHelper.updateTimingAdjustmentPreference(String.valueOf(calculationMethodByAddress), context);
     }
 
-    public static boolean isCalculationSetManually(Context context) {
+    private static boolean isCalculationPreferenceInitialized(Context context) {
         final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        return defaultSharedPreferences.getBoolean(PreferencesConstants.CALCULATION_SET_MANUALLY_PREFERENCE, false);
+        return defaultSharedPreferences.getBoolean(PreferencesConstants.CALCULATION_PREFERENCES_INITIALIZED, false);
     }
 
     public static boolean isLocationSetManually(Context context) {

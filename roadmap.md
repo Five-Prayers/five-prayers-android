@@ -1,6 +1,5 @@
 Feature
 
-- Set default settings based on location only after intro.
 - Give the possibility to set location manually in intro if user dont accept to share their position
 - clean user preferences
 - manual location : add geocoder.

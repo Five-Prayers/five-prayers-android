@@ -81,15 +81,6 @@ public class PreferencesHelper {
         return MidnightModeAdjustmentMethod.valueOf(midnightModeAdjustmentMethod);
     }
 
-    private static void updateCalculationMethodPreferenceByAddress(String methodName, Context context) {
-        if (!isCalculationPreferenceInitialized(context)) {
-            final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-            SharedPreferences.Editor defaultEditor = defaultSharedPreferences.edit();
-            defaultEditor.putString(PreferencesConstants.TIMINGS_CALCULATION_METHOD_PREFERENCE, methodName);
-            defaultEditor.apply();
-        }
-    }
-
     @NotNull
     public static Address getLastKnownAddress(Context context) {
         final SharedPreferences sharedPreferences = context.getSharedPreferences(PreferencesConstants.LOCATION, MODE_PRIVATE);
@@ -148,13 +139,22 @@ public class PreferencesHelper {
         defaultEditor.apply();
     }
 
+    public static boolean isLocationSetManually(Context context) {
+        final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return defaultSharedPreferences.getBoolean(PreferencesConstants.LOCATION_SET_MANUALLY_PREFERENCE, false);
+    }
+
     private static boolean isCalculationPreferenceInitialized(Context context) {
         final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         return defaultSharedPreferences.getBoolean(PreferencesConstants.CALCULATION_PREFERENCES_INITIALIZED, false);
     }
 
-    public static boolean isLocationSetManually(Context context) {
-        final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        return defaultSharedPreferences.getBoolean(PreferencesConstants.LOCATION_SET_MANUALLY_PREFERENCE, false);
+    private static void updateCalculationMethodPreferenceByAddress(String methodName, Context context) {
+        if (!isCalculationPreferenceInitialized(context)) {
+            final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+            SharedPreferences.Editor defaultEditor = defaultSharedPreferences.edit();
+            defaultEditor.putString(PreferencesConstants.TIMINGS_CALCULATION_METHOD_PREFERENCE, methodName);
+            defaultEditor.apply();
+        }
     }
 }

@@ -1,6 +1,7 @@
 Feature
 
-- Give the possibility to set location manually in intro if user dont accept to share their position
+- Handle authorization denied.
+- Add message when user refuse authorization. 
 - clean user preferences
 - manual location : add geocoder.
 - Add bug reports

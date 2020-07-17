@@ -1,7 +1,6 @@
 package com.bouzidi.prayertimes.ui.qibla;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.hardware.Sensor;
@@ -11,6 +10,8 @@ import android.hardware.SensorManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+
+import androidx.appcompat.app.AlertDialog;
 
 /**
  * @author Gokul Swaminathan

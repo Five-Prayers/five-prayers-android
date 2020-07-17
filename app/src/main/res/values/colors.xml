@@ -10,6 +10,10 @@
     <color name="sunrise">@color/turbo</color>
     <color name="sunset">@color/scarlet</color>
 
+    <color name="dialog_background">@color/white</color>
+    <color name="dialog_button">@color/gallery</color>
+    <color name="dialog_title">@color/colorPrimaryDark</color>
+
     <color name="transparent">#00000000</color>
     <color name="slate_gray">#738497</color>
     <color name="gallery">#EEEEEE</color>

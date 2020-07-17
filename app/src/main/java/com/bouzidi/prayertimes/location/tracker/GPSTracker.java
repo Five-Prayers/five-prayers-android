@@ -1,7 +1,6 @@
 package com.bouzidi.prayertimes.location.tracker;
 
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -12,6 +11,8 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.provider.Settings;
 import android.util.Log;
+
+import androidx.appcompat.app.AlertDialog;
 
 import com.bouzidi.prayertimes.R;
 

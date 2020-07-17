@@ -1,7 +1,5 @@
 Feature
 
-- Handle authorization denied.
-- Add message when user refuse authorization. 
 - clean user preferences
 - manual location : add geocoder.
 - Add bug reports

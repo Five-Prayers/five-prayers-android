@@ -21,14 +21,16 @@
 
     <string name="app_intro_frag_3_title">We need your permission</string>
     <string name="app_intro_frag_3_description">In order to calculate prayer timings effectively,
-        this application need your permission to use your localisation capabilities</string>
+        this application need your permission to use your localisation capabilities. (recommended)</string>
 
     <string name="app_intro_frag_4_title">Enjoy !</string>
     <string name="app_intro_frag_4_description">Five Prayer Android introduces great features and capabilities for all users,
         like : Worldwide Prayer Timings, different calculation methods, notifications, reads Adhan, Qibla direction and more</string>
 
-    <string name="last_update_time_key">last_update_time_key</string>
+    <string name="app_intro_permission_denied_dialog_title">Information</string>
+    <string name="app_intro_permission_denied_dialog_message">You refused to allow the application to access your location. You have to manually enter your city in the settings screen.</string>
 
+    <string name="last_update_time_key">last_update_time_key</string>
     <string name="calendar_view_title">Prayer Calendar in</string>
 
     <string name="SUNRISE">Sunrise</string>

@@ -34,13 +34,16 @@ public class LocationHelper {
                     Log.i(LocationHelper.class.getName(), "Get location from tracker");
 
                     emitter.onSuccess(newLocation);
-                } else if (lastKnownLatitude > 0 && lastKnownLongitude > 0) {
+                } else if (lastKnownLatitude != 0.0 && lastKnownLongitude != 0.0) {
                     Log.w(LocationHelper.class.getName(), "Cannot get location from tracker, use last known location");
 
                     Location lastKnownLocation = getLastKnownLocation(lastKnownLatitude, lastKnownLongitude);
                     emitter.onSuccess(lastKnownLocation);
+                } else {
+                    emitter.onError(new LocationException(context.getResources().getString(R.string.location_service_unavailable)));
+                    Log.e(LocationHelper.class.getName(), "Location not available");
                 }
-            } else if (lastKnownLatitude > 0 && lastKnownLongitude > 0) {
+            } else if (lastKnownLatitude != 0.0 && lastKnownLongitude != 0.0) {
 
                 Location lastKnownLocation = getLastKnownLocation(lastKnownLatitude, lastKnownLongitude);
                 emitter.onSuccess(lastKnownLocation);

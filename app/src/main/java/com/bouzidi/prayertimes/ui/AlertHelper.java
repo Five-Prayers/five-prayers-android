@@ -1,22 +1,30 @@
 package com.bouzidi.prayertimes.ui;
 
 import android.content.Context;
+
 import androidx.appcompat.app.AlertDialog;
 
 public class AlertHelper {
 
-    public static void displayAlert(final Context context, String title, String message) {
+    public static void displayAlertDialog(final Context context, String title, String message) {
         new AlertDialog.Builder(context)
                 .setTitle(title)
                 .setMessage(message)
-                // Specifying a listener allows you to take an action before dismissing the dialog.
-                // The dialog is automatically dismissed when a dialog button is clicked.
-                .setPositiveButton(android.R.string.yes, (dialog, which) -> {
-                    dialog.cancel();
+                .setNegativeButton(com.bouzidi.prayertimes.R.string.common_ok, (dialog, which) -> {
+                    dialog.dismiss();
                 })
-                // A null listener allows the button to dismiss the dialog and take no further action.
-                .setNegativeButton(android.R.string.no, null)
                 .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
+    }
+
+    public static void displayInformationDialog(final Context context, String title, String message) {
+        new AlertDialog.Builder(context)
+                .setTitle(title)
+                .setMessage(message)
+                .setNegativeButton(com.bouzidi.prayertimes.R.string.common_ok, (dialog, which) -> {
+                    dialog.dismiss();
+                })
+                .setIcon(android.R.drawable.ic_dialog_info)
                 .show();
     }
 }

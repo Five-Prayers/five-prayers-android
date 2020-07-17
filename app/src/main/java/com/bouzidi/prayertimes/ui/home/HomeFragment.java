@@ -107,7 +107,7 @@ public class HomeFragment extends Fragment {
         skeleton.showSkeleton();
 
         dashboardViewModel.getError().observe(getViewLifecycleOwner(), error -> {
-            AlertHelper.displayAlert(mainActivity, getResources().getString(R.string.common_error), error);
+            AlertHelper.displayAlertDialog(mainActivity, getResources().getString(R.string.common_error), error);
         });
 
         dashboardViewModel.getDayPrayers().observe(getViewLifecycleOwner(), dayPrayer -> {
@@ -126,7 +126,7 @@ public class HomeFragment extends Fragment {
             public void onGlobalLayout() {
                 rootView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
                 if (!NetworkUtil.isNetworkAvailable(mainActivity)) {
-                    AlertHelper.displayAlert(mainActivity, getResources().getString(R.string.common_error), getResources().getString(R.string.network_unavailable));
+                    AlertHelper.displayAlertDialog(mainActivity, getResources().getString(R.string.common_error), getResources().getString(R.string.network_unavailable));
                 }
             }
         });

@@ -8,7 +8,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 
 import com.bouzidi.prayertimes.R;
-import com.bouzidi.prayertimes.preferences.PreferencesHelper;
+import com.bouzidi.prayertimes.ui.AlertHelper;
 import com.bouzidi.prayertimes.ui.splashscreen.SplashScreenActivity;
 import com.github.appintro.AppIntro;
 import com.github.appintro.AppIntroFragment;
@@ -57,12 +57,11 @@ public class IntroActivity extends AppIntro {
                 Color.WHITE
         ));
 
-        String[] permissions = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION};
+        String[] permissions = {Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION};
         askForPermissions(
                 permissions,
                 3,
-                true);
-
+                false);
 
         AppIntroPageTransformerType.Parallax parallax = new AppIntroPageTransformerType.Parallax(
                 1.0,
@@ -76,12 +75,11 @@ public class IntroActivity extends AppIntro {
 
     @Override
     protected void onUserDeniedPermission(String permissionName) {
-        // User pressed "Deny" on the permission dialog
-    }
-
-    @Override
-    protected void onUserDisabledPermission(String permissionName) {
-        // User pressed "Deny" + "Don't ask again" on the permission dialog
+        if(permissionName.equalsIgnoreCase("android.permission.ACCESS_FINE_LOCATION")) {
+            AlertHelper.displayInformationDialog(this,
+                    getResources().getString(R.string.app_intro_permission_denied_dialog_title),
+                    getResources().getString(R.string.app_intro_permission_denied_dialog_message));
+        }
     }
 
     protected void onSkipPressed(Fragment currentFragment) {
@@ -90,8 +88,6 @@ public class IntroActivity extends AppIntro {
 
     protected void onDonePressed(Fragment currentFragment) {
         super.onDonePressed(currentFragment);
-
-        PreferencesHelper.setFirstTimeLaunch(false, this);
 
         Intent intent = new Intent(getApplicationContext(), SplashScreenActivity.class);
         startActivity(intent);

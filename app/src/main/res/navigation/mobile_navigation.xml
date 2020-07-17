@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    tools:ignore="UnusedNavigation">
 
     <fragment
         android:id="@+id/navigation_home"
@@ -20,6 +20,5 @@
     <fragment
         android:id="@+id/navigation_notifications"
         android:name="com.bouzidi.prayertimes.ui.settings.SettingsFragment"
-        android:label="@string/title_settings"
-        tools:layout="@layout/fragment_settings" />
+        android:label="@string/title_settings"/>
 </navigation>

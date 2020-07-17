@@ -42,7 +42,7 @@ public class IntroActivity extends AppIntro {
         addSlide(AppIntroFragment.newInstance(
                 getResources().getString(R.string.app_intro_frag_3_title),
                 getResources().getString(R.string.app_intro_frag_3_description),
-                R.drawable.ic_yes_no_200dp,
+                R.drawable.ic_question_200dp,
                 0xFF17C5FF,
                 Color.WHITE,
                 Color.WHITE

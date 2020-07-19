@@ -57,7 +57,7 @@ public class IntroActivity extends AppIntro {
                 Color.WHITE
         ));
 
-        String[] permissions = {Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION};
+        String[] permissions = {Manifest.permission.ACCESS_FINE_LOCATION};
         askForPermissions(
                 permissions,
                 3,
@@ -75,11 +75,9 @@ public class IntroActivity extends AppIntro {
 
     @Override
     protected void onUserDeniedPermission(String permissionName) {
-        if(permissionName.equalsIgnoreCase("android.permission.ACCESS_FINE_LOCATION")) {
-            AlertHelper.displayInformationDialog(this,
-                    getResources().getString(R.string.app_intro_permission_denied_dialog_title),
-                    getResources().getString(R.string.app_intro_permission_denied_dialog_message));
-        }
+        AlertHelper.displayInformationDialog(this,
+                getResources().getString(R.string.app_intro_permission_denied_dialog_title),
+                getResources().getString(R.string.app_intro_permission_denied_dialog_message));
     }
 
     protected void onSkipPressed(Fragment currentFragment) {

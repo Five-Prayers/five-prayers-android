@@ -33,7 +33,7 @@ public class NotifierHelper {
                 Intent intent = new Intent(context, NotifierReceiver.class);
                 intent.putExtra("prayerKey", key.toString());
                 intent.putExtra("prayerTiming", TimingUtils.formatTiming(timing));
-                intent.putExtra("notificationId", 1);
+                intent.putExtra("notificationId", index);
 
                 PendingIntent alarmIntent = PendingIntent.getBroadcast(context, index, intent, FLAG_UPDATE_CURRENT);
                 alarmMgr.cancel(alarmIntent);

@@ -109,10 +109,8 @@ class PrayerNotification {
                 new VolumeProviderCompat(VolumeProviderCompat.VOLUME_CONTROL_RELATIVE, 100, 50) {
                     @Override
                     public void onAdjustVolume(int direction) {
-                        if (direction == -1) {
-                            AdhanPlayer.getInstance(context).stopAdhan();
-                            mediaSession.release();
-                        }
+                        AdhanPlayer.getInstance(context).stopAdhan();
+                        mediaSession.release();
                     }
                 };
         mediaSession.setPlaybackToRemote(myVolumeProvider);

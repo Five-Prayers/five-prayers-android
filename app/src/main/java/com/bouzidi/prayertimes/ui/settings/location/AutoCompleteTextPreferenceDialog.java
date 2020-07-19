@@ -21,14 +21,10 @@ import com.bouzidi.prayertimes.location.SearchHelper;
 import com.bouzidi.prayertimes.location.osm.NominatimAPIService;
 import com.bouzidi.prayertimes.location.osm.NominatimAddress;
 import com.bouzidi.prayertimes.location.osm.NominatimReverseGeocodeResponse;
-import com.bouzidi.prayertimes.location.photon.Feature;
 import com.bouzidi.prayertimes.preferences.PreferencesHelper;
-
-import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.annotations.NonNull;
@@ -39,7 +35,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 public class AutoCompleteTextPreferenceDialog extends PreferenceDialogFragmentCompat {
 
     private static final int TRIGGER_AUTO_COMPLETE = 100;
-    private static final long AUTO_COMPLETE_DELAY = 750;
+    private static final long AUTO_COMPLETE_DELAY = 500;
     private static final int SEARCH_RESULTS_LIMIT = 5;
 
     private Handler handler;
@@ -176,38 +172,31 @@ public class AutoCompleteTextPreferenceDialog extends PreferenceDialogFragmentCo
     private void retrieveData(String str) {
         CompositeDisposable compositeDisposable = new CompositeDisposable();
         compositeDisposable.add(
-                SearchHelper.searchForLocation(str, SEARCH_RESULTS_LIMIT)
+                SearchHelper.searchForLocation(str, SEARCH_RESULTS_LIMIT, this.context)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
-                        .subscribeWith(new DisposableSingleObserver<List<Feature>>() {
+                        .subscribeWith(new DisposableSingleObserver<List<Address>>() {
                             @Override
-                            public void onSuccess(List<Feature> features) {
+                            public void onSuccess(List<Address> addresses) {
                                 ArrayList<String> stringList = new ArrayList<>(SEARCH_RESULTS_LIMIT);
-                                ArrayList<Address> addresses = new ArrayList<>(SEARCH_RESULTS_LIMIT);
-                                for (Feature feature : features) {
-                                    String locality = feature.getProperties().getName();
-                                    String country = feature.getProperties().getCountry();
-                                    boolean isPlaceType =
-                                            feature.getProperties().getOsmKey().equals("place") ||
-                                                    feature.getProperties().getOsmKey().equals("boundary");
 
-                                    if (isPlaceType && StringUtils.isNotBlank(locality) && StringUtils.isNotBlank(country)) {
-                                        Address address = new Address(Locale.getDefault());
-                                        address.setLocality(locality);
+                                for (Address address : new ArrayList<>(addresses)) {
+
+                                    if (address.getLocality() != null && address.getCountryName() != null) {
                                         StringBuilder builder = new StringBuilder();
-                                        builder.append(locality);
+
+                                        builder.append(address.getLocality());
                                         builder.append(", ");
-                                        if (feature.getProperties().getState() != null) {
-                                            builder.append(feature.getProperties().getState());
-                                            address.setSubLocality(feature.getProperties().getState());
-                                            address.setAddressLine(1, feature.getProperties().getState());
+
+                                        if (address.getSubLocality() != null) {
+                                            builder.append(address.getSubLocality());
+                                            builder.append(", ");
+                                        } else if (address.getMaxAddressLineIndex() >= 1 && address.getAddressLine(1) != null) {
+                                            builder.append(address.getAddressLine(1));
                                             builder.append(", ");
                                         }
 
-                                        builder.append(country);
-                                        address.setCountryName(country);
-                                        address.setLongitude(feature.getGeometry().getCoordinates().get(0));
-                                        address.setLatitude(feature.getGeometry().getCoordinates().get(1));
+                                        builder.append(address.getCountryName());
 
                                         stringList.add(builder.toString());
                                         addresses.add(address);

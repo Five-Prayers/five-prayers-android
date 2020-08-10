@@ -157,4 +157,6 @@
     <string name="juz_to_display">الجزء %d</string>
     <string name="hizb_to_display">الحزب %d</string>
     <string name="part_to_display">%s  الحزب  %d</string>
+    <string name="Quran">Quran</string>
+    <string name="title_checkbox_quran_night_mode">Night Mode</string>
 </resources>

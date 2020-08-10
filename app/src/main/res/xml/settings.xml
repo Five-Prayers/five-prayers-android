@@ -1,72 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <PreferenceCategory
-        android:title="@string/title_location_preference_section">
+    <PreferenceCategory android:title="@string/title_location_preference_section">
 
         <CheckBoxPreference
             android:key="LOCATION_SET_MANUALLY_PREFERENCE"
             android:title="@string/title_checkbox_location_preference" />
 
         <com.bouzidi.prayertimes.ui.settings.location.AutoCompleteTextPreference
+            android:dependency="LOCATION_SET_MANUALLY_PREFERENCE"
+            android:dialogTitle="@string/dialog_title_edit_text_location_preference"
             android:key="LOCATION_PREFERENCE"
             android:title="@string/title_edit_text_location_preference"
-            app:useSimpleSummaryProvider="true"
-            android:dialogTitle="@string/dialog_title_edit_text_location_preference"
-            android:dependency="LOCATION_SET_MANUALLY_PREFERENCE" />
+            app:useSimpleSummaryProvider="true" />
     </PreferenceCategory>
 
-    <PreferenceCategory
-        android:title="@string/title_prayer_timings_section"
-        >
+    <PreferenceCategory android:title="@string/title_prayer_timings_section">
         <com.bouzidi.prayertimes.ui.settings.method.CalculationMethodPreference
-            android:key="TIMINGS_CALCULATION_METHOD_PREFERENCE"
-            android:title="@string/title_list_preference"
+            android:defaultValue="MUSLIM_WORLD_LEAGUE"
             android:dialogTitle="@string/dialog_title_list_preference"
             android:entries="@array/entries_calculation_method_list_preference"
             android:entryValues="@array/entryvalues_calculation_method_list_preference"
-            app:useSimpleSummaryProvider="true"
-            android:defaultValue="MUSLIM_WORLD_LEAGUE"/>
+            android:key="TIMINGS_CALCULATION_METHOD_PREFERENCE"
+            android:title="@string/title_list_preference"
+            app:useSimpleSummaryProvider="true" />
 
         <com.bouzidi.prayertimes.ui.settings.timings.NumberPickerPreference
+            android:dialogTitle="@string/dialog_title_edit_text_timing_adjustment_preference"
             android:key="number_preference"
-            android:title="@string/title_edit_text_timing_adjustment_preference"
-            android:dialogTitle="@string/dialog_title_edit_text_timing_adjustment_preference"/>
+            android:title="@string/title_edit_text_timing_adjustment_preference" />
 
         <ListPreference
-            android:key="TIMINGS_LATITUDE_ADJUSTMENT_METHOD_PREFERENCE"
-            android:title="@string/title_latitude_adjustment_method"
+            android:defaultValue="ANGLE_BASED"
             android:dialogTitle="@string/dialog_title_latitude_adjustment_method"
             android:entries="@array/entries_latitude_adjustment_method_list_preference"
             android:entryValues="@array/entryvalues_latitude_adjustment_method_list_preference"
-            app:useSimpleSummaryProvider="true"
-            android:defaultValue="ANGLE_BASED"/>
+            android:key="TIMINGS_LATITUDE_ADJUSTMENT_METHOD_PREFERENCE"
+            android:title="@string/title_latitude_adjustment_method"
+            app:useSimpleSummaryProvider="true" />
 
         <ListPreference
-            android:key="SCHOOL_ADJUSTMENT_METHOD_PREFERENCE"
-            android:title="@string/title_school_adjustment_method"
+            android:defaultValue="SHAFII"
             android:dialogTitle="@string/dialog_title_latitude_adjustment_method"
             android:entries="@array/entries_school_adjustment_method_list_preference"
             android:entryValues="@array/entryvalues_school_adjustment_method_list_preference"
-            app:useSimpleSummaryProvider="true"
-            android:defaultValue="SHAFII"/>
+            android:key="SCHOOL_ADJUSTMENT_METHOD_PREFERENCE"
+            android:title="@string/title_school_adjustment_method"
+            app:useSimpleSummaryProvider="true" />
 
         <ListPreference
-            android:key="MIDNIGHT_MODE_ADJUSTMENT_METHOD_PREFERENCE"
-            android:title="@string/title_midnight_mode_adjustment_method"
+            android:defaultValue="STANDARD"
             android:dialogTitle="@string/dialog_title_latitude_adjustment_method"
             android:entries="@array/entries_midnight_mode_adjustment_method_list_preference"
             android:entryValues="@array/entryvalues_midnight_mode_adjustment_method_list_preference"
-            app:useSimpleSummaryProvider="true"
-            android:defaultValue="STANDARD"/>
+            android:key="MIDNIGHT_MODE_ADJUSTMENT_METHOD_PREFERENCE"
+            android:title="@string/title_midnight_mode_adjustment_method"
+            app:useSimpleSummaryProvider="true" />
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/calendar">
         <com.bouzidi.prayertimes.ui.settings.hijri.HijriDayAdjustmentPreference
+            android:dialogTitle="@string/dialog_title_hijri_day_adjustment_preference"
             android:key="HIJRI_DAY_ADJUSTMENT_PREFERENCE"
-            android:title="@string/title_hijri_day_adjustment_preference"
-            android:dialogTitle="@string/dialog_title_hijri_day_adjustment_preference" />
+            android:title="@string/title_hijri_day_adjustment_preference" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/Quran">
+        <CheckBoxPreference
+            android:key="QURAN_NIGHT_MODE_ACTIVATED"
+            android:title="@string/title_checkbox_quran_night_mode" />
     </PreferenceCategory>
 </PreferenceScreen>

@@ -12,6 +12,8 @@
 
     <string name="calendar_view_title">Calendrier de prière à</string>
 
+    <string name="quran_view_title">Quran</string>
+
     <string name="last_update_time_key">last_update_time_key</string>
 
     <!-- App Intro -->
@@ -149,4 +151,11 @@
     <string name="location_service_unavailable">Impossible de trouver votre position: veuillez vérifier que le service de localisation est activé sur votre téléphone ou définissez votre position manuellement dans la section des paramètres</string>
     <string name="enable_to_reverse_geolocalisation">Impossible de trouver votre position: veuillez vérifier votre connexion</string>
     <string name="network_unavailable">Impossible de mettre à jour le calendrier de prière: veuillez vérifier votre connexion</string>
+    <string name="sura_rev_mackkia">Makkia</string>
+    <string name="sura_rev_madniaa">Madania</string>
+    <string name="ayahs">Ayahs</string>
+
+    <string name="juz_to_display">الجزء %d</string>
+    <string name="hizb_to_display">الحزب %d</string>
+    <string name="part_to_display">%s  الحزب  %d</string>
 </resources>

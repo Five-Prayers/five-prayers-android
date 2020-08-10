@@ -33,6 +33,8 @@
     <string name="last_update_time_key">last_update_time_key</string>
     <string name="calendar_view_title">Prayer Calendar in</string>
 
+    <string name="quran_view_title">Quran</string>
+
     <string name="SUNRISE">Sunrise</string>
     <string name="FAJR">As`Sobh (Fajr)</string>
     <string name="DHOHR">Ad`Dohr</string>
@@ -144,9 +146,15 @@
     <string name="title_midnight_mode_adjustment_method">Midnight mode</string>
     <string name="adthan_notification_title">It\'s time for praying</string>
 
-<!--   Errors Messages    -->
+    <!--   Errors Messages    -->
 
     <string name="location_service_unavailable">Unable to find your location: Please verify that location service is enabled on your phone or set your location manually in the settings section</string>
     <string name="enable_to_reverse_geolocalisation">Unable to find your location : Please check your network connection</string>
     <string name="network_unavailable">Cannot update prayer timing : Please check your network connection</string>
+    <string name="sura_rev_mackkia">Makkia</string>
+    <string name="sura_rev_madniaa">Madania</string>
+    <string name="ayahs">Ayahs</string>
+    <string name="juz_to_display">الجزء %d</string>
+    <string name="hizb_to_display">الحزب %d</string>
+    <string name="part_to_display">%s  الحزب  %d</string>
 </resources>

@@ -1,7 +1,7 @@
 Feature
 
+- Add alert dialog when location permission denied and user try to get location manually.
 - clean user preferences
-- manual location : add geocoder.
 - Add bug reports
 - Handle other error msg
 - Add London prayer API

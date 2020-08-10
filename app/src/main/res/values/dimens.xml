@@ -23,7 +23,7 @@
     <dimen name="text_small">3sp</dimen>
     <dimen name="text_medium">5sp</dimen>
     <dimen name="text_xmedium">7sp</dimen>
-    <dimen name="text_middle">10sp</dimen>
+    <dimen name="text_middle">12sp</dimen>
     <dimen name="text_large">15sp</dimen>
     <dimen name="text_smlarge">17sp</dimen>
     <dimen name="text_mlarge">20sp</dimen>

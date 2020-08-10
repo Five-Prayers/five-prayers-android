@@ -33,4 +33,7 @@ public class PreferencesConstants {
     public static final String LAST_KNOWN_LONGITUDE = "LAST_KNOWN_LONGITUDE";
     public static final String LAST_KNOWN_COUNTRY_CODE = "LAST_KNOWN_COUNTRY_CODE";
     public static final String LAST_KNOWN_STATE = "LAST_KNOWN_STATE";
+
+    // Quran
+    public static final String QURAN_NIGHT_MODE_ACTIVATED = "QURAN_NIGHT_MODE_ACTIVATED";
 }

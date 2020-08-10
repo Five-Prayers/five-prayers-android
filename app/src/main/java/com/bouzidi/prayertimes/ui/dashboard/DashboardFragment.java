@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bouzidi.prayertimes.R;
 import com.bouzidi.prayertimes.ui.calendar.CalendarActivity;
+import com.bouzidi.prayertimes.ui.quran.surahs.QuranActivity;
 import com.bouzidi.prayertimes.ui.timingtable.TimingTableActivity;
 import com.bouzidi.prayertimes.ui.qibla.CompassActivity;
 
@@ -42,7 +43,7 @@ public class DashboardFragment extends Fragment {
         Intent intents[] = {new Intent(getActivity(), CompassActivity.class),
                 new Intent(getActivity(), TimingTableActivity.class),
                 new Intent(getActivity(), CalendarActivity.class),
-                null,
+                new Intent(getActivity(), QuranActivity.class),
                 null, null};
 
         for (int count = 0; count < heads.length; count++) {

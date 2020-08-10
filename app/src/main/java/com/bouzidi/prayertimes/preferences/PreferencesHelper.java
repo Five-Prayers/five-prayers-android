@@ -144,6 +144,11 @@ public class PreferencesHelper {
         return defaultSharedPreferences.getBoolean(PreferencesConstants.LOCATION_SET_MANUALLY_PREFERENCE, false);
     }
 
+    public static boolean isNightModeActivated(Context context) {
+        final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return defaultSharedPreferences.getBoolean(PreferencesConstants.QURAN_NIGHT_MODE_ACTIVATED, false);
+    }
+
     private static boolean isCalculationPreferenceInitialized(Context context) {
         final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         return defaultSharedPreferences.getBoolean(PreferencesConstants.CALCULATION_PREFERENCES_INITIALIZED, false);

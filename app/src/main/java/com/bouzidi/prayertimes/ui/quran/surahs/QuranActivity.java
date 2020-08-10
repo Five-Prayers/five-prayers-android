@@ -17,7 +17,6 @@ import java.util.List;
 
 public class QuranActivity extends AppCompatActivity {
 
-    private SurahAdapter surahAdapter;
     private RecyclerView surahRecyclerView;
 
     @Override
@@ -25,7 +24,7 @@ public class QuranActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quran);
 
-        surahRecyclerView = findViewById(R.id.rvSura);
+        surahRecyclerView = findViewById(R.id.surah_recycler_view);
 
         QuranViewModel quranViewModel = new ViewModelProvider(this).get(QuranViewModel.class);
         quranViewModel.getSurahs().observe(this, this::initRecyclerView);
@@ -34,7 +33,7 @@ public class QuranActivity extends AppCompatActivity {
 
     private void initRecyclerView(List<Surah> surahs) {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        surahAdapter = new SurahAdapter();
+        SurahAdapter surahAdapter = new SurahAdapter();
         surahAdapter.setSurahList(surahs);
 
         surahRecyclerView.setLayoutManager(linearLayoutManager);
@@ -46,7 +45,7 @@ public class QuranActivity extends AppCompatActivity {
 
     private void gotoSuraa(int pageNumber, List<Surah> surahs) {
         Bundle bundle = new Bundle();
-        bundle.putSerializable("PAGE_NUMBER", pageNumber);
+        bundle.putInt("PAGE_NUMBER", pageNumber);
         bundle.putSerializable("SURAHS", (Serializable) surahs);
 
         Intent openAcivity = new Intent(this, AyahsActivity.class);

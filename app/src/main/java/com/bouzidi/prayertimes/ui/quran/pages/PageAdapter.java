@@ -6,6 +6,7 @@ import android.graphics.text.LineBreaker;
 import android.os.Build;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
+import android.text.method.ScrollingMovementMethod;
 import android.text.style.RelativeSizeSpan;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -125,6 +126,8 @@ public class PageAdapter extends RecyclerView.Adapter<PageAdapter.Holder> {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             holder.ayahsConstraintLayout.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
         }
+
+        holder.ayahsTextView.setMovementMethod(new ScrollingMovementMethod());
     }
 
     @Override

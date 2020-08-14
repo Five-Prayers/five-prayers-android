@@ -47,6 +47,7 @@
                     android:gravity="center_horizontal"
                     android:textColor="@color/colorPrimary"
                     android:textSize="@dimen/text_xmlarge"
+                    android:fontFamily="@font/kitab"
                     tools:text="@tools:sample/lorem" />
             </LinearLayout>
 

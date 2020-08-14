@@ -310,16 +310,16 @@ public class HomeFragment extends Fragment {
             TimeRemainingCTimer.cancel();
     }
 
-    private void initializeImageViewIcon(ImageView fajrCallImageView, PrayerEnum prayerEnum) {
+    private void initializeImageViewIcon(ImageView adhanCallImageView, PrayerEnum prayerEnum) {
         SharedPreferences sharedPreferences = mainActivity.getSharedPreferences(adhanCallsPreferences, MODE_PRIVATE);
         String callPreferenceKey = prayerEnum.toString() + adhanCallKeyPart;
 
-        boolean fajrCallEnabled = sharedPreferences.getBoolean(callPreferenceKey, true);
+        boolean adhanCallEnabled = sharedPreferences.getBoolean(callPreferenceKey, false);
 
-        fajrCallImageView.setImageResource(fajrCallEnabled ? R.drawable.ic_notifications_24dp : R.drawable.ic_notifications_off_24dp);
-        fajrCallImageView.setColorFilter(fajrCallEnabled ? enabledColor : disabledColor);
+        adhanCallImageView.setImageResource(adhanCallEnabled ? R.drawable.ic_notifications_24dp : R.drawable.ic_notifications_off_24dp);
+        adhanCallImageView.setColorFilter(adhanCallEnabled ? enabledColor : disabledColor);
 
-        setNotifImgOnClickListener(fajrCallImageView, callPreferenceKey);
+        setNotifImgOnClickListener(adhanCallImageView, callPreferenceKey);
     }
 
     private void setNotifImgOnClickListener(ImageView imageView, String callPreferenceKey) {

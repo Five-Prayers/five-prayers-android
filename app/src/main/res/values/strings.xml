@@ -159,4 +159,14 @@
     <string name="part_to_display">%s  الحزب  %d</string>
     <string name="Quran">Quran</string>
     <string name="title_checkbox_quran_night_mode">Night Mode</string>
+    <string name="title_adhan_call_section">Adhan</string>
+    <string name="dialog_title_fajr_adhan">Select Fajr Adhan</string>
+
+    <string name="adhan_abdelbasset_abdessamad">Abdelbasset Abdessamad</string>
+    <string name="adhan_al_haram_el_madani">Al Haram Al Madani</string>
+    <string name="adhan_meshary_al_fasy">Mishary Rashid Al-Afasy</string>
+    <string name="adhan_omar_al_kazabri">Omar Al Kazabri</string>
+    <string name="adhan_riad_al_djazairi">Riad Al Djazairi</string>
+    <string name="title_adhan_fajr">Fajr Adhan</string>
+    <string name="title_adhan">Adhan</string>
 </resources>

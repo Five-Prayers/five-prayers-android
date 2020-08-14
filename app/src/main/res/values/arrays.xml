@@ -73,4 +73,29 @@
         <item>STANDARD</item>
         <item>JAFARI</item>
     </string-array>
+
+
+    <string-array name="entries_fajr_adhan_list_preference">
+        <item>@string/adhan_abdelbasset_abdessamad</item>
+        <item>@string/adhan_al_haram_el_madani</item>
+        <item>@string/adhan_meshary_al_fasy</item>
+    </string-array>
+    <string-array name="entryvalues_fajr_adhan_list_preference">
+        <item>ADHAN_FAJR_ABDELBASSET_ABDESSAMAD_EGYTE</item>
+        <item>ADHAN_FAJR_AL_HARAM_EL_MADANI_SAOUDIA</item>
+        <item>ADHAN_FAJR_MESHARY_AL_FASY_KUWAIT</item>
+    </string-array>
+
+    <string-array name="entries_adhan_list_preference">
+        <item>@string/adhan_abdelbasset_abdessamad</item>
+        <item>@string/adhan_meshary_al_fasy</item>
+        <item>@string/adhan_omar_al_kazabri</item>
+        <item>@string/adhan_riad_al_djazairi</item>
+    </string-array>
+    <string-array name="entryvalues_adhan_list_preference">
+        <item>ADHAN_ABDELBASSET_ABDESSAMAD_EGYTE</item>
+        <item>ADHAN_MESHARY_AL_FASY_KUWAIT</item>
+        <item>ADHAN_OMAR_AL_KAZABRI_MOROCCO</item>
+        <item>ADHAN_RIAD_AL_DJAZAIRI_ALGERIA</item>
+    </string-array>
 </resources>

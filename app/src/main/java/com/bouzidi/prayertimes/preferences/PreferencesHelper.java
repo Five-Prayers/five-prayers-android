@@ -149,6 +149,16 @@ public class PreferencesHelper {
         return defaultSharedPreferences.getBoolean(PreferencesConstants.QURAN_NIGHT_MODE_ACTIVATED, false);
     }
 
+    public static String getFajrAdhanCaller(Context context) {
+        final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return defaultSharedPreferences.getString(PreferencesConstants.ADTHAN_FAJR_CALLER, "ADHAN_FAJR_MESHARY_AL_FASY_KUWAIT");
+    }
+
+    public static String getAdhanCaller(Context context) {
+        final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return defaultSharedPreferences.getString(PreferencesConstants.ADTHAN_CALLER, "ADHAN_MESHARY_AL_FASY_KUWAIT");
+    }
+
     private static boolean isCalculationPreferenceInitialized(Context context) {
         final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         return defaultSharedPreferences.getBoolean(PreferencesConstants.CALCULATION_PREFERENCES_INITIALIZED, false);

@@ -16,6 +16,7 @@ import androidx.media.VolumeProviderCompat;
 
 import com.bouzidi.prayertimes.R;
 import com.bouzidi.prayertimes.preferences.PreferencesConstants;
+import com.bouzidi.prayertimes.timings.PrayerEnum;
 import com.bouzidi.prayertimes.ui.MainActivity;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -91,10 +92,10 @@ class PrayerNotification {
         String callPreferenceKey = prayerKey + adhanCallKeyPart;
 
         final SharedPreferences sharedPreferences = context.getSharedPreferences(PreferencesConstants.ADTHAN_CALLS_SHARED_PREFERENCES, MODE_PRIVATE);
-        boolean callEnabled = sharedPreferences.getBoolean(callPreferenceKey, true);
+        boolean callEnabled = sharedPreferences.getBoolean(callPreferenceKey, false);
 
         if (callEnabled) {
-            AdhanPlayer.getInstance(context).playAdhan();
+            AdhanPlayer.getInstance().playAdhan(context, PrayerEnum.FAJR.toString().equals(prayerKey));
             setMediaSession(context);
         }
     }
@@ -109,13 +110,13 @@ class PrayerNotification {
                 new VolumeProviderCompat(VolumeProviderCompat.VOLUME_CONTROL_RELATIVE, 100, 50) {
                     @Override
                     public void onAdjustVolume(int direction) {
-                        AdhanPlayer.getInstance(context).stopAdhan();
+                        AdhanPlayer.getInstance().stopAdhan();
                         mediaSession.release();
                     }
                 };
         mediaSession.setPlaybackToRemote(myVolumeProvider);
         mediaSession.setActive(true);
 
-        AdhanPlayer.getInstance(context).setOnCompletionListener(mp -> mediaSession.release());
+        AdhanPlayer.getInstance().setOnCompletionListener(mp -> mediaSession.release());
     }
 }

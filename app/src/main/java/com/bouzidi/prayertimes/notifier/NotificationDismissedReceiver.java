@@ -8,6 +8,6 @@ public class NotificationDismissedReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        AdhanPlayer.getInstance(context).stopAdhan();
+        AdhanPlayer.getInstance().stopAdhan();
     }
 }

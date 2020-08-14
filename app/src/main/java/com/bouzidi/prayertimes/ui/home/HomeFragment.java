@@ -334,7 +334,7 @@ public class HomeFragment extends Fragment {
                 vibe.vibrate(10);
             }
 
-            boolean adhanCallEnabled = sharedPreferences.getBoolean(callPreferenceKey, true);
+            boolean adhanCallEnabled = sharedPreferences.getBoolean(callPreferenceKey, false);
 
             imageView.setImageResource(adhanCallEnabled ? R.drawable.ic_notifications_off_24dp : R.drawable.ic_notifications_24dp);
             imageView.setColorFilter(adhanCallEnabled ? disabledColor : enabledColor);

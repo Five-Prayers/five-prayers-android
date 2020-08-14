@@ -1,5 +1,6 @@
 package com.bouzidi.prayertimes.ui.quran.pages;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.graphics.text.LineBreaker;
@@ -11,7 +12,7 @@ import android.text.style.RelativeSizeSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -110,7 +111,6 @@ public class PageAdapter extends RecyclerView.Adapter<PageAdapter.Holder> {
             spannableStringBuilder.append(MessageFormat.format("{0}   \uFD3F{1}\uFD3E  ", ayahText, getArabicNumber(currentAyah.getNumberInSurah())));
         }
 
-        holder.topLinearLayout.setVisibility(View.VISIBLE);
         holder.ayahsTextView.setTextColor(textColor);
         holder.ayahsConstraintLayout.setBackgroundColor(backgroundColor);
 
@@ -125,9 +125,13 @@ public class PageAdapter extends RecyclerView.Adapter<PageAdapter.Holder> {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             holder.ayahsConstraintLayout.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
+            holder.topHeaderLayout.setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
+            holder.bottomFooterLayout.setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
         }
 
         holder.ayahsTextView.setMovementMethod(new ScrollingMovementMethod());
+
+        holder.closeImageView.setOnClickListener(v -> ((Activity) context).finish());
     }
 
     @Override
@@ -154,9 +158,11 @@ public class PageAdapter extends RecyclerView.Adapter<PageAdapter.Holder> {
         TextView ayahsTextView;
         TextView surahNameTextView;
         TextView juzTextView;
-        LinearLayout topLinearLayout;
+        ConstraintLayout topHeaderLayout;
+        ConstraintLayout bottomFooterLayout;
         TextView pageNumTextView;
         ConstraintLayout ayahsConstraintLayout;
+        ImageView closeImageView;
 
         public Holder(@NonNull View itemView) {
             super(itemView);
@@ -164,9 +170,11 @@ public class PageAdapter extends RecyclerView.Adapter<PageAdapter.Holder> {
             ayahsTextView = itemView.findViewById(R.id.ayahs_text_view);
             surahNameTextView = itemView.findViewById(R.id.surah_name_text_view);
             juzTextView = itemView.findViewById(R.id.juz_text_view);
-            topLinearLayout = itemView.findViewById(R.id.top_linear_layout);
+            topHeaderLayout = itemView.findViewById(R.id.top_header_layout);
+            bottomFooterLayout = itemView.findViewById(R.id.bottom_footer_layout);
             ayahsConstraintLayout = itemView.findViewById(R.id.ayah_layout);
             pageNumTextView = itemView.findViewById(R.id.page_num_text_view);
+            closeImageView = itemView.findViewById(R.id.close_image_view);
         }
     }
 

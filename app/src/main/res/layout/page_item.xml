@@ -22,68 +22,112 @@
         android:text="lorem_long"
         android:textAlignment="gravity"
         android:textIsSelectable="false"
-        app:autoSizeMinTextSize="15sp"
         app:autoSizeMaxTextSize="100sp"
+        app:autoSizeMinTextSize="15sp"
         app:autoSizeStepGranularity="2sp"
         app:autoSizeTextType="uniform"
-        app:layout_constraintBottom_toTopOf="@id/page_num_text_view"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_footer_layout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/top_linear_layout" />
+        app:layout_constraintTop_toBottomOf="@+id/top_header_layout" />
 
 
-    <LinearLayout
-        android:id="@+id/top_linear_layout"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/top_header_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="top"
-        android:alpha="0.9"
-        android:layoutDirection="rtl"
-        android:orientation="horizontal"
-        android:padding="@dimen/spacing_medium"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/surah_name_text_view"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
             android:layout_weight="1"
+            android:fontFamily="@font/kitab"
             android:gravity="start"
             android:paddingStart="10dp"
             android:paddingLeft="10dp"
             android:text="tvSurahName"
-            android:fontFamily="@font/kitab"
             android:textAlignment="viewStart"
             android:textColor="@color/boulder"
-            android:textSize="@dimen/text_middle" />
+            android:textSize="@dimen/text_middle"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/juz_text_view"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
             android:layout_weight="1"
+            android:fontFamily="@font/kitab"
             android:gravity="end"
             android:paddingEnd="10dp"
             android:paddingRight="10dp"
             android:text="tvJuz"
-            android:fontFamily="@font/kitab"
             android:textAlignment="viewEnd"
             android:textColor="@color/boulder"
-            android:textSize="@dimen/text_middle" />
-    </LinearLayout>
+            android:textSize="@dimen/text_middle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/page_num_text_view"
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bottom_footer_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/spacing_medium"
-        android:layout_marginRight="@dimen/spacing_medium"
-        android:gravity="center_horizontal"
-        android:paddingBottom="5dp"
-        android:text="tafseerTap"
-        android:fontFamily="@font/kitab"
-        android:textColor="@color/boulder"
-        android:textSize="@dimen/text_middle"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/page_num_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/kitab"
+            android:gravity="center_horizontal"
+            android:paddingBottom="5dp"
+            android:text="tafseerTap"
+            android:textColor="@color/boulder"
+            android:textSize="@dimen/text_middle"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/close_image_view"
+            android:layout_width="@dimen/spacing_smlarge"
+            android:layout_height="@dimen/spacing_smlarge"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/ic_close_24dp"
+            android:tint="@color/boulder"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,9 +13,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bouzidi.prayertimes.R;
 import com.bouzidi.prayertimes.ui.calendar.CalendarActivity;
+import com.bouzidi.prayertimes.ui.names.NamesActivity;
+import com.bouzidi.prayertimes.ui.qibla.CompassActivity;
 import com.bouzidi.prayertimes.ui.quran.surahs.QuranActivity;
 import com.bouzidi.prayertimes.ui.timingtable.TimingTableActivity;
-import com.bouzidi.prayertimes.ui.qibla.CompassActivity;
 
 import java.util.ArrayList;
 
@@ -33,18 +34,19 @@ public class DashboardFragment extends Fragment {
         recyclerView = root.findViewById(R.id.rv1);
 
         dashModelArrayList = new ArrayList<>();
-        String heads[] = {"Qibla Direction", "Prayer Times Table", "Hijri Calendar", "The Holy Quran", "Asma Al Husna", "Dua and Azkar"};
+        String heads[] = {"Qibla Direction", "Prayer Times Table", "Hijri Calendar", "The Holy Quran", "Asma Al Husna"};
 
-        String subs[] = {"Locate the direction of the Qibla", "Monthly Prayer table", "Hijri dates and Holidays", "Recite & Listen the Holy Quran", "99 Names of God", "Recite Dua and Azkar"};
+        String subs[] = {"Locate the direction of the Qibla", "Monthly Prayer table", "Hijri dates and Holidays", "Recite & Listen the Holy Quran", "99 Names of God"};
 
         int images[] = {R.drawable.ic_compass_24dp, R.drawable.ic_table_24dp, R.drawable.ic_calendar_24dp, R.drawable.ic_quran_24dp,
-                R.drawable.ic_alah_24dp, R.drawable.ic_dua_hands};
+                R.drawable.ic_alah_24dp};
 
         Intent intents[] = {new Intent(getActivity(), CompassActivity.class),
                 new Intent(getActivity(), TimingTableActivity.class),
                 new Intent(getActivity(), CalendarActivity.class),
                 new Intent(getActivity(), QuranActivity.class),
-                null, null};
+                new Intent(getActivity(), NamesActivity.class)
+        };
 
         for (int count = 0; count < heads.length; count++) {
             DashModel dashModel = new DashModel();
@@ -53,7 +55,6 @@ public class DashboardFragment extends Fragment {
             dashModel.setImage(images[count]);
             dashModel.setIntent(intents[count]);
             dashModelArrayList.add(dashModel);
-            //this should be retrieved in our adapter
         }
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity().getApplicationContext(), 2));
         dashAdapter = new DashAdapter(dashModelArrayList, getActivity());

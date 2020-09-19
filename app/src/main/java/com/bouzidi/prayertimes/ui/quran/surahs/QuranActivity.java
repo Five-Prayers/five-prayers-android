@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,6 +27,10 @@ public class QuranActivity extends AppCompatActivity {
         setContentView(R.layout.activity_quran);
 
         surahRecyclerView = findViewById(R.id.surah_recycler_view);
+
+        Toolbar toolbar = findViewById(R.id.quran_toolbar);
+        toolbar.setNavigationIcon(ContextCompat.getDrawable(this, R.drawable.ic_arrow_back));
+        toolbar.setNavigationOnClickListener(v -> finish());
 
         QuranViewModel quranViewModel = new ViewModelProvider(this).get(QuranViewModel.class);
         quranViewModel.getSurahs().observe(this, this::initRecyclerView);

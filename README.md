@@ -12,7 +12,7 @@ Five Prayers Android is not Google Framework dependent, so this app can be used 
 * Different prayer times calculation methods based on <a href="https://aladhan.com">aladhan.com</a> API
     - Shia Ithna Ashari, Leva Research Institute, Qum
     - University of Islamic Sciences, Karachi
-    - Islamic Society of North America (ISNA)Spiritual Administration of Muslims of Russia
+    - Islamic Society of North America (ISNA)
     - Muslim World League (MWL)
     - Umm al-Qura University
     - Egyptian General Authority of Survey

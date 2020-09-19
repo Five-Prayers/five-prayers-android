@@ -34,9 +34,9 @@ public class DashboardFragment extends Fragment {
         recyclerView = root.findViewById(R.id.rv1);
 
         dashModelArrayList = new ArrayList<>();
-        String heads[] = {"Qibla Direction", "Prayer Times Table", "Hijri Calendar", "The Holy Quran", "Asma Al Husna"};
+        int heads[] = {R.string.title_qibla_direction, R.string.title_calendar, R.string.gregorian_hijri_calendar, R.string.quran, R.string.names_view_title};
 
-        String subs[] = {"Locate the direction of the Qibla", "Monthly Prayer table", "Hijri dates and Holidays", "Recite & Listen the Holy Quran", "99 Names of God"};
+        int subs[] = {R.string.desc_qibla_direction, R.string.desc_calendar_view_title, R.string.desc_gregorian_hijri_calendar, R.string.desc_quran, R.string.ndesc_ames_view_title};
 
         int images[] = {R.drawable.ic_compass_24dp, R.drawable.ic_table_24dp, R.drawable.ic_calendar_24dp, R.drawable.ic_quran_24dp,
                 R.drawable.ic_alah_24dp};
@@ -50,8 +50,8 @@ public class DashboardFragment extends Fragment {
 
         for (int count = 0; count < heads.length; count++) {
             DashModel dashModel = new DashModel();
-            dashModel.setHead(heads[count]);
-            dashModel.setSub(subs[count]);
+            dashModel.setHead(getResources().getString(heads[count]));
+            dashModel.setSub(getResources().getString(subs[count]));
             dashModel.setImage(images[count]);
             dashModel.setIntent(intents[count]);
             dashModelArrayList.add(dashModel);
@@ -64,4 +64,4 @@ public class DashboardFragment extends Fragment {
 
         return root;
     }
-}
+    }

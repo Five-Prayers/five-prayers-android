@@ -11,8 +11,8 @@
     <string name="label.unknown_location">Unknown Location</string>
 
     <string name="calendar_view_title">Calendrier de prière à</string>
-
-    <string name="quran_view_title">Quran</string>
+    <string name="title_calendar">Calendrier de prière</string>
+    <string name="desc_calendar_view_title">Table mensuelle de prière</string>
 
     <string name="last_update_time_key">last_update_time_key</string>
 
@@ -127,10 +127,15 @@
     <string name="dialog_title_latitude_adjustment_method">Choisir une Méthode</string>
 
     <string name="calendar">Calendrier</string>
+    <string name="gregorian_hijri_calendar">Calendrier Grégorien/Hijri</string>
+    <string name="desc_gregorian_hijri_calendar">Calendrier et fêtes Hijri</string>
+
     <string name="title_hijri_day_adjustment_preference">Ajustement de la date Hijri</string>
     <string name="dialog_title_hijri_day_adjustment_preference">Ajuster la date Hijri</string>
 
     <string name="title_qibla_direction">Direction de Qibla</string>
+    <string name="desc_qibla_direction">Obtenez la direction de la Mecque</string>
+
     <string name="your_location">Votre position: </string>
     <string name="unable_to_get_your_location">Impossible d\'obtenir votre position</string>
     <string name="location_not_ready">Service de localisation pas encore prêt</string>
@@ -158,7 +163,8 @@
     <string name="juz_to_display">الجزء %d</string>
     <string name="hizb_to_display">الحزب %d</string>
     <string name="part_to_display">%s  الحزب  %d</string>
-    <string name="Quran">Quran</string>
+    <string name="quran">Le Saint Coran</string>
+    <string name="desc_quran">Récitez le Saint Coran</string>
     <string name="title_checkbox_quran_night_mode">Mode nuit</string>
     <string name="title_adhan_call_section">Adhan</string>
     <string name="dialog_title_fajr_adhan">Select Fajr Adhan</string>
@@ -171,7 +177,8 @@
     <string name="title_adhan_fajr">Fajr Adhan</string>
     <string name="title_adhan">Adhan</string>
 
-    <string name="names_view_title">Les plus beaux noms de Dieu</string>
+    <string name="names_view_title">Asma’ Allah al-Ḥusná</string>
+    <string name="ndesc_ames_view_title">Les plus beaux noms de Dieu</string>
 
     <string name="ALLAH_NAME_1">Le Tout-Miséricordieux</string>
     <string name="ALLAH_NAME_2">Le Très-Miséricordieux</string>

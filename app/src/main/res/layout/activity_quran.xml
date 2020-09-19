@@ -20,7 +20,7 @@
         app:navigationIcon="@drawable/ic_arrow_back"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:title="@string/quran_view_title"
+        app:title="@string/quran"
         app:titleTextAppearance="@style/Toolbar.TitleText"
         table:layout_constraintHorizontal_bias="1.0">
 

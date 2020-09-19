@@ -31,9 +31,10 @@
     <string name="app_intro_permission_denied_dialog_message">You refused to allow the application to access your location. You have to manually enter your city in the settings screen.</string>
 
     <string name="last_update_time_key">last_update_time_key</string>
-    <string name="calendar_view_title">Prayer Calendar in</string>
 
-    <string name="quran_view_title">Quran</string>
+    <string name="calendar_view_title">Prayer Calendar in</string>
+    <string name="title_calendar">Prayer Calendar</string>
+    <string name="desc_calendar_view_title">Monthly Prayer table</string>
 
     <string name="SUNRISE">Sunrise</string>
     <string name="FAJR">As`Sobh (Fajr)</string>
@@ -124,6 +125,8 @@
     <string name="title_latitude_adjustment_method">Adjusting times in higher latitudes</string>
     <string name="dialog_title_latitude_adjustment_method">Choose a method</string>
     <string name="calendar">Calendar</string>
+    <string name="gregorian_hijri_calendar">Gregorian/Hijri Calendar</string>
+    <string name="desc_gregorian_hijri_calendar">Hijri dates and Holidays</string>
     <string name="title_hijri_day_adjustment_preference">Hijri date adjustment</string>
     <string name="dialog_title_hijri_day_adjustment_preference">Adjust Hijri date</string>
 
@@ -138,6 +141,8 @@
     <string name="dialog_message_sensor_not_calibrate">Please calibrate your sensors, by pointing your phone up toward the sky and move if in a figure 8 motion</string>
 
     <string name="title_qibla_direction">Qibla Direction</string>
+    <string name="desc_qibla_direction">Locate Qibla direction</string>
+
     <string name="school_adjustment_method_shafii">Shafii (Default)</string>
     <string name="school_adjustment_method_hanafi">Hanafi</string>
     <string name="title_school_adjustment_method">School</string>
@@ -157,7 +162,8 @@
     <string name="juz_to_display">الجزء %d</string>
     <string name="hizb_to_display">الحزب %d</string>
     <string name="part_to_display">%s  الحزب  %d</string>
-    <string name="Quran">Quran</string>
+    <string name="quran">The Noble Quran</string>
+    <string name="desc_quran">Recite the Holy Quran</string>
     <string name="title_checkbox_quran_night_mode">Night Mode</string>
     <string name="title_adhan_call_section">Adhan</string>
     <string name="dialog_title_fajr_adhan">Select Fajr Adhan</string>
@@ -171,6 +177,7 @@
     <string name="title_adhan">Adhan</string>
 
     <string name="names_view_title">Beautiful Names of God</string>
+    <string name="ndesc_ames_view_title">99 Names of God</string>
 
     <string name="ALLAH_NAME_1">The Most or Entirely Merciful</string>
     <string name="ALLAH_NAME_2">The Bestower of Mercy</string>

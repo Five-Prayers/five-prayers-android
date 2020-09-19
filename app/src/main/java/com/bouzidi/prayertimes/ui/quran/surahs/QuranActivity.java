@@ -4,13 +4,14 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bouzidi.prayertimes.R;
+import com.bouzidi.prayertimes.preferences.PreferencesHelper;
 import com.bouzidi.prayertimes.quran.dto.Surah;
 import com.bouzidi.prayertimes.ui.quran.pages.AyahsActivity;
 
@@ -28,14 +29,12 @@ public class QuranActivity extends AppCompatActivity {
 
         surahRecyclerView = findViewById(R.id.surah_recycler_view);
 
-        Toolbar toolbar = findViewById(R.id.quran_toolbar);
-        toolbar.setNavigationIcon(ContextCompat.getDrawable(this, R.drawable.ic_arrow_back));
-        toolbar.setNavigationOnClickListener(v -> finish());
+        initToolbar();
+        initNightModeSwitchButton();
 
         QuranViewModel quranViewModel = new ViewModelProvider(this).get(QuranViewModel.class);
         quranViewModel.getSurahs().observe(this, this::initRecyclerView);
     }
-
 
     private void initRecyclerView(List<Surah> surahs) {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -57,5 +56,19 @@ public class QuranActivity extends AppCompatActivity {
         Intent openAcivity = new Intent(this, AyahsActivity.class);
         openAcivity.putExtra("BUNDLE", bundle);
         startActivity(openAcivity);
+    }
+
+    private void initToolbar() {
+        Toolbar toolbar = findViewById(R.id.quran_toolbar);
+        toolbar.setNavigationOnClickListener(v -> finish());
+    }
+
+    private void initNightModeSwitchButton() {
+        SwitchCompat nightModeSwitchButton = findViewById(R.id.night_mode_switch);
+        nightModeSwitchButton.setChecked(PreferencesHelper.isNightModeActivated(this));
+
+        nightModeSwitchButton.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            PreferencesHelper.setNightModeActivated(this, isChecked);
+        });
     }
 }

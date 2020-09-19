@@ -86,10 +86,4 @@
             android:key="HIJRI_DAY_ADJUSTMENT_PREFERENCE"
             android:title="@string/title_hijri_day_adjustment_preference" />
     </PreferenceCategory>
-
-    <PreferenceCategory android:title="@string/Quran">
-        <CheckBoxPreference
-            android:key="QURAN_NIGHT_MODE_ACTIVATED"
-            android:title="@string/title_checkbox_quran_night_mode" />
-    </PreferenceCategory>
 </PreferenceScreen>

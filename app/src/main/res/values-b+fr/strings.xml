@@ -159,7 +159,7 @@
     <string name="hizb_to_display">الحزب %d</string>
     <string name="part_to_display">%s  الحزب  %d</string>
     <string name="Quran">Quran</string>
-    <string name="title_checkbox_quran_night_mode">Night Mode</string>
+    <string name="title_checkbox_quran_night_mode">Mode nuit</string>
     <string name="title_adhan_call_section">Adhan</string>
     <string name="dialog_title_fajr_adhan">Select Fajr Adhan</string>
 

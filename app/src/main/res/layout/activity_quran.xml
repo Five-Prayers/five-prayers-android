@@ -23,6 +23,22 @@
         app:title="@string/quran_view_title"
         app:titleTextAppearance="@style/Toolbar.TitleText"
         table:layout_constraintHorizontal_bias="1.0">
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/night_mode_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_gravity="end"
+            android:gravity="center_vertical"
+            android:text="@string/title_checkbox_quran_night_mode"
+            android:textColor="@color/stratos"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_large"
+            app:layout_constraintBottom_toBottomOf="@+id/quran_toolbar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/quran_toolbar" />
     </androidx.appcompat.widget.Toolbar>
 
     <androidx.constraintlayout.widget.ConstraintLayout

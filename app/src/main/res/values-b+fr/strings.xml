@@ -134,7 +134,7 @@
     <string name="dialog_title_hijri_day_adjustment_preference">Ajuster la date Hijri</string>
 
     <string name="title_qibla_direction">Direction de Qibla</string>
-    <string name="desc_qibla_direction">Obtenez la direction de la Mecque</string>
+    <string name="desc_qibla_direction">Direction de la Mecque</string>
 
     <string name="your_location">Votre position: </string>
     <string name="unable_to_get_your_location">Impossible d\'obtenir votre position</string>

@@ -2,15 +2,15 @@ package com.bouzidi.prayertimes.ui.dashboard;
 
 import android.content.Intent;
 
-public class DashModel {
+public class DashboardModel {
     private String head, sub;
     private int image;
     private Intent intent;
 
-    public DashModel() {
+    public DashboardModel() {
     }
 
-    public DashModel(String head, String sub, int image) {
+    public DashboardModel(String head, String sub, int image) {
         this.head = head;
         this.sub = sub;
         this.image = image;

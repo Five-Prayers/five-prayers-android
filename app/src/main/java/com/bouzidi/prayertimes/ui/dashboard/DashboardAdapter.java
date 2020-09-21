@@ -14,13 +14,13 @@ import com.bouzidi.prayertimes.R;
 
 import java.util.ArrayList;
 
-public class DashAdapter extends RecyclerView.Adapter<DashAdapter.ViewHolder> {
+public class DashboardAdapter extends RecyclerView.Adapter<DashboardAdapter.ViewHolder> {
 
-    ArrayList<DashModel> dashModelArrayList;
+    ArrayList<DashboardModel> dashboardModelArrayList;
     private Activity activity;
 
-    public DashAdapter(ArrayList<DashModel> dashModelArrayList, Activity activity) {
-        this.dashModelArrayList = dashModelArrayList;
+    public DashboardAdapter(ArrayList<DashboardModel> dashboardModelArrayList, Activity activity) {
+        this.dashboardModelArrayList = dashboardModelArrayList;
         this.activity = activity;
     }
 
@@ -33,16 +33,16 @@ public class DashAdapter extends RecyclerView.Adapter<DashAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
-        String ret_head = dashModelArrayList.get(position).getHead();
+        String ret_head = dashboardModelArrayList.get(position).getHead();
         holder.setheader(ret_head);
 
-        String ret_sub = dashModelArrayList.get(position).getSub();
+        String ret_sub = dashboardModelArrayList.get(position).getSub();
         holder.set_sub(ret_sub);
 
-        int ret_image = dashModelArrayList.get(position).getImage();
+        int ret_image = dashboardModelArrayList.get(position).getImage();
         holder.set_image(ret_image);
 
-        Intent intent = dashModelArrayList.get(position).getIntent();
+        Intent intent = dashboardModelArrayList.get(position).getIntent();
         if (intent != null) {
             holder.setOnclickListener(intent);
         }
@@ -50,7 +50,7 @@ public class DashAdapter extends RecyclerView.Adapter<DashAdapter.ViewHolder> {
 
     @Override
     public int getItemCount() {
-        return dashModelArrayList.size();
+        return dashboardModelArrayList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

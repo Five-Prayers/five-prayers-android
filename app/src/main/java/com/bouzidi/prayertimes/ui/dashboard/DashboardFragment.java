@@ -22,18 +22,14 @@ import java.util.ArrayList;
 
 public class DashboardFragment extends Fragment {
 
-    ArrayList<DashModel> dashModelArrayList;
-    private RecyclerView recyclerView;
-    DashAdapter dashAdapter;
-    private DashboardViewModel dashboardViewModel;
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
 
-        recyclerView = root.findViewById(R.id.rv1);
+        RecyclerView recyclerView = root.findViewById(R.id.dashboard_recycler_view);
 
-        dashModelArrayList = new ArrayList<>();
+        ArrayList<DashboardModel> dashboardModelArrayList = new ArrayList<>();
+
         int heads[] = {R.string.title_qibla_direction, R.string.title_calendar, R.string.gregorian_hijri_calendar, R.string.quran, R.string.names_view_title};
 
         int subs[] = {R.string.desc_qibla_direction, R.string.desc_calendar_view_title, R.string.desc_gregorian_hijri_calendar, R.string.desc_quran, R.string.ndesc_ames_view_title};
@@ -49,19 +45,19 @@ public class DashboardFragment extends Fragment {
         };
 
         for (int count = 0; count < heads.length; count++) {
-            DashModel dashModel = new DashModel();
-            dashModel.setHead(getResources().getString(heads[count]));
-            dashModel.setSub(getResources().getString(subs[count]));
-            dashModel.setImage(images[count]);
-            dashModel.setIntent(intents[count]);
-            dashModelArrayList.add(dashModel);
+            DashboardModel dashboardModel = new DashboardModel();
+            dashboardModel.setHead(getResources().getString(heads[count]));
+            dashboardModel.setSub(getResources().getString(subs[count]));
+            dashboardModel.setImage(images[count]);
+            dashboardModel.setIntent(intents[count]);
+            dashboardModelArrayList.add(dashboardModel);
         }
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity().getApplicationContext(), 2));
-        dashAdapter = new DashAdapter(dashModelArrayList, getActivity());
+        DashboardAdapter dashboardAdapter = new DashboardAdapter(dashboardModelArrayList, getActivity());
         recyclerView.setHasFixedSize(true);
 
-        recyclerView.setAdapter(dashAdapter);
+        recyclerView.setAdapter(dashboardAdapter);
 
         return root;
     }
-    }
+}

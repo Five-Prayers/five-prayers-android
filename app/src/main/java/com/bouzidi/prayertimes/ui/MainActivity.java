@@ -49,7 +49,11 @@ public class MainActivity extends AppCompatActivity {
                         .build();
 
         WorkManager.getInstance(this)
-                .enqueueUniquePeriodicWork("Prayer updater", ExistingPeriodicWorkPolicy.KEEP, periodicWorkRequest);
+                .enqueueUniquePeriodicWork("FIVE_PRAYERS_UPDATER", ExistingPeriodicWorkPolicy.KEEP, periodicWorkRequest);
+    }
+
+    @Override
+    public void onBackPressed() {
     }
 
     private boolean displaySettingsScreenFirst() {

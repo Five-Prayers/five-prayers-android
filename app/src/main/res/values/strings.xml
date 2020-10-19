@@ -149,7 +149,8 @@
     <string name="midnight_mode_adjustment_method_standard">Default (Mid Sunset to Sunrise)</string>
     <string name="midnight_mode_adjustment_method_jafari">Jafari (Mid Sunset to Fajr)</string>
     <string name="title_midnight_mode_adjustment_method">Midnight mode</string>
-    <string name="adthan_notification_title">It\'s time for praying</string>
+    <string name="adthan_notification_title">It\'s time for prayer</string>
+    <string name="adthan_notification_close_action_title">Silent and close</string>
 
     <!--   Errors Messages    -->
 

@@ -148,6 +148,7 @@
     <string name="midnight_mode_adjustment_method_jafari">Jafari (Mi-coucher du soleil à Al Fajr)</string>
     <string name="title_midnight_mode_adjustment_method">Calcul du minuit</string>
     <string name="adthan_notification_title">Il est temps de prier</string>
+    <string name="adthan_notification_close_action_title">Mute Adhan and close</string>
 
     <!--   Errors Messages    -->
 

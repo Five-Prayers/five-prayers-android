@@ -33,6 +33,7 @@ public class NotifierHelper {
                 Intent intent = new Intent(context, NotifierReceiver.class);
                 intent.putExtra("prayerKey", key.toString());
                 intent.putExtra("prayerTiming", TimingUtils.formatTiming(timing));
+                intent.putExtra("prayerCity", dayPrayer.getCity());
                 intent.putExtra("notificationId", 1000);
 
                 intent.addFlags(Intent.FLAG_RECEIVER_FOREGROUND);

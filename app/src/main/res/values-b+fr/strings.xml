@@ -149,7 +149,8 @@
     <string name="midnight_mode_adjustment_method_standard">Par défaut (Mi-coucher du soleil au lever du soleil)</string>
     <string name="midnight_mode_adjustment_method_jafari">Jafari (Mi-coucher du soleil à Al Fajr)</string>
     <string name="title_midnight_mode_adjustment_method">Calcul du minuit</string>
-    <string name="adthan_notification_title">Il est temps de prier</string>
+    <string name="adthan_notification_title">Il est l\'heure pour la prière</string>
+    <string name="adthan_notification_close_action_title">Couper le son et fermer</string>
 
     <!--   Errors Messages    -->
 

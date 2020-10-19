@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.bouzidi.prayertimes">
+    package="com.hbouzidi.fiveprayers">
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
@@ -10,21 +10,21 @@
     <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
-        android:name=".FivePrayerApplication"
+        android:name="com.hbouzidi.fiveprayers.FivePrayerApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.names.NamesActivity" />
-        <activity android:name=".ui.quran.surahs.QuranActivity" />
+        <activity android:name="com.hbouzidi.fiveprayers.ui.names.NamesActivity" />
+        <activity android:name="com.hbouzidi.fiveprayers.ui.quran.surahs.QuranActivity" />
         <activity
-            android:name=".ui.quran.pages.AyahsActivity"
+            android:name="com.hbouzidi.fiveprayers.ui.quran.pages.AyahsActivity"
             android:configChanges="orientation|screenSize"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
         <activity
-            android:name=".ui.DefaultActivity"
+            android:name="com.hbouzidi.fiveprayers.ui.DefaultActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,18 +32,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.appintro.IntroActivity" />
-        <activity android:name=".ui.splashscreen.SplashScreenActivity" />
-        <activity android:name=".ui.MainActivity" />
-        <activity android:name=".ui.calendar.CalendarActivity" />
-        <activity android:name=".ui.timingtable.TimingTableActivity" />
-        <activity android:name=".ui.qibla.CompassActivity" />
+        <activity android:name="com.hbouzidi.fiveprayers.ui.appintro.IntroActivity" />
+        <activity android:name="com.hbouzidi.fiveprayers.ui.splashscreen.SplashScreenActivity" />
+        <activity android:name="com.hbouzidi.fiveprayers.ui.MainActivity" />
+        <activity android:name="com.hbouzidi.fiveprayers.ui.calendar.CalendarActivity" />
+        <activity android:name="com.hbouzidi.fiveprayers.ui.timingtable.TimingTableActivity" />
+        <activity android:name="com.hbouzidi.fiveprayers.ui.qibla.CompassActivity" />
 
-        <receiver android:name=".notifier.NotifierReceiver" android:enabled="true" />
-        <receiver android:name=".notifier.NotifierActionReceiver" android:enabled="true" />
-        <receiver android:name=".notifier.NotificationDismissedReceiver" />
+        <receiver android:name="com.hbouzidi.fiveprayers.notifier.NotifierReceiver" android:enabled="true" />
+        <receiver android:name="com.hbouzidi.fiveprayers.notifier.NotifierActionReceiver" android:enabled="true" />
+        <receiver android:name="com.hbouzidi.fiveprayers.notifier.NotificationDismissedReceiver" />
         <receiver
-            android:name=".notifier.NotifierBootReceiver"
+            android:name="com.hbouzidi.fiveprayers.notifier.NotifierBootReceiver"
             android:enabled="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
@@ -51,7 +51,7 @@
         </receiver>
 
         <service
-            android:name=".notifier.NotifierService"
+            android:name="com.hbouzidi.fiveprayers.notifier.NotifierService"
             android:exported="false"
             android:enabled="true"
             android:permission="android.permission.BIND_JOB_SERVICE"

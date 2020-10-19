@@ -8,7 +8,7 @@
             android:key="LOCATION_SET_MANUALLY_PREFERENCE"
             android:title="@string/title_checkbox_location_preference" />
 
-        <com.bouzidi.prayertimes.ui.settings.location.AutoCompleteTextPreference
+        <com.hbouzidi.fiveprayers.ui.settings.location.AutoCompleteTextPreference
             android:dependency="LOCATION_SET_MANUALLY_PREFERENCE"
             android:dialogTitle="@string/dialog_title_edit_text_location_preference"
             android:key="LOCATION_PREFERENCE"
@@ -38,7 +38,7 @@
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/title_prayer_timings_section">
-        <com.bouzidi.prayertimes.ui.settings.method.CalculationMethodPreference
+        <com.hbouzidi.fiveprayers.ui.settings.method.CalculationMethodPreference
             android:defaultValue="MUSLIM_WORLD_LEAGUE"
             android:dialogTitle="@string/dialog_title_list_preference"
             android:entries="@array/entries_calculation_method_list_preference"
@@ -47,7 +47,7 @@
             android:title="@string/title_list_preference"
             app:useSimpleSummaryProvider="true" />
 
-        <com.bouzidi.prayertimes.ui.settings.timings.NumberPickerPreference
+        <com.hbouzidi.fiveprayers.ui.settings.timings.NumberPickerPreference
             android:dialogTitle="@string/dialog_title_edit_text_timing_adjustment_preference"
             android:key="number_preference"
             android:title="@string/title_edit_text_timing_adjustment_preference" />
@@ -81,7 +81,7 @@
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/calendar">
-        <com.bouzidi.prayertimes.ui.settings.hijri.HijriDayAdjustmentPreference
+        <com.hbouzidi.fiveprayers.ui.settings.hijri.HijriDayAdjustmentPreference
             android:dialogTitle="@string/dialog_title_hijri_day_adjustment_preference"
             android:key="HIJRI_DAY_ADJUSTMENT_PREFERENCE"
             android:title="@string/title_hijri_day_adjustment_preference" />

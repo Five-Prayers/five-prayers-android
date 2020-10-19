@@ -49,7 +49,12 @@
             </intent-filter>
         </receiver>
 
-        <service android:name=".notifier.NotifierService" />
+        <service
+            android:name=".notifier.NotifierService"
+            android:exported="false"
+            android:enabled="true"
+            android:permission="android.permission.BIND_JOB_SERVICE"
+            />
     </application>
 
 </manifest>

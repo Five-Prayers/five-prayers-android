@@ -351,6 +351,7 @@ public class HomeFragment extends Fragment {
         Bundle bundle = new Bundle();
         bundle.putSerializable("dayPrayer", dayPrayer);
         intent.putExtras(bundle);
-        mainActivity.startService(intent);
+
+        NotifierService.enqueueWork(mainActivity, intent);
     }
 }

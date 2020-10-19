@@ -175,6 +175,7 @@
     <string name="adhan_meshary_al_fasy">Mishary Rashid Al-Afasy</string>
     <string name="adhan_omar_al_kazabri">Omar Al Kazabri</string>
     <string name="adhan_riad_al_djazairi">Riad Al Djazairi</string>
+    <string name="short_prayer_call">Rappel court en arabe (Pas d\'Adan)</string>
     <string name="title_adhan_fajr">Fajr Adhan</string>
     <string name="title_adhan">Adhan</string>
 

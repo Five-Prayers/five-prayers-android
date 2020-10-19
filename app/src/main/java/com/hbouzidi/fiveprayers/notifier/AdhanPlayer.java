@@ -80,8 +80,11 @@ public class AdhanPlayer {
                 case "ADHAN_FAJR_AL_HARAM_EL_MADANI_SAOUDIA":
                     mediaId = R.raw.adhan_fajr_al_haram_el_madani_saoudia;
                     break;
-                default:
+                case "ADHAN_FAJR_MESHARY_AL_FASY_KUWAIT":
                     mediaId = R.raw.adhan_fajr_meshary_al_fasy_kuwait;
+                    break;
+                default:
+                    mediaId = R.raw.short_prayer_call;
             }
         } else {
             switch (PreferencesHelper.getAdhanCaller(context)) {
@@ -94,8 +97,11 @@ public class AdhanPlayer {
                 case "ADHAN_RIAD_AL_DJAZAIRI_ALGERIA":
                     mediaId = R.raw.adhan_riad_al_djazairi_algeria;
                     break;
-                default:
+                case "ADHAN_MESHARY_AL_FASY_KUWAIT":
                     mediaId = R.raw.adhan_meshary_al_fasy_kuwait;
+                    break;
+                default:
+                    mediaId = R.raw.short_prayer_call;
             }
         }
         return Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + context.getPackageName() + "/" + mediaId);

@@ -19,7 +19,7 @@
     <PreferenceCategory android:title="@string/title_adhan_call_section">
 
         <ListPreference
-            android:defaultValue="ADHAN_FAJR_MESHARY_AL_FASY_KUWAIT"
+            android:defaultValue="SHORT_PRAYER_CALL"
             android:dialogTitle="@string/dialog_title_fajr_adhan"
             android:entries="@array/entries_fajr_adhan_list_preference"
             android:entryValues="@array/entryvalues_fajr_adhan_list_preference"
@@ -28,7 +28,7 @@
             app:useSimpleSummaryProvider="true" />
 
         <ListPreference
-            android:defaultValue="ADHAN_MESHARY_AL_FASY_KUWAIT"
+            android:defaultValue="SHORT_PRAYER_CALL"
             android:dialogTitle="@string/dialog_title_fajr_adhan"
             android:entries="@array/entries_adhan_list_preference"
             android:entryValues="@array/entryvalues_adhan_list_preference"

@@ -158,12 +158,12 @@ public class PreferencesHelper {
 
     public static String getFajrAdhanCaller(Context context) {
         final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        return defaultSharedPreferences.getString(PreferencesConstants.ADTHAN_FAJR_CALLER, "ADHAN_FAJR_MESHARY_AL_FASY_KUWAIT");
+        return defaultSharedPreferences.getString(PreferencesConstants.ADTHAN_FAJR_CALLER, "SHORT_PRAYER_CALL");
     }
 
     public static String getAdhanCaller(Context context) {
         final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        return defaultSharedPreferences.getString(PreferencesConstants.ADTHAN_CALLER, "ADHAN_MESHARY_AL_FASY_KUWAIT");
+        return defaultSharedPreferences.getString(PreferencesConstants.ADTHAN_CALLER, "SHORT_PRAYER_CALL");
     }
 
     private static boolean isCalculationPreferenceInitialized(Context context) {

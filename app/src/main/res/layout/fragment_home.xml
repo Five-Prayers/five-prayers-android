@@ -141,6 +141,20 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/gregorianTextView" />
 
+            <TextView
+                android:id="@+id/holiday_indicator_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:fontFamily="sans-serif-condensed"
+                android:text="1st Day Of Ramadan"
+                android:textColor="@color/flirt"
+                android:textSize="@dimen/text_large"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/hijriTextView" />
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/nextPrayerConstraintLayout"
                 android:layout_width="190dp"
@@ -223,8 +237,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.48000002">
-
+                app:layout_constraintVertical_bias="0.45">
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <com.bouzidi.prayertimes.ui.clock.ClockView
@@ -290,11 +303,11 @@
                     android:layout_marginEnd="4dp"
                     android:layout_marginRight="4dp"
                     android:src="@drawable/ic_notifications_24dp"
-                    android:tint="#00C167"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/icha_timing_text_view"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="#00C167" />
 
                 <TextView
                     android:id="@+id/icha_timing_text_view"
@@ -348,11 +361,11 @@
                     android:layout_marginEnd="4dp"
                     android:layout_marginRight="4dp"
                     android:src="@drawable/ic_notifications_off_24dp"
-                    android:tint="#D81B60"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/maghreb_timing_text_view"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="#D81B60" />
 
                 <TextView
                     android:id="@+id/maghreb_timing_text_view"
@@ -372,22 +385,22 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:src="@drawable/ic_sunet"
-                android:tint="#D53304"
                 app:layout_constraintBottom_toBottomOf="@+id/nextPrayerConstraintLayout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/nextPrayerConstraintLayout"
-                app:layout_constraintTop_toTopOf="@+id/nextPrayerConstraintLayout" />
+                app:layout_constraintTop_toTopOf="@+id/nextPrayerConstraintLayout"
+                app:tint="#D53304" />
 
             <ImageView
                 android:id="@+id/imageView3"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:src="@drawable/ic_sunrise"
-                android:tint="@color/sunrise"
                 app:layout_constraintBottom_toBottomOf="@+id/nextPrayerConstraintLayout"
                 app:layout_constraintEnd_toStartOf="@+id/nextPrayerConstraintLayout"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/nextPrayerConstraintLayout" />
+                app:layout_constraintTop_toTopOf="@+id/nextPrayerConstraintLayout"
+                app:tint="@color/sunrise" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/asr_timing_constraint_layout"
@@ -404,11 +417,11 @@
                     android:layout_marginEnd="4dp"
                     android:layout_marginRight="4dp"
                     android:src="@drawable/ic_notifications_24dp"
-                    android:tint="#00C167"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/asr_timing_text_view"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="#00C167" />
 
                 <TextView
                     android:id="@+id/asr_timing_text_view"
@@ -438,11 +451,11 @@
                     android:layout_marginEnd="4dp"
                     android:layout_marginRight="4dp"
                     android:src="@drawable/ic_notifications_off_24dp"
-                    android:tint="#D81B60"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/dohr_timing_text_view"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="#D81B60" />
 
                 <TextView
                     android:id="@+id/dohr_timing_text_view"
@@ -474,11 +487,11 @@
                     android:clickable="true"
                     android:focusable="true"
                     android:src="@drawable/ic_notifications_24dp"
-                    android:tint="#00C167"
                     app:layout_constraintBottom_toBottomOf="@+id/fajr_timing_text_view"
                     app:layout_constraintEnd_toStartOf="@+id/fajr_timing_text_view"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/fajr_timing_text_view" />
+                    app:layout_constraintTop_toTopOf="@+id/fajr_timing_text_view"
+                    app:tint="#00C167" />
 
                 <TextView
                     android:id="@+id/fajr_timing_text_view"
@@ -492,23 +505,6 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <TextView
-                android:id="@+id/holiday_indicator_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:drawableStart="@drawable/ic_celebration_24dp"
-                android:drawableLeft="@drawable/ic_celebration_24dp"
-                android:text="1st Day Of Ramadan"
-                android:textColor="@color/flirt"
-                android:textSize="@dimen/text_large"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/nextPrayerConstraintLayout"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </com.faltenreich.skeletonlayout.SkeletonLayout>

@@ -10,16 +10,11 @@ import androidx.navigation.NavController;
 import androidx.navigation.NavGraph;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
-import androidx.work.ExistingPeriodicWorkPolicy;
-import androidx.work.PeriodicWorkRequest;
-import androidx.work.WorkManager;
 
-import com.hbouzidi.fiveprayers.R;
-import com.hbouzidi.fiveprayers.job.PrayerUpdater;
-import com.hbouzidi.fiveprayers.preferences.PreferencesHelper;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import java.util.concurrent.TimeUnit;
+import com.hbouzidi.fiveprayers.R;
+import com.hbouzidi.fiveprayers.job.PeriodicWorkCreator;
+import com.hbouzidi.fiveprayers.preferences.PreferencesHelper;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -44,12 +39,7 @@ public class MainActivity extends AppCompatActivity {
         navController.setGraph(navGraph);
         PreferencesHelper.setFirstTimeLaunch(false, this);
 
-        PeriodicWorkRequest periodicWorkRequest =
-                new PeriodicWorkRequest.Builder(PrayerUpdater.class, 60, TimeUnit.MINUTES, 50, TimeUnit.MINUTES)
-                        .build();
-
-        WorkManager.getInstance(this)
-                .enqueueUniquePeriodicWork("FIVE_PRAYERS_UPDATER", ExistingPeriodicWorkPolicy.KEEP, periodicWorkRequest);
+        PeriodicWorkCreator.schedulePrayerUpdater(this);
     }
 
     @Override

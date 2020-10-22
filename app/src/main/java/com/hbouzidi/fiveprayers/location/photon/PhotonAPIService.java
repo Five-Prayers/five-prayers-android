@@ -1,7 +1,6 @@
 package com.hbouzidi.fiveprayers.location.photon;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.hbouzidi.fiveprayers.common.api.BaseAPIService;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -12,15 +11,14 @@ import java.util.Locale;
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
-public class PhotonAPIService {
+public class PhotonAPIService extends BaseAPIService {
 
-    private static final String BASE_URL = "https://photon.komoot.de/api/";
     private static PhotonAPIService photonAPIService;
 
     private PhotonAPIService() {
+        okHttpClient = new OkHttpClient.Builder().build();
+        BASE_URL = "https://photon.komoot.de/api/";
     }
 
     public static PhotonAPIService getInstance() {
@@ -31,19 +29,7 @@ public class PhotonAPIService {
     }
 
     public PhotonAPIResponse search(final String str, final int limit) throws IOException {
-        final OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
-
-        Gson gson = new GsonBuilder()
-                .setLenient()
-                .create();
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .client(httpClient.build())
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .build();
-
-        PhotonAPIResource photonAPIResource = retrofit.create(PhotonAPIResource.class);
+        PhotonAPIResource photonAPIResource = provideRetrofit().create(PhotonAPIResource.class);
 
         Call<PhotonAPIResponse> call
                 = photonAPIResource.search(str, limit, getDefaultLanguage());

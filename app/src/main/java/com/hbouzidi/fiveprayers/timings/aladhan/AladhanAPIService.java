@@ -3,8 +3,7 @@ package com.hbouzidi.fiveprayers.timings.aladhan;
 import android.content.Context;
 import android.util.Log;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.hbouzidi.fiveprayers.common.api.BaseAPIService;
 import com.hbouzidi.fiveprayers.network.NetworkUtil;
 import com.hbouzidi.fiveprayers.timings.calculations.CalculationMethodEnum;
 import com.hbouzidi.fiveprayers.timings.calculations.LatitudeAdjustmentMethod;
@@ -24,18 +23,14 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import retrofit2.Call;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
-public class AladhanAPIService {
+public class AladhanAPIService extends BaseAPIService {
 
-    private static final String BASE_URL = "https://api.aladhan.com/v1/";
     private static final int CACHE_MAX_SIZE = 10 * 1024 * 1024; //10Mo
     private static final int CACHE_MAX_AGE = 1; // 1Day
     private static final int CACHE_MAX_STALE = 1; // 1Day
 
     private static AladhanAPIService aladhanAPIService;
-    private static OkHttpClient okHttpClient;
 
     private AladhanAPIService(Context context) {
         okHttpClient =
@@ -44,6 +39,7 @@ public class AladhanAPIService {
                         .addNetworkInterceptor(provideCacheInterceptor())
                         .cache(provideCache(context))
                         .build();
+        BASE_URL = "https://api.aladhan.com/v1/";
     }
 
     public static AladhanAPIService getInstance(Context context) {
@@ -63,17 +59,7 @@ public class AladhanAPIService {
                                                            final String tune
     ) throws IOException {
 
-        Gson gson = new GsonBuilder()
-                .setLenient()
-                .create();
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .client(okHttpClient)
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .build();
-
-        AladhanAPIResource aladhanAPIResource = retrofit.create(AladhanAPIResource.class);
+        AladhanAPIResource aladhanAPIResource = provideRetrofit().create(AladhanAPIResource.class);
 
         Call<AladhanTodayTimingsResponse> call
                 = aladhanAPIResource
@@ -98,17 +84,7 @@ public class AladhanAPIService {
             final int adjustment,
             final String tune) throws IOException {
 
-        Gson gson = new GsonBuilder()
-                .setLenient()
-                .create();
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .client(okHttpClient)
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .build();
-
-        AladhanAPIResource aladhanAPIResource = retrofit.create(AladhanAPIResource.class);
+        AladhanAPIResource aladhanAPIResource = provideRetrofit().create(AladhanAPIResource.class);
 
         Call<AladhanCalendarResponse> call
                 = aladhanAPIResource
@@ -128,17 +104,7 @@ public class AladhanAPIService {
                                                         int adjustment) throws IOException {
 
 
-        Gson gson = new GsonBuilder()
-                .setLenient()
-                .create();
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .client(okHttpClient)
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .build();
-
-        AladhanAPIResource aladhanAPIResource = retrofit.create(AladhanAPIResource.class);
+        AladhanAPIResource aladhanAPIResource = provideRetrofit().create(AladhanAPIResource.class);
 
         Call<AladhanGToHCalendarResponse> call
                 = aladhanAPIResource

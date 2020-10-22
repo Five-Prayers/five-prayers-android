@@ -2,10 +2,9 @@ package com.hbouzidi.fiveprayers.location.osm;
 
 import android.util.Log;
 
+import com.hbouzidi.fiveprayers.common.api.BaseAPIService;
 import com.hbouzidi.fiveprayers.exceptions.LocationException;
 import com.hbouzidi.fiveprayers.location.address.AddressHelper;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import java.io.IOException;
 
@@ -13,15 +12,14 @@ import io.reactivex.rxjava3.core.Single;
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
-public class NominatimAPIService {
+public class NominatimAPIService extends BaseAPIService {
 
-    private static final String BASE_URL = "https://nominatim.openstreetmap.org/";
     private static NominatimAPIService nominatimAPIService;
 
     private NominatimAPIService() {
+        okHttpClient = new OkHttpClient.Builder().build();
+        BASE_URL = "https://nominatim.openstreetmap.org/";
     }
 
     public static NominatimAPIService getInstance() {
@@ -32,19 +30,7 @@ public class NominatimAPIService {
     }
 
     public NominatimReverseGeocodeResponse getAddressFromLocation(double latitude, double longitude) throws IOException {
-        final OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
-
-        Gson gson = new GsonBuilder()
-                .setLenient()
-                .create();
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .client(httpClient.build())
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .build();
-
-        NominatimAPIResource nominatimAPIResource = retrofit.create(NominatimAPIResource.class);
+        NominatimAPIResource nominatimAPIResource = provideRetrofit().create(NominatimAPIResource.class);
 
         Call<NominatimReverseGeocodeResponse> call
                 = nominatimAPIResource.getReverseGeocode(latitude, longitude, 18, 1, "json");
@@ -55,20 +41,7 @@ public class NominatimAPIService {
     }
 
     public Single<NominatimReverseGeocodeResponse> getAddressFromLatLong(double latitude, double longitude) {
-        final OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
-
-        Gson gson = new GsonBuilder()
-                .setLenient()
-                .create();
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .client(httpClient.build())
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .build();
-
-        NominatimAPIResource nominatimAPIResource = retrofit.create(NominatimAPIResource.class);
-
+        NominatimAPIResource nominatimAPIResource = provideRetrofit().create(NominatimAPIResource.class);
 
         return Single.create(emitter -> {
             Thread thread = new Thread(() -> {

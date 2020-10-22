@@ -3,13 +3,13 @@ package com.hbouzidi.fiveprayers.timings.aladhan;
 import android.content.Context;
 import android.util.Log;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.hbouzidi.fiveprayers.network.NetworkUtil;
 import com.hbouzidi.fiveprayers.timings.calculations.CalculationMethodEnum;
 import com.hbouzidi.fiveprayers.timings.calculations.LatitudeAdjustmentMethod;
 import com.hbouzidi.fiveprayers.timings.calculations.MidnightModeAdjustmentMethod;
 import com.hbouzidi.fiveprayers.timings.calculations.SchoolAdjustmentMethod;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -33,14 +33,22 @@ public class AladhanAPIService {
     private static final int CACHE_MAX_SIZE = 10 * 1024 * 1024; //10Mo
     private static final int CACHE_MAX_AGE = 1; // 1Day
     private static final int CACHE_MAX_STALE = 1; // 1Day
-    private static AladhanAPIService aladhanAPIService;
 
-    private AladhanAPIService() {
+    private static AladhanAPIService aladhanAPIService;
+    private static OkHttpClient okHttpClient;
+
+    private AladhanAPIService(Context context) {
+        okHttpClient =
+                new OkHttpClient.Builder()
+                        .addInterceptor(provideOfflineCacheInterceptor(context))
+                        .addNetworkInterceptor(provideCacheInterceptor())
+                        .cache(provideCache(context))
+                        .build();
     }
 
-    public static AladhanAPIService getInstance() {
+    public static AladhanAPIService getInstance(Context context) {
         if (aladhanAPIService == null) {
-            aladhanAPIService = new AladhanAPIService();
+            aladhanAPIService = new AladhanAPIService(context);
         }
         return aladhanAPIService;
     }
@@ -52,14 +60,8 @@ public class AladhanAPIService {
                                                            final LatitudeAdjustmentMethod latitudeAdjustmentMethod,
                                                            SchoolAdjustmentMethod schoolAdjustmentMethod,
                                                            MidnightModeAdjustmentMethod midnightModeAdjustmentMethod, final int adjustment,
-                                                           final String tune,
-                                                           final Context context) throws IOException {
-
-        final OkHttpClient.Builder httpClient =
-                new OkHttpClient.Builder()
-                        .addInterceptor(provideOfflineCacheInterceptor(context))
-                        .addNetworkInterceptor(provideCacheInterceptor())
-                        .cache(provideCache(context));
+                                                           final String tune
+    ) throws IOException {
 
         Gson gson = new GsonBuilder()
                 .setLenient()
@@ -67,7 +69,7 @@ public class AladhanAPIService {
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
-                .client(httpClient.build())
+                .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 
@@ -94,14 +96,7 @@ public class AladhanAPIService {
             SchoolAdjustmentMethod schoolAdjustmentMethod,
             MidnightModeAdjustmentMethod midnightModeAdjustmentMethod,
             final int adjustment,
-            final String tune,
-            final Context context) throws IOException {
-
-        final OkHttpClient.Builder httpClient =
-                new OkHttpClient.Builder()
-                        .addInterceptor(provideOfflineCacheInterceptor(context))
-                        .addNetworkInterceptor(provideCacheInterceptor())
-                        .cache(provideCache(context));
+            final String tune) throws IOException {
 
         Gson gson = new GsonBuilder()
                 .setLenient()
@@ -109,7 +104,7 @@ public class AladhanAPIService {
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
-                .client(httpClient.build())
+                .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 
@@ -130,14 +125,8 @@ public class AladhanAPIService {
 
     public AladhanGToHCalendarResponse getHijriCalendar(int month,
                                                         int year,
-                                                        int adjustment,
-                                                        Context context) throws IOException {
+                                                        int adjustment) throws IOException {
 
-        final OkHttpClient.Builder httpClient =
-                new OkHttpClient.Builder()
-                        .addInterceptor(provideOfflineCacheInterceptor(context))
-                        .addNetworkInterceptor(provideCacheInterceptor())
-                        .cache(provideCache(context));
 
         Gson gson = new GsonBuilder()
                 .setLenient()
@@ -145,7 +134,7 @@ public class AladhanAPIService {
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
-                .client(httpClient.build())
+                .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 
@@ -158,11 +147,18 @@ public class AladhanAPIService {
         return call.execute().body();
     }
 
+    @NotNull
+    private String getMethodSettings(CalculationMethodEnum method) {
+        return method.getFajrAngle() + "," + method.getMaghribAngle() + "," + method.getIchaAngle();
+    }
+
     private static Cache provideCache(final Context context) {
         Cache cache = null;
         try {
-            cache = new Cache(new File(context.getApplicationContext().getCacheDir(), "http-cache"),
-                    CACHE_MAX_SIZE); // 10 MB
+            cache = new Cache(
+                    new File(context.getApplicationContext().getCacheDir(), "http-cache"),
+                    CACHE_MAX_SIZE
+            );
         } catch (Exception e) {
             Log.e(AladhanAPIService.class.getName(), "Could not create Cache!");
         }
@@ -201,10 +197,5 @@ public class AladhanAPIService {
 
             return chain.proceed(request);
         };
-    }
-
-    @NotNull
-    private String getMethodSettings(CalculationMethodEnum method) {
-        return method.getFajrAngle() + "," + method.getMaghribAngle() + "," + method.getIchaAngle();
     }
 }

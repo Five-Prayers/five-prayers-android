@@ -55,8 +55,8 @@ public class PrayerHelper {
                         emitter.onSuccess(prayerTimings);
                     } else {
                         try {
-                            AladhanAPIService aladhanAPIService = AladhanAPIService.getInstance();
-                            AladhanTodayTimingsResponse timingsByCity = aladhanAPIService.getTimingsByLatLong(LocalDateString, address.getLatitude(), address.getLongitude(), method, latitudeAdjustmentMethod, schoolAdjustmentMethod, midnightModeAdjustmentMethod, hijriAdjustment, tune, context);
+                            AladhanAPIService aladhanAPIService = AladhanAPIService.getInstance(context);
+                            AladhanTodayTimingsResponse timingsByCity = aladhanAPIService.getTimingsByLatLong(LocalDateString, address.getLatitude(), address.getLongitude(), method, latitudeAdjustmentMethod, schoolAdjustmentMethod, midnightModeAdjustmentMethod, hijriAdjustment, tune);
                             prayerRegistry.savePrayerTiming(LocalDateString, address.getLocality(), address.getCountryName(), method, latitudeAdjustmentMethod, schoolAdjustmentMethod, midnightModeAdjustmentMethod, hijriAdjustment, tune, timingsByCity.getData());
                             prayerTimings = prayerRegistry.getPrayerTimings(LocalDateString, address.getLocality(), address.getCountryName(), method, latitudeAdjustmentMethod, schoolAdjustmentMethod, midnightModeAdjustmentMethod, hijriAdjustment, tune);
 
@@ -82,10 +82,10 @@ public class PrayerHelper {
         return Single.create(emitter -> {
             Thread thread = new Thread(() -> {
                 try {
-                    AladhanAPIService aladhanAPIService = AladhanAPIService.getInstance();
+                    AladhanAPIService aladhanAPIService = AladhanAPIService.getInstance(context);
 
                     emitter.onSuccess(aladhanAPIService
-                            .getHijriCalendar(month, year, hijriAdjustment, context).getData());
+                            .getHijriCalendar(month, year, hijriAdjustment).getData());
 
                 } catch (IOException e) {
                     Log.e(PrayerHelper.class.getName(), "Cannot find from aladhanAPIService");
@@ -124,8 +124,8 @@ public class PrayerHelper {
                         emitter.onSuccess(prayerCalendar);
                     } else {
                         try {
-                            AladhanAPIService aladhanAPIService = AladhanAPIService.getInstance();
-                            AladhanCalendarResponse calendarByCity = aladhanAPIService.getCalendarByLatLong(address.getLatitude(), address.getLongitude(), month, year, method, latitudeAdjustmentMethod, schoolAdjustmentMethod, midnightModeAdjustmentMethod, hijriAdjustment, tune, context);
+                            AladhanAPIService aladhanAPIService = AladhanAPIService.getInstance(context);
+                            AladhanCalendarResponse calendarByCity = aladhanAPIService.getCalendarByLatLong(address.getLatitude(), address.getLongitude(), month, year, method, latitudeAdjustmentMethod, schoolAdjustmentMethod, midnightModeAdjustmentMethod, hijriAdjustment, tune);
                             prayerRegistry.saveCalendar(address.getLocality(), address.getCountryName(), method, latitudeAdjustmentMethod, schoolAdjustmentMethod, midnightModeAdjustmentMethod, hijriAdjustment, tune, calendarByCity);
 
                             prayerCalendar = prayerRegistry.getPrayerCalendar(address.getLocality(), address.getCountryName(), month, year, method, latitudeAdjustmentMethod, schoolAdjustmentMethod, midnightModeAdjustmentMethod, hijriAdjustment, tune);

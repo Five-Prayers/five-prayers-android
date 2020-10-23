@@ -99,20 +99,6 @@ public class AladhanAPIService extends BaseAPIService {
         return call.execute().body();
     }
 
-    public AladhanGToHCalendarResponse getHijriCalendar(int month,
-                                                        int year,
-                                                        int adjustment) throws IOException {
-
-
-        AladhanAPIResource aladhanAPIResource = provideRetrofit().create(AladhanAPIResource.class);
-
-        Call<AladhanGToHCalendarResponse> call
-                = aladhanAPIResource
-                .getHijriCalendar(month, year, adjustment);
-
-        return call.execute().body();
-    }
-
     @NotNull
     private String getMethodSettings(CalculationMethodEnum method) {
         return method.getFajrAngle() + "," + method.getMaghribAngle() + "," + method.getIchaAngle();

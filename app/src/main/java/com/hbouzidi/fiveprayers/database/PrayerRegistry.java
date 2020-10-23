@@ -6,12 +6,12 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
-import com.hbouzidi.fiveprayers.timings.ComplementaryTimingEnum;
+import com.hbouzidi.fiveprayers.timings.aladhan.AladhanDate;
+import com.hbouzidi.fiveprayers.common.ComplementaryTimingEnum;
+import com.hbouzidi.fiveprayers.common.PrayerEnum;
 import com.hbouzidi.fiveprayers.timings.DayPrayer;
-import com.hbouzidi.fiveprayers.timings.PrayerEnum;
 import com.hbouzidi.fiveprayers.timings.aladhan.AladhanCalendarResponse;
 import com.hbouzidi.fiveprayers.timings.aladhan.AladhanData;
-import com.hbouzidi.fiveprayers.timings.aladhan.AladhanDate;
 import com.hbouzidi.fiveprayers.timings.aladhan.AladhanTimings;
 import com.hbouzidi.fiveprayers.timings.calculations.CalculationMethodEnum;
 import com.hbouzidi.fiveprayers.timings.calculations.LatitudeAdjustmentMethod;

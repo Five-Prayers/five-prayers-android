@@ -11,8 +11,7 @@ import androidx.work.testing.TestListenableWorkerBuilder;
 import com.hbouzidi.fiveprayers.location.address.AddressHelper;
 import com.hbouzidi.fiveprayers.location.tracker.LocationHelper;
 import com.hbouzidi.fiveprayers.notifier.NotifierHelper;
-import com.hbouzidi.fiveprayers.timings.DayPrayer;
-import com.hbouzidi.fiveprayers.timings.PrayerHelper;
+import com.hbouzidi.fiveprayers.timings.DefaultTimingsService;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -38,7 +37,7 @@ import static org.mockito.ArgumentMatchers.any;
 @RunWith(RobolectricTestRunner.class)
 @Config(maxSdk = 28)
 @PowerMockIgnore({"org.mockito.*", "org.robolectric.*", "android.*"})
-@PrepareForTest({PrayerUpdater.class, AddressHelper.class, LocationHelper.class, PrayerHelper.class, NotifierHelper.class})
+@PrepareForTest({PrayerUpdater.class, AddressHelper.class, LocationHelper.class, DefaultTimingsService.class, NotifierHelper.class})
 public class PrayerUpdaterTest {
 
     @Rule
@@ -56,7 +55,7 @@ public class PrayerUpdaterTest {
     public void testPrayerUpdaterWork() throws Exception {
         PowerMockito.mockStatic(LocationHelper.class);
         PowerMockito.mockStatic(AddressHelper.class);
-        PowerMockito.mockStatic(PrayerHelper.class);
+        //PowerMockito.mockStatic(PrayerHelper.class);
 
         Location newLocation = new Location(LocationManager.GPS_PROVIDER);
         newLocation.setLatitude(0.12);
@@ -70,7 +69,7 @@ public class PrayerUpdaterTest {
 
         PowerMockito.when(LocationHelper.getLocation(mockContext)).thenReturn(Single.just(newLocation));
         PowerMockito.when(AddressHelper.getAddressFromLocation(newLocation, mockContext)).thenReturn(Single.just(lastKnownAddress));
-        PowerMockito.when(PrayerHelper.getTimingsByCity(any(), any(), any())).thenReturn(Single.just(new DayPrayer()));
+    //    PowerMockito.when(TimingService.getTimingsByCity(any(), any(), any())).thenReturn(Single.just(new DayPrayer()));
 
         PowerMockito.spy(NotifierHelper.class);
         PowerMockito
@@ -88,7 +87,7 @@ public class PrayerUpdaterTest {
     public void testPrayerUpdaterWork_when_single_throw_error() throws Exception {
         PowerMockito.mockStatic(LocationHelper.class);
         PowerMockito.mockStatic(AddressHelper.class);
-        PowerMockito.mockStatic(PrayerHelper.class);
+        PowerMockito.mockStatic(DefaultTimingsService.class);
 
         Location newLocation = new Location(LocationManager.GPS_PROVIDER);
         newLocation.setLatitude(0.12);
@@ -102,7 +101,7 @@ public class PrayerUpdaterTest {
 
         PowerMockito.when(LocationHelper.getLocation(mockContext)).thenReturn(Single.just(newLocation));
         PowerMockito.when(AddressHelper.getAddressFromLocation(newLocation, mockContext)).thenReturn(Single.just(lastKnownAddress));
-        PowerMockito.when(PrayerHelper.getTimingsByCity(any(), any(), any())).thenReturn(Single.error(new Exception()));
+       // PowerMockito.when(AladhanTimingService.getTimingsByCity(any(), any(), any())).thenReturn(Single.error(new Exception()));
 
         PowerMockito.spy(NotifierHelper.class);
         PowerMockito
@@ -120,7 +119,7 @@ public class PrayerUpdaterTest {
     public void testPrayerUpdaterWork_when_notifier_throw_error() throws Exception {
         PowerMockito.mockStatic(LocationHelper.class);
         PowerMockito.mockStatic(AddressHelper.class);
-        PowerMockito.mockStatic(PrayerHelper.class);
+        PowerMockito.mockStatic(DefaultTimingsService.class);
 
         Location newLocation = new Location(LocationManager.GPS_PROVIDER);
         newLocation.setLatitude(0.12);
@@ -134,7 +133,7 @@ public class PrayerUpdaterTest {
 
         PowerMockito.when(LocationHelper.getLocation(mockContext)).thenReturn(Single.just(newLocation));
         PowerMockito.when(AddressHelper.getAddressFromLocation(newLocation, mockContext)).thenReturn(Single.just(lastKnownAddress));
-        PowerMockito.when(PrayerHelper.getTimingsByCity(any(), any(), any())).thenReturn(Single.just(new DayPrayer()));
+     //   PowerMockito.when(AladhanTimingService.getTimingsByCity(any(), any(), any())).thenReturn(Single.just(new DayPrayer()));
 
         PowerMockito.spy(NotifierHelper.class);
         PowerMockito

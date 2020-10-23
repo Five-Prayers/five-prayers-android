@@ -65,11 +65,4 @@ public interface AladhanAPIResource {
             @Query("adjustment") int adjustment,
             @Query("tune") String tune
     );
-
-    @GET("gToHCalendar/{month}/{year}")
-    Call<AladhanGToHCalendarResponse> getHijriCalendar(
-            @Path("month") int month,
-            @Path("year") int year,
-            @Query("adjustment") int adjustment
-    );
 }

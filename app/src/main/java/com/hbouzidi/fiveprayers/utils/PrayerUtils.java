@@ -2,7 +2,7 @@ package com.hbouzidi.fiveprayers.utils;
 
 import androidx.annotation.NonNull;
 
-import com.hbouzidi.fiveprayers.timings.PrayerEnum;
+import com.hbouzidi.fiveprayers.common.PrayerEnum;
 
 import java.time.LocalDateTime;
 import java.util.Map;

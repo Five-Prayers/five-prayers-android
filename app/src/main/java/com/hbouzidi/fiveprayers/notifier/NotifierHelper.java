@@ -9,7 +9,7 @@ import android.os.Build;
 import androidx.annotation.NonNull;
 
 import com.hbouzidi.fiveprayers.timings.DayPrayer;
-import com.hbouzidi.fiveprayers.timings.PrayerEnum;
+import com.hbouzidi.fiveprayers.common.PrayerEnum;
 import com.hbouzidi.fiveprayers.utils.TimingUtils;
 
 import java.time.LocalDateTime;

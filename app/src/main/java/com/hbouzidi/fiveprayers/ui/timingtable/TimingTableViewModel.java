@@ -11,7 +11,8 @@ import androidx.lifecycle.MutableLiveData;
 import com.hbouzidi.fiveprayers.location.address.AddressHelper;
 import com.hbouzidi.fiveprayers.location.tracker.LocationHelper;
 import com.hbouzidi.fiveprayers.timings.DayPrayer;
-import com.hbouzidi.fiveprayers.timings.PrayerHelper;
+import com.hbouzidi.fiveprayers.timings.TimingsService;
+import com.hbouzidi.fiveprayers.timings.TimingServiceFactory;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -48,13 +49,15 @@ public class TimingTableViewModel extends AndroidViewModel {
 
 
     private void setLiveData(Context context) {
+        TimingsService timingsService = TimingServiceFactory.create();
+
         compositeDisposable = new CompositeDisposable();
         compositeDisposable.add(
                 LocationHelper.getLocation(context)
                         .flatMap(location ->
                                 AddressHelper.getAddressFromLocation(location, context)
                         ).flatMap(address ->
-                        PrayerHelper.getCalendarByCity(
+                        timingsService.getCalendarByCity(
                                 address,
                                 todayDate.getMonthValue(),
                                 todayDate.getYear(),

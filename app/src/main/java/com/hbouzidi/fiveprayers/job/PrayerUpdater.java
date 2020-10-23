@@ -11,7 +11,8 @@ import com.hbouzidi.fiveprayers.location.address.AddressHelper;
 import com.hbouzidi.fiveprayers.location.tracker.LocationHelper;
 import com.hbouzidi.fiveprayers.notifier.NotifierHelper;
 import com.hbouzidi.fiveprayers.timings.DayPrayer;
-import com.hbouzidi.fiveprayers.timings.PrayerHelper;
+import com.hbouzidi.fiveprayers.timings.TimingServiceFactory;
+import com.hbouzidi.fiveprayers.timings.TimingsService;
 
 import java.time.LocalDate;
 
@@ -31,12 +32,14 @@ public class PrayerUpdater extends RxWorker {
     @NonNull
     @Override
     public Single<Result> createWork() {
+        TimingsService timingsService = TimingServiceFactory.create();
+
         Single<DayPrayer> dayPrayerSingle =
                 LocationHelper.getLocation(context)
                         .flatMap(location ->
                                 AddressHelper.getAddressFromLocation(location, context)
                         ).flatMap(address ->
-                        PrayerHelper.getTimingsByCity(
+                        timingsService.getTimingsByCity(
                                 LocalDate.now(),
                                 address,
                                 context

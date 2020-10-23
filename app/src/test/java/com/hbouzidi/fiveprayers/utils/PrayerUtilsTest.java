@@ -1,6 +1,6 @@
 package com.hbouzidi.fiveprayers.utils;
 
-import com.hbouzidi.fiveprayers.timings.PrayerEnum;
+import com.hbouzidi.fiveprayers.common.PrayerEnum;
 
 import org.jetbrains.annotations.NotNull;
 import org.junit.Test;

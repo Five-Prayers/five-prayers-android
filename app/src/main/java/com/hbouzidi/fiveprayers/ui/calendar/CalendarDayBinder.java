@@ -5,7 +5,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hbouzidi.fiveprayers.R;
-import com.hbouzidi.fiveprayers.timings.HijriHoliday;
+import com.hbouzidi.fiveprayers.common.HijriHoliday;
 import com.hbouzidi.fiveprayers.timings.aladhan.AladhanDate;
 import com.hbouzidi.fiveprayers.timings.aladhan.AladhanDateType;
 import com.kizitonwose.calendarview.model.CalendarDay;

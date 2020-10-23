@@ -22,7 +22,7 @@ import androidx.media.VolumeProviderCompat;
 
 import com.hbouzidi.fiveprayers.R;
 import com.hbouzidi.fiveprayers.preferences.PreferencesConstants;
-import com.hbouzidi.fiveprayers.timings.PrayerEnum;
+import com.hbouzidi.fiveprayers.common.PrayerEnum;
 import com.hbouzidi.fiveprayers.ui.MainActivity;
 
 import static android.content.Context.MODE_PRIVATE;

@@ -1,6 +1,7 @@
 package com.hbouzidi.fiveprayers.ui.calendar;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -11,8 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.hbouzidi.fiveprayers.R;
-import com.hbouzidi.fiveprayers.timings.HijriHoliday;
-import com.hbouzidi.fiveprayers.timings.PrayerHelper;
+import com.hbouzidi.fiveprayers.calendar.CalendarService;
+import com.hbouzidi.fiveprayers.common.HijriHoliday;
 import com.hbouzidi.fiveprayers.timings.aladhan.AladhanDate;
 import com.hbouzidi.fiveprayers.timings.aladhan.AladhanDateType;
 import com.hbouzidi.fiveprayers.utils.UiUtils;
@@ -43,6 +44,8 @@ import kotlin.Unit;
 
 public class CalendarActivity extends AppCompatActivity {
 
+    private static final String TAG = "CalendarActivity";
+
     private static final int MIN_MONTH_COUNT = 6;
     private static final int MAX_MONTH_COUNT = 12;
 
@@ -63,6 +66,7 @@ public class CalendarActivity extends AppCompatActivity {
 
         selectedDateTextView = findViewById(R.id.selected_date_text_view);
         compositeDisposable = new CompositeDisposable();
+        CalendarService calendarService = CalendarService.getInstance();
 
         initHolidayRecyclerView();
 
@@ -75,7 +79,7 @@ public class CalendarActivity extends AppCompatActivity {
             holidayRecyclerView.setVisibility(View.INVISIBLE);
 
             compositeDisposable.add(
-                    PrayerHelper.getHijriCalendar(calendarMonth.getMonth(), calendarMonth.getYear(), this)
+                    calendarService.getHijriCalendar(calendarMonth.getMonth(), calendarMonth.getYear(), getApplicationContext())
                             .subscribeOn(Schedulers.io())
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribeWith(new DisposableSingleObserver<List<AladhanDate>>() {
@@ -93,6 +97,7 @@ public class CalendarActivity extends AppCompatActivity {
 
                                 @Override
                                 public void onError(@io.reactivex.rxjava3.annotations.NonNull Throwable e) {
+                                    Log.e(TAG, "Cannot retrieve calendar dates", e);
                                 }
                             }));
 

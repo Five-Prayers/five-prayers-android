@@ -12,7 +12,8 @@ import com.hbouzidi.fiveprayers.R;
 import com.hbouzidi.fiveprayers.location.address.AddressHelper;
 import com.hbouzidi.fiveprayers.location.tracker.LocationHelper;
 import com.hbouzidi.fiveprayers.timings.DayPrayer;
-import com.hbouzidi.fiveprayers.timings.PrayerHelper;
+import com.hbouzidi.fiveprayers.timings.TimingsService;
+import com.hbouzidi.fiveprayers.timings.TimingServiceFactory;
 import com.hbouzidi.fiveprayers.ui.MainActivity;
 
 import java.time.LocalDate;
@@ -32,7 +33,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-        ProgressBar progressBar = (ProgressBar) findViewById(R.id.splash_progressbar);
+        ProgressBar progressBar = findViewById(R.id.splash_progressbar);
         ObjectAnimator objectAnimator = ObjectAnimator.ofInt(progressBar, "progress", 100);
         objectAnimator.setDuration(LOADING_TIME);
         objectAnimator.start();
@@ -56,13 +57,15 @@ public class SplashScreenActivity extends AppCompatActivity {
     }
 
     private void preloadTodayPrayerTimings(Context context) {
+        TimingsService timingsService = TimingServiceFactory.create();
+
         compositeDisposable = new CompositeDisposable();
         compositeDisposable.add(
                 LocationHelper.getLocation(context)
                         .flatMap(location ->
                                 AddressHelper.getAddressFromLocation(location, context)
                         ).flatMap(address ->
-                        PrayerHelper.getTimingsByCity(
+                        timingsService.getTimingsByCity(
                                 LocalDate.now(),
                                 address,
                                 context

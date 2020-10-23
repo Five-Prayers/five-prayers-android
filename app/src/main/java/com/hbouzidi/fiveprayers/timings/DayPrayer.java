@@ -1,5 +1,7 @@
 package com.hbouzidi.fiveprayers.timings;
 
+import com.hbouzidi.fiveprayers.common.ComplementaryTimingEnum;
+import com.hbouzidi.fiveprayers.common.PrayerEnum;
 import com.hbouzidi.fiveprayers.timings.calculations.CalculationMethodEnum;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;

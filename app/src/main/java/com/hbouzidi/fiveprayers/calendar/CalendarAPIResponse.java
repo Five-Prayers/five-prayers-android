@@ -1,8 +1,10 @@
-package com.hbouzidi.fiveprayers.timings.aladhan;
+package com.hbouzidi.fiveprayers.calendar;
+
+import com.hbouzidi.fiveprayers.timings.aladhan.AladhanDate;
 
 import java.util.List;
 
-public class AladhanGToHCalendarResponse {
+public class CalendarAPIResponse {
 
     private String code;
     private String status;

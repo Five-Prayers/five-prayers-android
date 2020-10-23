@@ -52,7 +52,7 @@ public class DashboardFragment extends Fragment {
             dashboardModel.setIntent(intents[count]);
             dashboardModelArrayList.add(dashboardModel);
         }
-        recyclerView.setLayoutManager(new GridLayoutManager(getActivity().getApplicationContext(), 2));
+        recyclerView.setLayoutManager(new GridLayoutManager(requireActivity().getApplicationContext(), 2));
         DashboardAdapter dashboardAdapter = new DashboardAdapter(dashboardModelArrayList, getActivity());
         recyclerView.setHasFixedSize(true);
 

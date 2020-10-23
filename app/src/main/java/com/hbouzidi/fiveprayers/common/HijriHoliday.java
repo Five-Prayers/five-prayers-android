@@ -1,4 +1,4 @@
-package com.hbouzidi.fiveprayers.timings;
+package com.hbouzidi.fiveprayers.common;
 
 public enum HijriHoliday {
 

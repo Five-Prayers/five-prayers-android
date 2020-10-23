@@ -1,0 +1,2 @@
+json_key_file("./api-play-store-key.json")
+package_name("com.hbouzidi.fiveprayers")

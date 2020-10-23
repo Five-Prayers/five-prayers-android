@@ -157,9 +157,8 @@ public class CalendarActivity extends AppCompatActivity {
     }
 
     private void initHolidayRecyclerView() {
-        holidayRecyclerView = (RecyclerView) findViewById(R.id.holiday_recycler_view);
+        holidayRecyclerView = findViewById(R.id.holiday_recycler_view);
 
-        holidayRecyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
         holidayRecyclerView.setLayoutManager(layoutManager);
     }

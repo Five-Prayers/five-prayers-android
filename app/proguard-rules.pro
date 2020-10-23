@@ -30,3 +30,6 @@
 -keepclassmembers class * extends org.greenrobot.eventbus.util.ThrowableFailureEvent {
     <init>(java.lang.Throwable);
 }
+
+# workaround against FORCE inlining on non-inlinable error on RxJava3 (https://stackoverflow.com/questions/63948856/android-r8-build-release-apk-fail)
+-keep class io.reactivex.rxjava3.disposables.RunnableDisposable { <init>(...); }

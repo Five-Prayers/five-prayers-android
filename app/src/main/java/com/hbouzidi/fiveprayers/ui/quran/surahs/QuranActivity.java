@@ -2,6 +2,7 @@ package com.hbouzidi.fiveprayers.ui.quran.surahs;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
@@ -15,7 +16,7 @@ import com.hbouzidi.fiveprayers.preferences.PreferencesHelper;
 import com.hbouzidi.fiveprayers.quran.dto.Surah;
 import com.hbouzidi.fiveprayers.ui.quran.pages.AyahsActivity;
 
-import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class QuranActivity extends AppCompatActivity {
@@ -51,7 +52,7 @@ public class QuranActivity extends AppCompatActivity {
     private void gotoSuraa(int pageNumber, List<Surah> surahs) {
         Bundle bundle = new Bundle();
         bundle.putInt("PAGE_NUMBER", pageNumber);
-        bundle.putSerializable("SURAHS", (Serializable) surahs);
+        bundle.putParcelableArrayList("SURAHS", (ArrayList<? extends Parcelable>) surahs);
 
         Intent openAcivity = new Intent(this, AyahsActivity.class);
         openAcivity.putExtra("BUNDLE", bundle);

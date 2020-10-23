@@ -1,9 +1,11 @@
 package com.hbouzidi.fiveprayers.quran.dto;
 
-import java.io.Serializable;
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.List;
 
-public class Surah implements Serializable {
+public class Surah implements Parcelable {
 
     private int number;
     private String name;
@@ -14,6 +16,18 @@ public class Surah implements Serializable {
 
     private transient int page;
     private transient int numberOfAyahs;
+
+    public Surah() {
+    }
+
+    public Surah(Parcel in) {
+        this.number = in.readInt();
+        this.name = in.readString();
+        this.englishName = in.readString();
+        this.englishNameTranslation = in.readString();
+        this.revelationType = in.readString();
+        in.readList(this.ayahs, Ayah.class.getClassLoader());
+    }
 
     public int getNumber() {
         return number;
@@ -78,4 +92,31 @@ public class Surah implements Serializable {
     public void setNumberOfAyahs(int numberOfAyahs) {
         this.numberOfAyahs = numberOfAyahs;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(number);
+        dest.writeString(name);
+        dest.writeString(englishName);
+        dest.writeString(englishNameTranslation);
+        dest.writeString(revelationType);
+        dest.writeList(ayahs);
+    }
+
+    public static final Creator<Surah> CREATOR = new Creator<Surah>() {
+        @Override
+        public Surah createFromParcel(Parcel in) {
+            return new Surah(in);
+        }
+
+        @Override
+        public Surah[] newArray(int size) {
+            return new Surah[size];
+        }
+    };
 }

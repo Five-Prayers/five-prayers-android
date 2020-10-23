@@ -39,7 +39,7 @@ public class AyahsActivity extends AppCompatActivity {
 
         if (bundle != null) {
             pageToDisplay = bundle.getInt("PAGE_NUMBER", 1);
-            surahs = (List<Surah>) bundle.getSerializable("SURAHS");
+            surahs = bundle.getParcelableArrayList("SURAHS");
         }
 
         AyahsViewModel ayahsViewModel = new ViewModelProvider(this).get(AyahsViewModel.class);

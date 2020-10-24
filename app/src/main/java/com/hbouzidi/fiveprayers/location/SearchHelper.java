@@ -34,30 +34,32 @@ public class SearchHelper {
 
                         PhotonAPIResponse photonAPIResponse = PhotonAPIService.getInstance().search(locationName, limit);
 
-                        ArrayList<Feature> features = photonAPIResponse.getFeatures();
+                        if (photonAPIResponse != null) {
+                            ArrayList<Feature> features = photonAPIResponse.getFeatures();
 
-                        for (Feature feature : features) {
-                            String locality = feature.getProperties().getName();
-                            String country = feature.getProperties().getCountry();
-                            boolean isPlaceType =
-                                    feature.getProperties().getOsmKey().equals("place") ||
-                                            feature.getProperties().getOsmKey().equals("boundary");
+                            for (Feature feature : features) {
+                                String locality = feature.getProperties().getName();
+                                String country = feature.getProperties().getCountry();
+                                boolean isPlaceType =
+                                        feature.getProperties().getOsmKey().equals("place") ||
+                                                feature.getProperties().getOsmKey().equals("boundary");
 
-                            if (isPlaceType && StringUtils.isNotBlank(locality) && StringUtils.isNotBlank(country)) {
-                                Address address = new Address(Locale.getDefault());
-                                address.setLocality(locality);
-                                if (feature.getProperties().getState() != null) {
-                                    address.setSubLocality(feature.getProperties().getState());
-                                    address.setAddressLine(1, feature.getProperties().getState());
+                                if (isPlaceType && StringUtils.isNotBlank(locality) && StringUtils.isNotBlank(country)) {
+                                    Address address = new Address(Locale.getDefault());
+                                    address.setLocality(locality);
+                                    if (feature.getProperties().getState() != null) {
+                                        address.setSubLocality(feature.getProperties().getState());
+                                        address.setAddressLine(1, feature.getProperties().getState());
+                                    }
+                                    address.setCountryName(country);
+                                    address.setLongitude(feature.getGeometry().getCoordinates().get(0));
+                                    address.setLatitude(feature.getGeometry().getCoordinates().get(1));
+
+                                    addresses.add(address);
                                 }
-                                address.setCountryName(country);
-                                address.setLongitude(feature.getGeometry().getCoordinates().get(0));
-                                address.setLatitude(feature.getGeometry().getCoordinates().get(1));
-
-                                addresses.add(address);
                             }
+                            emitter.onSuccess(addresses);
                         }
-                        emitter.onSuccess(addresses);
                     }
                 } catch (IOException e) {
                     emitter.onError(e);

@@ -6,6 +6,9 @@ public class FeatureProperties {
 
     private String country;
 
+    @SerializedName("countrycode")
+    private String countryCode;
+
     @SerializedName("osm_key")
     private String osmKey;
 
@@ -54,5 +57,13 @@ public class FeatureProperties {
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    public String getCountryCode() {
+        return countryCode;
+    }
+
+    public void setCountryCode(String countryCode) {
+        this.countryCode = countryCode;
     }
 }

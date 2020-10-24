@@ -17,9 +17,21 @@ import java.util.Locale;
 
 import io.reactivex.rxjava3.core.Single;
 
-public class SearchHelper {
+public class AddressSearchService {
 
-    public static Single<List<Address>> searchForLocation(final String locationName, final int limit, final Context context) {
+    private static AddressSearchService instance;
+
+    private AddressSearchService() {
+    }
+
+    public static AddressSearchService getInstance() {
+        if (instance == null) {
+            instance = new AddressSearchService();
+        }
+        return instance;
+    }
+
+    public Single<List<Address>> searchForLocation(final String locationName, final int limit, final Context context) {
         Geocoder geocoder = new Geocoder(context, Locale.getDefault());
 
         return Single.create(emitter -> {
@@ -52,6 +64,7 @@ public class SearchHelper {
                                         address.setAddressLine(1, feature.getProperties().getState());
                                     }
                                     address.setCountryName(country);
+                                    address.setCountryCode(feature.getProperties().getCountryCode());
                                     address.setLongitude(feature.getGeometry().getCoordinates().get(0));
                                     address.setLatitude(feature.getGeometry().getCoordinates().get(1));
 

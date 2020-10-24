@@ -17,17 +17,13 @@ import android.widget.ProgressBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.preference.PreferenceDialogFragmentCompat;
 
-import com.hbouzidi.fiveprayers.location.SearchHelper;
-import com.hbouzidi.fiveprayers.location.osm.NominatimAPIService;
-import com.hbouzidi.fiveprayers.location.osm.NominatimAddress;
-import com.hbouzidi.fiveprayers.location.osm.NominatimReverseGeocodeResponse;
+import com.hbouzidi.fiveprayers.location.AddressSearchService;
 import com.hbouzidi.fiveprayers.preferences.PreferencesHelper;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.observers.DisposableSingleObserver;
 import io.reactivex.rxjava3.schedulers.Schedulers;
@@ -141,30 +137,11 @@ public class AutoCompleteTextPreferenceDialog extends PreferenceDialogFragmentCo
 
     @Override
     public void onDialogClosed(boolean positiveResult) {
-        CompositeDisposable compositeDisposable = new CompositeDisposable();
-
         if (positiveResult) {
             String textValue = mEditText.getText().toString();
             if (preference.callChangeListener(textValue) && isSelectedText) {
                 preference.setText(textValue);
-                NominatimAPIService nominatimAPIService = NominatimAPIService.getInstance();
-                compositeDisposable.add(
-                        nominatimAPIService.getAddressFromLatLong(selectedAddress.getLatitude(), selectedAddress.getLongitude())
-                                .subscribeOn(Schedulers.io())
-                                .observeOn(AndroidSchedulers.mainThread())
-                                .subscribeWith(new DisposableSingleObserver<NominatimReverseGeocodeResponse>() {
-                                    @Override
-                                    public void onSuccess(@NonNull NominatimReverseGeocodeResponse nominatimReverseGeocodeResponse) {
-                                        NominatimAddress nominatimAddress = nominatimReverseGeocodeResponse.getAddress();
-                                        selectedAddress.setCountryCode(nominatimAddress.getCountryCode());
-                                        PreferencesHelper.updateAddressPreferences(context, selectedAddress);
-                                    }
-
-                                    @Override
-                                    public void onError(@NonNull Throwable e) {
-                                        PreferencesHelper.updateAddressPreferences(context, selectedAddress);
-                                    }
-                                }));
+                PreferencesHelper.updateAddressPreferences(context, selectedAddress);
             }
         }
     }
@@ -172,7 +149,7 @@ public class AutoCompleteTextPreferenceDialog extends PreferenceDialogFragmentCo
     private void retrieveData(String str) {
         CompositeDisposable compositeDisposable = new CompositeDisposable();
         compositeDisposable.add(
-                SearchHelper.searchForLocation(str, SEARCH_RESULTS_LIMIT, this.context)
+                AddressSearchService.getInstance().searchForLocation(str, SEARCH_RESULTS_LIMIT, this.context)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribeWith(new DisposableSingleObserver<List<Address>>() {

@@ -34,7 +34,7 @@ public class CalendarService {
         return Single.create(emitter -> {
             Thread thread = new Thread(() -> {
                 try {
-                    CalendarAPIService calendarAPIService = CalendarAPIService.getInstance(context);
+                    CalendarAPIService calendarAPIService = CalendarAPIService.getInstance();
 
                     emitter.onSuccess(calendarAPIService
                             .getHijriCalendar(month, year, hijriAdjustment).getData());

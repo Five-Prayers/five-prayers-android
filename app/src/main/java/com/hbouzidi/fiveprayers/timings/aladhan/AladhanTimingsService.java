@@ -1,4 +1,4 @@
-package com.hbouzidi.fiveprayers.timings;
+package com.hbouzidi.fiveprayers.timings.aladhan;
 
 import android.content.Context;
 import android.location.Address;
@@ -7,9 +7,8 @@ import android.util.Log;
 import com.hbouzidi.fiveprayers.database.PrayerRegistry;
 import com.hbouzidi.fiveprayers.exceptions.TimingsException;
 import com.hbouzidi.fiveprayers.preferences.PreferencesHelper;
-import com.hbouzidi.fiveprayers.timings.aladhan.AladhanAPIService;
-import com.hbouzidi.fiveprayers.timings.aladhan.AladhanCalendarResponse;
-import com.hbouzidi.fiveprayers.timings.aladhan.AladhanTodayTimingsResponse;
+import com.hbouzidi.fiveprayers.timings.DayPrayer;
+import com.hbouzidi.fiveprayers.timings.TimingsService;
 import com.hbouzidi.fiveprayers.timings.calculations.CalculationMethodEnum;
 import com.hbouzidi.fiveprayers.timings.calculations.LatitudeAdjustmentMethod;
 import com.hbouzidi.fiveprayers.timings.calculations.MidnightModeAdjustmentMethod;
@@ -23,16 +22,16 @@ import java.util.List;
 
 import io.reactivex.rxjava3.core.Single;
 
-public class DefaultTimingsService implements TimingsService {
+public class AladhanTimingsService implements TimingsService {
 
-    private static DefaultTimingsService instance;
+    private static AladhanTimingsService instance;
 
-    private DefaultTimingsService() {
+    private AladhanTimingsService() {
     }
 
-    public static DefaultTimingsService getInstance() {
+    public static AladhanTimingsService getInstance() {
         if (instance == null) {
-            instance = new DefaultTimingsService();
+            instance = new AladhanTimingsService();
         }
         return instance;
     }
@@ -56,7 +55,7 @@ public class DefaultTimingsService implements TimingsService {
                 DayPrayer prayerTimings;
 
                 if (localDate == null || address == null) {
-                    Log.e(DefaultTimingsService.class.getName(), "Cannot find timings with null attribute");
+                    Log.e(AladhanTimingsService.class.getName(), "Cannot find timings with null attribute");
                     emitter.onError(new TimingsException("Cannot find timings with null attributes"));
                 } else {
                     String LocalDateString = TimingUtils.formatDateForAdhanAPI(localDate);
@@ -66,7 +65,7 @@ public class DefaultTimingsService implements TimingsService {
                         emitter.onSuccess(prayerTimings);
                     } else {
                         try {
-                            AladhanAPIService aladhanAPIService = AladhanAPIService.getInstance(context);
+                            AladhanAPIService aladhanAPIService = AladhanAPIService.getInstance();
                             AladhanTodayTimingsResponse timingsByCity = aladhanAPIService.getTimingsByLatLong(LocalDateString, address.getLatitude(), address.getLongitude(), method, latitudeAdjustmentMethod, schoolAdjustmentMethod, midnightModeAdjustmentMethod, hijriAdjustment, tune);
                             prayerRegistry.savePrayerTiming(LocalDateString, address.getLocality(), address.getCountryName(), method, latitudeAdjustmentMethod, schoolAdjustmentMethod, midnightModeAdjustmentMethod, hijriAdjustment, tune, timingsByCity.getData());
                             prayerTimings = prayerRegistry.getPrayerTimings(LocalDateString, address.getLocality(), address.getCountryName(), method, latitudeAdjustmentMethod, schoolAdjustmentMethod, midnightModeAdjustmentMethod, hijriAdjustment, tune);
@@ -74,7 +73,7 @@ public class DefaultTimingsService implements TimingsService {
                             emitter.onSuccess(prayerTimings);
 
                         } catch (IOException e) {
-                            Log.e(DefaultTimingsService.class.getName(), "Cannot find from aladhanAPIService");
+                            Log.e(AladhanTimingsService.class.getName(), "Cannot find from aladhanAPIService");
                             emitter.onError(e);
                         }
                     }
@@ -103,7 +102,7 @@ public class DefaultTimingsService implements TimingsService {
                 List<DayPrayer> prayerCalendar;
 
                 if (address == null) {
-                    Log.e(DefaultTimingsService.class.getName(), "Cannot find calendar with null attribute");
+                    Log.e(AladhanTimingsService.class.getName(), "Cannot find calendar with null attribute");
                     emitter.onError(new TimingsException("Cannot find calendar with null attributes"));
                 } else {
                     prayerCalendar = prayerRegistry.getPrayerCalendar(address.getLocality(), address.getCountryName(), month, year, method, latitudeAdjustmentMethod, schoolAdjustmentMethod, midnightModeAdjustmentMethod, hijriAdjustment, tune);
@@ -112,7 +111,7 @@ public class DefaultTimingsService implements TimingsService {
                         emitter.onSuccess(prayerCalendar);
                     } else {
                         try {
-                            AladhanAPIService aladhanAPIService = AladhanAPIService.getInstance(context);
+                            AladhanAPIService aladhanAPIService = AladhanAPIService.getInstance();
                             AladhanCalendarResponse calendarByCity = aladhanAPIService.getCalendarByLatLong(address.getLatitude(), address.getLongitude(), month, year, method, latitudeAdjustmentMethod, schoolAdjustmentMethod, midnightModeAdjustmentMethod, hijriAdjustment, tune);
                             prayerRegistry.saveCalendar(address.getLocality(), address.getCountryName(), method, latitudeAdjustmentMethod, schoolAdjustmentMethod, midnightModeAdjustmentMethod, hijriAdjustment, tune, calendarByCity);
 
@@ -120,7 +119,7 @@ public class DefaultTimingsService implements TimingsService {
 
                             emitter.onSuccess(prayerCalendar);
                         } catch (IOException e) {
-                            Log.e(DefaultTimingsService.class.getName(), "Cannot find calendar from aladhanAPIService");
+                            Log.e(AladhanTimingsService.class.getName(), "Cannot find calendar from aladhanAPIService");
                             emitter.onError(e);
                         }
                     }

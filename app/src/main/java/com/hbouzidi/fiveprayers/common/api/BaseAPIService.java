@@ -9,18 +9,21 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public abstract class BaseAPIService {
 
-    protected static OkHttpClient okHttpClient;
-    protected static String BASE_URL;
+    protected String BASE_URL;
 
-    protected static Retrofit provideRetrofit() {
+    protected Retrofit provideRetrofit() {
         Gson gson = new GsonBuilder()
                 .setLenient()
                 .create();
 
         return new Retrofit.Builder()
                 .baseUrl(BASE_URL)
-                .client(okHttpClient)
+                .client(provideOkHttpClient())
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
+    }
+
+    protected OkHttpClient provideOkHttpClient() {
+        return new OkHttpClient.Builder().build();
     }
 }

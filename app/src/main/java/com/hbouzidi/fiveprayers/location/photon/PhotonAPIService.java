@@ -17,7 +17,6 @@ public class PhotonAPIService extends BaseAPIService {
     private static PhotonAPIService photonAPIService;
 
     private PhotonAPIService() {
-        okHttpClient = new OkHttpClient.Builder().build();
         BASE_URL = "https://photon.komoot.de/api/";
     }
 

@@ -18,7 +18,6 @@ public class NominatimAPIService extends BaseAPIService {
     private static NominatimAPIService nominatimAPIService;
 
     private NominatimAPIService() {
-        okHttpClient = new OkHttpClient.Builder().build();
         BASE_URL = "https://nominatim.openstreetmap.org/";
     }
 

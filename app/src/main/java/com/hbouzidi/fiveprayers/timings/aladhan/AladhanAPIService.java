@@ -10,7 +10,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 
-import okhttp3.OkHttpClient;
 import retrofit2.Call;
 
 public class AladhanAPIService extends BaseAPIService {
@@ -18,8 +17,6 @@ public class AladhanAPIService extends BaseAPIService {
     private static AladhanAPIService aladhanAPIService;
 
     private AladhanAPIService() {
-        okHttpClient = new OkHttpClient.Builder().build();
-
         BASE_URL = "https://api.aladhan.com/v1/";
     }
 

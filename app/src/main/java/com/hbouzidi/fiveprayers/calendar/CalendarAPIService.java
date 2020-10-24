@@ -4,7 +4,6 @@ import com.hbouzidi.fiveprayers.common.api.BaseAPIService;
 
 import java.io.IOException;
 
-import okhttp3.OkHttpClient;
 import retrofit2.Call;
 
 public class CalendarAPIService extends BaseAPIService {
@@ -12,8 +11,6 @@ public class CalendarAPIService extends BaseAPIService {
     private static CalendarAPIService calendarAPIService;
 
     private CalendarAPIService() {
-        okHttpClient = new OkHttpClient.Builder().build();
-
         BASE_URL = "https://api.aladhan.com/v1/";
     }
 

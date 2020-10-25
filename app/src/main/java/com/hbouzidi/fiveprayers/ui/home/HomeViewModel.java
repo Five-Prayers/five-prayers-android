@@ -10,9 +10,10 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.hbouzidi.fiveprayers.location.address.AddressHelper;
 import com.hbouzidi.fiveprayers.location.tracker.LocationHelper;
+import com.hbouzidi.fiveprayers.preferences.PreferencesHelper;
 import com.hbouzidi.fiveprayers.timings.DayPrayer;
-import com.hbouzidi.fiveprayers.timings.TimingsService;
 import com.hbouzidi.fiveprayers.timings.TimingServiceFactory;
+import com.hbouzidi.fiveprayers.timings.TimingsService;
 
 import java.time.LocalDate;
 
@@ -28,7 +29,6 @@ public class HomeViewModel extends AndroidViewModel {
     private MutableLiveData<String> mErrorMessage;
     private LocalDate todayDate;
     private CompositeDisposable compositeDisposable;
-    private TimingsService timingsService;
 
     public HomeViewModel(@NonNull Application application) {
         super(application);
@@ -36,7 +36,6 @@ public class HomeViewModel extends AndroidViewModel {
         mDayPrayers = new MutableLiveData<>();
         mLocationAvailable = new MutableLiveData<>();
         mErrorMessage = new MutableLiveData<>();
-        timingsService = TimingServiceFactory.create();
         setLiveData(application.getApplicationContext());
     }
 
@@ -59,6 +58,8 @@ public class HomeViewModel extends AndroidViewModel {
     }
 
     private void setLiveData(Context context) {
+        TimingsService timingsService = TimingServiceFactory.create(PreferencesHelper.getCalculationMethod(context));
+
         compositeDisposable = new CompositeDisposable();
         compositeDisposable.add(
                 LocationHelper.getLocation(context)

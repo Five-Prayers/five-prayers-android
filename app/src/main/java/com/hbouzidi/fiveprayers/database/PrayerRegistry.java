@@ -6,12 +6,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
-import com.hbouzidi.fiveprayers.timings.aladhan.AladhanDate;
 import com.hbouzidi.fiveprayers.common.ComplementaryTimingEnum;
 import com.hbouzidi.fiveprayers.common.PrayerEnum;
 import com.hbouzidi.fiveprayers.timings.DayPrayer;
-import com.hbouzidi.fiveprayers.timings.aladhan.AladhanCalendarResponse;
 import com.hbouzidi.fiveprayers.timings.aladhan.AladhanData;
+import com.hbouzidi.fiveprayers.timings.aladhan.AladhanDate;
 import com.hbouzidi.fiveprayers.timings.aladhan.AladhanTimings;
 import com.hbouzidi.fiveprayers.timings.calculations.CalculationMethodEnum;
 import com.hbouzidi.fiveprayers.timings.calculations.LatitudeAdjustmentMethod;
@@ -19,6 +18,7 @@ import com.hbouzidi.fiveprayers.timings.calculations.MidnightModeAdjustmentMetho
 import com.hbouzidi.fiveprayers.timings.calculations.SchoolAdjustmentMethod;
 import com.hbouzidi.fiveprayers.utils.TimingUtils;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -41,7 +41,7 @@ public class PrayerRegistry {
         return prayerRegistry;
     }
 
-    public long savePrayerTiming(String LocalDateString,
+    public long savePrayerTiming(LocalDate localDate,
                                  String city,
                                  String country,
                                  CalculationMethodEnum calculationMethod,
@@ -54,13 +54,15 @@ public class PrayerRegistry {
 
         Log.i(PrayerRegistry.class.getName(), "Inserting new Timings rows");
 
+        String localDateString = TimingUtils.formatDateForAdhanAPI(localDate);
+
         SQLiteDatabase db = databaseHelper.getWritableDatabase();
 
         AladhanDate aladhanDate = data.getDate();
         AladhanTimings aladhanTimings = data.getTimings();
 
         ContentValues values = new ContentValues();
-        values.put(PrayerModel.COLUMN_NAME_DATE, LocalDateString);
+        values.put(PrayerModel.COLUMN_NAME_DATE, localDateString);
         values.put(PrayerModel.COLUMN_NAME_DATE_TIMESTAMP, aladhanDate.getTimestamp());
         values.put(PrayerModel.COLUMN_NAME_TIMEZONE, data.getMeta().getTimezone());
 
@@ -100,7 +102,7 @@ public class PrayerRegistry {
         return db.insertWithOnConflict(PrayerModel.TABLE_NAME, null, values, SQLiteDatabase.CONFLICT_IGNORE);
     }
 
-    public DayPrayer getPrayerTimings(String dateString, String city, String country,
+    public DayPrayer getPrayerTimings(LocalDate localDate, String city, String country,
                                       CalculationMethodEnum calculationMethodEnum,
                                       LatitudeAdjustmentMethod latitudeAdjustmentMethod,
                                       SchoolAdjustmentMethod schoolAdjustmentMethod,
@@ -123,7 +125,7 @@ public class PrayerRegistry {
                 " AND " + PrayerModel.COLUMN_NAME_TIMINGS_TUNE + " = ?";
 
         String[] selectionArgs = {
-                dateString,
+                TimingUtils.formatDateForAdhanAPI(localDate),
                 city,
                 country,
                 String.valueOf(calculationMethodEnum),
@@ -166,11 +168,13 @@ public class PrayerRegistry {
                              MidnightModeAdjustmentMethod midnightModeAdjustmentMethod,
                              int hijriAdjustment,
                              String tune,
-                             AladhanCalendarResponse aladhanCalendarResponse
+                             List<AladhanData> data
     ) {
 
-        for (AladhanData aladhanData : aladhanCalendarResponse.getData()) {
-            savePrayerTiming(aladhanData.getDate().getGregorian().getDate(),
+        for (AladhanData aladhanData : data) {
+            String dateString = aladhanData.getDate().getGregorian().getDate();
+
+            savePrayerTiming(TimingUtils.parseAdhanAPIDate(dateString),
                     city, country, calculationMethod, latitudeAdjustmentMethod,
                     schoolAdjustmentMethod, midnightModeAdjustmentMethod,
                     hijriAdjustment, tune, aladhanData);
@@ -240,7 +244,7 @@ public class PrayerRegistry {
     }
 
     private DayPrayer createDayPrayer(Cursor cursor) {
-        DayPrayer dayPrayer = null;
+        DayPrayer dayPrayer;
 
         Map<PrayerEnum, LocalDateTime> timings = new LinkedHashMap<>(5);
         Map<ComplementaryTimingEnum, LocalDateTime> complementaryTiming = new LinkedHashMap<>(4);

@@ -1,5 +1,9 @@
 apply plugin: 'com.android.application'
 
+def apikeyPropertiesFile = rootProject.file("apikey.properties")
+def apikeyProperties = new Properties()
+apikeyProperties.load(new FileInputStream(apikeyPropertiesFile))
+
 android {
     compileSdkVersion 29
 
@@ -14,6 +18,8 @@ android {
 
         // Required when setting minSdkVersion to 20 or lower
         multiDexEnabled true
+
+        buildConfigField("String", "LONDON_UNIFIED_TIMINGS_API_KEY", apikeyProperties['LONDON_UNIFIED_TIMINGS_API_KEY'])
     }
 
     buildTypes {

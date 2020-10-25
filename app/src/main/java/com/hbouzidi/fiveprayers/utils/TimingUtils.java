@@ -17,6 +17,7 @@ import java.util.regex.Pattern;
 public class TimingUtils {
 
     public static final String ADHAN_API_DEFAULT_FORMAT = "dd-MM-yyyy";
+    public static final String LUT_API_DEFAULT_FORMAT = "yyyy-MM-dd";
     public static final String TIMING_DEFAULT_FORMAT = "HH:mm";
 
     public static LocalDateTime transformTimingToDate(String timing, String dateStr, boolean timingAfterMidnight) {
@@ -87,6 +88,16 @@ public class TimingUtils {
         return localDate.format(formatter);
     }
 
+    public static LocalDate parseAdhanAPIDate(String dateString) {
+        DateTimeFormatter alAdhanDateFormatter = DateTimeFormatter.ofPattern(ADHAN_API_DEFAULT_FORMAT);
+        return LocalDate.parse(dateString, alAdhanDateFormatter);
+    }
+
+    public static String formatDateForLUTAPI(LocalDate localDate) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(LUT_API_DEFAULT_FORMAT, Locale.getDefault());
+        return localDate.format(formatter);
+    }
+
     public static String formatTiming(LocalDateTime localDateTime) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(TIMING_DEFAULT_FORMAT, Locale.getDefault());
         return localDateTime.format(formatter);
@@ -103,5 +114,11 @@ public class TimingUtils {
             zoneId = ZoneId.of(zoneName);
         }
         return ZonedDateTime.ofInstant(Instant.ofEpochSecond(timestamps), (zoneId != null) ? zoneId : ZoneId.systemDefault());
+    }
+
+    public static String ConvertAlAdhanFormatToLUT(String aladhanDateString) {
+        DateTimeFormatter alAdhanDateFormatter = DateTimeFormatter.ofPattern(ADHAN_API_DEFAULT_FORMAT);
+        DateTimeFormatter lUTDateFormatter = DateTimeFormatter.ofPattern(LUT_API_DEFAULT_FORMAT);
+        return LocalDate.parse(aladhanDateString, alAdhanDateFormatter).format(lUTDateFormatter);
     }
 }

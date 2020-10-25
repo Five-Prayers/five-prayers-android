@@ -11,7 +11,7 @@ import androidx.work.testing.TestListenableWorkerBuilder;
 import com.hbouzidi.fiveprayers.location.address.AddressHelper;
 import com.hbouzidi.fiveprayers.location.tracker.LocationHelper;
 import com.hbouzidi.fiveprayers.notifier.NotifierHelper;
-import com.hbouzidi.fiveprayers.timings.DefaultTimingsService;
+import com.hbouzidi.fiveprayers.timings.aladhan.AladhanTimingsService;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -37,7 +37,7 @@ import static org.mockito.ArgumentMatchers.any;
 @RunWith(RobolectricTestRunner.class)
 @Config(maxSdk = 28)
 @PowerMockIgnore({"org.mockito.*", "org.robolectric.*", "android.*"})
-@PrepareForTest({PrayerUpdater.class, AddressHelper.class, LocationHelper.class, DefaultTimingsService.class, NotifierHelper.class})
+@PrepareForTest({PrayerUpdater.class, AddressHelper.class, LocationHelper.class, AladhanTimingsService.class, NotifierHelper.class})
 public class PrayerUpdaterTest {
 
     @Rule
@@ -87,7 +87,7 @@ public class PrayerUpdaterTest {
     public void testPrayerUpdaterWork_when_single_throw_error() throws Exception {
         PowerMockito.mockStatic(LocationHelper.class);
         PowerMockito.mockStatic(AddressHelper.class);
-        PowerMockito.mockStatic(DefaultTimingsService.class);
+        PowerMockito.mockStatic(AladhanTimingsService.class);
 
         Location newLocation = new Location(LocationManager.GPS_PROVIDER);
         newLocation.setLatitude(0.12);
@@ -119,7 +119,7 @@ public class PrayerUpdaterTest {
     public void testPrayerUpdaterWork_when_notifier_throw_error() throws Exception {
         PowerMockito.mockStatic(LocationHelper.class);
         PowerMockito.mockStatic(AddressHelper.class);
-        PowerMockito.mockStatic(DefaultTimingsService.class);
+        PowerMockito.mockStatic(AladhanTimingsService.class);
 
         Location newLocation = new Location(LocationManager.GPS_PROVIDER);
         newLocation.setLatitude(0.12);

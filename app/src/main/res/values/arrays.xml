@@ -17,6 +17,7 @@
         <item>@string/method_france_18</item>
         <item>@string/method_france_15</item>
         <item>@string/method_diyanet_isleri_baskanligi_turkey</item>
+        <item>@string/method_london_unified_prayer_times</item>
         <item>@string/method_spiritual_administration_of_muslims_of_russia</item>
         <item>@string/method_moroccan_ministry_of_islamic_affairs</item>
         <item>@string/method_algerian_ministry_of_religious_affairs_and_wakfs</item>
@@ -39,6 +40,7 @@
         <item>FRANCE_18</item>
         <item>FRANCE_15</item>
         <item>DIYANET_ISLERI_BASKANLIGI_TURKEY</item>
+        <item>LONDON_UNIFIED_PRAYER_TIMES</item>
         <item>SPIRITUAL_ADMINISTRATION_OF_MUSLIMS_OF_RUSSIA</item>
         <item>MOROCCAN_MINISTRY_OF_ISLAMIC_AFFAIRS</item>
         <item>ALGERIAN_MINISTRY_OF_RELIGIOUS_AFFAIRS_AND_WAKFS</item>

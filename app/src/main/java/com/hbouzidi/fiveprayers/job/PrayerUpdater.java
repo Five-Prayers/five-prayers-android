@@ -10,6 +10,7 @@ import androidx.work.rxjava3.RxWorker;
 import com.hbouzidi.fiveprayers.location.address.AddressHelper;
 import com.hbouzidi.fiveprayers.location.tracker.LocationHelper;
 import com.hbouzidi.fiveprayers.notifier.NotifierHelper;
+import com.hbouzidi.fiveprayers.preferences.PreferencesHelper;
 import com.hbouzidi.fiveprayers.timings.DayPrayer;
 import com.hbouzidi.fiveprayers.timings.TimingServiceFactory;
 import com.hbouzidi.fiveprayers.timings.TimingsService;
@@ -32,7 +33,7 @@ public class PrayerUpdater extends RxWorker {
     @NonNull
     @Override
     public Single<Result> createWork() {
-        TimingsService timingsService = TimingServiceFactory.create();
+        TimingsService timingsService = TimingServiceFactory.create(PreferencesHelper.getCalculationMethod(context));
 
         Single<DayPrayer> dayPrayerSingle =
                 LocationHelper.getLocation(context)

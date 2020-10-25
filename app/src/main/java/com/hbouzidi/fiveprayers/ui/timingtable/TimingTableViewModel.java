@@ -10,9 +10,10 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.hbouzidi.fiveprayers.location.address.AddressHelper;
 import com.hbouzidi.fiveprayers.location.tracker.LocationHelper;
+import com.hbouzidi.fiveprayers.preferences.PreferencesHelper;
 import com.hbouzidi.fiveprayers.timings.DayPrayer;
-import com.hbouzidi.fiveprayers.timings.TimingsService;
 import com.hbouzidi.fiveprayers.timings.TimingServiceFactory;
+import com.hbouzidi.fiveprayers.timings.TimingsService;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -49,7 +50,7 @@ public class TimingTableViewModel extends AndroidViewModel {
 
 
     private void setLiveData(Context context) {
-        TimingsService timingsService = TimingServiceFactory.create();
+        TimingsService timingsService = TimingServiceFactory.create(PreferencesHelper.getCalculationMethod(context));
 
         compositeDisposable = new CompositeDisposable();
         compositeDisposable.add(

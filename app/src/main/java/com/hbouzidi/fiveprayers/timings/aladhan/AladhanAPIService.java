@@ -5,10 +5,12 @@ import com.hbouzidi.fiveprayers.timings.calculations.CalculationMethodEnum;
 import com.hbouzidi.fiveprayers.timings.calculations.LatitudeAdjustmentMethod;
 import com.hbouzidi.fiveprayers.timings.calculations.MidnightModeAdjustmentMethod;
 import com.hbouzidi.fiveprayers.timings.calculations.SchoolAdjustmentMethod;
+import com.hbouzidi.fiveprayers.utils.TimingUtils;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 import retrofit2.Call;
 
@@ -27,7 +29,7 @@ public class AladhanAPIService extends BaseAPIService {
         return aladhanAPIService;
     }
 
-    public AladhanTodayTimingsResponse getTimingsByLatLong(final String LocalDateString,
+    public AladhanTodayTimingsResponse getTimingsByLatLong(final LocalDate localDate,
                                                            final double latitude,
                                                            final double longitude,
                                                            final CalculationMethodEnum method,
@@ -37,11 +39,13 @@ public class AladhanAPIService extends BaseAPIService {
                                                            final String tune
     ) throws IOException {
 
+        String localDateString = TimingUtils.formatDateForAdhanAPI(localDate);
+
         AladhanAPIResource aladhanAPIResource = provideRetrofit().create(AladhanAPIResource.class);
 
         Call<AladhanTodayTimingsResponse> call
                 = aladhanAPIResource
-                .getTimingsByLatLong(LocalDateString, latitude, longitude, method.getMethodId(),
+                .getTimingsByLatLong(localDateString, latitude, longitude, method.getMethodId(),
                         getMethodSettings(method),
                         latitudeAdjustmentMethod.getValue(),
                         schoolAdjustmentMethod.getValue(),

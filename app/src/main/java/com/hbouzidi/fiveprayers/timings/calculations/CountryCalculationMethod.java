@@ -270,14 +270,11 @@ public class CountryCalculationMethod {
     public static CalculationMethodEnum getCalculationMethodByAddress(Address address) {
         String countryCode = address.getCountryCode();
 
-        if (countryCode != null && "FR".equals(countryCode.toUpperCase())) {
-            if ("Ile-de-France".equalsIgnoreCase(address.getAddressLine(1)) ||
-                            "Ile-de-France".equalsIgnoreCase(address.getSubLocality()) ||
-                            "Île-de-France".equalsIgnoreCase(address.getSubLocality())
-                            || "Île-de-France".equalsIgnoreCase((address.getAddressLine(1)))) {
-                return CalculationMethodEnum.MOSQUEE_DE_PARIS_FRANCE;
+        if (countryCode != null && "GB".equals(countryCode.toUpperCase())) {
+            if ("London".equalsIgnoreCase(address.getLocality())) {
+                return CalculationMethodEnum.LONDON_UNIFIED_PRAYER_TIMES;
             } else {
-                return CalculationMethodEnum.UNION_ORGANIZATION_ISLAMIC_DE_FRANCE;
+                return CalculationMethodEnum.getDefault();
             }
         } else if (countryCode != null && CALCULATION_METHOD_BY_COUNTRY.get(countryCode.toUpperCase()) != null) {
             return CALCULATION_METHOD_BY_COUNTRY.get(countryCode.toUpperCase());

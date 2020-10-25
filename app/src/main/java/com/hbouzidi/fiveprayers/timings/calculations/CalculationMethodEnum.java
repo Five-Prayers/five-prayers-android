@@ -21,7 +21,7 @@ public enum CalculationMethodEnum {
     MOROCCAN_MINISTRY_OF_ISLAMIC_AFFAIRS(99, "19.1", "4 min", "17"),
     ALGERIAN_MINISTRY_OF_RELIGIOUS_AFFAIRS_AND_WAKFS(99, "18", "3 min", "17"),
     TUNISIAN_MINISTRY_OF_RELIGIOUS_AFFAIRS (99, "18", "3 min", "18"),
-    MOSQUEE_DE_PARIS_FRANCE(99, "18", "3 min", "14"),
+    MOSQUEE_DE_PARIS_FRANCE(99, "18", "3 min", "18"),
     FRANCE_15(99, "15", "3 min", "15"),
     FRANCE_18(99, "18", "3 min", "18");
 

@@ -91,7 +91,7 @@ public class CountryCalculationMethod {
         result.put("FO", CalculationMethodEnum.MUSLIM_WORLD_LEAGUE);
         result.put("FJ", CalculationMethodEnum.MUSLIM_WORLD_LEAGUE);
         result.put("FI", CalculationMethodEnum.MUSLIM_WORLD_LEAGUE);
-        result.put("FR", CalculationMethodEnum.UNION_ORGANIZATION_ISLAMIC_DE_FRANCE);
+        result.put("FR", CalculationMethodEnum.MOSQUEE_DE_PARIS_FRANCE);
         result.put("GF", CalculationMethodEnum.MUSLIM_WORLD_LEAGUE);
         result.put("PF", CalculationMethodEnum.MUSLIM_WORLD_LEAGUE);
         result.put("TF", CalculationMethodEnum.MUSLIM_WORLD_LEAGUE);

@@ -40,7 +40,7 @@ public class LondonUnifiedPrayerTimingsService extends AbstractTimingsService {
 
         AladhanAPIService aladhanAPIService = AladhanAPIService.getInstance();
         AladhanTodayTimingsResponse timingsByCity =
-                aladhanAPIService.getTimingsByLatLong(localDate,
+                aladhanAPIService.getTimingsByLatLong(
                         address.getLatitude(),
                         address.getLongitude(),
                         timingsPreferences.getMethod(),
@@ -51,7 +51,7 @@ public class LondonUnifiedPrayerTimingsService extends AbstractTimingsService {
                         timingsPreferences.getTune());
 
         LondonUnifiedPrayerAPIService londonUnifiedPrayerAPIService = LondonUnifiedPrayerAPIService.getInstance();
-        LondonUnifiedTimingsResponse londonTimings = londonUnifiedPrayerAPIService.getLondonTimings(localDate);
+        LondonUnifiedTimingsResponse londonTimings = londonUnifiedPrayerAPIService.getLondonTimings();
 
         AladhanData aladhanData = createTimingsData(timingsPreferences.getSchoolAdjustmentMethod(), timingsByCity.getData(), londonTimings);
 

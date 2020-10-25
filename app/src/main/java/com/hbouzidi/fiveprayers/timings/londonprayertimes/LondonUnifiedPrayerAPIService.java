@@ -28,8 +28,8 @@ public class LondonUnifiedPrayerAPIService extends BaseAPIService {
         return londonUnifiedPrayerAPIService;
     }
 
-    public LondonUnifiedTimingsResponse getLondonTimings(final LocalDate localDate) throws IOException {
-        String localDateString = TimingUtils.formatDateForLUTAPI(localDate);
+    public LondonUnifiedTimingsResponse getLondonTimings() throws IOException {
+        String localDateString = TimingUtils.formatDateForLUTAPI(LocalDate.now());
 
         LondonUnifiedPrayerAPIResource londonUnifiedPrayerAPIResource =
                 provideRetrofit().create(LondonUnifiedPrayerAPIResource.class);

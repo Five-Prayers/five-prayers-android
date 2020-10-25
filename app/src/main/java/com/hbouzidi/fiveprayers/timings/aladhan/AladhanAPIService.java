@@ -5,12 +5,12 @@ import com.hbouzidi.fiveprayers.timings.calculations.CalculationMethodEnum;
 import com.hbouzidi.fiveprayers.timings.calculations.LatitudeAdjustmentMethod;
 import com.hbouzidi.fiveprayers.timings.calculations.MidnightModeAdjustmentMethod;
 import com.hbouzidi.fiveprayers.timings.calculations.SchoolAdjustmentMethod;
-import com.hbouzidi.fiveprayers.utils.TimingUtils;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 
 import retrofit2.Call;
 
@@ -29,8 +29,7 @@ public class AladhanAPIService extends BaseAPIService {
         return aladhanAPIService;
     }
 
-    public AladhanTodayTimingsResponse getTimingsByLatLong(final LocalDate localDate,
-                                                           final double latitude,
+    public AladhanTodayTimingsResponse getTimingsByLatLong(final double latitude,
                                                            final double longitude,
                                                            final CalculationMethodEnum method,
                                                            final LatitudeAdjustmentMethod latitudeAdjustmentMethod,
@@ -39,18 +38,18 @@ public class AladhanAPIService extends BaseAPIService {
                                                            final String tune
     ) throws IOException {
 
-        String localDateString = TimingUtils.formatDateForAdhanAPI(localDate);
+        long epochSecond = LocalDateTime.now().atZone(ZoneId.systemDefault()).toEpochSecond();
 
         AladhanAPIResource aladhanAPIResource = provideRetrofit().create(AladhanAPIResource.class);
 
         Call<AladhanTodayTimingsResponse> call
                 = aladhanAPIResource
-                .getTimingsByLatLong(localDateString, latitude, longitude, method.getMethodId(),
+                .getTimingsByLatLong(String.valueOf(epochSecond), latitude, longitude, method.getMethodId(),
                         getMethodSettings(method),
                         latitudeAdjustmentMethod.getValue(),
                         schoolAdjustmentMethod.getValue(),
                         midnightModeAdjustmentMethod.getValue(),
-                        adjustment, tune);
+                        adjustment, tune, ZoneId.systemDefault().getId());
 
         return call.execute().body();
     }
@@ -76,7 +75,9 @@ public class AladhanAPIService extends BaseAPIService {
                         schoolAdjustmentMethod.getValue(),
                         midnightModeAdjustmentMethod.getValue(),
                         adjustment,
-                        tune);
+                        tune,
+                        ZoneId.systemDefault().getId()
+                );
 
         return call.execute().body();
     }

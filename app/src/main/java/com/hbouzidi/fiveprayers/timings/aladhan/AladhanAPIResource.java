@@ -31,7 +31,8 @@ public interface AladhanAPIResource {
             @Query("school") int school,
             @Query("midnightMode") int midnightMode,
             @Query("adjustment") int adjustment,
-            @Query("tune") String tune
+            @Query("tune") String tune,
+            @Query("timezonestring") String timezonestring
     );
 
     @GET("calendarByCity")
@@ -63,6 +64,7 @@ public interface AladhanAPIResource {
             @Query("school") int school,
             @Query("midnightMode") int midnightMode,
             @Query("adjustment") int adjustment,
-            @Query("tune") String tune
+            @Query("tune") String tune,
+            @Query("timezonestring") String timezonestring
     );
 }

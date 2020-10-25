@@ -30,7 +30,7 @@ public class AladhanTimingsService extends AbstractTimingsService {
 
         AladhanAPIService aladhanAPIService = AladhanAPIService.getInstance();
         AladhanTodayTimingsResponse timingsByCity =
-                aladhanAPIService.getTimingsByLatLong(localDate,
+                aladhanAPIService.getTimingsByLatLong(
                         address.getLatitude(),
                         address.getLongitude(),
                         timingsPreferences.getMethod(),

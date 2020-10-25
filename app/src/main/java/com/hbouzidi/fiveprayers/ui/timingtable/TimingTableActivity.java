@@ -5,6 +5,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +13,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.faltenreich.skeletonlayout.Skeleton;
 import com.hbouzidi.fiveprayers.R;
 import com.hbouzidi.fiveprayers.common.ComplementaryTimingEnum;
 import com.hbouzidi.fiveprayers.timings.DayPrayer;
@@ -42,6 +44,8 @@ public class TimingTableActivity extends AppCompatActivity {
     private static final int TEXT_SIZE = 11;
 
     private TableView<String[]> tableView;
+    private ListView internalListView;
+    private Skeleton skeleton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,12 +63,16 @@ public class TimingTableActivity extends AppCompatActivity {
         String toolBarTitle = getString(R.string.calendar_view_title) + " " + sharedPreferences.getString(PreferencesConstants.LAST_KNOWN_LOCALITY, "");
         ((Toolbar) findViewById(R.id.calendar_toolbar)).setTitle(toolBarTitle);
 
+        skeleton = findViewById(R.id.skeletonLayout);
         tableView = findViewById(R.id.tableView);
+        internalListView = findViewById(R.id.table_data_view);
 
         TextView dateTextView = findViewById(R.id.date_text_view);
         dateTextView.setText(StringUtils.capitalize(UiUtils.formatShortDate(LocalDate.now())));
 
         createTableView();
+
+        skeleton.showSkeleton();
 
         timingTableViewModel.getCalendar().observe(this, this::populateTableView);
     }
@@ -90,6 +98,10 @@ public class TimingTableActivity extends AppCompatActivity {
         SimpleTableDataAdapter dataAdapter = new SimpleTableDataAdapter(this, data);
         dataAdapter.setTextSize(TEXT_SIZE);
         tableView.setDataAdapter(dataAdapter);
+
+        internalListView.setSelection(LocalDate.now().getDayOfMonth() - 1);
+
+        skeleton.showOriginal();
     }
 
     private void createTableView() {

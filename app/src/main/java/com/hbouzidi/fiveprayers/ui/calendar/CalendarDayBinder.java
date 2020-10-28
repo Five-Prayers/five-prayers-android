@@ -4,6 +4,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+
 import com.hbouzidi.fiveprayers.R;
 import com.hbouzidi.fiveprayers.common.HijriHoliday;
 import com.hbouzidi.fiveprayers.timings.aladhan.AladhanDate;
@@ -12,8 +14,6 @@ import com.kizitonwose.calendarview.model.CalendarDay;
 import com.kizitonwose.calendarview.model.DayOwner;
 import com.kizitonwose.calendarview.ui.DayBinder;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.time.LocalDate;
 import java.util.List;
 
@@ -21,7 +21,7 @@ import java.util.List;
 public class CalendarDayBinder implements DayBinder<DayViewContainer> {
 
     @Override
-    public void bind(@NotNull DayViewContainer dayViewContainer, @NotNull CalendarDay calendarDay) {
+    public void bind(@NonNull DayViewContainer dayViewContainer, @NonNull CalendarDay calendarDay) {
         dayViewContainer.setCalendarDay(calendarDay);
         TextView dayTextView = dayViewContainer.getDayTextView();
         TextView hijriDayTextView = dayViewContainer.getHijriDayTextView();
@@ -58,7 +58,7 @@ public class CalendarDayBinder implements DayBinder<DayViewContainer> {
         dayTextView.setText(String.valueOf(calendarDay.getDay()));
     }
 
-    private void updateHijriDate(@NotNull CalendarDay calendarDay, TextView hijriDayTextView, ImageView hijriCalendarDateMonthTextView, ImageView hijriHolidayDateMonthTextView, List<AladhanDate> aladhanDates) {
+    private void updateHijriDate(@NonNull CalendarDay calendarDay, TextView hijriDayTextView, ImageView hijriCalendarDateMonthTextView, ImageView hijriHolidayDateMonthTextView, List<AladhanDate> aladhanDates) {
         if (aladhanDates != null) {
             String gregorianMonth = aladhanDates.get(0).getGregorian().getMonth().getNumber();
 
@@ -81,9 +81,9 @@ public class CalendarDayBinder implements DayBinder<DayViewContainer> {
         }
     }
 
-    @NotNull
+    @NonNull
     @Override
-    public DayViewContainer create(@NotNull View view) {
+    public DayViewContainer create(@NonNull View view) {
         return new DayViewContainer(view);
     }
 }

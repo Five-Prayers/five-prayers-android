@@ -4,13 +4,14 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+
 import com.hbouzidi.fiveprayers.R;
 import com.kizitonwose.calendarview.model.CalendarDay;
 import com.kizitonwose.calendarview.model.DayOwner;
 import com.kizitonwose.calendarview.ui.ViewContainer;
 
 import org.greenrobot.eventbus.EventBus;
-import org.jetbrains.annotations.NotNull;
 
 public class DayViewContainer extends ViewContainer {
 
@@ -21,7 +22,7 @@ public class DayViewContainer extends ViewContainer {
     private CalendarDay calendarDay;
     private final View calendarDayLayout;
 
-    public DayViewContainer(@NotNull View view) {
+    public DayViewContainer(@NonNull View view) {
         super(view);
 
         calendarDayLayout = view.findViewById(R.id.calendarDayLayout);

@@ -1,8 +1,9 @@
 package com.hbouzidi.fiveprayers.utils;
 
+import androidx.annotation.NonNull;
+
 import com.hbouzidi.fiveprayers.common.PrayerEnum;
 
-import org.jetbrains.annotations.NotNull;
 import org.junit.Test;
 
 import java.time.LocalDate;
@@ -115,7 +116,7 @@ public class PrayerUtilsTest {
         assertEquals(PrayerEnum.ICHA, PrayerUtils.getPreviousPrayerKey(PrayerEnum.FAJR));
     }
 
-    @NotNull
+    @NonNull
     private LocalDateTime getDate(String dateStr, int hour, int minute) {
         DateTimeFormatter f = DateTimeFormatter.ofPattern("dd-MM-yyyy", Locale.getDefault());
         return LocalDate.parse(dateStr, f).atTime(hour, minute);

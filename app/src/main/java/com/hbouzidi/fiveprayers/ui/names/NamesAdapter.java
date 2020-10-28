@@ -13,8 +13,6 @@ import com.hbouzidi.fiveprayers.R;
 import com.hbouzidi.fiveprayers.names.AllahNames;
 import com.hbouzidi.fiveprayers.names.model.AllahName;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,7 +38,7 @@ public class NamesAdapter extends RecyclerView.Adapter<NamesAdapter.Holder> {
         return names;
     }
 
-    @NotNull
+    @NonNull
     @Override
     public Holder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         context = viewGroup.getContext();

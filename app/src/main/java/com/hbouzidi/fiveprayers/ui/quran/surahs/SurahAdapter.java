@@ -11,8 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.hbouzidi.fiveprayers.R;
 import com.hbouzidi.fiveprayers.quran.dto.Surah;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +35,7 @@ public class SurahAdapter extends RecyclerView.Adapter<SurahAdapter.Holder> {
         return surahs;
     }
 
-    @NotNull
+    @NonNull
     @Override
     public Holder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.surah_item, viewGroup, false);

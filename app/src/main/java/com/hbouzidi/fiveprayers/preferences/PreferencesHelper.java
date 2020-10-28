@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.location.Address;
 
+import androidx.annotation.NonNull;
 import androidx.preference.PreferenceManager;
 
 import com.hbouzidi.fiveprayers.timings.calculations.CalculationMethodEnum;
@@ -13,8 +14,6 @@ import com.hbouzidi.fiveprayers.timings.calculations.MidnightModeAdjustmentMetho
 import com.hbouzidi.fiveprayers.timings.calculations.SchoolAdjustmentMethod;
 import com.hbouzidi.fiveprayers.timings.calculations.TimingsTuneEnum;
 import com.hbouzidi.fiveprayers.utils.UserPreferencesUtils;
-
-import org.jetbrains.annotations.NotNull;
 
 import java.util.Locale;
 
@@ -81,7 +80,7 @@ public class PreferencesHelper {
         return MidnightModeAdjustmentMethod.valueOf(midnightModeAdjustmentMethod);
     }
 
-    @NotNull
+    @NonNull
     public static Address getLastKnownAddress(Context context) {
         final SharedPreferences sharedPreferences = context.getSharedPreferences(PreferencesConstants.LOCATION, MODE_PRIVATE);
         final String locality = sharedPreferences.getString(PreferencesConstants.LAST_KNOWN_LOCALITY, null);

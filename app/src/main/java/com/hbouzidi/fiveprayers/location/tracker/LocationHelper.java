@@ -5,12 +5,12 @@ import android.content.SharedPreferences;
 import android.location.Location;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
 import com.hbouzidi.fiveprayers.R;
 import com.hbouzidi.fiveprayers.exceptions.LocationException;
 import com.hbouzidi.fiveprayers.preferences.PreferencesConstants;
 import com.hbouzidi.fiveprayers.utils.UserPreferencesUtils;
-
-import org.jetbrains.annotations.NotNull;
 
 import io.reactivex.rxjava3.core.Single;
 
@@ -56,7 +56,7 @@ public class LocationHelper {
         });
     }
 
-    @NotNull
+    @NonNull
     private static Location getLastKnownLocation(double lastKnownLatitude, double lastKnownLongitude) {
         Location lastKnownLocation = new Location("");
         lastKnownLocation.setLatitude(lastKnownLatitude);

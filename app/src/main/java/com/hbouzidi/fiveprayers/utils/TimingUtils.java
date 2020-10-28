@@ -1,12 +1,13 @@
 package com.hbouzidi.fiveprayers.utils;
 
-import org.jetbrains.annotations.NotNull;
+import androidx.annotation.NonNull;
 
 import java.time.Duration;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
@@ -19,6 +20,7 @@ public class TimingUtils {
     public static final String ADHAN_API_DEFAULT_FORMAT = "dd-MM-yyyy";
     public static final String LUT_API_DEFAULT_FORMAT = "yyyy-MM-dd";
     public static final String TIMING_DEFAULT_FORMAT = "HH:mm";
+    public static final String DEFAULT_DATE_TIME_FORMAT = "dd-MM-yyyy HH:mm";
 
     public static LocalDateTime transformTimingToDate(String timing, String dateStr, boolean timingAfterMidnight) {
         String[] timingParts = getTimingParts(timing);
@@ -34,7 +36,7 @@ public class TimingUtils {
         return localDateTime;
     }
 
-    @NotNull
+    @NonNull
     private static String[] getTimingParts(String timingStr) {
         String[] result = new String[2];
         Pattern p = Pattern.compile("([0-9]{1,2}):([0-9]{1,2})");
@@ -47,7 +49,7 @@ public class TimingUtils {
         return result;
     }
 
-    public static boolean isBetweenTiming(@NotNull LocalDateTime startTiming, @NotNull LocalDateTime now, @NotNull LocalDateTime endTiming) {
+    public static boolean isBetweenTiming(@NonNull LocalDateTime startTiming, @NonNull LocalDateTime now, @NonNull LocalDateTime endTiming) {
         return startTiming.equals(now) || (now.isAfter(startTiming) && now.isBefore(endTiming));
     }
 
@@ -120,5 +122,11 @@ public class TimingUtils {
         DateTimeFormatter alAdhanDateFormatter = DateTimeFormatter.ofPattern(ADHAN_API_DEFAULT_FORMAT);
         DateTimeFormatter lUTDateFormatter = DateTimeFormatter.ofPattern(LUT_API_DEFAULT_FORMAT);
         return LocalDate.parse(aladhanDateString, alAdhanDateFormatter).format(lUTDateFormatter);
+    }
+
+    public static String getUTCDateTime() {
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(DEFAULT_DATE_TIME_FORMAT);
+        LocalDateTime localDateTime = LocalDateTime.now(ZoneOffset.UTC);
+        return localDateTime.format(dateFormatter);
     }
 }

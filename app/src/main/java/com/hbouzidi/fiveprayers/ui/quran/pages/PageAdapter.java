@@ -28,8 +28,6 @@ import com.hbouzidi.fiveprayers.utils.CustomTypefaceSpan;
 import com.hbouzidi.fiveprayers.utils.FontBySurahNumber;
 import com.hbouzidi.fiveprayers.utils.SurahFontReference;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -58,7 +56,7 @@ public class PageAdapter extends RecyclerView.Adapter<PageAdapter.Holder> {
         quranPage = new ArrayList<>(newList);
     }
 
-    @NotNull
+    @NonNull
     @Override
     public Holder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.page_item, viewGroup, false);
@@ -178,7 +176,7 @@ public class PageAdapter extends RecyclerView.Adapter<PageAdapter.Holder> {
         }
     }
 
-    @NotNull
+    @NonNull
     private StringBuilder getHizbInfoBuilder(Page item, boolean displayQuarterInfo, int hizbQuarter) {
         StringBuilder hizbInfoBuilder = new StringBuilder();
         hizbInfoBuilder

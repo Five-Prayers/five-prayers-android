@@ -1,12 +1,12 @@
 package com.hbouzidi.fiveprayers.timings.aladhan;
 
+import androidx.annotation.NonNull;
+
 import com.hbouzidi.fiveprayers.common.api.BaseAPIService;
 import com.hbouzidi.fiveprayers.timings.calculations.CalculationMethodEnum;
 import com.hbouzidi.fiveprayers.timings.calculations.LatitudeAdjustmentMethod;
 import com.hbouzidi.fiveprayers.timings.calculations.MidnightModeAdjustmentMethod;
 import com.hbouzidi.fiveprayers.timings.calculations.SchoolAdjustmentMethod;
-
-import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -82,7 +82,7 @@ public class AladhanAPIService extends BaseAPIService {
         return call.execute().body();
     }
 
-    @NotNull
+    @NonNull
     private String getMethodSettings(CalculationMethodEnum method) {
         return method.getFajrAngle() + "," + method.getMaghribAngle() + "," + method.getIchaAngle();
     }

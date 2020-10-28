@@ -5,14 +5,15 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.hbouzidi.fiveprayers.R;
-import com.hbouzidi.fiveprayers.ui.AlertHelper;
-import com.hbouzidi.fiveprayers.ui.splashscreen.SplashScreenActivity;
 import com.github.appintro.AppIntro;
 import com.github.appintro.AppIntroFragment;
 import com.github.appintro.AppIntroPageTransformerType;
+import com.hbouzidi.fiveprayers.R;
+import com.hbouzidi.fiveprayers.ui.AlertHelper;
+import com.hbouzidi.fiveprayers.ui.splashscreen.SplashScreenActivity;
 
 public class IntroActivity extends AppIntro {
 
@@ -68,13 +69,13 @@ public class IntroActivity extends AppIntro {
                 -1.0,
                 2.0);
         setTransformer(parallax);
-        setImmersiveMode();
 
+        setSystemBackButtonLocked(true);
         setWizardMode(true);
     }
 
     @Override
-    protected void onUserDeniedPermission(String permissionName) {
+    protected void onUserDeniedPermission(@NonNull String permissionName) {
         AlertHelper.displayInformationDialog(this,
                 getResources().getString(R.string.app_intro_permission_denied_dialog_title),
                 getResources().getString(R.string.app_intro_permission_denied_dialog_message));

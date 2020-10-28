@@ -3,7 +3,7 @@
     package="com.hbouzidi.fiveprayers">
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -11,21 +11,21 @@
     <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
-        android:name="com.hbouzidi.fiveprayers.FivePrayerApplication"
+        android:name=".FivePrayerApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.hbouzidi.fiveprayers.ui.names.NamesActivity" />
-        <activity android:name="com.hbouzidi.fiveprayers.ui.quran.surahs.QuranActivity" />
+        <activity android:name=".ui.names.NamesActivity" />
+        <activity android:name=".ui.quran.surahs.QuranActivity" />
         <activity
-            android:name="com.hbouzidi.fiveprayers.ui.quran.pages.AyahsActivity"
+            android:name=".ui.quran.pages.AyahsActivity"
             android:configChanges="orientation|screenSize"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
         <activity
-            android:name="com.hbouzidi.fiveprayers.ui.DefaultActivity"
+            android:name=".ui.DefaultActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,34 +33,41 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.hbouzidi.fiveprayers.ui.appintro.IntroActivity" />
-        <activity android:name="com.hbouzidi.fiveprayers.ui.splashscreen.SplashScreenActivity" />
-        <activity android:name="com.hbouzidi.fiveprayers.ui.MainActivity" />
-        <activity android:name="com.hbouzidi.fiveprayers.ui.calendar.CalendarActivity" />
-        <activity android:name="com.hbouzidi.fiveprayers.ui.timingtable.TimingTableActivity" />
-        <activity android:name="com.hbouzidi.fiveprayers.ui.qibla.CompassActivity" />
+        <activity android:name=".ui.appintro.IntroActivity" />
+        <activity android:name=".ui.splashscreen.SplashScreenActivity" />
+        <activity android:name=".ui.MainActivity" />
+        <activity android:name=".ui.calendar.CalendarActivity" />
+        <activity android:name=".ui.timingtable.TimingTableActivity" />
+        <activity android:name=".ui.qibla.CompassActivity" />
+        <activity
+            android:name=".ui.report.ErrorActivity"
+            android:label="@string/error_title"
+            android:process=":error_activity" />
 
         <receiver
-            android:name="com.hbouzidi.fiveprayers.notifier.NotifierBootReceiver"
+            android:name=".notifier.NotifierBootReceiver"
             android:enabled="true"
             android:exported="true"
-            android:permission="android.permission.RECEIVE_BOOT_COMPLETED"
-            >
+            android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </receiver>
-        <receiver android:name="com.hbouzidi.fiveprayers.notifier.NotifierReceiver" android:enabled="true" />
-        <receiver android:name="com.hbouzidi.fiveprayers.notifier.NotifierActionReceiver" android:enabled="true" />
-        <receiver android:name="com.hbouzidi.fiveprayers.notifier.NotificationDismissedReceiver" />
+        <receiver
+            android:name=".notifier.NotifierReceiver"
+            android:enabled="true" />
+        <receiver
+            android:name=".notifier.NotifierActionReceiver"
+            android:enabled="true" />
+        <receiver android:name=".notifier.NotificationDismissedReceiver" />
 
         <service
-            android:name="com.hbouzidi.fiveprayers.notifier.NotifierService"
-            android:exported="false"
+            android:name=".notifier.NotifierService"
             android:enabled="true"
-            android:permission="android.permission.BIND_JOB_SERVICE"
-            />
+            android:exported="false"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
     </application>
 
 </manifest>

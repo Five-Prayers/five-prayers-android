@@ -1,7 +1,26 @@
 <resources>
+    <string name="privacy_policy_title">Five Prayers Android \'s Privacy Policy</string>
+    <string name="start_accept_privacy_policy">In order to comply with the European General Data Protection Regulation (GDPR), we herby draw your attention to Five Prayers Android\'s privacy policy. Please read it carefully.\nYou must accept it to send us the bug report.</string>
+    <string name="read_privacy_policy">Read privacy policy</string>
+    <string name="sorry_string">Sorry, that should not have happened.</string>
+    <string name="what_happened_headline">What happened:</string>
+    <string name="info_labels">Language:\\nGMT Time:\\nPackage:\\nVersion:\\nOS version:</string>
+    <string name="what_device_headline">Info:</string>
+    <string name="error_details_headline">Details:</string>
+    <string name="your_comment">Your comment (in English):</string>
+    <string name="error_report_button_text">Report this error via e-mail</string>
+    <string name="error_report_open_github_notice">Please check whether an issue discussing your crash already exists. When creating duplicate tickets, you take time from us which we could spend with fixing the actual bug.</string>
+    <string name="copy_for_github">Copy formatted report</string>
+    <string name="error_report_open_issue_button_text">Report error on GitHub</string>
+    <string name="msg_copied">Message copied</string>
+    <string name="share_dialog_title">share_dialog_title</string>
+    <string name="permission_denied">permission_denied</string>
+
     <!-- Common -->
     <string name="common.cancel">Cancel</string>
     <string name="common.ok">OK</string>
+    <string name="common.accept">Accept</string>
+    <string name="common.decline">Decline</string>
     <string name="common.error">Error</string>
     <string name="common_alert">Alert</string>
 
@@ -281,4 +300,5 @@
     <string name="ALLAH_NAME_98">The Guide, Infallible Teacher</string>
     <string name="ALLAH_NAME_99">The Forbearing, The Patient</string>
     <string name="method_london_unified_prayer_times">London Unified Prayer Times</string>
+    <string name="error_title">Error Activity</string>
 </resources>

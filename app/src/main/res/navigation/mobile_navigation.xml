@@ -18,7 +18,7 @@
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
+        android:id="@+id/navigation_settings"
         android:name="com.hbouzidi.fiveprayers.ui.settings.SettingsFragment"
         android:label="@string/title_settings"/>
 </navigation>

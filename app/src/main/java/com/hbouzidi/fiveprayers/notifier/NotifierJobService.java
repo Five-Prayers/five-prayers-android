@@ -10,17 +10,17 @@ import com.hbouzidi.fiveprayers.timings.DayPrayer;
 
 import java.util.Objects;
 
-public class NotifierService extends JobIntentService {
+public class NotifierJobService extends JobIntentService {
 
     private static final int JOB_ID = 201;
 
     @Override
     public void onHandleWork(@NonNull Intent intent) {
         DayPrayer dayPrayer = (DayPrayer) intent.getSerializableExtra("dayPrayer");
-        NotifierHelper.scheduleNextPrayerAlarms(getApplicationContext(), Objects.requireNonNull(dayPrayer));
+        PrayerAlarmScheduler.scheduleNextPrayerAlarms(getApplicationContext(), Objects.requireNonNull(dayPrayer));
     }
 
     public static void enqueueWork(Context context, Intent intent) {
-        enqueueWork(context, NotifierService.class, JOB_ID, intent);
+        enqueueWork(context, NotifierJobService.class, JOB_ID, intent);
     }
 }

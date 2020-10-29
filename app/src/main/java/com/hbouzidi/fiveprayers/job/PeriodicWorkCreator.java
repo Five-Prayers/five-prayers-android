@@ -26,7 +26,6 @@ public final class PeriodicWorkCreator {
         PeriodicWorkRequest periodicWorkRequest =
                 new PeriodicWorkRequest
                         .Builder(PrayerUpdater.class, 60, TimeUnit.MINUTES, 50, TimeUnit.MINUTES)
-                        .setInitialDelay(5, TimeUnit.MINUTES)
                         .setConstraints(networkConstraint)
                         .setBackoffCriteria(
                                 BackoffPolicy.LINEAR,

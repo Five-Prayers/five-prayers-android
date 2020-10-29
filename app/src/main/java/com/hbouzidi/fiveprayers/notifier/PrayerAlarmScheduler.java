@@ -5,11 +5,12 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 
-import com.hbouzidi.fiveprayers.timings.DayPrayer;
 import com.hbouzidi.fiveprayers.common.PrayerEnum;
+import com.hbouzidi.fiveprayers.timings.DayPrayer;
 import com.hbouzidi.fiveprayers.utils.TimingUtils;
 
 import java.time.LocalDateTime;
@@ -17,9 +18,13 @@ import java.util.Map;
 
 import static android.app.PendingIntent.FLAG_UPDATE_CURRENT;
 
-public class NotifierHelper {
+public class PrayerAlarmScheduler {
+
+    public static final String TAG = "PrayerAlarmScheduler";
 
     public static void scheduleNextPrayerAlarms(Context context, @NonNull DayPrayer dayPrayer) {
+        Log.i(TAG, "Start scheduling Alarm for: " + dayPrayer.getDate());
+
         Map<PrayerEnum, LocalDateTime> timings = dayPrayer.getTimings();
 
         int index = 0;
@@ -29,6 +34,8 @@ public class NotifierHelper {
             LocalDateTime timing = timings.get(key);
 
             if (timing != null && LocalDateTime.now().isBefore(timing)) {
+                Log.i(TAG, "Scheduling " + key.toString() + " Alarm at : " + TimingUtils.formatTiming(timing));
+
                 AlarmManager alarmMgr = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
                 Intent intent = new Intent(context, NotifierReceiver.class);
                 intent.putExtra("prayerKey", key.toString());
@@ -50,5 +57,7 @@ public class NotifierHelper {
                 }
             }
         }
+
+        Log.i(TAG, "End scheduling Alarm for: " + dayPrayer.getDate());
     }
 }

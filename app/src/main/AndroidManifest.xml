@@ -64,7 +64,7 @@
         <receiver android:name=".notifier.NotificationDismissedReceiver" />
 
         <service
-            android:name=".notifier.NotifierService"
+            android:name=".notifier.NotifierJobService"
             android:enabled="true"
             android:exported="false"
             android:permission="android.permission.BIND_JOB_SERVICE" />

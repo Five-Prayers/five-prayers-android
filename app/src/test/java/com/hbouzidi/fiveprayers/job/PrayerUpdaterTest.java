@@ -10,7 +10,7 @@ import androidx.work.testing.TestListenableWorkerBuilder;
 
 import com.hbouzidi.fiveprayers.location.address.AddressHelper;
 import com.hbouzidi.fiveprayers.location.tracker.LocationHelper;
-import com.hbouzidi.fiveprayers.notifier.NotifierHelper;
+import com.hbouzidi.fiveprayers.notifier.PrayerAlarmScheduler;
 import com.hbouzidi.fiveprayers.timings.aladhan.AladhanTimingsService;
 
 import org.junit.Assert;
@@ -37,7 +37,7 @@ import static org.mockito.ArgumentMatchers.any;
 @RunWith(RobolectricTestRunner.class)
 @Config(maxSdk = 28)
 @PowerMockIgnore({"org.mockito.*", "org.robolectric.*", "android.*"})
-@PrepareForTest({PrayerUpdater.class, AddressHelper.class, LocationHelper.class, AladhanTimingsService.class, NotifierHelper.class})
+@PrepareForTest({PrayerUpdater.class, AddressHelper.class, LocationHelper.class, AladhanTimingsService.class, PrayerAlarmScheduler.class})
 public class PrayerUpdaterTest {
 
     @Rule
@@ -71,10 +71,10 @@ public class PrayerUpdaterTest {
         PowerMockito.when(AddressHelper.getAddressFromLocation(newLocation, mockContext)).thenReturn(Single.just(lastKnownAddress));
     //    PowerMockito.when(TimingService.getTimingsByCity(any(), any(), any())).thenReturn(Single.just(new DayPrayer()));
 
-        PowerMockito.spy(NotifierHelper.class);
+        PowerMockito.spy(PrayerAlarmScheduler.class);
         PowerMockito
                 .doNothing()
-                .when(NotifierHelper.class, "scheduleNextPrayerAlarms", any(), any());
+                .when(PrayerAlarmScheduler.class, "scheduleNextPrayerAlarms", any(), any());
 
         PrayerUpdater prayerUpdater = TestListenableWorkerBuilder.from(mockContext, PrayerUpdater.class).build();
 
@@ -103,10 +103,10 @@ public class PrayerUpdaterTest {
         PowerMockito.when(AddressHelper.getAddressFromLocation(newLocation, mockContext)).thenReturn(Single.just(lastKnownAddress));
        // PowerMockito.when(AladhanTimingService.getTimingsByCity(any(), any(), any())).thenReturn(Single.error(new Exception()));
 
-        PowerMockito.spy(NotifierHelper.class);
+        PowerMockito.spy(PrayerAlarmScheduler.class);
         PowerMockito
                 .doNothing()
-                .when(NotifierHelper.class, "scheduleNextPrayerAlarms", any(), any());
+                .when(PrayerAlarmScheduler.class, "scheduleNextPrayerAlarms", any(), any());
 
         PrayerUpdater prayerUpdater = TestListenableWorkerBuilder.from(mockContext, PrayerUpdater.class).build();
 
@@ -135,10 +135,10 @@ public class PrayerUpdaterTest {
         PowerMockito.when(AddressHelper.getAddressFromLocation(newLocation, mockContext)).thenReturn(Single.just(lastKnownAddress));
      //   PowerMockito.when(AladhanTimingService.getTimingsByCity(any(), any(), any())).thenReturn(Single.just(new DayPrayer()));
 
-        PowerMockito.spy(NotifierHelper.class);
+        PowerMockito.spy(PrayerAlarmScheduler.class);
         PowerMockito
                 .doCallRealMethod()
-                .when(NotifierHelper.class, "scheduleNextPrayerAlarms", any(), any());
+                .when(PrayerAlarmScheduler.class, "scheduleNextPrayerAlarms", any(), any());
 
         PrayerUpdater prayerUpdater = TestListenableWorkerBuilder.from(mockContext, PrayerUpdater.class).build();
 

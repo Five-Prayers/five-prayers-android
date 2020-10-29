@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         NavGraph navGraph = navController.getNavInflater().inflate(R.navigation.mobile_navigation);
 
         if (displaySettingsScreenFirst()) {
-            navGraph.setStartDestination(R.id.navigation_notifications);
+            navGraph.setStartDestination(R.id.navigation_settings);
         } else {
             navGraph.setStartDestination(R.id.navigation_home);
         }

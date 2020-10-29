@@ -22,7 +22,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.hbouzidi.fiveprayers.R;
 import com.hbouzidi.fiveprayers.network.NetworkUtil;
-import com.hbouzidi.fiveprayers.notifier.NotifierService;
+import com.hbouzidi.fiveprayers.notifier.NotifierJobService;
 import com.hbouzidi.fiveprayers.preferences.PreferencesConstants;
 import com.hbouzidi.fiveprayers.common.ComplementaryTimingEnum;
 import com.hbouzidi.fiveprayers.timings.DayPrayer;
@@ -105,9 +105,13 @@ public class HomeFragment extends Fragment {
 
         skeleton.showSkeleton();
 
-        dashboardViewModel.getError().observe(getViewLifecycleOwner(), error -> {
-            AlertHelper.displayAlertDialog(requireActivity(), getResources().getString(R.string.common_error), error);
-        });
+        dashboardViewModel
+                .getError()
+                .observe(
+                        getViewLifecycleOwner(),
+                        error -> AlertHelper.displayAlertDialog(requireActivity(),
+                                getResources().getString(R.string.common_error),
+                                error));
 
         dashboardViewModel.getDayPrayers().observe(getViewLifecycleOwner(), dayPrayer -> {
             updateDatesTextViews(dayPrayer);
@@ -346,11 +350,11 @@ public class HomeFragment extends Fragment {
     }
 
     private void startNotifierService(DayPrayer dayPrayer) {
-        Intent intent = new Intent(context, NotifierService.class);
+        Intent intent = new Intent(context, NotifierJobService.class);
         Bundle bundle = new Bundle();
         bundle.putSerializable("dayPrayer", dayPrayer);
         intent.putExtras(bundle);
 
-        NotifierService.enqueueWork(context, intent);
+        NotifierJobService.enqueueWork(context, intent);
     }
 }

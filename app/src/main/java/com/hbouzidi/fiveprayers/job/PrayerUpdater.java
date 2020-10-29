@@ -9,7 +9,7 @@ import androidx.work.rxjava3.RxWorker;
 
 import com.hbouzidi.fiveprayers.location.address.AddressHelper;
 import com.hbouzidi.fiveprayers.location.tracker.LocationHelper;
-import com.hbouzidi.fiveprayers.notifier.NotifierHelper;
+import com.hbouzidi.fiveprayers.notifier.PrayerAlarmScheduler;
 import com.hbouzidi.fiveprayers.preferences.PreferencesHelper;
 import com.hbouzidi.fiveprayers.timings.DayPrayer;
 import com.hbouzidi.fiveprayers.timings.TimingServiceFactory;
@@ -33,6 +33,8 @@ public class PrayerUpdater extends RxWorker {
     @NonNull
     @Override
     public Single<Result> createWork() {
+        Log.i(TAG, "Starting Create Prayer Updater Work");
+
         TimingsService timingsService = TimingServiceFactory.create(PreferencesHelper.getCalculationMethod(context));
 
         Single<DayPrayer> dayPrayerSingle =
@@ -47,7 +49,7 @@ public class PrayerUpdater extends RxWorker {
                         ));
 
         return dayPrayerSingle
-                .doOnSuccess(dayPrayer -> NotifierHelper.scheduleNextPrayerAlarms(context, dayPrayer))
+                .doOnSuccess(dayPrayer -> PrayerAlarmScheduler.scheduleNextPrayerAlarms(context, dayPrayer))
                 .map(dayPrayer -> Result.success())
                 .onErrorReturn(error -> {
                     Log.e(TAG, "Prayer Updater Failure", error);

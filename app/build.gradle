@@ -1,8 +1,8 @@
 apply plugin: 'com.android.application'
 
-def apikeyPropertiesFile = rootProject.file("apikey.properties")
-def apikeyProperties = new Properties()
-apikeyProperties.load(new FileInputStream(apikeyPropertiesFile))
+def secretsPropertiesFile = rootProject.file("secrets.properties")
+def secretsProperties = new Properties()
+secretsProperties.load(new FileInputStream(secretsPropertiesFile))
 
 android {
     compileSdkVersion 29
@@ -19,7 +19,10 @@ android {
         // Required when setting minSdkVersion to 20 or lower
         multiDexEnabled true
 
-        buildConfigField("String", "LONDON_UNIFIED_TIMINGS_API_KEY", apikeyProperties['LONDON_UNIFIED_TIMINGS_API_KEY'])
+        buildConfigField("String", "LONDON_UNIFIED_TIMINGS_API_KEY", secretsProperties['LONDON_UNIFIED_TIMINGS_API_KEY'])
+        buildConfigField("String", "ERROR_EMAIL_ADDRESS", secretsProperties['ERROR_EMAIL_ADDRESS'])
+        buildConfigField("String", "ERROR_GITHUB_ISSUE_URL", secretsProperties['ERROR_GITHUB_ISSUE_URL'])
+        buildConfigField("String", "PRIVACY_POLICY_URL", secretsProperties['PRIVACY_POLICY_URL'])
     }
 
     buildTypes {

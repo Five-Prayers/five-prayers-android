@@ -8,4 +8,4 @@
 .externalNativeBuild
 .cxx
 api-play-store-key.json
-apikey.properties
+secrets.properties

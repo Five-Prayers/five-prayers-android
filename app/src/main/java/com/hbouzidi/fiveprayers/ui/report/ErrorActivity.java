@@ -41,15 +41,12 @@ import cat.ereza.customactivityoncrash.CustomActivityOnCrash;
 public class ErrorActivity extends AppCompatActivity {
 
     private static final String TAG = "ErrorActivity";
-    private static final String ERROR_EMAIL_ADDRESS = "supp.five.prayers@gmail.com";
+    private static final String ERROR_EMAIL_ADDRESS = BuildConfig.ERROR_EMAIL_ADDRESS;
     private static final String ERROR_EMAIL_SUBJECT
             = "Exception in Five Prayer Android " + BuildConfig.VERSION_NAME;
 
-    public static final String ERROR_GITHUB_ISSUE_URL
-            = "https://github.com/HichamBI/five-prayers-android/issues";
-
-    public static final String PRIVACY_POLICY_URL
-            = "https://github.com/HichamBI/five-prayers-android";
+    public static final String ERROR_GITHUB_ISSUE_URL = BuildConfig.ERROR_GITHUB_ISSUE_URL;
+    public static final String PRIVACY_POLICY_URL = BuildConfig.PRIVACY_POLICY_URL;
 
     private EditText userCommentBox;
     private String stackTrace;

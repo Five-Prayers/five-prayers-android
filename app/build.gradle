@@ -5,12 +5,12 @@ def secretsProperties = new Properties()
 secretsProperties.load(new FileInputStream(secretsPropertiesFile))
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 30
 
     defaultConfig {
         applicationId "com.hbouzidi.fiveprayers"
         minSdkVersion 16
-        targetSdkVersion 29
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
 
@@ -52,7 +52,7 @@ dependencies {
 
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.2.1'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.2'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.vectordrawable:vectordrawable:1.1.0'
     implementation 'androidx.navigation:navigation-fragment:2.3.1'
     implementation 'androidx.navigation:navigation-ui:2.3.1'
@@ -65,9 +65,6 @@ dependencies {
     implementation "androidx.preference:preference:1.1.1"
     implementation 'androidx.multidex:multidex:2.0.1'
     implementation group: 'com.grack', name: 'nanojson', version: '1.6'
-
-    //Support compat
-    implementation "com.android.support:support-compat:29.0.0"
 
     //RxJava 3
     implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'

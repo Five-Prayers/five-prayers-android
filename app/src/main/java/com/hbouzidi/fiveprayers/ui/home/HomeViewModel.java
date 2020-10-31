@@ -71,8 +71,7 @@ public class HomeViewModel extends AndroidViewModel {
                                 address,
                                 context
                         ))
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribeOn(AndroidSchedulers.mainThread())
                         .subscribeWith(new DisposableSingleObserver<DayPrayer>() {
                             @Override
                             public void onSuccess(DayPrayer dayPrayer) {

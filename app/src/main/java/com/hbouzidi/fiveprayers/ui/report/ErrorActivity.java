@@ -16,7 +16,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
@@ -24,6 +23,7 @@ import com.grack.nanojson.JsonWriter;
 import com.hbouzidi.fiveprayers.BuildConfig;
 import com.hbouzidi.fiveprayers.R;
 import com.hbouzidi.fiveprayers.utils.TimingUtils;
+import com.yarolegovich.lovelydialog.LovelyStandardDialog;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -83,13 +83,15 @@ public class ErrorActivity extends AppCompatActivity {
     }
 
     private void openPrivacyPolicyDialog(final Context context, final String action) {
-        new AlertDialog.Builder(context)
+        new LovelyStandardDialog(context, LovelyStandardDialog.ButtonLayout.VERTICAL)
+                .setTopColorRes(R.color.colorPrimary)
+                .setButtonsColorRes(R.color.amaranth)
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .setTitle(R.string.privacy_policy_title)
                 .setMessage(R.string.start_accept_privacy_policy)
                 .setCancelable(false)
-                .setNeutralButton(R.string.read_privacy_policy, (dialog, which) -> openUrlInBrowser(context, PRIVACY_POLICY_URL))
-                .setPositiveButton(R.string.common_accept, (dialog, which) -> {
+                .setNeutralButton(R.string.read_privacy_policy, v -> openUrlInBrowser(context, PRIVACY_POLICY_URL))
+                .setPositiveButton(R.string.common_accept, v -> {
                     if (action.equals("EMAIL")) {
                         String urlString = "mailto:" + Uri.encode(ERROR_EMAIL_ADDRESS) + "?subject=" + Uri.encode(ERROR_EMAIL_SUBJECT) + "&body=" + Uri.encode(buildJson());
                         final Intent i = new Intent(Intent.ACTION_VIEW)
@@ -104,7 +106,7 @@ public class ErrorActivity extends AppCompatActivity {
                         openUrlInBrowser(this, ERROR_GITHUB_ISSUE_URL);
                     }
                 })
-                .setNegativeButton(R.string.common_decline, (dialog, which) -> {
+                .setNegativeButton(R.string.common_decline, v -> {
                 })
                 .show();
     }

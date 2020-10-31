@@ -1,5 +1,5 @@
 <resources>
-    <string name="privacy_policy_title">سياسة خصوصية Five Prayers Android</string>
+    <string name="privacy_policy_title">سياسة خصوصية</string>
     <string name="start_accept_privacy_policy">من أجل الامتثال للائحة الأوروبية العامة لحماية البيانات (GDPR) ، فإننا نلفت انتباهك إلى سياسة خصوصية Five Prayers Android. يرجى قراءتها بعناية.
 \nو يجب عليك قبولها لإرسال تقرير الأخطاء إلينا.</string>
     <string name="read_privacy_policy">الإطلاع على سياسة الخصوصية</string>
@@ -159,6 +159,7 @@
     <string name="location_not_ready">Service de localisation pas encore prêt</string>
     <string name="pls_enable_location">Veuillez activer le service de localisation sur votre téléphone</string>
     <string name="dialog_message_sensor_not_exist">Votre appareil ne dispose pas des capteurs requis</string>
+    <string name="dialog_title_sensor_not_calibrate">Calibration needed</string>
     <string name="dialog_message_sensor_not_calibrate">Veuillez calibrer vos capteurs, en pointant votre téléphone vers le haut et en le déplacant selon un mouvement de figure 8</string>
 
     <string name="school_adjustment_method_shafii">Shafii (Par défaut)</string>

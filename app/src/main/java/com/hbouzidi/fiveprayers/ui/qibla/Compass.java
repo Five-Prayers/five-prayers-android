@@ -8,10 +8,9 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
 
-import androidx.appcompat.app.AlertDialog;
+import com.hbouzidi.fiveprayers.ui.AlertHelper;
+import com.yarolegovich.lovelydialog.LovelyCustomDialog;
 
 /**
  * @author Gokul Swaminathan
@@ -21,7 +20,7 @@ import androidx.appcompat.app.AlertDialog;
 public class Compass implements SensorEventListener {
     private static final String TAG = Compass.class.getSimpleName();
 
-    private final AlertDialog calibratingDialog;
+    private final LovelyCustomDialog calibratingDialog;
     private boolean dialogDismissed = false;
 
     public interface CompassListener {
@@ -76,7 +75,10 @@ public class Compass implements SensorEventListener {
             sensorManager.unregisterListener(this, rsensor);
 
             Log.e(TAG, "Device don't have enough sensors");
-            dialogError(context);
+            AlertHelper.displayDialogError(context, context.getString(com.hbouzidi.fiveprayers.R.string.dialog_message_sensor_not_exist), v -> {
+                if (context instanceof Activity)
+                    ((Activity) context).finish();
+            });
         }
     }
 
@@ -183,32 +185,20 @@ public class Compass implements SensorEventListener {
         return output;
     }
 
-    private void dialogError(final Context context) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle(context.getString(com.hbouzidi.fiveprayers.R.string.common_alert));
-        builder.setCancelable(false);
-        builder.setIcon(android.R.drawable.ic_dialog_alert);
-        builder.setMessage(context.getString(com.hbouzidi.fiveprayers.R.string.dialog_message_sensor_not_exist));
-        builder.setNegativeButton(com.hbouzidi.fiveprayers.R.string.common_ok, (dialog, which) -> {
-            dialog.dismiss();
-            if (context instanceof Activity)
-                ((Activity) context).finish();
-        });
-        builder.create().show();
-    }
+    private LovelyCustomDialog createCalibratingDialog(final Activity activity) {
+        LovelyCustomDialog calibrationDialog = new LovelyCustomDialog(activity)
+                .setView(com.hbouzidi.fiveprayers.R.layout.calibrate_compass_dialog)
+                .setTitle(activity.getString(com.hbouzidi.fiveprayers.R.string.dialog_title_sensor_not_calibrate))
+                .setMessage(activity.getString(com.hbouzidi.fiveprayers.R.string.dialog_message_sensor_not_calibrate))
+                .setTopColorRes(com.hbouzidi.fiveprayers.R.color.colorPrimary)
+                .setIcon(android.R.drawable.ic_dialog_info)
+                .setCancelable(false);
 
-    private AlertDialog createCalibratingDialog(final Activity activity) {
-        LayoutInflater inflater = activity.getLayoutInflater();
-        View dialogLayout = inflater.inflate(com.hbouzidi.fiveprayers.R.layout.calibrate_compass_dialog, null);
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-        builder.setCancelable(false);
-        builder.setView(dialogLayout);
-        builder.setMessage(activity.getString(com.hbouzidi.fiveprayers.R.string.dialog_message_sensor_not_calibrate));
-        builder.setNegativeButton(com.hbouzidi.fiveprayers.R.string.common_ok, (dialog, which) -> {
+        calibrationDialog.setListener(com.hbouzidi.fiveprayers.R.id.btnOK, v -> {
             dialogDismissed = true;
-            dialog.dismiss();
+            calibrationDialog.dismiss();
         });
-        return builder.create();
+
+        return calibrationDialog;
     }
 }

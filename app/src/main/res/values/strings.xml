@@ -1,5 +1,5 @@
 <resources>
-    <string name="privacy_policy_title">Five Prayers Android \'s Privacy Policy</string>
+    <string name="privacy_policy_title">Privacy Policy</string>
     <string name="start_accept_privacy_policy">In order to comply with the European General Data Protection Regulation (GDPR), we herby draw your attention to Five Prayers Android\'s privacy policy. Please read it carefully.\nYou must accept it to send us the bug report.</string>
     <string name="read_privacy_policy">Read privacy policy</string>
     <string name="sorry_string">Sorry, that should not have happened.</string>
@@ -157,6 +157,7 @@
     <string name="pls_enable_location">Please turn on Location</string>
     <string name="degree" translatable="false">°</string>
     <string name="dialog_message_sensor_not_exist">Your device doesn\'t have the required sensors</string>
+    <string name="dialog_title_sensor_not_calibrate">Calibration needed</string>
     <string name="dialog_message_sensor_not_calibrate">Please calibrate your sensors, by pointing your phone up toward the sky and move if in a figure 8 motion</string>
 
     <string name="title_qibla_direction">Qibla Direction</string>

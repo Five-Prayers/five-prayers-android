@@ -1,6 +1,6 @@
 <resources>
-    <string name="privacy_policy_title">Politique de confidentialité de Five Prayers Android</string>
-    <string name="start_accept_privacy_policy">Afin de se conformer au Règlement Général sur la Protection des Données (RGPD), nous attirons votre attention sur la politique de confidentialité de NewPipe. Veuillez la lire attentivement.
+    <string name="privacy_policy_title">Politique de confidentialité</string>
+    <string name="start_accept_privacy_policy">Afin de se conformer au Règlement Général sur la Protection des Données (RGPD), nous attirons votre attention sur la politique de confidentialité de Five Prayers Android. Veuillez la lire attentivement.
 \nVous devez l’accepter pour nous envoyer le rapport de bogue.</string>
     <string name="read_privacy_policy">Lire la politique de confidentialité</string>
     <string name="sorry_string">Désolé, une erreur est survenue.</string>
@@ -18,7 +18,7 @@
     <string name="permission_denied">Action refusée par le système</string>
 
     <string name="common.accept">Accepter</string>
-    <string name="common.decline">Décline</string>
+    <string name="common.decline">Décliner</string>
     <string name="common.cancel">Annuler</string>
     <string name="common.ok">OK</string>
     <string name="common.error">Erreur</string>
@@ -161,6 +161,7 @@
     <string name="location_not_ready">Service de localisation pas encore prêt</string>
     <string name="pls_enable_location">Veuillez activer le service de localisation sur votre téléphone</string>
     <string name="dialog_message_sensor_not_exist">Votre appareil ne dispose pas des capteurs requis</string>
+    <string name="dialog_title_sensor_not_calibrate">Calibrage nécessaire</string>
     <string name="dialog_message_sensor_not_calibrate">Veuillez calibrer vos capteurs, en pointant votre téléphone vers le haut et en le déplacant selon un mouvement de figure 8</string>
 
     <string name="school_adjustment_method_shafii">Shafii (Par défaut)</string>

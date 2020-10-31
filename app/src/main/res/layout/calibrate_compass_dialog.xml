@@ -15,4 +15,21 @@
         custom:layout_constraintStart_toStartOf="parent"
         custom:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/btnOK"
+        style="?android:borderlessButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="end|center_vertical"
+        android:paddingLeft="@dimen/ld_side_margin"
+        android:paddingRight="@dimen/ld_side_margin"
+        android:text="@string/common.ok"
+        android:textColor="@color/amaranth"
+        android:textSize="@dimen/text_smlarge"
+        custom:layout_constraintBottom_toBottomOf="parent"
+        custom:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,12 +9,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.provider.Settings;
 import android.util.Log;
-
-import androidx.appcompat.app.AlertDialog;
-
-import com.hbouzidi.fiveprayers.R;
 
 public class GPSTracker extends Service implements LocationListener {
 
@@ -126,22 +121,6 @@ public class GPSTracker extends Service implements LocationListener {
      */
     public boolean canGetLocation() {
         return this.canGetLocation;
-    }
-
-    /**
-     * Function to show settings alert dialog
-     * On pressing Settings button will lauch Settings Options
-     */
-    public void showSettingsAlert() {
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(mContext);
-        alertDialog.setTitle(mContext.getResources().getString(R.string.gps_settings_title));
-        alertDialog.setMessage(mContext.getResources().getString(R.string.gps_settings_text));
-        alertDialog.setPositiveButton(mContext.getResources().getString(R.string.settings_button_ok), (dialog, which) -> {
-            Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-            mContext.startActivity(intent);
-        });
-        alertDialog.setNegativeButton(mContext.getResources().getString(R.string.settings_button_cancel), (dialog, which) -> dialog.cancel());
-        alertDialog.show();
     }
 
     @Override

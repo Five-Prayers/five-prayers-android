@@ -110,6 +110,9 @@ dependencies {
     //https://github.com/Ereza/CustomActivityOnCrash
     implementation 'cat.ereza:customactivityoncrash:2.3.0'
 
+    //https://github.com/yarolegovich/LovelyDialog
+    implementation 'com.yarolegovich:lovely-dialog:1.1.1'
+
     //Testing
     testImplementation 'junit:junit:4.13'
     testImplementation 'androidx.test:core:1.3.0'

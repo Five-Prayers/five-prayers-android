@@ -1,5 +1,6 @@
 package com.hbouzidi.fiveprayers.ui.report;
 
+import android.content.ActivityNotFoundException;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -84,6 +85,7 @@ public class ErrorActivity extends AppCompatActivity {
 
     private void openPrivacyPolicyDialog(final Context context, final String action) {
         new LovelyStandardDialog(context, LovelyStandardDialog.ButtonLayout.VERTICAL)
+                .setCancelable(false)
                 .setTopColorRes(R.color.colorPrimary)
                 .setButtonsColorRes(R.color.amaranth)
                 .setIcon(android.R.drawable.ic_dialog_alert)
@@ -99,8 +101,11 @@ public class ErrorActivity extends AppCompatActivity {
                                 .putExtra(Intent.EXTRA_EMAIL, new String[]{ERROR_EMAIL_ADDRESS})
                                 .putExtra(Intent.EXTRA_SUBJECT, ERROR_EMAIL_SUBJECT)
                                 .putExtra(Intent.EXTRA_TEXT, buildJson());
-                        if (i.resolveActivity(getPackageManager()) != null) {
+                        try {
                             startActivity(i);
+                        } catch (ActivityNotFoundException e) {
+                            Log.e(TAG, "Cannot open mail app", e);
+                            Toast.makeText(context, "Cannot open mail app", Toast.LENGTH_LONG).show();
                         }
                     } else if (action.equals("GITHUB")) {
                         openUrlInBrowser(this, ERROR_GITHUB_ISSUE_URL);

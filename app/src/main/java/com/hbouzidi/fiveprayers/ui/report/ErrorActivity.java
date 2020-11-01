@@ -130,8 +130,7 @@ public class ErrorActivity extends AppCompatActivity {
                     .end()
                     .done();
         } catch (Throwable e) {
-            Log.e(TAG, "Error while erroring: Could not build json");
-            e.printStackTrace();
+            Log.e(TAG, "Error while erroring: Could not build json", e);
         }
 
         return "";
@@ -197,8 +196,7 @@ public class ErrorActivity extends AppCompatActivity {
             htmlErrorReport.append("<hr>\n");
             return htmlErrorReport.toString();
         } catch (Throwable e) {
-            Log.e(TAG, "Error while erroring: Could not build markdown");
-            e.printStackTrace();
+            Log.e(TAG, "Error while erroring: Could not build markdown", e);
             return "";
         }
     }
@@ -206,11 +204,16 @@ public class ErrorActivity extends AppCompatActivity {
     public static void openUrlInBrowser(final Context context, final String url) {
         final String defaultBrowserPackageName = getDefaultBrowserPackageName(context);
 
-        if (defaultBrowserPackageName.equals("android")) {
-            openInDefaultApp(context, url);
-        } else {
-            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-            context.startActivity(browserIntent);
+        try {
+            if (defaultBrowserPackageName.equals("android")) {
+                openInDefaultApp(context, url);
+            } else {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                context.startActivity(browserIntent);
+            }
+        } catch (ActivityNotFoundException e) {
+            Log.e(TAG, "Cannot open browser app", e);
+            Toast.makeText(context, "Cannot open browser app", Toast.LENGTH_LONG).show();
         }
     }
 

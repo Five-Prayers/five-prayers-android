@@ -54,9 +54,9 @@ public class QuranActivity extends AppCompatActivity {
         bundle.putInt("PAGE_NUMBER", pageNumber);
         bundle.putParcelableArrayList("SURAHS", (ArrayList<? extends Parcelable>) surahs);
 
-        Intent openAcivity = new Intent(this, AyahsActivity.class);
-        openAcivity.putExtra("BUNDLE", bundle);
-        startActivity(openAcivity);
+        Intent ayahsAcivity = new Intent(this, AyahsActivity.class);
+        ayahsAcivity.putExtra("BUNDLE", bundle);
+        startActivity(ayahsAcivity);
     }
 
     private void initToolbar() {

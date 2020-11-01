@@ -3,6 +3,7 @@ package com.hbouzidi.fiveprayers.ui.splashscreen;
 import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ProgressBar;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,7 +13,8 @@ import com.hbouzidi.fiveprayers.ui.MainActivity;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
-    private final static int LOADING_TIME = 1200;
+    private static final String TAG = "SplashScreenActivity";
+    private static final int LOADING_TIME = 1200;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +35,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    Log.e(TAG, "Cannot start MainActivity", e);
                 }
             }
         };

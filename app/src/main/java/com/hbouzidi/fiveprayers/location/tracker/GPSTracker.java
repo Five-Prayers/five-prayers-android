@@ -13,6 +13,7 @@ import android.util.Log;
 
 public class GPSTracker extends Service implements LocationListener {
 
+    private static final String TAG = "GPSTracker";
     private final Context mContext;
     boolean isGPSEnabled = false;
     boolean isNetworkEnabled = false;
@@ -44,7 +45,7 @@ public class GPSTracker extends Service implements LocationListener {
             }
 
             if (!isGPSEnabled && !isNetworkEnabled) {
-                // no network provider is enabled
+                Log.d(TAG, "No provider enabled");
             } else {
                 this.canGetLocation = true;
                 if (isNetworkEnabled) {
@@ -53,7 +54,7 @@ public class GPSTracker extends Service implements LocationListener {
                                 LocationManager.NETWORK_PROVIDER,
                                 MIN_TIME_BW_UPDATES,
                                 MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
-                        Log.d("Network Enabled", "Network Enabled");
+                        Log.d(TAG, "Network Enabled");
                         location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
                         if (location != null) {
                             latitude = location.getLatitude();
@@ -67,7 +68,7 @@ public class GPSTracker extends Service implements LocationListener {
                                 LocationManager.GPS_PROVIDER,
                                 MIN_TIME_BW_UPDATES,
                                 MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
-                        Log.d("GPS Enabled", "GPS Enabled");
+                        Log.d(TAG, "GPS Enabled");
                         location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
                         if (location != null) {
                             latitude = location.getLatitude();
@@ -77,48 +78,32 @@ public class GPSTracker extends Service implements LocationListener {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.e(TAG, "Cannot get location from providers", e);
         }
         return location;
     }
 
-    /**
-     * Stop using GPS listener
-     * Calling this function will stop using GPS in your app
-     */
+
     public void stopUsingGPS() {
         if (locationManager != null) {
             locationManager.removeUpdates(GPSTracker.this);
         }
     }
 
-    /**
-     * Function to get latitude
-     */
     public double getLatitude() {
         if (location != null) {
             latitude = location.getLatitude();
         }
-        // return latitude
         return latitude;
     }
 
-    /**
-     * Function to get longitude
-     */
     public double getLongitude() {
         if (location != null) {
             longitude = location.getLongitude();
         }
-        // return longitude
         return longitude;
     }
 
-    /**
-     * Function to check GPS/wifi enabled
-     *
-     * @return boolean
-     */
     public boolean canGetLocation() {
         return this.canGetLocation;
     }

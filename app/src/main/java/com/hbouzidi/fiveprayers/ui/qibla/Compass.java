@@ -32,17 +32,17 @@ public class Compass implements SensorEventListener {
     private static final float ROTATION_VECTOR_SMOOTHING_FACTOR = 0.5f;
     private static final int SENSOR_DELAY_MICROS = 16 * 1000;
 
-    private SensorManager sensorManager;
-    private Sensor rsensor;
-    private Sensor asensor;
-    private Sensor msensor;
+    private final SensorManager sensorManager;
+    private final Sensor rsensor;
+    private final Sensor asensor;
+    private final Sensor msensor;
 
     private boolean useRotationVectorSensor = false;
 
-    private float[] aData = new float[3];
-    private float[] mData = new float[3];
-    private float[] R = new float[9];
-    private float[] I = new float[9];
+    private final float[] aData = new float[3];
+    private final float[] mData = new float[3];
+    private final float[] R = new float[9];
+    private final float[] I = new float[9];
 
     private float azimuthFix;
 
@@ -198,7 +198,6 @@ public class Compass implements SensorEventListener {
             dialogDismissed = true;
             calibrationDialog.dismiss();
         });
-
         return calibrationDialog;
     }
 }

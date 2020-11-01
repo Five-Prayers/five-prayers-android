@@ -217,16 +217,6 @@ public class CompassActivity extends AppCompatActivity {
         return where;
     }
 
-    public void SaveBoolean(String Judul, Boolean bbb) {
-        SharedPreferences.Editor edit = prefs.edit();
-        edit.putBoolean(Judul, bbb);
-        edit.apply();
-    }
-
-    public Boolean GetBoolean(String Judul) {
-        return prefs.getBoolean(Judul, false);
-    }
-
     public void SaveFloat(String Judul, Float bbb) {
         SharedPreferences.Editor edit = prefs.edit();
         edit.putFloat(Judul, bbb);

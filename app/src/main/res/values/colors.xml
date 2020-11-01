@@ -10,9 +10,8 @@
     <color name="sunrise">@color/turbo</color>
     <color name="sunset">@color/scarlet</color>
 
-    <color name="dialog_background">@color/white</color>
-    <color name="dialog_button">@color/gallery</color>
-    <color name="dialog_title">@color/colorPrimaryDark</color>
+    <color name="dialog_button">@color/amaranth</color>
+    <color name="dialog_title">@color/mine_shaft</color>
 
     <color name="transparent">#00000000</color>
     <color name="slate_gray">#738497</color>
@@ -26,6 +25,7 @@
     <color name="flirt">#9B0493</color>
     <color name="pigment_indigo">#510391</color>
     <color name="mine_shaft">#212121</color>
+    <color name="black">#000000</color>
     <color name="french_lilac">#E1BEE7</color>
     <color name="boulder">#757575</color>
     <color name="silver">#BDBDBD</color>

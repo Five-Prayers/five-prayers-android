@@ -68,11 +68,11 @@
                 android:textColor="@color/stratos"
                 android:textSize="@dimen/text_smlarge"
                 android:textStyle="bold"
+                app:drawableLeftCompat="@drawable/ic_location_15"
+                app:drawableStartCompat="@drawable/ic_location_15"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="TextViewEdits"
-                app:drawableStartCompat="@drawable/ic_location_15"
-                app:drawableLeftCompat="@drawable/ic_location_15" />
+                tools:ignore="TextViewEdits" />
 
             <TextView
                 android:id="@+id/country_text_view"
@@ -85,8 +85,10 @@
                 android:textColor="@color/textSecondary"
                 android:textSize="@dimen/text_large"
                 android:textStyle="normal"
+                app:layout_constraintBottom_toTopOf="@+id/headerConstraintLayout"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/location_text_view" />
+                app:layout_constraintTop_toBottomOf="@+id/location_text_view"
+                app:layout_constraintVertical_bias="0.1" />
 
             <TextView
                 android:id="@+id/fajr_label_text_view"
@@ -138,6 +140,7 @@
                 android:textColor="@color/textSecondary"
                 android:textSize="@dimen/text_large"
                 android:textStyle="normal"
+                app:layout_constraintBottom_toTopOf="@+id/holiday_indicator_text_view"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/gregorianTextView" />
 
@@ -152,18 +155,28 @@
                 android:textColor="@color/flirt"
                 android:textSize="@dimen/text_large"
                 android:textStyle="normal"
+                app:layout_constraintBottom_toTopOf="@+id/headerConstraintLayout"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/hijriTextView" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/nextPrayerConstraintLayout"
-                android:layout_width="190dp"
-                android:layout_height="190dp"
-                app:layout_constraintBottom_toTopOf="@+id/datesConstraintLayout"
+                android:id="@+id/headerConstraintLayout"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                app:layout_constraintBottom_toBottomOf="@+id/nextPrayerConstraintLayout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0">
+                app:layout_constraintVertical_bias="0.3"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/nextPrayerConstraintLayout"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                app:layout_constraintBottom_toTopOf="@+id/datesConstraintLayout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/headerConstraintLayout">
 
                 <TextView
                     android:id="@+id/prayerTimetextView"
@@ -211,8 +224,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="1.0" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/prayerNametextView"
@@ -236,9 +248,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.45">
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                app:layout_constraintTop_toTopOf="parent"/>
 
             <com.hbouzidi.fiveprayers.ui.clock.ClockView
                 android:id="@+id/farj_clock_view"
@@ -249,7 +259,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/dohr_clock_view"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/datesConstraintLayout"
-                app:layout_constraintVertical_bias="0.18" />
+                app:layout_constraintVertical_bias="0.0" />
 
             <com.hbouzidi.fiveprayers.ui.clock.ClockView
                 android:id="@+id/dohr_clock_view"
@@ -259,7 +269,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/farj_clock_view"
                 app:layout_constraintTop_toBottomOf="@+id/datesConstraintLayout"
-                app:layout_constraintVertical_bias="0.18" />
+                app:layout_constraintVertical_bias="0.0" />
 
             <com.hbouzidi.fiveprayers.ui.clock.ClockView
                 android:id="@+id/asr_clock_view"

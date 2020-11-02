@@ -11,7 +11,12 @@ import androidx.work.testing.TestListenableWorkerBuilder;
 import com.hbouzidi.fiveprayers.location.address.AddressHelper;
 import com.hbouzidi.fiveprayers.location.tracker.LocationHelper;
 import com.hbouzidi.fiveprayers.notifier.PrayerAlarmScheduler;
+import com.hbouzidi.fiveprayers.preferences.PreferencesHelper;
+import com.hbouzidi.fiveprayers.timings.DayPrayer;
+import com.hbouzidi.fiveprayers.timings.TimingServiceFactory;
+import com.hbouzidi.fiveprayers.timings.TimingsService;
 import com.hbouzidi.fiveprayers.timings.aladhan.AladhanTimingsService;
+import com.hbouzidi.fiveprayers.timings.calculations.CalculationMethodEnum;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -37,7 +42,9 @@ import static org.mockito.ArgumentMatchers.any;
 @RunWith(RobolectricTestRunner.class)
 @Config(maxSdk = 28)
 @PowerMockIgnore({"org.mockito.*", "org.robolectric.*", "android.*"})
-@PrepareForTest({PrayerUpdater.class, AddressHelper.class, LocationHelper.class, AladhanTimingsService.class, PrayerAlarmScheduler.class})
+@PrepareForTest({PrayerUpdater.class, AddressHelper.class, LocationHelper.class,
+        AladhanTimingsService.class, PrayerAlarmScheduler.class, PreferencesHelper.class,
+        AladhanTimingsService.class, TimingServiceFactory.class})
 public class PrayerUpdaterTest {
 
     @Rule
@@ -46,16 +53,22 @@ public class PrayerUpdaterTest {
     @Mock
     Context mockContext;
 
+    @Mock
+    AladhanTimingsService aladhanTimingsService;
+
     @Before
     public void before() {
         this.mockContext = Mockito.mock(Context.class);
+        this.aladhanTimingsService = Mockito.mock(AladhanTimingsService.class);
     }
 
     @Test
     public void testPrayerUpdaterWork() throws Exception {
         PowerMockito.mockStatic(LocationHelper.class);
         PowerMockito.mockStatic(AddressHelper.class);
-        //PowerMockito.mockStatic(PrayerHelper.class);
+        PowerMockito.mockStatic(PreferencesHelper.class);
+        PowerMockito.mockStatic(AladhanTimingsService.class);
+        PowerMockito.mockStatic(TimingServiceFactory.class);
 
         Location newLocation = new Location(LocationManager.GPS_PROVIDER);
         newLocation.setLatitude(0.12);
@@ -67,9 +80,12 @@ public class PrayerUpdaterTest {
         lastKnownAddress.setLocality("Colombes");
         lastKnownAddress.setCountryName("France");
 
+        PowerMockito.when(PreferencesHelper.getCalculationMethod(mockContext)).thenReturn(CalculationMethodEnum.getDefault());
         PowerMockito.when(LocationHelper.getLocation(mockContext)).thenReturn(Single.just(newLocation));
         PowerMockito.when(AddressHelper.getAddressFromLocation(newLocation, mockContext)).thenReturn(Single.just(lastKnownAddress));
-    //    PowerMockito.when(TimingService.getTimingsByCity(any(), any(), any())).thenReturn(Single.just(new DayPrayer()));
+        PowerMockito.when(TimingServiceFactory.create(any())).thenReturn(aladhanTimingsService);
+
+        Mockito.when(aladhanTimingsService.getTimingsByCity(any(), any(), any())).thenReturn(Single.just(new DayPrayer()));
 
         PowerMockito.spy(PrayerAlarmScheduler.class);
         PowerMockito
@@ -88,6 +104,8 @@ public class PrayerUpdaterTest {
         PowerMockito.mockStatic(LocationHelper.class);
         PowerMockito.mockStatic(AddressHelper.class);
         PowerMockito.mockStatic(AladhanTimingsService.class);
+        PowerMockito.mockStatic(PreferencesHelper.class);
+        PowerMockito.mockStatic(TimingServiceFactory.class);
 
         Location newLocation = new Location(LocationManager.GPS_PROVIDER);
         newLocation.setLatitude(0.12);
@@ -99,9 +117,12 @@ public class PrayerUpdaterTest {
         lastKnownAddress.setLocality("Colombes");
         lastKnownAddress.setCountryName("France");
 
+        PowerMockito.when(PreferencesHelper.getCalculationMethod(mockContext)).thenReturn(CalculationMethodEnum.getDefault());
         PowerMockito.when(LocationHelper.getLocation(mockContext)).thenReturn(Single.just(newLocation));
         PowerMockito.when(AddressHelper.getAddressFromLocation(newLocation, mockContext)).thenReturn(Single.just(lastKnownAddress));
-       // PowerMockito.when(AladhanTimingService.getTimingsByCity(any(), any(), any())).thenReturn(Single.error(new Exception()));
+        PowerMockito.when(TimingServiceFactory.create(any())).thenReturn(aladhanTimingsService);
+
+        Mockito.when(aladhanTimingsService.getTimingsByCity(any(), any(), any())).thenReturn(Single.error(new Exception()));
 
         PowerMockito.spy(PrayerAlarmScheduler.class);
         PowerMockito
@@ -112,7 +133,7 @@ public class PrayerUpdaterTest {
 
         ListenableWorker.Result result = prayerUpdater.startWork().get();
 
-        Assert.assertEquals(ListenableWorker.Result.failure(), result);
+        Assert.assertEquals(ListenableWorker.Result.retry(), result);
     }
 
     @Test
@@ -120,6 +141,8 @@ public class PrayerUpdaterTest {
         PowerMockito.mockStatic(LocationHelper.class);
         PowerMockito.mockStatic(AddressHelper.class);
         PowerMockito.mockStatic(AladhanTimingsService.class);
+        PowerMockito.mockStatic(PreferencesHelper.class);
+        PowerMockito.mockStatic(TimingServiceFactory.class);
 
         Location newLocation = new Location(LocationManager.GPS_PROVIDER);
         newLocation.setLatitude(0.12);
@@ -131,9 +154,12 @@ public class PrayerUpdaterTest {
         lastKnownAddress.setLocality("Colombes");
         lastKnownAddress.setCountryName("France");
 
+        PowerMockito.when(PreferencesHelper.getCalculationMethod(mockContext)).thenReturn(CalculationMethodEnum.getDefault());
         PowerMockito.when(LocationHelper.getLocation(mockContext)).thenReturn(Single.just(newLocation));
         PowerMockito.when(AddressHelper.getAddressFromLocation(newLocation, mockContext)).thenReturn(Single.just(lastKnownAddress));
-     //   PowerMockito.when(AladhanTimingService.getTimingsByCity(any(), any(), any())).thenReturn(Single.just(new DayPrayer()));
+        PowerMockito.when(TimingServiceFactory.create(any())).thenReturn(aladhanTimingsService);
+
+        Mockito.when(aladhanTimingsService.getTimingsByCity(any(), any(), any())).thenReturn(Single.just(new DayPrayer()));
 
         PowerMockito.spy(PrayerAlarmScheduler.class);
         PowerMockito
@@ -144,6 +170,6 @@ public class PrayerUpdaterTest {
 
         ListenableWorker.Result result = prayerUpdater.startWork().get();
 
-        Assert.assertEquals(ListenableWorker.Result.failure(), result);
+        Assert.assertEquals(ListenableWorker.Result.retry(), result);
     }
 }

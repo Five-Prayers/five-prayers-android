@@ -53,7 +53,7 @@ public class CountryPreferencesHelperTest {
         address.setCountryCode("FR");
 
         Assertions.assertThat(CountryCalculationMethod.getCalculationMethodByAddress(address))
-                .isEqualTo(CalculationMethodEnum.UNION_ORGANIZATION_ISLAMIC_DE_FRANCE);
+                .isEqualTo(CalculationMethodEnum.MOSQUEE_DE_PARIS_FRANCE);
     }
 
     @Test

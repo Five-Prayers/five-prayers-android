@@ -17,189 +17,188 @@
     <string name="share_dialog_title">مشاركة بواسطة</string>
     <string name="permission_denied">تم رفضها من قبل النظام</string>
 
-    <string name="common.accept">Accept</string>
-    <string name="common.decline">Decline</string>
-    <string name="common.cancel">Annuler</string>
-    <string name="common.ok">OK</string>
-    <string name="common.error">Erreur</string>
-    <string name="common_alert">Alerte</string>
+    <string name="common.accept">قبول</string>
+    <string name="common.decline">رفض</string>
+    <string name="common.cancel">إلغاء</string>
+    <string name="common.ok">موافق</string>
+    <string name="common.error">خطأ</string>
+    <string name="common_alert">إنذار</string>
 
-    <string name="app_name">Cinq Prières</string>
-    <string name="title_home">Prières</string>
-    <string name="title_dashboard">Services</string>
-    <string name="title_settings">Paramètres</string>
-    <string name="label.unknown_location">Unknown Location</string>
+    <string name="app_name">خمس صلوات</string>
+    <string name="title_home">صلاة</string>
+    <string name="title_dashboard">خدمات</string>
+    <string name="title_settings">الإعدادات</string>
+    <string name="label.unknown_location">موقع غير معروف</string>
 
-    <string name="calendar_view_title">Calendrier de prière à</string>
-    <string name="title_calendar">Prayer Calendar</string>
-    <string name="desc_calendar_view_title">Table mensuelle de prière</string>
+    <string name="calendar_view_title">تقويم الصلاة في</string>
+    <string name="title_calendar">تقويم الصلاة</string>
+    <string name="desc_calendar_view_title">طاولة الصلاة الشهرية</string>
 
     <string name="last_update_time_key">last_update_time_key</string>
 
     <!-- App Intro -->
-    <string name="app_intro_frag_1_title">Cinq Prières pour Android</string>
-    <string name="app_intro_frag_1_description">Un ensemble open source d\'outils islamiques, légers et sans publicité.</string>
+    <string name="app_intro_frag_1_title">خمس صلوات للأندرويد</string>
+    <string name="app_intro_frag_1_description">مجموعة مفتوحة المصدر من الأدوات الإسلامية والخالية من الإعلانات.</string>
 
-    <string name="app_intro_frag_2_title">Politique de confidentialité</string>
-    <string name="app_intro_frag_2_description">Le projet Cinq Prières pour Android vise à fournir un accès privé,
-        une expérience anonyme et sans publicité pour tous les utilisateurs. Par conséquent, l\'application ne collecte aucune donnée sans votre consentement.</string>
+    <string name="app_intro_frag_2_title">سياسة الخصوصية</string>
+    <string name="app_intro_frag_2_description">يهدف مشروع Five Prayers Android إلى توفير وصول خاص و
+        تجربة خالية من الإعلانات لجميع المستخدمين. لذلك لا يقوم التطبيق بجمع أي بيانات دون موافقتك.</string>
+    <string name="app_intro_frag_3_title">نحن بحاجة إلى إذنك</string>
+    <string name="app_intro_frag_3_description">من أجل حساب أوقات الصلاة بكفاءة
+        يحتاج هذا التطبيق إلى إذنك لمعرفة موقع هاتفك. (موصى به)</string>
+    <string name="app_intro_frag_4_title">استمتع !</string>
+    <string name="app_intro_frag_4_description">تقدم Five Prayers Android ميزات رائعة لجميع المستخدمين
+مثل: أوقات الصلاة حول العالم ، طرق حساب مختلفة ، إشعارات ، قراءة الأذان ، إتجاه القبلة والمزيد …</string>
 
-    <string name="app_intro_frag_3_title">Nous avons besoin de votre autorisation</string>
-    <string name="app_intro_frag_3_description">Afin de calculer efficacement les horaires de prière,
-        cette application a besoin de votre autorisation pour connaître la position de votre téléphone.(recommandé)</string>
+    <string name="app_intro_permission_denied_dialog_title">إعلام</string>
+    <string name="app_intro_permission_denied_dialog_message">لقد رفضت للتو السماح للتطبيق بالوصول إلى موقعك. تحتاج إلى إدخال مدينتك يدويًا في شاشة الإعدادات.</string>
 
-    <string name="app_intro_frag_4_title">Profitez-en !</string>
-    <string name="app_intro_frag_4_description">Cinq Prières pour Android présente de superbes fonctionnalités pour tous les utilisateurs,
-        comme: Horaires de prière dans le monde, différentes méthodes de calcul, notifications, lecture de l\'Adhan, direction de Qibla et plus encore …</string>
+    <string name="SUNRISE">الشروق</string>
+    <string name="FAJR">الصبح (الفجر)</string>
+    <string name="DHOHR">الظهر</string>
+    <string name="ASR">العصر</string>
+    <string name="MAGHRIB">المغرب</string>
+    <string name="ICHA">العشاء</string>
 
-    <string name="app_intro_permission_denied_dialog_title">Information</string>
-    <string name="app_intro_permission_denied_dialog_message">Vous venez de refuser que l\'application accède à votre position. vous devez saisir manuellement votre ville dans l\'écran des paramètres.</string>
+    <string name="SHORT_FAJR">الفجر</string>
+    <string name="SHORT_DHOHR">الظهر</string>
+    <string name="SHORT_ASR">العصر</string>
+    <string name="SHORT_MAGHRIB">المغرب</string>
+    <string name="SHORT_ICHA">العشاء</string>
 
-    <string name="SUNRISE">Chorouk</string>
-    <string name="FAJR">As`Sobh (Fajr)</string>
-    <string name="DHOHR">Ad`Dohr</string>
-    <string name="ASR">Al Asr</string>
-    <string name="MAGHRIB">Al Maghreb</string>
-    <string name="ICHA">Al Ichaa</string>
+    <string name="FIRST_DAY_OF_YEAR">رأس السنة الهجرية</string>
+    <string name="YAWM_ASHURA">يوم عاشوراء</string>
+    <string name="MAWLID_A_NABAWI">المولد النبوي</string>
+    <string name="LAILAT_AL_MIRAJ">ليلة المعراج</string>
+    <string name="MID_SHAABAN_NIGHT">ليلة البراءة</string>
+    <string name="MID_SHAABAN">نصف شعبان</string>
+    <string name="FIRST_DAY_OF_RAMADAN">أول أيام رمضان</string>
+    <string name="FIRST_DAY_OF_LAILAT_AL_QADR">ليلة القدر</string>
+    <string name="SECOND_DAY_OF_LAILAT_AL_QADR">ليلة القدر</string>
+    <string name="THIRD_DAY_OF_LAILAT_AL_QADR">ليلة القدر</string>
+    <string name="FOURTH_DAY_OF_LAILAT_AL_QADR">ليلة القدر</string>
+    <string name="FIFTH_DAY_OF_LAILAT_AL_QADR">ليلة القدر</string>
+    <string name="SIXT_DAY_OF_LAILAT_AL_QADR">ليلة القدر</string>
+    <string name="EID_AL_FITR">عيد الفطر</string>
+    <string name="FIRST_DAY_OF_AL_Hajj">الحج</string>
+    <string name="DAY_OF_ARAFAH">يوم عرفة</string>
+    <string name="EID_AL_ADHA">عيد الأضحى</string>
+    <string name="FOURTH_DAY_OF_AL_Hajj">الحج</string>
+    <string name="FIFTH_DAY_OF_AL_Hajj">الحج</string>
+    <string name="SIXT_DAY_OF_AL_Hajj">الحج</string>
 
-    <string name="SHORT_FAJR">Fajr</string>
-    <string name="SHORT_DHOHR">Dohr</string>
-    <string name="SHORT_ASR">Asr</string>
-    <string name="SHORT_MAGHRIB">Maghreb</string>
-    <string name="SHORT_ICHA">Ichaa</string>
+    <string name="hijri">هجري</string>
+    <string name="hijri_month_1">محرم</string>
+    <string name="hijri_month_2">سفر</string>
+    <string name="hijri_month_3">ربيع الأول</string>
+    <string name="hijri_month_4">ربيع الثاني</string>
+    <string name="hijri_month_5">جمادى الأولى</string>
+    <string name="hijri_month_6">جمادى الثانية</string>
+    <string name="hijri_month_7">رجب</string>
+    <string name="hijri_month_8">شعبان</string>
+    <string name="hijri_month_9">رمضان</string>
+    <string name="hijri_month_10">شوال</string>
+    <string name="hijri_month_11">ذو القعدة</string>
+    <string name="hijri_month_12">ذو الحجة</string>
 
-    <string name="FIRST_DAY_OF_YEAR">Nouvel an Hijri</string>
-    <string name="YAWM_ASHURA">Yaoum Ashura</string>
-    <string name="MAWLID_A_NABAWI">Al Mawlid A Nabawi</string>
-    <string name="LAILAT_AL_MIRAJ">Lailat Al Miiraj</string>
-    <string name="MID_SHAABAN_NIGHT">Laila Al Baraah</string>
-    <string name="MID_SHAABAN">Moitié de Chaaban</string>
-    <string name="FIRST_DAY_OF_RAMADAN">1er jour de Ramadan</string>
-    <string name="FIRST_DAY_OF_LAILAT_AL_QADR">Lailat Al Qadr</string>
-    <string name="SECOND_DAY_OF_LAILAT_AL_QADR">Lailat Al Qadr</string>
-    <string name="THIRD_DAY_OF_LAILAT_AL_QADR">Lailat Al Qadr</string>
-    <string name="FOURTH_DAY_OF_LAILAT_AL_QADR">Lailat Al Qadr</string>
-    <string name="FIFTH_DAY_OF_LAILAT_AL_QADR">Lailat Al Qadr</string>
-    <string name="SIXT_DAY_OF_LAILAT_AL_QADR">Lailat Al Qadr</string>
-    <string name="EID_AL_FITR">Eid Al Fitr</string>
-    <string name="FIRST_DAY_OF_AL_Hajj">Al Hajj</string>
-    <string name="DAY_OF_ARAFAH">Jour de Arafah</string>
-    <string name="EID_AL_ADHA">Eid Al Adha</string>
-    <string name="FOURTH_DAY_OF_AL_Hajj">Al Hajj</string>
-    <string name="FIFTH_DAY_OF_AL_Hajj">Al Hajj</string>
-    <string name="SIXT_DAY_OF_AL_Hajj">Al Hajj</string>
+    <string name="gps_settings_title" translatable="true">إعدادات GPS</string>
+    <string name="gps_settings_text" translatable="false">GPS غير ممكّن. هل تريد الذهاب إلى قائمة الإعدادات؟</string>
+    <string name="settings_button_ok" translatable="false">الإعدادات</string>
+    <string name="settings_button_cancel" translatable="false">إلغاء</string>
 
-    <string name="hijri">Hijri</string>
-    <string name="hijri_month_1">Mouharram</string>
-    <string name="hijri_month_2">Safar</string>
-    <string name="hijri_month_3">Rabii Al Awal</string>
-    <string name="hijri_month_4">Rabii Ath`Thani</string>
-    <string name="hijri_month_5">Joumada Al Oula</string>
-    <string name="hijri_month_6">Joumada Ath`Thania</string>
-    <string name="hijri_month_7">Rajab</string>
-    <string name="hijri_month_8">Chaabane</string>
-    <string name="hijri_month_9">Ramadan</string>
-    <string name="hijri_month_10">Chawwal</string>
-    <string name="hijri_month_11">Dhou Al Qi`da</string>
-    <string name="hijri_month_12">Dhou Al Hijja</string>
+    <string name="method_shia_ithna_ansari">الشيعة اثنا عشري ، معهد ليفا للأبحاث ، قم</string>
+    <string name="method_university_of_islamic_sciences_karachi">جامعة العلوم الإسلامية - كراتشي</string>
+    <string name="method_islamic_society_of_north_america">الجمعية الإسلامية لأمريكا الشمالية</string>
+    <string name="method_muslim_world_league">الرابطة الإسلامية العالمية</string>
+    <string name="method_umm_al_qura_university_makkah">جامعة أم القرى - مكة المكرمة</string>
+    <string name="method_egyptian_general_authority_of_survey">الهيئة المصرية العامة</string>
+    <string name="method_institute_of_geophysics_university_of_tehran">معهد طهران للجيوفيزياء</string>
+    <string name="method_gulf_region">منطقة الخليج</string>
+    <string name="method_kuwait">الكويت</string>
+    <string name="method_qatar">قطر</string>
+    <string name="method_majlis_ugama_islam_singapura">مجلس سنغافورة الإسلامي الديني</string>
+    <string name="method_union_organization_islamic_de_france">اتحاد المنظمات الإسلامية بفرنسا (UOIF)</string>
+    <string name="method_diyanet_isleri_baskanligi_turkey">رئاسة الشؤون الدينية - تركيا</string>
+    <string name="method_spiritual_administration_of_muslims_of_russia">الإدارة الروحية لمسلمي روسيا</string>
+    <string name="method_moroccan_ministry_of_islamic_affairs">وزارة الشؤون الإسلامية - المغرب</string>
+    <string name="method_mosquee_de_paris_france">مسجد باريس - فرنسا</string>
+    <string name="method_france_18">زاوية 18 درجة - فرنسا</string>
+    <string name="method_france_15">زاوية 15 درجة - فرنسا</string>
+    <string name="method_tunisian_ministry_of_religious_affairs">وزارة الشؤون الدينية - تونس</string>
+    <string name="method_algerian_ministry_of_religious_affairs_and_wakfs">وزارة الشؤون الدينية - تونس</string>
+    <string name="method_london_unified_prayer_times">أوقات الصلاة الموحدة في لندن</string>
 
-    <string name="gps_settings_title" translatable="true">GPS settings</string>
-    <string name="gps_settings_text" translatable="false">GPS is not enabled. Do you want to go to settings menu?</string>
-    <string name="settings_button_ok" translatable="false">Settings</string>
-    <string name="settings_button_cancel" translatable="false">Cancel</string>
+    <string name="title_location_preference_section">الموقع</string>
+    <string name="title_checkbox_location_preference">أدخل موقعك يدويًا</string>
+    <string name="title_edit_text_location_preference">الموقع الحالي</string>
+    <string name="dialog_title_edit_text_location_preference">ابحث عن مدينتك</string>
+    <string name="title_prayer_timings_section">طرق الحساب</string>
+    <string name="title_list_preference">طريقة حساب تقويم الصلاة</string>
+    <string name="dialog_title_list_preference">طريقة حساب تقويم الصلاة</string>
+    <string name="title_edit_text_timing_adjustment_preference">ضبط أوقات الصلاة</string>
+    <string name="dialog_title_edit_text_timing_adjustment_preference">تعديل الجدول (بالدقائق)</string>
 
-    <string name="method_shia_ithna_ansari">Shia Ithna Ashari, Leva Research Institute, Qum</string>
-    <string name="method_university_of_islamic_sciences_karachi">Université des Sciences Islamiques - Karachi</string>
-    <string name="method_islamic_society_of_north_america">Société Islamique d\'Amérique du Nord</string>
-    <string name="method_muslim_world_league">Ligue Islamique Mondiale</string>
-    <string name="method_umm_al_qura_university_makkah">Umm al-Qura University - La Mecque</string>
-    <string name="method_egyptian_general_authority_of_survey">Autorité générale égyptienne</string>
-    <string name="method_institute_of_geophysics_university_of_tehran">Institut de géophisyque de Téhéran</string>
-    <string name="method_gulf_region">Région du Golfe</string>
-    <string name="method_kuwait">Koweït</string>
-    <string name="method_qatar">Qatar</string>
-    <string name="method_majlis_ugama_islam_singapura">Conseil religieux islamique de Singapour</string>
-    <string name="method_union_organization_islamic_de_france">L\'Union des Organisations Islamiques de France (UOIF)</string>
-    <string name="method_diyanet_isleri_baskanligi_turkey">Présidence des affaires religieuses - Turquie</string>
-    <string name="method_spiritual_administration_of_muslims_of_russia">Spiritual Administration of Muslims of Russia</string>
-    <string name="method_moroccan_ministry_of_islamic_affairs">Ministere des Affaires Islamiques - Maroc</string>
-    <string name="method_mosquee_de_paris_france">Mosquée de Paris - France</string>
-    <string name="method_france_18">Angle 18° - France</string>
-    <string name="method_france_15">Angle 15° - France</string>
-    <string name="method_tunisian_ministry_of_religious_affairs">Ministère des Affaires religieuses - Tunisie</string>
-    <string name="method_algerian_ministry_of_religious_affairs_and_wakfs">Ministère des Affaires religieuses et des Wakfs - Algérie</string>
+    <string name="latitude_adjustment_method_middle_of_the_night">منتصف الليل</string>
+    <string name="latitude_adjustment_method_one_seventh">السابع من الليل</string>
+    <string name="latitude_adjustment_method_angle_based">على أساس التثليث</string>
 
-    <string name="title_location_preference_section">Localisation</string>
-    <string name="title_checkbox_location_preference">Saisir votre localisation manuellement</string>
-    <string name="title_edit_text_location_preference">Localisation actuelle</string>
-    <string name="dialog_title_edit_text_location_preference">Rechercher votre ville</string>
-    <string name="title_prayer_timings_section">Calcul des prières</string>
-    <string name="title_list_preference">Méthode de calcul</string>
-    <string name="dialog_title_list_preference">Méthode de calcul</string>
-    <string name="title_edit_text_timing_adjustment_preference">Ajuster les horaires de prière</string>
-    <string name="dialog_title_edit_text_timing_adjustment_preference">Ajustement des horaires (en minutes)</string>
+    <string name="title_latitude_adjustment_method">التكيف مع خطوط العرض العالية</string>
+    <string name="dialog_title_latitude_adjustment_method">اختر طريقة</string>
 
-    <string name="latitude_adjustment_method_middle_of_the_night">Milieu de la nuit</string>
-    <string name="latitude_adjustment_method_one_seventh">Septième de la nuit</string>
-    <string name="latitude_adjustment_method_angle_based">Basé sur la triangulation</string>
-
-    <string name="title_latitude_adjustment_method">Ajustement pour les hautes latitudes</string>
-    <string name="dialog_title_latitude_adjustment_method">Choisir une Méthode</string>
-
-    <string name="calendar">Calendrier</string>
+    <string name="calendar">التقويم</string>
     <string name="gregorian_hijri_calendar">التقويم الهجري والميلادي</string>
-    <string name="desc_gregorian_hijri_calendar">Hijri dates and Holidays</string>
-    <string name="title_hijri_day_adjustment_preference">Ajustement de la date Hijri</string>
-    <string name="dialog_title_hijri_day_adjustment_preference">Ajuster la date Hijri</string>
+    <string name="desc_gregorian_hijri_calendar">التواريخ والأعياد الهجرية</string>
+    <string name="title_hijri_day_adjustment_preference">تعديل التاريخ الهجري</string>
+    <string name="dialog_title_hijri_day_adjustment_preference">ضبط التاريخ الهجري</string>
 
-    <string name="title_qibla_direction">Direction de Qibla</string>
-    <string name="desc_qibla_direction">Locate Qibla direction</string>
-    <string name="your_location">Votre position: </string>
-    <string name="unable_to_get_your_location">Impossible d\'obtenir votre position</string>
-    <string name="location_not_ready">Service de localisation pas encore prêt</string>
-    <string name="pls_enable_location">Veuillez activer le service de localisation sur votre téléphone</string>
-    <string name="dialog_message_sensor_not_exist">Votre appareil ne dispose pas des capteurs requis</string>
-    <string name="dialog_title_sensor_not_calibrate">Calibration needed</string>
-    <string name="dialog_message_sensor_not_calibrate">Veuillez calibrer vos capteurs, en pointant votre téléphone vers le haut et en le déplacant selon un mouvement de figure 8</string>
+    <string name="title_qibla_direction">اتجاه القبلة</string>
+    <string name="desc_qibla_direction">تحديد اتجاه القبلة</string>
+    <string name="your_location">موقعك:</string>
+    <string name="unable_to_get_your_location">غير قادر على الحصول على موقعك</string>
+    <string name="location_not_ready">خدمة الموقع ليست جاهزة بعد</string>
+    <string name="pls_enable_location">يرجى تفعيل خدمة الموقع على هاتفك</string>
+    <string name="dialog_message_sensor_not_exist">جهازك لا يحتوي على المستشعرات المطلوبة</string>
+    <string name="dialog_title_sensor_not_calibrate">مطلوب معايرة</string>
+    <string name="dialog_message_sensor_not_calibrate">يرجى معايرة مستشعراتك ، من خلال توجيه هاتفك لأعلى وتحريكه في حركة على شكل 8</string>
 
-    <string name="school_adjustment_method_shafii">Shafii (Par défaut)</string>
-    <string name="school_adjustment_method_hanafi">Hanafi</string>
-    <string name="title_school_adjustment_method">École</string>
-    <string name="midnight_mode_adjustment_method_standard">Par défaut (Mi-coucher du soleil au lever du soleil)</string>
-    <string name="midnight_mode_adjustment_method_jafari">Jafari (Mi-coucher du soleil à Al Fajr)</string>
-    <string name="title_midnight_mode_adjustment_method">Calcul du minuit</string>
-    <string name="adthan_notification_title">Il est temps de prier</string>
-    <string name="adthan_notification_close_action_title">Mute Adhan and close</string>
+    <string name="school_adjustment_method_shafii">شافعي (افتراضي)</string>
+    <string name="school_adjustment_method_hanafi">حنفي</string>
+    <string name="title_school_adjustment_method">مدرسة</string>
+    <string name="midnight_mode_adjustment_method_standard">افتراضي (من منتصف غروب الشمس إلى شروقها)</string>
+    <string name="midnight_mode_adjustment_method_jafari">الجعفري (منتصف الغروب في الفجر)</string>
+    <string name="title_midnight_mode_adjustment_method">حساب منتصف الليل</string>
+    <string name="adthan_notification_title">حان وقت الصلاة</string>
+    <string name="adthan_notification_close_action_title">كتم صوت الأذان وإغلاقه</string>
 
     <!--   Errors Messages    -->
 
-    <string name="location_service_unavailable">Impossible de trouver votre position: veuillez vérifier que le service de localisation est activé sur votre téléphone ou définissez votre position manuellement dans la section des paramètres</string>
-    <string name="enable_to_reverse_geolocalisation">Impossible de trouver votre position: veuillez vérifier votre connexion</string>
-    <string name="network_unavailable">Impossible de mettre à jour le calendrier de prière: veuillez vérifier votre connexion</string>
-    <string name="sura_rev_mackkia">Makkia</string>
-    <string name="sura_rev_madniaa">Madania</string>
-    <string name="ayahs">Ayahs</string>
+    <string name="location_service_unavailable">لا يمكن العثور على موقعك: يرجى التحقق من تمكين خدمة الموقع على هاتفك أو تعيين موقعك يدويًا في قسم الإعدادات</string>
+    <string name="enable_to_reverse_geolocalisation">تعذر العثور على موقعك: الرجاء التحقق من اتصالك</string>
+    <string name="network_unavailable">تعذر تحديث تقويم الصلاة: يرجى التحقق من اتصالك</string>
+    <string name="sura_rev_mackkia">مكية</string>
+    <string name="sura_rev_madniaa">مدنية</string>
+    <string name="ayahs">آيات</string>
 
     <string name="juz_to_display">الجزء %d</string>
     <string name="hizb_to_display">الحزب %d</string>
     <string name="part_to_display">%s  الحزب  %d</string>
     <string name="quran">القرآن الكريم</string>
-    <string name="desc_quran">Recite the Holy Quran</string>
-    <string name="title_checkbox_quran_night_mode">Night Mode</string>
-    <string name="title_adhan_call_section">Adhan</string>
-    <string name="dialog_title_fajr_adhan">Select Fajr Adhan</string>
+    <string name="desc_quran">اقرأ القرآن الكريم</string>
+    <string name="title_checkbox_quran_night_mode">وضع الليل</string>
+    <string name="title_adhan_call_section">أذان</string>
+    <string name="dialog_title_fajr_adhan">حدد أذان فجر</string>
 
-    <string name="adhan_abdelbasset_abdessamad">Abdelbasset Abdessamad</string>
-    <string name="adhan_al_haram_el_madani">Al Haram Al Madani</string>
-    <string name="adhan_meshary_al_fasy">Mishary Rashid Al-Afasy</string>
-    <string name="adhan_omar_al_kazabri">Omar Al Kazabri</string>
-    <string name="adhan_riad_al_djazairi">Riad Al Djazairi</string>
-    <string name="short_prayer_call">Short call in arabic (no Adhan)</string>
-    <string name="title_adhan_fajr">Fajr Adhan</string>
-    <string name="title_adhan">Adhan</string>
+    <string name="adhan_abdelbasset_abdessamad">عبد الباسط عبد الصمد</string>
+    <string name="adhan_al_haram_el_madani">الحرم المدني</string>
+    <string name="adhan_meshary_al_fasy">مشاري راشد العفاسي</string>
+    <string name="adhan_omar_al_kazabri">عمر القزابري</string>
+    <string name="adhan_riad_al_djazairi">رياض الجزائري</string>
+    <string name="short_prayer_call">تذكير قصير بالعربية</string>
+    <string name="title_adhan_fajr">أذان الفجر</string>
+    <string name="title_adhan">أذان</string>
 
     <string name="names_view_title">أسماء الله الحسنى‎</string>
-    <string name="ndesc_ames_view_title">99 Names of God</string>
+    <string name="ndesc_ames_view_title"></string>
 
     <string name="ALLAH_NAME_1">الرحمن</string>
     <string name="ALLAH_NAME_2">الرحيم</string>
@@ -300,6 +299,5 @@
     <string name="ALLAH_NAME_97">الوارث</string>
     <string name="ALLAH_NAME_98">الرشيد</string>
     <string name="ALLAH_NAME_99">الصبور</string>
-    <string name="method_london_unified_prayer_times">London Unified Prayer Times</string>
     <string name="error_title">Error Activity</string>
 </resources>

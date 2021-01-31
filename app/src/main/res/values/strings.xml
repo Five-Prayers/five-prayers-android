@@ -123,6 +123,7 @@
     <string name="method_france_15">Angle 15° - France</string>
     <string name="method_tunisian_ministry_of_religious_affairs">Ministry of religious affairs - Tunisia</string>
     <string name="method_algerian_ministry_of_religious_affairs_and_wakfs">Ministry of Religious Affairs and wakfs- Algeria</string>
+    <string name="method_london_unified_prayer_times">London Unified Prayer Times</string>
 
     <string name="gps_settings_title" translatable="true">GPS settings</string>
     <string name="gps_settings_text" translatable="false">GPS is not enabled. Do you want to go to settings menu?</string>
@@ -300,6 +301,5 @@
     <string name="ALLAH_NAME_97">The Inheritor, The Heir</string>
     <string name="ALLAH_NAME_98">The Guide, Infallible Teacher</string>
     <string name="ALLAH_NAME_99">The Forbearing, The Patient</string>
-    <string name="method_london_unified_prayer_times">London Unified Prayer Times</string>
     <string name="error_title">Error Activity</string>
 </resources>

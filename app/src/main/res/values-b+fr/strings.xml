@@ -28,7 +28,7 @@
     <string name="title_home">Prières</string>
     <string name="title_dashboard">Services</string>
     <string name="title_settings">Paramètres</string>
-    <string name="label.unknown_location">Unknown Location</string>
+    <string name="label.unknown_location">Localisation inconnue</string>
 
     <string name="calendar_view_title">Calendrier de prière à</string>
     <string name="title_calendar">Calendrier de prière</string>
@@ -121,13 +121,14 @@
     <string name="method_majlis_ugama_islam_singapura">Conseil religieux islamique de Singapour</string>
     <string name="method_union_organization_islamic_de_france">L\'Union des Organisations Islamiques de France (UOIF)</string>
     <string name="method_diyanet_isleri_baskanligi_turkey">Présidence des affaires religieuses - Turquie</string>
-    <string name="method_spiritual_administration_of_muslims_of_russia">Spiritual Administration of Muslims of Russia</string>
+    <string name="method_spiritual_administration_of_muslims_of_russia">L\'administration spirituelle des musulmans de Russie</string>
     <string name="method_moroccan_ministry_of_islamic_affairs">Ministere des Affaires Islamiques - Maroc</string>
     <string name="method_mosquee_de_paris_france">Mosquée de Paris - France</string>
     <string name="method_france_18">Angle 18° - France</string>
     <string name="method_france_15">Angle 15° - France</string>
     <string name="method_tunisian_ministry_of_religious_affairs">Ministère des Affaires religieuses - Tunisie</string>
     <string name="method_algerian_ministry_of_religious_affairs_and_wakfs">Ministère des Affaires religieuses et des Wakfs - Algérie</string>
+    <string name="method_london_unified_prayer_times">Horaires de prière unifiés à Londres</string>
 
     <string name="title_location_preference_section">Localisation</string>
     <string name="title_checkbox_location_preference">Saisir votre localisation manuellement</string>
@@ -189,14 +190,14 @@
     <string name="desc_quran">Récitez le Saint Coran</string>
     <string name="title_checkbox_quran_night_mode">Mode nuit</string>
     <string name="title_adhan_call_section">Adhan</string>
-    <string name="dialog_title_fajr_adhan">Select Fajr Adhan</string>
+    <string name="dialog_title_fajr_adhan">Sélectionner Adhan Al Fajr</string>
 
     <string name="adhan_abdelbasset_abdessamad">Abdelbasset Abdessamad</string>
     <string name="adhan_al_haram_el_madani">Al Haram Al Madani</string>
     <string name="adhan_meshary_al_fasy">Mishary Rashid Al-Afasy</string>
     <string name="adhan_omar_al_kazabri">Omar Al Kazabri</string>
     <string name="adhan_riad_al_djazairi">Riad Al Djazairi</string>
-    <string name="short_prayer_call">Rappel court en arabe (Pas d\'Adan)</string>
+    <string name="short_prayer_call">Rappel court en arabe (Pas d\'Adhan)</string>
     <string name="title_adhan_fajr">Fajr Adhan</string>
     <string name="title_adhan">Adhan</string>
 
@@ -302,6 +303,5 @@
     <string name="ALLAH_NAME_97">L\'Héritier</string>
     <string name="ALLAH_NAME_98">Celui qui agit avec droiture</string>
     <string name="ALLAH_NAME_99">Le Patient</string>
-    <string name="method_london_unified_prayer_times">London Unified Prayer Times</string>
     <string name="error_title">Error Activity</string>
 </resources>

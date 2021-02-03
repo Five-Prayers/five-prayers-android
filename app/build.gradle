@@ -2,7 +2,19 @@ apply plugin: 'com.android.application'
 
 def secretsPropertiesFile = rootProject.file("secrets.properties")
 def secretsProperties = new Properties()
-secretsProperties.load(new FileInputStream(secretsPropertiesFile))
+
+if (secretsPropertiesFile.exists()) {
+    secretsProperties.load(new FileInputStream(secretsPropertiesFile))
+} else {
+    secretsProperties.setProperty("LONDON_UNIFIED_TIMINGS_API_KEY", "${System.getenv('LONDON_UNIFIED_TIMINGS_API_KEY')}")
+    secretsProperties.setProperty("ERROR_EMAIL_ADDRESS", "${System.getenv('ERROR_EMAIL_ADDRESS')}")
+    secretsProperties.setProperty("ERROR_GITHUB_ISSUE_URL", "${System.getenv('ERROR_GITHUB_ISSUE_URL')}")
+    secretsProperties.setProperty("PRIVACY_POLICY_URL", "${System.getenv('PRIVACY_POLICY_URL')}")
+    secretsProperties.setProperty("SIGNING_KEYSTORE_FILE", "${System.getenv('SIGNING_KEYSTORE_FILE')}")
+    secretsProperties.setProperty("SIGNING_KEYSTORE_PASSWORD", "${System.getenv('SIGNING_KEYSTORE_PASSWORD')}")
+    secretsProperties.setProperty("SIGNING_KEY_PASSWORD", "${System.getenv('SIGNING_KEY_PASSWORD')}")
+    secretsProperties.setProperty("SIGNING_KEY_ALIAS", "${System.getenv('SIGNING_KEY_ALIAS')}")
+}
 
 android {
     compileSdkVersion 30
@@ -11,8 +23,8 @@ android {
         applicationId "com.hbouzidi.fiveprayers"
         minSdkVersion 16
         targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.0.0-rc"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -25,11 +37,21 @@ android {
         buildConfigField("String", "PRIVACY_POLICY_URL", secretsProperties['PRIVACY_POLICY_URL'])
     }
 
+    signingConfigs {
+        release {
+            storeFile file("${secretsProperties['SIGNING_KEYSTORE_FILE']}")
+            storePassword "${secretsProperties['SIGNING_KEYSTORE_PASSWORD']}"
+            keyAlias "${secretsProperties['SIGNING_KEY_ALIAS']}"
+            keyPassword "${secretsProperties['SIGNING_KEY_PASSWORD']}"
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
     compileOptions {

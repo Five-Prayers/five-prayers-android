@@ -3,8 +3,6 @@ package com.hbouzidi.fiveprayers.quran.dto;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.util.List;
-
 public class Surah implements Parcelable {
 
     private int number;
@@ -12,10 +10,9 @@ public class Surah implements Parcelable {
     private String englishName;
     private String englishNameTranslation;
     private String revelationType;
-    private List<Ayah> ayahs;
 
-    private transient int page;
-    private transient int numberOfAyahs;
+    private int page;
+    private int numberOfAyahs;
 
     public Surah() {
     }
@@ -26,7 +23,6 @@ public class Surah implements Parcelable {
         this.englishName = in.readString();
         this.englishNameTranslation = in.readString();
         this.revelationType = in.readString();
-        in.readList(this.ayahs, Ayah.class.getClassLoader());
     }
 
     public int getNumber() {
@@ -69,14 +65,6 @@ public class Surah implements Parcelable {
         this.revelationType = revelationType;
     }
 
-    public List<Ayah> getAyahs() {
-        return ayahs;
-    }
-
-    public void setAyahs(List<Ayah> ayahs) {
-        this.ayahs = ayahs;
-    }
-
     public int getPage() {
         return page;
     }
@@ -105,7 +93,6 @@ public class Surah implements Parcelable {
         dest.writeString(englishName);
         dest.writeString(englishNameTranslation);
         dest.writeString(revelationType);
-        dest.writeList(ayahs);
     }
 
     public static final Creator<Surah> CREATOR = new Creator<Surah>() {

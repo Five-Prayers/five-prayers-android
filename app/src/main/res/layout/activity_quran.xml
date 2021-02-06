@@ -50,6 +50,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/quran_toolbar">
 
+        <include
+            android:id="@+id/progress_bar_linear_layout"
+            android:visibility="gone"
+            layout="@layout/layout_progress_bar_with_text"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/surah_recycler_view"
             android:layout_width="match_parent"

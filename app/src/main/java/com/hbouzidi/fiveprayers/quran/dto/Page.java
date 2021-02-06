@@ -1,17 +1,13 @@
 package com.hbouzidi.fiveprayers.quran.dto;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Page {
-    private List<Ayah> ayahs;
     private int pageNum;
     private int rubHizb;
     private int juz;
+    private int surahNumber;
 
     public Page(int pageNum) {
         this.pageNum = pageNum;
-        ayahs = new ArrayList<>();
     }
 
     public int getJuz() {
@@ -20,14 +16,6 @@ public class Page {
 
     public void setJuz(int juz) {
         this.juz = juz;
-    }
-
-    public List<Ayah> getAyahs() {
-        return ayahs;
-    }
-
-    public void setAyahs(List<Ayah> ayahs) {
-        this.ayahs = ayahs;
     }
 
     public int getPageNum() {
@@ -44,5 +32,13 @@ public class Page {
 
     public void setRubHizb(int rubHizb) {
         this.rubHizb = rubHizb;
+    }
+
+    public void setSurahNumber(int surahNumber) {
+        this.surahNumber = surahNumber;
+    }
+
+    public int getSurahNumber() {
+        return this.surahNumber;
     }
 }

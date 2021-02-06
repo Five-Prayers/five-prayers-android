@@ -173,11 +173,18 @@
     <string name="adthan_notification_title">It\'s time for prayer</string>
     <string name="adthan_notification_close_action_title">Silent and close</string>
 
-    <!--   Errors Messages    -->
+    <!--   User Messages    -->
 
     <string name="location_service_unavailable">Unable to find your location: Please verify that location service is enabled on your phone or set your location manually in the settings section</string>
     <string name="enable_to_reverse_geolocalisation">Unable to find your location : Please check your network connection</string>
     <string name="network_unavailable">Cannot update prayer timing : Please check your network connection</string>
+
+    <string name="message_wait_for_quran_files">Preparing Quran files, please wait…</string>
+    <string name="message_download_quran_files_in_progress">Download in progress … %1$d%%</string>
+    <string name="message_unzip_quran_files_in_progress">Unzipping Quran files in progress … %1$d\/%2$d</string>
+    <string name="message_download_quran_files_error">Download error ! please verify your storage and network and try later …</string>
+    <string name="message_unzip_quran_files_error">Error while unzipping files ! please verify your storage and try later …</string>
+
     <string name="sura_rev_mackkia">Makkia</string>
     <string name="sura_rev_madniaa">Madania</string>
     <string name="ayahs">Ayahs</string>

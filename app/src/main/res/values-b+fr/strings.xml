@@ -174,11 +174,18 @@
     <string name="adthan_notification_title">Il est l\'heure pour la prière</string>
     <string name="adthan_notification_close_action_title">Couper le son et fermer</string>
 
-    <!--   Errors Messages    -->
+    <!--   User Messages    -->
 
     <string name="location_service_unavailable">Impossible de trouver votre position: veuillez vérifier que le service de localisation est activé sur votre téléphone ou définissez votre position manuellement dans la section des paramètres</string>
     <string name="enable_to_reverse_geolocalisation">Impossible de trouver votre position: veuillez vérifier votre connexion</string>
     <string name="network_unavailable">Impossible de mettre à jour le calendrier de prière: veuillez vérifier votre connexion</string>
+
+    <string name="message_wait_for_quran_files">Téléchargement du Coran en cours, merci de patienter…</string>
+    <string name="message_download_quran_files_in_progress">Téléchargement … %1$d%%</string>
+    <string name="message_unzip_quran_files_in_progress">Décompression … %1$d\/%2$d</string>
+    <string name="message_download_quran_files_error">Erreur de téléchargement ! veuillez vérifier votre stockage et votre réseau et réessayer plus tard …</string>
+    <string name="message_unzip_quran_files_error">Erreur lors de la décompression des fichiers! veuillez vérifier votre espace de stockage et réessayer plus tard …</string>
+
     <string name="sura_rev_mackkia">Makkia</string>
     <string name="sura_rev_madniaa">Madania</string>
     <string name="ayahs">Ayahs</string>

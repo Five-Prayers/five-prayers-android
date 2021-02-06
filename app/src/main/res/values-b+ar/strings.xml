@@ -175,6 +175,12 @@
     <string name="location_service_unavailable">لا يمكن العثور على موقعك: يرجى التحقق من تمكين خدمة الموقع على هاتفك أو تعيين موقعك يدويًا في قسم الإعدادات</string>
     <string name="enable_to_reverse_geolocalisation">تعذر العثور على موقعك: الرجاء التحقق من اتصالك</string>
     <string name="network_unavailable">تعذر تحديث تقويم الصلاة: يرجى التحقق من اتصالك</string>
+    <string name="message_wait_for_quran_files">جاري تنزيل المصحف ، برجاء الانتظار …</string>
+    <string name="message_download_quran_files_in_progress">%1$d%% تنزيل …</string>
+    <string name="message_unzip_quran_files_in_progress">%1$d\/%2$d … فك ضغط</string>
+    <string name="message_download_quran_files_error">خطأ في التنزيل ! يرجى التحقق من التخزين والشبكة الخاصة بك والمحاولة لاحقًا …</string>
+    <string name="message_unzip_quran_files_error">خطأ أثناء فك ضغط الملفات ! الرجاء التحقق من التخزين الخاص بك والمحاولة لاحقًا …</string>
+
     <string name="sura_rev_mackkia">مكية</string>
     <string name="sura_rev_madniaa">مدنية</string>
     <string name="ayahs">آيات</string>

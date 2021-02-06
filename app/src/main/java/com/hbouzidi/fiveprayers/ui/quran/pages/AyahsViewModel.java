@@ -8,15 +8,16 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
 import com.hbouzidi.fiveprayers.quran.dto.Page;
-import com.hbouzidi.fiveprayers.quran.registry.QuranRegistry;
+import com.hbouzidi.fiveprayers.quran.parser.QuranParser;
 
+import java.io.IOException;
 import java.util.List;
 
 public class AyahsViewModel extends AndroidViewModel {
 
     private MutableLiveData<List<Page>> pages;
 
-    public AyahsViewModel(@NonNull Application application) {
+    public AyahsViewModel(@NonNull Application application) throws IOException {
         super(application);
         pages = new MutableLiveData<>();
         setLiveData(application.getApplicationContext());
@@ -26,10 +27,8 @@ public class AyahsViewModel extends AndroidViewModel {
         return pages;
     }
 
-    private void setLiveData(Context context) {
-        QuranRegistry quranRegistry = QuranRegistry.getInstance(context);
-
-        List<Page> allPages = quranRegistry.getAllPages();
+    private void setLiveData(Context context) throws IOException {
+        List<Page> allPages = QuranParser.parsePagesFromAssets(context);
         pages.postValue(allPages);
     }
 }

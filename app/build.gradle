@@ -10,6 +10,8 @@ if (secretsPropertiesFile.exists()) {
     secretsProperties.setProperty("ERROR_EMAIL_ADDRESS", "${System.getenv('ERROR_EMAIL_ADDRESS')}")
     secretsProperties.setProperty("ERROR_GITHUB_ISSUE_URL", "${System.getenv('ERROR_GITHUB_ISSUE_URL')}")
     secretsProperties.setProperty("PRIVACY_POLICY_URL", "${System.getenv('PRIVACY_POLICY_URL')}")
+    secretsProperties.setProperty("QURAN_IMAGES_ZIP_URL", "${System.getenv('QURAN_IMAGES_ZIP_URL')}")
+    secretsProperties.setProperty("QURAN_IMAGES_FOLDER_NAME", "${System.getenv('QURAN_IMAGES_FOLDER_NAME')}")
     secretsProperties.setProperty("SIGNING_KEYSTORE_FILE", "${System.getenv('SIGNING_KEYSTORE_FILE')}")
     secretsProperties.setProperty("SIGNING_KEYSTORE_PASSWORD", "${System.getenv('SIGNING_KEYSTORE_PASSWORD')}")
     secretsProperties.setProperty("SIGNING_KEY_PASSWORD", "${System.getenv('SIGNING_KEY_PASSWORD')}")
@@ -35,6 +37,8 @@ android {
         buildConfigField("String", "ERROR_EMAIL_ADDRESS", secretsProperties['ERROR_EMAIL_ADDRESS'])
         buildConfigField("String", "ERROR_GITHUB_ISSUE_URL", secretsProperties['ERROR_GITHUB_ISSUE_URL'])
         buildConfigField("String", "PRIVACY_POLICY_URL", secretsProperties['PRIVACY_POLICY_URL'])
+        buildConfigField("String", "QURAN_IMAGES_ZIP_URL", secretsProperties['QURAN_IMAGES_ZIP_URL'])
+        buildConfigField("String", "QURAN_IMAGES_FOLDER_NAME", secretsProperties['QURAN_IMAGES_FOLDER_NAME'])
     }
 
     signingConfigs {

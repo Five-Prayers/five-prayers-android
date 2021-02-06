@@ -8,29 +8,28 @@
     android:layout_height="match_parent"
     tools:context=".ui.quran.pages.AyahsActivity">
 
-    <TextView
-        android:id="@+id/ayahs_text_view"
+
+    <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_margin="10dp"
-        android:focusableInTouchMode="true"
-        android:fontFamily="@font/me_quran"
-        android:gravity="center"
-        android:keepScreenOn="true"
-        android:padding="10dp"
-        android:scrollbars="vertical"
-        android:text="lorem_long"
-        android:textAlignment="gravity"
-        android:textIsSelectable="false"
-        app:autoSizeMaxTextSize="100sp"
-        app:autoSizeMinTextSize="15sp"
-        app:autoSizeStepGranularity="2sp"
-        app:autoSizeTextType="uniform"
         app:layout_constraintBottom_toTopOf="@+id/bottom_footer_layout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/top_header_layout" />
+        app:layout_constraintTop_toBottomOf="@+id/top_header_layout">
 
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/ayahs_image_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter" />
+        </RelativeLayout>
+    </ScrollView>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/top_header_layout"
@@ -121,12 +120,12 @@
             android:clickable="true"
             android:focusable="true"
             android:src="@drawable/ic_close_24dp"
-            android:tint="@color/boulder"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/boulder" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

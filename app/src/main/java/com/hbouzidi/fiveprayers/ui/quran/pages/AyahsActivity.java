@@ -70,10 +70,10 @@ public class AyahsActivity extends AppCompatActivity {
 
     private void prepareColors() {
         if (PreferencesHelper.isNightModeActivated(this)) {
-            textColor = (getResources().getColor(R.color.white));
+            textColor = 255;
             backgroundColor = (getResources().getColor(R.color.mine_shaft));
         } else {
-            textColor = (getResources().getColor(R.color.mine_shaft));
+            textColor = -255;
             backgroundColor = (getResources().getColor(R.color.scotch_mist));
         }
     }

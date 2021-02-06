@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="#CCFFFFFF"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/pbText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textColor="@color/mine_shaft"
+        android:layout_marginTop="@dimen/spacing_middle"
+        android:text="@string/message_wait_for_quran_files"/>
+
+
+        <TextView
+            android:id="@+id/download_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/spacing_middle"
+            android:text="@string/message_download_quran_files_in_progress" />
+
+        <TextView
+            android:id="@+id/unzipping_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:visibility="invisible"
+            android:layout_marginTop="@dimen/spacing_middle"
+            android:text="@string/message_unzip_quran_files_in_progress" />
+
+    <TextView
+        android:id="@+id/error_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_middle"
+        android:textStyle="bold"
+        android:textColor="@color/scarlet"
+        android:gravity="center" />
+
+</LinearLayout>

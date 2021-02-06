@@ -2,13 +2,11 @@ package com.hbouzidi.fiveprayers.ui.quran.pages;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Typeface;
-import android.graphics.text.LineBreaker;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
 import android.os.Build;
-import android.text.Spannable;
-import android.text.SpannableStringBuilder;
-import android.text.method.ScrollingMovementMethod;
-import android.text.style.RelativeSizeSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,21 +15,16 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.hbouzidi.fiveprayers.BuildConfig;
 import com.hbouzidi.fiveprayers.R;
-import com.hbouzidi.fiveprayers.quran.dto.Ayah;
 import com.hbouzidi.fiveprayers.quran.dto.Page;
 import com.hbouzidi.fiveprayers.quran.dto.Surah;
-import com.hbouzidi.fiveprayers.utils.CustomTypefaceSpan;
-import com.hbouzidi.fiveprayers.utils.FontBySurahNumber;
-import com.hbouzidi.fiveprayers.utils.SurahFontReference;
 
-import java.text.MessageFormat;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class PageAdapter extends RecyclerView.Adapter<PageAdapter.Holder> {
 
@@ -40,8 +33,8 @@ public class PageAdapter extends RecyclerView.Adapter<PageAdapter.Holder> {
     private List<Surah> surahs;
     private Context context;
 
-    private int textColor;
-    private int backgroundColor;
+    private final int textColor;
+    private final int backgroundColor;
 
     public PageAdapter(int textColor, int backgroundColor) {
         this.textColor = textColor;
@@ -66,68 +59,40 @@ public class PageAdapter extends RecyclerView.Adapter<PageAdapter.Holder> {
 
     @Override
     public void onBindViewHolder(@NonNull Holder holder, int index) {
+        Page previousPage = null;
         Page currentPage = quranPage.get(index);
-
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        String ayahText;
-        String surahName = getSuraNameFromIndex(currentPage.getAyahs().get(0).getSurahNumber());
-
-        boolean isFirst = true;
         boolean displayQuarterInfo = false;
-        Ayah previousAyah = (index > 0) ? quranPage.get(index - 1).getAyahs().get(quranPage.get(index - 1).getAyahs().size() - 1) : null;
-        int hizbQuarter = 1;
 
-        for (Ayah currentAyah : currentPage.getAyahs()) {
-            ayahText = currentAyah.getText();
-
-            if (currentAyah.getNumberInSurah() == 1) {
-                if (!isFirst) {
-                    spannableStringBuilder.append("\n\n");
-                }
-                appendSurahName(spannableStringBuilder, currentAyah);
-                spannableStringBuilder.append("\n");
-
-                if (currentAyah.getSurahNumber() != 1 && currentAyah.getSurahNumber() != 9) {
-                    int pos = ayahText.indexOf("ٱلرَّحِيم");
-                    pos += ("ٱلرَّحِيم".length());
-
-                    appendBasmala(spannableStringBuilder);
-                    spannableStringBuilder.append("\n");
-
-                    ayahText = ayahText.substring(pos + 1);
-                }
-            }
-
-            if (previousAyah != null && (previousAyah.getHizbQuarter() != currentAyah.getHizbQuarter())) {
-                hizbQuarter = currentAyah.getHizbQuarter();
-                displayQuarterInfo = true;
-            }
-
-            previousAyah = currentAyah;
-
-            isFirst = false;
-            spannableStringBuilder.append(MessageFormat.format("{0}   \uFD3F{1}\uFD3E  ", ayahText, getArabicNumber(currentAyah.getNumberInSurah())));
+        if (index > 0) {
+            previousPage = quranPage.get(index - 1);
         }
 
-        holder.ayahsTextView.setTextColor(textColor);
+        String surahName = getSurahNameFromIndex(currentPage.getSurahNumber());
+
+        int hizbQuarter = currentPage.getRubHizb();
+
+        if (previousPage != null && (currentPage.getRubHizb() != previousPage.getRubHizb())) {
+            displayQuarterInfo = true;
+        }
+
+        File file = new File(context.getFilesDir().getAbsolutePath(), BuildConfig.QURAN_IMAGES_FOLDER_NAME + "/" + currentPage.getPageNum() + ".png");
+
+        final Bitmap selectedImage = BitmapFactory.decodeFile(file.getAbsolutePath());
+
+        holder.ayahsImageView.setImageBitmap(selectedImage);
+        holder.ayahsImageView.setColorFilter(brightIt(textColor));
+
         holder.ayahsConstraintLayout.setBackgroundColor(backgroundColor);
 
-        holder.ayahsTextView.setText(spannableStringBuilder, TextView.BufferType.SPANNABLE);
         holder.pageNumTextView.setText(String.valueOf(currentPage.getPageNum()));
         holder.surahNameTextView.setText(surahName);
         holder.juzTextView.setText(getHizbInfoBuilder(currentPage, displayQuarterInfo, hizbQuarter));
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            holder.ayahsTextView.setJustificationMode(LineBreaker.JUSTIFICATION_MODE_INTER_WORD);
-        }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             holder.ayahsConstraintLayout.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
             holder.topHeaderLayout.setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
             holder.bottomFooterLayout.setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
         }
-
-        holder.ayahsTextView.setMovementMethod(new ScrollingMovementMethod());
 
         holder.closeImageView.setOnClickListener(v -> ((Activity) context).finish());
     }
@@ -153,7 +118,7 @@ public class PageAdapter extends RecyclerView.Adapter<PageAdapter.Holder> {
 
     static class Holder extends RecyclerView.ViewHolder {
 
-        TextView ayahsTextView;
+        ImageView ayahsImageView;
         TextView surahNameTextView;
         TextView juzTextView;
         ConstraintLayout topHeaderLayout;
@@ -165,7 +130,7 @@ public class PageAdapter extends RecyclerView.Adapter<PageAdapter.Holder> {
         public Holder(@NonNull View itemView) {
             super(itemView);
 
-            ayahsTextView = itemView.findViewById(R.id.ayahs_text_view);
+            ayahsImageView = itemView.findViewById(R.id.ayahs_image_view);
             surahNameTextView = itemView.findViewById(R.id.surah_name_text_view);
             juzTextView = itemView.findViewById(R.id.juz_text_view);
             topHeaderLayout = itemView.findViewById(R.id.top_header_layout);
@@ -205,52 +170,21 @@ public class PageAdapter extends RecyclerView.Adapter<PageAdapter.Holder> {
         return hizbInfoBuilder;
     }
 
-    private void appendBasmala(SpannableStringBuilder builder) {
-        int bstart = builder.length();
-        Typeface basmalaTypeface = ResourcesCompat.getFont(context, R.font.aga_islamic_phrases);
-        builder.append("\u0035");
-        builder.setSpan(new CustomTypefaceSpan(basmalaTypeface), bstart, builder.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        builder.setSpan(new RelativeSizeSpan(2.5f), bstart, builder.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-    }
-
-    private void appendSurahName(SpannableStringBuilder builder, Ayah ayah) {
-        SurahFontReference surahFontReference = FontBySurahNumber.getSurahFontReference(ayah.getSurahNumber());
-        Typeface surahTypeface = ResourcesCompat.getFont(context, surahFontReference.getFontResourceId());
-        Typeface kitabTypeface = ResourcesCompat.getFont(context, R.font.kitab);
-        Typeface ornamentTypeface = ResourcesCompat.getFont(context, R.font.arabesque_ornaments);
-
-        int ornamentStart = builder.length();
-        builder.append("$");
-        builder.setSpan(new CustomTypefaceSpan(ornamentTypeface), ornamentStart, builder.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        builder.setSpan(new RelativeSizeSpan(2.5f), ornamentStart, builder.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-
-        if (ayah.getSurahNumber() != 101) {//Exclude Al Quariaa because of Typeface spacing bug
-            int start = builder.length();
-            builder.append(surahFontReference.getRegularText());
-            builder.setSpan(new CustomTypefaceSpan(surahTypeface), start, builder.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-            builder.setSpan(new RelativeSizeSpan(2f), start, builder.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        } else {
-            String suraNameFromIndex = getSuraNameFromIndex(ayah.getSurahNumber());
-            int pos = suraNameFromIndex.indexOf("سورة");
-            pos += ("سورة".length());
-            int start = builder.length();
-            builder.append(suraNameFromIndex.substring(pos + 1));
-            builder.setSpan(new CustomTypefaceSpan(kitabTypeface), start, builder.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-            builder.setSpan(new RelativeSizeSpan(2f), start, builder.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        }
-
-        int ornamentEnd = builder.length();
-        builder.append("$");
-        builder.setSpan(new CustomTypefaceSpan(ornamentTypeface), ornamentEnd, builder.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        builder.setSpan(new RelativeSizeSpan(2.5f), ornamentEnd, builder.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-    }
-
-    private String getSuraNameFromIndex(int surahIndex) {
+    private String getSurahNameFromIndex(int surahIndex) {
         return surahs.get(surahIndex - 1).getName();
     }
 
-    private String getArabicNumber(int num) {
-        Locale locale = new Locale("ar");
-        return String.format(locale, "%d", num);
+    private ColorMatrixColorFilter brightIt(int fb) {
+        ColorMatrix cmB = new ColorMatrix();
+        cmB.set(new float[]{
+                1, 0, 0, 0, fb,
+                0, 1, 0, 0, fb,
+                0, 0, 1, 0, fb,
+                0, 0, 0, 1, 0});
+
+        ColorMatrix colorMatrix = new ColorMatrix();
+        colorMatrix.set(cmB);
+
+        return new ColorMatrixColorFilter(colorMatrix);
     }
 }

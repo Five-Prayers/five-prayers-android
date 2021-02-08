@@ -20,27 +20,26 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.faltenreich.skeletonlayout.Skeleton;
 import com.hbouzidi.fiveprayers.R;
+import com.hbouzidi.fiveprayers.common.ComplementaryTimingEnum;
+import com.hbouzidi.fiveprayers.common.HijriHoliday;
+import com.hbouzidi.fiveprayers.common.PrayerEnum;
 import com.hbouzidi.fiveprayers.network.NetworkUtil;
 import com.hbouzidi.fiveprayers.notifier.NotifierJobService;
 import com.hbouzidi.fiveprayers.preferences.PreferencesConstants;
-import com.hbouzidi.fiveprayers.common.ComplementaryTimingEnum;
 import com.hbouzidi.fiveprayers.timings.DayPrayer;
-import com.hbouzidi.fiveprayers.common.HijriHoliday;
-import com.hbouzidi.fiveprayers.common.PrayerEnum;
 import com.hbouzidi.fiveprayers.ui.AlertHelper;
-import com.hbouzidi.fiveprayers.ui.clock.ClockView;
+import com.hbouzidi.fiveprayers.ui.clock.AnalogClock;
 import com.hbouzidi.fiveprayers.utils.PrayerUtils;
 import com.hbouzidi.fiveprayers.utils.TimingUtils;
 import com.hbouzidi.fiveprayers.utils.UiUtils;
-import com.faltenreich.skeletonlayout.Skeleton;
 import com.mikhaellopez.circularprogressbar.CircularProgressBar;
 
 import org.apache.commons.lang3.StringUtils;
 
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
-import java.util.Calendar;
 import java.util.Map;
 import java.util.Objects;
 
@@ -75,11 +74,11 @@ public class HomeFragment extends Fragment {
     private TextView maghribLabel;
     private TextView ichaLabel;
 
-    private ClockView fajrClock;
-    private ClockView dohrClock;
-    private ClockView asrClock;
-    private ClockView maghribClock;
-    private ClockView ichaClock;
+    private AnalogClock fajrClock;
+    private AnalogClock dohrClock;
+    private AnalogClock asrClock;
+    private AnalogClock maghribClock;
+    private AnalogClock ichaClock;
 
     private CircularProgressBar circularProgressBar;
     private String adhanCallsPreferences;
@@ -228,12 +227,8 @@ public class HomeFragment extends Fragment {
         ichaLabel.setText(R.string.ICHA);
     }
 
-    private void updateClockTime(ClockView clock, int hour, int minute) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR, hour);
-        calendar.set(Calendar.MINUTE, minute);
-        clock.setColor(0xFF17C5FF);
-        clock.setCalendar(calendar);
+    private void updateClockTime(AnalogClock clock, int hour, int minute) {
+        clock.setTime(hour, minute, 0);
     }
 
     private void updateNextPrayerViews(DayPrayer dayPrayer) {

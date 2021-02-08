@@ -250,7 +250,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
 
-            <com.hbouzidi.fiveprayers.ui.clock.ClockView
+            <com.hbouzidi.fiveprayers.ui.clock.AnalogClock
                 android:id="@+id/farj_clock_view"
                 android:layout_width="90dp"
                 android:layout_height="90dp"
@@ -261,7 +261,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/datesConstraintLayout"
                 app:layout_constraintVertical_bias="0.0" />
 
-            <com.hbouzidi.fiveprayers.ui.clock.ClockView
+            <com.hbouzidi.fiveprayers.ui.clock.AnalogClock
                 android:id="@+id/dohr_clock_view"
                 android:layout_width="90dp"
                 android:layout_height="90dp"
@@ -271,7 +271,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/datesConstraintLayout"
                 app:layout_constraintVertical_bias="0.0" />
 
-            <com.hbouzidi.fiveprayers.ui.clock.ClockView
+            <com.hbouzidi.fiveprayers.ui.clock.AnalogClock
                 android:id="@+id/asr_clock_view"
                 android:layout_width="90dp"
                 android:layout_height="90dp"
@@ -280,7 +280,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/farj_timing_constraint_layout" />
 
-            <com.hbouzidi.fiveprayers.ui.clock.ClockView
+            <com.hbouzidi.fiveprayers.ui.clock.AnalogClock
                 android:id="@+id/maghreb_clock_view"
                 android:layout_width="90dp"
                 android:layout_height="90dp"
@@ -289,7 +289,7 @@
                 app:layout_constraintStart_toEndOf="@+id/asr_clock_view"
                 app:layout_constraintTop_toBottomOf="@+id/farj_timing_constraint_layout" />
 
-            <com.hbouzidi.fiveprayers.ui.clock.ClockView
+            <com.hbouzidi.fiveprayers.ui.clock.AnalogClock
                 android:id="@+id/ichaa_clock_view"
                 android:layout_width="90dp"
                 android:layout_height="90dp"

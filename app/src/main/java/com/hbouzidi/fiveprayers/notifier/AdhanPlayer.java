@@ -51,6 +51,7 @@ public class AdhanPlayer {
     }
 
     private void initializeMediaPlayer(Context context, boolean fajr) throws IOException {
+        mediaPlayer.reset();
         mediaPlayer.setDataSource(context, getAdhanUri(context, fajr));
         setAudioAttribute(mediaPlayer);
         mediaPlayer.setLooping(false);

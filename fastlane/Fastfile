@@ -18,12 +18,12 @@ default_platform(:android)
 platform :android do
   desc "Builds the debug code"
   lane :buildDebug do
-    gradle(task: "assembleDebug")
+    gradle( task: 'assemble', build_type: 'Debug')
   end
 
   desc "Builds the release code"
   lane :buildRelease do
-    gradle(task: "assembleRelease")
+    gradle( task: 'assemble', build_type: 'Release')
   end
 
   desc "Runs all the tests"

@@ -72,6 +72,8 @@ public class QuranViewModel extends AndroidViewModel {
         long downloadID = downloadManager.enqueue(request);
 
         mDownloadID.postValue(downloadID);
+        mPercentage.postValue(0);
+        mUnzipPercentage.postValue(0);
 
         new Thread(() -> {
             boolean finishDownload = false;

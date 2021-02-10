@@ -185,9 +185,13 @@
     <string name="message_download_quran_files_error">Download error ! please verify your storage and network and try later …</string>
     <string name="message_unzip_quran_files_error">Error while unzipping files ! please verify your storage and try later …</string>
 
+
     <string name="sura_rev_mackkia">Makkia</string>
     <string name="sura_rev_madniaa">Madania</string>
     <string name="ayahs">Ayahs</string>
+    <string name="surat">Quran Suras</string>
+    <string name="bookmarks">Bookmarks</string>
+
     <string name="juz_to_display">الجزء %d</string>
     <string name="hizb_to_display">الحزب %d</string>
     <string name="part_to_display">%s  الحزب  %d</string>
@@ -309,4 +313,9 @@
     <string name="ALLAH_NAME_98">The Guide, Infallible Teacher</string>
     <string name="ALLAH_NAME_99">The Forbearing, The Patient</string>
     <string name="error_title">Error Activity</string>
+    <string name="title_activity_quran2">QuranActivity2</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -34,4 +34,6 @@
     <dimen name="dial">205dp</dimen>
     <dimen name="qibla">320dp</dimen>
     <dimen name="bottom_image">180dp</dimen>
+    <dimen name="appbar_padding">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>

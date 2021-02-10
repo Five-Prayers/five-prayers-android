@@ -189,6 +189,8 @@
     <string name="sura_rev_mackkia">Makkia</string>
     <string name="sura_rev_madniaa">Madania</string>
     <string name="ayahs">Ayahs</string>
+    <string name="surat">Sourates du Coran</string>
+    <string name="bookmarks">Signets</string>
 
     <string name="juz_to_display">الجزء %d</string>
     <string name="hizb_to_display">الحزب %d</string>

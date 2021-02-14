@@ -20,9 +20,9 @@ public class QuranActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quran);
-        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(), getLifecycle());
+        QuranIndexPagerAdapter quranIndexPagerAdapter = new QuranIndexPagerAdapter(getSupportFragmentManager(), getLifecycle());
         ViewPager2 viewPager = findViewById(R.id.view_pager);
-        viewPager.setAdapter(sectionsPagerAdapter);
+        viewPager.setAdapter(quranIndexPagerAdapter);
 
         TabLayout tabLayout = findViewById(R.id.tabs);
         new TabLayoutMediator(tabLayout, viewPager,

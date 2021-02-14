@@ -23,6 +23,7 @@
     <string name="common.ok">موافق</string>
     <string name="common.error">خطأ</string>
     <string name="common_alert">إنذار</string>
+    <string name="common_page">صفحة</string>
 
     <string name="app_name">خمس صلوات</string>
     <string name="title_home">صلاة</string>
@@ -186,6 +187,10 @@
     <string name="ayahs">آيات</string>
     <string name="surat">سور القرآن</string>
     <string name="bookmarks">إشارات مرجعية</string>
+    <string name="automatic_bookmarks_title">أكمل القراءة</string>
+    <string name="usermade_bookmarks_title">الصفحات المحفوظة</string>
+    <string name="msg_delete_bookmark_confirmation">هل تريد حذف هذه الإشارة المرجعية؟</string>
+    <string name="msg_empty_bookmarks_place_holer">لا توجد إشارات مرجعية !</string>
 
     <string name="juz_to_display">الجزء %d</string>
     <string name="hizb_to_display">الحزب %d</string>

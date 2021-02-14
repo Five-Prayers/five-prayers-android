@@ -13,12 +13,14 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
 import com.hbouzidi.fiveprayers.BuildConfig;
+import com.hbouzidi.fiveprayers.database.QuranBookmarkRegistry;
+import com.hbouzidi.fiveprayers.quran.dto.QuranBookmark;
+import com.hbouzidi.fiveprayers.quran.dto.QuranPage;
 import com.hbouzidi.fiveprayers.quran.dto.Surah;
 import com.hbouzidi.fiveprayers.quran.parser.QuranParser;
 import com.hbouzidi.fiveprayers.utils.Decompressor;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.List;
 
 import static android.content.Context.DOWNLOAD_SERVICE;
@@ -28,6 +30,8 @@ public class QuranViewModel extends AndroidViewModel {
     private static final String TAG = "QuranViewModel";
 
     private final MutableLiveData<List<Surah>> mSurahs;
+    private final MutableLiveData<List<QuranPage>> mQuranPages;
+    private final MutableLiveData<List<QuranBookmark>> mQuranBookmarks;
     private final MutableLiveData<Integer> mPercentage;
     private final MutableLiveData<Integer> mUnzipPercentage;
     private final MutableLiveData<Long> mDownloadID;
@@ -36,9 +40,11 @@ public class QuranViewModel extends AndroidViewModel {
     private final MutableLiveData<Boolean> mUnzipError;
 
 
-    public QuranViewModel(@NonNull Application application) throws IOException {
+    public QuranViewModel(@NonNull Application application) {
         super(application);
         mSurahs = new MutableLiveData<>();
+        mQuranPages = new MutableLiveData<>();
+        mQuranBookmarks = new MutableLiveData<>();
         mPercentage = new MutableLiveData<>();
         mDownloadID = new MutableLiveData<>();
         mDownloadError = new MutableLiveData<>();
@@ -47,12 +53,18 @@ public class QuranViewModel extends AndroidViewModel {
 
         mDownloadAndUnzipFinished = new MutableLiveData<>();
 
-        setLiveData(application.getApplicationContext());
+        updateLiveData(application.getApplicationContext());
     }
 
-    private void setLiveData(Context context) throws IOException {
-        List<Surah> surahs = QuranParser.parseSurahsFromAssets(context);
+    public void updateLiveData(Context context) {
+        List<QuranPage> quranPages = QuranParser.getInstance().getQuranPages(context);
+        mQuranPages.postValue(quranPages);
+
+        List<Surah> surahs = QuranParser.getInstance().getSurahs(context);
         mSurahs.postValue(surahs);
+
+        QuranBookmarkRegistry quranBookmarkRegistry = QuranBookmarkRegistry.getInstance(context);
+        mQuranBookmarks.postValue(quranBookmarkRegistry.getAllBookmarks());
     }
 
     public void downloadAnsUnzipQuranImages(Context applicationContext) {
@@ -139,6 +151,14 @@ public class QuranViewModel extends AndroidViewModel {
 
     public MutableLiveData<List<Surah>> getSurahs() {
         return mSurahs;
+    }
+
+    public MutableLiveData<List<QuranPage>> getQuranPages() {
+        return mQuranPages;
+    }
+
+    public MutableLiveData<List<QuranBookmark>> getQuranBookmarks() {
+        return mQuranBookmarks;
     }
 
     public MutableLiveData<Long> getmDownloadID() {

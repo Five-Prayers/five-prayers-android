@@ -23,6 +23,7 @@
     <string name="common.decline">Decline</string>
     <string name="common.error">Error</string>
     <string name="common_alert">Alert</string>
+    <string name="common_page">Page</string>
 
     <string name="app_name">Five Prayers</string>
     <string name="title_home">Prayers</string>
@@ -191,6 +192,10 @@
     <string name="ayahs">Ayahs</string>
     <string name="surat">Quran Suras</string>
     <string name="bookmarks">Bookmarks</string>
+    <string name="automatic_bookmarks_title">Continue reading</string>
+    <string name="usermade_bookmarks_title">Favorites</string>
+    <string name="msg_delete_bookmark_confirmation">Remove this Bookmark ?</string>
+    <string name="msg_empty_bookmarks_place_holer">There is no Bookmarks to show !</string>
 
     <string name="juz_to_display">الجزء %d</string>
     <string name="hizb_to_display">الحزب %d</string>
@@ -313,9 +318,4 @@
     <string name="ALLAH_NAME_98">The Guide, Infallible Teacher</string>
     <string name="ALLAH_NAME_99">The Forbearing, The Patient</string>
     <string name="error_title">Error Activity</string>
-    <string name="title_activity_quran2">QuranActivity2</string>
-    <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Tab 2</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

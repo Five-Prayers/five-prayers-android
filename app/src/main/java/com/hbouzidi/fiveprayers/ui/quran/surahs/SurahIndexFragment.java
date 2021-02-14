@@ -6,14 +6,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,14 +19,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.hbouzidi.fiveprayers.BuildConfig;
 import com.hbouzidi.fiveprayers.R;
 import com.hbouzidi.fiveprayers.quran.dto.Surah;
-import com.hbouzidi.fiveprayers.ui.quran.pages.AyahsActivity;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class SurahListFragment extends Fragment {
+public class SurahIndexFragment extends QuranBaseIndexFragment {
 
     private RecyclerView surahRecyclerView;
     private LinearLayout progressBarLinearLayout;
@@ -40,11 +36,11 @@ public class SurahListFragment extends Fragment {
     private final static int QURAN_PAGES_COUNT = 604;
     private BroadcastReceiver onDownloadComplete;
 
-    public SurahListFragment() {
+    public SurahIndexFragment() {
     }
 
-    public static SurahListFragment newInstance() {
-        SurahListFragment fragment = new SurahListFragment();
+    public static SurahIndexFragment newInstance() {
+        SurahIndexFragment fragment = new SurahIndexFragment();
         Bundle args = new Bundle();
 
         fragment.setArguments(args);
@@ -69,6 +65,8 @@ public class SurahListFragment extends Fragment {
         errorTextView = rootView.findViewById(R.id.error_text_view);
 
         QuranViewModel quranViewModel = new ViewModelProvider(this).get(QuranViewModel.class);
+
+        quranViewModel.getQuranPages().observe(getViewLifecycleOwner(), quranPages -> this.quranPages = quranPages);
         quranViewModel.getSurahs().observe(getViewLifecycleOwner(), this::initRecyclerView);
 
         initContentAndUpdateVisibility(quranViewModel);
@@ -94,16 +92,6 @@ public class SurahListFragment extends Fragment {
         surahRecyclerView.setHasFixedSize(true);
 
         surahAdapter.setSurahListner(pos -> gotoSuraa(pos, surahs));
-    }
-
-    private void gotoSuraa(int pageNumber, List<Surah> surahs) {
-        Bundle bundle = new Bundle();
-        bundle.putInt("PAGE_NUMBER", pageNumber);
-        bundle.putParcelableArrayList("SURAHS", (ArrayList<? extends Parcelable>) surahs);
-
-        Intent ayahsAcivity = new Intent(requireContext(), AyahsActivity.class);
-        ayahsAcivity.putExtra("BUNDLE", bundle);
-        startActivity(ayahsAcivity);
     }
 
     private void initContentAndUpdateVisibility(QuranViewModel quranViewModel) {

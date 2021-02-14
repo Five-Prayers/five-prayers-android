@@ -1,5 +1,7 @@
 package com.hbouzidi.fiveprayers.ui.quran.pages;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -13,12 +15,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.hbouzidi.fiveprayers.R;
 import com.hbouzidi.fiveprayers.preferences.PreferencesHelper;
-import com.hbouzidi.fiveprayers.quran.dto.Page;
+import com.hbouzidi.fiveprayers.quran.dto.QuranPage;
 import com.hbouzidi.fiveprayers.quran.dto.Surah;
 
 import java.util.List;
 
 public class AyahsActivity extends AppCompatActivity {
+
+    public static final String LAST_PAGE_SHOWN_IDENTIFIER = "LAST_PAGE_SHOWN_IDENTIFIER";
+    public static final int AYAH_ACTIVITY_REQUEST_CODE = 1000;
 
     private RecyclerView PagesRecyclerView;
 
@@ -27,6 +32,7 @@ public class AyahsActivity extends AppCompatActivity {
     private int lastpageShown = 1;
 
     private List<Surah> surahs;
+    private List<QuranPage> quranPages;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +52,8 @@ public class AyahsActivity extends AppCompatActivity {
         ayahsViewModel.getPages().observe(this, this::initRecyclerView);
     }
 
-    private void initRecyclerView(List<Page> pages) {
+    private void initRecyclerView(List<QuranPage> quranPages) {
+        this.quranPages = quranPages;
         prepareColors();
         LinearLayoutManager manager = new LinearLayoutManager(this);
         manager.setOrientation(LinearLayoutManager.HORIZONTAL);
@@ -54,14 +61,20 @@ public class AyahsActivity extends AppCompatActivity {
         PagesRecyclerView.setLayoutManager(manager);
         PagesRecyclerView.setHasFixedSize(true);
         PageAdapter pageAdapter = new PageAdapter(textColor, backgroundColor);
-        pageAdapter.setQuranPages(pages);
+        pageAdapter.setQuranPages(quranPages);
         pageAdapter.setSurahs(surahs);
         PagesRecyclerView.setAdapter(pageAdapter);
         PagesRecyclerView.setItemAnimator(new DefaultItemAnimator());
         PagesRecyclerView.scrollToPosition(pageToDisplay - 1);
         new PagerSnapHelper().attachToRecyclerView(PagesRecyclerView);
 
-        pageAdapter.setPageShown((pos, holder) -> lastpageShown = pos + 1);
+        pageAdapter.setPageShown((pos, holder) -> {
+            lastpageShown = pos + 1;
+            Intent resultIntent = new Intent();
+
+            resultIntent.putExtra(AyahsActivity.LAST_PAGE_SHOWN_IDENTIFIER, lastpageShown);
+            setResult(Activity.RESULT_OK, resultIntent);
+        });
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             PagesRecyclerView.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);

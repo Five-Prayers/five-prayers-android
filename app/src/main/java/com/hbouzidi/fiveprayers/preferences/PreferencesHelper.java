@@ -7,6 +7,9 @@ import android.location.Address;
 import androidx.annotation.NonNull;
 import androidx.preference.PreferenceManager;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.hbouzidi.fiveprayers.quran.dto.QuranBookmark;
 import com.hbouzidi.fiveprayers.timings.calculations.CalculationMethodEnum;
 import com.hbouzidi.fiveprayers.timings.calculations.CountryCalculationMethod;
 import com.hbouzidi.fiveprayers.timings.calculations.LatitudeAdjustmentMethod;
@@ -15,7 +18,12 @@ import com.hbouzidi.fiveprayers.timings.calculations.SchoolAdjustmentMethod;
 import com.hbouzidi.fiveprayers.timings.calculations.TimingsTuneEnum;
 import com.hbouzidi.fiveprayers.utils.UserPreferencesUtils;
 
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Locale;
+import java.util.stream.Collectors;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -163,6 +171,37 @@ public class PreferencesHelper {
     public static String getAdhanCaller(Context context) {
         final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         return defaultSharedPreferences.getString(PreferencesConstants.ADTHAN_CALLER, "SHORT_PRAYER_CALL");
+    }
+
+    public static void saveAutomaticBookmarkList(List<QuranBookmark> automaticBookmarks, Context context) {
+        final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor edit = defaultSharedPreferences.edit();
+
+        Gson gson = new Gson();
+        String list = gson.toJson(automaticBookmarks);
+
+        edit.putString(PreferencesConstants.AUTOMATIC_BOOKMARK_LIST, list);
+        edit.apply();
+    }
+
+    public static List<QuranBookmark> getSortedAutomaticBookmarkList(Context context) {
+        final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        String listStr = defaultSharedPreferences.getString(PreferencesConstants.AUTOMATIC_BOOKMARK_LIST, null);
+
+        if (listStr != null) {
+            Gson gson = new Gson();
+            Type type = new TypeToken<ArrayList<QuranBookmark>>() {
+            }.getType();
+
+            List<QuranBookmark> list =  gson.fromJson(listStr, type);
+
+            return list
+                    .stream()
+                    .sorted(Comparator.comparing(QuranBookmark::getTimestamps).reversed())
+                    .collect(Collectors.toCollection(ArrayList::new));
+        }
+
+        return new ArrayList<>();
     }
 
     private static boolean isCalculationPreferenceInitialized(Context context) {

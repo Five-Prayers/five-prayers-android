@@ -4,6 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/quran_activity_layout"
+    android:background="@drawable/white_blue_mosque_gradient_background"
+    android:fillViewport="true"
     tools:context=".ui.quran.surahs.QuranActivity">
 
     <com.google.android.material.appbar.AppBarLayout

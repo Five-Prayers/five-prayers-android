@@ -38,4 +38,5 @@ public class PreferencesConstants {
 
     // Quran
     public static final String QURAN_NIGHT_MODE_ACTIVATED = "QURAN_NIGHT_MODE_ACTIVATED";
+    public static final String AUTOMATIC_BOOKMARK_LIST = "AUTOMATIC_BOOKMARK_LIST";
 }

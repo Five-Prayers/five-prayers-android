@@ -1,13 +1,16 @@
 package com.hbouzidi.fiveprayers.quran.dto;
 
-public class Page {
+public class QuranPage {
     private int pageNum;
-    private int rubHizb;
-    private int juz;
     private int surahNumber;
+    private int juz;
+    private int rubHizb;
 
-    public Page(int pageNum) {
+    public QuranPage(int pageNum, int surahNumber, int juz, int rubHizb) {
         this.pageNum = pageNum;
+        this.juz = juz;
+        this.rubHizb = rubHizb;
+        this.surahNumber = surahNumber;
     }
 
     public int getJuz() {

@@ -17,11 +17,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(PrayerModel.SQL_CREATE_TABLE);
+        db.execSQL(QuranBookmarkModel.SQL_CREATE_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL(PrayerModel.SQL_DELETE_TABLE);
+        db.execSQL(QuranBookmarkModel.SQL_DELETE_TABLE);
         onCreate(db);
     }
 }

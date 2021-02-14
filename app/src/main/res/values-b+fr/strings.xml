@@ -23,6 +23,7 @@
     <string name="common.ok">OK</string>
     <string name="common.error">Erreur</string>
     <string name="common_alert">Alerte</string>
+    <string name="common_page">Page</string>
 
     <string name="app_name">Cinq Prières</string>
     <string name="title_home">Prières</string>
@@ -190,7 +191,11 @@
     <string name="sura_rev_madniaa">Madania</string>
     <string name="ayahs">Ayahs</string>
     <string name="surat">Sourates du Coran</string>
-    <string name="bookmarks">Signets</string>
+    <string name="bookmarks">Marques-pages</string>
+    <string name="automatic_bookmarks_title">Reprendre la lecture</string>
+    <string name="usermade_bookmarks_title">Favoris</string>
+    <string name="msg_delete_bookmark_confirmation">Supprimer ce Marque-pages ?</string>
+    <string name="msg_empty_bookmarks_place_holer">Il n\'y a pas de Marque-pages à afficher !</string>
 
     <string name="juz_to_display">الجزء %d</string>
     <string name="hizb_to_display">الحزب %d</string>

@@ -8,10 +8,10 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import java.util.Objects;
 
-public class SectionsPagerAdapter extends FragmentStateAdapter {
+public class QuranIndexPagerAdapter extends FragmentStateAdapter {
 
-    public SectionsPagerAdapter(@NonNull FragmentManager fragmentManager,
-                                @NonNull Lifecycle lifecycle) {
+    public QuranIndexPagerAdapter(@NonNull FragmentManager fragmentManager,
+                                  @NonNull Lifecycle lifecycle) {
         super(fragmentManager, lifecycle);
     }
 
@@ -21,10 +21,10 @@ public class SectionsPagerAdapter extends FragmentStateAdapter {
         Fragment fragment = null;
         switch (position) {
             case 0:
-                fragment = SurahListFragment.newInstance();
+                fragment = SurahIndexFragment.newInstance();
                 break;
             case 1:
-                fragment = BookmarksFragment.newInstance();
+                fragment = BookmarkIndexFragment.newInstance();
                 break;
         }
         return Objects.requireNonNull(fragment);

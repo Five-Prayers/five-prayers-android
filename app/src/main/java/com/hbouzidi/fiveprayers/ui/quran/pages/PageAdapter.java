@@ -2,6 +2,7 @@ package com.hbouzidi.fiveprayers.ui.quran.pages;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.ColorMatrix;
@@ -19,7 +20,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.hbouzidi.fiveprayers.BuildConfig;
 import com.hbouzidi.fiveprayers.R;
-import com.hbouzidi.fiveprayers.quran.dto.Page;
+import com.hbouzidi.fiveprayers.database.QuranBookmarkRegistry;
+import com.hbouzidi.fiveprayers.quran.dto.BookmarkType;
+import com.hbouzidi.fiveprayers.quran.dto.QuranBookmark;
+import com.hbouzidi.fiveprayers.quran.dto.QuranPage;
 import com.hbouzidi.fiveprayers.quran.dto.Surah;
 
 import java.io.File;
@@ -28,7 +32,7 @@ import java.util.List;
 
 public class PageAdapter extends RecyclerView.Adapter<PageAdapter.Holder> {
 
-    private List<Page> quranPage = new ArrayList<>();
+    private List<QuranPage> quranPage = new ArrayList<>();
     private PageShown pageShown;
     private List<Surah> surahs;
     private Context context;
@@ -45,7 +49,7 @@ public class PageAdapter extends RecyclerView.Adapter<PageAdapter.Holder> {
         this.pageShown = pageShown;
     }
 
-    public void setQuranPages(List<Page> newList) {
+    public void setQuranPages(List<QuranPage> newList) {
         quranPage = new ArrayList<>(newList);
     }
 
@@ -59,23 +63,23 @@ public class PageAdapter extends RecyclerView.Adapter<PageAdapter.Holder> {
 
     @Override
     public void onBindViewHolder(@NonNull Holder holder, int index) {
-        Page previousPage = null;
-        Page currentPage = quranPage.get(index);
+        QuranPage previousQuranPage = null;
+        QuranPage currentQuranPage = quranPage.get(index);
         boolean displayQuarterInfo = false;
 
         if (index > 0) {
-            previousPage = quranPage.get(index - 1);
+            previousQuranPage = quranPage.get(index - 1);
         }
 
-        String surahName = getSurahNameFromIndex(currentPage.getSurahNumber());
+        String surahName = getSurahNameFromIndex(currentQuranPage.getSurahNumber());
 
-        int hizbQuarter = currentPage.getRubHizb();
+        int hizbQuarter = currentQuranPage.getRubHizb();
 
-        if (previousPage != null && (currentPage.getRubHizb() != previousPage.getRubHizb())) {
+        if (previousQuranPage != null && (currentQuranPage.getRubHizb() != previousQuranPage.getRubHizb())) {
             displayQuarterInfo = true;
         }
 
-        File file = new File(context.getFilesDir().getAbsolutePath(), BuildConfig.QURAN_IMAGES_FOLDER_NAME + "/" + currentPage.getPageNum() + ".png");
+        File file = new File(context.getFilesDir().getAbsolutePath(), BuildConfig.QURAN_IMAGES_FOLDER_NAME + "/" + currentQuranPage.getPageNum() + ".png");
 
         final Bitmap selectedImage = BitmapFactory.decodeFile(file.getAbsolutePath());
 
@@ -84,9 +88,9 @@ public class PageAdapter extends RecyclerView.Adapter<PageAdapter.Holder> {
 
         holder.ayahsConstraintLayout.setBackgroundColor(backgroundColor);
 
-        holder.pageNumTextView.setText(String.valueOf(currentPage.getPageNum()));
+        holder.pageNumTextView.setText(String.valueOf(currentQuranPage.getPageNum()));
         holder.surahNameTextView.setText(surahName);
-        holder.juzTextView.setText(getHizbInfoBuilder(currentPage, displayQuarterInfo, hizbQuarter));
+        holder.juzTextView.setText(getHizbInfoBuilder(currentQuranPage, displayQuarterInfo, hizbQuarter));
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             holder.ayahsConstraintLayout.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
@@ -95,6 +99,8 @@ public class PageAdapter extends RecyclerView.Adapter<PageAdapter.Holder> {
         }
 
         holder.closeImageView.setOnClickListener(v -> ((Activity) context).finish());
+
+        initializeBookmarkIcon(holder.bookmarkImageView, currentQuranPage);
     }
 
     @Override
@@ -126,6 +132,7 @@ public class PageAdapter extends RecyclerView.Adapter<PageAdapter.Holder> {
         TextView pageNumTextView;
         ConstraintLayout ayahsConstraintLayout;
         ImageView closeImageView;
+        ImageView bookmarkImageView;
 
         public Holder(@NonNull View itemView) {
             super(itemView);
@@ -138,11 +145,12 @@ public class PageAdapter extends RecyclerView.Adapter<PageAdapter.Holder> {
             ayahsConstraintLayout = itemView.findViewById(R.id.ayah_layout);
             pageNumTextView = itemView.findViewById(R.id.page_num_text_view);
             closeImageView = itemView.findViewById(R.id.close_image_view);
+            bookmarkImageView = itemView.findViewById(R.id.bookmark_image_view);
         }
     }
 
     @NonNull
-    private StringBuilder getHizbInfoBuilder(Page item, boolean displayQuarterInfo, int hizbQuarter) {
+    private StringBuilder getHizbInfoBuilder(QuranPage item, boolean displayQuarterInfo, int hizbQuarter) {
         StringBuilder hizbInfoBuilder = new StringBuilder();
         hizbInfoBuilder
                 .append("الجزء ")
@@ -186,5 +194,30 @@ public class PageAdapter extends RecyclerView.Adapter<PageAdapter.Holder> {
         colorMatrix.set(cmB);
 
         return new ColorMatrixColorFilter(colorMatrix);
+    }
+
+    private void initializeBookmarkIcon(ImageView bookmarkImageView, QuranPage quranPage) {
+        QuranBookmarkRegistry quranBookmarkRegistry = QuranBookmarkRegistry.getInstance(context);
+
+        QuranBookmark bookmarkByPageNumber = quranBookmarkRegistry.getBookmarkByPageNumber(quranPage.getPageNum(), BookmarkType.USER_MADE);
+
+        bookmarkImageView.setImageResource((bookmarkByPageNumber == null) ? R.drawable.ic_bookmark_empty : R.drawable.ic_bookmark_filled);
+
+        setBookmarkImageOnClickListener(bookmarkImageView, quranPage, bookmarkByPageNumber);
+    }
+
+    private void setBookmarkImageOnClickListener(ImageView bookmarkImageView, QuranPage quranPage, QuranBookmark bookmarkByPageNumber) {
+        bookmarkImageView.setOnClickListener(view -> {
+
+            QuranBookmarkRegistry quranBookmarkRegistry = QuranBookmarkRegistry.getInstance(context);
+
+            if (bookmarkByPageNumber != null) {
+                quranBookmarkRegistry.deleteBookmark(quranPage.getPageNum());
+                bookmarkImageView.setImageResource(R.drawable.ic_bookmark_empty);
+            } else {
+                quranBookmarkRegistry.saveBookmark(quranPage, BookmarkType.USER_MADE);
+                bookmarkImageView.setImageResource(R.drawable.ic_bookmark_filled);
+            }
+        });
     }
 }

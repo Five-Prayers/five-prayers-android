@@ -6,11 +6,10 @@ import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.hbouzidi.fiveprayers.R;
 import com.hbouzidi.fiveprayers.calendar.CalendarService;
 import com.hbouzidi.fiveprayers.common.HijriHoliday;
@@ -51,12 +50,13 @@ public class CalendarActivity extends AppCompatActivity {
 
     private CalendarView calendarView;
     private CompositeDisposable compositeDisposable;
-    private Toolbar toolbar;
     private TextView selectedDateTextView;
     private RecyclerView holidayRecyclerView;
 
     private static LocalDate selectedDate;
     private static List<AladhanDate> hijriDates;
+    private TextView calendarToolbarTitle;
+    private TextView calendarToolbarSubTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,12 +65,15 @@ public class CalendarActivity extends AppCompatActivity {
         setContentView(R.layout.activity_calendar);
 
         selectedDateTextView = findViewById(R.id.selected_date_text_view);
+        calendarToolbarTitle = findViewById(R.id.calendar_toolbar_title);
+        calendarToolbarSubTitle = findViewById(R.id.calendar_toolbar_subTitle);
+
         compositeDisposable = new CompositeDisposable();
         CalendarService calendarService = CalendarService.getInstance();
 
         initHolidayRecyclerView();
 
-        initToolbar();
+        initFloatingButton();
 
         initCalendarView();
 
@@ -145,7 +148,7 @@ public class CalendarActivity extends AppCompatActivity {
         DateTimeFormatter toolbarTitleFormatter = DateTimeFormatter.ofPattern(UiUtils.GREGORIAN_MONTH_YEAR_FORMAT);
 
         String title = toolbarTitleFormatter.format(calendarMonth.getYearMonth());
-        toolbar.setTitle(StringUtils.capitalize(title));
+        calendarToolbarTitle.setText(StringUtils.capitalize(title));
     }
 
     private void initCalendarView() {
@@ -168,10 +171,9 @@ public class CalendarActivity extends AppCompatActivity {
         holidayRecyclerView.setLayoutManager(layoutManager);
     }
 
-    private void initToolbar() {
-        toolbar = findViewById(R.id.calendar_toolbar);
-        toolbar.setNavigationIcon(ContextCompat.getDrawable(this, R.drawable.ic_arrow_back));
-        toolbar.setNavigationOnClickListener(v -> finish());
+    private void initFloatingButton() {
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(view -> finish());
     }
 
     private void updateToolbarSubtitle() {
@@ -208,7 +210,7 @@ public class CalendarActivity extends AppCompatActivity {
             }
         }
 
-        this.toolbar.setSubtitle(subTitleBuilder.toString());
+        calendarToolbarSubTitle.setText(subTitleBuilder.toString());
     }
 
     private void selectDate(LocalDate date) {

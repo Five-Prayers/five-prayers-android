@@ -21,6 +21,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:minHeight="?actionBarSize"
+            android:fontFamily="sans-serif-medium"
             android:padding="@dimen/appbar_padding"
             android:text="@string/title_qibla_direction"
             android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"

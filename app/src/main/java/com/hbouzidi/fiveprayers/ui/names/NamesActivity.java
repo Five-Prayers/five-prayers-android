@@ -3,11 +3,10 @@ package com.hbouzidi.fiveprayers.ui.names;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.hbouzidi.fiveprayers.R;
 
 public class NamesActivity extends AppCompatActivity {
@@ -21,9 +20,8 @@ public class NamesActivity extends AppCompatActivity {
 
         namesRecyclerView = findViewById(R.id.names_recycler_view);
 
-        Toolbar toolbar = findViewById(R.id.names_toolbar);
-        toolbar.setNavigationIcon(ContextCompat.getDrawable(this, R.drawable.ic_arrow_back));
-        toolbar.setNavigationOnClickListener(v -> finish());
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(view -> finish());
 
         initRecyclerView();
     }

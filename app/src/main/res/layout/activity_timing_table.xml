@@ -26,6 +26,7 @@
             android:gravity="center"
             android:minHeight="?actionBarSize"
             android:padding="@dimen/appbar_padding"
+            android:fontFamily="sans-serif-medium"
             app:title="@string/calendar_view_title"
             android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
             app:layout_constraintBottom_toBottomOf="parent"

@@ -11,7 +11,7 @@
     tools:context=".ui.timingtable.TimingTableActivity">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/calendar_toolbar"
+        android:id="@+id/timing_table_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay"
@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/calendar_toolbar_title"
+            android:id="@+id/timing_table_toolbar_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"

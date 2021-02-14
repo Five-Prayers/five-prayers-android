@@ -9,8 +9,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.faltenreich.skeletonlayout.Skeleton;
@@ -61,7 +59,7 @@ public class TimingTableActivity extends AppCompatActivity {
         fab.setOnClickListener(view -> finish());
 
         String toolBarTitle = getString(R.string.calendar_view_title) + " " + sharedPreferences.getString(PreferencesConstants.LAST_KNOWN_LOCALITY, "");
-        ((TextView) findViewById(R.id.calendar_toolbar_title)).setText(toolBarTitle);
+        ((TextView) findViewById(R.id.timing_table_toolbar_title)).setText(toolBarTitle);
 
         skeleton = findViewById(R.id.skeletonLayout);
         tableView = findViewById(R.id.tableView);

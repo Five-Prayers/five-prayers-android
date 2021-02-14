@@ -214,7 +214,6 @@ public class CalendarActivity extends AppCompatActivity {
     }
 
     private void selectDate(LocalDate date) {
-        DateTimeFormatter selectedDateFormatter = DateTimeFormatter.ofPattern(UiUtils.GREGORIAN_READABLE_FORMAT);
         if (selectedDate != date) {
             LocalDate oldDate = selectedDate;
             selectedDate = date;
@@ -229,7 +228,7 @@ public class CalendarActivity extends AppCompatActivity {
 
             String readableHijriDate = UiUtils.formatHijriDate(Integer.parseInt(hijriDate.getDay()), hijriMonth, Integer.parseInt(hijriDate.getYear()));
 
-            String title = StringUtils.capitalize(selectedDateFormatter.format(selectedDate)) + " / " + readableHijriDate;
+            String title = StringUtils.capitalize(UiUtils.formatReadableGregorianDate(selectedDate)) + " / " + readableHijriDate;
 
             selectedDateTextView.setText(title);
             selectedDateTextView.setVisibility(View.VISIBLE);

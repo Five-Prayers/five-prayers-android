@@ -2,16 +2,16 @@ package com.hbouzidi.fiveprayers.utils;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.Locale;
 
 public class UiUtils {
 
     public static final String GREGORIAN_MONTH_YEAR_FORMAT = "MMMM yyyy";
-    public static final String GREGORIAN_READABLE_FORMAT = "EEE dd MMMM, yyyy";
     public static final String TIME_ZONE_READABLE_FORMAT = "ZZZZZ";
-    public static final String TIMING_FORMAT = "HH:mm";
 
     public static String formatTimeForTimer(long time) {
         long seconds = time / 1000;
@@ -27,13 +27,21 @@ public class UiUtils {
     }
 
     public static String formatTiming(LocalDateTime localDateTime) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(TIMING_FORMAT, Locale.getDefault());
-        return localDateTime.format(formatter);
+        ZoneId zoneId = ZoneId.systemDefault();
+        ZonedDateTime zdt = ZonedDateTime.of(localDateTime, zoneId);
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT).withLocale(Locale.getDefault());
+        return zdt.format(formatter);
     }
 
     public static String formatReadableGregorianDate(ZonedDateTime zonedDateTime) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(GREGORIAN_READABLE_FORMAT, Locale.getDefault());
-        return zonedDateTime.format(formatter);
+        DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL).withLocale(Locale.getDefault());
+        return zonedDateTime.toLocalDate().format(formatter);
+    }
+
+    public static String formatReadableGregorianDate(LocalDate localDate) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL).withLocale(Locale.getDefault());
+        return localDate.format(formatter);
     }
 
     public static String formatReadableTimezone(ZonedDateTime zonedDateTime) {

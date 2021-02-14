@@ -122,7 +122,7 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
                 android:fontFamily="sans-serif-condensed"
-                android:text="mon 21 Nov, 2020"
+                android:text="Dimanche 21 fevrier 2021"
                 android:textColor="@color/stratos"
                 android:textSize="@dimen/text_smlarge"
                 android:textStyle="bold"
@@ -167,7 +167,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.3"/>
+                app:layout_constraintVertical_bias="0.19999999" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/nextPrayerConstraintLayout"
@@ -180,13 +180,17 @@
 
                 <TextView
                     android:id="@+id/prayerTimetextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
                     android:fontFamily="sans-serif-condensed"
-                    android:text="13:48"
+                    android:gravity="center"
+                    android:text="13:48 PM"
                     android:textColor="@color/stratos"
-                    android:textSize="@dimen/text_xxxlarge"
                     android:textStyle="bold"
+                    app:autoSizeMaxTextSize="50sp"
+                    app:autoSizeMinTextSize="12sp"
+                    app:autoSizeStepGranularity="2sp"
+                    app:autoSizeTextType="uniform"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -228,13 +232,18 @@
 
                 <TextView
                     android:id="@+id/prayerNametextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="8dp"
                     android:fontFamily="sans-serif-condensed"
-                    android:text="Al Maghrib"
+                    android:gravity="center"
+                    android:text="As`Sobh (Fajr)"
                     android:textColor="@color/stratos"
-                    android:textSize="@dimen/text_xxlarge"
                     android:textStyle="bold"
+                    app:autoSizeMaxTextSize="40sp"
+                    app:autoSizeMinTextSize="12sp"
+                    app:autoSizeStepGranularity="2sp"
+                    app:autoSizeTextType="uniform"
                     app:layout_constraintEnd_toEndOf="@+id/circularProgressBar"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/prayerTimetextView" />

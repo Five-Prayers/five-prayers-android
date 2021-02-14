@@ -2,7 +2,6 @@ package com.hbouzidi.fiveprayers.ui.qibla;
 
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
-import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,11 +16,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.preference.PreferenceManagerFix;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.hbouzidi.fiveprayers.R;
 import com.hbouzidi.fiveprayers.preferences.PreferencesConstants;
 
@@ -59,9 +57,8 @@ public class CompassActivity extends AppCompatActivity {
 
         prefs = getSharedPreferences("", MODE_PRIVATE);
 
-        Toolbar toolbar = findViewById(R.id.compass_toolbar);
-        toolbar.setNavigationIcon(ContextCompat.getDrawable(this, R.drawable.ic_arrow_back));
-        toolbar.setNavigationOnClickListener(v -> finish());
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(view -> finish());
 
         qiblatIndicator = findViewById(R.id.qibla_indicator);
         imageDial = findViewById(R.id.dial);
@@ -118,14 +115,6 @@ public class CompassActivity extends AppCompatActivity {
     }
 
     private void setUpViews() {
-        // Toolbar Title
-        ((Toolbar) findViewById(R.id.compass_toolbar)).setTitle(getString(R.string.title_qibla_direction));
-
-        // Toolbar Background Color
-        findViewById(R.id.compass_toolbar).setBackgroundColor(
-                Color.parseColor("#" + Integer.toHexString(
-                        ContextCompat.getColor(this, R.color.dew))));
-
         // Footer Image
         findViewById(R.id.footer_image).setVisibility(View.VISIBLE);
 

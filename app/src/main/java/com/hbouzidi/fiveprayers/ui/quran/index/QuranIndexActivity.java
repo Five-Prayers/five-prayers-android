@@ -30,7 +30,6 @@ public class QuranIndexActivity extends AppCompatActivity {
         ).attach();
 
         FloatingActionButton fab = findViewById(R.id.fab);
-
         fab.setOnClickListener(view -> finish());
 
         initNightModeSwitchButton();

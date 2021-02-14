@@ -12,11 +12,11 @@ import com.hbouzidi.fiveprayers.quran.parser.QuranParser;
 
 import java.util.List;
 
-public class AyahsViewModel extends AndroidViewModel {
+public class QuranPageViewModel extends AndroidViewModel {
 
-    private MutableLiveData<List<QuranPage>> pages;
+    private final MutableLiveData<List<QuranPage>> pages;
 
-    public AyahsViewModel(@NonNull Application application) {
+    public QuranPageViewModel(@NonNull Application application) {
         super(application);
         pages = new MutableLiveData<>();
         setLiveData(application.getApplicationContext());

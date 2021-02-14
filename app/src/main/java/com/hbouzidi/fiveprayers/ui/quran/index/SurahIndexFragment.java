@@ -1,4 +1,4 @@
-package com.hbouzidi.fiveprayers.ui.quran.surahs;
+package com.hbouzidi.fiveprayers.ui.quran.index;
 
 import android.app.DownloadManager;
 import android.content.BroadcastReceiver;
@@ -64,12 +64,12 @@ public class SurahIndexFragment extends QuranBaseIndexFragment {
         unzippingTextView = rootView.findViewById(R.id.unzipping_text_view);
         errorTextView = rootView.findViewById(R.id.error_text_view);
 
-        QuranViewModel quranViewModel = new ViewModelProvider(this).get(QuranViewModel.class);
+        QuranIndexViewModel quranIndexViewModel = new ViewModelProvider(this).get(QuranIndexViewModel.class);
 
-        quranViewModel.getQuranPages().observe(getViewLifecycleOwner(), quranPages -> this.quranPages = quranPages);
-        quranViewModel.getSurahs().observe(getViewLifecycleOwner(), this::initRecyclerView);
+        quranIndexViewModel.getQuranPages().observe(getViewLifecycleOwner(), quranPages -> this.quranPages = quranPages);
+        quranIndexViewModel.getSurahs().observe(getViewLifecycleOwner(), this::initRecyclerView);
 
-        initContentAndUpdateVisibility(quranViewModel);
+        initContentAndUpdateVisibility(quranIndexViewModel);
 
         return rootView;
     }
@@ -94,34 +94,34 @@ public class SurahIndexFragment extends QuranBaseIndexFragment {
         surahAdapter.setSurahListner(pos -> gotoSuraa(pos, surahs));
     }
 
-    private void initContentAndUpdateVisibility(QuranViewModel quranViewModel) {
+    private void initContentAndUpdateVisibility(QuranIndexViewModel quranIndexViewModel) {
         File file = new File(requireContext().getFilesDir().getAbsolutePath(), BuildConfig.QURAN_IMAGES_FOLDER_NAME);
 
         if (!file.exists() || Objects.requireNonNull(file.listFiles()).length != QURAN_PAGES_COUNT) {
-            quranViewModel.downloadAnsUnzipQuranImages(requireContext());
+            quranIndexViewModel.downloadAnsUnzipQuranImages(requireContext());
 
             progressBarLinearLayout.setVisibility(View.VISIBLE);
             surahRecyclerView.setVisibility(View.INVISIBLE);
 
-            quranViewModel.getmDownloadID().observe(getViewLifecycleOwner(), this::createAndRegisterDownloadReceiver);
-            quranViewModel.getmPercentage().observe(getViewLifecycleOwner(), percentage -> downloadTextView.setText(getString(R.string.message_download_quran_files_in_progress, percentage)));
-            quranViewModel.getmUnzipPercentage().observe(getViewLifecycleOwner(), percentage -> unzippingTextView.setText(getString(R.string.message_unzip_quran_files_in_progress, percentage, QURAN_PAGES_COUNT)));
+            quranIndexViewModel.getmDownloadID().observe(getViewLifecycleOwner(), this::createAndRegisterDownloadReceiver);
+            quranIndexViewModel.getmPercentage().observe(getViewLifecycleOwner(), percentage -> downloadTextView.setText(getString(R.string.message_download_quran_files_in_progress, percentage)));
+            quranIndexViewModel.getmUnzipPercentage().observe(getViewLifecycleOwner(), percentage -> unzippingTextView.setText(getString(R.string.message_unzip_quran_files_in_progress, percentage, QURAN_PAGES_COUNT)));
 
-            quranViewModel.getmDownloadAndUnzipFinished().observe(getViewLifecycleOwner(), finished -> {
+            quranIndexViewModel.getmDownloadAndUnzipFinished().observe(getViewLifecycleOwner(), finished -> {
                 if (finished) {
                     progressBarLinearLayout.setVisibility(View.INVISIBLE);
                     surahRecyclerView.setVisibility(View.VISIBLE);
                 }
             });
 
-            quranViewModel.getmDownloadError().observe(getViewLifecycleOwner(), downloadError -> {
+            quranIndexViewModel.getmDownloadError().observe(getViewLifecycleOwner(), downloadError -> {
                 if (downloadError) {
                     errorTextView.setVisibility(View.VISIBLE);
                     errorTextView.setText(getString(R.string.message_download_quran_files_error));
                 }
             });
 
-            quranViewModel.getmUnzipError().observe(getViewLifecycleOwner(), unzipError -> {
+            quranIndexViewModel.getmUnzipError().observe(getViewLifecycleOwner(), unzipError -> {
                 if (unzipError) {
                     errorTextView.setVisibility(View.VISIBLE);
                     errorTextView.setText(getString(R.string.message_unzip_quran_files_error));

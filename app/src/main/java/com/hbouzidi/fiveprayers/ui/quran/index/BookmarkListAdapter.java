@@ -1,4 +1,4 @@
-package com.hbouzidi.fiveprayers.ui.quran.surahs;
+package com.hbouzidi.fiveprayers.ui.quran.index;
 
 import android.content.Context;
 import android.view.LayoutInflater;

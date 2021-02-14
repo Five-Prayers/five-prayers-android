@@ -1,4 +1,4 @@
-package com.hbouzidi.fiveprayers.ui.quran.surahs;
+package com.hbouzidi.fiveprayers.ui.quran.index;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;

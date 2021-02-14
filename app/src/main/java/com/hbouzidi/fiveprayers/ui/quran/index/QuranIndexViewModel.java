@@ -1,4 +1,4 @@
-package com.hbouzidi.fiveprayers.ui.quran.surahs;
+package com.hbouzidi.fiveprayers.ui.quran.index;
 
 import android.app.Application;
 import android.app.DownloadManager;
@@ -25,7 +25,7 @@ import java.util.List;
 
 import static android.content.Context.DOWNLOAD_SERVICE;
 
-public class QuranViewModel extends AndroidViewModel {
+public class QuranIndexViewModel extends AndroidViewModel {
 
     private static final String TAG = "QuranViewModel";
 
@@ -40,7 +40,7 @@ public class QuranViewModel extends AndroidViewModel {
     private final MutableLiveData<Boolean> mUnzipError;
 
 
-    public QuranViewModel(@NonNull Application application) {
+    public QuranIndexViewModel(@NonNull Application application) {
         super(application);
         mSurahs = new MutableLiveData<>();
         mQuranPages = new MutableLiveData<>();

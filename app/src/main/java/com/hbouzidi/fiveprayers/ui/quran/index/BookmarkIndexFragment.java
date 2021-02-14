@@ -1,4 +1,4 @@
-package com.hbouzidi.fiveprayers.ui.quran.surahs;
+package com.hbouzidi.fiveprayers.ui.quran.index;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -50,12 +50,12 @@ public class BookmarkIndexFragment extends QuranBaseIndexFragment {
         automaticBookmarkSectionTitle = rootView.findViewById(R.id.automatic_bookmark_section_title);
         userMadeBookmarkSectionTitle = rootView.findViewById(R.id.user_made_bookmark_section_title);
 
-        QuranViewModel quranViewModel = new ViewModelProvider(this).get(QuranViewModel.class);
+        QuranIndexViewModel quranIndexViewModel = new ViewModelProvider(this).get(QuranIndexViewModel.class);
 
-        quranViewModel.getSurahs().observe(getViewLifecycleOwner(), surahs -> this.surahs = surahs);
-        quranViewModel.getQuranPages().observe(getViewLifecycleOwner(), quranPages -> this.quranPages = quranPages);
+        quranIndexViewModel.getSurahs().observe(getViewLifecycleOwner(), surahs -> this.surahs = surahs);
+        quranIndexViewModel.getQuranPages().observe(getViewLifecycleOwner(), quranPages -> this.quranPages = quranPages);
 
-        quranViewModel.getQuranBookmarks().observe(getViewLifecycleOwner(), this::updateRecyclerViews);
+        quranIndexViewModel.getQuranBookmarks().observe(getViewLifecycleOwner(), this::updateRecyclerViews);
 
         return rootView;
     }
@@ -69,8 +69,8 @@ public class BookmarkIndexFragment extends QuranBaseIndexFragment {
     public void onResume() {
         super.onResume();
 
-        QuranViewModel quranViewModel = new ViewModelProvider(this).get(QuranViewModel.class);
-        quranViewModel.updateLiveData(requireContext());
+        QuranIndexViewModel quranIndexViewModel = new ViewModelProvider(this).get(QuranIndexViewModel.class);
+        quranIndexViewModel.updateLiveData(requireContext());
     }
 
     private void updateRecyclerViews(List<QuranBookmark> bookmarks) {

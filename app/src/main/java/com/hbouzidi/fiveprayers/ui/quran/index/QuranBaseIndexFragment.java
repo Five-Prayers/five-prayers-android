@@ -1,4 +1,4 @@
-package com.hbouzidi.fiveprayers.ui.quran.surahs;
+package com.hbouzidi.fiveprayers.ui.quran.index;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -12,7 +12,7 @@ import com.hbouzidi.fiveprayers.quran.dto.BookmarkType;
 import com.hbouzidi.fiveprayers.quran.dto.QuranBookmark;
 import com.hbouzidi.fiveprayers.quran.dto.QuranPage;
 import com.hbouzidi.fiveprayers.quran.dto.Surah;
-import com.hbouzidi.fiveprayers.ui.quran.pages.AyahsActivity;
+import com.hbouzidi.fiveprayers.ui.quran.pages.QuranPageActivity;
 import com.hbouzidi.fiveprayers.utils.TimingUtils;
 
 import java.time.LocalDateTime;
@@ -30,19 +30,19 @@ public class QuranBaseIndexFragment extends Fragment {
         bundle.putInt("PAGE_NUMBER", pageNumber);
         bundle.putParcelableArrayList("SURAHS", (ArrayList<? extends Parcelable>) surahs);
 
-        Intent ayahsAcivity = new Intent(requireContext(), AyahsActivity.class);
+        Intent ayahsAcivity = new Intent(requireContext(), QuranPageActivity.class);
         ayahsAcivity.putExtra("BUNDLE", bundle);
 
-        startActivityForResult(ayahsAcivity, AyahsActivity.AYAH_ACTIVITY_REQUEST_CODE);
+        startActivityForResult(ayahsAcivity, QuranPageActivity.AYAH_ACTIVITY_REQUEST_CODE);
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
-            case (AyahsActivity.AYAH_ACTIVITY_REQUEST_CODE): {
+            case (QuranPageActivity.AYAH_ACTIVITY_REQUEST_CODE): {
                 if (resultCode == Activity.RESULT_OK) {
-                    int lastpageShown = data.getIntExtra(AyahsActivity.LAST_PAGE_SHOWN_IDENTIFIER, 0);
+                    int lastpageShown = data.getIntExtra(QuranPageActivity.LAST_PAGE_SHOWN_IDENTIFIER, 0);
 
                     if (lastpageShown != 0) {
                         saveAutomaticBookmark(quranPages.get(lastpageShown - 1));

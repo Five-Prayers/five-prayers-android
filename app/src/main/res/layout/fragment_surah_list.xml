@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/white_blue_mosque_gradient_background"
     android:fillViewport="true"
-    tools:context=".ui.quran.surahs.QuranActivity">
+    tools:context=".ui.quran.index.QuranIndexActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/title_layout"

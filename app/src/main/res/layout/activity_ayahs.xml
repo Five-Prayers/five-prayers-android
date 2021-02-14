@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.quran.pages.AyahsActivity"
+    tools:context=".ui.quran.pages.QuranPageActivity"
     android:configChanges="orientation|screenSize"
     android:launchMode="singleTask">
 

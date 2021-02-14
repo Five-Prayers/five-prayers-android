@@ -15,7 +15,7 @@ import com.hbouzidi.fiveprayers.R;
 import com.hbouzidi.fiveprayers.ui.calendar.CalendarActivity;
 import com.hbouzidi.fiveprayers.ui.names.NamesActivity;
 import com.hbouzidi.fiveprayers.ui.qibla.CompassActivity;
-import com.hbouzidi.fiveprayers.ui.quran.surahs.QuranActivity;
+import com.hbouzidi.fiveprayers.ui.quran.index.QuranIndexActivity;
 import com.hbouzidi.fiveprayers.ui.timingtable.TimingTableActivity;
 
 import java.util.ArrayList;
@@ -40,7 +40,7 @@ public class DashboardFragment extends Fragment {
         Intent intents[] = {new Intent(getActivity(), CompassActivity.class),
                 new Intent(getActivity(), TimingTableActivity.class),
                 new Intent(getActivity(), CalendarActivity.class),
-                new Intent(getActivity(), QuranActivity.class),
+                new Intent(getActivity(), QuranIndexActivity.class),
                 new Intent(getActivity(), NamesActivity.class)
         };
 

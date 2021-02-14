@@ -20,7 +20,7 @@ import com.hbouzidi.fiveprayers.quran.dto.Surah;
 
 import java.util.List;
 
-public class AyahsActivity extends AppCompatActivity {
+public class QuranPageActivity extends AppCompatActivity {
 
     public static final String LAST_PAGE_SHOWN_IDENTIFIER = "LAST_PAGE_SHOWN_IDENTIFIER";
     public static final int AYAH_ACTIVITY_REQUEST_CODE = 1000;
@@ -48,8 +48,8 @@ public class AyahsActivity extends AppCompatActivity {
             surahs = bundle.getParcelableArrayList("SURAHS");
         }
 
-        AyahsViewModel ayahsViewModel = new ViewModelProvider(this).get(AyahsViewModel.class);
-        ayahsViewModel.getPages().observe(this, this::initRecyclerView);
+        QuranPageViewModel quranPageViewModel = new ViewModelProvider(this).get(QuranPageViewModel.class);
+        quranPageViewModel.getPages().observe(this, this::initRecyclerView);
     }
 
     private void initRecyclerView(List<QuranPage> quranPages) {
@@ -72,7 +72,7 @@ public class AyahsActivity extends AppCompatActivity {
             lastpageShown = pos + 1;
             Intent resultIntent = new Intent();
 
-            resultIntent.putExtra(AyahsActivity.LAST_PAGE_SHOWN_IDENTIFIER, lastpageShown);
+            resultIntent.putExtra(QuranPageActivity.LAST_PAGE_SHOWN_IDENTIFIER, lastpageShown);
             setResult(Activity.RESULT_OK, resultIntent);
         });
 

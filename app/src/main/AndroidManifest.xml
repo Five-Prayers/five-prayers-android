@@ -27,9 +27,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ui.names.NamesActivity" />
-        <activity android:name=".ui.quran.surahs.QuranActivity" />
+        <activity android:name=".ui.quran.index.QuranIndexActivity" />
         <activity
-            android:name=".ui.quran.pages.AyahsActivity"
+            android:name=".ui.quran.pages.QuranPageActivity"
             android:configChanges="orientation|screenSize"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
         <activity

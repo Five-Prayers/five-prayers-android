@@ -1,4 +1,4 @@
-package com.hbouzidi.fiveprayers.ui.quran.surahs;
+package com.hbouzidi.fiveprayers.ui.quran.index;
 
 import android.os.Bundle;
 
@@ -12,7 +12,7 @@ import com.google.android.material.tabs.TabLayoutMediator;
 import com.hbouzidi.fiveprayers.R;
 import com.hbouzidi.fiveprayers.preferences.PreferencesHelper;
 
-public class QuranActivity extends AppCompatActivity {
+public class QuranIndexActivity extends AppCompatActivity {
 
     private final int[] titles = {R.string.surat, R.string.bookmarks};
 

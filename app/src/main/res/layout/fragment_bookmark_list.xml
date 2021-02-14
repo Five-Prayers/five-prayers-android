@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/white_blue_mosque_gradient_background"
     android:fillViewport="true"
-    tools:context=".ui.quran.surahs.BookmarkIndexFragment">
+    tools:context=".ui.quran.index.BookmarkIndexFragment">
 
     <include
         android:id="@+id/empty_place_holder_layout"

@@ -1,4 +1,4 @@
-package com.hbouzidi.fiveprayers.ui.quran.surahs;
+package com.hbouzidi.fiveprayers.ui.quran.index;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,16 +31,11 @@ public class SurahAdapter extends RecyclerView.Adapter<SurahAdapter.Holder> {
         surahs = new ArrayList<>(newList);
     }
 
-    public List<Surah> getSurahs() {
-        return surahs;
-    }
-
     @NonNull
     @Override
     public Holder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.surah_item, viewGroup, false);
-        Holder holder = new Holder(view);
-        return holder;
+        return new Holder(view);
     }
 
     @Override

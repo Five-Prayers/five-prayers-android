@@ -14,6 +14,7 @@ import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.faltenreich.skeletonlayout.Skeleton;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.hbouzidi.fiveprayers.R;
 import com.hbouzidi.fiveprayers.common.ComplementaryTimingEnum;
 import com.hbouzidi.fiveprayers.timings.DayPrayer;
@@ -56,12 +57,11 @@ public class TimingTableActivity extends AppCompatActivity {
 
         TimingTableViewModel timingTableViewModel = new ViewModelProvider(this).get(TimingTableViewModel.class);
 
-        Toolbar toolbar = findViewById(R.id.calendar_toolbar);
-        toolbar.setNavigationIcon(ContextCompat.getDrawable(this, R.drawable.ic_arrow_back));
-        toolbar.setNavigationOnClickListener(v -> finish());
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(view -> finish());
 
         String toolBarTitle = getString(R.string.calendar_view_title) + " " + sharedPreferences.getString(PreferencesConstants.LAST_KNOWN_LOCALITY, "");
-        ((Toolbar) findViewById(R.id.calendar_toolbar)).setTitle(toolBarTitle);
+        ((TextView) findViewById(R.id.calendar_toolbar_title)).setText(toolBarTitle);
 
         skeleton = findViewById(R.id.skeletonLayout);
         tableView = findViewById(R.id.tableView);

@@ -13,9 +13,9 @@ import com.hbouzidi.fiveprayers.quran.dto.QuranBookmark;
 import com.hbouzidi.fiveprayers.quran.dto.QuranPage;
 import com.hbouzidi.fiveprayers.quran.dto.Surah;
 import com.hbouzidi.fiveprayers.ui.quran.pages.QuranPageActivity;
-import com.hbouzidi.fiveprayers.utils.TimingUtils;
 
-import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,8 +54,8 @@ public class QuranBaseIndexFragment extends Fragment {
     }
 
     private void saveAutomaticBookmark(QuranPage quranPage) {
-        long timeInMilli = TimingUtils.getTimeInMilliIgnoringSeconds(LocalDateTime.now());
-        QuranBookmark newAutomaticBookmark = new QuranBookmark(timeInMilli, BookmarkType.AUTOMATIC, quranPage);
+        long timestamps = ZonedDateTime.now(ZoneOffset.systemDefault()).toEpochSecond();
+        QuranBookmark newAutomaticBookmark = new QuranBookmark(timestamps, BookmarkType.AUTOMATIC, quranPage);
 
         List<QuranBookmark> oldAutomaticBenchmarkList = PreferencesHelper.getSortedAutomaticBookmarkList(requireContext());
 

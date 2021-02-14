@@ -9,9 +9,9 @@ import android.util.Log;
 import com.hbouzidi.fiveprayers.quran.dto.BookmarkType;
 import com.hbouzidi.fiveprayers.quran.dto.QuranBookmark;
 import com.hbouzidi.fiveprayers.quran.dto.QuranPage;
-import com.hbouzidi.fiveprayers.utils.TimingUtils;
 
-import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,12 +34,12 @@ public class QuranBookmarkRegistry {
     public long saveBookmark(QuranPage quranPage, BookmarkType bookmarkType) {
         Log.i(QuranBookmarkRegistry.class.getName(), "Inserting new Bookmark");
 
-        long timeInMilli = TimingUtils.getTimeInMilliIgnoringSeconds(LocalDateTime.now());
+        long timestamps = ZonedDateTime.now(ZoneOffset.systemDefault()).toEpochSecond();
 
         SQLiteDatabase db = databaseHelper.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(QuranBookmarkModel.COLUMN_NAME_DATE_TIMESTAMP, timeInMilli);
+        values.put(QuranBookmarkModel.COLUMN_NAME_DATE_TIMESTAMP, timestamps);
         values.put(QuranBookmarkModel.COLUMN_NAME_PAGE_NUMBER, quranPage.getPageNum());
         values.put(QuranBookmarkModel.COLUMN_NAME_SURAH_NUMBER, quranPage.getSurahNumber());
         values.put(QuranBookmarkModel.COLUMN_NAME_JUZ_NUMBER, quranPage.getJuz());
@@ -63,7 +63,7 @@ public class QuranBookmarkRegistry {
         String selection = QuranBookmarkModel.COLUMN_NAME_PAGE_NUMBER + " = ?" +
                 " AND " + QuranBookmarkModel.COLUMN_NAME_BOOKMARK_TYPE + " = ?";
 
-                String[] selectionArgs = {
+        String[] selectionArgs = {
                 String.valueOf(pageNumber),
                 String.valueOf(BookmarkType.getName())
         };

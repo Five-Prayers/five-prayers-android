@@ -193,7 +193,7 @@ public class PreferencesHelper {
             Type type = new TypeToken<ArrayList<QuranBookmark>>() {
             }.getType();
 
-            List<QuranBookmark> list =  gson.fromJson(listStr, type);
+            List<QuranBookmark> list = gson.fromJson(listStr, type);
 
             return list
                     .stream()

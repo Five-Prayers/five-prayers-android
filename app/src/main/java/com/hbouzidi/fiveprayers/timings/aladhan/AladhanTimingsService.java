@@ -40,18 +40,20 @@ public class AladhanTimingsService extends AbstractTimingsService {
                         timingsPreferences.getHijriAdjustment(),
                         timingsPreferences.getTune());
 
-        PrayerRegistry prayerRegistry = PrayerRegistry.getInstance(context);
-        prayerRegistry.savePrayerTiming(localDate,
-                address.getLocality(),
-                address.getCountryName(),
-                timingsPreferences.getMethod(),
-                timingsPreferences.getLatitudeAdjustmentMethod(),
-                timingsPreferences.getSchoolAdjustmentMethod(),
-                timingsPreferences.getMidnightModeAdjustmentMethod(),
-                timingsPreferences.getHijriAdjustment(),
-                timingsPreferences.getTune(),
-                timingsByCity.getData()
-        );
+        if (timingsByCity != null) {
+            PrayerRegistry prayerRegistry = PrayerRegistry.getInstance(context);
+            prayerRegistry.savePrayerTiming(localDate,
+                    address.getLocality(),
+                    address.getCountryName(),
+                    timingsPreferences.getMethod(),
+                    timingsPreferences.getLatitudeAdjustmentMethod(),
+                    timingsPreferences.getSchoolAdjustmentMethod(),
+                    timingsPreferences.getMidnightModeAdjustmentMethod(),
+                    timingsPreferences.getHijriAdjustment(),
+                    timingsPreferences.getTune(),
+                    timingsByCity.getData()
+            );
+        }
     }
 
     protected void retrieveAndSaveCalendar(Address address, int month, int year, Context context) throws IOException {
@@ -70,16 +72,18 @@ public class AladhanTimingsService extends AbstractTimingsService {
                         timingsPreferences.getHijriAdjustment(),
                         timingsPreferences.getTune());
 
-        PrayerRegistry prayerRegistry = PrayerRegistry.getInstance(context);
-        prayerRegistry.saveCalendar(
-                address.getLocality(),
-                address.getCountryName(),
-                timingsPreferences.getMethod(),
-                timingsPreferences.getLatitudeAdjustmentMethod(),
-                timingsPreferences.getSchoolAdjustmentMethod(),
-                timingsPreferences.getMidnightModeAdjustmentMethod(),
-                timingsPreferences.getHijriAdjustment(),
-                timingsPreferences.getTune(),
-                CalendarByCity.getData());
+        if (CalendarByCity != null) {
+            PrayerRegistry prayerRegistry = PrayerRegistry.getInstance(context);
+            prayerRegistry.saveCalendar(
+                    address.getLocality(),
+                    address.getCountryName(),
+                    timingsPreferences.getMethod(),
+                    timingsPreferences.getLatitudeAdjustmentMethod(),
+                    timingsPreferences.getSchoolAdjustmentMethod(),
+                    timingsPreferences.getMidnightModeAdjustmentMethod(),
+                    timingsPreferences.getHijriAdjustment(),
+                    timingsPreferences.getTune(),
+                    CalendarByCity.getData());
+        }
     }
 }

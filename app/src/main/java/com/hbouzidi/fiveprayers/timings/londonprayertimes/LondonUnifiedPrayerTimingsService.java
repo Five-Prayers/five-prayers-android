@@ -53,20 +53,22 @@ public class LondonUnifiedPrayerTimingsService extends AbstractTimingsService {
         LondonUnifiedPrayerAPIService londonUnifiedPrayerAPIService = LondonUnifiedPrayerAPIService.getInstance();
         LondonUnifiedTimingsResponse londonTimings = londonUnifiedPrayerAPIService.getLondonTimings();
 
-        AladhanData aladhanData = createTimingsData(timingsPreferences.getSchoolAdjustmentMethod(), timingsByCity.getData(), londonTimings);
+        if (timingsByCity != null && londonTimings != null) {
+            AladhanData aladhanData = createTimingsData(timingsPreferences.getSchoolAdjustmentMethod(), timingsByCity.getData(), londonTimings);
 
-        PrayerRegistry prayerRegistry = PrayerRegistry.getInstance(context);
-        prayerRegistry.savePrayerTiming(localDate,
-                address.getLocality(),
-                address.getCountryName(),
-                timingsPreferences.getMethod(),
-                timingsPreferences.getLatitudeAdjustmentMethod(),
-                timingsPreferences.getSchoolAdjustmentMethod(),
-                timingsPreferences.getMidnightModeAdjustmentMethod(),
-                timingsPreferences.getHijriAdjustment(),
-                timingsPreferences.getTune(),
-                aladhanData
-        );
+            PrayerRegistry prayerRegistry = PrayerRegistry.getInstance(context);
+            prayerRegistry.savePrayerTiming(localDate,
+                    address.getLocality(),
+                    address.getCountryName(),
+                    timingsPreferences.getMethod(),
+                    timingsPreferences.getLatitudeAdjustmentMethod(),
+                    timingsPreferences.getSchoolAdjustmentMethod(),
+                    timingsPreferences.getMidnightModeAdjustmentMethod(),
+                    timingsPreferences.getHijriAdjustment(),
+                    timingsPreferences.getTune(),
+                    aladhanData
+            );
+        }
     }
 
     protected void retrieveAndSaveCalendar(Address address, int month, int year, Context context) throws IOException {
@@ -75,7 +77,7 @@ public class LondonUnifiedPrayerTimingsService extends AbstractTimingsService {
         TimingsPreferences timingsPreferences = getTimingsPreferences(context);
 
         AladhanAPIService aladhanAPIService = AladhanAPIService.getInstance();
-        AladhanCalendarResponse CalendarByCity =
+        AladhanCalendarResponse calendarByCity =
                 aladhanAPIService.getCalendarByLatLong(
                         address.getLatitude(),
                         address.getLongitude(),
@@ -90,26 +92,29 @@ public class LondonUnifiedPrayerTimingsService extends AbstractTimingsService {
         LondonUnifiedPrayerAPIService londonUnifiedPrayerAPIService = LondonUnifiedPrayerAPIService.getInstance();
         LondonUnifiedCalendarResponse londonCalendar = londonUnifiedPrayerAPIService.getLondonCalendar(month, year);
 
-        for (AladhanData aladhanData : CalendarByCity.getData()) {
-            String londonDate = TimingUtils.ConvertAlAdhanFormatToLUT(aladhanData.getDate().getGregorian().getDate());
-            LondonUnifiedTimingsResponse londonUnifiedTimingsResponse = londonCalendar.getTimes().get(londonDate);
+        if (calendarByCity != null && londonCalendar != null) {
 
-            if (londonUnifiedTimingsResponse != null) {
-                aladhanCalendarData.add(createTimingsData(timingsPreferences.getSchoolAdjustmentMethod(), aladhanData, londonUnifiedTimingsResponse));
+            for (AladhanData aladhanData : calendarByCity.getData()) {
+                String londonDate = TimingUtils.ConvertAlAdhanFormatToLUT(aladhanData.getDate().getGregorian().getDate());
+                LondonUnifiedTimingsResponse londonUnifiedTimingsResponse = londonCalendar.getTimes().get(londonDate);
+
+                if (londonUnifiedTimingsResponse != null) {
+                    aladhanCalendarData.add(createTimingsData(timingsPreferences.getSchoolAdjustmentMethod(), aladhanData, londonUnifiedTimingsResponse));
+                }
             }
-        }
 
-        PrayerRegistry prayerRegistry = PrayerRegistry.getInstance(context);
-        prayerRegistry.saveCalendar(
-                address.getLocality(),
-                address.getCountryName(),
-                timingsPreferences.getMethod(),
-                timingsPreferences.getLatitudeAdjustmentMethod(),
-                timingsPreferences.getSchoolAdjustmentMethod(),
-                timingsPreferences.getMidnightModeAdjustmentMethod(),
-                timingsPreferences.getHijriAdjustment(),
-                timingsPreferences.getTune(),
-                aladhanCalendarData);
+            PrayerRegistry prayerRegistry = PrayerRegistry.getInstance(context);
+            prayerRegistry.saveCalendar(
+                    address.getLocality(),
+                    address.getCountryName(),
+                    timingsPreferences.getMethod(),
+                    timingsPreferences.getLatitudeAdjustmentMethod(),
+                    timingsPreferences.getSchoolAdjustmentMethod(),
+                    timingsPreferences.getMidnightModeAdjustmentMethod(),
+                    timingsPreferences.getHijriAdjustment(),
+                    timingsPreferences.getTune(),
+                    aladhanCalendarData);
+        }
     }
 
     private AladhanData createTimingsData(SchoolAdjustmentMethod schoolAdjustmentMethod, AladhanData data, LondonUnifiedTimingsResponse londonTimings) {

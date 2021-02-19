@@ -18,17 +18,12 @@
     <dimen name="spacing_xxxlarge">55dp</dimen>
     <dimen name="appbar_padding_top">8dp</dimen>
 
-
-    <dimen name="text_xsmall">2sp</dimen>
-    <dimen name="text_small">3sp</dimen>
-    <dimen name="text_medium">5sp</dimen>
-    <dimen name="text_xmedium">7sp</dimen>
-    <dimen name="text_middle">12sp</dimen>
-    <dimen name="text_large">15sp</dimen>
-    <dimen name="text_smlarge">17sp</dimen>
-    <dimen name="text_mlarge">20sp</dimen>
-    <dimen name="text_xmlarge">23sp</dimen>
-    <dimen name="text_xxlarge">26sp</dimen>
+    <dimen name="text_middle">15sp</dimen>
+    <dimen name="text_large">20sp</dimen>
+    <dimen name="text_smlarge">25sp</dimen>
+    <dimen name="text_mlarge">30sp</dimen>
+    <dimen name="text_xmlarge">35sp</dimen>
+    <dimen name="text_xxlarge">40sp</dimen>
     <dimen name="text_xxxlarge">50sp</dimen>
 
     <dimen name="dial">205dp</dimen>

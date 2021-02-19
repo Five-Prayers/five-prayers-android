@@ -6,524 +6,104 @@
     android:id="@+id/skeletonLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:maskColor="@color/mystic">
+    android:background="@drawable/white_blue_mosque_gradient_background"
+    android:fillViewport="true"
+    tools:context=".ui.home.HomeFragment">
 
-    <ScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/white_blue_mosque_gradient_background"
-        android:fillViewport="true"
-        tools:context=".ui.home.HomeFragment">
+        android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/dates_constraint_container"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/next_prayer_constraint_container"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.15"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/sunrise_timing_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="06:00"
-                android:textColor="@color/stratos"
-                android:textSize="@dimen/text_large"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@+id/imageView3"
-                app:layout_constraintStart_toStartOf="@+id/imageView3"
-                app:layout_constraintTop_toBottomOf="@+id/imageView3" />
-
-            <TextView
-                android:id="@+id/sunset_timing_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="21:46"
-                android:textColor="@color/stratos"
-                android:textSize="@dimen/text_large"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@+id/imageView2"
-                app:layout_constraintStart_toStartOf="@+id/imageView2"
-                app:layout_constraintTop_toBottomOf="@+id/imageView2" />
-
-            <TextView
-                android:id="@+id/icha_label_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Al Ichaa"
-                android:textColor="@color/stratos"
-                android:textSize="@dimen/text_large"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/ichaa_clock_view"
-                app:layout_constraintEnd_toEndOf="@+id/ichaa_clock_view"
-                app:layout_constraintStart_toStartOf="@+id/ichaa_clock_view" />
-
-            <TextView
-                android:id="@+id/location_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:fontFamily="sans-serif-condensed"
-                android:inputType="textCapSentences"
-                android:text="Republic of the congo"
-                android:textColor="@color/stratos"
-                android:textSize="@dimen/text_smlarge"
-                android:textStyle="bold"
-                app:drawableLeftCompat="@drawable/ic_location_15"
-                app:drawableStartCompat="@drawable/ic_location_15"
+            <include
+                layout="@layout/fragment_home_dates_layout"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="TextViewEdits" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <TextView
-                android:id="@+id/country_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:fontFamily="sans-serif-condensed"
-                android:text="Maroc (+1:00)"
-                android:textColor="@color/textSecondary"
-                android:textSize="@dimen/text_large"
-                android:textStyle="normal"
-                app:layout_constraintBottom_toTopOf="@+id/headerConstraintLayout"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/next_prayer_constraint_container"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/tmings_constraint_container"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.30"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/dates_constraint_container">
+
+            <include
+                layout="@layout/fragment_home_next_prayer_layout"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/location_text_view"
-                app:layout_constraintVertical_bias="0.1" />
-
-            <TextView
-                android:id="@+id/fajr_label_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="A'Sobh"
-                android:textColor="@color/stratos"
-                android:textSize="@dimen/text_large"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/farj_clock_view"
-                app:layout_constraintEnd_toEndOf="@+id/farj_clock_view"
-                app:layout_constraintStart_toStartOf="@+id/farj_clock_view" />
-
-            <TextView
-                android:id="@+id/dohr_label_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="A'Dohr"
-                android:textColor="@color/stratos"
-                android:textSize="@dimen/text_large"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/dohr_clock_view"
-                app:layout_constraintEnd_toEndOf="@+id/dohr_clock_view"
-                app:layout_constraintStart_toStartOf="@+id/dohr_clock_view" />
-
-            <TextView
-                android:id="@+id/gregorianTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="16dp"
-                android:fontFamily="sans-serif-condensed"
-                android:text="Dimanche 21 fevrier 2021"
-                android:textColor="@color/stratos"
-                android:textSize="@dimen/text_smlarge"
-                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/hijriTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:fontFamily="sans-serif-condensed"
-                android:text="22 Safar, 1438"
-                android:textColor="@color/textSecondary"
-                android:textSize="@dimen/text_large"
-                android:textStyle="normal"
-                app:layout_constraintBottom_toTopOf="@+id/holiday_indicator_text_view"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/gregorianTextView" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <TextView
-                android:id="@+id/holiday_indicator_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:fontFamily="sans-serif-condensed"
-                android:text="1st Day Of Ramadan"
-                android:textColor="@color/flirt"
-                android:textSize="@dimen/text_large"
-                android:textStyle="normal"
-                app:layout_constraintBottom_toTopOf="@+id/headerConstraintLayout"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/hijriTextView" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/tmings_constraint_container"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="1dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.55"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/next_prayer_constraint_container">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/headerConstraintLayout"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                app:layout_constraintBottom_toBottomOf="@+id/nextPrayerConstraintLayout"
+                android:id="@+id/timings_first_row_constraint_layout"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toTopOf="@+id/timings_second_row_constraint_layout"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent="0.50"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.19999999" />
+                app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/nextPrayerConstraintLayout"
-                android:layout_width="180dp"
-                android:layout_height="180dp"
-                app:layout_constraintBottom_toTopOf="@+id/datesConstraintLayout"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/headerConstraintLayout">
-
-                <TextView
-                    android:id="@+id/prayerTimetextView"
-                    android:layout_width="match_parent"
-                    android:layout_height="45dp"
-                    android:fontFamily="sans-serif-condensed"
-                    android:gravity="center"
-                    android:text="13:48 PM"
-                    android:textColor="@color/stratos"
-                    android:textStyle="bold"
-                    app:autoSizeMaxTextSize="50sp"
-                    app:autoSizeMinTextSize="12sp"
-                    app:autoSizeStepGranularity="2sp"
-                    app:autoSizeTextType="uniform"
+                <include
+                    layout="@layout/fragment_home_timings_first_row_layout"
+                    android:visibility="visible"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.25" />
-
-                <TextView
-                    android:id="@+id/timeRemainingTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="18dp"
-                    android:layout_marginBottom="28dp"
-                    android:fontFamily="sans-serif-condensed"
-                    android:text="- 04:15:50"
-                    android:textColor="#530101"
-                    android:textSize="@dimen/text_large"
-                    android:textStyle="normal"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.504"
-                    app:layout_constraintStart_toStartOf="@+id/circularProgressBar"
-                    app:layout_constraintTop_toBottomOf="@+id/prayerNametextView" />
-
-                <com.mikhaellopez.circularprogressbar.CircularProgressBar
-                    android:id="@+id/circularProgressBar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:cpb_background_progressbar_color="#EAF2F4"
-                    app:cpb_background_progressbar_width="5dp"
-                    app:cpb_progress_direction="to_right"
-                    app:cpb_progressbar_color="@color/dodger_blue"
-                    app:cpb_progressbar_width="10dp"
-                    app:cpb_round_border="true"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/prayerNametextView"
-                    android:layout_width="match_parent"
-                    android:layout_height="35dp"
-                    android:layout_marginTop="8dp"
-                    android:fontFamily="sans-serif-condensed"
-                    android:gravity="center"
-                    android:text="As`Sobh (Fajr)"
-                    android:textColor="@color/stratos"
-                    android:textStyle="bold"
-                    app:autoSizeMaxTextSize="40sp"
-                    app:autoSizeMinTextSize="12sp"
-                    app:autoSizeStepGranularity="2sp"
-                    app:autoSizeTextType="uniform"
-                    app:layout_constraintEnd_toEndOf="@+id/circularProgressBar"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/prayerTimetextView" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/datesConstraintLayout"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
+                android:id="@+id/timings_second_row_constraint_layout"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent="0.50"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toBottomOf="@+id/timings_first_row_constraint_layout">
 
-            <com.hbouzidi.fiveprayers.ui.clock.AnalogClock
-                android:id="@+id/farj_clock_view"
-                android:layout_width="90dp"
-                android:layout_height="90dp"
-                android:layout_centerInParent="true"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/dohr_clock_view"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/datesConstraintLayout"
-                app:layout_constraintVertical_bias="0.0" />
 
-            <com.hbouzidi.fiveprayers.ui.clock.AnalogClock
-                android:id="@+id/dohr_clock_view"
-                android:layout_width="90dp"
-                android:layout_height="90dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/farj_clock_view"
-                app:layout_constraintTop_toBottomOf="@+id/datesConstraintLayout"
-                app:layout_constraintVertical_bias="0.0" />
-
-            <com.hbouzidi.fiveprayers.ui.clock.AnalogClock
-                android:id="@+id/asr_clock_view"
-                android:layout_width="90dp"
-                android:layout_height="90dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/maghreb_clock_view"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/farj_timing_constraint_layout" />
-
-            <com.hbouzidi.fiveprayers.ui.clock.AnalogClock
-                android:id="@+id/maghreb_clock_view"
-                android:layout_width="90dp"
-                android:layout_height="90dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/ichaa_clock_view"
-                app:layout_constraintStart_toEndOf="@+id/asr_clock_view"
-                app:layout_constraintTop_toBottomOf="@+id/farj_timing_constraint_layout" />
-
-            <com.hbouzidi.fiveprayers.ui.clock.AnalogClock
-                android:id="@+id/ichaa_clock_view"
-                android:layout_width="90dp"
-                android:layout_height="90dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/maghreb_clock_view"
-                app:layout_constraintTop_toBottomOf="@+id/dohr_timing_constraint_layout" />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/icha_timing_constraint_layout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="@+id/ichaa_clock_view"
-                app:layout_constraintStart_toStartOf="@+id/ichaa_clock_view"
-                app:layout_constraintTop_toBottomOf="@+id/ichaa_clock_view">
-
-                <ImageView
-                    android:id="@+id/icha_call_image_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="4dp"
-                    android:layout_marginRight="4dp"
-                    android:src="@drawable/ic_notifications_24dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/icha_timing_text_view"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:tint="#00C167" />
-
-                <TextView
-                    android:id="@+id/icha_timing_text_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="14:05"
-                    android:textColor="@color/stratos"
-                    android:textSize="@dimen/text_large"
-                    android:textStyle="bold"
+                <include
+                    layout="@layout/fragment_home_timings_second_row_portrait_layout"
+                    android:visibility="visible"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <TextView
-                android:id="@+id/asr_label_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Al Asr"
-                android:textColor="@color/stratos"
-                android:textSize="@dimen/text_large"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/asr_clock_view"
-                app:layout_constraintEnd_toEndOf="@+id/asr_clock_view"
-                app:layout_constraintStart_toStartOf="@+id/asr_clock_view" />
-
-            <TextView
-                android:id="@+id/maghrib_label_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Al Maghreb"
-                android:textColor="@color/stratos"
-                android:textSize="@dimen/text_large"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/maghreb_clock_view"
-                app:layout_constraintEnd_toEndOf="@+id/maghreb_clock_view"
-                app:layout_constraintStart_toStartOf="@+id/maghreb_clock_view" />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/maghreb_timing_constraint_layout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="@+id/maghreb_clock_view"
-                app:layout_constraintStart_toStartOf="@+id/maghreb_clock_view"
-                app:layout_constraintTop_toBottomOf="@+id/maghreb_clock_view">
-
-                <ImageView
-                    android:id="@+id/maghrib_call_image_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="4dp"
-                    android:layout_marginRight="4dp"
-                    android:src="@drawable/ic_notifications_off_24dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/maghreb_timing_text_view"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:tint="#D81B60" />
-
-                <TextView
-                    android:id="@+id/maghreb_timing_text_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="14:05"
-                    android:textColor="@color/stratos"
-                    android:textSize="@dimen/text_large"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:src="@drawable/ic_sunet"
-                app:layout_constraintBottom_toBottomOf="@+id/nextPrayerConstraintLayout"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/nextPrayerConstraintLayout"
-                app:layout_constraintTop_toTopOf="@+id/nextPrayerConstraintLayout"
-                app:tint="#D53304" />
-
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:src="@drawable/ic_sunrise"
-                app:layout_constraintBottom_toBottomOf="@+id/nextPrayerConstraintLayout"
-                app:layout_constraintEnd_toStartOf="@+id/nextPrayerConstraintLayout"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/nextPrayerConstraintLayout"
-                app:tint="@color/sunrise" />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/asr_timing_constraint_layout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="@+id/asr_clock_view"
-                app:layout_constraintStart_toStartOf="@+id/asr_clock_view"
-                app:layout_constraintTop_toBottomOf="@+id/asr_clock_view">
-
-                <ImageView
-                    android:id="@+id/asr_call_image_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="4dp"
-                    android:layout_marginRight="4dp"
-                    android:src="@drawable/ic_notifications_24dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/asr_timing_text_view"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:tint="#00C167" />
-
-                <TextView
-                    android:id="@+id/asr_timing_text_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="14:05"
-                    android:textColor="@color/stratos"
-                    android:textSize="@dimen/text_large"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/dohr_timing_constraint_layout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="@+id/dohr_clock_view"
-                app:layout_constraintStart_toStartOf="@+id/dohr_clock_view"
-                app:layout_constraintTop_toBottomOf="@+id/dohr_clock_view">
-
-                <ImageView
-                    android:id="@+id/dohr_call_image_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="4dp"
-                    android:layout_marginRight="4dp"
-                    android:src="@drawable/ic_notifications_off_24dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/dohr_timing_text_view"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:tint="#D81B60" />
-
-                <TextView
-                    android:id="@+id/dohr_timing_text_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="14:05"
-                    android:textColor="@color/stratos"
-                    android:textSize="@dimen/text_large"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/farj_timing_constraint_layout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="@+id/farj_clock_view"
-                app:layout_constraintStart_toStartOf="@+id/farj_clock_view"
-                app:layout_constraintTop_toBottomOf="@+id/farj_clock_view">
-
-                <ImageView
-                    android:id="@+id/fajr_call_image_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="4dp"
-                    android:layout_marginRight="4dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:src="@drawable/ic_notifications_24dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/fajr_timing_text_view"
-                    app:layout_constraintEnd_toStartOf="@+id/fajr_timing_text_view"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/fajr_timing_text_view"
-                    app:tint="#00C167" />
-
-                <TextView
-                    android:id="@+id/fajr_timing_text_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="03:21"
-                    android:textColor="@color/stratos"
-                    android:textSize="@dimen/text_large"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </com.faltenreich.skeletonlayout.SkeletonLayout>

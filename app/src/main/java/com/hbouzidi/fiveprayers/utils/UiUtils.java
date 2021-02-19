@@ -50,7 +50,7 @@ public class UiUtils {
     }
 
     public static String formatHijriDate(int day, String monthName, int year) {
-        return String.format(Locale.getDefault(), "%1$02d", day) + " " + monthName + ", " + year;
+        return String.format(Locale.getDefault(), "%1$02d", day) + " " + monthName + " " + year;
     }
 
     public static String formatShortHijriDate(int day, String monthName) {

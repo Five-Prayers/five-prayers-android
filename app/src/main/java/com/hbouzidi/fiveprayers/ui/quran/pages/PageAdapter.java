@@ -202,13 +202,14 @@ public class PageAdapter extends RecyclerView.Adapter<PageAdapter.Holder> {
 
         bookmarkImageView.setImageResource((bookmarkByPageNumber == null) ? R.drawable.ic_bookmark_empty : R.drawable.ic_bookmark_filled);
 
-        setBookmarkImageOnClickListener(bookmarkImageView, quranPage, bookmarkByPageNumber);
+        setBookmarkImageOnClickListener(bookmarkImageView, quranPage);
     }
 
-    private void setBookmarkImageOnClickListener(ImageView bookmarkImageView, QuranPage quranPage, QuranBookmark bookmarkByPageNumber) {
+    private void setBookmarkImageOnClickListener(ImageView bookmarkImageView, QuranPage quranPage) {
         bookmarkImageView.setOnClickListener(view -> {
 
             QuranBookmarkRegistry quranBookmarkRegistry = QuranBookmarkRegistry.getInstance(context);
+            QuranBookmark bookmarkByPageNumber = quranBookmarkRegistry.getBookmarkByPageNumber(quranPage.getPageNum(), BookmarkType.USER_MADE);
 
             if (bookmarkByPageNumber != null) {
                 quranBookmarkRegistry.deleteBookmark(quranPage.getPageNum());

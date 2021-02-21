@@ -25,7 +25,7 @@
             android:fontFamily="@font/pdms"
             android:gravity="center_vertical"
             android:textColor="@color/colorPrimary"
-            android:textSize="@dimen/text_mlarge"
+            android:textSize="@dimen/text_middle"
             tools:text="@tools:sample/lorem" />
 
         <LinearLayout
@@ -46,7 +46,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="@dimen/text_xmlarge"
+                    android:textSize="@dimen/text_smlarge"
                     android:fontFamily="@font/kitab"
                     tools:text="@tools:sample/lorem" />
             </LinearLayout>
@@ -91,9 +91,9 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/spacing_xmedium"
             android:gravity="center_horizontal"
-            android:text="551"
+            tools:text="551"
             android:textColor="@color/colorPrimary"
-            android:textSize="@dimen/text_large" />
+            android:textSize="@dimen/text_middle" />
 
 
     </LinearLayout>

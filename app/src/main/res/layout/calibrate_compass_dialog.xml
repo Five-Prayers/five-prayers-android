@@ -29,7 +29,7 @@
         android:paddingRight="@dimen/ld_side_margin"
         android:text="@string/common.ok"
         android:textColor="@color/amaranth"
-        android:textSize="@dimen/text_smlarge"
+        android:textSize="@dimen/text_middle"
         custom:layout_constraintBottom_toBottomOf="parent"
         custom:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

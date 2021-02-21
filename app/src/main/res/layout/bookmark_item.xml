@@ -46,7 +46,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="@dimen/text_xmlarge"
+                    android:textSize="@dimen/text_smlarge"
                     android:fontFamily="@font/kitab"
                     tools:text="@tools:sample/lorem" />
             </LinearLayout>
@@ -81,7 +81,7 @@
                 android:layout_gravity="end"
                 android:text="@string/common_page"
                 android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/text_large" />
+                android:textSize="@dimen/text_middle" />
             <TextView
                 android:id="@+id/bookmark_page_num_text_view"
                 android:layout_width="wrap_content"
@@ -89,9 +89,9 @@
                 android:layout_marginRight="@dimen/spacing_xmedium"
                 android:layout_marginEnd="@dimen/spacing_xmedium"
                 android:layout_gravity="end"
-                android:text="551"
+                tools:text="551"
                 android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/text_large" />
+                android:textSize="@dimen/text_middle" />
         </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

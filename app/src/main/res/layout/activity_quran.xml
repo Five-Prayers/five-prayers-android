@@ -25,7 +25,7 @@
                 android:gravity="center"
                 android:minHeight="?actionBarSize"
                 android:padding="@dimen/appbar_padding"
-                android:fontFamily="sans-serif-medium"
+                android:fontFamily="sans-serif-condensed"
                 android:text="@string/quran"
                 android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
                 app:layout_constraintBottom_toBottomOf="parent"

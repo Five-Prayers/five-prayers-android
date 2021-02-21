@@ -16,8 +16,7 @@
             app:useSimpleSummaryProvider="true" />
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="@string/title_adhan_call_section">
-
+    <PreferenceCategory android:title="@string/title_notification_section">
         <ListPreference
             android:defaultValue="SHORT_PRAYER_CALL"
             android:dialogTitle="@string/dialog_title_fajr_adhan"
@@ -35,6 +34,11 @@
             android:key="ADHAN_CALLER"
             android:title="@string/title_adhan"
             app:useSimpleSummaryProvider="true" />
+
+        <CheckBoxPreference
+            android:key="ADHAN_VIBRATION_PREFERENCE"
+            android:title="@string/title_adhan_vibration_preference"
+            android:defaultValue="true" />
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/title_prayer_timings_section">

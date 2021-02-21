@@ -132,6 +132,7 @@
     <string name="title_location_preference_section">الموقع</string>
     <string name="title_checkbox_location_preference">أدخل موقعك يدويًا</string>
     <string name="title_edit_text_location_preference">الموقع الحالي</string>
+    <string name="title_adhan_vibration_preference">تفعيل الاهتزاز</string>
     <string name="dialog_title_edit_text_location_preference">ابحث عن مدينتك</string>
     <string name="title_prayer_timings_section">طرق الحساب</string>
     <string name="title_list_preference">طريقة حساب تقويم الصلاة</string>
@@ -198,7 +199,7 @@
     <string name="quran">القرآن الكريم</string>
     <string name="desc_quran">اقرأ القرآن الكريم</string>
     <string name="title_checkbox_quran_night_mode">وضع الليل</string>
-    <string name="title_adhan_call_section">أذان</string>
+    <string name="title_notification_section">إشعار الأذان</string>
     <string name="dialog_title_fajr_adhan">حدد أذان فجر</string>
 
     <string name="adhan_abdelbasset_abdessamad">عبد الباسط عبد الصمد</string>

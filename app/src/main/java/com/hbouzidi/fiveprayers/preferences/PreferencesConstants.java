@@ -18,6 +18,7 @@ public class PreferencesConstants {
     public static final String ADTHAN_CALL_ENABLED_KEY = "_ADTHAN_CALL_ENABLED";
     public static final String ADTHAN_CALLER = "ADHAN_CALLER";
     public static final String ADTHAN_FAJR_CALLER = "ADHAN_FAJR_CALLER";
+    public static final String ADHAN_VIBRATION_PREFERENCE = "ADHAN_VIBRATION_PREFERENCE";
 
     // Timings adjustment
     public static final String TIMING_ADJUSTMENT = "TIMING_ADJUSTMENT";

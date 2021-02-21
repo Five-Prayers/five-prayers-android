@@ -163,6 +163,11 @@ public class PreferencesHelper {
         return defaultSharedPreferences.getBoolean(PreferencesConstants.QURAN_NIGHT_MODE_ACTIVATED, false);
     }
 
+    public static Boolean isVibrationActivated(Context context) {
+        final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return defaultSharedPreferences.getBoolean(PreferencesConstants.ADHAN_VIBRATION_PREFERENCE, true);
+    }
+
     public static String getFajrAdhanCaller(Context context) {
         final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         return defaultSharedPreferences.getString(PreferencesConstants.ADTHAN_FAJR_CALLER, "SHORT_PRAYER_CALL");

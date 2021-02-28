@@ -1,9 +1,9 @@
 <resources>
-    <dimen name="text_middle">12sp</dimen>
-    <dimen name="text_large">12sp</dimen>
-    <dimen name="text_smlarge">15sp</dimen>
-    <dimen name="text_mlarge">20sp</dimen>
-    <dimen name="text_xmlarge">25sp</dimen>
-    <dimen name="text_xxlarge">30sp</dimen>
-    <dimen name="text_xxxlarge">40sp</dimen>
+    <dimen name="text_middle">10sp</dimen>
+    <dimen name="text_large">10sp</dimen>
+    <dimen name="text_smlarge">12sp</dimen>
+    <dimen name="text_mlarge">15sp</dimen>
+    <dimen name="text_xmlarge">20sp</dimen>
+    <dimen name="text_xxlarge">23sp</dimen>
+    <dimen name="text_xxxlarge">33sp</dimen>
 </resources>

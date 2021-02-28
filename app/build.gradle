@@ -90,6 +90,7 @@ dependencies {
     implementation 'androidx.media:media:1.2.1'
     implementation "androidx.preference:preference:1.1.1"
     implementation 'androidx.multidex:multidex:2.0.1'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation group: 'com.grack', name: 'nanojson', version: '1.6'
 
     //RxJava 3
@@ -109,8 +110,7 @@ dependencies {
     //Skeleton Layout: https://github.com/Faltenreich/SkeletonLayout
     implementation 'com.faltenreich:skeletonlayout:2.0.1'
 
-    //Table View : https://github.com/ISchwarz23/SortableTableView
-    implementation 'de.codecrafters.tableview:tableview:2.8.0'
+    implementation 'com.evrencoskun.library:tableview:0.8.9.2'
 
     //https://github.com/Gericop/Android-Support-Preference-V7-Fix
     implementation 'com.takisoft.preferencex:preferencex:1.1.0'

@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/white_blue_mosque_gradient_background"
+    android:background="@color/white"
     android:fillViewport="true"
     tools:context=".ui.timingtable.TimingTableActivity">
 
@@ -33,7 +33,7 @@
             app:layout_constraintTop_toTopOf="parent" />
     </com.google.android.material.appbar.AppBarLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <com.hbouzidi.fiveprayers.utils.MovableFloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -76,33 +76,28 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         table:layout_constraintBottom_toBottomOf="parent"
         table:layout_constraintEnd_toEndOf="parent"
         table:layout_constraintStart_toStartOf="parent"
         table:layout_constraintTop_toBottomOf="@+id/title_layout">
 
-        <com.faltenreich.skeletonlayout.SkeletonLayout
-            android:id="@+id/skeletonLayout"
+        <com.evrencoskun.tableview.TableView
+            android:id="@+id/tableview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:maskColor="@color/mystic">
-
-        <de.codecrafters.tableview.TableView
-            android:id="@+id/tableView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            app:allow_click_inside_cell="false"
+            app:allow_click_inside_column_header="false"
+            app:allow_click_inside_row_header="false"
+            app:selected_color="@color/spray2"
+            app:separator_color="@color/dew"
+            app:shadow_color="@color/white"
+            app:unselected_color="@color/white"
             table:layout_constraintBottom_toBottomOf="parent"
             table:layout_constraintEnd_toEndOf="parent"
             table:layout_constraintStart_toStartOf="parent"
-            table:layout_constraintTop_toTopOf="parent"
-            table:tableView_headerColor="@color/white"
-            table:tableView_headerElevation="15">
-
-        </de.codecrafters.tableview.TableView>
-
-        </com.faltenreich.skeletonlayout.SkeletonLayout>
+            table:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

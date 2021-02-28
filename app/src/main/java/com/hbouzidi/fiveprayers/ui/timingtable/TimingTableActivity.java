@@ -1,24 +1,27 @@
 package com.hbouzidi.fiveprayers.ui.timingtable;
 
 import android.content.SharedPreferences;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.Bundle;
-import android.widget.ListView;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.faltenreich.skeletonlayout.Skeleton;
+import com.evrencoskun.tableview.TableView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.hbouzidi.fiveprayers.R;
 import com.hbouzidi.fiveprayers.common.ComplementaryTimingEnum;
-import com.hbouzidi.fiveprayers.timings.DayPrayer;
 import com.hbouzidi.fiveprayers.common.PrayerEnum;
 import com.hbouzidi.fiveprayers.preferences.PreferencesConstants;
-import com.hbouzidi.fiveprayers.utils.TimingUtils;
+import com.hbouzidi.fiveprayers.timings.DayPrayer;
+import com.hbouzidi.fiveprayers.ui.timingtable.tableview.TableViewAdapter;
+import com.hbouzidi.fiveprayers.ui.timingtable.tableview.model.Cell;
+import com.hbouzidi.fiveprayers.ui.timingtable.tableview.model.ColumnHeader;
+import com.hbouzidi.fiveprayers.ui.timingtable.tableview.model.RowHeader;
 import com.hbouzidi.fiveprayers.utils.UiUtils;
 
 import org.apache.commons.lang3.StringUtils;
@@ -26,25 +29,16 @@ import org.apache.commons.lang3.StringUtils;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.TextStyle;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 
-import de.codecrafters.tableview.TableView;
-import de.codecrafters.tableview.model.TableColumnWeightModel;
-import de.codecrafters.tableview.providers.TableDataRowBackgroundProvider;
-import de.codecrafters.tableview.toolkit.SimpleTableDataAdapter;
-import de.codecrafters.tableview.toolkit.SimpleTableHeaderAdapter;
-
 public class TimingTableActivity extends AppCompatActivity {
 
-    private static final int COLUMN_COUNT = 8;
-    private static final int TEXT_SIZE = 11;
-
-    private TableView<String[]> tableView;
-    private ListView internalListView;
-    private Skeleton skeleton;
+    private TableView mTableView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,78 +49,20 @@ public class TimingTableActivity extends AppCompatActivity {
 
         TimingTableViewModel timingTableViewModel = new ViewModelProvider(this).get(TimingTableViewModel.class);
 
+        mTableView = findViewById(R.id.tableview);
+
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(view -> finish());
 
         String toolBarTitle = getString(R.string.calendar_view_title) + " " + sharedPreferences.getString(PreferencesConstants.LAST_KNOWN_LOCALITY, "");
         ((TextView) findViewById(R.id.timing_table_toolbar_title)).setText(toolBarTitle);
 
-        skeleton = findViewById(R.id.skeletonLayout);
-        tableView = findViewById(R.id.tableView);
-        internalListView = findViewById(R.id.table_data_view);
-
         TextView dateTextView = findViewById(R.id.date_text_view);
         dateTextView.setText(StringUtils.capitalize(UiUtils.formatShortDate(LocalDate.now())));
 
-        createTableView();
-
-        skeleton.showSkeleton();
-
-        timingTableViewModel.getCalendar().observe(this, this::populateTableView);
+        timingTableViewModel.getCalendar().observe(this, this::initializeTableView);
     }
 
-    private void populateTableView(List<DayPrayer> calendar) {
-        String[][] data = new String[calendar.size()][COLUMN_COUNT];
-
-        for (int index = 0; index < calendar.size(); index++) {
-            DayPrayer dayPrayer = calendar.get(index);
-            Map<PrayerEnum, LocalDateTime> timings = dayPrayer.getTimings();
-            Map<ComplementaryTimingEnum, LocalDateTime> complementaryTiming = dayPrayer.getComplementaryTiming();
-
-            data[index][0] = String.valueOf(dayPrayer.getGregorianDay());
-            data[index][1] = getHijriShortDate(dayPrayer);
-            data[index][2] = TimingUtils.formatTiming(Objects.requireNonNull(timings.get(PrayerEnum.FAJR)));
-            data[index][3] = TimingUtils.formatTiming(Objects.requireNonNull(complementaryTiming.get(ComplementaryTimingEnum.SUNRISE)));
-            data[index][4] = TimingUtils.formatTiming(Objects.requireNonNull(timings.get(PrayerEnum.DHOHR)));
-            data[index][5] = TimingUtils.formatTiming(Objects.requireNonNull(timings.get(PrayerEnum.ASR)));
-            data[index][6] = TimingUtils.formatTiming(Objects.requireNonNull(timings.get(PrayerEnum.MAGHRIB)));
-            data[index][7] = TimingUtils.formatTiming(Objects.requireNonNull(timings.get(PrayerEnum.ICHA)));
-        }
-
-        SimpleTableDataAdapter dataAdapter = new SimpleTableDataAdapter(this, data);
-        dataAdapter.setTextSize(TEXT_SIZE);
-        tableView.setDataAdapter(dataAdapter);
-
-        internalListView.setSelection(LocalDate.now().getDayOfMonth() - 1);
-
-        skeleton.showOriginal();
-    }
-
-    private void createTableView() {
-        String month = LocalDate.now().getMonth().getDisplayName(TextStyle.SHORT, Locale.getDefault());
-        String[] TABLE_HEADERS = {
-                StringUtils.capitalize(month),
-                getResources().getString(R.string.hijri),
-                getResources().getString(R.string.SHORT_FAJR),
-                getResources().getString(R.string.SUNRISE),
-                getResources().getString(R.string.SHORT_DHOHR),
-                getResources().getString(R.string.SHORT_ASR),
-                getResources().getString(R.string.SHORT_MAGHRIB),
-                getResources().getString(R.string.SHORT_ICHA)
-        };
-
-        tableView.setColumnCount(COLUMN_COUNT);
-
-        TableColumnWeightModel columnModel = new TableColumnWeightModel(COLUMN_COUNT);
-        columnModel.setColumnWeight(1, 2);
-        tableView.setColumnModel(columnModel);
-
-        SimpleTableHeaderAdapter headerAdapter = new SimpleTableHeaderAdapter(this, TABLE_HEADERS);
-        headerAdapter.setTextSize(TEXT_SIZE);
-        tableView.setHeaderAdapter(headerAdapter);
-
-        tableView.setDataRowBackgroundProvider(new TodayRowColorProvider());
-    }
 
     private String getHijriShortDate(DayPrayer dayPrayer) {
         String hijriMonth = getResources().getString(
@@ -138,26 +74,68 @@ public class TimingTableActivity extends AppCompatActivity {
         );
     }
 
-    private class TodayRowColorProvider implements TableDataRowBackgroundProvider<String[]> {
-        @Override
-        public Drawable getRowBackground(final int rowIndex, final String[] dayPrayer) {
-            int rowColor;
-            Drawable drawable;
+    private void initializeTableView(List<DayPrayer> calendar) {
+        String month = LocalDate.now().getMonth().getDisplayName(TextStyle.SHORT, Locale.getDefault());
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                drawable = getResources().getDrawable(R.drawable.shape_rectangle_solid, getTheme());
-            } else {
-                drawable = getResources().getDrawable(R.drawable.shape_rectangle_solid);
-            }
+        TableViewAdapter tableViewAdapter = new TableViewAdapter(StringUtils.capitalize(month), getApplicationContext());
 
-            if (dayPrayer[0].equals(String.valueOf(LocalDate.now().getDayOfMonth()))) {
-                return drawable;
-            } else if (rowIndex % 2 == 0) {
-                rowColor = getResources().getColor(R.color.dew);
-            } else {
-                rowColor = getResources().getColor(R.color.white);
-            }
-            return new ColorDrawable(rowColor);
+        mTableView.setAdapter(tableViewAdapter);
+        mTableView.setHasFixedWidth(true);
+        tableViewAdapter.setAllItems(getColumnHeaderList(), getRowHeaderList(calendar), getCellList(calendar));
+
+        mTableView.getSelectionHandler().setSelectedRowPosition(LocalDate.now().getDayOfMonth() - 1);
+        mTableView.scrollToRowPosition(LocalDate.now().getDayOfMonth() - 1, 2);
+    }
+
+    @NonNull
+    private List<RowHeader> getRowHeaderList(List<DayPrayer> calendar) {
+        List<RowHeader> rowHeaders = new ArrayList<>();
+
+        for (int index = 0; index < calendar.size(); index++) {
+            DayPrayer dayPrayer = calendar.get(index);
+
+            rowHeaders.add(new RowHeader(String.valueOf(dayPrayer.getGregorianDay()), String.valueOf(dayPrayer.getGregorianDay())));
         }
+
+        return rowHeaders;
+    }
+
+    @NonNull
+    private List<ColumnHeader> getColumnHeaderList() {
+        ColumnHeader[] columnHeaders = {
+                new ColumnHeader(getResources().getString(R.string.hijri), getResources().getString(R.string.hijri)),
+                new ColumnHeader(getResources().getString(R.string.FAJR), getResources().getString(R.string.FAJR)),
+                new ColumnHeader(getResources().getString(R.string.SUNRISE), getResources().getString(R.string.SUNRISE)),
+                new ColumnHeader(getResources().getString(R.string.DHOHR), getResources().getString(R.string.DHOHR)),
+                new ColumnHeader(getResources().getString(R.string.ASR), getResources().getString(R.string.ASR)),
+                new ColumnHeader(getResources().getString(R.string.MAGHRIB), getResources().getString(R.string.MAGHRIB)),
+                new ColumnHeader(getResources().getString(R.string.ICHA), getResources().getString(R.string.ICHA))
+        };
+
+        return Arrays.asList(columnHeaders);
+    }
+
+    @NonNull
+    private List<List<Cell>> getCellList(List<DayPrayer> calendar) {
+        List<List<Cell>> list = new ArrayList<>();
+
+        for (int index = 0; index < calendar.size(); index++) {
+            List<Cell> cellList = new ArrayList<>();
+            DayPrayer dayPrayer = calendar.get(index);
+            Map<PrayerEnum, LocalDateTime> timings = dayPrayer.getTimings();
+            Map<ComplementaryTimingEnum, LocalDateTime> complementaryTiming = dayPrayer.getComplementaryTiming();
+
+            cellList.add(new Cell(index + "-0", getHijriShortDate(dayPrayer)));
+            cellList.add(new Cell(index + "-1", UiUtils.formatTiming(Objects.requireNonNull(timings.get(PrayerEnum.FAJR)))));
+            cellList.add(new Cell(index + "-2", UiUtils.formatTiming(Objects.requireNonNull(complementaryTiming.get(ComplementaryTimingEnum.SUNRISE)))));
+            cellList.add(new Cell(index + "-3", UiUtils.formatTiming(Objects.requireNonNull(timings.get(PrayerEnum.DHOHR)))));
+            cellList.add(new Cell(index + "-4", UiUtils.formatTiming(Objects.requireNonNull(timings.get(PrayerEnum.ASR)))));
+            cellList.add(new Cell(index + "-5", UiUtils.formatTiming(Objects.requireNonNull(timings.get(PrayerEnum.MAGHRIB)))));
+            cellList.add(new Cell(index + "-6", UiUtils.formatTiming(Objects.requireNonNull(timings.get(PrayerEnum.ICHA)))));
+
+            list.add(cellList);
+        }
+
+        return list;
     }
 }

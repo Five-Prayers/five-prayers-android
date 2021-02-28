@@ -40,10 +40,9 @@
     <color name="turbo">#FFE500</color>
     <color name="scotch_mist">#FFFEF4</color>
     <color name="spray">#7FDDED</color>
-    <color name="spray2">#EBF6F8</color>
+    <color name="black_squeeze">#EBF6F8</color>
     <color name="rosewood">#530101</color>
+    <color name="thunderbird">#C4161C</color>
+    <color name="catskill_white">#F4F6FA</color>
 
-    <color name="bottomBackground">#F4F6FA</color>
-
-    <color name="app_red">#C4161C</color>
 </resources>

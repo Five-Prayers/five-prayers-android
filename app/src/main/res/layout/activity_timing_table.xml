@@ -90,7 +90,7 @@
             app:allow_click_inside_cell="false"
             app:allow_click_inside_column_header="false"
             app:allow_click_inside_row_header="false"
-            app:selected_color="@color/spray2"
+            app:selected_color="@color/black_squeeze"
             app:separator_color="@color/dew"
             app:shadow_color="@color/white"
             app:unselected_color="@color/white"

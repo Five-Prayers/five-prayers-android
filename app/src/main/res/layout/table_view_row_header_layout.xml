@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_vertical"
+        android:background="@color/zircon"
         android:orientation="vertical">
 
         <TextView
@@ -24,11 +25,4 @@
             android:textSize="@dimen/text_middle"
             tools:text="Row Data" />
     </LinearLayout>
-
-    <View
-        android:layout_width="1dp"
-        android:layout_height="match_parent"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:background="@color/colorAccent" />
 </RelativeLayout>

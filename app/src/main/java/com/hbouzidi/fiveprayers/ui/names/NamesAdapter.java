@@ -1,41 +1,29 @@
 package com.hbouzidi.fiveprayers.ui.names;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.hbouzidi.fiveprayers.R;
 import com.hbouzidi.fiveprayers.names.AllahNames;
 import com.hbouzidi.fiveprayers.names.model.AllahName;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class NamesAdapter extends RecyclerView.Adapter<NamesAdapter.Holder> {
 
-    private NameListner nameListner;
-    private List<AllahName> names;
+    private final List<AllahName> names;
     private Context context;
 
     public NamesAdapter() {
         names = AllahNames.getAll();
-    }
-
-    public void setNameListner(NameListner nameListner) {
-        this.nameListner = nameListner;
-    }
-
-    public void setNameList(List<AllahName> newList) {
-        names = new ArrayList<>(newList);
-    }
-
-    public List<AllahName> getNameDtos() {
-        return names;
     }
 
     @NonNull
@@ -44,9 +32,8 @@ public class NamesAdapter extends RecyclerView.Adapter<NamesAdapter.Holder> {
         context = viewGroup.getContext();
 
         View view = LayoutInflater.from(context).inflate(R.layout.names_item, viewGroup, false);
-        Holder holder = new Holder(view);
 
-        return holder;
+        return new Holder(view);
     }
 
     @Override
@@ -82,10 +69,6 @@ public class NamesAdapter extends RecyclerView.Adapter<NamesAdapter.Holder> {
         return names.size() / 3;
     }
 
-    interface NameListner {
-        void onName(int pos);
-    }
-
     class Holder extends RecyclerView.ViewHolder {
 
         TextView firstNameTextView;
@@ -105,9 +88,15 @@ public class NamesAdapter extends RecyclerView.Adapter<NamesAdapter.Holder> {
         public Holder(@NonNull View itemView) {
             super(itemView);
 
+            Typeface typeface = ResourcesCompat.getFont(context, R.font.font_allah_names);
+
             firstNameTextView = itemView.findViewById(R.id.name_text_view_1);
             secondNameTextView = itemView.findViewById(R.id.name_text_view_2);
             thirdNameTextView = itemView.findViewById(R.id.name_text_view_3);
+
+            firstNameTextView.setTypeface(typeface);
+            secondNameTextView.setTypeface(typeface);
+            thirdNameTextView.setTypeface(typeface);
 
             firstTransliterationTextView = itemView.findViewById(R.id.transliteration_text_view_1);
             secondTransliterationTextView = itemView.findViewById(R.id.transliteration_text_view_2);

@@ -3,6 +3,8 @@ package com.hbouzidi.fiveprayers.ui.names;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -12,6 +14,7 @@ import com.hbouzidi.fiveprayers.R;
 public class NamesActivity extends AppCompatActivity {
 
     private RecyclerView namesRecyclerView;
+    private ConstraintLayout namesContentLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +22,9 @@ public class NamesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_names);
 
         namesRecyclerView = findViewById(R.id.names_recycler_view);
+        namesContentLayout = findViewById(R.id.names_content_layout);
+
+        ViewCompat.setLayoutDirection(namesContentLayout, ViewCompat.LAYOUT_DIRECTION_RTL);
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(view -> finish());

@@ -88,8 +88,8 @@ public class AllahNames {
         list.add(new AllahName(64, "\u0627\u0644\u0652\u0648\u064e\u0627\u062c\u0650\u062f\u064f", "Al Waajid", "%"));
         list.add(new AllahName(65, "\u0627\u0644\u0652\u0645\u064e\u0627\u062c\u0650\u062f\u064f", "Al Maajid", "&"));
         list.add(new AllahName(66, "\u0627\u0644\u0652\u0648\u0627\u062d\u0650\u062f\u064f", "Al Waahid", "'"));
-        list.add(new AllahName(67, "\u0627\u064e\u0644\u0627\u064e\u062d\u064e\u062f\u064f", "Al Ahad", "("));
-        list.add(new AllahName(68, "\u0627\u0644\u0635\u064e\u0651\u0645\u064e\u062f\u064f", "As Samad", ")"));
+        list.add(new AllahName(67, "\u0627\u064e\u0644\u0627\u064e\u062d\u064e\u062f\u064f", "Al Ahad", ")"));
+        list.add(new AllahName(68, "\u0627\u0644\u0635\u064e\u0651\u0645\u064e\u062f\u064f", "As Samad", "("));
         list.add(new AllahName(69, "\u0627\u0644\u0652\u0642\u064e\u0627\u062f\u0650\u0631\u064f", "Al Qaadir", "*"));
         list.add(new AllahName(70, "\u0627\u0644\u0652\u0645\u064f\u0642\u0652\u062a\u064e\u062f\u0650\u0631\u064f", "Al Muqtadir", "+"));
 
@@ -100,22 +100,22 @@ public class AllahNames {
         list.add(new AllahName(75, "\u0627\u0644\u0638\u064e\u0651\u0627\u0647\u0650\u0631\u064f", "Az Zaahir", "0"));
         list.add(new AllahName(76, "\u0627\u0644\u0652\u0628\u064e\u0627\u0637\u0650\u0646\u064f", "Al Baatin", ":"));
         list.add(new AllahName(77, "\u0627\u0644\u0652\u0648\u064e\u0627\u0644\u0650\u064a", "Al Waali", ";"));
-        list.add(new AllahName(78, "\u0627\u0644\u0652\u0645\u064f\u062a\u064e\u0639\u064e\u0627\u0644\u0650\u064a","Al Muta\u2019ali" , "<"));
+        list.add(new AllahName(78, "\u0627\u0644\u0652\u0645\u064f\u062a\u064e\u0639\u064e\u0627\u0644\u0650\u064a","Al Muta\u2019ali" , ">"));
         list.add(new AllahName(79, "\u0627\u0644\u0652\u0628\u064e\u0631\u064f\u0651", "Al Barr", "="));
-        list.add(new AllahName(80, "\u0627\u0644\u062a\u064e\u0651\u0648\u064e\u0627\u0628\u064f", "At Tawwaab", ">"));
+        list.add(new AllahName(80, "\u0627\u0644\u062a\u064e\u0651\u0648\u064e\u0627\u0628\u064f", "At Tawwaab", "<"));
 
         list.add(new AllahName(81, "\u0627\u0644\u0652\u0645\u064f\u0646\u0652\u062a\u064e\u0642\u0650\u0645\u064f","Al Muntaqim" , "?"));
         list.add(new AllahName(82, "\u0627\u0644\u0639\u064e\u0641\u064f\u0648\u064f\u0651", "Al Afuww", "@"));
-        list.add(new AllahName(83, "\u0627\u0644\u0631\u064e\u0651\u0624\u064f\u0648\u0641\u064f", "Ar Ra\u2019oof", "["));
+        list.add(new AllahName(83, "\u0627\u0644\u0631\u064e\u0651\u0624\u064f\u0648\u0641\u064f", "Ar Ra\u2019oof", "]"));
         list.add(new AllahName(84, "\u0645\u064e\u0627\u0644\u0650\u0643\u064f \u0627\u0644\u0652\u0645\u064f\u0644\u0652\u0643\u0650", "Maalik Ul Mulk", "\\"));
-        list.add(new AllahName(85, "\u0630\u064f\u0648\u0627\u0644\u0652\u062c\u064e\u0644\u0627\u064e\u0644\u0650 \u0648\u064e\u0627\u0644\u0625\u0643\u0652\u0631\u064e\u0627\u0645\u0650", "Dhu Al Jalaali Wa Al Ikraam", "]"));
+        list.add(new AllahName(85, "\u0630\u064f\u0648\u0627\u0644\u0652\u062c\u064e\u0644\u0627\u064e\u0644\u0650 \u0648\u064e\u0627\u0644\u0625\u0643\u0652\u0631\u064e\u0627\u0645\u0650", "Dhu Al Jalaali Wa Al Ikraam", "["));
         list.add(new AllahName(86, "\u0627\u0644\u0652\u0645\u064f\u0642\u0652\u0633\u0650\u0637\u064f","Al Muqsit" , "^"));
         list.add(new AllahName(87, "\u0627\u0644\u0652\u062c\u064e\u0627\u0645\u0650\u0639\u064f", "Al Jaami'", "_"));
         list.add(new AllahName(88, "\u0627\u0644\u0652\u063a\u064e\u0646\u0650\u064a\u064f\u0651", "Al Ghaniyy", "`"));
-        list.add(new AllahName(89, "\u0627\u0644\u0652\u0645\u064f\u063a\u0652\u0646\u0650\u064a", "Al Mughi", "{"));
+        list.add(new AllahName(89, "\u0627\u0644\u0652\u0645\u064f\u063a\u0652\u0646\u0650\u064a", "Al Mughi", "}"));
         list.add(new AllahName(90,"\u0627\u064e\u0644\u0652\u0645\u064e\u0627\u0646\u0650\u0639\u064f" , "Al Maani'", "|"));
 
-        list.add(new AllahName(91, "\u0627\u0644\u0636\u064e\u0651\u0627\u0631\u064e\u0651", "Ad Daaarr", "}"));
+        list.add(new AllahName(91, "\u0627\u0644\u0636\u064e\u0651\u0627\u0631\u064e\u0651", "Ad Daaarr", "{"));
         list.add(new AllahName(92, "\u0627\u0644\u0646\u064e\u0651\u0627\u0641\u0650\u0639\u064f", "An Naafi\u2019", "~"));
         list.add(new AllahName(93, "\u0627\u0644\u0646\u064f\u0651\u0648\u0631\u064f", "An Noor", "¡"));
         list.add(new AllahName(94, "\u0627\u0644\u0652\u0647\u064e\u0627\u062f\u0650\u064a", "Al Haadi", "¢"));

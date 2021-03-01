@@ -24,7 +24,7 @@
             android:layout_marginRight="4dp"
             android:gravity="center"
             android:textColor="@color/stratos"
-            android:textSize="14sp"
+            android:textSize="@dimen/text_middle"
             tools:text="24" />
 
         <TextView
@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:textColor="@color/flirt"
-            android:textSize="13sp" />
+            android:textSize="@dimen/text_middle"/>
 
         <ImageView
             android:id="@+id/hijri_calendar_date_month_text_view"

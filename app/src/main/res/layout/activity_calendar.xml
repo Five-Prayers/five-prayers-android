@@ -95,12 +95,13 @@
                 android:layout_marginTop="8dp"
                 android:background="@color/colorAccent"
                 android:fontFamily="sans-serif-medium"
+                android:gravity="center_vertical"
                 android:paddingStart="20dp"
                 android:paddingTop="12dp"
                 android:paddingEnd="20dp"
                 android:paddingBottom="12dp"
                 android:textColor="@color/stratos"
-                android:textSize="14sp"
+                android:textSize="@dimen/text_middle"
                 tools:text="7 Jan, 2019" />
 
             <androidx.recyclerview.widget.RecyclerView

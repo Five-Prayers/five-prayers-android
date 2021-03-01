@@ -13,10 +13,10 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="SUN"
+        tools:text="SUN"
         android:textAllCaps="true"
         android:textColor="@color/stratos"
-        android:textSize="14sp" />
+        android:textSize="@dimen/text_middle" />
 
     <TextView
         android:id="@+id/legendText2"
@@ -24,10 +24,10 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="MON"
+        tools:text="MON"
         android:textColor="@color/stratos"
         android:textAllCaps="true"
-        android:textSize="14sp" />
+        android:textSize="@dimen/text_middle" />
 
     <TextView
         android:id="@+id/legendText3"
@@ -35,10 +35,10 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="TUE"
+        tools:text="TUE"
         android:textColor="@color/stratos"
         android:textAllCaps="true"
-        android:textSize="14sp" />
+        android:textSize="@dimen/text_middle" />
 
     <TextView
         android:id="@+id/legendText4"
@@ -46,10 +46,10 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="WED"
+        tools:text="WED"
         android:textColor="@color/stratos"
         android:textAllCaps="true"
-        android:textSize="14sp" />
+        android:textSize="@dimen/text_middle" />
 
     <TextView
         android:id="@+id/legendText5"
@@ -57,10 +57,10 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="THU"
+        tools:text="THU"
         android:textColor="@color/stratos"
         android:textAllCaps="true"
-        android:textSize="14sp" />
+        android:textSize="@dimen/text_middle" />
 
     <TextView
         android:id="@+id/legendText6"
@@ -68,10 +68,10 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="FRI"
+        tools:text="FRI"
         android:textColor="@color/stratos"
         android:textAllCaps="true"
-        android:textSize="14sp" />
+        android:textSize="@dimen/text_middle" />
 
     <TextView
         android:id="@+id/legendText7"
@@ -79,8 +79,8 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="SAT"
+        tools:text="SAT"
         android:textColor="@color/stratos"
         android:textAllCaps="true"
-        android:textSize="14sp" />
+        android:textSize="@dimen/text_middle" />
 </LinearLayout>

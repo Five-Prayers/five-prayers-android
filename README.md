@@ -1,5 +1,20 @@
+<p align="center"><a href="https://github.com/HichamBI/five-prayers-android"><img src="app/src/main/res/mipmap-xhdpi/ic_launcher_round.png" width="150"></a></p> 
 <h2 align="center"><b>Five Prayers Android</b></h2>
 <h4 align="center">A libre lightweight and ads free set of muslim tools</h4>
+
+<p align="center">
+<a href="https://www.gnu.org/licenses/gpl-3.0" alt="License: GPLv3"><img src="https://img.shields.io/badge/License-GPL%20v3-blue.svg"></a>
+</p>
+
+## Screenshots
+
+[<img src="screenshots/pixel_4xl/Screenshot_1_pixel_4xl_3_21.png" width=160>](screenshots/pixel_4xl/Screenshot_1_pixel_4xl_3_21.png)
+[<img src="screenshots/pixel_4xl/Screenshot_2_pixel_4xl_3_21.png" width=160>](screenshots/pixel_4xl/Screenshot_1_pixel_4xl_3_21.png)
+[<img src="screenshots/pixel_4xl/Screenshot_3_pixel_4xl_3_21.png" width=160>](screenshots/pixel_4xl/Screenshot_1_pixel_4xl_3_21.png)
+[<img src="screenshots/pixel_4xl/Screenshot_4_pixel_4xl_3_21.png" width=160>](screenshots/pixel_4xl/Screenshot_1_pixel_4xl_3_21.png)
+[<img src="screenshots/pixel_4xl/Screenshot_5_pixel_4xl_3_21.png" width=160>](screenshots/pixel_4xl/Screenshot_1_pixel_4xl_3_21.png)
+[<img src="screenshots/pixel_4xl/Screenshot_6_pixel_4xl_3_21.png" width=160>](screenshots/pixel_4xl/Screenshot_1_pixel_4xl_3_21.png)
+[<img src="screenshots/pixel_4xl/Screenshot_7_pixel_4xl_3_21.png" width=160>](screenshots/pixel_4xl/Screenshot_1_pixel_4xl_3_21.png)
 
 ## Description
 

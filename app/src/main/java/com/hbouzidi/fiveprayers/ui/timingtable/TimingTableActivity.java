@@ -2,13 +2,12 @@ package com.hbouzidi.fiveprayers.ui.timingtable;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.view.ViewCompat;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.evrencoskun.tableview.TableView;
@@ -50,6 +49,10 @@ public class TimingTableActivity extends AppCompatActivity {
         TimingTableViewModel timingTableViewModel = new ViewModelProvider(this).get(TimingTableViewModel.class);
 
         mTableView = findViewById(R.id.tableview);
+
+        // Force direction to LTR until Table view RTL support released
+        ConstraintLayout tableConstraintLayout = findViewById(R.id.table_constraint_layout);
+        ViewCompat.setLayoutDirection(tableConstraintLayout, ViewCompat.LAYOUT_DIRECTION_LTR);
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(view -> finish());

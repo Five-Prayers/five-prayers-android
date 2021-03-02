@@ -42,6 +42,7 @@ public class TimingTableActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_timing_table);
 
         SharedPreferences sharedPreferences = getSharedPreferences(PreferencesConstants.LOCATION, MODE_PRIVATE);
@@ -80,10 +81,9 @@ public class TimingTableActivity extends AppCompatActivity {
     private void initializeTableView(List<DayPrayer> calendar) {
         String month = LocalDate.now().getMonth().getDisplayName(TextStyle.SHORT, Locale.getDefault());
 
-        TableViewAdapter tableViewAdapter = new TableViewAdapter(StringUtils.capitalize(month), getApplicationContext());
+        TableViewAdapter tableViewAdapter = new TableViewAdapter(StringUtils.capitalize(month));
 
         mTableView.setAdapter(tableViewAdapter);
-        mTableView.setHasFixedWidth(true);
         tableViewAdapter.setAllItems(getColumnHeaderList(), getRowHeaderList(calendar), getCellList(calendar));
 
         mTableView.getSelectionHandler().setSelectedRowPosition(LocalDate.now().getDayOfMonth() - 1);
@@ -107,12 +107,12 @@ public class TimingTableActivity extends AppCompatActivity {
     private List<ColumnHeader> getColumnHeaderList() {
         ColumnHeader[] columnHeaders = {
                 new ColumnHeader(getResources().getString(R.string.hijri), getResources().getString(R.string.hijri)),
-                new ColumnHeader(getResources().getString(R.string.FAJR), getResources().getString(R.string.FAJR)),
+                new ColumnHeader(getResources().getString(R.string.SHORT_FAJR), getResources().getString(R.string.SHORT_FAJR)),
                 new ColumnHeader(getResources().getString(R.string.SUNRISE), getResources().getString(R.string.SUNRISE)),
-                new ColumnHeader(getResources().getString(R.string.DHOHR), getResources().getString(R.string.DHOHR)),
-                new ColumnHeader(getResources().getString(R.string.ASR), getResources().getString(R.string.ASR)),
-                new ColumnHeader(getResources().getString(R.string.MAGHRIB), getResources().getString(R.string.MAGHRIB)),
-                new ColumnHeader(getResources().getString(R.string.ICHA), getResources().getString(R.string.ICHA))
+                new ColumnHeader(getResources().getString(R.string.SHORT_DHOHR), getResources().getString(R.string.SHORT_DHOHR)),
+                new ColumnHeader(getResources().getString(R.string.SHORT_ASR), getResources().getString(R.string.SHORT_ASR)),
+                new ColumnHeader(getResources().getString(R.string.SHORT_MAGHRIB), getResources().getString(R.string.SHORT_MAGHRIB)),
+                new ColumnHeader(getResources().getString(R.string.SHORT_ICHA), getResources().getString(R.string.SHORT_ICHA))
         };
 
         return Arrays.asList(columnHeaders);

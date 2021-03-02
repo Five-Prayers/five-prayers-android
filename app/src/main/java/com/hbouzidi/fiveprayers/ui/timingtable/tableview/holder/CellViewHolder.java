@@ -26,10 +26,10 @@ public class CellViewHolder extends AbstractViewHolder {
         cell_container = itemView.findViewById(R.id.cell_container);
     }
 
-    public void setCell(@Nullable Cell cell, Context context) {
+    public void setCell(@Nullable Cell cell) {
         cell_textview.setText(String.valueOf(Objects.requireNonNull(cell).getData()));
 
-        cell_container.getLayoutParams().width = (int) (150 * context.getResources().getDisplayMetrics().density);;
+        cell_container.getLayoutParams().width = LinearLayout.LayoutParams.WRAP_CONTENT;
         cell_textview.requestLayout();
     }
 }

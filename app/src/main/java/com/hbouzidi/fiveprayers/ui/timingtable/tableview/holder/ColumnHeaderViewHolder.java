@@ -27,11 +27,11 @@ public class ColumnHeaderViewHolder extends AbstractSorterViewHolder {
         column_header_container = itemView.findViewById(R.id.column_header_container);
     }
 
-    public void setColumnHeader(@Nullable ColumnHeader columnHeader, Context context) {
+    public void setColumnHeader(@Nullable ColumnHeader columnHeader) {
         column_header_textview.setText(String.valueOf(Objects.requireNonNull(columnHeader).getData()));
 
 
-        column_header_container.getLayoutParams().width = (int) (150 * context.getResources().getDisplayMetrics().density);
+        column_header_container.getLayoutParams().width = LinearLayout.LayoutParams.WRAP_CONTENT;
         column_header_textview.requestLayout();
     }
 }

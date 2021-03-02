@@ -10,7 +10,7 @@
 
     <TextView
         android:id="@+id/cell_data"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="center_vertical"
         android:layout_marginEnd="10dp"

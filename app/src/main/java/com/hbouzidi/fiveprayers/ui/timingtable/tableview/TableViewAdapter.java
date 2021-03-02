@@ -26,12 +26,10 @@ public class TableViewAdapter extends AbstractTableAdapter<ColumnHeader, RowHead
 
 
     private final String month;
-    private Context context;
 
-    public TableViewAdapter(String month, Context context) {
+    public TableViewAdapter(String month) {
         super();
         this.month = month;
-        this.context = context;
     }
 
     @NonNull
@@ -51,7 +49,7 @@ public class TableViewAdapter extends AbstractTableAdapter<ColumnHeader, RowHead
             columnPosition, int rowPosition) {
 
         CellViewHolder viewHolder = (CellViewHolder) holder;
-        viewHolder.setCell(cellItemModel, context);
+        viewHolder.setCell(cellItemModel);
     }
 
     @NonNull
@@ -68,7 +66,7 @@ public class TableViewAdapter extends AbstractTableAdapter<ColumnHeader, RowHead
             columnHeaderItemModel, int columnPosition) {
 
         ColumnHeaderViewHolder columnHeaderViewHolder = (ColumnHeaderViewHolder) holder;
-        columnHeaderViewHolder.setColumnHeader(columnHeaderItemModel, context);
+        columnHeaderViewHolder.setColumnHeader(columnHeaderItemModel);
     }
 
     @NonNull

@@ -20,14 +20,13 @@ import java.time.LocalDate;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.observers.DisposableSingleObserver;
-import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class HomeViewModel extends AndroidViewModel {
 
-    private MutableLiveData<DayPrayer> mDayPrayers;
-    private MutableLiveData<Boolean> mLocationAvailable;
-    private MutableLiveData<String> mErrorMessage;
-    private LocalDate todayDate;
+    private final MutableLiveData<DayPrayer> mDayPrayers;
+    private final MutableLiveData<Boolean> mLocationAvailable;
+    private final MutableLiveData<String> mErrorMessage;
+    private final LocalDate todayDate;
     private CompositeDisposable compositeDisposable;
 
     public HomeViewModel(@NonNull Application application) {
@@ -80,7 +79,7 @@ public class HomeViewModel extends AndroidViewModel {
 
                             @Override
                             public void onError(@io.reactivex.rxjava3.annotations.NonNull Throwable e) {
-                                mErrorMessage.setValue(e.getMessage());
+                                mErrorMessage.postValue(e.getMessage());
                             }
                         }));
     }

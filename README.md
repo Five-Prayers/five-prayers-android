@@ -81,7 +81,7 @@ We process and store data based on the EU General Data Protection Regulation (Re
 
 The following section fulfills the requirements of the GDPR Articles 13 and 14, and informs you about the collection and processing of personal data within our project.
 
-### Bug report tracking system
+#### Bug report tracking system
 
 To help Five Prayers Android's improving and fixing bugs, we implemented a bug reporting system to allow user to send a crash report :  When Five Prayers Android crashes on a device, the user is shown a dialog containing a summary of the information about the bug. The user can opt to send the full details to us. When a user clicks the send button, Five Prayers Android composes an e-mail via the Android system containing the details in a machine-readable format called JSON. JSON is a text-based format, allowing users to read the data and check exactly what data could be sent to us. Users can remove or anonymize data which they do not want to be shared.
 
@@ -103,11 +103,11 @@ Only a small circle of people has access to the bug repport email. We instruct e
 
 ### Users' rights
 
-Every user has the right to request details about the personal data stored about them according to GDPR Art. 15.
-Every user has the right to request the correction or completion (GDPR Art. 16) or deletion (GDPR Art. 17) or restriction of use (GDPR Art. 18) of the data sent to us at any time.
-According to GDPR Art. 77, you may, at any time, file a complaint about our data processing at your local data protection officer.
-According to GDPR Art. 7 paragraph 3, you may revoke any consent you gave us about storing and processing data at any time for future time.
-According to GDPR Art. 21, you may at any time dissent the processing and storing of data listed in the article.
+    Every user has the right to request details about the personal data stored about them according to GDPR Art. 15.
+    Every user has the right to request the correction or completion (GDPR Art. 16) or deletion (GDPR Art. 17) or restriction of use (GDPR Art. 18) of the data sent to us at any time.
+    According to GDPR Art. 77, you may, at any time, file a complaint about our data processing at your local data protection officer.
+    According to GDPR Art. 7 paragraph 3, you may revoke any consent you gave us about storing and processing data at any time for future time.
+    According to GDPR Art. 21, you may at any time dissent the processing and storing of data listed in the article.
 
 ## License
 [![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](http://www.gnu.org/licenses/gpl-3.0.en.html)  

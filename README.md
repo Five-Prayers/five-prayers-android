@@ -85,7 +85,7 @@ The following section fulfills the requirements of the GDPR Articles 13 and 14, 
 
 To help Five Prayers Android's improving and fixing bugs, we implemented a bug reporting system to allow user to send a crash report :  When Five Prayers Android crashes on a device, the user is shown a dialog containing a summary of the information about the bug. The user can opt to send the full details to us. When a user clicks the send button, Five Prayers Android composes an e-mail via the Android system containing the details in a machine-readable format called JSON. JSON is a text-based format, allowing users to read the data and check exactly what data could be sent to us. Users can remove or anonymize data which they do not want to be shared.
 
-* The JSON part contains the following information:
+The JSON part contains the following information:
 
    - the e-mail address of the sender
    - the type/name of the error

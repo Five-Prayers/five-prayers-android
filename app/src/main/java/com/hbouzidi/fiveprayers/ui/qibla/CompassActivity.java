@@ -51,8 +51,6 @@ public class CompassActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_compass);
 
-        preventScreenOrientation();
-
         QiblaViewModel qiblaViewModel = new ViewModelProvider(this).get(QiblaViewModel.class);
 
         prefs = getSharedPreferences("", MODE_PRIVATE);
@@ -265,14 +263,5 @@ public class CompassActivity extends AppCompatActivity {
             tvAngle.setText(getResources().getString(R.string.pls_enable_location));
             tvYourLocation.setText(getResources().getString(R.string.pls_enable_location));
         }
-    }
-
-    private void preventScreenOrientation() {
-        if (getWindowManager().getDefaultDisplay().getRotation() == Surface.ROTATION_0)
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        if (getWindowManager().getDefaultDisplay().getRotation() == Surface.ROTATION_90)
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        if (getWindowManager().getDefaultDisplay().getRotation() == Surface.ROTATION_270)
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE);
     }
 }

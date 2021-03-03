@@ -27,7 +27,10 @@ Five Prayers Android is not Google Framework dependent, so this app can be used 
 ### Features
 
 * Worldwide Prayer Times
-* Different prayer times calculation methods based on <a href="https://aladhan.com">Aladhan.com</a> API
+
+* <details>
+  <summary>Different prayer times calculation methods based on <a href="https://aladhan.com">Aladhan.com</a> API</summary>
+    
     - Shia Ithna Ashari, Leva Research Institute, Qum
     - University of Islamic Sciences, Karachi
     - Islamic Society of North America (ISNA)
@@ -45,9 +48,13 @@ Five Prayers Android is not Google Framework dependent, so this app can be used 
     - Angle 15° - France
     - Diyanet İşleri Başkanlığı - Turkey
     - Spiritual Administration of Muslims of Russia
+    - London Unified Prayer Times
     - Ministry of Islamic Affairs and Habous - Morocco
     - Ministry of religious affairs - Tunisia
     - Ministry of Religious Affairs and wakfs- Algeria
+    
+</details>
+
 * Prayer times Adjustement
 * Hijri Calendar.
 * Automatic or Manual location
@@ -56,7 +63,7 @@ Five Prayers Android is not Google Framework dependent, so this app can be used 
 * Switches Adhan to Silent by pressing down volume button
 * Month Prayer times table
 * Qibla direction compass from [Android Qibla Direction](https://github.com/hassaanjamil/hj-android-lib-qibla-direction)
-* Quran (Please consider this open-source project is your are looking more features [Quran Android](https://github.com/quran/quran_android))
+* Quran (Please consider this open-source project if your are looking more features [Quran Android](https://github.com/quran/quran_android))
 * 99 Names of God
 
 ## Translating

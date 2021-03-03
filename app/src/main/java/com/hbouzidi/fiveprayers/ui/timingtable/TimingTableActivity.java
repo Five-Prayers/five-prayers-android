@@ -2,6 +2,7 @@ package com.hbouzidi.fiveprayers.ui.timingtable;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -38,6 +39,7 @@ import java.util.Objects;
 public class TimingTableActivity extends AppCompatActivity {
 
     private TableView mTableView;
+    private View loadingLinearLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +52,7 @@ public class TimingTableActivity extends AppCompatActivity {
         TimingTableViewModel timingTableViewModel = new ViewModelProvider(this).get(TimingTableViewModel.class);
 
         mTableView = findViewById(R.id.tableview);
+        loadingLinearLayout = findViewById(R.id.loading_linear_layout);
 
         // Force direction to LTR until Table view RTL support released
         ConstraintLayout tableConstraintLayout = findViewById(R.id.table_constraint_layout);
@@ -63,6 +66,8 @@ public class TimingTableActivity extends AppCompatActivity {
 
         TextView dateTextView = findViewById(R.id.date_text_view);
         dateTextView.setText(StringUtils.capitalize(UiUtils.formatShortDate(LocalDate.now())));
+
+        loadingLinearLayout.setVisibility(View.VISIBLE);
 
         timingTableViewModel.getCalendar().observe(this, this::initializeTableView);
     }
@@ -79,6 +84,8 @@ public class TimingTableActivity extends AppCompatActivity {
     }
 
     private void initializeTableView(List<DayPrayer> calendar) {
+        loadingLinearLayout.setVisibility(View.INVISIBLE);
+
         String month = LocalDate.now().getMonth().getDisplayName(TextStyle.SHORT, Locale.getDefault());
 
         TableViewAdapter tableViewAdapter = new TableViewAdapter(StringUtils.capitalize(month));

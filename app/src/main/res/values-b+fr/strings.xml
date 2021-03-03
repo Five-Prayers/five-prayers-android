@@ -24,6 +24,7 @@
     <string name="common.error">Erreur</string>
     <string name="common_alert">Alerte</string>
     <string name="common_page">Page</string>
+    <string name="common.loading">Chargement en cours …</string>
 
     <string name="app_name">Cinq Prières</string>
     <string name="title_home">Prières</string>

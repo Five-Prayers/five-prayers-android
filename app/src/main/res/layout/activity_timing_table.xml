@@ -83,6 +83,11 @@
         table:layout_constraintStart_toStartOf="parent"
         table:layout_constraintTop_toBottomOf="@+id/title_layout">
 
+        <include
+            android:id="@+id/loading_linear_layout"
+            layout="@layout/layout_loading_with_text"
+            android:visibility="gone" />
+
         <com.evrencoskun.tableview.TableView
             android:id="@+id/tableview"
             android:layout_width="match_parent"

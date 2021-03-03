@@ -27,7 +27,7 @@ Five Prayers Android is not Google Framework dependent, so this app can be used 
 ### Features
 
 * Worldwide Prayer Times
-* Different prayer times calculation methods based on <a href="https://aladhan.com">aladhan.com</a> API
+* Different prayer times calculation methods based on <a href="https://aladhan.com">Aladhan.com</a> API
     - Shia Ithna Ashari, Leva Research Institute, Qum
     - University of Islamic Sciences, Karachi
     - Islamic Society of North America (ISNA)
@@ -55,8 +55,8 @@ Five Prayers Android is not Google Framework dependent, so this app can be used 
 * Reads Adhan for prayer times
 * Switches Adhan to Silent by pressing down volume button
 * Month Prayer times table
-* Qibla direction compass
-* Quran
+* Qibla direction compass from [Android Qibla Direction](https://github.com/hassaanjamil/hj-android-lib-qibla-direction)
+* Quran (Please consider this open-source project is your are looking more features [Quran Android](https://github.com/quran/quran_android))
 * 99 Names of God
 
 ## Translating
@@ -111,6 +111,35 @@ Only a small circle of people has access to the bug repport email. We instruct e
    - According to GDPR Art. 77, you may, at any time, file a complaint about our data processing at your local data protection officer.
    - According to GDPR Art. 7 paragraph 3, you may revoke any consent you gave us about storing and processing data at any time for future time.
    - According to GDPR Art. 21, you may at any time dissent the processing and storing of data listed in the article.
+
+
+## Publishing and using Five Prayers for Android code in other projects
+
+The intention behind open sourcing Five Prayers for Android is two fold - first, to spare people from intrusive, annoying and invasive advertisements. Second to allow developers to help contribute to the app, thus speeding up the development of new features and ideas.
+
+Therefore, people planning on taking this project and profiting from it (by way of ads, in app purchases, etc) are in fact breaking his mainspring.
+
+Please keep use of this code for non-profit purposes only. Also, please note that the project is under the GPL 3 license, which requires that modifications to this code be open sourced as well. Please note that the data is licensed under the various licenses of the data's authors (typically, this is [CC BY-NC-ND](https://creativecommons.org/licenses/by-nc-nd/2.0/), but may differ depending on the source of the data).
+
+## Open Source Projects Used
+
+* [AndroidX](https://developer.android.com/jetpack/androidx/)
+* [Material Design Components](https://github.com/material-components/material-components-android)
+* [OkHttp](https://github.com/square/okhttp)
+* [RxJava 3](https://github.com/ReactiveX/RxJava)
+* [RxAndroid](https://github.com/ReactiveX/RxAndroid)
+* [Circular Progress Bar](https://github.com/lopspower/CircularProgressBar)
+* [Skeleton Layout](https://github.com/Faltenreich/SkeletonLayout)
+* [TableView](https://github.com/evrencoskun/TableView)
+* [GifView](https://github.com/Cutta/GifView)
+* [NumberPicker](https://github.com/travijuu/NumberPicker)
+* [CalendarView](https://github.com/kizitonwose/CalendarView)
+* [AppIntro](https://github.com/AppIntro/AppIntro)
+* [CustomActivityOnCrash](https://github.com/Ereza/CustomActivityOnCrash)
+* [LovelyDialog](https://github.com/yarolegovich/LovelyDialog)
+* [Android Qibla Direction](https://github.com/hassaanjamil/hj-android-lib-qibla-direction)
+* [Quran Android](https://github.com/quran/quran_android)
+* [NewPipe](https://github.com/TeamNewPipe/NewPipe)
 
 ## License
 [![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](http://www.gnu.org/licenses/gpl-3.0.en.html)  

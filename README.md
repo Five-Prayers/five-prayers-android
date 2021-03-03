@@ -6,6 +6,11 @@
 <a href="https://www.gnu.org/licenses/gpl-3.0" alt="License: GPLv3"><img src="https://img.shields.io/badge/License-GPL%20v3-blue.svg"></a>
 </p>
 
+<hr>
+<p align="center"><a href="#screenshots">Screenshots</a> &bull; <a href="#description">Description</a> &bull; <a href="#features">Features</a> &bull; <a href="#translating">Translating</a> &bull; <a href="#contributing">Contributing</a></p>
+<p align="center"><a href="#publishing-and-using-five-prayers-for-android-code-in-other-projects">Publishing and using Five Prayers</a> &bull; <a href="#open-source-projects-used">Open Source Projects Used</a> &bull; <a href="#privacy-policy">Privacy Policy</a> &bull; <a href="#license">License</a> </p>
+<hr>
+
 ## Screenshots
 
 [<img src="screenshots/pixel_4xl/Screenshot_0_pixel_4xl_3_21.png" width=160>](screenshots/pixel_4xl/Screenshot_0_pixel_4xl_3_21.png)

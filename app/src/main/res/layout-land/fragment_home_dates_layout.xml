@@ -141,6 +141,24 @@
             app:layout_constraintTop_toBottomOf="@+id/location_layout"
             tools:text="Maroc (+1:00)" />
 
+        <TextView
+            android:id="@+id/calculation_method_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="sans-serif-condensed"
+            android:gravity="start"
+            android:maxLines="1"
+            android:textColor="@color/textSecondary"
+            android:textStyle="normal"
+            android:scrollHorizontally="true"
+            android:ellipsize="end"
+            android:textSize="@dimen/text_middle"
+            app:autoSizeTextType="uniform"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/country_text_view"
+            tools:text="L\'Union des Organisations Islamiques de France (UOIF)" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

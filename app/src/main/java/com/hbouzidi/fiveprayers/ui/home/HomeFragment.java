@@ -40,7 +40,6 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 
@@ -56,6 +55,7 @@ public class HomeFragment extends Fragment {
 
     private TextView countryTextView;
     private TextView locationTextView;
+    private TextView calculationMethodTextView;
     private TextView hijriTextView;
     private TextView holidayIndicatorTextView;
     private TextView gregorianTextView;
@@ -154,6 +154,7 @@ public class HomeFragment extends Fragment {
         prayerTimetextView = rootView.findViewById(R.id.prayerTimetextView);
         timeRemainingTextView = rootView.findViewById(R.id.timeRemainingTextView);
         circularProgressBar = rootView.findViewById(R.id.circularProgressBar);
+        calculationMethodTextView = rootView.findViewById(R.id.calculation_method_text_view);
 
         fajrClock = rootView.findViewById(R.id.farj_clock_view);
         dohrClock = rootView.findViewById(R.id.dohr_clock_view);
@@ -273,6 +274,14 @@ public class HomeFragment extends Fragment {
         String country = dayPrayer.getCountry() + " (" + timezone + ")";
         countryTextView.setText(StringUtils.capitalize(country));
         locationTextView.setText(StringUtils.capitalize(locationText));
+
+        String methodKey = String.valueOf(dayPrayer.getCalculationMethodEnum()).toLowerCase();
+        int id = getResources().getIdentifier("short_method_" + methodKey, "string", context.getPackageName());
+
+        if (id != 0) {
+            String methodName = getResources().getString(id);
+            calculationMethodTextView.setText(methodName);
+        }
 
         HijriHoliday holiday = HijriHoliday.getHoliday(dayPrayer.getHijriDay(), dayPrayer.getHijriMonthNumber());
 

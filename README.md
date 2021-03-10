@@ -3,14 +3,14 @@
 <h4 align="center">A libre lightweight and ads free set of muslim tools</h4>
 
 <p align="center">
-<a href="https://android-arsenal.com/api?level=16" alt="Min API: 16" target="_blanc"><img src="https://img.shields.io/badge/API-16%2B-brightgreen.svg?style=flat"></a>
-<a href="https://www.gnu.org/licenses/gpl-3.0" alt="License: GPLv3" target="_blanc"><img src="https://img.shields.io/badge/License-GPL%20v3-blue.svg"></a>
-<a href="https://github.com/Five-Prayers/five-prayers-android/releases" alt="Download: latest version" target="_blanc"><img src="https://img.shields.io/badge/Download-latest-green"></a>
+<a href="https://android-arsenal.com/api?level=16" alt="Min API: 16" target="_blank"><img src="https://img.shields.io/badge/API-16%2B-brightgreen.svg?style=flat"></a>
+<a href="https://www.gnu.org/licenses/gpl-3.0" alt="License: GPLv3" target="_blank"><img src="https://img.shields.io/badge/License-GPL%20v3-blue.svg"></a>
+<a href="https://github.com/Five-Prayers/five-prayers-android/releases" alt="Download: latest version" target="_blank"><img src="https://img.shields.io/badge/Download-latest-green"></a>
 </p>
 
 <hr>
 <p align="center">
-<a href="https://play.google.com/store/apps/details?id=com.hbouzidi.fiveprayers" alt="Play Store Link" target="_blanc">
+<a href="https://play.google.com/store/apps/details?id=com.hbouzidi.fiveprayers" alt="Play Store Link" target="_blank">
   <img alt="Android app on Google Play" src="https://developer.android.com/images/brand/en_app_rgb_wo_45.png" />
 </a>
 </p>

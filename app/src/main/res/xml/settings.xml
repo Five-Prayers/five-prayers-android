@@ -90,4 +90,16 @@
             android:key="HIJRI_DAY_ADJUSTMENT_PREFERENCE"
             android:title="@string/title_hijri_day_adjustment_preference" />
     </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/about_five_prayers">
+        <Preference android:title="@string/privacy_policy_title" >
+            <intent android:action="android.intent.action.VIEW"
+                android:data="https://github.com/Five-Prayers/five-prayers-android#privacy-policy" />
+        </Preference>
+
+        <Preference android:title="@string/open_source_projects_used" >
+            <intent android:action="android.intent.action.VIEW"
+                android:data="https://github.com/Five-Prayers/five-prayers-android#open-source-projects-used" />
+        </Preference>
+    </PreferenceCategory>
 </PreferenceScreen>

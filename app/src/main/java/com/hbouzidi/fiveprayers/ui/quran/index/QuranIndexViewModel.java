@@ -21,6 +21,7 @@ import com.hbouzidi.fiveprayers.quran.parser.QuranParser;
 import com.hbouzidi.fiveprayers.utils.Decompressor;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import static android.content.Context.DOWNLOAD_SERVICE;
@@ -131,7 +132,13 @@ public class QuranIndexViewModel extends AndroidViewModel {
                                 downloadedFile = new File(fullPath);
                             }
 
-                            Decompressor unzip = new Decompressor(downloadedFile, unzipDestinationFolder.getAbsolutePath());
+                            Decompressor unzip = null;
+                            try {
+                                unzip = new Decompressor(downloadedFile, unzipDestinationFolder.getCanonicalPath());
+                            } catch (IOException e) {
+                                mDownloadError.postValue(true);
+                                Log.e(TAG, "Error while Unzipping Quran files : Cannot getCanonicalPath", e);
+                            }
 
                             mDownloadAndUnzipFinished.postValue(unzip.unzip(mUnzipPercentage));
 

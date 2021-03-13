@@ -8,6 +8,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
@@ -32,6 +33,7 @@ public class Decompressor {
             ZipInputStream zin = new ZipInputStream(fin);
             ZipEntry ze;
             int unzipIndex = 0;
+
             while ((ze = zin.getNextEntry()) != null) {
                 Log.v(TAG, "Unzipping " + ze.getName());
                 unzipIndex++;
@@ -39,7 +41,11 @@ public class Decompressor {
                 if (ze.isDirectory()) {
                     _dirChecker(destinationPath + "/" + ze.getName());
                 } else {
-                    FileOutputStream fout = new FileOutputStream(new File(destinationPath, ze.getName()));
+                    File file = new File(destinationPath, ze.getName());
+
+                    ensureZipPathSafety(file);
+
+                    FileOutputStream fout = new FileOutputStream(file);
                     ByteArrayOutputStream baos = new ByteArrayOutputStream();
                     byte[] buffer = new byte[1024];
                     int count;
@@ -65,6 +71,13 @@ public class Decompressor {
             Log.e(TAG, "Unzip Error", e);
         }
         return false;
+    }
+
+    private void ensureZipPathSafety(File file) throws IOException {
+        String canonicalPath = file.getCanonicalPath();
+        if (!canonicalPath.startsWith(destinationPath)) {
+            throw new SecurityException(String.format("Found Zip Path Traversal Vulnerability with %s", canonicalPath));
+        }
     }
 
     private void _dirChecker(String dir) {

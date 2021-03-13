@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/spacing_xmedium">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.25"
+        android:background="@drawable/widget_layout_rounded_top_corners"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:id="@+id/hijri_date_text_View"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginStart="@dimen/spacing_xmedium"
+            android:layout_marginLeft="@dimen/spacing_xmedium"
+            android:gravity="start|center"
+            tools:text="30 Joumada Ath`Thania"
+            android:textColor="@color/black_squeeze"
+            android:textSize="@dimen/text_middle"
+            />
+
+        <TextView
+            android:id="@+id/holiday_text_View"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="@dimen/spacing_xmedium"
+            android:layout_marginRight="@dimen/spacing_xmedium"
+            android:layout_weight="1"
+            android:gravity="end|center"
+            android:textColor="@color/black_squeeze"
+            android:textSize="@dimen/text_middle"
+            tools:text="@string/FIRST_DAY_OF_RAMADAN" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.75"
+        android:background="@drawable/widget_layout_rounded_bottom_corners"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/fajr_title_text_View"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"
+                android:gravity="center"
+                tools:text="@string/SHORT_FAJR"
+                android:textColor="@color/black_squeeze"
+                android:textSize="@dimen/text_middle"
+                />
+
+            <TextView
+                android:id="@+id/fajr_text_View"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"
+                android:gravity="center"
+                android:textColor="@color/black_squeeze"
+                android:textSize="@dimen/text_middle"
+                tools:text="000" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/chourouk_title_text_View"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"
+                android:gravity="center"
+                tools:text="@string/SUNRISE"
+                android:textColor="@color/black_squeeze"
+                android:textSize="@dimen/text_middle" />
+
+            <TextView
+                android:id="@+id/chourouk_text_View"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"
+                android:gravity="center"
+                android:textColor="@color/black_squeeze"
+                android:textSize="@dimen/text_middle"
+                tools:text="7:30 AM" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/dohr_title_text_View"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"
+                android:gravity="center"
+                tools:text="@string/SHORT_DHOHR"
+                android:textColor="@color/black_squeeze"
+                android:textSize="@dimen/text_middle"
+                />
+
+            <TextView
+                android:id="@+id/dohr_text_View"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"
+                android:gravity="center"
+                android:textColor="@color/black_squeeze"
+                android:textSize="@dimen/text_middle"
+                tools:text="000" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/asr_title_text_View"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"
+                android:gravity="center"
+                tools:text="@string/SHORT_ASR"
+                android:textColor="@color/black_squeeze"
+                android:textSize="@dimen/text_middle"
+                />
+
+            <TextView
+                android:id="@+id/asr_text_View"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"
+                android:gravity="center"
+                android:textColor="@color/black_squeeze"
+                android:textSize="@dimen/text_middle"
+                tools:text="000" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/maghrib_title_text_View"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"
+                android:gravity="center"
+                tools:text="@string/SHORT_MAGHRIB"
+                android:textColor="@color/black_squeeze"
+                android:textSize="@dimen/text_middle"
+                />
+
+            <TextView
+                android:id="@+id/maghrib_text_View"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"
+                android:gravity="center"
+                android:textColor="@color/black_squeeze"
+                android:textSize="@dimen/text_middle"
+                tools:text="000" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/ichaa_title_text_View"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"
+                android:gravity="center"
+                tools:text="@string/SHORT_ICHA"
+                android:textColor="@color/black_squeeze"
+                android:textSize="@dimen/text_middle"
+                />
+
+            <TextView
+                android:id="@+id/ichaa_text_View"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"
+                android:gravity="center"
+                android:textColor="@color/black_squeeze"
+                android:textSize="@dimen/text_middle"
+                tools:text="000" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

@@ -44,11 +44,11 @@
     <PreferenceCategory android:title="@string/title_prayer_timings_section">
         <com.hbouzidi.fiveprayers.ui.settings.method.CalculationMethodPreference
             android:defaultValue="MUSLIM_WORLD_LEAGUE"
-            android:dialogTitle="@string/dialog_title_list_preference"
+            android:dialogTitle="@string/dialog_title_calculation_method_preference"
             android:entries="@array/entries_calculation_method_list_preference"
             android:entryValues="@array/entryvalues_calculation_method_list_preference"
             android:key="TIMINGS_CALCULATION_METHOD_PREFERENCE"
-            android:title="@string/title_list_preference"
+            android:title="@string/title_calculation_method_preference"
             app:useSimpleSummaryProvider="true" />
 
         <com.hbouzidi.fiveprayers.ui.settings.timings.NumberPickerPreference

@@ -34,6 +34,7 @@ import com.hbouzidi.fiveprayers.ui.clock.AnalogClock;
 import com.hbouzidi.fiveprayers.utils.PrayerUtils;
 import com.hbouzidi.fiveprayers.utils.TimingUtils;
 import com.hbouzidi.fiveprayers.utils.UiUtils;
+import com.hbouzidi.fiveprayers.widget.WidgetUpdater;
 import com.mikhaellopez.circularprogressbar.CircularProgressBar;
 
 import org.apache.commons.lang3.StringUtils;
@@ -118,6 +119,8 @@ public class HomeFragment extends Fragment {
             updateNextPrayerViews(dayPrayer);
             updateTimingsTextViews(dayPrayer);
             startNotifierService(dayPrayer);
+
+            WidgetUpdater.updateHomeScreenWidget(requireContext());
 
             skeleton.showOriginal();
         });

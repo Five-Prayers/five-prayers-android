@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import com.hbouzidi.fiveprayers.common.PrayerEnum;
 import com.hbouzidi.fiveprayers.timings.DayPrayer;
 import com.hbouzidi.fiveprayers.utils.TimingUtils;
+import com.hbouzidi.fiveprayers.utils.UiUtils;
 
 import java.time.LocalDateTime;
 import java.util.Map;
@@ -39,7 +40,7 @@ public class PrayerAlarmScheduler {
                 AlarmManager alarmMgr = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
                 Intent intent = new Intent(context, NotifierReceiver.class);
                 intent.putExtra("prayerKey", key.toString());
-                intent.putExtra("prayerTiming", TimingUtils.formatTiming(timing));
+                intent.putExtra("prayerTiming", UiUtils.formatTiming(timing));
                 intent.putExtra("prayerCity", dayPrayer.getCity());
                 intent.putExtra("notificationId", 1000);
 

@@ -162,8 +162,8 @@
     <string name="title_adhan_vibration_preference">Activer la vibration</string>
     <string name="dialog_title_edit_text_location_preference">Rechercher votre ville</string>
     <string name="title_prayer_timings_section">Calcul des prières</string>
-    <string name="title_list_preference">Méthode de calcul</string>
-    <string name="dialog_title_list_preference">Méthode de calcul</string>
+    <string name="title_calculation_method_preference">Méthode de calcul</string>
+    <string name="dialog_title_calculation_method_preference">Méthode de calcul</string>
     <string name="title_edit_text_timing_adjustment_preference">Ajuster les horaires de prière</string>
     <string name="dialog_title_edit_text_timing_adjustment_preference">Ajustement des horaires (en minutes)</string>
 

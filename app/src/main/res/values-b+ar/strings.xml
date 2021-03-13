@@ -160,8 +160,8 @@
     <string name="title_adhan_vibration_preference">تفعيل الاهتزاز</string>
     <string name="dialog_title_edit_text_location_preference">ابحث عن مدينتك</string>
     <string name="title_prayer_timings_section">طرق الحساب</string>
-    <string name="title_list_preference">طريقة حساب تقويم الصلاة</string>
-    <string name="dialog_title_list_preference">طريقة حساب تقويم الصلاة</string>
+    <string name="title_calculation_method_preference">طريقة حساب تقويم الصلاة</string>
+    <string name="dialog_title_calculation_method_preference">طريقة حساب تقويم الصلاة</string>
     <string name="title_edit_text_timing_adjustment_preference">ضبط أوقات الصلاة</string>
     <string name="dialog_title_edit_text_timing_adjustment_preference">تعديل الجدول (بالدقائق)</string>
 

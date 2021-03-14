@@ -73,8 +73,12 @@ public class AddressHelper {
 
         if (addressList != null && addressList.size() > 0) {
             Address address = addressList.get(0);
-            PreferencesHelper.updateAddressPreferences(context, address);
-            return address;
+
+            if (address.getCountryName() != null && address.getLocality() != null) {
+                PreferencesHelper.updateAddressPreferences(context, address);
+                return address;
+            }
+            return null;
         }
         return null;
     }
@@ -85,18 +89,21 @@ public class AddressHelper {
         if (NetworkUtil.isNetworkAvailable(context)) {
             NominatimReverseGeocodeResponse response = nominatimAPIService.getAddressFromLocation(latitude, longitude);
 
-            Address address = new Address(Locale.getDefault());
-            address.setCountryName(response.getAddress().getCountry());
-            address.setCountryCode(response.getAddress().getCountryCode());
-            address.setAddressLine(1, response.getAddress().getState());
-            address.setLocality(response.getAddress().getLocality());
-            address.setPostalCode(response.getAddress().getPostcode());
-            address.setLatitude(response.getLat());
-            address.setLongitude(response.getLon());
+            if (response.getAddress().getCountry() != null && response.getAddress().getLocality() != null) {
+                Address address = new Address(Locale.getDefault());
+                address.setCountryName(response.getAddress().getCountry());
+                address.setCountryCode(response.getAddress().getCountryCode());
+                address.setAddressLine(1, response.getAddress().getState());
+                address.setLocality(response.getAddress().getLocality());
+                address.setPostalCode(response.getAddress().getPostcode());
+                address.setLatitude(response.getLat());
+                address.setLongitude(response.getLon());
 
-            PreferencesHelper.updateAddressPreferences(context, address);
+                PreferencesHelper.updateAddressPreferences(context, address);
 
-            return address;
+                return address;
+            }
+            return null;
         }
         return null;
     }

@@ -152,6 +152,7 @@ public class QuranIndexViewModel extends AndroidViewModel {
                         }
                     }
                 }
+                cursor.close();
             }
         }).start();
     }

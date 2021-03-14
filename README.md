@@ -81,6 +81,7 @@ Five Prayers Android is not Google Framework dependent, so this app can be used 
 * Qibla direction compass from [Android Qibla Direction](https://github.com/hassaanjamil/hj-android-lib-qibla-direction)
 * Quran (Please consider this open-source project if your are looking more features [Quran Android](https://github.com/quran/quran_android))
 * 99 Names of God
+* Home Screen Widget
 
 ## Translating
 

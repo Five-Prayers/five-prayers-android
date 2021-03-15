@@ -100,6 +100,11 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 
+    //Okhttp3
+    implementation(platform("com.squareup.okhttp3:okhttp-bom:4.9.0"))
+    implementation("com.squareup.okhttp3:okhttp")
+    implementation("com.squareup.okhttp3:logging-interceptor")
+
     //Apache Commons Lang
     implementation 'org.apache.commons:commons-lang3:3.10'
 
@@ -107,7 +112,7 @@ dependencies {
     implementation 'com.mikhaellopez:circularprogressbar:3.0.3'
 
     //Skeleton Layout: https://github.com/Faltenreich/SkeletonLayout
-    implementation 'com.faltenreich:skeletonlayout:2.0.1'
+    implementation 'com.faltenreich:skeletonlayout:4.0.0'
 
     // https://github.com/evrencoskun/TableView
     implementation 'com.evrencoskun.library:tableview:0.8.9.2'
@@ -122,13 +127,13 @@ dependencies {
     implementation 'com.github.travijuu:numberpicker:1.0.7'
 
     //https://github.com/kizitonwose/CalendarView
-    implementation 'com.github.kizitonwose:CalendarView:0.4.0'
+    implementation 'com.github.kizitonwose:CalendarView:1.0.3'
 
     //https://github.com/greenrobot/EventBus
     implementation 'org.greenrobot:eventbus:3.2.0'
 
     //https://github.com/AppIntro/AppIntro
-    implementation 'com.github.AppIntro:AppIntro:6.0.0'
+    implementation 'com.github.AppIntro:AppIntro:6.1.0'
 
     //https://github.com/Ereza/CustomActivityOnCrash
     implementation 'cat.ereza:customactivityoncrash:2.3.0'

@@ -84,7 +84,7 @@
         <item>@string/short_prayer_call</item>
     </string-array>
     <string-array name="entryvalues_fajr_adhan_list_preference">
-        <item>ADHAN_FAJR_ABDELBASSET_ABDESSAMAD_EGYTE</item>
+        <item>ADHAN_FAJR_ABDELBASSET_ABDESSAMAD_EGYPTE</item>
         <item>ADHAN_FAJR_AL_HARAM_EL_MADANI_SAOUDIA</item>
         <item>ADHAN_FAJR_MESHARY_AL_FASY_KUWAIT</item>
         <item>SHORT_PRAYER_CALL</item>
@@ -98,7 +98,7 @@
         <item>@string/short_prayer_call</item>
     </string-array>
     <string-array name="entryvalues_adhan_list_preference">
-        <item>ADHAN_ABDELBASSET_ABDESSAMAD_EGYTE</item>
+        <item>ADHAN_ABDELBASSET_ABDESSAMAD_EGYPTE</item>
         <item>ADHAN_MESHARY_AL_FASY_KUWAIT</item>
         <item>ADHAN_OMAR_AL_KAZABRI_MOROCCO</item>
         <item>ADHAN_RIAD_AL_DJAZAIRI_ALGERIA</item>

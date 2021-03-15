@@ -75,8 +75,8 @@ public class AdhanPlayer {
         int mediaId;
         if (fajr) {
             switch (PreferencesHelper.getFajrAdhanCaller(context)) {
-                case "ADHAN_FAJR_ABDELBASSET_ABDESSAMAD_EGYTE":
-                    mediaId = R.raw.adhan_fajr_abdelbasset_abdessamad_egyte;
+                case "ADHAN_FAJR_ABDELBASSET_ABDESSAMAD_EGYPTE":
+                    mediaId = R.raw.adhan_fajr_abdelbasset_abdessamad_egypte;
                     break;
                 case "ADHAN_FAJR_AL_HARAM_EL_MADANI_SAOUDIA":
                     mediaId = R.raw.adhan_fajr_al_haram_el_madani_saoudia;
@@ -89,8 +89,8 @@ public class AdhanPlayer {
             }
         } else {
             switch (PreferencesHelper.getAdhanCaller(context)) {
-                case "ADHAN_ABDELBASSET_ABDESSAMAD_EGYTE":
-                    mediaId = R.raw.adhan_abdelbasset_abdessamad_egyte;
+                case "ADHAN_ABDELBASSET_ABDESSAMAD_EGYPTE":
+                    mediaId = R.raw.adhan_abdelbasset_abdessamad_egypte;
                     break;
                 case "ADHAN_OMAR_AL_KAZABRI_MOROCCO":
                     mediaId = R.raw.adhan_omar_al_kazabri_morocco;

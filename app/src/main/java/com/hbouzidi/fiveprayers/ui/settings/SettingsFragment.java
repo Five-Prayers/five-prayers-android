@@ -7,6 +7,8 @@ import androidx.fragment.app.DialogFragment;
 import androidx.preference.Preference;
 
 import com.hbouzidi.fiveprayers.R;
+import com.hbouzidi.fiveprayers.ui.settings.adhan.AdhanCallerPreference;
+import com.hbouzidi.fiveprayers.ui.settings.adhan.AdhanPreferenceDialog;
 import com.hbouzidi.fiveprayers.ui.settings.hijri.HijriDayAdjustmentPreference;
 import com.hbouzidi.fiveprayers.ui.settings.hijri.HijriDayAdjustmentPreferenceDialog;
 import com.hbouzidi.fiveprayers.ui.settings.location.AutoCompleteTextPreference;
@@ -36,6 +38,9 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         }
         if (preference instanceof HijriDayAdjustmentPreference) {
             dialogFragment = new HijriDayAdjustmentPreferenceDialog((HijriDayAdjustmentPreference) preference);
+        }
+        if (preference instanceof AdhanCallerPreference) {
+            dialogFragment = new AdhanPreferenceDialog((AdhanCallerPreference) preference);
         }
 
         if (dialogFragment != null) {

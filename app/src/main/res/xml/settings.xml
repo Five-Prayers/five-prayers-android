@@ -17,7 +17,7 @@
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/title_notification_section">
-        <ListPreference
+        <com.hbouzidi.fiveprayers.ui.settings.adhan.AdhanCallerPreference
             android:defaultValue="SHORT_PRAYER_CALL"
             android:dialogTitle="@string/dialog_title_fajr_adhan"
             android:entries="@array/entries_fajr_adhan_list_preference"
@@ -26,7 +26,7 @@
             android:title="@string/title_adhan_fajr"
             app:useSimpleSummaryProvider="true" />
 
-        <ListPreference
+        <com.hbouzidi.fiveprayers.ui.settings.adhan.AdhanCallerPreference
             android:defaultValue="SHORT_PRAYER_CALL"
             android:dialogTitle="@string/dialog_title_fajr_adhan"
             android:entries="@array/entries_adhan_list_preference"

@@ -20,6 +20,11 @@ import com.hbouzidi.fiveprayers.quran.dto.Surah;
 
 import java.util.List;
 
+/**
+ * @author Hicham Bouzidi Idrissi
+ * Github : https://github.com/Five-Prayers/five-prayers-android
+ * licenced under GPLv3 : https://www.gnu.org/licenses/gpl-3.0.en.html
+ */
 public class QuranPageActivity extends AppCompatActivity {
 
     public static final String LAST_PAGE_SHOWN_IDENTIFIER = "LAST_PAGE_SHOWN_IDENTIFIER";

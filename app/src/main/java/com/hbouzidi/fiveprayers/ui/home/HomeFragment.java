@@ -46,6 +46,11 @@ import java.util.Objects;
 
 import static android.content.Context.MODE_PRIVATE;
 
+/**
+ * @author Hicham Bouzidi Idrissi
+ * Github : https://github.com/Five-Prayers/five-prayers-android
+ * licenced under GPLv3 : https://www.gnu.org/licenses/gpl-3.0.en.html
+ */
 public class HomeFragment extends Fragment {
 
     private final int disabledColor = 0xFFD81B60;

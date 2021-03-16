@@ -8,7 +8,11 @@ import androidx.annotation.NonNull;
 import com.hbouzidi.fiveprayers.R;
 import com.kizitonwose.calendarview.ui.ViewContainer;
 
-
+/**
+ * @author Hicham Bouzidi Idrissi
+ * Github : https://github.com/Five-Prayers/five-prayers-android
+ * licenced under GPLv3 : https://www.gnu.org/licenses/gpl-3.0.en.html
+ */
 public class MonthViewContainer extends ViewContainer {
 
     private final LinearLayout legendLayout;

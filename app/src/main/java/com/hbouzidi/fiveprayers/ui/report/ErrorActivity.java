@@ -33,11 +33,11 @@ import java.util.Objects;
 
 import cat.ereza.customactivityoncrash.CustomActivityOnCrash;
 
-/*
- *
- * ErrorActivity.java is inspired from NewPipe App.
- * GitHub: https://github.com/TeamNewPipe/NewPipe
- *
+/**
+ * @author Hicham Bouzidi Idrissi
+ * Github : https://github.com/Five-Prayers/five-prayers-android
+ * inspired from NewPipe : https://github.com/TeamNewPipe/NewPipe
+ * licenced under GPLv3 : https://www.gnu.org/licenses/gpl-3.0.en.html
  */
 public class ErrorActivity extends AppCompatActivity {
 

@@ -6,6 +6,11 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author Hicham Bouzidi Idrissi
+ * Github : https://github.com/Five-Prayers/five-prayers-android
+ * licenced under GPLv3 : https://www.gnu.org/licenses/gpl-3.0.en.html
+ */
 public class CountryCalculationMethod {
 
     private static final Map<String, CalculationMethodEnum> CALCULATION_METHOD_BY_COUNTRY = createMap();

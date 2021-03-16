@@ -17,6 +17,11 @@ import com.hbouzidi.fiveprayers.ui.settings.timings.NumberPickerPreference;
 import com.hbouzidi.fiveprayers.ui.settings.timings.NumberPickerPreferenceDialog;
 import com.takisoft.preferencex.PreferenceFragmentCompat;
 
+/**
+ * @author Hicham Bouzidi Idrissi
+ * Github : https://github.com/Five-Prayers/five-prayers-android
+ * licenced under GPLv3 : https://www.gnu.org/licenses/gpl-3.0.en.html
+ */
 public class SettingsFragment extends PreferenceFragmentCompat {
 
     private static final String DIALOG_FRAGMENT_TAG = "PreferencesDialogFragment";

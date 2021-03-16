@@ -11,6 +11,11 @@ import androidx.core.content.ContextCompat;
 
 import com.hbouzidi.fiveprayers.R;
 
+/**
+ * @author Hicham Bouzidi Idrissi
+ * Github : https://github.com/Five-Prayers/five-prayers-android
+ * licenced under GPLv3 : https://www.gnu.org/licenses/gpl-3.0.en.html
+ */
 public class AnalogClock extends RelativeLayout {
     private final AppCompatImageView face;
     private final AppCompatImageView hour;

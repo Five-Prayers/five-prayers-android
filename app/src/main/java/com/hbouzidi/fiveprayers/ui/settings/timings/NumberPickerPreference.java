@@ -11,6 +11,11 @@ import com.hbouzidi.fiveprayers.preferences.PreferencesConstants;
 
 import java.text.DecimalFormat;
 
+/**
+ * @author Hicham Bouzidi Idrissi
+ * Github : https://github.com/Five-Prayers/five-prayers-android
+ * licenced under GPLv3 : https://www.gnu.org/licenses/gpl-3.0.en.html
+ */
 public class NumberPickerPreference extends DialogPreference {
 
     private int fajrTimingAdjustment;

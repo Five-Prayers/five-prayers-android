@@ -6,6 +6,11 @@ import android.view.View;
 import com.hbouzidi.fiveprayers.R;
 import com.yarolegovich.lovelydialog.LovelyStandardDialog;
 
+/**
+ * @author Hicham Bouzidi Idrissi
+ * Github : https://github.com/Five-Prayers/five-prayers-android
+ * licenced under GPLv3 : https://www.gnu.org/licenses/gpl-3.0.en.html
+ */
 public class AlertHelper {
 
     public static void displayAlertDialog(final Context context, String title, String message) {

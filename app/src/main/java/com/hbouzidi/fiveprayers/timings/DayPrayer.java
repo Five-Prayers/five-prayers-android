@@ -11,6 +11,11 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Map;
 
+/**
+ * @author Hicham Bouzidi Idrissi
+ * Github : https://github.com/Five-Prayers/five-prayers-android
+ * licenced under GPLv3 : https://www.gnu.org/licenses/gpl-3.0.en.html
+ */
 public class DayPrayer implements Serializable {
 
     private String date;

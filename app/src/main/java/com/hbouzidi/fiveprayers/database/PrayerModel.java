@@ -2,6 +2,11 @@ package com.hbouzidi.fiveprayers.database;
 
 import android.provider.BaseColumns;
 
+/**
+ * @author Hicham Bouzidi Idrissi
+ * Github : https://github.com/Five-Prayers/five-prayers-android
+ * licenced under GPLv3 : https://www.gnu.org/licenses/gpl-3.0.en.html
+ */
 class PrayerModel implements BaseColumns {
 
     static final String TABLE_NAME = "prayer_timing";

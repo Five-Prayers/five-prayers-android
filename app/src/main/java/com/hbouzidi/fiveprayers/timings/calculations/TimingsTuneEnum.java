@@ -4,6 +4,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * @author Hicham Bouzidi Idrissi
+ * Github : https://github.com/Five-Prayers/five-prayers-android
+ * licenced under GPLv3 : https://www.gnu.org/licenses/gpl-3.0.en.html
+ */
 public enum TimingsTuneEnum {
 
     MOROCCAN_MINISTRY_OF_ISLAMIC_AFFAIRS(0, 0, 0, 5, 0, 0, 0, 0, 0),

@@ -1,6 +1,5 @@
 package com.hbouzidi.fiveprayers.ui.timingtable.tableview;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +20,11 @@ import com.hbouzidi.fiveprayers.ui.timingtable.tableview.model.RowHeader;
 
 import java.util.Objects;
 
-
+/**
+ * @author Hicham Bouzidi Idrissi
+ * Github : https://github.com/Five-Prayers/five-prayers-android
+ * licenced under GPLv3 : https://www.gnu.org/licenses/gpl-3.0.en.html
+ */
 public class TableViewAdapter extends AbstractTableAdapter<ColumnHeader, RowHeader, Cell> {
 
 

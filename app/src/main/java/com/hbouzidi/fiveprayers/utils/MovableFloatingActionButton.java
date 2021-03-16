@@ -8,6 +8,11 @@ import android.view.ViewGroup;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+/**
+ * @author Hicham Bouzidi Idrissi
+ * Github : https://github.com/Five-Prayers/five-prayers-android
+ * licenced under GPLv3 : https://www.gnu.org/licenses/gpl-3.0.en.html
+ */
 public class MovableFloatingActionButton extends FloatingActionButton implements View.OnTouchListener {
 
     private final static float CLICK_DRAG_TOLERANCE = 10; // Often, there will be a slight, unintentional, drag when the user taps the FAB, so we need to account for this.
@@ -35,9 +40,9 @@ public class MovableFloatingActionButton extends FloatingActionButton implements
     }
 
     @Override
-    public boolean onTouch(View view, MotionEvent motionEvent){
+    public boolean onTouch(View view, MotionEvent motionEvent) {
 
-        ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams)view.getLayoutParams();
+        ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
 
         int action = motionEvent.getAction();
         if (action == MotionEvent.ACTION_DOWN) {
@@ -49,13 +54,12 @@ public class MovableFloatingActionButton extends FloatingActionButton implements
 
             return true; // Consumed
 
-        }
-        else if (action == MotionEvent.ACTION_MOVE) {
+        } else if (action == MotionEvent.ACTION_MOVE) {
 
             int viewWidth = view.getWidth();
             int viewHeight = view.getHeight();
 
-            View viewParent = (View)view.getParent();
+            View viewParent = (View) view.getParent();
             int parentWidth = viewParent.getWidth();
             int parentHeight = viewParent.getHeight();
 
@@ -75,8 +79,7 @@ public class MovableFloatingActionButton extends FloatingActionButton implements
 
             return true; // Consumed
 
-        }
-        else if (action == MotionEvent.ACTION_UP) {
+        } else if (action == MotionEvent.ACTION_UP) {
 
             float upRawX = motionEvent.getRawX();
             float upRawY = motionEvent.getRawY();
@@ -86,13 +89,11 @@ public class MovableFloatingActionButton extends FloatingActionButton implements
 
             if (Math.abs(upDX) < CLICK_DRAG_TOLERANCE && Math.abs(upDY) < CLICK_DRAG_TOLERANCE) { // A click
                 return performClick();
-            }
-            else { // A drag
+            } else { // A drag
                 return true; // Consumed
             }
 
-        }
-        else {
+        } else {
             return super.onTouchEvent(motionEvent);
         }
 

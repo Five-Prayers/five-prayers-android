@@ -2,6 +2,11 @@ package com.hbouzidi.fiveprayers.ui.dashboard;
 
 import android.content.Intent;
 
+/**
+ * @author Hicham Bouzidi Idrissi
+ * Github : https://github.com/Five-Prayers/five-prayers-android
+ * licenced under GPLv3 : https://www.gnu.org/licenses/gpl-3.0.en.html
+ */
 public class DashboardModel {
     private String head, sub;
     private int image;

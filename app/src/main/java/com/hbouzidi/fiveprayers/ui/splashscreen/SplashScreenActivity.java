@@ -11,6 +11,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.hbouzidi.fiveprayers.R;
 import com.hbouzidi.fiveprayers.ui.MainActivity;
 
+/**
+ * @author Hicham Bouzidi Idrissi
+ * Github : https://github.com/Five-Prayers/five-prayers-android
+ * licenced under GPLv3 : https://www.gnu.org/licenses/gpl-3.0.en.html
+ */
 public class SplashScreenActivity extends AppCompatActivity {
 
     private static final String TAG = "SplashScreenActivity";

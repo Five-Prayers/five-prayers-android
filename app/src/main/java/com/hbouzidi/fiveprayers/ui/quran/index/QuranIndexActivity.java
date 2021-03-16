@@ -12,6 +12,11 @@ import com.google.android.material.tabs.TabLayoutMediator;
 import com.hbouzidi.fiveprayers.R;
 import com.hbouzidi.fiveprayers.preferences.PreferencesHelper;
 
+/**
+ * @author Hicham Bouzidi Idrissi
+ * Github : https://github.com/Five-Prayers/five-prayers-android
+ * licenced under GPLv3 : https://www.gnu.org/licenses/gpl-3.0.en.html
+ */
 public class QuranIndexActivity extends AppCompatActivity {
 
     private final int[] titles = {R.string.surat, R.string.bookmarks};

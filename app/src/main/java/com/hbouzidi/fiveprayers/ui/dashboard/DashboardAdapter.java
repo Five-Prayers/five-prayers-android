@@ -14,6 +14,11 @@ import com.hbouzidi.fiveprayers.R;
 
 import java.util.ArrayList;
 
+/**
+ * @author Hicham Bouzidi Idrissi
+ * Github : https://github.com/Five-Prayers/five-prayers-android
+ * licenced under GPLv3 : https://www.gnu.org/licenses/gpl-3.0.en.html
+ */
 public class DashboardAdapter extends RecyclerView.Adapter<DashboardAdapter.ViewHolder> {
 
     ArrayList<DashboardModel> dashboardModelArrayList;

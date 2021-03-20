@@ -103,7 +103,6 @@ public class PrayerRegistry {
         values.put(PrayerModel.COLUMN_NAME_LATITUDE, data.getMeta().getLatitude());
         values.put(PrayerModel.COLUMN_NAME_LONGITUDE, data.getMeta().getLongitude());
 
-
         return db.insertWithOnConflict(PrayerModel.TABLE_NAME, null, values, SQLiteDatabase.CONFLICT_IGNORE);
     }
 

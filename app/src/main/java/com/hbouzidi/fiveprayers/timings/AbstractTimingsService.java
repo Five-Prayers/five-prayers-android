@@ -106,17 +106,21 @@ public abstract class AbstractTimingsService implements TimingsService {
 
         PrayerRegistry prayerRegistry = PrayerRegistry.getInstance(context);
 
-        return prayerRegistry.getPrayerTimings(
-                localDate,
-                address.getLocality(),
-                address.getCountryName(),
-                timingsPreferences.getMethod(),
-                timingsPreferences.getLatitudeAdjustmentMethod(),
-                timingsPreferences.getSchoolAdjustmentMethod(),
-                timingsPreferences.getMidnightModeAdjustmentMethod(),
-                timingsPreferences.getHijriAdjustment(),
-                timingsPreferences.getTune()
-        );
+        if (address.getLocality() != null && address.getCountryName() != null) {
+            return prayerRegistry.getPrayerTimings(
+                    localDate,
+                    address.getLocality(),
+                    address.getCountryName(),
+                    timingsPreferences.getMethod(),
+                    timingsPreferences.getLatitudeAdjustmentMethod(),
+                    timingsPreferences.getSchoolAdjustmentMethod(),
+                    timingsPreferences.getMidnightModeAdjustmentMethod(),
+                    timingsPreferences.getHijriAdjustment(),
+                    timingsPreferences.getTune()
+            );
+        }
+
+        return null;
     }
 
     protected List<DayPrayer> getSavedPrayerCalendar(Address address, int month, int year, Context context) {

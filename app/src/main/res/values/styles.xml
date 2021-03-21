@@ -34,14 +34,17 @@
 
     <style name="NegativeButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
         <item name="android:textColor">@color/dialog_button</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="PositiveButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
         <item name="android:textColor">@color/dialog_button</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="NeutralButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
         <item name="android:textColor">@color/dialog_button</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="WindowTitleStyle" parent="TextAppearance.AppCompat.Title">

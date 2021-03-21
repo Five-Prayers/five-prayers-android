@@ -27,6 +27,9 @@
     <string name="common_alert">Alert</string>
     <string name="common_page">Page</string>
     <string name="common.loading">Loading, please wait …</string>
+    <string name="common.sunrise">Sunrise</string>
+    <string name="common.sunset">Sunset</string>
+    <string name="common.close">Close</string>
 
     <string name="app_name">Five Prayers</string>
     <string name="title_home">Prayers</string>

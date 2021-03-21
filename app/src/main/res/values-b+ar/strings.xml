@@ -27,6 +27,9 @@
     <string name="common_alert">إنذار</string>
     <string name="common_page">صفحة</string>
     <string name="common.loading">جار التحميل …</string>
+    <string name="common.sunrise">شروق الشمس</string>
+    <string name="common.sunset">غروب الشمس</string>
+    <string name="common.close">إغلاق</string>
 
     <string name="app_name">خمس صلوات</string>
     <string name="title_home">صلاة</string>

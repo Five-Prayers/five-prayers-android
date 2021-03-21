@@ -27,7 +27,8 @@
                 android:layout_height="fill_parent"
                 android:layout_marginTop="5dp"
                 android:adjustViewBounds="true"
-                android:scaleType="centerCrop" />
+                android:scaleType="centerCrop"
+                android:contentDescription="@string/desc_quran" />
         </RelativeLayout>
     </ScrollView>
 
@@ -106,6 +107,7 @@
             android:clickable="true"
             android:focusable="true"
             android:src="@drawable/ic_close_24dp"
+            android:contentDescription="@string/common.close"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -124,6 +126,7 @@
             android:duplicateParentState="true"
             android:focusable="true"
             android:src="@drawable/ic_bookmark_empty"
+            android:contentDescription="@string/usermade_bookmarks_title"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"

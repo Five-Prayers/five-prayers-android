@@ -17,8 +17,11 @@ import android.widget.ProgressBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.preference.PreferenceDialogFragmentCompat;
 
+import com.hbouzidi.fiveprayers.R;
 import com.hbouzidi.fiveprayers.location.AddressSearchService;
 import com.hbouzidi.fiveprayers.preferences.PreferencesHelper;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -81,7 +84,7 @@ public class AutoCompleteTextPreferenceDialog extends PreferenceDialogFragmentCo
 
         mEditText.setThreshold(3);
         mEditText.setPaddingRelative(20, 30, 30, 20);
-        mEditText.setHint(preference.getText());
+        mEditText.setHint(context.getString(R.string.title_edit_text_location_preference));
         mEditText.setLoadingIndicator(progressBar);
         mEditText.setAdapter(autoSuggestAdapter);
         mEditText.setOnItemClickListener(
@@ -159,7 +162,7 @@ public class AutoCompleteTextPreferenceDialog extends PreferenceDialogFragmentCo
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribeWith(new DisposableSingleObserver<List<Address>>() {
                             @Override
-                            public void onSuccess(List<Address> addresses) {
+                            public void onSuccess(@NotNull List<Address> addresses) {
                                 ArrayList<String> stringList = new ArrayList<>(SEARCH_RESULTS_LIMIT);
 
                                 for (Address address : new ArrayList<>(addresses)) {

@@ -169,12 +169,12 @@
             android:gravity="center"
             android:maxLines="1"
             android:textColor="@color/stratos"
+            android:textSize="@dimen/text_middle"
             android:textStyle="bold"
-            app:autoSizeTextType="uniform"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/sunset_image_View"
-            tools:text="08:46 AM" />
+            tools:text="06:00 PM" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

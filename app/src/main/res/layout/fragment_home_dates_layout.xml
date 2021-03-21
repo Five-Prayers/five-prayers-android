@@ -130,7 +130,7 @@
 
         <TextView
             android:id="@+id/country_text_view"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-condensed"
             android:gravity="end|center_vertical"
@@ -149,7 +149,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-condensed"
-            android:gravity="end"
+            android:gravity="end|center_vertical"
             android:maxLines="1"
             android:textColor="@color/textSecondary"
             android:textStyle="normal"

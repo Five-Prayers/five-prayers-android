@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -173,19 +174,24 @@ public class HomeFragment extends Fragment {
         fajrTimingTextView = rootView.findViewById(R.id.fajr_timing_text_view);
 
         ImageView fajrCallImageView = rootView.findViewById(R.id.fajr_call_image_view);
-        initializeImageViewIcon(fajrCallImageView, PrayerEnum.FAJR);
+        ConstraintLayout fajrCallConstraintLayout = rootView.findViewById(R.id.fajr_call_constraint_layout);
+        initializeImageViewIcon(fajrCallConstraintLayout, fajrCallImageView, PrayerEnum.FAJR);
 
         ImageView dohrCallImageView = rootView.findViewById(R.id.dohr_call_image_view);
-        initializeImageViewIcon(dohrCallImageView, PrayerEnum.DHOHR);
+        ConstraintLayout dohrCallConstraintLayout = rootView.findViewById(R.id.dohr_call_constraint_layout);
+        initializeImageViewIcon(dohrCallConstraintLayout, dohrCallImageView, PrayerEnum.DHOHR);
 
         ImageView asrCallImageView = rootView.findViewById(R.id.asr_call_image_view);
-        initializeImageViewIcon(asrCallImageView, PrayerEnum.ASR);
+        ConstraintLayout asrCallConstraintLayout = rootView.findViewById(R.id.asr_call_constraint_layout);
+        initializeImageViewIcon(asrCallConstraintLayout, asrCallImageView, PrayerEnum.ASR);
 
-        ImageView maghrebCallImageView = rootView.findViewById(R.id.maghrib_call_image_view);
-        initializeImageViewIcon(maghrebCallImageView, PrayerEnum.MAGHRIB);
+        ImageView maghrebCallImageView = rootView.findViewById(R.id.maghreb_call_image_view);
+        ConstraintLayout maghrebCallConstraintLayout = rootView.findViewById(R.id.maghreb_call_constraint_layout);
+        initializeImageViewIcon(maghrebCallConstraintLayout, maghrebCallImageView, PrayerEnum.MAGHRIB);
 
         ImageView ichaCallImageView = rootView.findViewById(R.id.icha_call_image_view);
-        initializeImageViewIcon(ichaCallImageView, PrayerEnum.ICHA);
+        ConstraintLayout ichaCallConstraintLayout = rootView.findViewById(R.id.icha_call_constraint_layout);
+        initializeImageViewIcon(ichaCallConstraintLayout, ichaCallImageView, PrayerEnum.ICHA);
 
 
         dohrTimingTextView = rootView.findViewById(R.id.dohr_timing_text_view);
@@ -326,7 +332,7 @@ public class HomeFragment extends Fragment {
             TimeRemainingCTimer.cancel();
     }
 
-    private void initializeImageViewIcon(ImageView adhanCallImageView, PrayerEnum prayerEnum) {
+    private void initializeImageViewIcon(ConstraintLayout adhanCallConstraintLayout, ImageView adhanCallImageView, PrayerEnum prayerEnum) {
         SharedPreferences sharedPreferences = context.getSharedPreferences(adhanCallsPreferences, MODE_PRIVATE);
         String callPreferenceKey = prayerEnum.toString() + adhanCallKeyPart;
 
@@ -335,11 +341,11 @@ public class HomeFragment extends Fragment {
         adhanCallImageView.setImageResource(adhanCallEnabled ? R.drawable.ic_notifications_24dp : R.drawable.ic_notifications_off_24dp);
         adhanCallImageView.setColorFilter(adhanCallEnabled ? enabledColor : disabledColor);
 
-        setNotifImgOnClickListener(adhanCallImageView, callPreferenceKey);
+        setNotifImgOnClickListener(adhanCallConstraintLayout, adhanCallImageView, callPreferenceKey);
     }
 
-    private void setNotifImgOnClickListener(ImageView imageView, String callPreferenceKey) {
-        imageView.setOnClickListener(view -> {
+    private void setNotifImgOnClickListener(ConstraintLayout adhanCallConstraintLayout, ImageView imageView, String callPreferenceKey) {
+        adhanCallConstraintLayout.setOnClickListener(view -> {
             SharedPreferences sharedPreferences = context.getSharedPreferences(adhanCallsPreferences, MODE_PRIVATE);
 
             Vibrator vibe = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);

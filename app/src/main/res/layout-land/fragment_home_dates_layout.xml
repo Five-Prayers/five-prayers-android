@@ -85,6 +85,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.5"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout8">
 
@@ -94,6 +95,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:gravity="start|center_vertical"
+            app:layout_constraintBottom_toTopOf="@+id/country_text_view"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -105,8 +107,8 @@
                 android:layout_height="15dp"
                 android:layout_marginStart="4dp"
                 android:layout_marginLeft="4dp"
-                android:src="@drawable/ic_location_15"
                 android:contentDescription="@string/your_location"
+                android:src="@drawable/ic_location_15"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/location_text_view"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -129,15 +131,15 @@
 
         <TextView
             android:id="@+id/country_text_view"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:textColor="@color/textSecondary"
             android:fontFamily="sans-serif-condensed"
             android:gravity="start"
             android:maxLines="1"
+            android:textColor="@color/textSecondary"
             android:textSize="@dimen/text_middle"
             android:textStyle="normal"
+            app:layout_constraintBottom_toTopOf="@+id/calculation_method_text_view"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/location_layout"
             tools:text="Maroc (+1:00)" />
@@ -146,19 +148,17 @@
             android:id="@+id/calculation_method_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:ellipsize="end"
             android:fontFamily="sans-serif-condensed"
             android:gravity="start"
             android:maxLines="1"
-            android:textColor="@color/textSecondary"
-            android:textStyle="normal"
             android:scrollHorizontally="true"
-            android:ellipsize="end"
+            android:textColor="@color/textSecondary"
             android:textSize="@dimen/text_middle"
+            android:textStyle="normal"
             app:autoSizeTextType="uniform"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/country_text_view"
             tools:text="L\'Union des Organisations Islamiques de France (UOIF)" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

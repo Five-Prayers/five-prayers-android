@@ -83,7 +83,7 @@ public class AutoCompleteTextPreferenceDialog extends PreferenceDialogFragmentCo
         progressBar.setIndeterminate(true);
 
         mEditText.setThreshold(3);
-        mEditText.setPaddingRelative(20, 30, 30, 20);
+        mEditText.setPaddingRelative(30, 30, 30, 30);
         mEditText.setHint(context.getString(R.string.title_edit_text_location_preference));
         mEditText.setLoadingIndicator(progressBar);
         mEditText.setAdapter(autoSuggestAdapter);

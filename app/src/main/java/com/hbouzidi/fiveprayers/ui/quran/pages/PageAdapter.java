@@ -102,9 +102,9 @@ public class PageAdapter extends RecyclerView.Adapter<PageAdapter.Holder> {
             holder.bottomFooterLayout.setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
         }
 
-        holder.closeImageView.setOnClickListener(v -> ((Activity) context).finish());
+        holder.closeImageConstraintLayout.setOnClickListener(v -> ((Activity) context).finish());
 
-        initializeBookmarkIcon(holder.bookmarkImageView, currentQuranPage);
+        initializeBookmarkIcon(holder.bookmarkImageConstraintLayout, holder.bookmarkImageView, currentQuranPage);
     }
 
     @Override
@@ -135,6 +135,8 @@ public class PageAdapter extends RecyclerView.Adapter<PageAdapter.Holder> {
         ConstraintLayout bottomFooterLayout;
         TextView pageNumTextView;
         ConstraintLayout ayahsConstraintLayout;
+        ConstraintLayout closeImageConstraintLayout;
+        ConstraintLayout bookmarkImageConstraintLayout;
         ImageView closeImageView;
         ImageView bookmarkImageView;
 
@@ -149,7 +151,9 @@ public class PageAdapter extends RecyclerView.Adapter<PageAdapter.Holder> {
             ayahsConstraintLayout = itemView.findViewById(R.id.ayah_layout);
             pageNumTextView = itemView.findViewById(R.id.page_num_text_view);
             closeImageView = itemView.findViewById(R.id.close_image_view);
+            closeImageConstraintLayout = itemView.findViewById(R.id.close_image_constraint_layout);
             bookmarkImageView = itemView.findViewById(R.id.bookmark_image_view);
+            bookmarkImageConstraintLayout = itemView.findViewById(R.id.bookmark_image_constraint_layout);
         }
     }
 
@@ -200,18 +204,18 @@ public class PageAdapter extends RecyclerView.Adapter<PageAdapter.Holder> {
         return new ColorMatrixColorFilter(colorMatrix);
     }
 
-    private void initializeBookmarkIcon(ImageView bookmarkImageView, QuranPage quranPage) {
+    private void initializeBookmarkIcon(ConstraintLayout bookmarkImageConstraintLayout, ImageView bookmarkImageView, QuranPage quranPage) {
         QuranBookmarkRegistry quranBookmarkRegistry = QuranBookmarkRegistry.getInstance(context);
 
         QuranBookmark bookmarkByPageNumber = quranBookmarkRegistry.getBookmarkByPageNumber(quranPage.getPageNum(), BookmarkType.USER_MADE);
 
         bookmarkImageView.setImageResource((bookmarkByPageNumber == null) ? R.drawable.ic_bookmark_empty : R.drawable.ic_bookmark_filled);
 
-        setBookmarkImageOnClickListener(bookmarkImageView, quranPage);
+        setBookmarkImageOnClickListener(bookmarkImageConstraintLayout, bookmarkImageView, quranPage);
     }
 
-    private void setBookmarkImageOnClickListener(ImageView bookmarkImageView, QuranPage quranPage) {
-        bookmarkImageView.setOnClickListener(view -> {
+    private void setBookmarkImageOnClickListener(ConstraintLayout bookmarkImageConstraintLayout, ImageView bookmarkImageView, QuranPage quranPage) {
+        bookmarkImageConstraintLayout.setOnClickListener(view -> {
 
             QuranBookmarkRegistry quranBookmarkRegistry = QuranBookmarkRegistry.getInstance(context);
             QuranBookmark bookmarkByPageNumber = quranBookmarkRegistry.getBookmarkByPageNumber(quranPage.getPageNum(), BookmarkType.USER_MADE);

@@ -27,8 +27,8 @@
                 android:layout_height="fill_parent"
                 android:layout_marginTop="5dp"
                 android:adjustViewBounds="true"
-                android:scaleType="centerCrop"
-                android:contentDescription="@string/desc_quran" />
+                android:contentDescription="@string/desc_quran"
+                android:scaleType="centerCrop" />
         </RelativeLayout>
     </ScrollView>
 
@@ -50,13 +50,13 @@
             android:layout_weight="1"
             android:fontFamily="@font/kitab"
             android:gravity="start"
-            tools:text="tvSurahName"
             android:textAlignment="viewStart"
             android:textColor="@color/boulder"
             android:textSize="@dimen/text_middle"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="tvSurahName" />
 
         <TextView
             android:id="@+id/juz_text_view"
@@ -67,12 +67,12 @@
             android:layout_weight="1"
             android:fontFamily="@font/kitab"
             android:gravity="end"
-            tools:text="tvJuz"
             android:textAlignment="viewEnd"
             android:textColor="@color/boulder"
             android:textSize="@dimen/text_middle"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="tvJuz" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -92,45 +92,56 @@
             android:fontFamily="@font/kitab"
             android:gravity="center_horizontal"
             android:paddingBottom="5dp"
-            tools:text="9"
             android:textColor="@color/boulder"
             android:textSize="@dimen/text_middle"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <ImageView
-            android:id="@+id/close_image_view"
-            android:layout_width="18dp"
-            android:layout_height="18dp"
-            android:layout_margin="10dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:src="@drawable/ic_close_24dp"
-            android:contentDescription="@string/common.close"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/boulder" />
+            tools:text="9" />
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/close_image_constraint_layout"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/bookmark_image_view"
-            android:layout_width="18dp"
-            android:layout_height="18dp"
-            android:layout_margin="10dp"
-            android:adjustViewBounds="true"
-            android:clickable="true"
-            android:duplicateParentState="true"
-            android:focusable="true"
-            android:src="@drawable/ic_bookmark_empty"
-            android:contentDescription="@string/usermade_bookmarks_title"
+            <ImageView
+                android:id="@+id/close_image_view"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:contentDescription="@string/common.close"
+                android:src="@drawable/ic_close_24dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/boulder" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/bookmark_image_constraint_layout"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/boulder" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/bookmark_image_view"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/usermade_bookmarks_title"
+                android:duplicateParentState="true"
+                android:src="@drawable/ic_bookmark_empty"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/boulder" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

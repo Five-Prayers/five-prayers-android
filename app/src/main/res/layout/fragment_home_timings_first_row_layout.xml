@@ -59,7 +59,7 @@
             android:layout_height="0dp"
             app:layout_constraintBottom_toTopOf="@+id/first_timing_text_constraint_layout"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent="0.70"
+            app:layout_constraintHeight_percent="0.65"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/first_timing_title_constraint_layout">
 
@@ -81,7 +81,7 @@
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent="0.15"
+            app:layout_constraintHeight_percent="0.2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/first_timing_clock_constraint_layout">
 
@@ -179,7 +179,7 @@
             android:layout_height="0dp"
             app:layout_constraintBottom_toTopOf="@+id/second_timing_text_constraint_layout"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent="0.70"
+            app:layout_constraintHeight_percent="0.65"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/second_timing_title_constraint_layout">
 
@@ -203,7 +203,7 @@
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent="0.15"
+            app:layout_constraintHeight_percent="0.20"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/second_timing_clock_constraint_layout">
 

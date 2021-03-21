@@ -1,5 +1,5 @@
 <resources>
-    <string name="about_five_prayers">Five Prayers Android حول</string>
+    <string name="about_five_prayers">Five Prayers حول</string>
     <string name="open_source_projects_used">مشاريع مفتوحة المصدر</string>
     <string name="privacy_policy_title">سياسة خصوصية</string>
     <string name="start_accept_privacy_policy">من أجل الامتثال للائحة الأوروبية العامة لحماية البيانات (GDPR) ، فإننا نلفت انتباهك إلى سياسة خصوصية Five Prayers Android. يرجى قراءتها بعناية.
@@ -167,6 +167,7 @@
     <string name="dialog_title_calculation_method_preference">طريقة حساب تقويم الصلاة</string>
     <string name="title_edit_text_timing_adjustment_preference">ضبط أوقات الصلاة</string>
     <string name="dialog_title_edit_text_timing_adjustment_preference">تعديل الجدول (بالدقائق)</string>
+    <string name="preference_title_contact">اتصل بنا</string>
 
     <string name="latitude_adjustment_method_middle_of_the_night">منتصف الليل</string>
     <string name="latitude_adjustment_method_one_seventh">السابع من الليل</string>

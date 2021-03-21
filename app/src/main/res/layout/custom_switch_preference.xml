@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:clickable="false"
+        android:focusable="false">
+
+        <TextView
+            android:id="@android:id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:padding="8dp"
+            android:layout_marginStart="@dimen/spacing_xxlarge"
+            android:layout_marginLeft="@dimen/spacing_xxlarge"
+            android:layout_toStartOf="@android:id/widget_frame"
+            android:layout_toLeftOf="@android:id/widget_frame"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="@color/preferences_title"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            tools:text="Sending usage data" />
+
+        <LinearLayout
+            android:id="@android:id/widget_frame"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="16dp"
+            android:orientation="vertical"
+            android:layout_marginRight="16dp" />
+    </RelativeLayout>
+</LinearLayout>

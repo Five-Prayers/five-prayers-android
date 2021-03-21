@@ -13,7 +13,11 @@
     <color name="dialog_button">@color/amaranth</color>
     <color name="dialog_title">@color/mine_shaft</color>
 
+    <color name="preferences_title">@color/mine_shaft</color>
+    <color name="preferences_summary">@color/scorpion</color>
+
     <color name="transparent">#00000000</color>
+    <color name="scorpion">#605F5F</color>
     <color name="slate_gray">#738497</color>
     <color name="gallery">#EEEEEE</color>
     <color name="ebony_clay">#213040</color>

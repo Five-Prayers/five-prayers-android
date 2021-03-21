@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:orientation="vertical"
+    tools:ignore="UnusedAttribute">
+
+    <TextView
+        android:id="@android:id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_xxlarge"
+        android:layout_marginLeft="@dimen/spacing_xxlarge"
+        android:fontFamily="sans-serif-medium"
+        android:padding="8dp"
+        android:textColor="@color/text_state_color"
+        android:textSize="@dimen/text_large"
+        android:textStyle="normal"
+        tools:text="Sending usage data" />
+
+    <TextView
+        android:id="@android:id/summary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_xxlarge"
+        android:layout_marginLeft="@dimen/spacing_xxlarge"
+        android:fontFamily="sans-serif"
+        android:lineSpacingExtra="3sp"
+        android:padding="8dp"
+        android:textColor="@color/preferences_summary"
+        android:textSize="@dimen/text_middle"
+        android:textStyle="normal"
+        tools:ignore="SmallSp"
+        tools:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s." />
+</LinearLayout>

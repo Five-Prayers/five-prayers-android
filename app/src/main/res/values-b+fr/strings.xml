@@ -1,5 +1,5 @@
 <resources>
-    <string name="about_five_prayers">À propos Five Prayers Android</string>
+    <string name="about_five_prayers">À propos de Five Prayers</string>
     <string name="open_source_projects_used">Projets Open Source</string>
     <string name="privacy_policy_title">Politique de confidentialité</string>
     <string name="start_accept_privacy_policy">Afin de se conformer au Règlement Général sur la Protection des Données (RGPD), nous attirons votre attention sur la politique de confidentialité de Five Prayers Android. Veuillez la lire attentivement.
@@ -169,6 +169,7 @@
     <string name="dialog_title_calculation_method_preference">Méthode de calcul</string>
     <string name="title_edit_text_timing_adjustment_preference">Ajuster les horaires de prière</string>
     <string name="dialog_title_edit_text_timing_adjustment_preference">Ajustement des horaires (en minutes)</string>
+    <string name="preference_title_contact">Contactez-nous</string>
 
     <string name="latitude_adjustment_method_middle_of_the_night">Milieu de la nuit</string>
     <string name="latitude_adjustment_method_one_seventh">Septième de la nuit</string>

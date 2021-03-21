@@ -1,5 +1,5 @@
 <resources>
-    <string name="about_five_prayers">About Five Prayers Android</string>
+    <string name="about_five_prayers">About Five Prayers</string>
     <string name="open_source_projects_used">Open Source Projects Used</string>
     <string name="privacy_policy_title">Privacy Policy</string>
     <string name="start_accept_privacy_policy">In order to comply with the European General Data Protection Regulation (GDPR), we herby draw your attention to Five Prayers Android\'s privacy policy. Please read it carefully.\nYou must accept it to send us the bug report.</string>
@@ -168,6 +168,7 @@
     <string name="dialog_title_calculation_method_preference">Calculation Method</string>
     <string name="title_edit_text_timing_adjustment_preference">Adjust prayer timings</string>
     <string name="dialog_title_edit_text_timing_adjustment_preference">Timings adjustment (in minutes)</string>
+    <string name="preference_title_contact">Contact us</string>
 
     <string name="latitude_adjustment_method_middle_of_the_night">Middle of the Night</string>
     <string name="latitude_adjustment_method_one_seventh">One Seventh</string>

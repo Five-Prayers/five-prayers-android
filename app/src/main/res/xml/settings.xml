@@ -2,13 +2,18 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <PreferenceCategory android:title="@string/title_location_preference_section">
+    <PreferenceCategory
+        android:icon="@drawable/ic_location_15"
+        android:layout="@layout/custom_preference_category"
+        android:title="@string/title_location_preference_section">
 
         <CheckBoxPreference
+            android:layout="@layout/custom_switch_preference"
             android:key="LOCATION_SET_MANUALLY_PREFERENCE"
             android:title="@string/title_checkbox_location_preference" />
 
         <com.hbouzidi.fiveprayers.ui.settings.location.AutoCompleteTextPreference
+            android:layout="@layout/custom_preference"
             android:dependency="LOCATION_SET_MANUALLY_PREFERENCE"
             android:dialogTitle="@string/dialog_title_edit_text_location_preference"
             android:key="LOCATION_PREFERENCE"
@@ -16,8 +21,12 @@
             app:useSimpleSummaryProvider="true" />
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="@string/title_notification_section">
+    <PreferenceCategory
+        android:icon="@drawable/ic_notifications_24dp"
+        android:title="@string/title_notification_section"
+        android:layout="@layout/custom_preference_category">
         <com.hbouzidi.fiveprayers.ui.settings.adhan.AdhanCallerPreference
+            android:layout="@layout/custom_preference"
             android:defaultValue="SHORT_PRAYER_CALL"
             android:dialogTitle="@string/dialog_title_fajr_adhan"
             android:entries="@array/entries_fajr_adhan_list_preference"
@@ -27,6 +36,7 @@
             app:useSimpleSummaryProvider="true" />
 
         <com.hbouzidi.fiveprayers.ui.settings.adhan.AdhanCallerPreference
+            android:layout="@layout/custom_preference"
             android:defaultValue="SHORT_PRAYER_CALL"
             android:dialogTitle="@string/dialog_title_fajr_adhan"
             android:entries="@array/entries_adhan_list_preference"
@@ -36,13 +46,18 @@
             app:useSimpleSummaryProvider="true" />
 
         <CheckBoxPreference
+            android:layout="@layout/custom_switch_preference"
             android:key="ADHAN_VIBRATION_PREFERENCE"
             android:title="@string/title_adhan_vibration_preference"
             android:defaultValue="true" />
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="@string/title_prayer_timings_section">
+    <PreferenceCategory
+        android:icon="@drawable/ic_calculator_24dp"
+        android:layout="@layout/custom_preference_category"
+        android:title="@string/title_prayer_timings_section">
         <com.hbouzidi.fiveprayers.ui.settings.method.CalculationMethodPreference
+            android:layout="@layout/custom_preference"
             android:defaultValue="MUSLIM_WORLD_LEAGUE"
             android:dialogTitle="@string/dialog_title_calculation_method_preference"
             android:entries="@array/entries_calculation_method_list_preference"
@@ -52,11 +67,13 @@
             app:useSimpleSummaryProvider="true" />
 
         <com.hbouzidi.fiveprayers.ui.settings.timings.NumberPickerPreference
+            android:layout="@layout/custom_preference"
             android:dialogTitle="@string/dialog_title_edit_text_timing_adjustment_preference"
             android:key="number_preference"
             android:title="@string/title_edit_text_timing_adjustment_preference" />
 
         <ListPreference
+            android:layout="@layout/custom_preference"
             android:defaultValue="ANGLE_BASED"
             android:dialogTitle="@string/dialog_title_latitude_adjustment_method"
             android:entries="@array/entries_latitude_adjustment_method_list_preference"
@@ -66,6 +83,7 @@
             app:useSimpleSummaryProvider="true" />
 
         <ListPreference
+            android:layout="@layout/custom_preference"
             android:defaultValue="SHAFII"
             android:dialogTitle="@string/dialog_title_latitude_adjustment_method"
             android:entries="@array/entries_school_adjustment_method_list_preference"
@@ -75,6 +93,7 @@
             app:useSimpleSummaryProvider="true" />
 
         <ListPreference
+            android:layout="@layout/custom_preference"
             android:defaultValue="STANDARD"
             android:dialogTitle="@string/dialog_title_latitude_adjustment_method"
             android:entries="@array/entries_midnight_mode_adjustment_method_list_preference"
@@ -84,22 +103,41 @@
             app:useSimpleSummaryProvider="true" />
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="@string/calendar">
+    <PreferenceCategory
+        android:icon="@drawable/ic_calendar_24dp"
+        android:layout="@layout/custom_preference_category"
+        android:title="@string/calendar">
         <com.hbouzidi.fiveprayers.ui.settings.hijri.HijriDayAdjustmentPreference
+            android:layout="@layout/custom_preference"
             android:dialogTitle="@string/dialog_title_hijri_day_adjustment_preference"
             android:key="HIJRI_DAY_ADJUSTMENT_PREFERENCE"
             android:title="@string/title_hijri_day_adjustment_preference" />
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="@string/about_five_prayers">
-        <Preference android:title="@string/privacy_policy_title" >
+    <PreferenceCategory
+        android:icon="@drawable/ic_information_24dp"
+        android:layout="@layout/custom_preference_category"
+        android:title="@string/about_five_prayers">
+        <Preference
+            android:layout="@layout/custom_preference"
+            android:title="@string/privacy_policy_title" >
             <intent android:action="android.intent.action.VIEW"
                 android:data="https://github.com/Five-Prayers/five-prayers-android#privacy-policy" />
         </Preference>
 
-        <Preference android:title="@string/open_source_projects_used" >
+        <Preference
+            android:layout="@layout/custom_preference"
+            android:title="@string/open_source_projects_used" >
             <intent android:action="android.intent.action.VIEW"
                 android:data="https://github.com/Five-Prayers/five-prayers-android#open-source-projects-used" />
         </Preference>
+
+        <Preference
+            android:layout="@layout/custom_preference"
+            android:title="@string/preference_title_contact">
+            <intent android:action="android.intent.action.VIEW"
+                android:data="mailto:supp.five.prayers@gmail.com"/>
+        </Preference>
+
     </PreferenceCategory>
 </PreferenceScreen>

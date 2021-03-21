@@ -1,6 +1,5 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:numberpicker="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -12,6 +11,7 @@
         android:layout_height="40dp"
         android:layout_marginTop="16dp"
         numberpicker:focusable="false"
+        numberpicker:layoutDescription="@string/dialog_title_edit_text_timing_adjustment_preference"
         numberpicker:layout_constraintBottom_toBottomOf="parent"
         numberpicker:layout_constraintEnd_toEndOf="parent"
         numberpicker:layout_constraintStart_toEndOf="@+id/textView"
@@ -20,17 +20,17 @@
         numberpicker:max="10"
         numberpicker:min="-10"
         numberpicker:unit="1"
-        numberpicker:value="0"></com.travijuu.numberpicker.library.NumberPicker>
+        numberpicker:value="0" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:textSize="@dimen/text_large"
-        android:textColor="@color/stratos"
-        android:textStyle="bold"
         android:text="@string/FAJR"
+        android:textColor="@color/stratos"
+        android:textSize="@dimen/text_large"
+        android:textStyle="bold"
         numberpicker:layout_constraintBottom_toBottomOf="@+id/fajr_number_picker"
         numberpicker:layout_constraintEnd_toStartOf="@+id/fajr_number_picker"
         numberpicker:layout_constraintStart_toStartOf="parent"
@@ -42,6 +42,7 @@
         android:layout_height="40dp"
         android:layout_marginTop="8dp"
         numberpicker:focusable="false"
+        numberpicker:layoutDescription="@string/dialog_title_edit_text_timing_adjustment_preference"
         numberpicker:layout_constraintBottom_toBottomOf="parent"
         numberpicker:layout_constraintEnd_toEndOf="@+id/fajr_number_picker"
         numberpicker:layout_constraintStart_toStartOf="@+id/fajr_number_picker"
@@ -50,8 +51,7 @@
         numberpicker:max="10"
         numberpicker:min="-10"
         numberpicker:unit="1"
-        numberpicker:value="0">
-    </com.travijuu.numberpicker.library.NumberPicker>
+        numberpicker:value="0" />
 
     <TextView
         android:id="@+id/dohr_text_view"
@@ -73,6 +73,7 @@
         android:layout_height="40dp"
         android:layout_marginTop="8dp"
         numberpicker:focusable="false"
+        numberpicker:layoutDescription="@string/dialog_title_edit_text_timing_adjustment_preference"
         numberpicker:layout_constraintBottom_toBottomOf="parent"
         numberpicker:layout_constraintEnd_toEndOf="@+id/dohr_number_picker"
         numberpicker:layout_constraintStart_toStartOf="@+id/dohr_number_picker"
@@ -81,8 +82,7 @@
         numberpicker:max="10"
         numberpicker:min="-10"
         numberpicker:unit="1"
-        numberpicker:value="0">
-    </com.travijuu.numberpicker.library.NumberPicker>
+        numberpicker:value="0" />
 
     <TextView
         android:id="@+id/asr_text_view"
@@ -104,6 +104,7 @@
         android:layout_height="40dp"
         android:layout_marginTop="8dp"
         numberpicker:focusable="false"
+        numberpicker:layoutDescription="@string/dialog_title_edit_text_timing_adjustment_preference"
         numberpicker:layout_constraintBottom_toBottomOf="parent"
         numberpicker:layout_constraintEnd_toEndOf="@+id/asr_number_picker"
         numberpicker:layout_constraintStart_toStartOf="@+id/asr_number_picker"
@@ -112,8 +113,7 @@
         numberpicker:max="10"
         numberpicker:min="-10"
         numberpicker:unit="1"
-        numberpicker:value="0">
-    </com.travijuu.numberpicker.library.NumberPicker>
+        numberpicker:value="0" />
 
     <TextView
         android:id="@+id/maghreb_text_view"
@@ -135,6 +135,7 @@
         android:layout_height="40dp"
         android:layout_marginTop="8dp"
         numberpicker:focusable="false"
+        numberpicker:layoutDescription="@string/dialog_title_edit_text_timing_adjustment_preference"
         numberpicker:layout_constraintBottom_toBottomOf="parent"
         numberpicker:layout_constraintEnd_toEndOf="@+id/maghreb_number_picker"
         numberpicker:layout_constraintStart_toStartOf="@+id/maghreb_number_picker"
@@ -143,8 +144,7 @@
         numberpicker:max="10"
         numberpicker:min="-10"
         numberpicker:unit="1"
-        numberpicker:value="0">
-    </com.travijuu.numberpicker.library.NumberPicker>
+        numberpicker:value="0" />
 
     <TextView
         android:id="@+id/icha_text_view"

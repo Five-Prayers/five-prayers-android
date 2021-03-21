@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:clickable="true"
-    android:focusable="true"
     android:background="@drawable/white_blue_mosque_gradient_background"
+    android:clickable="true"
     android:fillViewport="true"
+    android:focusable="true"
     android:orientation="vertical"
     tools:context=".ui.calendar.CalendarActivity">
 
@@ -59,6 +59,7 @@
         android:layout_marginStart="@dimen/fab_margin"
         android:layout_marginLeft="@dimen/fab_margin"
         android:layout_marginBottom="16dp"
+        android:contentDescription="@string/common.close"
         android:src="@drawable/ic_back_52dp"
         android:tint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -108,7 +109,7 @@
                 android:id="@+id/holiday_recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"/>
+                android:layout_marginTop="8dp" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

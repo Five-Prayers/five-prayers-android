@@ -2,6 +2,7 @@
     <string name="about_five_prayers">حول التطبيق</string>
     <string name="open_source_projects_used">مشاريع مفتوحة المصدر</string>
     <string name="privacy_policy_title">سياسة خصوصية</string>
+    <string name="license_summary">رخصة غنو لعامة الشعب الإصدار 3</string>
     <string name="start_accept_privacy_policy">من أجل الامتثال للائحة الأوروبية العامة لحماية البيانات (GDPR) ، فإننا نلفت انتباهك إلى سياسة خصوصية Five Prayers Android. يرجى قراءتها بعناية.
 \nو يجب عليك قبولها لإرسال تقرير الأخطاء إلينا.</string>
     <string name="read_privacy_policy">الإطلاع على سياسة الخصوصية</string>
@@ -30,6 +31,7 @@
     <string name="common.sunrise">شروق الشمس</string>
     <string name="common.sunset">غروب الشمس</string>
     <string name="common.close">إغلاق</string>
+    <string name="common.license">رخصة التطبيق</string>
 
     <string name="app_name">خمس صلوات</string>
     <string name="title_home">صلاة</string>
@@ -230,6 +232,7 @@
     <string name="title_checkbox_quran_night_mode">وضع الليل</string>
     <string name="title_notification_section">إشعار الأذان</string>
     <string name="dialog_title_fajr_adhan">حدد أذان فجر</string>
+    <string name="dialog_title_adhan">حدد الأذان</string>
 
     <string name="adhan_abdelbasset_abdessamad">عبد الباسط عبد الصمد</string>
     <string name="adhan_al_haram_el_madani">الحرم المدني</string>
@@ -238,6 +241,7 @@
     <string name="adhan_riad_al_djazairi">رياض الجزائري</string>
     <string name="short_prayer_call">تذكير قصير بالعربية</string>
     <string name="title_adhan_fajr">أذان الفجر</string>
+    <string name="title_adhan_rest_prayers">أذان باقي الصلوات</string>
     <string name="title_adhan">أذان</string>
 
     <string name="names_view_title">أسماء الله الحسنى‎</string>

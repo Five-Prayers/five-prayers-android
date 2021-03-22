@@ -2,6 +2,7 @@
     <string name="about_five_prayers">About Five Prayers</string>
     <string name="open_source_projects_used">Open Source Projects Used</string>
     <string name="privacy_policy_title">Privacy Policy</string>
+    <string name="license_summary">GNU General Public License v3</string>
     <string name="start_accept_privacy_policy">In order to comply with the European General Data Protection Regulation (GDPR), we herby draw your attention to Five Prayers Android\'s privacy policy. Please read it carefully.\nYou must accept it to send us the bug report.</string>
     <string name="read_privacy_policy">Read privacy policy</string>
     <string name="sorry_string">Sorry, that should not have happened.</string>
@@ -30,6 +31,7 @@
     <string name="common.sunrise">Sunrise</string>
     <string name="common.sunset">Sunset</string>
     <string name="common.close">Close</string>
+    <string name="common.license">license</string>
 
     <string name="app_name">Five Prayers</string>
     <string name="title_home">Prayers</string>
@@ -235,6 +237,7 @@
     <string name="title_checkbox_quran_night_mode">Night Mode</string>
     <string name="title_notification_section">Notification</string>
     <string name="dialog_title_fajr_adhan">Select Fajr Adhan</string>
+    <string name="dialog_title_adhan">Select Adhan</string>
 
     <string name="adhan_abdelbasset_abdessamad">Abdelbasset Abdessamad</string>
     <string name="adhan_al_haram_el_madani">Al Haram Al Madani</string>
@@ -243,6 +246,7 @@
     <string name="adhan_riad_al_djazairi">Riad Al Djazairi</string>
     <string name="short_prayer_call">Short Call (no Adhan)</string>
     <string name="title_adhan_fajr">Fajr Adhan</string>
+    <string name="title_adhan_rest_prayers">Adhan of other prayers</string>
     <string name="title_adhan">Adhan</string>
 
     <string name="names_view_title">Beautiful Names of God</string>

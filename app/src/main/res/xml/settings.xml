@@ -38,11 +38,11 @@
         <com.hbouzidi.fiveprayers.ui.settings.adhan.AdhanCallerPreference
             android:layout="@layout/custom_preference"
             android:defaultValue="SHORT_PRAYER_CALL"
-            android:dialogTitle="@string/dialog_title_fajr_adhan"
+            android:dialogTitle="@string/dialog_title_adhan"
             android:entries="@array/entries_adhan_list_preference"
             android:entryValues="@array/entryvalues_adhan_list_preference"
             android:key="ADHAN_CALLER"
-            android:title="@string/title_adhan"
+            android:title="@string/title_adhan_rest_prayers"
             app:useSimpleSummaryProvider="true" />
 
         <CheckBoxPreference
@@ -130,6 +130,14 @@
             android:title="@string/open_source_projects_used" >
             <intent android:action="android.intent.action.VIEW"
                 android:data="https://github.com/Five-Prayers/five-prayers-android#open-source-projects-used" />
+        </Preference>
+
+        <Preference
+            android:layout="@layout/custom_preference"
+            android:title="@string/common.license"
+            android:summary="@string/license_summary">
+            <intent android:action="android.intent.action.VIEW"
+                android:data="https://github.com/Five-Prayers/five-prayers-android#license" />
         </Preference>
 
         <Preference

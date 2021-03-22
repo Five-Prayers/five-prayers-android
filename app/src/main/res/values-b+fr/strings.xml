@@ -2,6 +2,7 @@
     <string name="about_five_prayers">À propos de Five Prayers</string>
     <string name="open_source_projects_used">Projets Open Source</string>
     <string name="privacy_policy_title">Politique de confidentialité</string>
+    <string name="license_summary">Licence publique générale GNU v3</string>
     <string name="start_accept_privacy_policy">Afin de se conformer au Règlement Général sur la Protection des Données (RGPD), nous attirons votre attention sur la politique de confidentialité de Five Prayers Android. Veuillez la lire attentivement.
 \nVous devez l’accepter pour nous envoyer le rapport de bogue.</string>
     <string name="read_privacy_policy">Lire la politique de confidentialité</string>
@@ -30,6 +31,7 @@
     <string name="common.sunrise">Lever du soleil</string>
     <string name="common.sunset">Coucher du soleil</string>
     <string name="common.close">Fermer</string>
+    <string name="common.license">Licence</string>
 
     <string name="app_name">Cinq Prières</string>
     <string name="title_home">Prières</string>
@@ -235,14 +237,16 @@
     <string name="title_checkbox_quran_night_mode">Mode nuit</string>
     <string name="title_notification_section">Notification</string>
     <string name="dialog_title_fajr_adhan">Sélectionner Adhan Al Fajr</string>
+    <string name="dialog_title_adhan">Sélectionner Adhan</string>
 
     <string name="adhan_abdelbasset_abdessamad">Abdelbasset Abdessamad</string>
     <string name="adhan_al_haram_el_madani">Al Haram Al Madani</string>
     <string name="adhan_meshary_al_fasy">Mishary Rashid Al-Afasy</string>
     <string name="adhan_omar_al_kazabri">Omar Al Kazabri</string>
     <string name="adhan_riad_al_djazairi">Riad Al Djazairi</string>
-    <string name="short_prayer_call">Rappel court en arabe (Pas d\'Adhan)</string>
-    <string name="title_adhan_fajr">Fajr Adhan</string>
+    <string name="short_prayer_call">Rappel court (Pas d\'Adhan)</string>
+    <string name="title_adhan_fajr">Adhan al Fajr</string>
+    <string name="title_adhan_rest_prayers">Adhan des autres prières</string>
     <string name="title_adhan">Adhan</string>
 
     <string name="names_view_title">Asma’ Allah al-Ḥusná</string>

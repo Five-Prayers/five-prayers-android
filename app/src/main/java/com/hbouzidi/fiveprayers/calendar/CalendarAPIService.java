@@ -34,9 +34,7 @@ public class CalendarAPIService extends BaseAPIService {
 
         CalendarAPIResource calendarAPIResource = provideRetrofit().create(CalendarAPIResource.class);
 
-        Call<CalendarAPIResponse> call
-                = calendarAPIResource
-                .getHijriCalendar(month, year, adjustment);
+        Call<CalendarAPIResponse> call = calendarAPIResource.getHijriCalendar(month, year, adjustment);
 
         return call.execute().body();
     }

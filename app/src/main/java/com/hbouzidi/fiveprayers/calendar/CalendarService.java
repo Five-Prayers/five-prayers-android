@@ -41,11 +41,17 @@ public class CalendarService {
                 try {
                     CalendarAPIService calendarAPIService = CalendarAPIService.getInstance();
 
-                    emitter.onSuccess(calendarAPIService
-                            .getHijriCalendar(month, year, hijriAdjustment).getData());
+                    CalendarAPIResponse hijriCalendar = calendarAPIService.getHijriCalendar(month, year, hijriAdjustment);
+
+                    if (hijriCalendar != null) {
+                        emitter.onSuccess(hijriCalendar.getData());
+                    } else {
+                        emitter.onError(new Exception("Cannot get Hijri Calendar. Response was null"));
+                        Log.e(CalendarService.class.getName(), "Cannot get Hijri Calendar. Response was null");
+                    }
 
                 } catch (IOException e) {
-                    Log.e(CalendarService.class.getName(), "Cannot find from aladhanAPIService");
+                    Log.e(CalendarService.class.getName(), "Cannot get Hijri Calendar from API");
                     emitter.onError(e);
                 }
             });

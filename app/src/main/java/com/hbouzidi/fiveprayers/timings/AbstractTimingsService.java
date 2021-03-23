@@ -57,7 +57,7 @@ public abstract class AbstractTimingsService implements TimingsService {
                             emitter.onSuccess(prayerTimings);
 
                         } catch (IOException e) {
-                            Log.e(TAG, "Cannot retrieve timing from API");
+                            Log.e(TAG, "Cannot retrieve timing from API", e);
                             emitter.onError(e);
                         }
                     }

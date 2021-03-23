@@ -1,5 +1,7 @@
 package com.hbouzidi.fiveprayers.calendar;
 
+import android.os.Build;
+
 import com.hbouzidi.fiveprayers.common.api.BaseAPIService;
 
 import java.io.IOException;
@@ -16,7 +18,11 @@ public class CalendarAPIService extends BaseAPIService {
     private static CalendarAPIService calendarAPIService;
 
     private CalendarAPIService() {
-        BASE_URL = "https://api.aladhan.com/v1/";
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            BASE_URL = "http://api.aladhan.com/v1/";
+        } else {
+            BASE_URL = "https://api.aladhan.com/v1/";
+        }
     }
 
     public static CalendarAPIService getInstance() {

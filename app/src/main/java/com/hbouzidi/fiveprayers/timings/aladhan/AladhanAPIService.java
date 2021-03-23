@@ -1,5 +1,7 @@
 package com.hbouzidi.fiveprayers.timings.aladhan;
 
+import android.os.Build;
+
 import androidx.annotation.NonNull;
 
 import com.hbouzidi.fiveprayers.common.api.BaseAPIService;
@@ -24,7 +26,11 @@ public class AladhanAPIService extends BaseAPIService {
     private static AladhanAPIService aladhanAPIService;
 
     private AladhanAPIService() {
-        BASE_URL = "https://api.aladhan.com/v1/";
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            BASE_URL = "http://api.aladhan.com/v1/";
+        } else {
+            BASE_URL = "https://api.aladhan.com/v1/";
+        }
     }
 
     public static AladhanAPIService getInstance() {

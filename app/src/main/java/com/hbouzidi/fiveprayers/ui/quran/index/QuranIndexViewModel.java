@@ -84,7 +84,7 @@ public class QuranIndexViewModel extends AndroidViewModel {
                 .setTitle("Quran Images files")
                 .setDescription("Downloading")
                 .setAllowedOverMetered(true)
-                .setAllowedOverRoaming(false);
+                .setAllowedOverRoaming(true);
 
         DownloadManager downloadManager = (DownloadManager) applicationContext.getSystemService(DOWNLOAD_SERVICE);
         long downloadID = downloadManager.enqueue(request);

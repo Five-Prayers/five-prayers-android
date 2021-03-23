@@ -54,8 +54,6 @@ import static android.content.Context.MODE_PRIVATE;
  */
 public class HomeFragment extends Fragment {
 
-    private final int disabledColor = 0xFFD81B60;
-    private final int enabledColor = 0xFF00C167;
     private LocalDateTime todayDate;
     private CountDownTimer TimeRemainingCTimer;
     private Context context;
@@ -338,8 +336,7 @@ public class HomeFragment extends Fragment {
 
         boolean adhanCallEnabled = sharedPreferences.getBoolean(callPreferenceKey, false);
 
-        adhanCallImageView.setImageResource(adhanCallEnabled ? R.drawable.ic_notifications_24dp : R.drawable.ic_notifications_off_24dp);
-        adhanCallImageView.setColorFilter(adhanCallEnabled ? enabledColor : disabledColor);
+        adhanCallImageView.setImageResource(adhanCallEnabled ? R.drawable.ic_notifications_on_24dp : R.drawable.ic_notifications_off_24dp);
 
         setNotifImgOnClickListener(adhanCallConstraintLayout, adhanCallImageView, callPreferenceKey);
     }
@@ -358,8 +355,7 @@ public class HomeFragment extends Fragment {
 
             boolean adhanCallEnabled = sharedPreferences.getBoolean(callPreferenceKey, false);
 
-            imageView.setImageResource(adhanCallEnabled ? R.drawable.ic_notifications_off_24dp : R.drawable.ic_notifications_24dp);
-            imageView.setColorFilter(adhanCallEnabled ? disabledColor : enabledColor);
+            imageView.setImageResource(adhanCallEnabled ? R.drawable.ic_notifications_off_24dp : R.drawable.ic_notifications_on_24dp);
 
             SharedPreferences.Editor edit = sharedPreferences.edit();
 

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_marginStart="16dp"
     android:layout_marginLeft="16dp"
     android:layout_marginTop="8dp"
@@ -40,7 +40,6 @@
                 android:id="@+id/asr_label_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="Al Asr"
                 android:fontFamily="sans-serif-condensed"
                 android:gravity="center"
                 android:maxLines="1"
@@ -50,7 +49,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Al Asr" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -105,8 +105,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:tint="#00C167" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -158,7 +157,6 @@
                 android:id="@+id/maghrib_label_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="Al Maghreb"
                 android:fontFamily="sans-serif-condensed"
                 android:gravity="center"
                 android:maxLines="1"
@@ -168,7 +166,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Al Maghreb" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -222,8 +221,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:tint="#00C167" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -275,7 +273,6 @@
                 android:id="@+id/icha_label_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="Al Ichaa"
                 android:fontFamily="sans-serif-condensed"
                 android:gravity="center"
                 android:maxLines="1"
@@ -285,7 +282,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Al Ichaa" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -340,8 +338,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:tint="#00C167" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

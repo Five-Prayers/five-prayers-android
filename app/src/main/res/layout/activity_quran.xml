@@ -2,9 +2,9 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/quran_activity_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/quran_activity_layout"
     android:background="@drawable/white_blue_mosque_gradient_background"
     android:fillViewport="true"
     tools:context=".ui.quran.index.QuranIndexActivity">
@@ -22,10 +22,10 @@
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-condensed"
                 android:gravity="center"
                 android:minHeight="?actionBarSize"
                 android:padding="@dimen/appbar_padding"
-                android:fontFamily="sans-serif-condensed"
                 android:text="@string/quran"
                 android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -36,8 +36,8 @@
                 android:id="@+id/night_mode_switch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/appbar_padding"
                 android:minHeight="?actionBarSize"
+                android:padding="@dimen/appbar_padding"
                 android:text="@string/title_checkbox_quran_night_mode"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -49,11 +49,11 @@
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:tabMaxWidth="0dp"
+            app:tabBackground="@drawable/tab_color_selector"
             app:tabGravity="fill"
-            app:tabTextColor="@color/colorAccent"
+            app:tabMaxWidth="0dp"
             app:tabSelectedTextColor="@color/colorPrimary"
-            app:tabBackground="@drawable/tab_color_selector"/>
+            app:tabTextColor="@color/colorAccent" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.viewpager2.widget.ViewPager2
@@ -68,6 +68,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|start"
         android:layout_margin="@dimen/fab_margin"
+        android:contentDescription="@string/common.close"
         android:tint="@color/white"
         app:srcCompat="@drawable/ic_back_52dp" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

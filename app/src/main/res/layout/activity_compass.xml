@@ -39,10 +39,10 @@
         android:layout_marginLeft="@dimen/fab_margin"
         android:layout_marginBottom="16dp"
         android:contentDescription="@string/common.close"
-        android:src="@drawable/ic_back_52dp"
         android:tint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_back_52dp" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout2"
@@ -60,11 +60,11 @@
             android:layout_height="@dimen/dial"
             android:layout_centerInParent="true"
             android:contentDescription="@string/compass_dial"
-            android:src="@drawable/dial"
             app:layout_constraintBottom_toBottomOf="@+id/qibla_indicator"
             app:layout_constraintEnd_toEndOf="@+id/qibla_indicator"
             app:layout_constraintStart_toStartOf="@+id/qibla_indicator"
-            app:layout_constraintTop_toTopOf="@+id/qibla_indicator" />
+            app:layout_constraintTop_toTopOf="@+id/qibla_indicator"
+            app:srcCompat="@drawable/dial" />
 
         <ImageView
             android:id="@+id/qibla_indicator"
@@ -73,11 +73,11 @@
             android:layout_centerInParent="true"
             android:contentDescription="@string/compass_hands"
             android:scaleType="fitXY"
-            android:src="@drawable/qibla"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/qibla" />
 
         <TextView
             android:id="@+id/angle"
@@ -109,12 +109,13 @@
             android:layout_height="@dimen/bottom_image"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
+            android:contentDescription="@string/desc_qibla_direction"
             android:scaleType="fitXY"
-            android:src="@drawable/footer"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/footer" />
 
         <TextView
             android:id="@+id/your_location"

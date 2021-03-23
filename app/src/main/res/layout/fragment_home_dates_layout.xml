@@ -106,7 +106,7 @@
                 android:layout_height="15dp"
                 android:layout_marginEnd="4dp"
                 android:layout_marginRight="4dp"
-                android:src="@drawable/ic_location_15"
+                app:srcCompat="@drawable/ic_location_15"
                 android:contentDescription="@string/your_location"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/location_text_view"

@@ -24,7 +24,7 @@
             android:layout_height="match_parent"
             android:layout_margin="@dimen/spacing_xmedium"
             android:gravity="center_vertical"
-            android:src="@drawable/ic_bookmark_automatic_24dp"
+            app:srcCompat="@drawable/ic_bookmark_automatic_24dp"
             app:tint="@color/colorPrimary"
             tools:text="@tools:sample/lorem" />
 

@@ -40,7 +40,7 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_gravity="bottom|start"
-            android:src="@drawable/ic_first_24dp"
+            app:srcCompat="@drawable/ic_first_24dp"
             android:visibility="invisible"
             />
 
@@ -49,7 +49,7 @@
             android:layout_width="15dp"
             android:layout_height="15dp"
             android:layout_gravity="top|start"
-            android:src="@drawable/ic_bell_holiday_24dp"
+            app:srcCompat="@drawable/ic_bell_holiday_24dp"
             android:visibility="invisible"
             />
     </FrameLayout>

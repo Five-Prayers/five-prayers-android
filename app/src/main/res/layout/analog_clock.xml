@@ -18,6 +18,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:clipChildren="false"
     android:clipToPadding="true">
     <androidx.appcompat.widget.AppCompatImageView
@@ -25,23 +26,23 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerInParent="true"
-        android:src="@drawable/clock_00_face"/>
+        app:srcCompat="@drawable/clock_00_face"/>
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/hour_hand"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerInParent="true"
-        android:src="@drawable/clock_00_short"/>
+        app:srcCompat="@drawable/clock_00_short"/>
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/minute_hand"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerInParent="true"
-        android:src="@drawable/clock_00_long"/>
+        app:srcCompat="@drawable/clock_00_long"/>
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/second_hand"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerInParent="true"
-        android:src="@drawable/clock_00_second"/>
+        app:srcCompat="@drawable/clock_00_second"/>
 </RelativeLayout>

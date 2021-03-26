@@ -1,4 +1,4 @@
-<p align="center"><a href="https://github.com/HichamBI/five-prayers-android"><img src="app/src/main/res/mipmap-xhdpi/ic_launcher_round.png" width="150"></a></p> 
+<p align="center"><a href="https://github.com/HichamBI/five-prayers-android"><img src="app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png" width="150"></a></p> 
 <h2 align="center"><b>Five Prayers Android</b></h2>
 <h4 align="center">A libre lightweight and ads free set of muslim tools</h4>
 

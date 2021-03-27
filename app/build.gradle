@@ -88,7 +88,7 @@ githubRelease {
     releaseName "${android.defaultConfig.versionName}"
     draft false
     prerelease false
-    releaseAssets "app/build/outputs/bundle/release/${archivesBaseName}-release.apk"
+    releaseAssets "app/build/outputs/apk/release/${archivesBaseName}-release.apk"
     overwrite false
     dryRun false
     apiEndpoint "https://api.github.com"

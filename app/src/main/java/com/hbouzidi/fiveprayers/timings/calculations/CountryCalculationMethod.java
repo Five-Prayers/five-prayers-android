@@ -196,7 +196,7 @@ public class CountryCalculationMethod {
         result.put("PT", CalculationMethodEnum.MUSLIM_WORLD_LEAGUE);
         result.put("PR", CalculationMethodEnum.MUSLIM_WORLD_LEAGUE);
         result.put("QA", CalculationMethodEnum.QATAR);
-        result.put("ID", CalculationMethodEnum.DEPARTMENT_OF_ISLAMIC_ADVANCEMENT_MALAYSIA);
+        result.put("ID", CalculationMethodEnum.KEMENTERIAN_AGAMA_RI_INDONESIA);
         result.put("MM", CalculationMethodEnum.MUSLIM_WORLD_LEAGUE);
         result.put("RE", CalculationMethodEnum.EGYPTIAN_GENERAL_AUTHORITY_OF_SURVEY);
         result.put("RO", CalculationMethodEnum.MUSLIM_WORLD_LEAGUE);

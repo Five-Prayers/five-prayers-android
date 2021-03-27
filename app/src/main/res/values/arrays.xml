@@ -12,6 +12,8 @@
         <item>@string/method_kuwait</item>
         <item>@string/method_qatar</item>
         <item>@string/method_majlis_ugama_islam_singapura</item>
+        <item>@string/method_department_of_islamic_advancement_malaysia</item>
+        <item>@string/method_kementerian_agama_ri_indonesia</item>
         <item>@string/method_union_organization_islamic_de_france</item>
         <item>@string/method_mosquee_de_paris_france</item>
         <item>@string/method_france_18</item>
@@ -35,6 +37,8 @@
         <item>KUWAIT</item>
         <item>QATAR</item>
         <item>MAJLIS_UGAMA_ISLAM_SINGAPURA</item>
+        <item>DEPARTMENT_OF_ISLAMIC_ADVANCEMENT_MALAYSIA</item>
+        <item>KEMENTERIAN_AGAMA_RI_INDONESIA</item>
         <item>UNION_ORGANIZATION_ISLAMIC_DE_FRANCE</item>
         <item>MOSQUEE_DE_PARIS_FRANCE</item>
         <item>FRANCE_18</item>

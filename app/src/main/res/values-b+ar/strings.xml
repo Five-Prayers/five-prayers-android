@@ -132,6 +132,8 @@
     <string name="method_mosquee_de_paris_france">مسجد باريس - فرنسا</string>
     <string name="method_france_18">زاوية 18 درجة - فرنسا</string>
     <string name="method_france_15">زاوية 15 درجة - فرنسا</string>
+    <string name="method_department_of_islamic_advancement_malaysia">جابتن كماجوان اسلام - مليسيا</string>
+    <string name="method_kementerian_agama_ri_indonesia">وزارة الدين بجمهورية - إندونيسيا</string>
     <string name="method_moroccan_ministry_of_islamic_affairs">وزارة الشؤون الإسلامية - المغرب</string>
     <string name="method_tunisian_ministry_of_religious_affairs">وزارة الشؤون الدينية - تونس</string>
     <string name="method_algerian_ministry_of_religious_affairs_and_wakfs">وزارة الشؤون الدينية الجزائرية</string>
@@ -152,6 +154,8 @@
     <string name="short_method_diyanet_isleri_baskanligi_turkey">رئاسة الشؤون الدينية</string>
     <string name="short_method_spiritual_administration_of_muslims_of_russia">الإدارة الروحية لمسلمي روسيا</string>
     <string name="short_method_moroccan_ministry_of_islamic_affairs">وزارة الشؤون الإسلامية</string>
+    <string name="short_method_department_of_islamic_advancement_malaysia">جابتن كماجوان اسلام</string>
+    <string name="short_method_kementerian_agama_ri_indonesia">وزارة الدين بجمهورية</string>
     <string name="short_method_mosquee_de_paris_france">مسجد باريس</string>
     <string name="short_method_france_18">زاوية 18 درجة - فرنسا</string>
     <string name="short_method_france_15">زاوية 15 درجة - فرنسا</string>

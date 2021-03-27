@@ -132,6 +132,8 @@
     <string name="method_diyanet_isleri_baskanligi_turkey">Présidence des affaires religieuses - Turquie</string>
     <string name="method_spiritual_administration_of_muslims_of_russia">L\'administration spirituelle des musulmans de Russie</string>
     <string name="method_moroccan_ministry_of_islamic_affairs">Ministere des Affaires Islamiques - Maroc</string>
+    <string name="method_department_of_islamic_advancement_malaysia">Jabatan Kemajuan Islam - Malaisie</string>
+    <string name="method_kementerian_agama_ri_indonesia">Kementerian Agama RI - Indonésie</string>
     <string name="method_mosquee_de_paris_france">Mosquée de Paris - France</string>
     <string name="method_france_18">Angle 18° - France</string>
     <string name="method_france_15">Angle 15° - France</string>
@@ -154,6 +156,8 @@
     <string name="short_method_diyanet_isleri_baskanligi_turkey">Présidence des affaires religieuses</string>
     <string name="short_method_spiritual_administration_of_muslims_of_russia">L\'administration spirituelle de Russie</string>
     <string name="short_method_moroccan_ministry_of_islamic_affairs">Ministere des Affaires Islamiques</string>
+    <string name="short_method_department_of_islamic_advancement_malaysia">Jabatan Kemajuan Islam</string>
+    <string name="short_method_kementerian_agama_ri_indonesia">Kementerian Agama RI</string>
     <string name="short_method_mosquee_de_paris_france">Mosquée de Paris</string>
     <string name="short_method_france_18">Angle 18° - France</string>
     <string name="short_method_france_15">Angle 15° - France</string>

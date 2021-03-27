@@ -67,9 +67,9 @@ platform :android do
         UI.success("APK Path :  \"#{apk_path}\"")
         UI.success("AAB Path :  \"#{aab_path}\"")
 
-        upload_to_play_store(track: 'internal', aab: "#{aab_path}")
-        upload_to_play_store(track: 'internal', track_promote_to: 'alpha')
-        upload_to_play_store(track: 'alpha', track_promote_to: 'beta')
+        upload_to_play_store(track: 'internal', aab: "#{aab_path}", skip_upload_apk: true)
+        upload_to_play_store(track: 'internal', track_promote_to: 'alpha', skip_upload_apk: true)
+        upload_to_play_store(track: 'alpha', track_promote_to: 'beta', skip_upload_apk: true)
 
         # commit and push to GitHub
         commit_android_version_bump(gradle_file_folder:"app")

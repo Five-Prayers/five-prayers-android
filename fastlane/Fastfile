@@ -54,7 +54,7 @@ platform :android do
         increment_version_code(app_project_dir: '**/app')
 
         # Increment version name
-        increment_version_name(app_project_dir: '**/app', bump_type: 'patch')
+        increment_version_name(app_project_dir: '**/app', bump_type: 'minor')
 
         # Build bundle and apk
         gradle( task: 'assemble', build_type: 'Release')
@@ -67,8 +67,9 @@ platform :android do
         UI.success("APK Path :  \"#{apk_path}\"")
         UI.success("AAB Path :  \"#{aab_path}\"")
 
-        upload_to_play_store(track: 'internal', apk: '#{aab_path}')
+        upload_to_play_store(track: 'internal', aab: "#{aab_path}")
         upload_to_play_store(track: 'internal', track_promote_to: 'alpha')
+        upload_to_play_store(track: 'alpha', track_promote_to: 'beta')
 
         # commit and push to GitHub
         commit_android_version_bump(gradle_file_folder:"app")

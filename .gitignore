@@ -5,7 +5,10 @@
 .DS_Store
 /build
 /captures
+/fastlane/README.md
+/fastlane/report.xml
 .externalNativeBuild
 .cxx
+.env.default
 api-play-store-key.json
 secrets.properties

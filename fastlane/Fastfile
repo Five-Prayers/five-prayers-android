@@ -73,9 +73,14 @@ platform :android do
         gradle(task: 'githubRelease')
     end
 
-    desc "Runs all the tests"
+    desc "Runs all the unit tests"
     lane :test do
         gradle(task: "test")
+    end
+
+    desc "Runs all the instrumental tests"
+    lane :connectedAndroidTest do
+        gradle(task: "connectedAndroidTest")
     end
 
     desc "Submit a new Internal Build to Play Store"

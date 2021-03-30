@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.text.SpannableString;
 import android.text.style.StyleSpan;
+import android.view.View;
 import android.widget.RemoteViews;
 
 import androidx.core.content.ContextCompat;
@@ -75,43 +76,11 @@ public class HomeScreenWidgetProvider extends AppWidgetProvider {
                                     dayPrayer.getHijriYear()
                             );
 
-                            HijriHoliday holiday = HijriHoliday.getHoliday(dayPrayer.getHijriDay(), dayPrayer.getHijriMonthNumber());
+                            populateHolidayTextView(dayPrayer, remoteViews, context);
 
-                            if (holiday != null) {
-                                String holidayName = context.getResources().getString(
-                                        context.getResources().getIdentifier(holiday.toString(), "string", context.getPackageName()));
+                            populateHijriDateTextView(remoteViews, hijriDate);
 
-                                remoteViews.setTextViewText(R.id.holiday_text_View, StringUtils.capitalize(holidayName));
-                            }
-
-                            remoteViews.setTextViewText(R.id.hijri_date_text_View, StringUtils.capitalize(hijriDate));
-
-                            remoteViews.setTextViewText(R.id.chourouk_text_View, UiUtils.formatTiming(dayPrayer.getComplementaryTiming().get(ComplementaryTimingEnum.SUNRISE)));
-                            remoteViews.setTextViewText(R.id.chourouk_title_text_View, context.getString(R.string.SUNRISE));
-
-                            remoteViews.setTextViewText(R.id.fajr_text_View, getStyledText(UiUtils.formatTiming(dayPrayer.getTimings().get(PrayerEnum.FAJR)), PrayerEnum.FAJR, nextPrayerKey));
-                            remoteViews.setTextViewText(R.id.dohr_text_View, getStyledText(UiUtils.formatTiming(dayPrayer.getTimings().get(PrayerEnum.DHOHR)), PrayerEnum.DHOHR, nextPrayerKey));
-                            remoteViews.setTextViewText(R.id.asr_text_View, getStyledText(UiUtils.formatTiming(dayPrayer.getTimings().get(PrayerEnum.ASR)), PrayerEnum.ASR, nextPrayerKey));
-                            remoteViews.setTextViewText(R.id.maghrib_text_View, getStyledText(UiUtils.formatTiming(dayPrayer.getTimings().get(PrayerEnum.MAGHRIB)), PrayerEnum.MAGHRIB, nextPrayerKey));
-                            remoteViews.setTextViewText(R.id.ichaa_text_View, getStyledText(UiUtils.formatTiming(dayPrayer.getTimings().get(PrayerEnum.ICHA)), PrayerEnum.ICHA, nextPrayerKey));
-
-                            remoteViews.setTextViewText(R.id.fajr_title_text_View, getStyledText(context.getString(R.string.SHORT_FAJR), PrayerEnum.FAJR, nextPrayerKey));
-                            remoteViews.setTextViewText(R.id.dohr_title_text_View, getStyledText(context.getString(R.string.SHORT_DHOHR), PrayerEnum.DHOHR, nextPrayerKey));
-                            remoteViews.setTextViewText(R.id.asr_title_text_View, getStyledText(context.getString(R.string.SHORT_ASR), PrayerEnum.ASR, nextPrayerKey));
-                            remoteViews.setTextViewText(R.id.maghrib_title_text_View, getStyledText(context.getString(R.string.SHORT_MAGHRIB), PrayerEnum.MAGHRIB, nextPrayerKey));
-                            remoteViews.setTextViewText(R.id.ichaa_title_text_View, getStyledText(context.getString(R.string.SHORT_ICHA), PrayerEnum.ICHA, nextPrayerKey));
-
-                            remoteViews.setTextColor(R.id.fajr_text_View, getTextColor(context, PrayerEnum.FAJR, nextPrayerKey));
-                            remoteViews.setTextColor(R.id.dohr_text_View, getTextColor(context, PrayerEnum.DHOHR, nextPrayerKey));
-                            remoteViews.setTextColor(R.id.asr_text_View, getTextColor(context, PrayerEnum.ASR, nextPrayerKey));
-                            remoteViews.setTextColor(R.id.maghrib_text_View, getTextColor(context, PrayerEnum.MAGHRIB, nextPrayerKey));
-                            remoteViews.setTextColor(R.id.ichaa_text_View, getTextColor(context, PrayerEnum.ICHA, nextPrayerKey));
-
-                            remoteViews.setTextColor(R.id.fajr_title_text_View, getTextColor(context, PrayerEnum.FAJR, nextPrayerKey));
-                            remoteViews.setTextColor(R.id.dohr_title_text_View, getTextColor(context, PrayerEnum.DHOHR, nextPrayerKey));
-                            remoteViews.setTextColor(R.id.asr_title_text_View, getTextColor(context, PrayerEnum.ASR, nextPrayerKey));
-                            remoteViews.setTextColor(R.id.maghrib_title_text_View, getTextColor(context, PrayerEnum.MAGHRIB, nextPrayerKey));
-                            remoteViews.setTextColor(R.id.ichaa_title_text_View, getTextColor(context, PrayerEnum.ICHA, nextPrayerKey));
+                            populateTimingsTextViews(dayPrayer, remoteViews, nextPrayerKey, context);
 
                             Intent intent = new Intent(context, HomeScreenWidgetProvider.class);
                             intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
@@ -124,6 +93,52 @@ public class HomeScreenWidgetProvider extends AppWidgetProvider {
                     public void onError(@io.reactivex.rxjava3.annotations.NonNull Throwable e) {
                     }
                 });
+    }
+
+    private void populateHolidayTextView(@NotNull DayPrayer dayPrayer, RemoteViews remoteViews, Context context) {
+        HijriHoliday holiday = HijriHoliday.getHoliday(dayPrayer.getHijriDay(), dayPrayer.getHijriMonthNumber());
+
+        if (holiday != null) {
+            String holidayName = context.getResources().getString(
+                    context.getResources().getIdentifier(holiday.toString(), "string", context.getPackageName()));
+
+            remoteViews.setTextViewText(R.id.holiday_text_View, StringUtils.capitalize(holidayName));
+            remoteViews.setViewVisibility(R.id.holiday_text_View, View.VISIBLE);
+        }
+        remoteViews.setViewVisibility(R.id.holiday_text_View, View.INVISIBLE);
+    }
+
+    private void populateHijriDateTextView(RemoteViews remoteViews, String hijriDate) {
+        remoteViews.setTextViewText(R.id.hijri_date_text_View, StringUtils.capitalize(hijriDate));
+    }
+
+    private void populateTimingsTextViews(@NotNull DayPrayer dayPrayer, RemoteViews remoteViews, PrayerEnum nextPrayerKey, Context context) {
+        remoteViews.setTextViewText(R.id.chourouk_text_View, UiUtils.formatTiming(dayPrayer.getComplementaryTiming().get(ComplementaryTimingEnum.SUNRISE)));
+        remoteViews.setTextViewText(R.id.chourouk_title_text_View, context.getString(R.string.SUNRISE));
+
+        remoteViews.setTextViewText(R.id.fajr_text_View, getStyledText(UiUtils.formatTiming(dayPrayer.getTimings().get(PrayerEnum.FAJR)), PrayerEnum.FAJR, nextPrayerKey));
+        remoteViews.setTextViewText(R.id.dohr_text_View, getStyledText(UiUtils.formatTiming(dayPrayer.getTimings().get(PrayerEnum.DHOHR)), PrayerEnum.DHOHR, nextPrayerKey));
+        remoteViews.setTextViewText(R.id.asr_text_View, getStyledText(UiUtils.formatTiming(dayPrayer.getTimings().get(PrayerEnum.ASR)), PrayerEnum.ASR, nextPrayerKey));
+        remoteViews.setTextViewText(R.id.maghrib_text_View, getStyledText(UiUtils.formatTiming(dayPrayer.getTimings().get(PrayerEnum.MAGHRIB)), PrayerEnum.MAGHRIB, nextPrayerKey));
+        remoteViews.setTextViewText(R.id.ichaa_text_View, getStyledText(UiUtils.formatTiming(dayPrayer.getTimings().get(PrayerEnum.ICHA)), PrayerEnum.ICHA, nextPrayerKey));
+
+        remoteViews.setTextViewText(R.id.fajr_title_text_View, getStyledText(context.getString(R.string.SHORT_FAJR), PrayerEnum.FAJR, nextPrayerKey));
+        remoteViews.setTextViewText(R.id.dohr_title_text_View, getStyledText(context.getString(R.string.SHORT_DHOHR), PrayerEnum.DHOHR, nextPrayerKey));
+        remoteViews.setTextViewText(R.id.asr_title_text_View, getStyledText(context.getString(R.string.SHORT_ASR), PrayerEnum.ASR, nextPrayerKey));
+        remoteViews.setTextViewText(R.id.maghrib_title_text_View, getStyledText(context.getString(R.string.SHORT_MAGHRIB), PrayerEnum.MAGHRIB, nextPrayerKey));
+        remoteViews.setTextViewText(R.id.ichaa_title_text_View, getStyledText(context.getString(R.string.SHORT_ICHA), PrayerEnum.ICHA, nextPrayerKey));
+
+        remoteViews.setTextColor(R.id.fajr_text_View, getTextColor(context, PrayerEnum.FAJR, nextPrayerKey));
+        remoteViews.setTextColor(R.id.dohr_text_View, getTextColor(context, PrayerEnum.DHOHR, nextPrayerKey));
+        remoteViews.setTextColor(R.id.asr_text_View, getTextColor(context, PrayerEnum.ASR, nextPrayerKey));
+        remoteViews.setTextColor(R.id.maghrib_text_View, getTextColor(context, PrayerEnum.MAGHRIB, nextPrayerKey));
+        remoteViews.setTextColor(R.id.ichaa_text_View, getTextColor(context, PrayerEnum.ICHA, nextPrayerKey));
+
+        remoteViews.setTextColor(R.id.fajr_title_text_View, getTextColor(context, PrayerEnum.FAJR, nextPrayerKey));
+        remoteViews.setTextColor(R.id.dohr_title_text_View, getTextColor(context, PrayerEnum.DHOHR, nextPrayerKey));
+        remoteViews.setTextColor(R.id.asr_title_text_View, getTextColor(context, PrayerEnum.ASR, nextPrayerKey));
+        remoteViews.setTextColor(R.id.maghrib_title_text_View, getTextColor(context, PrayerEnum.MAGHRIB, nextPrayerKey));
+        remoteViews.setTextColor(R.id.ichaa_title_text_View, getTextColor(context, PrayerEnum.ICHA, nextPrayerKey));
     }
 
     private SpannableString getStyledText(String text, PrayerEnum prayerKey, PrayerEnum nextPrayerKey) {

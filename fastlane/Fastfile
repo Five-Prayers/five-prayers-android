@@ -54,7 +54,7 @@ platform :android do
         increment_version_code(app_project_dir: '**/app')
 
         # Increment version name
-        increment_version_name(app_project_dir: '**/app', bump_type: 'minor')
+        increment_version_name(app_project_dir: '**/app', bump_type: 'patch')
 
         # Build bundle and apk
         gradle( task: 'assemble', build_type: 'Release')

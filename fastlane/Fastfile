@@ -69,10 +69,6 @@ platform :android do
 
         upload_to_play_store(track: 'internal', aab: "#{aab_path}", skip_upload_apk: true)
 
-        # commit and push to GitHub
-        commit_android_version_bump(gradle_file_folder:"app")
-        push_to_git_remote
-
         # Tag release and upload to Github
         gradle(task: 'githubRelease')
     end

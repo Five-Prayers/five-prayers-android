@@ -54,10 +54,12 @@ Five Prayers Android is not Google Framework dependent, so this app can be used 
     - Umm al-Qura University
     - Egyptian General Authority of Survey
     - Institute of Geophysics, University of Tehran
-    - Gulf Region
-    - Kuwait
-    - Qatar
-    - Majlis Ugama Islam Singapura
+    - Gulf Region Method
+    - Kuwait Method
+    - Qatar Method
+    - Majlis Ugama Islam - Singapura
+    - Jabatan Kemajuan Islam - Malaysia
+    - Kementerian Agama RI - Indonesia
     - L'Union des Organisations Islamiques de France (UOIF)
     - Mosquée de Paris - France
     - Angle 18° - France
@@ -121,7 +123,7 @@ The JSON part contains the following information:
    - version of the application
    - operating system name, version and API level
    - the error protocol (stacktrace)
-   - user comment (if set)
+   - user comment
 
 Our bug reporting code is implemented to not embed any personal data. However, we cannot guarantee that there won't be any personal data contained by accident. Also, we cannot control whether the user will add any personal data to the generated JSON, nor can we control whether users add personal data outside it. Therefore we tried to implement our bug report system as transparently as possible, allowing the user to entirely control what data is sent. We assume that by sending an actual e-mail to the crash reporting system's address, any personal data is sent on behalf and with consent of the user. The e-mails are stored on a Google mail server, and won't be deleted before bug analysing takes place.
 Any additional text in the e-mail that is not part of the JSON section is considered a user comment and will be processed and stored by us as well.

@@ -14,6 +14,7 @@ import com.hbouzidi.fiveprayers.utils.UserPreferencesUtils;
 
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -38,6 +39,7 @@ import static org.mockito.ArgumentMatchers.anyString;
  * licenced under GPLv3 : https://www.gnu.org/licenses/gpl-3.0.en.html
  */
 
+@Ignore
 @RunWith(RobolectricTestRunner.class)
 @Config(maxSdk = 28)
 @PowerMockIgnore({"org.mockito.*", "org.robolectric.*", "android.*", "androidx.*"})

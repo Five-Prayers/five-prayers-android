@@ -73,9 +73,7 @@ android {
     }
     testOptions {
         unitTests.returnDefaultValues = true
-        unitTests {
-            includeAndroidResources = true
-        }
+        unitTests.includeAndroidResources = true
     }
 }
 
@@ -128,7 +126,7 @@ dependencies {
         }
     }
 
-    implementation ('com.squareup.retrofit2:converter-gson'){
+    implementation('com.squareup.retrofit2:converter-gson') {
         exclude group: 'com.squareup.okhttp3', module: 'okhttp'
         version {
             strictly '2.9.0'

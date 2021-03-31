@@ -23,7 +23,7 @@ public class UiUtilsTest {
     @Test
     public void formatHijriDate() {
         String str = UiUtils.formatHijriDate(10, "Safar", 1415);
-        assertEquals("10 Safar, 1415", str);
+        assertEquals("10 Safar 1415", str);
     }
 
     @Test

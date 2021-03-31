@@ -25,9 +25,8 @@ import static org.junit.Assert.assertTrue;
 @RunWith(AndroidJUnit4.class)
 public class CalculationMethodInstrumentedTest {
     @Test
-    public void useAppContext() {
+    public void verifyMethodsConsistency() {
         Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
-
 
         @ArrayRes final String[] valuesArray = context.getResources().getStringArray(R.array.entryvalues_calculation_method_list_preference);
         @ArrayRes final String[] labelsArray = context.getResources().getStringArray(R.array.entryvalues_calculation_method_list_preference);

@@ -1,108 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:table="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/timing_table_activity_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@drawable/white_blue_mosque_gradient_background"
     android:fillViewport="true"
     tools:context=".ui.timingtable.TimingTableActivity">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/timing_table_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:theme="@style/AppTheme.AppBarOverlay">
 
-        <TextView
-            android:id="@+id/timing_table_toolbar_title"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/timing_table_toolbar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-condensed"
+                android:gravity="center"
+                android:minHeight="?actionBarSize"
+                android:padding="@dimen/appbar_padding"
+                android:text="@string/calendar_view_title"
+                android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-condensed"
-            android:gravity="center"
-            android:padding="@dimen/appbar_padding"
-            android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:title="@string/calendar_view_title" />
+            app:tabBackground="@drawable/tab_color_selector"
+            app:tabGravity="fill"
+            app:tabMaxWidth="0dp"
+            app:tabSelectedTextColor="@color/colorPrimary"
+            app:tabTextColor="@color/colorAccent" />
     </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     <com.hbouzidi.fiveprayers.utils.MovableFloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|start"
-        android:layout_marginStart="@dimen/fab_margin"
-        android:layout_marginLeft="@dimen/fab_margin"
-        android:layout_marginBottom="16dp"
+        android:layout_margin="@dimen/fab_margin"
         android:contentDescription="@string/common.close"
-        app:srcCompat="@drawable/ic_back_52dp"
         android:tint="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/title_layout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        table:layout_constraintBottom_toTopOf="@+id/table_constraint_layout"
-        table:layout_constraintEnd_toEndOf="parent"
-        table:layout_constraintStart_toStartOf="parent"
-        table:layout_constraintTop_toBottomOf="@+id/timing_table_toolbar">
-
-
-        <TextView
-            android:id="@+id/date_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-condensed"
-            android:textColor="@color/stratos"
-            android:textSize="@dimen/text_large"
-            android:textStyle="bold"
-            table:layout_constraintBottom_toBottomOf="parent"
-            table:layout_constraintEnd_toEndOf="parent"
-            table:layout_constraintStart_toStartOf="parent"
-            table:layout_constraintTop_toTopOf="parent"
-            tools:text="Juillet 2020" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/table_constraint_layout"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        table:layout_constraintBottom_toBottomOf="parent"
-        table:layout_constraintEnd_toEndOf="parent"
-        table:layout_constraintStart_toStartOf="parent"
-        table:layout_constraintTop_toBottomOf="@+id/title_layout">
-
-        <include
-            android:id="@+id/loading_linear_layout"
-            layout="@layout/layout_loading_with_text"
-            android:visibility="gone" />
-
-        <com.evrencoskun.tableview.TableView
-            android:id="@+id/tableview"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:allow_click_inside_cell="false"
-            app:allow_click_inside_column_header="false"
-            app:allow_click_inside_row_header="false"
-            app:selected_color="@color/black_squeeze"
-            app:separator_color="@color/dew"
-            app:shadow_color="@color/white"
-            app:unselected_color="@color/white"
-            table:layout_constraintBottom_toBottomOf="parent"
-            table:layout_constraintEnd_toEndOf="parent"
-            table:layout_constraintStart_toStartOf="parent"
-            table:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+        app:srcCompat="@drawable/ic_back_52dp" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

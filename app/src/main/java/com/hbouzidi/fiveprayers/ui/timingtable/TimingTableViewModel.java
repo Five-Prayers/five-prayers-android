@@ -30,18 +30,21 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
  */
 public class TimingTableViewModel extends AndroidViewModel {
 
-    private final LocalDate todayDate;
     private MutableLiveData<List<DayPrayer>> mCalendar;
     private CompositeDisposable compositeDisposable;
 
     public TimingTableViewModel(@NonNull Application application) {
         super(application);
         mCalendar = new MutableLiveData<>();
-        todayDate = LocalDate.now();
-
-        setLiveData(application.getApplicationContext());
     }
 
+    public void processData(LocalDate todayDate, Context context) {
+        setLiveData(todayDate, context);
+    }
+
+    LiveData<List<DayPrayer>> getCalendar() {
+        return mCalendar;
+    }
 
     @Override
     protected void onCleared() {
@@ -49,12 +52,7 @@ public class TimingTableViewModel extends AndroidViewModel {
         super.onCleared();
     }
 
-    LiveData<List<DayPrayer>> getCalendar() {
-        return mCalendar;
-    }
-
-
-    private void setLiveData(Context context) {
+    private void setLiveData(LocalDate todayDate, Context context) {
         TimingsService timingsService = TimingServiceFactory.create(PreferencesHelper.getCalculationMethod(context));
 
         compositeDisposable = new CompositeDisposable();

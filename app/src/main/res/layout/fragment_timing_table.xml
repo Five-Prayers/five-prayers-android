@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:table="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white"
+    android:fillViewport="true"
+    tools:context=".ui.timingtable.TimingTableBaseFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/table_constraint_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <include
+            android:id="@+id/loading_linear_layout"
+            layout="@layout/layout_loading_with_text"
+            android:visibility="gone" />
+
+        <com.evrencoskun.tableview.TableView
+            android:id="@+id/tableview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:allow_click_inside_cell="false"
+            app:allow_click_inside_column_header="false"
+            app:allow_click_inside_row_header="false"
+            app:selected_color="@color/black_squeeze"
+            app:separator_color="@color/dew"
+            app:shadow_color="@color/white"
+            app:unselected_color="@color/white"
+            table:layout_constraintBottom_toBottomOf="parent"
+            table:layout_constraintEnd_toEndOf="parent"
+            table:layout_constraintStart_toStartOf="parent"
+            table:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

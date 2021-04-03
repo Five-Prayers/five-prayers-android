@@ -14,7 +14,6 @@ import com.hbouzidi.fiveprayers.notifier.PrayerAlarmScheduler;
 import com.hbouzidi.fiveprayers.preferences.PreferencesHelper;
 import com.hbouzidi.fiveprayers.timings.DayPrayer;
 import com.hbouzidi.fiveprayers.timings.TimingServiceFactory;
-import com.hbouzidi.fiveprayers.timings.TimingsService;
 import com.hbouzidi.fiveprayers.timings.aladhan.AladhanTimingsService;
 import com.hbouzidi.fiveprayers.timings.calculations.CalculationMethodEnum;
 

@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.location.Address;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -115,7 +116,7 @@ public class AutoCompleteTextPreferenceDialog extends PreferenceDialogFragmentCo
             }
         });
 
-        handler = new Handler(msg -> {
+        handler = new Handler(Looper.myLooper(), msg -> {
             if (msg.what == TRIGGER_AUTO_COMPLETE) {
                 if (!TextUtils.isEmpty(mEditText.getText())) {
                     retrieveData(mEditText.getText().toString());

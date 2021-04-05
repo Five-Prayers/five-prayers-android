@@ -45,6 +45,8 @@ import java.time.ZonedDateTime;
 import java.util.Map;
 import java.util.Objects;
 
+import io.reactivex.rxjava3.disposables.Disposable;
+
 import static android.content.Context.MODE_PRIVATE;
 
 /**
@@ -91,6 +93,8 @@ public class HomeFragment extends Fragment {
     private String adhanCallKeyPart;
     private Skeleton skeleton;
 
+    private Disposable hasInternetDisposable;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -135,9 +139,11 @@ public class HomeFragment extends Fragment {
             @Override
             public void onGlobalLayout() {
                 rootView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                if (!NetworkUtil.isNetworkAvailable(context)) {
-                    AlertHelper.displayAlertDialog(requireActivity(), getResources().getString(R.string.common_error), getResources().getString(R.string.network_unavailable));
-                }
+                hasInternetDisposable = NetworkUtil.hasInternetConnection().subscribe((hasInternet, throwable) -> {
+                    if (!hasInternet) {
+                        AlertHelper.displayAlertDialog(requireActivity(), getResources().getString(R.string.common_error), getResources().getString(R.string.network_unavailable));
+                    }
+                });
             }
         });
         return rootView;
@@ -146,6 +152,9 @@ public class HomeFragment extends Fragment {
     @Override
     public void onDestroy() {
         cancelTimer();
+        if (hasInternetDisposable != null) {
+            hasInternetDisposable.dispose();
+        }
         super.onDestroy();
     }
 

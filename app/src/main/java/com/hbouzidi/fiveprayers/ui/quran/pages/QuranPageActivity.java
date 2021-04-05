@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -37,7 +38,6 @@ public class QuranPageActivity extends AppCompatActivity {
     private int lastpageShown = 1;
 
     private List<Surah> surahs;
-    private List<QuranPage> quranPages;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +58,6 @@ public class QuranPageActivity extends AppCompatActivity {
     }
 
     private void initRecyclerView(List<QuranPage> quranPages) {
-        this.quranPages = quranPages;
         prepareColors();
         LinearLayoutManager manager = new LinearLayoutManager(this);
         manager.setOrientation(LinearLayoutManager.HORIZONTAL);
@@ -89,10 +88,10 @@ public class QuranPageActivity extends AppCompatActivity {
     private void prepareColors() {
         if (PreferencesHelper.isNightModeActivated(this)) {
             textColor = 255;
-            backgroundColor = (getResources().getColor(R.color.mine_shaft));
+            backgroundColor = ResourcesCompat.getColor(getResources(), R.color.mine_shaft, null);
         } else {
             textColor = -255;
-            backgroundColor = (getResources().getColor(R.color.scotch_mist));
+            backgroundColor = ResourcesCompat.getColor(getResources(), R.color.scotch_mist, null);
         }
     }
 }

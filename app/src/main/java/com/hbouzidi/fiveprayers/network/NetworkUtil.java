@@ -1,8 +1,12 @@
 package com.hbouzidi.fiveprayers.network;
 
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
+import java.io.IOException;
+import java.net.InetSocketAddress;
+import java.net.Socket;
+
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 /**
  * @author Hicham Bouzidi Idrissi
@@ -11,11 +15,25 @@ import android.net.NetworkInfo;
  */
 public class NetworkUtil {
 
-    public static boolean isNetworkAvailable(Context context) {
-        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetwork = connectivityManager.getActiveNetworkInfo();
+    public static Single<Boolean> hasInternetConnection() {
+        return Single.fromCallable(() -> {
+            try {
+                // Connect to Google DNS to check for connection
+                int timeoutMs = 1500;
+                Socket socket = new Socket();
+                InetSocketAddress socketAddress = new InetSocketAddress("8.8.8.8", 53);
 
-        return (activeNetwork != null && activeNetwork.isConnected());
+                socket.connect(socketAddress, timeoutMs);
+                socket.close();
+
+                return true;
+            } catch (IOException e) {
+                return false;
+            }
+        })
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
     }
+
 }
 

@@ -10,12 +10,12 @@ import com.hbouzidi.fiveprayers.R;
 import com.hbouzidi.fiveprayers.exceptions.LocationException;
 import com.hbouzidi.fiveprayers.location.osm.NominatimAPIService;
 import com.hbouzidi.fiveprayers.location.osm.NominatimReverseGeocodeResponse;
-import com.hbouzidi.fiveprayers.network.NetworkUtil;
 import com.hbouzidi.fiveprayers.preferences.PreferencesHelper;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 import io.reactivex.rxjava3.core.Single;
 
@@ -51,7 +51,7 @@ public class AddressHelper {
                             if (geocoderAddresses != null) {
                                 emitter.onSuccess(geocoderAddresses);
                             } else if (getNominatimAddress(latitude, longitude, context) != null) {
-                                emitter.onSuccess(getNominatimAddress(latitude, longitude, context));
+                                emitter.onSuccess(Objects.requireNonNull(getNominatimAddress(latitude, longitude, context)));
                             } else if (lastKnownAddress.getLocality() != null) {
                                 emitter.onSuccess(lastKnownAddress);
                             } else {
@@ -59,8 +59,13 @@ public class AddressHelper {
                                 emitter.onError(new LocationException(context.getResources().getString(R.string.enable_to_reverse_geolocalisation)));
                             }
                         } catch (Exception e) {
-                            Log.e(AddressHelper.class.getName(), "Unable connect to get address from API", e);
-                            emitter.onError(new LocationException(context.getResources().getString(R.string.enable_to_reverse_geolocalisation)));
+                            if (lastKnownAddress.getLocality() != null) {
+                                Log.i(AddressHelper.class.getName(), "Unable connect to get address from API, return last known", e);
+                                emitter.onSuccess(lastKnownAddress);
+                            } else {
+                                Log.e(AddressHelper.class.getName(), "Unable connect to get address from API", e);
+                                emitter.onError(new LocationException(context.getResources().getString(R.string.enable_to_reverse_geolocalisation)));
+                            }
                         }
                     });
                     thread.start();
@@ -91,25 +96,23 @@ public class AddressHelper {
     private static Address getNominatimAddress(double latitude, double longitude, Context context) throws IOException {
         NominatimAPIService nominatimAPIService = NominatimAPIService.getInstance();
 
-        if (NetworkUtil.isNetworkAvailable(context)) {
-            NominatimReverseGeocodeResponse response = nominatimAPIService.getAddressFromLocation(latitude, longitude);
+        NominatimReverseGeocodeResponse response = nominatimAPIService.getAddressFromLocation(latitude, longitude);
 
-            if (response.getAddress().getCountry() != null && response.getAddress().getLocality() != null) {
-                Address address = new Address(Locale.getDefault());
-                address.setCountryName(response.getAddress().getCountry());
-                address.setCountryCode(response.getAddress().getCountryCode());
-                address.setAddressLine(1, response.getAddress().getState());
-                address.setLocality(response.getAddress().getLocality());
-                address.setPostalCode(response.getAddress().getPostcode());
-                address.setLatitude(response.getLat());
-                address.setLongitude(response.getLon());
+        if (response != null && response.getAddress() != null && response.getAddress().getCountry() != null && response.getAddress().getLocality() != null) {
+            Address address = new Address(Locale.getDefault());
+            address.setCountryName(response.getAddress().getCountry());
+            address.setCountryCode(response.getAddress().getCountryCode());
+            address.setAddressLine(1, response.getAddress().getState());
+            address.setLocality(response.getAddress().getLocality());
+            address.setPostalCode(response.getAddress().getPostcode());
+            address.setLatitude(response.getLat());
+            address.setLongitude(response.getLon());
 
-                PreferencesHelper.updateAddressPreferences(context, address);
+            PreferencesHelper.updateAddressPreferences(context, address);
 
-                return address;
-            }
-            return null;
+            return address;
         }
+
         return null;
     }
 

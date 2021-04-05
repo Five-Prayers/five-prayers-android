@@ -1,46 +1,40 @@
 package com.hbouzidi.fiveprayers.location.address;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.location.Address;
-import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
 
 import androidx.test.core.app.ApplicationProvider;
 
 import com.hbouzidi.fiveprayers.exceptions.LocationException;
-import com.hbouzidi.fiveprayers.location.osm.NominatimAPIService;
 import com.hbouzidi.fiveprayers.location.osm.NominatimAddress;
-import com.hbouzidi.fiveprayers.location.osm.NominatimReverseGeocodeResponse;
-import com.hbouzidi.fiveprayers.network.NetworkUtil;
 import com.hbouzidi.fiveprayers.preferences.PreferencesHelper;
+import com.hbouzidi.fiveprayers.shadows.CustomShadowGeocoder;
+import com.hbouzidi.fiveprayers.shadows.ShadowNominatimAPIService;
 
+import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.powermock.api.mockito.PowerMockito;
-import org.powermock.core.classloader.annotations.PowerMockIgnore;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.rule.PowerMockRule;
-import org.powermock.reflect.Whitebox;
+import org.mockito.junit.MockitoJUnit;
+import org.mockito.junit.MockitoRule;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 
+import java.io.IOException;
 import java.util.Locale;
 
+import io.appflate.restmock.JVMFileParser;
+import io.appflate.restmock.RESTMockServer;
+import io.appflate.restmock.RESTMockServerStarter;
+import io.appflate.restmock.android.AndroidLogger;
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.observers.TestObserver;
 
+import static io.appflate.restmock.utils.RequestMatchers.pathContains;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyDouble;
 
 /**
  * @author Hicham Bouzidi Idrissi
@@ -48,46 +42,30 @@ import static org.mockito.ArgumentMatchers.anyDouble;
  * licenced under GPLv3 : https://www.gnu.org/licenses/gpl-3.0.en.html
  */
 
-@Ignore
 @RunWith(RobolectricTestRunner.class)
-@Config(maxSdk = 28)
-@PowerMockIgnore({"org.mockito.*", "org.robolectric.*", "android.*", "androidx.*"})
-@PrepareForTest({AddressHelper.class, NetworkUtil.class, NominatimAPIService.class,
-        Geocoder.class, PreferencesHelper.class})
+@Config(minSdk = 18, maxSdk = 28, shadows = {CustomShadowGeocoder.class, ShadowNominatimAPIService.class})
 public class AddressHelperTest {
 
-    @Rule
-    public PowerMockRule rule = new PowerMockRule();
+    Context applicationContext;
 
-    Context mockContext;
-    SharedPreferences sharedPrefs;
-    SharedPreferences.Editor mockEditor;
-    NominatimAPIService nominatimAPIService;
-    NetworkUtil mNetworkUtil;
-    Geocoder mGeocoder;
-    AddressHelper addressHelper;
+    @Rule
+    public MockitoRule initRule = MockitoJUnit.rule();
 
     @Before
-    public void before() throws Exception {
-        this.sharedPrefs = PowerMockito.mock(SharedPreferences.class);
-        this.mockEditor = PowerMockito.mock(SharedPreferences.Editor.class);
-        this.mockContext = PowerMockito.mock(Context.class);
-        this.nominatimAPIService = PowerMockito.mock(NominatimAPIService.class);
-        this.mNetworkUtil = PowerMockito.mock(NetworkUtil.class);
-        this.mGeocoder = PowerMockito.mock(Geocoder.class);
-        this.addressHelper = PowerMockito.mock(AddressHelper.class);
+    public void before() {
+        applicationContext = ApplicationProvider.getApplicationContext();
 
-//        PowerMockito
-//                .doReturn(sharedPrefs)
-//                .when(Context.class, "getSharedPreferences", anyString(), anyInt());
-//
-//        PowerMockito.when(mockContext.getSharedPreferences(anyString(), anyInt()).edit()).thenReturn(mockEditor);
+        RESTMockServerStarter.startSync(new JVMFileParser(), new AndroidLogger());
+    }
 
-        PowerMockito.mockStatic(PreferencesHelper.class);
+    @After
+    public void tearDown() throws IOException {
+        CustomShadowGeocoder.setIsPresent(true);
+        RESTMockServer.shutdown();
     }
 
     @Test
-    public void getAddressFromLocation_when_location_is_null() {
+    public void should_throw_error_when_location_is_null() {
         Context applicationContext = ApplicationProvider.getApplicationContext();
 
         TestObserver<Address> addressTestObserver = new TestObserver<>();
@@ -100,354 +78,103 @@ public class AddressHelperTest {
     }
 
     @Test
-    public void getAddressFromLocation_when_address_is_not_obsolete() throws Exception {
+    public void should_get_address_when_geocoder_available_and_address_is_not_obsolete() throws Exception {
         TestObserver<Address> addressTestObserver = new TestObserver<>();
 
         Location newLocation = new Location(LocationManager.GPS_PROVIDER);
-        newLocation.setLatitude(0.12);
-        newLocation.setLongitude(3.14);
+        newLocation.setLatitude(51.5073509);
+        newLocation.setLongitude(-0.1277583);
 
         Address lastKnownAddress = new Address(Locale.getDefault());
-        lastKnownAddress.setLatitude(45.2);
-        lastKnownAddress.setLongitude(-12.2);
-        lastKnownAddress.setLocality("Colombes");
-
-        Context applicationContext = ApplicationProvider.getApplicationContext();
-
-        Single<Address> addressSingle = AddressHelper.getAddressFromLocation(newLocation, applicationContext);
-
-        PowerMockito.spy(AddressHelper.class);
-
-        PowerMockito
-                .doReturn(lastKnownAddress)
-                .when(PreferencesHelper.class, "getLastKnownAddress", applicationContext);
-
-        PowerMockito
-                .doReturn(false)
-                .when(AddressHelper.class, "isAddressObsolete", any(), anyDouble(), anyDouble());
-
-        addressSingle.subscribe(addressTestObserver);
-
-        addressTestObserver.await();
-        addressTestObserver.assertComplete();
-        addressTestObserver.assertValue(address -> {
-            assertEquals(lastKnownAddress, address);
-            assertEquals("Colombes", address.getLocality());
-            return true;
-        });
-    }
-
-    @Test
-    public void getAddressFromLocation_when_address_is_obsolete_and_geocoder_available() throws Exception {
-        TestObserver<Address> addressTestObserver = new TestObserver<>();
-
-        Location newLocation = new Location(LocationManager.GPS_PROVIDER);
-        newLocation.setLatitude(0.12);
-        newLocation.setLongitude(3.14);
-
-        Address lastKnownAddress = new Address(Locale.getDefault());
-        lastKnownAddress.setLatitude(45.2);
-        lastKnownAddress.setLongitude(-12.2);
-        lastKnownAddress.setLocality("Colombes");
-
-        Address address = new Address(Locale.getDefault());
-        address.setLatitude(40.2);
-        address.setLongitude(-2.789);
-        address.setLocality("Paris");
-
-        Context applicationContext = ApplicationProvider.getApplicationContext();
-
-        Single<Address> addressSingle = AddressHelper.getAddressFromLocation(newLocation, applicationContext);
-
-        PowerMockito.spy(AddressHelper.class);
-
-        PowerMockito
-                .doReturn(lastKnownAddress)
-                .when(PreferencesHelper.class, "getLastKnownAddress", applicationContext);
-
-        PowerMockito
-                .doReturn(true)
-                .when(AddressHelper.class, "isAddressObsolete", any(), anyDouble(), anyDouble());
-
-        PowerMockito
-                .doReturn(address)
-                .when(AddressHelper.class, "getGeocoderAddresses", anyDouble(), anyDouble(), any());
-
-        addressSingle.subscribe(addressTestObserver);
-
-        addressTestObserver.await();
-        addressTestObserver.assertComplete();
-        addressTestObserver.assertValue(geoCoderAddress -> {
-            assertEquals(address, geoCoderAddress);
-            assertEquals("Paris", address.getLocality());
-            return true;
-        });
-    }
-
-    @Test
-    public void getAddressFromLocation_when_address_is_obsolete_and_nominatim_available() throws Exception {
-        TestObserver<Address> addressTestObserver = new TestObserver<>();
-
-        Location newLocation = new Location(LocationManager.GPS_PROVIDER);
-        newLocation.setLatitude(0.12);
-        newLocation.setLongitude(3.14);
-
-        Address lastKnownAddress = new Address(Locale.getDefault());
-        lastKnownAddress.setLatitude(45.2);
-        lastKnownAddress.setLongitude(-12.2);
-        lastKnownAddress.setLocality("Colombes");
-
-        Address address = new Address(Locale.getDefault());
-        address.setLatitude(40.2);
-        address.setLongitude(-2.789);
-        address.setLocality("Marseille");
-
-        Context applicationContext = ApplicationProvider.getApplicationContext();
-
-        Single<Address> addressSingle = AddressHelper.getAddressFromLocation(newLocation, applicationContext);
-
-        PowerMockito.spy(AddressHelper.class);
-
-        PowerMockito
-                .doReturn(lastKnownAddress)
-                .when(PreferencesHelper.class, "getLastKnownAddress", applicationContext);
-
-        PowerMockito
-                .doReturn(true)
-                .when(AddressHelper.class, "isAddressObsolete", any(), anyDouble(), anyDouble());
-
-        PowerMockito
-                .doReturn(null)
-                .when(AddressHelper.class, "getGeocoderAddresses", anyDouble(), anyDouble(), any());
-
-        PowerMockito
-                .doReturn(address)
-                .when(AddressHelper.class, "getNominatimAddress", anyDouble(), anyDouble(), any());
-
-        addressSingle.subscribe(addressTestObserver);
-
-        addressTestObserver.await();
-        addressTestObserver.assertComplete();
-        addressTestObserver.assertValue(nominatimAddress -> {
-            assertEquals(address, nominatimAddress);
-            assertEquals("Marseille", address.getLocality());
-            return true;
-        });
-    }
-
-    @Test
-    public void getAddressFromLocation_when_address_is_obsolete_and_only_has_known_address__available() throws Exception {
-        TestObserver<Address> addressTestObserver = new TestObserver<>();
-
-        Location newLocation = new Location(LocationManager.GPS_PROVIDER);
-        newLocation.setLatitude(0.12);
-        newLocation.setLongitude(3.14);
-
-        Address lastKnownAddress = new Address(Locale.getDefault());
-        lastKnownAddress.setLatitude(45.2);
-        lastKnownAddress.setLongitude(-12.2);
-        lastKnownAddress.setLocality("Colombes");
-
-        Context applicationContext = ApplicationProvider.getApplicationContext();
-
-        Single<Address> addressSingle = AddressHelper.getAddressFromLocation(newLocation, applicationContext);
-
-        PowerMockito.spy(AddressHelper.class);
-
-        PowerMockito
-                .doReturn(lastKnownAddress)
-                .when(PreferencesHelper.class, "getLastKnownAddress", applicationContext);
-
-        PowerMockito
-                .doReturn(true)
-                .when(AddressHelper.class, "isAddressObsolete", any(), anyDouble(), anyDouble());
-
-        PowerMockito
-                .doReturn(null)
-                .when(AddressHelper.class, "getGeocoderAddresses", anyDouble(), anyDouble(), any());
-
-        PowerMockito
-                .doReturn(null)
-                .when(AddressHelper.class, "getNominatimAddress", anyDouble(), anyDouble(), any());
-
-        addressSingle.subscribe(addressTestObserver);
-
-        addressTestObserver.await();
-        addressTestObserver.assertComplete();
-        addressTestObserver.assertValue(address -> {
-            assertEquals(lastKnownAddress, address);
-            assertEquals("Colombes", address.getLocality());
-            return true;
-        });
-    }
-
-    @Test
-    public void getAddressFromLocation_when_address_is_obsolete_no_address_available() throws Exception {
-        TestObserver<Address> addressTestObserver = new TestObserver<>();
-
-        Location newLocation = new Location(LocationManager.GPS_PROVIDER);
-        newLocation.setLatitude(0.12);
-        newLocation.setLongitude(3.14);
-
-        Address lastKnownAddress = new Address(Locale.getDefault());
-
-        Context applicationContext = ApplicationProvider.getApplicationContext();
-
-        Single<Address> addressSingle = AddressHelper.getAddressFromLocation(newLocation, applicationContext);
-
-        PowerMockito.spy(AddressHelper.class);
-
-        PowerMockito
-                .doReturn(lastKnownAddress)
-                .when(PreferencesHelper.class, "getLastKnownAddress", applicationContext);
-
-        PowerMockito
-                .doReturn(true)
-                .when(AddressHelper.class, "isAddressObsolete", any(), anyDouble(), anyDouble());
-
-        PowerMockito
-                .doReturn(null)
-                .when(AddressHelper.class, "getGeocoderAddresses", anyDouble(), anyDouble(), any());
-
-        PowerMockito
-                .doReturn(null)
-                .when(AddressHelper.class, "getNominatimAddress", anyDouble(), anyDouble(), any());
-
-        addressSingle.subscribe(addressTestObserver);
-
-        addressTestObserver.await();
-        addressTestObserver.assertError(LocationException.class);
-    }
-
-    @Test
-    public void getAddressFromLocation_when_api_throws_error() throws Exception {
-        TestObserver<Address> addressTestObserver = new TestObserver<>();
-
-        Location newLocation = new Location(LocationManager.GPS_PROVIDER);
-        newLocation.setLatitude(0.12);
-        newLocation.setLongitude(3.14);
-
-        Address lastKnownAddress = new Address(Locale.getDefault());
-
-        Context applicationContext = ApplicationProvider.getApplicationContext();
-
-        Single<Address> addressSingle = AddressHelper.getAddressFromLocation(newLocation, applicationContext);
-
-        PowerMockito.spy(AddressHelper.class);
-
-        PowerMockito
-                .doReturn(lastKnownAddress)
-                .when(PreferencesHelper.class, "getLastKnownAddress", applicationContext);
-
-        PowerMockito
-                .doReturn(true)
-                .when(AddressHelper.class, "isAddressObsolete", any(), anyDouble(), anyDouble());
-
-        PowerMockito
-                .doReturn(null)
-                .when(AddressHelper.class, "getGeocoderAddresses", anyDouble(), anyDouble(), any());
-
-        PowerMockito
-                .doThrow(new RuntimeException())
-                .when(AddressHelper.class, "getNominatimAddress", anyDouble(), anyDouble(), any());
-
-        addressSingle.subscribe(addressTestObserver);
-
-        addressTestObserver.await();
-        addressTestObserver.assertError(LocationException.class);
-    }
-
-    @Test
-    public void isAddressObsolete() throws Exception {
-        //Given
-        Address lastKnownAddress = new Address(Locale.getDefault());
-        lastKnownAddress.setLatitude(51.508515);
-        lastKnownAddress.setLongitude(-0.1254872);
+        lastKnownAddress.setLatitude(51.5073509);
+        lastKnownAddress.setLongitude(-0.1277583);
         lastKnownAddress.setLocality("London");
+        lastKnownAddress.setCountryName("United Kindom");
         lastKnownAddress.setCountryCode("UK");
 
-        //When
-        boolean isAddressObsolete = Whitebox
-                .invokeMethod(new AddressHelper(),
-                        "isAddressObsolete", lastKnownAddress, 51.508515, -0.1254872);
+        PreferencesHelper.updateAddressPreferences(applicationContext, lastKnownAddress);
 
-        //Then
-        assertFalse(isAddressObsolete);
+        Single<Address> addressSingle = AddressHelper.getAddressFromLocation(newLocation, applicationContext);
 
-        //When
-        boolean result = Whitebox
-                .invokeMethod(new AddressHelper(),
-                        "isAddressObsolete", lastKnownAddress, 25.2048493, 55.2707828);
+        addressSingle.subscribe(addressTestObserver);
 
-        //Then
-        assertTrue(result);
+        addressTestObserver.await();
+        addressTestObserver.assertComplete();
+        addressTestObserver.assertValue(address -> {
+            assertEquals("London", address.getLocality());
+            assertEquals("United Kindom", address.getCountryName());
+            return true;
+        });
     }
 
     @Test
-    public void isAddressObsolete_when_locality_is_null() throws Exception {
-        //Given
+    public void should_get_address_from_geocoder_when_address_is_obsolete_and_geocoder_available() throws Exception {
+        TestObserver<Address> addressTestObserver = new TestObserver<>();
+
+        Location newLocation = new Location(LocationManager.GPS_PROVIDER);
+        newLocation.setLatitude(48.9220615);
+        newLocation.setLongitude(2.2533313);
+
         Address lastKnownAddress = new Address(Locale.getDefault());
-        lastKnownAddress.setLatitude(51.508515);
-        lastKnownAddress.setLongitude(-0.1254872);
+        lastKnownAddress.setLatitude(51.5073509);
+        lastKnownAddress.setLongitude(-0.1277583);
+        lastKnownAddress.setLocality("London");
+        lastKnownAddress.setCountryName("United Kindom");
+        lastKnownAddress.setCountryCode("UK");
 
+        PreferencesHelper.updateAddressPreferences(applicationContext, lastKnownAddress);
 
-        //When
-        boolean result = Whitebox
-                .invokeMethod(new AddressHelper(),
-                        "isAddressObsolete", lastKnownAddress, 51.508515, -0.1254872);
+        Single<Address> addressSingle = AddressHelper.getAddressFromLocation(newLocation, applicationContext);
 
-        //Then
-        assertTrue(result);
+        addressSingle.subscribe(addressTestObserver);
+
+        addressTestObserver.await();
+        addressTestObserver.assertComplete();
+        addressTestObserver.assertValue(address -> {
+            assertEquals("Colombes", address.getLocality());
+            assertEquals("France", address.getCountryName());
+            return true;
+        });
     }
 
     @Test
-    public void getNominatimAddress_when_network_is_available() throws Exception {
-        //Given
-        Context applicationContext = ApplicationProvider.getApplicationContext();
-        PowerMockito.mockStatic(NetworkUtil.class);
-        PowerMockito.mockStatic(NominatimAPIService.class);
-        NominatimAddress address = new NominatimAddress();
-        address.setTown("London");
-        address.setCountryCode("UK");
-        address.setCountry("United Kingdom");
-        address.setPostcode("99100");
+    public void should_get_address_from_nominatim_when_address_is_obsolete_and_geocoder_not_available() throws Exception {
+        TestObserver<Address> addressTestObserver = new TestObserver<>();
 
-        NominatimReverseGeocodeResponse nominatimReverseGeocodeResponse = new NominatimReverseGeocodeResponse();
-        nominatimReverseGeocodeResponse.setAddress(address);
-        nominatimReverseGeocodeResponse.setLat(-0.1254872);
-        nominatimReverseGeocodeResponse.setLon(51.508515);
+        Location newLocation = new Location(LocationManager.GPS_PROVIDER);
+        newLocation.setLatitude(-6.8498129);
+        newLocation.setLongitude(33.9715904);
 
-        PowerMockito.when(NominatimAPIService.getInstance()).thenReturn(nominatimAPIService);
+        Address lastKnownAddress = new Address(Locale.getDefault());
+        lastKnownAddress.setLatitude(51.5073509);
+        lastKnownAddress.setLongitude(-0.1277583);
+        lastKnownAddress.setLocality("London");
+        lastKnownAddress.setCountryName("United Kindom");
+        lastKnownAddress.setCountryCode("UK");
 
-        PowerMockito.when(nominatimAPIService.getAddressFromLocation(anyDouble(), anyDouble()))
-                .thenReturn(nominatimReverseGeocodeResponse);
-        PowerMockito.when(NetworkUtil.isNetworkAvailable(any())).thenReturn(true);
+        NominatimAddress nominatimAddress = new NominatimAddress();
+        nominatimAddress.setCity("Rabat");
+        nominatimAddress.setCountry("Morocco");
+        nominatimAddress.setCountryCode("MA");
 
-        //When
-        Address result = Whitebox
-                .invokeMethod(new AddressHelper(),
-                        "getNominatimAddress", 51.508515, -0.1254872, applicationContext);
+        PreferencesHelper.updateAddressPreferences(applicationContext, lastKnownAddress);
+        CustomShadowGeocoder.setIsPresent(false);
 
-        //Then
-        assertNotNull(result);
-        assertEquals("London", result.getLocality());
-        assertEquals("UK", result.getCountryCode());
-        assertEquals("United Kingdom", result.getCountryName());
-        assertEquals("99100", result.getPostalCode());
-    }
+        RESTMockServer.reset();
+        RESTMockServer
+                .whenGET(pathContains("/reverse"))
+                .thenReturnFile(200, "responses/nominatim_response.json");
 
-    @Test
-    public void getNominatimAddress_when_network_is_Not_available() throws Exception {
-        //Given
-        PowerMockito.mockStatic(NetworkUtil.class);
-        PowerMockito.when(NetworkUtil.isNetworkAvailable(mockContext)).thenReturn(false);
+        Single<Address> addressSingle = AddressHelper.getAddressFromLocation(newLocation, applicationContext);
 
-        //When
-        Address result = Whitebox
-                .invokeMethod(new AddressHelper(),
-                        "getNominatimAddress", 51.508515, -0.1254872, mockContext);
+        addressSingle.subscribe(addressTestObserver);
 
-        //Then
-        assertNull(result);
+        addressTestObserver.await();
+        addressTestObserver.assertComplete();
+        addressTestObserver.assertValue(address -> {
+            assertEquals("Rabat", address.getLocality());
+            assertEquals("Morocco", address.getCountryName());
+            return true;
+        });
     }
 }

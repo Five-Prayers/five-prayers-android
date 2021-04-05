@@ -1,0 +1,26 @@
+{
+  "place_id": 125421757,
+  "licence": "Data © OpenStreetMap contributors, ODbL 1.0. https://osm.org/copyright",
+  "osm_type": "way",
+  "osm_id": 152801455,
+  "lat": "33.97183742812084",
+  "lon": "-6.8500359383183715",
+  "display_name": "Avenue Al Mass, Souissi, pachalik de Rabat, Préfecture de Rabat, Rabat-Salé-Kénitra, 10105, Maroc",
+  "address": {
+    "road": "Avenue Al Mass",
+    "suburb": "Souissi",
+    "city": "Rabat",
+    "county": "pachalik de Rabat",
+    "state_district": "Préfecture de Rabat",
+    "region": "Rabat-Salé-Kénitra",
+    "postcode": "10105",
+    "country": "Morocco",
+    "country_code": "ma"
+  },
+  "boundingbox": [
+    "33.9707113",
+    "33.9759803",
+    "-6.8512979",
+    "-6.8454401"
+  ]
+}

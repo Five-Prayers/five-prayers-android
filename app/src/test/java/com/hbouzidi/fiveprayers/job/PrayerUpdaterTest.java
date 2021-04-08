@@ -1,5 +1,6 @@
 package com.hbouzidi.fiveprayers.job;
 
+import android.app.AlarmManager;
 import android.content.Context;
 import android.location.Address;
 
@@ -19,9 +20,16 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
+import org.robolectric.Shadows;
 import org.robolectric.annotation.Config;
+import org.robolectric.shadows.ShadowAlarmManager;
+import org.robolectric.shadows.ShadowLegacySystemClock;
 
 import java.io.IOException;
+import java.time.Clock;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.util.Locale;
 
 import io.appflate.restmock.JVMFileParser;

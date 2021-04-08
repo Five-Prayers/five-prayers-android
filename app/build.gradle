@@ -204,7 +204,7 @@ dependencies {
     testImplementation 'androidx.test:core:1.3.0'
     testImplementation 'androidx.work:work-testing:2.5.0'
     testImplementation 'org.mockito:mockito-core:3.8.0'
-    testImplementation 'org.robolectric:robolectric:4.4'
+    testImplementation 'org.robolectric:robolectric:4.5'
 
     //https://github.com/andrzejchm/RESTMock
     //noinspection GradleDependency --> depend on okhttp version.

@@ -6,9 +6,12 @@ import android.content.Intent;
 import androidx.annotation.NonNull;
 import androidx.core.app.JobIntentService;
 
+import com.hbouzidi.fiveprayers.FivePrayerApplication;
 import com.hbouzidi.fiveprayers.timings.DayPrayer;
 
 import java.util.Objects;
+
+import javax.inject.Inject;
 
 /**
  * @author Hicham Bouzidi Idrissi
@@ -19,10 +22,22 @@ public class NotifierJobService extends JobIntentService {
 
     private static final int JOB_ID = 201;
 
+    @Inject
+    public PrayerAlarmScheduler prayerAlarmScheduler;
+
+    @Override
+    public void onCreate() {
+        ((FivePrayerApplication)getApplicationContext())
+                .serviceComponent
+                .inject(this);
+
+        super.onCreate();
+    }
+
     @Override
     public void onHandleWork(@NonNull Intent intent) {
         DayPrayer dayPrayer = (DayPrayer) intent.getSerializableExtra("dayPrayer");
-        PrayerAlarmScheduler.scheduleNextPrayerAlarms(getApplicationContext(), Objects.requireNonNull(dayPrayer));
+        prayerAlarmScheduler.scheduleNextPrayerAlarms(Objects.requireNonNull(dayPrayer));
     }
 
     public static void enqueueWork(Context context, Intent intent) {

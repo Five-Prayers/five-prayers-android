@@ -22,6 +22,7 @@ import java.time.LocalDate;
 import javax.inject.Inject;
 import javax.inject.Provider;
 
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Single;
 
 /**
@@ -36,6 +37,7 @@ public class PrayerUpdater extends RxWorker {
     private final LocationHelper locationHelper;
     private final AddressHelper addressHelper;
     private final TimingServiceFactory timingServiceFactory;
+    private final PrayerAlarmScheduler prayerAlarmScheduler;
     private int runAttemptCount = 0;
 
     @Inject
@@ -43,13 +45,15 @@ public class PrayerUpdater extends RxWorker {
                          @NonNull WorkerParameters params,
                          @NonNull LocationHelper locationHelper,
                          @NonNull AddressHelper addressHelper,
-                         @NonNull TimingServiceFactory timingServiceFactory
+                         @NonNull TimingServiceFactory timingServiceFactory,
+                         @NonNull PrayerAlarmScheduler prayerAlarmScheduler
     ) {
         super(context, params);
         this.context = context;
         this.locationHelper = locationHelper;
         this.addressHelper = addressHelper;
         this.timingServiceFactory = timingServiceFactory;
+        this.prayerAlarmScheduler = prayerAlarmScheduler;
 
         Log.i(TAG, "Prayer Updater Initialized");
     }
@@ -72,7 +76,8 @@ public class PrayerUpdater extends RxWorker {
                                 ));
 
         return dayPrayerSingle
-                .doOnSuccess(dayPrayer -> PrayerAlarmScheduler.scheduleNextPrayerAlarms(context, dayPrayer))
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .doOnSuccess(prayerAlarmScheduler::scheduleNextPrayerAlarms)
                 .map(dayPrayer -> {
                     Log.i(TAG, "Prayers alarm updated successfully");
                     return Result.success();
@@ -96,15 +101,19 @@ public class PrayerUpdater extends RxWorker {
         private final Provider<LocationHelper> locationHelperProvider;
         private final Provider<AddressHelper> addressHelperProvider;
         private final Provider<TimingServiceFactory> timingServiceFactoryProvider;
+        private final Provider<PrayerAlarmScheduler> prayerAlarmSchedulerProvider;
 
         @Inject
         public Factory(Provider<LocationHelper> locationHelperProvider,
                        Provider<AddressHelper> addressHelperProvider,
-                       Provider<TimingServiceFactory> timingServiceFactoryProvider) {
+                       Provider<TimingServiceFactory> timingServiceFactoryProvider,
+                       Provider<PrayerAlarmScheduler> prayerAlarmSchedulerProvider
+        ) {
 
             this.locationHelperProvider = locationHelperProvider;
             this.addressHelperProvider = addressHelperProvider;
             this.timingServiceFactoryProvider = timingServiceFactoryProvider;
+            this.prayerAlarmSchedulerProvider = prayerAlarmSchedulerProvider;
         }
 
         @Override
@@ -113,7 +122,8 @@ public class PrayerUpdater extends RxWorker {
                     workerParameters,
                     locationHelperProvider.get(),
                     addressHelperProvider.get(),
-                    timingServiceFactoryProvider.get()
+                    timingServiceFactoryProvider.get(),
+                    prayerAlarmSchedulerProvider.get()
             );
         }
     }

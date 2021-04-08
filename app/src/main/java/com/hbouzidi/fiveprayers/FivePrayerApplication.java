@@ -9,11 +9,13 @@ import androidx.work.WorkManager;
 import com.hbouzidi.fiveprayers.common.api.TLSSocketFactoryCompat;
 import com.hbouzidi.fiveprayers.di.component.ApplicationComponent;
 import com.hbouzidi.fiveprayers.di.component.DaggerApplicationComponent;
+import com.hbouzidi.fiveprayers.di.component.DaggerServiceComponent;
 import com.hbouzidi.fiveprayers.di.component.DaggerWidgetComponent;
+import com.hbouzidi.fiveprayers.di.component.ServiceComponent;
 import com.hbouzidi.fiveprayers.di.component.WidgetComponent;
+import com.hbouzidi.fiveprayers.di.factory.worker.WorkerProviderFactory;
 import com.hbouzidi.fiveprayers.di.module.AppModule;
 import com.hbouzidi.fiveprayers.di.module.WidgetModule;
-import com.hbouzidi.fiveprayers.di.factory.worker.WorkerProviderFactory;
 import com.hbouzidi.fiveprayers.ui.report.ErrorActivity;
 
 import cat.ereza.customactivityoncrash.config.CaocConfig;
@@ -34,6 +36,11 @@ public class FivePrayerApplication extends MultiDexApplication {
             .builder()
             .appModule(new AppModule(this))
             .widgetModule(new WidgetModule())
+            .build();
+
+    public ServiceComponent serviceComponent = DaggerServiceComponent
+            .builder()
+            .appModule(new AppModule(this))
             .build();
 
     @Override

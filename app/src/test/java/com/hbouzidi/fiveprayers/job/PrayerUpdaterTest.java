@@ -38,136 +38,78 @@ import static io.appflate.restmock.utils.RequestMatchers.pathContains;
  */
 
 @RunWith(RobolectricTestRunner.class)
-@Config(maxSdk = 28)
-@PowerMockIgnore({"org.mockito.*", "org.robolectric.*", "android.*"})
-@PrepareForTest({PrayerUpdater.class, AddressHelper.class, LocationHelper.class,
-        AladhanTimingsService.class, PrayerAlarmScheduler.class, PreferencesHelper.class,
-        AladhanTimingsService.class, TimingServiceFactory.class})
+@Config(minSdk = 18, maxSdk = 28, application = FakeFivePrayerApplication.class, shadows = {ShadowGeocoder.class, ShadowAladhanAPIService.class})
 public class PrayerUpdaterTest {
-//
-//    @Rule
-//    public PowerMockRule rule = new PowerMockRule();
-//
-//    @Mock
-//    Context mockContext;
-//
-//    @Mock
-//    AladhanTimingsService aladhanTimingsService;
-//
-//    @Before
-//    public void before() {
-//        this.mockContext = Mockito.mock(Context.class);
-//        this.aladhanTimingsService = Mockito.mock(AladhanTimingsService.class);
-//    }
-//
-//    @Test
-//    public void testPrayerUpdaterWork() throws Exception {
-//        PowerMockito.mockStatic(LocationHelper.class);
-//        PowerMockito.mockStatic(AddressHelper.class);
-//        PowerMockito.mockStatic(PreferencesHelper.class);
-//        PowerMockito.mockStatic(AladhanTimingsService.class);
-//        PowerMockito.mockStatic(TimingServiceFactory.class);
-//
-//        Location newLocation = new Location(LocationManager.GPS_PROVIDER);
-//        newLocation.setLatitude(0.12);
-//        newLocation.setLongitude(3.14);
-//
-//        Address lastKnownAddress = new Address(Locale.getDefault());
-//        lastKnownAddress.setLatitude(45.2);
-//        lastKnownAddress.setLongitude(-12.2);
-//        lastKnownAddress.setLocality("Colombes");
-//        lastKnownAddress.setCountryName("France");
-//
-//        PowerMockito.when(PreferencesHelper.getCalculationMethod(mockContext)).thenReturn(CalculationMethodEnum.getDefault());
-//        PowerMockito.when(LocationHelper.getLocation(mockContext)).thenReturn(Single.just(newLocation));
-//        PowerMockito.when(AddressHelper.getAddressFromLocation(newLocation, mockContext)).thenReturn(Single.just(lastKnownAddress));
-//        PowerMockito.when(TimingServiceFactory.create(any())).thenReturn(aladhanTimingsService);
-//
-//        Mockito.when(aladhanTimingsService.getTimingsByCity(any(), any(), any())).thenReturn(Single.just(new DayPrayer()));
-//
-//        PowerMockito.spy(PrayerAlarmScheduler.class);
-//        PowerMockito
-//                .doNothing()
-//                .when(PrayerAlarmScheduler.class, "scheduleNextPrayerAlarms", any(), any());
-//
-//        PrayerUpdater prayerUpdater = TestListenableWorkerBuilder.from(mockContext, PrayerUpdater.class).build();
-//
-//        ListenableWorker.Result result = prayerUpdater.startWork().get();
-//
-//        Assert.assertEquals(ListenableWorker.Result.success(), result);
-//    }
-//
-//    @Test
-//    public void testPrayerUpdaterWork_when_single_throw_error() throws Exception {
-//        PowerMockito.mockStatic(LocationHelper.class);
-//        PowerMockito.mockStatic(AddressHelper.class);
-//        PowerMockito.mockStatic(AladhanTimingsService.class);
-//        PowerMockito.mockStatic(PreferencesHelper.class);
-//        PowerMockito.mockStatic(TimingServiceFactory.class);
-//
-//        Location newLocation = new Location(LocationManager.GPS_PROVIDER);
-//        newLocation.setLatitude(0.12);
-//        newLocation.setLongitude(3.14);
-//
-//        Address lastKnownAddress = new Address(Locale.getDefault());
-//        lastKnownAddress.setLatitude(45.2);
-//        lastKnownAddress.setLongitude(-12.2);
-//        lastKnownAddress.setLocality("Colombes");
-//        lastKnownAddress.setCountryName("France");
-//
-//        PowerMockito.when(PreferencesHelper.getCalculationMethod(mockContext)).thenReturn(CalculationMethodEnum.getDefault());
-//        PowerMockito.when(LocationHelper.getLocation(mockContext)).thenReturn(Single.just(newLocation));
-//        PowerMockito.when(AddressHelper.getAddressFromLocation(newLocation, mockContext)).thenReturn(Single.just(lastKnownAddress));
-//        PowerMockito.when(TimingServiceFactory.create(any())).thenReturn(aladhanTimingsService);
-//
-//        Mockito.when(aladhanTimingsService.getTimingsByCity(any(), any(), any())).thenReturn(Single.error(new Exception()));
-//
-//        PowerMockito.spy(PrayerAlarmScheduler.class);
-//        PowerMockito
-//                .doNothing()
-//                .when(PrayerAlarmScheduler.class, "scheduleNextPrayerAlarms", any(), any());
-//
-//        PrayerUpdater prayerUpdater = TestListenableWorkerBuilder.from(mockContext, PrayerUpdater.class).build();
-//
-//        ListenableWorker.Result result = prayerUpdater.startWork().get();
-//
-//        Assert.assertEquals(ListenableWorker.Result.retry(), result);
-//    }
-//
-//    @Test
-//    public void testPrayerUpdaterWork_when_notifier_throw_error() throws Exception {
-//        PowerMockito.mockStatic(LocationHelper.class);
-//        PowerMockito.mockStatic(AddressHelper.class);
-//        PowerMockito.mockStatic(AladhanTimingsService.class);
-//        PowerMockito.mockStatic(PreferencesHelper.class);
-//        PowerMockito.mockStatic(TimingServiceFactory.class);
-//
-//        Location newLocation = new Location(LocationManager.GPS_PROVIDER);
-//        newLocation.setLatitude(0.12);
-//        newLocation.setLongitude(3.14);
-//
-//        Address lastKnownAddress = new Address(Locale.getDefault());
-//        lastKnownAddress.setLatitude(45.2);
-//        lastKnownAddress.setLongitude(-12.2);
-//        lastKnownAddress.setLocality("Colombes");
-//        lastKnownAddress.setCountryName("France");
-//
-//        PowerMockito.when(PreferencesHelper.getCalculationMethod(mockContext)).thenReturn(CalculationMethodEnum.getDefault());
-//        PowerMockito.when(LocationHelper.getLocation(mockContext)).thenReturn(Single.just(newLocation));
-//        PowerMockito.when(AddressHelper.getAddressFromLocation(newLocation, mockContext)).thenReturn(Single.just(lastKnownAddress));
-//        PowerMockito.when(TimingServiceFactory.create(any())).thenReturn(aladhanTimingsService);
-//
-//        Mockito.when(aladhanTimingsService.getTimingsByCity(any(), any(), any())).thenReturn(Single.just(new DayPrayer()));
-//
-//        PowerMockito.spy(PrayerAlarmScheduler.class);
-//        PowerMockito
-//                .doCallRealMethod()
-//                .when(PrayerAlarmScheduler.class, "scheduleNextPrayerAlarms", any(), any());
-//
-//        PrayerUpdater prayerUpdater = TestListenableWorkerBuilder.from(mockContext, PrayerUpdater.class).build();
-//
-//        ListenableWorker.Result result = prayerUpdater.startWork().get();
-//
-//        Assert.assertEquals(ListenableWorker.Result.retry(), result);
-//    }
+
+    Context applicationContext;
+
+    @Before
+    public void before() {
+        applicationContext = ApplicationProvider.getApplicationContext();
+        RESTMockServerStarter.startSync(new JVMFileParser(), new AndroidLogger());
+    }
+
+    @After
+    public void tearDown() throws IOException {
+        ShadowGeocoder.setIsPresent(true);
+        RESTMockServer.shutdown();
+    }
+
+    @Test
+    public void testPrayerUpdaterWork() throws Exception {
+        AlarmManager alarmMgr = (AlarmManager) applicationContext.getSystemService(Context.ALARM_SERVICE);
+        ShadowAlarmManager shadowAlarmManager = Shadows.shadowOf(alarmMgr);
+
+        RESTMockServer
+                .whenGET(pathContains("/timings"))
+                .thenReturnFile(200, "responses/adhan_api_response.json");
+
+        Address lastKnownAddress = new Address(Locale.getDefault());
+        lastKnownAddress.setLatitude(51.5073509);
+        lastKnownAddress.setLongitude(-0.1277583);
+        lastKnownAddress.setLocality("London");
+        lastKnownAddress.setCountryName("United Kindom");
+        lastKnownAddress.setCountryCode("UK");
+
+        PreferencesHelper.updateAddressPreferences(applicationContext, lastKnownAddress);
+
+        WorkerProviderFactory workerProviderFactory = ((FakeFivePrayerApplication) applicationContext).appComponent.workerProviderFactory();
+
+        PrayerUpdater prayerUpdater = TestListenableWorkerBuilder
+                .from(applicationContext, PrayerUpdater.class)
+                .setWorkerFactory(workerProviderFactory)
+                .build();
+
+        ListenableWorker.Result result = prayerUpdater.startWork().get();
+
+        Assert.assertEquals(ListenableWorker.Result.success(), result);
+    }
+
+
+    @Test
+    public void testPrayerUpdaterWork_when_single_throw_error() throws Exception {
+        RESTMockServer
+                .whenGET(pathContains("/timings"))
+                .thenReturnFile(500, "responses/adhan_api_response.json");
+
+        Address lastKnownAddress = new Address(Locale.getDefault());
+        lastKnownAddress.setLatitude(51.5073509);
+        lastKnownAddress.setLongitude(-0.1277583);
+        lastKnownAddress.setLocality("London");
+        lastKnownAddress.setCountryName("United Kindom");
+        lastKnownAddress.setCountryCode("UK");
+
+        PreferencesHelper.updateAddressPreferences(applicationContext, lastKnownAddress);
+
+        WorkerProviderFactory workerProviderFactory = ((FakeFivePrayerApplication) applicationContext).appComponent.workerProviderFactory();
+
+        PrayerUpdater prayerUpdater = TestListenableWorkerBuilder
+                .from(applicationContext, PrayerUpdater.class)
+                .setWorkerFactory(workerProviderFactory)
+                .build();
+
+        ListenableWorker.Result result = prayerUpdater.startWork().get();
+
+        Assert.assertEquals(ListenableWorker.Result.retry(), result);
+    }
 }

@@ -79,6 +79,7 @@ class PrayerModel implements BaseColumns {
                     COLUMN_NAME_HIJRI_ADJUSTMENT + " INTEGER," +
                     " UNIQUE(" +
                     COLUMN_NAME_DATE + "," +
+                    COLUMN_NAME_TIMEZONE + "," +
                     COLUMN_NAME_CITY + "," +
                     COLUMN_NAME_COUNTRY + "," +
                     COLUMN_NAME_TIMINGS_TUNE + "," +

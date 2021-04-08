@@ -20,6 +20,7 @@ import com.hbouzidi.fiveprayers.utils.TimingUtils;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -66,7 +67,7 @@ public class PrayerRegistry {
         ContentValues values = new ContentValues();
         values.put(PrayerModel.COLUMN_NAME_DATE, localDateString);
         values.put(PrayerModel.COLUMN_NAME_DATE_TIMESTAMP, aladhanDate.getTimestamp());
-        values.put(PrayerModel.COLUMN_NAME_TIMEZONE, data.getMeta().getTimezone());
+        values.put(PrayerModel.COLUMN_NAME_TIMEZONE, ZoneId.systemDefault().getId());
 
         values.put(PrayerModel.COLUMN_NAME_CITY, city);
         values.put(PrayerModel.COLUMN_NAME_COUNTRY, country);
@@ -116,6 +117,7 @@ public class PrayerRegistry {
         SQLiteDatabase db = databaseHelper.getReadableDatabase();
 
         String selection = PrayerModel.COLUMN_NAME_DATE + " = ?" +
+                " AND " + PrayerModel.COLUMN_NAME_TIMEZONE + " = ?" +
                 " AND " + PrayerModel.COLUMN_NAME_CITY + " = ?" +
                 " AND " + PrayerModel.COLUMN_NAME_COUNTRY + " = ?" +
                 " AND " + PrayerModel.COLUMN_NAME_CALCULATION_METHOD + " = ?" +
@@ -127,6 +129,7 @@ public class PrayerRegistry {
 
         String[] selectionArgs = {
                 TimingUtils.formatDateForAdhanAPI(localDate),
+                ZoneId.systemDefault().getId(),
                 city,
                 country,
                 String.valueOf(calculationMethodEnum),
@@ -197,6 +200,7 @@ public class PrayerRegistry {
 
         String selection = PrayerModel.COLUMN_NAME_GREGORIAN_MONTH_NUMBER + " = ?" +
                 " AND " + PrayerModel.COLUMN_NAME_GREGORIAN_YEAR + " = ?" +
+                " AND " + PrayerModel.COLUMN_NAME_TIMEZONE + " = ?" +
                 " AND " + PrayerModel.COLUMN_NAME_CITY + " = ?" +
                 " AND " + PrayerModel.COLUMN_NAME_COUNTRY + " = ?" +
                 " AND " + PrayerModel.COLUMN_NAME_CALCULATION_METHOD + " = ?" +
@@ -209,6 +213,7 @@ public class PrayerRegistry {
         String[] selectionArgs = {
                 String.valueOf(monthNumber),
                 String.valueOf(year),
+                ZoneId.systemDefault().getId(),
                 city,
                 country,
                 String.valueOf(calculationMethodEnum),

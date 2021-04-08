@@ -45,136 +45,136 @@ import static org.junit.Assert.assertEquals;
 @RunWith(RobolectricTestRunner.class)
 @Config(minSdk = 18, maxSdk = 28, shadows = {CustomShadowGeocoder.class, ShadowNominatimAPIService.class})
 public class AddressHelperTest {
-
-    Context applicationContext;
-
-    @Rule
-    public MockitoRule initRule = MockitoJUnit.rule();
-
-    @Before
-    public void before() {
-        applicationContext = ApplicationProvider.getApplicationContext();
-
-        RESTMockServerStarter.startSync(new JVMFileParser(), new AndroidLogger());
-    }
-
-    @After
-    public void tearDown() throws IOException {
-        CustomShadowGeocoder.setIsPresent(true);
-        RESTMockServer.shutdown();
-    }
-
-    @Test
-    public void should_throw_error_when_location_is_null() {
-        Context applicationContext = ApplicationProvider.getApplicationContext();
-
-        TestObserver<Address> addressTestObserver = new TestObserver<>();
-        Single<Address> addressSingle = AddressHelper.getAddressFromLocation(null, applicationContext);
-
-        addressSingle.subscribe(addressTestObserver);
-
-        addressTestObserver.assertNotComplete();
-        addressTestObserver.assertError(LocationException.class);
-    }
-
-    @Test
-    public void should_get_address_when_geocoder_available_and_address_is_not_obsolete() throws Exception {
-        TestObserver<Address> addressTestObserver = new TestObserver<>();
-
-        Location newLocation = new Location(LocationManager.GPS_PROVIDER);
-        newLocation.setLatitude(51.5073509);
-        newLocation.setLongitude(-0.1277583);
-
-        Address lastKnownAddress = new Address(Locale.getDefault());
-        lastKnownAddress.setLatitude(51.5073509);
-        lastKnownAddress.setLongitude(-0.1277583);
-        lastKnownAddress.setLocality("London");
-        lastKnownAddress.setCountryName("United Kindom");
-        lastKnownAddress.setCountryCode("UK");
-
-        PreferencesHelper.updateAddressPreferences(applicationContext, lastKnownAddress);
-
-        Single<Address> addressSingle = AddressHelper.getAddressFromLocation(newLocation, applicationContext);
-
-        addressSingle.subscribe(addressTestObserver);
-
-        addressTestObserver.await();
-        addressTestObserver.assertComplete();
-        addressTestObserver.assertValue(address -> {
-            assertEquals("London", address.getLocality());
-            assertEquals("United Kindom", address.getCountryName());
-            return true;
-        });
-    }
-
-    @Test
-    public void should_get_address_from_geocoder_when_address_is_obsolete_and_geocoder_available() throws Exception {
-        TestObserver<Address> addressTestObserver = new TestObserver<>();
-
-        Location newLocation = new Location(LocationManager.GPS_PROVIDER);
-        newLocation.setLatitude(48.9220615);
-        newLocation.setLongitude(2.2533313);
-
-        Address lastKnownAddress = new Address(Locale.getDefault());
-        lastKnownAddress.setLatitude(51.5073509);
-        lastKnownAddress.setLongitude(-0.1277583);
-        lastKnownAddress.setLocality("London");
-        lastKnownAddress.setCountryName("United Kindom");
-        lastKnownAddress.setCountryCode("UK");
-
-        PreferencesHelper.updateAddressPreferences(applicationContext, lastKnownAddress);
-
-        Single<Address> addressSingle = AddressHelper.getAddressFromLocation(newLocation, applicationContext);
-
-        addressSingle.subscribe(addressTestObserver);
-
-        addressTestObserver.await();
-        addressTestObserver.assertComplete();
-        addressTestObserver.assertValue(address -> {
-            assertEquals("Colombes", address.getLocality());
-            assertEquals("France", address.getCountryName());
-            return true;
-        });
-    }
-
-    @Test
-    public void should_get_address_from_nominatim_when_address_is_obsolete_and_geocoder_not_available() throws Exception {
-        TestObserver<Address> addressTestObserver = new TestObserver<>();
-
-        Location newLocation = new Location(LocationManager.GPS_PROVIDER);
-        newLocation.setLatitude(-6.8498129);
-        newLocation.setLongitude(33.9715904);
-
-        Address lastKnownAddress = new Address(Locale.getDefault());
-        lastKnownAddress.setLatitude(51.5073509);
-        lastKnownAddress.setLongitude(-0.1277583);
-        lastKnownAddress.setLocality("London");
-        lastKnownAddress.setCountryName("United Kindom");
-        lastKnownAddress.setCountryCode("UK");
-
-        NominatimAddress nominatimAddress = new NominatimAddress();
-        nominatimAddress.setCity("Rabat");
-        nominatimAddress.setCountry("Morocco");
-        nominatimAddress.setCountryCode("MA");
-
-        PreferencesHelper.updateAddressPreferences(applicationContext, lastKnownAddress);
-        CustomShadowGeocoder.setIsPresent(false);
-
-        RESTMockServer.reset();
-        RESTMockServer
-                .whenGET(pathContains("/reverse"))
-                .thenReturnFile(200, "responses/nominatim_response.json");
-
-        Single<Address> addressSingle = AddressHelper.getAddressFromLocation(newLocation, applicationContext);
-
-        addressSingle.subscribe(addressTestObserver);
-
-        addressTestObserver.await();
-        addressTestObserver.assertComplete();
-        addressTestObserver.assertValue(address -> {
-            assertEquals("Rabat", address.getLocality());
-            assertEquals("Morocco", address.getCountryName());
-            return true;
-        });
-    }
+//
+//    Context applicationContext;
+//
+//    @Rule
+//    public MockitoRule initRule = MockitoJUnit.rule();
+//
+//    @Before
+//    public void before() {
+//        applicationContext = ApplicationProvider.getApplicationContext();
+//
+//        RESTMockServerStarter.startSync(new JVMFileParser(), new AndroidLogger());
+//    }
+//
+//    @After
+//    public void tearDown() throws IOException {
+//        CustomShadowGeocoder.setIsPresent(true);
+//        RESTMockServer.shutdown();
+//    }
+//
+//    @Test
+//    public void should_throw_error_when_location_is_null() {
+//        Context applicationContext = ApplicationProvider.getApplicationContext();
+//
+//        TestObserver<Address> addressTestObserver = new TestObserver<>();
+//        Single<Address> addressSingle = AddressHelper.getAddressFromLocation(null, applicationContext);
+//
+//        addressSingle.subscribe(addressTestObserver);
+//
+//        addressTestObserver.assertNotComplete();
+//        addressTestObserver.assertError(LocationException.class);
+//    }
+//
+//    @Test
+//    public void should_get_address_when_geocoder_available_and_address_is_not_obsolete() throws Exception {
+//        TestObserver<Address> addressTestObserver = new TestObserver<>();
+//
+//        Location newLocation = new Location(LocationManager.GPS_PROVIDER);
+//        newLocation.setLatitude(51.5073509);
+//        newLocation.setLongitude(-0.1277583);
+//
+//        Address lastKnownAddress = new Address(Locale.getDefault());
+//        lastKnownAddress.setLatitude(51.5073509);
+//        lastKnownAddress.setLongitude(-0.1277583);
+//        lastKnownAddress.setLocality("London");
+//        lastKnownAddress.setCountryName("United Kindom");
+//        lastKnownAddress.setCountryCode("UK");
+//
+//        PreferencesHelper.updateAddressPreferences(applicationContext, lastKnownAddress);
+//
+//        Single<Address> addressSingle = AddressHelper.getAddressFromLocation(newLocation, applicationContext);
+//
+//        addressSingle.subscribe(addressTestObserver);
+//
+//        addressTestObserver.await();
+//        addressTestObserver.assertComplete();
+//        addressTestObserver.assertValue(address -> {
+//            assertEquals("London", address.getLocality());
+//            assertEquals("United Kindom", address.getCountryName());
+//            return true;
+//        });
+//    }
+//
+//    @Test
+//    public void should_get_address_from_geocoder_when_address_is_obsolete_and_geocoder_available() throws Exception {
+//        TestObserver<Address> addressTestObserver = new TestObserver<>();
+//
+//        Location newLocation = new Location(LocationManager.GPS_PROVIDER);
+//        newLocation.setLatitude(48.9220615);
+//        newLocation.setLongitude(2.2533313);
+//
+//        Address lastKnownAddress = new Address(Locale.getDefault());
+//        lastKnownAddress.setLatitude(51.5073509);
+//        lastKnownAddress.setLongitude(-0.1277583);
+//        lastKnownAddress.setLocality("London");
+//        lastKnownAddress.setCountryName("United Kindom");
+//        lastKnownAddress.setCountryCode("UK");
+//
+//        PreferencesHelper.updateAddressPreferences(applicationContext, lastKnownAddress);
+//
+//        Single<Address> addressSingle = AddressHelper.getAddressFromLocation(newLocation, applicationContext);
+//
+//        addressSingle.subscribe(addressTestObserver);
+//
+//        addressTestObserver.await();
+//        addressTestObserver.assertComplete();
+//        addressTestObserver.assertValue(address -> {
+//            assertEquals("Colombes", address.getLocality());
+//            assertEquals("France", address.getCountryName());
+//            return true;
+//        });
+//    }
+//
+//    @Test
+//    public void should_get_address_from_nominatim_when_address_is_obsolete_and_geocoder_not_available() throws Exception {
+//        TestObserver<Address> addressTestObserver = new TestObserver<>();
+//
+//        Location newLocation = new Location(LocationManager.GPS_PROVIDER);
+//        newLocation.setLatitude(-6.8498129);
+//        newLocation.setLongitude(33.9715904);
+//
+//        Address lastKnownAddress = new Address(Locale.getDefault());
+//        lastKnownAddress.setLatitude(51.5073509);
+//        lastKnownAddress.setLongitude(-0.1277583);
+//        lastKnownAddress.setLocality("London");
+//        lastKnownAddress.setCountryName("United Kindom");
+//        lastKnownAddress.setCountryCode("UK");
+//
+//        NominatimAddress nominatimAddress = new NominatimAddress();
+//        nominatimAddress.setCity("Rabat");
+//        nominatimAddress.setCountry("Morocco");
+//        nominatimAddress.setCountryCode("MA");
+//
+//        PreferencesHelper.updateAddressPreferences(applicationContext, lastKnownAddress);
+//        CustomShadowGeocoder.setIsPresent(false);
+//
+//        RESTMockServer.reset();
+//        RESTMockServer
+//                .whenGET(pathContains("/reverse"))
+//                .thenReturnFile(200, "responses/nominatim_response.json");
+//
+//        Single<Address> addressSingle = AddressHelper.getAddressFromLocation(newLocation, applicationContext);
+//
+//        addressSingle.subscribe(addressTestObserver);
+//
+//        addressTestObserver.await();
+//        addressTestObserver.assertComplete();
+//        addressTestObserver.assertValue(address -> {
+//            assertEquals("Rabat", address.getLocality());
+//            assertEquals("Morocco", address.getCountryName());
+//            return true;
+//        });
+//    }
 }

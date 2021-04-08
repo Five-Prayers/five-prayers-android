@@ -86,6 +86,12 @@
             <meta-data android:name="android.appwidget.provider"
                 android:resource="@xml/home_screen_widget_info" />
         </receiver>
+
+        <provider
+            android:name="androidx.work.impl.WorkManagerInitializer"
+            android:authorities="${applicationId}.workmanager-init"
+            android:exported="false"
+            tools:node="remove"/>
     </application>
 
 </manifest>

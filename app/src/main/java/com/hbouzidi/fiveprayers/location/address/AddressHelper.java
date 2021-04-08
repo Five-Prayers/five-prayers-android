@@ -17,6 +17,9 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import io.reactivex.rxjava3.core.Single;
 
 /**
@@ -24,12 +27,21 @@ import io.reactivex.rxjava3.core.Single;
  * Github : https://github.com/Five-Prayers/five-prayers-android
  * licenced under GPLv3 : https://www.gnu.org/licenses/gpl-3.0.en.html
  */
+@Singleton
 public class AddressHelper {
 
     private static final int MINIMUM_DISTANCE_FOR_OBSOLESCENCE = 1000; //1KM
 
-    public static Single<Address> getAddressFromLocation(final Location location,
-                                                         final Context context) {
+    private final Context context;
+    private final NominatimAPIService nominatimAPIService;
+
+    @Inject
+    public AddressHelper(Context context, NominatimAPIService nominatimAPIService) {
+        this.context = context;
+        this.nominatimAPIService = nominatimAPIService;
+    }
+
+    public Single<Address> getAddressFromLocation(final Location location) {
 
         return Single.create(emitter -> {
             boolean locationSetManually = PreferencesHelper.isLocationSetManually(context);
@@ -93,9 +105,7 @@ public class AddressHelper {
         return null;
     }
 
-    private static Address getNominatimAddress(double latitude, double longitude, Context context) throws IOException {
-        NominatimAPIService nominatimAPIService = NominatimAPIService.getInstance();
-
+    private Address getNominatimAddress(double latitude, double longitude, Context context) throws IOException {
         NominatimReverseGeocodeResponse response = nominatimAPIService.getAddressFromLocation(latitude, longitude);
 
         if (response != null && response.getAddress() != null && response.getAddress().getCountry() != null && response.getAddress().getLocality() != null) {
@@ -116,7 +126,7 @@ public class AddressHelper {
         return null;
     }
 
-    private static boolean isAddressObsolete(Address lastKnownAddress, double latitude, double longitude) {
+    private boolean isAddressObsolete(Address lastKnownAddress, double latitude, double longitude) {
         if (lastKnownAddress.getLocality() != null) {
 
             Location LastKnownLocation = new Location("");

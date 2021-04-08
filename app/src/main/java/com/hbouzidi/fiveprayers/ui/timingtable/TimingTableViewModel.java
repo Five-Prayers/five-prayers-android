@@ -15,8 +15,12 @@ import com.hbouzidi.fiveprayers.timings.DayPrayer;
 import com.hbouzidi.fiveprayers.timings.TimingServiceFactory;
 import com.hbouzidi.fiveprayers.timings.TimingsService;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.time.LocalDate;
 import java.util.List;
+
+import javax.inject.Inject;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
@@ -30,12 +34,25 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
  */
 public class TimingTableViewModel extends AndroidViewModel {
 
-    private MutableLiveData<List<DayPrayer>> mCalendar;
+    private final LocationHelper locationHelper;
+    private final AddressHelper addressHelper;
+    private final TimingServiceFactory timingServiceFactory;
+    private final MutableLiveData<List<DayPrayer>> mCalendar;
     private CompositeDisposable compositeDisposable;
 
-    public TimingTableViewModel(@NonNull Application application) {
+    @Inject
+    public TimingTableViewModel(@NonNull Application application,
+                                @NonNull LocationHelper locationHelper,
+                                @NonNull AddressHelper addressHelper,
+                                @NonNull TimingServiceFactory timingServiceFactory
+    ) {
         super(application);
-        mCalendar = new MutableLiveData<>();
+
+        this.timingServiceFactory = timingServiceFactory;
+        this.locationHelper = locationHelper;
+        this.addressHelper = addressHelper;
+
+        this.mCalendar = new MutableLiveData<>();
     }
 
     public void processData(LocalDate todayDate, Context context) {
@@ -53,25 +70,23 @@ public class TimingTableViewModel extends AndroidViewModel {
     }
 
     private void setLiveData(LocalDate todayDate, Context context) {
-        TimingsService timingsService = TimingServiceFactory.create(PreferencesHelper.getCalculationMethod(context));
+        TimingsService timingsService = timingServiceFactory.create(PreferencesHelper.getCalculationMethod(context));
 
         compositeDisposable = new CompositeDisposable();
         compositeDisposable.add(
-                LocationHelper.getLocation(context)
-                        .flatMap(location ->
-                                AddressHelper.getAddressFromLocation(location, context)
-                        ).flatMap(address ->
-                        timingsService.getCalendarByCity(
-                                address,
-                                todayDate.getMonthValue(),
-                                todayDate.getYear(),
-                                context
-                        ))
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
+                locationHelper.getLocation()
+                        .flatMap(addressHelper::getAddressFromLocation)
+                        .flatMap(address ->
+                                timingsService.getCalendarByCity(
+                                        address,
+                                        todayDate.getMonthValue(),
+                                        todayDate.getYear(),
+                                        context
+                                ))
+                        .subscribeOn(AndroidSchedulers.mainThread())
                         .subscribeWith(new DisposableSingleObserver<List<DayPrayer>>() {
                             @Override
-                            public void onSuccess(List<DayPrayer> calendar) {
+                            public void onSuccess(@NotNull List<DayPrayer> calendar) {
                                 mCalendar.postValue(calendar);
                             }
 

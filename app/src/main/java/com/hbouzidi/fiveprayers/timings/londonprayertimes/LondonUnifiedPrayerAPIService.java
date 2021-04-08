@@ -1,43 +1,42 @@
 package com.hbouzidi.fiveprayers.timings.londonprayertimes;
 
 import com.hbouzidi.fiveprayers.BuildConfig;
-import com.hbouzidi.fiveprayers.common.api.BaseAPIService;
 import com.hbouzidi.fiveprayers.utils.TimingUtils;
 
 import java.io.IOException;
 import java.time.LocalDate;
 
+import javax.inject.Inject;
+import javax.inject.Named;
+import javax.inject.Singleton;
+
 import retrofit2.Call;
+import retrofit2.Retrofit;
 
 /**
  * @author Hicham Bouzidi Idrissi
  * Github : https://github.com/Five-Prayers/five-prayers-android
  * licenced under GPLv3 : https://www.gnu.org/licenses/gpl-3.0.en.html
  */
-public class LondonUnifiedPrayerAPIService extends BaseAPIService {
-
-    private static LondonUnifiedPrayerAPIService londonUnifiedPrayerAPIService;
+@Singleton
+public class LondonUnifiedPrayerAPIService {
 
     private final static String API_KEY = BuildConfig.LONDON_UNIFIED_TIMINGS_API_KEY;
     private final static String DEFAULT_FORMAT = "json";
     private final static String TWENTY_FOUR_FORMAT = "true";
 
-    private LondonUnifiedPrayerAPIService() {
-        BASE_URL = "https://www.londonprayertimes.com/api/";
-    }
+    private final Retrofit retrofit;
 
-    public static LondonUnifiedPrayerAPIService getInstance() {
-        if (londonUnifiedPrayerAPIService == null) {
-            londonUnifiedPrayerAPIService = new LondonUnifiedPrayerAPIService();
-        }
-        return londonUnifiedPrayerAPIService;
+    @Inject
+    public LondonUnifiedPrayerAPIService(@Named("lut_api") Retrofit retrofit) {
+        this.retrofit = retrofit;
     }
 
     public LondonUnifiedTimingsResponse getLondonTimings() throws IOException {
         String localDateString = TimingUtils.formatDateForLUTAPI(LocalDate.now());
 
         LondonUnifiedPrayerAPIResource londonUnifiedPrayerAPIResource =
-                provideRetrofit().create(LondonUnifiedPrayerAPIResource.class);
+                retrofit.create(LondonUnifiedPrayerAPIResource.class);
 
         Call<LondonUnifiedTimingsResponse> call
                 = londonUnifiedPrayerAPIResource
@@ -49,7 +48,7 @@ public class LondonUnifiedPrayerAPIService extends BaseAPIService {
     public LondonUnifiedCalendarResponse getLondonCalendar(final int month, final int year) throws IOException {
 
         LondonUnifiedPrayerAPIResource londonUnifiedPrayerAPIResource =
-                provideRetrofit().create(LondonUnifiedPrayerAPIResource.class);
+                retrofit.create(LondonUnifiedPrayerAPIResource.class);
 
         Call<LondonUnifiedCalendarResponse> call
                 = londonUnifiedPrayerAPIResource

@@ -1,10 +1,7 @@
 package com.hbouzidi.fiveprayers.timings.aladhan;
 
-import android.os.Build;
-
 import androidx.annotation.NonNull;
 
-import com.hbouzidi.fiveprayers.common.api.BaseAPIService;
 import com.hbouzidi.fiveprayers.timings.calculations.CalculationMethodEnum;
 import com.hbouzidi.fiveprayers.timings.calculations.LatitudeAdjustmentMethod;
 import com.hbouzidi.fiveprayers.timings.calculations.MidnightModeAdjustmentMethod;
@@ -14,30 +11,26 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 
+import javax.inject.Inject;
+import javax.inject.Named;
+import javax.inject.Singleton;
+
 import retrofit2.Call;
+import retrofit2.Retrofit;
 
 /**
  * @author Hicham Bouzidi Idrissi
  * Github : https://github.com/Five-Prayers/five-prayers-android
  * licenced under GPLv3 : https://www.gnu.org/licenses/gpl-3.0.en.html
  */
-public class AladhanAPIService extends BaseAPIService {
+@Singleton
+public class AladhanAPIService {
 
-    private static AladhanAPIService aladhanAPIService;
+    private final Retrofit retrofit;
 
-    private AladhanAPIService() {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            BASE_URL = "http://api.aladhan.com/v1/";
-        } else {
-            BASE_URL = "https://api.aladhan.com/v1/";
-        }
-    }
-
-    public static AladhanAPIService getInstance() {
-        if (aladhanAPIService == null) {
-            aladhanAPIService = new AladhanAPIService();
-        }
-        return aladhanAPIService;
+    @Inject
+    public AladhanAPIService(@Named("adhan_api") Retrofit retrofit) {
+        this.retrofit = retrofit;
     }
 
     public AladhanTodayTimingsResponse getTimingsByLatLong(final double latitude,
@@ -51,7 +44,7 @@ public class AladhanAPIService extends BaseAPIService {
 
         long epochSecond = LocalDateTime.now().atZone(ZoneId.systemDefault()).toEpochSecond();
 
-        AladhanAPIResource aladhanAPIResource = provideRetrofit().create(AladhanAPIResource.class);
+        AladhanAPIResource aladhanAPIResource = retrofit.create(AladhanAPIResource.class);
 
         Call<AladhanTodayTimingsResponse> call
                 = aladhanAPIResource
@@ -76,7 +69,7 @@ public class AladhanAPIService extends BaseAPIService {
             final int adjustment,
             final String tune) throws IOException {
 
-        AladhanAPIResource aladhanAPIResource = provideRetrofit().create(AladhanAPIResource.class);
+        AladhanAPIResource aladhanAPIResource = retrofit.create(AladhanAPIResource.class);
 
         Call<AladhanCalendarResponse> call
                 = aladhanAPIResource

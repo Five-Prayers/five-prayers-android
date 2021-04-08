@@ -12,6 +12,7 @@ import android.widget.RemoteViews;
 
 import androidx.core.content.ContextCompat;
 
+import com.hbouzidi.fiveprayers.FivePrayerApplication;
 import com.hbouzidi.fiveprayers.R;
 import com.hbouzidi.fiveprayers.common.ComplementaryTimingEnum;
 import com.hbouzidi.fiveprayers.common.HijriHoliday;
@@ -31,6 +32,8 @@ import org.jetbrains.annotations.NotNull;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import javax.inject.Inject;
+
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.observers.DisposableSingleObserver;
@@ -42,14 +45,27 @@ import io.reactivex.rxjava3.observers.DisposableSingleObserver;
  */
 public class HomeScreenWidgetProvider extends AppWidgetProvider {
 
+    @Inject
+    LocationHelper locationHelper;
+
+    @Inject
+    AddressHelper addressHelper;
+
+    @Inject
+    TimingServiceFactory timingServiceFactory;
+
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
-        TimingsService timingsService = TimingServiceFactory.create(PreferencesHelper.getCalculationMethod(context));
+        ((FivePrayerApplication) context.getApplicationContext())
+                .widgetComponent
+                .inject(this);
+
+        TimingsService timingsService = timingServiceFactory.create(PreferencesHelper.getCalculationMethod(context));
 
         Single<DayPrayer> dayPrayerSingle =
-                LocationHelper.getLocation(context)
+                locationHelper.getLocation()
                         .flatMap(location ->
-                                AddressHelper.getAddressFromLocation(location, context)
+                                addressHelper.getAddressFromLocation(location)
                         ).flatMap(address ->
                         timingsService.getTimingsByCity(
                                 LocalDate.now(),

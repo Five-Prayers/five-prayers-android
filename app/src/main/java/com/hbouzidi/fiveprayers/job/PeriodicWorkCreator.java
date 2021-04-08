@@ -6,6 +6,7 @@ import androidx.work.BackoffPolicy;
 import androidx.work.Constraints;
 import androidx.work.ExistingPeriodicWorkPolicy;
 import androidx.work.NetworkType;
+import androidx.work.OneTimeWorkRequest;
 import androidx.work.PeriodicWorkRequest;
 import androidx.work.WorkManager;
 
@@ -28,6 +29,18 @@ public final class PeriodicWorkCreator {
                 .setRequiredNetworkType(NetworkType.CONNECTED)
                 .build();
 
+//        OneTimeWorkRequest oneTimeWorkRequest = new OneTimeWorkRequest
+//                .Builder(PrayerUpdater.class)
+//                .setConstraints(networkConstraint)
+//                .setBackoffCriteria(
+//                        BackoffPolicy.LINEAR,
+//                        10,
+//                        TimeUnit.MINUTES)
+//                .build();
+//
+//        WorkManager.getInstance(context)
+//                .enqueue(oneTimeWorkRequest);
+//
         PeriodicWorkRequest periodicWorkRequest =
                 new PeriodicWorkRequest
                         .Builder(PrayerUpdater.class, 60, TimeUnit.MINUTES, 50, TimeUnit.MINUTES)

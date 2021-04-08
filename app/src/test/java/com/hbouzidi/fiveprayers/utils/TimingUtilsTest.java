@@ -28,6 +28,9 @@ public class TimingUtilsTest {
         LocalDateTime localDateTime2 = TimingUtils.transformTimingToDate("12:50", "13-05-2020", false);
         assertTrue(localDateTime2.isEqual(LocalDateTime.of(2020, 5, 13, 12, 50)));
 
+        LocalDateTime localDateTime3 = TimingUtils.transformTimingToDate("04:45", "13-05-2020", false);
+        assertTrue(localDateTime3.isEqual(LocalDateTime.of(2020, 5, 13, 4, 50)));
+
         LocalDateTime localDateTimeAfterMidnight = TimingUtils.transformTimingToDate("12:50", "13-05-2020", true);
         assertTrue(localDateTimeAfterMidnight.isEqual(LocalDateTime.of(2020, 5, 14, 12, 50)));
 

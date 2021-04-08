@@ -19,31 +19,35 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
 /**
  * @author Hicham Bouzidi Idrissi
  * Github : https://github.com/Five-Prayers/five-prayers-android
  * licenced under GPLv3 : https://www.gnu.org/licenses/gpl-3.0.en.html
  */
+@Singleton
 public class LondonUnifiedPrayerTimingsService extends AbstractTimingsService {
 
+    private final AladhanAPIService aladhanAPIService;
+    private final LondonUnifiedPrayerAPIService londonUnifiedPrayerAPIService;
     protected String TAG = "LondonUnifiedPrayerTimingsService";
 
-    private static LondonUnifiedPrayerTimingsService instance;
-
-    private LondonUnifiedPrayerTimingsService() {
+    @Inject
+    public LondonUnifiedPrayerTimingsService(AladhanAPIService aladhanAPIService,
+                                             LondonUnifiedPrayerAPIService londonUnifiedPrayerAPIService,
+                                             PrayerRegistry prayerRegistry
+    ) {
+        super(prayerRegistry);
+        this.aladhanAPIService = aladhanAPIService;
+        this.londonUnifiedPrayerAPIService = londonUnifiedPrayerAPIService;
     }
 
-    public static LondonUnifiedPrayerTimingsService getInstance() {
-        if (instance == null) {
-            instance = new LondonUnifiedPrayerTimingsService();
-        }
-        return instance;
-    }
 
     protected void retrieveAndSaveTimings(LocalDate localDate, Address address, Context context) throws IOException {
         TimingsPreferences timingsPreferences = getTimingsPreferences(context);
 
-        AladhanAPIService aladhanAPIService = AladhanAPIService.getInstance();
         AladhanTodayTimingsResponse timingsByCity =
                 aladhanAPIService.getTimingsByLatLong(
                         address.getLatitude(),
@@ -55,13 +59,11 @@ public class LondonUnifiedPrayerTimingsService extends AbstractTimingsService {
                         timingsPreferences.getHijriAdjustment(),
                         timingsPreferences.getTune());
 
-        LondonUnifiedPrayerAPIService londonUnifiedPrayerAPIService = LondonUnifiedPrayerAPIService.getInstance();
         LondonUnifiedTimingsResponse londonTimings = londonUnifiedPrayerAPIService.getLondonTimings();
 
         if (timingsByCity != null && londonTimings != null) {
             AladhanData aladhanData = createTimingsData(timingsPreferences.getSchoolAdjustmentMethod(), timingsByCity.getData(), londonTimings);
 
-            PrayerRegistry prayerRegistry = PrayerRegistry.getInstance(context);
             prayerRegistry.savePrayerTiming(localDate,
                     address.getLocality(),
                     address.getCountryName(),
@@ -81,7 +83,6 @@ public class LondonUnifiedPrayerTimingsService extends AbstractTimingsService {
 
         TimingsPreferences timingsPreferences = getTimingsPreferences(context);
 
-        AladhanAPIService aladhanAPIService = AladhanAPIService.getInstance();
         AladhanCalendarResponse calendarByCity =
                 aladhanAPIService.getCalendarByLatLong(
                         address.getLatitude(),
@@ -94,7 +95,6 @@ public class LondonUnifiedPrayerTimingsService extends AbstractTimingsService {
                         timingsPreferences.getHijriAdjustment(),
                         timingsPreferences.getTune());
 
-        LondonUnifiedPrayerAPIService londonUnifiedPrayerAPIService = LondonUnifiedPrayerAPIService.getInstance();
         LondonUnifiedCalendarResponse londonCalendar = londonUnifiedPrayerAPIService.getLondonCalendar(month, year);
 
         if (calendarByCity != null && londonCalendar != null) {
@@ -108,7 +108,6 @@ public class LondonUnifiedPrayerTimingsService extends AbstractTimingsService {
                 }
             }
 
-            PrayerRegistry prayerRegistry = PrayerRegistry.getInstance(context);
             prayerRegistry.saveCalendar(
                     address.getLocality(),
                     address.getCountryName(),

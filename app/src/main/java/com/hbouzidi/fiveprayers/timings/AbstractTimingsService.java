@@ -17,6 +17,9 @@ import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.List;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import io.reactivex.rxjava3.core.Single;
 
 /**
@@ -26,7 +29,12 @@ import io.reactivex.rxjava3.core.Single;
  */
 public abstract class AbstractTimingsService implements TimingsService {
 
+    protected final PrayerRegistry prayerRegistry;
     protected String TAG = "AbstractTimingsService";
+
+    public AbstractTimingsService(PrayerRegistry prayerRegistry) {
+        this.prayerRegistry = prayerRegistry;
+    }
 
     protected abstract void retrieveAndSaveTimings(LocalDate localDate, Address address, Context context) throws IOException;
 
@@ -104,8 +112,6 @@ public abstract class AbstractTimingsService implements TimingsService {
     protected DayPrayer getSavedPrayerTimings(LocalDate localDate, Address address, Context context) {
         TimingsPreferences timingsPreferences = getTimingsPreferences(context);
 
-        PrayerRegistry prayerRegistry = PrayerRegistry.getInstance(context);
-
         if (address.getLocality() != null && address.getCountryName() != null) {
             return prayerRegistry.getPrayerTimings(
                     localDate,
@@ -125,8 +131,6 @@ public abstract class AbstractTimingsService implements TimingsService {
 
     protected List<DayPrayer> getSavedPrayerCalendar(Address address, int month, int year, Context context) {
         TimingsPreferences timingsPreferences = getTimingsPreferences(context);
-
-        PrayerRegistry prayerRegistry = PrayerRegistry.getInstance(context);
 
         return prayerRegistry.getPrayerCalendar(
                 address.getLocality(),

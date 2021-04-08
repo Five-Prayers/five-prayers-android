@@ -1,5 +1,6 @@
 package com.hbouzidi.fiveprayers.ui.timingtable;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.evrencoskun.tableview.TableView;
+import com.hbouzidi.fiveprayers.FivePrayerApplication;
 import com.hbouzidi.fiveprayers.R;
 import com.hbouzidi.fiveprayers.common.ComplementaryTimingEnum;
 import com.hbouzidi.fiveprayers.common.PrayerEnum;
@@ -34,6 +36,8 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 
+import javax.inject.Inject;
+
 /**
  * @author Hicham Bouzidi Idrissi
  * Github : https://github.com/Five-Prayers/five-prayers-android
@@ -46,13 +50,27 @@ public abstract class TimingTableBaseFragment extends Fragment {
     protected TableView mTableView;
     protected LocalDate tableLocalDate;
 
+    @Inject
+    ViewModelProvider.Factory viewModelFactory;
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        ((FivePrayerApplication) context.getApplicationContext())
+                .appComponent
+                .timingTableComponent()
+                .create()
+                .inject(this);
+
+        super.onAttach(context);
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.fragment_timing_table, container, false);
 
-        TimingTableViewModel timingTableViewModel = new ViewModelProvider(this).get(TimingTableViewModel.class);
+        TimingTableViewModel timingTableViewModel = viewModelFactory.create(TimingTableViewModel.class);
 
         mTableView = rootView.findViewById(R.id.tableview);
         loadingLinearLayout = rootView.findViewById(R.id.loading_linear_layout);

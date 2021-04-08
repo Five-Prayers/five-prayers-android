@@ -127,6 +127,9 @@ dependencies {
     implementation 'androidx.multidex:multidex:2.0.1'
     implementation group: 'com.grack', name: 'nanojson', version: '1.6'
 
+    implementation 'com.google.dagger:dagger:2.33'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.33'
+
     //RxJava 3
     implementation "io.reactivex.rxjava3:rxjava:3.0.7"
     implementation "io.reactivex.rxjava3:rxandroid:3.0.0"

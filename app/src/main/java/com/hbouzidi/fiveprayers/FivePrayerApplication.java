@@ -3,8 +3,17 @@ package com.hbouzidi.fiveprayers;
 import android.os.Build;
 
 import androidx.multidex.MultiDexApplication;
+import androidx.work.Configuration;
+import androidx.work.WorkManager;
 
 import com.hbouzidi.fiveprayers.common.api.TLSSocketFactoryCompat;
+import com.hbouzidi.fiveprayers.di.component.ApplicationComponent;
+import com.hbouzidi.fiveprayers.di.component.DaggerApplicationComponent;
+import com.hbouzidi.fiveprayers.di.component.DaggerWidgetComponent;
+import com.hbouzidi.fiveprayers.di.component.WidgetComponent;
+import com.hbouzidi.fiveprayers.di.module.AppModule;
+import com.hbouzidi.fiveprayers.di.module.WidgetModule;
+import com.hbouzidi.fiveprayers.di.factory.worker.WorkerProviderFactory;
 import com.hbouzidi.fiveprayers.ui.report.ErrorActivity;
 
 import cat.ereza.customactivityoncrash.config.CaocConfig;
@@ -16,6 +25,17 @@ import cat.ereza.customactivityoncrash.config.CaocConfig;
  */
 public class FivePrayerApplication extends MultiDexApplication {
 
+    public ApplicationComponent appComponent = DaggerApplicationComponent
+            .builder()
+            .appModule(new AppModule(this))
+            .build();
+
+    public WidgetComponent widgetComponent = DaggerWidgetComponent
+            .builder()
+            .appModule(new AppModule(this))
+            .widgetModule(new WidgetModule())
+            .build();
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -25,8 +45,21 @@ public class FivePrayerApplication extends MultiDexApplication {
             TLSSocketFactoryCompat.setAsDefault();
         }
 
-        CaocConfig.Builder.create()
+        CaocConfig
+                .Builder
+                .create()
                 .errorActivity(ErrorActivity.class)
                 .apply();
+
+        configureWorkManager();
+    }
+
+    private void configureWorkManager() {
+        WorkerProviderFactory factory = appComponent.workerProviderFactory();
+        Configuration config = new Configuration.Builder()
+                .setWorkerFactory(factory)
+                .build();
+
+        WorkManager.initialize(this, config);
     }
 }

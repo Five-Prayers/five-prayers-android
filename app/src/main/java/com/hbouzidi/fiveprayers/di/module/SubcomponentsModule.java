@@ -5,7 +5,7 @@ import com.hbouzidi.fiveprayers.ui.calendar.di.CalendarComponent;
 import com.hbouzidi.fiveprayers.ui.home.di.HomeComponent;
 import com.hbouzidi.fiveprayers.ui.qibla.di.QiblaComponent;
 import com.hbouzidi.fiveprayers.ui.quran.di.QuranComponent;
-import com.hbouzidi.fiveprayers.ui.quran.index.QuranIndexViewModel;
+import com.hbouzidi.fiveprayers.ui.settings.di.SettingsComponent;
 import com.hbouzidi.fiveprayers.ui.timingtable.di.TimingTableComponent;
 
 import dagger.Module;
@@ -20,7 +20,8 @@ import dagger.Module;
         TimingTableComponent.class,
         QiblaComponent.class,
         CalendarComponent.class,
-        QuranComponent.class
+        QuranComponent.class,
+        SettingsComponent.class
 })
 public class SubcomponentsModule {
 

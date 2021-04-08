@@ -15,6 +15,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import io.reactivex.rxjava3.core.Single;
 
 /**
@@ -22,18 +25,14 @@ import io.reactivex.rxjava3.core.Single;
  * Github : https://github.com/Five-Prayers/five-prayers-android
  * licenced under GPLv3 : https://www.gnu.org/licenses/gpl-3.0.en.html
  */
+@Singleton
 public class AddressSearchService {
 
-    private static AddressSearchService instance;
+    private final PhotonAPIService photonAPIService;
 
-    private AddressSearchService() {
-    }
-
-    public static AddressSearchService getInstance() {
-        if (instance == null) {
-            instance = new AddressSearchService();
-        }
-        return instance;
+    @Inject
+    public AddressSearchService(PhotonAPIService photonAPIService) {
+        this.photonAPIService = photonAPIService;
     }
 
     public Single<List<Address>> searchForLocation(final String locationName, final int limit, final Context context) {
@@ -44,12 +43,12 @@ public class AddressSearchService {
 
                 try {
                     List<Address> addressList = geocoder.getFromLocationName(locationName, limit);
-                    if (addressList.size() > 0) {
+                    if (addressList != null && addressList.size() > 0) {
                         emitter.onSuccess(addressList);
                     } else {
                         ArrayList<Address> addresses = new ArrayList<>();
 
-                        PhotonAPIResponse photonAPIResponse = PhotonAPIService.getInstance().search(locationName, limit);
+                        PhotonAPIResponse photonAPIResponse = photonAPIService.search(locationName, limit);
 
                         if (photonAPIResponse != null) {
                             ArrayList<Feature> features = photonAPIResponse.getFeatures();

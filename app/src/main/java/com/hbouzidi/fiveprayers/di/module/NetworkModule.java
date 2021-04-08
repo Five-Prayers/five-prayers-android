@@ -44,6 +44,7 @@ public class NetworkModule {
 
     private final static String NOMINATIM_API_BASE_URL = "https://nominatim.openstreetmap.org/";
     private final static String LUT_API_BASE_URL = "https://www.londonprayertimes.com/api/";
+    private final static String PHOTON_API_BASE_URL = "https://photon.komoot.de/api/";
 
     public NetworkModule() {
     }
@@ -77,6 +78,17 @@ public class NetworkModule {
         return new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .baseUrl(LUT_API_BASE_URL)
+                .client(okHttpClient)
+                .build();
+    }
+
+    @Named("photon_api")
+    @Provides
+    @Singleton
+    Retrofit providePhotonApiRetrofit(Gson gson, @Named("cached") OkHttpClient okHttpClient) {
+        return new Retrofit.Builder()
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .baseUrl(PHOTON_API_BASE_URL)
                 .client(okHttpClient)
                 .build();
     }

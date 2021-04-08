@@ -1,15 +1,16 @@
 package com.hbouzidi.fiveprayers.di.component;
 
+import com.hbouzidi.fiveprayers.di.factory.worker.WorkerProviderFactory;
 import com.hbouzidi.fiveprayers.di.module.AppModule;
 import com.hbouzidi.fiveprayers.di.module.NetworkModule;
 import com.hbouzidi.fiveprayers.di.module.SubcomponentsModule;
 import com.hbouzidi.fiveprayers.di.module.ViewModelFactoryModule;
 import com.hbouzidi.fiveprayers.di.module.WorkerBindingModule;
-import com.hbouzidi.fiveprayers.di.factory.worker.WorkerProviderFactory;
 import com.hbouzidi.fiveprayers.ui.calendar.di.CalendarComponent;
 import com.hbouzidi.fiveprayers.ui.home.di.HomeComponent;
 import com.hbouzidi.fiveprayers.ui.qibla.di.QiblaComponent;
 import com.hbouzidi.fiveprayers.ui.quran.di.QuranComponent;
+import com.hbouzidi.fiveprayers.ui.settings.di.SettingsComponent;
 import com.hbouzidi.fiveprayers.ui.timingtable.di.TimingTableComponent;
 
 import javax.inject.Singleton;
@@ -41,6 +42,8 @@ public interface ApplicationComponent {
     CalendarComponent.Factory calendarComponent();
 
     QuranComponent.Factory quranComponent();
+
+    SettingsComponent.Factory settingsComponent();
 
     WorkerProviderFactory workerProviderFactory();
 }

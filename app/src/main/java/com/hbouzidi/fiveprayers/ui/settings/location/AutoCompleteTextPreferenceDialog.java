@@ -15,9 +15,11 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ProgressBar;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.preference.PreferenceDialogFragmentCompat;
 
+import com.hbouzidi.fiveprayers.FivePrayerApplication;
 import com.hbouzidi.fiveprayers.R;
 import com.hbouzidi.fiveprayers.location.AddressSearchService;
 import com.hbouzidi.fiveprayers.preferences.PreferencesHelper;
@@ -26,6 +28,8 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.inject.Inject;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
@@ -52,6 +56,9 @@ public class AutoCompleteTextPreferenceDialog extends PreferenceDialogFragmentCo
     private boolean isSelectedText;
     private Address selectedAddress;
 
+    @Inject
+    AddressSearchService addressSearchService;
+
     public AutoCompleteTextPreferenceDialog(AutoCompleteTextPreference preference) {
         this.preference = preference;
         this.isSelectedText = false;
@@ -59,6 +66,17 @@ public class AutoCompleteTextPreferenceDialog extends PreferenceDialogFragmentCo
         final Bundle b = new Bundle();
         b.putString(ARG_KEY, preference.getKey());
         setArguments(b);
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        ((FivePrayerApplication) context.getApplicationContext())
+                .appComponent
+                .settingsComponent()
+                .create()
+                .inject(this);
+
+        super.onAttach(context);
     }
 
     @Override
@@ -158,7 +176,7 @@ public class AutoCompleteTextPreferenceDialog extends PreferenceDialogFragmentCo
     private void retrieveData(String str) {
         CompositeDisposable compositeDisposable = new CompositeDisposable();
         compositeDisposable.add(
-                AddressSearchService.getInstance().searchForLocation(str, SEARCH_RESULTS_LIMIT, this.context)
+                addressSearchService.searchForLocation(str, SEARCH_RESULTS_LIMIT, this.context)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribeWith(new DisposableSingleObserver<List<Address>>() {

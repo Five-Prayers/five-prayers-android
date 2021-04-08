@@ -9,6 +9,7 @@ import com.hbouzidi.fiveprayers.di.factory.worker.WorkerProviderFactory;
 import com.hbouzidi.fiveprayers.ui.calendar.di.CalendarComponent;
 import com.hbouzidi.fiveprayers.ui.home.di.HomeComponent;
 import com.hbouzidi.fiveprayers.ui.qibla.di.QiblaComponent;
+import com.hbouzidi.fiveprayers.ui.quran.di.QuranComponent;
 import com.hbouzidi.fiveprayers.ui.timingtable.di.TimingTableComponent;
 
 import javax.inject.Singleton;
@@ -38,6 +39,8 @@ public interface ApplicationComponent {
     TimingTableComponent.Factory timingTableComponent();
 
     CalendarComponent.Factory calendarComponent();
+
+    QuranComponent.Factory quranComponent();
 
     WorkerProviderFactory workerProviderFactory();
 }

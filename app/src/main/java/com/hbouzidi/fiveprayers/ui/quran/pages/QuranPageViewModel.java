@@ -12,6 +12,8 @@ import com.hbouzidi.fiveprayers.quran.parser.QuranParser;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 /**
  * @author Hicham Bouzidi Idrissi
  * Github : https://github.com/Five-Prayers/five-prayers-android
@@ -21,6 +23,7 @@ public class QuranPageViewModel extends AndroidViewModel {
 
     private final MutableLiveData<List<QuranPage>> pages;
 
+    @Inject
     public QuranPageViewModel(@NonNull Application application) {
         super(application);
         pages = new MutableLiveData<>();

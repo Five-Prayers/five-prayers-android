@@ -1,5 +1,6 @@
 package com.hbouzidi.fiveprayers.ui.quran.index;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,10 +8,12 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.hbouzidi.fiveprayers.FivePrayerApplication;
 import com.hbouzidi.fiveprayers.R;
 import com.hbouzidi.fiveprayers.preferences.PreferencesHelper;
 import com.hbouzidi.fiveprayers.quran.dto.BookmarkType;
@@ -21,12 +24,17 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.inject.Inject;
+
 /**
  * @author Hicham Bouzidi Idrissi
  * Github : https://github.com/Five-Prayers/five-prayers-android
  * licenced under GPLv3 : https://www.gnu.org/licenses/gpl-3.0.en.html
  */
 public class BookmarkIndexFragment extends QuranBaseIndexFragment {
+
+    @Inject
+    ViewModelProvider.Factory viewModelFactory;
 
     private RecyclerView userMadeBookmarkRecyclerView;
     private RecyclerView automaticBookmarkRecyclerView;
@@ -44,6 +52,17 @@ public class BookmarkIndexFragment extends QuranBaseIndexFragment {
     }
 
     @Override
+    public void onAttach(@NonNull Context context) {
+        ((FivePrayerApplication) context.getApplicationContext())
+                .appComponent
+                .quranComponent()
+                .create()
+                .inject(this);
+
+        super.onAttach(context);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
@@ -55,7 +74,7 @@ public class BookmarkIndexFragment extends QuranBaseIndexFragment {
         automaticBookmarkSectionTitle = rootView.findViewById(R.id.automatic_bookmark_section_title);
         userMadeBookmarkSectionTitle = rootView.findViewById(R.id.user_made_bookmark_section_title);
 
-        QuranIndexViewModel quranIndexViewModel = new ViewModelProvider(this).get(QuranIndexViewModel.class);
+        QuranIndexViewModel quranIndexViewModel = viewModelFactory.create(QuranIndexViewModel.class);
 
         quranIndexViewModel.getSurahs().observe(getViewLifecycleOwner(), surahs -> this.surahs = surahs);
         quranIndexViewModel.getQuranPages().observe(getViewLifecycleOwner(), quranPages -> this.quranPages = quranPages);

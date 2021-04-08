@@ -24,6 +24,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import static android.content.Context.DOWNLOAD_SERVICE;
 
 /**
@@ -45,7 +47,7 @@ public class QuranIndexViewModel extends AndroidViewModel {
     private final MutableLiveData<Boolean> mDownloadError;
     private final MutableLiveData<Boolean> mUnzipError;
 
-
+    @Inject
     public QuranIndexViewModel(@NonNull Application application) {
         super(application);
         mSurahs = new MutableLiveData<>();

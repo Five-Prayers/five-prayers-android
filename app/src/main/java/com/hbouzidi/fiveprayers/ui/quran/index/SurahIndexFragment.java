@@ -12,11 +12,13 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.hbouzidi.fiveprayers.BuildConfig;
+import com.hbouzidi.fiveprayers.FivePrayerApplication;
 import com.hbouzidi.fiveprayers.R;
 import com.hbouzidi.fiveprayers.quran.dto.Surah;
 
@@ -24,12 +26,17 @@ import java.io.File;
 import java.util.List;
 import java.util.Objects;
 
+import javax.inject.Inject;
+
 /**
  * @author Hicham Bouzidi Idrissi
  * Github : https://github.com/Five-Prayers/five-prayers-android
  * licenced under GPLv3 : https://www.gnu.org/licenses/gpl-3.0.en.html
  */
 public class SurahIndexFragment extends QuranBaseIndexFragment {
+
+    @Inject
+    ViewModelProvider.Factory viewModelFactory;
 
     private RecyclerView surahRecyclerView;
     private LinearLayout progressBarLinearLayout;
@@ -53,6 +60,17 @@ public class SurahIndexFragment extends QuranBaseIndexFragment {
     }
 
     @Override
+    public void onAttach(@NonNull Context context) {
+        ((FivePrayerApplication) context.getApplicationContext())
+                .appComponent
+                .quranComponent()
+                .create()
+                .inject(this);
+
+        super.onAttach(context);
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
@@ -69,7 +87,7 @@ public class SurahIndexFragment extends QuranBaseIndexFragment {
         unzippingTextView = rootView.findViewById(R.id.unzipping_text_view);
         errorTextView = rootView.findViewById(R.id.error_text_view);
 
-        QuranIndexViewModel quranIndexViewModel = new ViewModelProvider(this).get(QuranIndexViewModel.class);
+        QuranIndexViewModel quranIndexViewModel = viewModelFactory.create(QuranIndexViewModel.class);
 
         quranIndexViewModel.getQuranPages().observe(getViewLifecycleOwner(), quranPages -> this.quranPages = quranPages);
         quranIndexViewModel.getSurahs().observe(getViewLifecycleOwner(), this::initRecyclerView);

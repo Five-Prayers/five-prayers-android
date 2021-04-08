@@ -14,12 +14,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.hbouzidi.fiveprayers.FivePrayerApplication;
 import com.hbouzidi.fiveprayers.R;
 import com.hbouzidi.fiveprayers.preferences.PreferencesHelper;
 import com.hbouzidi.fiveprayers.quran.dto.QuranPage;
 import com.hbouzidi.fiveprayers.quran.dto.Surah;
 
 import java.util.List;
+
+import javax.inject.Inject;
 
 /**
  * @author Hicham Bouzidi Idrissi
@@ -39,8 +42,17 @@ public class QuranPageActivity extends AppCompatActivity {
 
     private List<Surah> surahs;
 
+    @Inject
+    ViewModelProvider.Factory viewModelFactory;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ((FivePrayerApplication) getApplicationContext())
+                .appComponent
+                .quranComponent()
+                .create()
+                .inject(this);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ayahs);
 
@@ -53,7 +65,7 @@ public class QuranPageActivity extends AppCompatActivity {
             surahs = bundle.getParcelableArrayList("SURAHS");
         }
 
-        QuranPageViewModel quranPageViewModel = new ViewModelProvider(this).get(QuranPageViewModel.class);
+        QuranPageViewModel quranPageViewModel = viewModelFactory.create(QuranPageViewModel.class);
         quranPageViewModel.getPages().observe(this, this::initRecyclerView);
     }
 

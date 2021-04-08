@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.hbouzidi.fiveprayers.FivePrayerApplication;
 import com.hbouzidi.fiveprayers.R;
 import com.hbouzidi.fiveprayers.calendar.CalendarService;
 import com.hbouzidi.fiveprayers.common.HijriHoliday;
@@ -23,6 +24,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+import org.jetbrains.annotations.NotNull;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -34,6 +36,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
+
+import javax.inject.Inject;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
@@ -63,8 +67,17 @@ public class CalendarActivity extends AppCompatActivity {
     private TextView calendarToolbarTitle;
     private TextView calendarToolbarSubTitle;
 
+    @Inject
+    CalendarService calendarService;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ((FivePrayerApplication) getApplicationContext())
+                .appComponent
+                .calendarComponent()
+                .create()
+                .inject(this);
+
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_calendar);
@@ -74,7 +87,6 @@ public class CalendarActivity extends AppCompatActivity {
         calendarToolbarSubTitle = findViewById(R.id.calendar_toolbar_subTitle);
 
         compositeDisposable = new CompositeDisposable();
-        CalendarService calendarService = CalendarService.getInstance();
 
         initHolidayRecyclerView();
 
@@ -92,7 +104,7 @@ public class CalendarActivity extends AppCompatActivity {
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribeWith(new DisposableSingleObserver<List<AladhanDate>>() {
                                 @Override
-                                public void onSuccess(List<AladhanDate> dates) {
+                                public void onSuccess(@NotNull List<AladhanDate> dates) {
                                     hijriDates = dates;
 
                                     updateToolbarSubtitle();

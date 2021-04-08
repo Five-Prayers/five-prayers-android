@@ -6,6 +6,7 @@ import com.hbouzidi.fiveprayers.di.module.SubcomponentsModule;
 import com.hbouzidi.fiveprayers.di.module.ViewModelFactoryModule;
 import com.hbouzidi.fiveprayers.di.module.WorkerBindingModule;
 import com.hbouzidi.fiveprayers.di.factory.worker.WorkerProviderFactory;
+import com.hbouzidi.fiveprayers.ui.calendar.di.CalendarComponent;
 import com.hbouzidi.fiveprayers.ui.home.di.HomeComponent;
 import com.hbouzidi.fiveprayers.ui.qibla.di.QiblaComponent;
 import com.hbouzidi.fiveprayers.ui.timingtable.di.TimingTableComponent;
@@ -35,6 +36,8 @@ public interface ApplicationComponent {
     QiblaComponent.Factory qiblaComponent();
 
     TimingTableComponent.Factory timingTableComponent();
+
+    CalendarComponent.Factory calendarComponent();
 
     WorkerProviderFactory workerProviderFactory();
 }

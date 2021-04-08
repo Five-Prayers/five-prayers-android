@@ -9,6 +9,9 @@ import com.hbouzidi.fiveprayers.timings.aladhan.AladhanDate;
 import java.io.IOException;
 import java.util.List;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import io.reactivex.rxjava3.core.Single;
 
 /**
@@ -16,18 +19,14 @@ import io.reactivex.rxjava3.core.Single;
  * Github : https://github.com/Five-Prayers/five-prayers-android
  * licenced under GPLv3 : https://www.gnu.org/licenses/gpl-3.0.en.html
  */
+@Singleton
 public class CalendarService {
 
-    private static CalendarService instance;
+    private final CalendarAPIService calendarAPIService;
 
-    private CalendarService() {
-    }
-
-    public static CalendarService getInstance() {
-        if (instance == null) {
-            instance = new CalendarService();
-        }
-        return instance;
+    @Inject
+    public CalendarService(CalendarAPIService calendarAPIService) {
+        this.calendarAPIService = calendarAPIService;
     }
 
     public Single<List<AladhanDate>> getHijriCalendar(final int month,
@@ -39,8 +38,6 @@ public class CalendarService {
         return Single.create(emitter -> {
             Thread thread = new Thread(() -> {
                 try {
-                    CalendarAPIService calendarAPIService = CalendarAPIService.getInstance();
-
                     CalendarAPIResponse hijriCalendar = calendarAPIService.getHijriCalendar(month, year, hijriAdjustment);
 
                     if (hijriCalendar != null) {

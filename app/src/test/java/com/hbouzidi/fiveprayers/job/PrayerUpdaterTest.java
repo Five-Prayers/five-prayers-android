@@ -2,40 +2,34 @@ package com.hbouzidi.fiveprayers.job;
 
 import android.content.Context;
 import android.location.Address;
-import android.location.Location;
-import android.location.LocationManager;
 
+import androidx.test.core.app.ApplicationProvider;
 import androidx.work.ListenableWorker;
 import androidx.work.testing.TestListenableWorkerBuilder;
 
-import com.hbouzidi.fiveprayers.location.address.AddressHelper;
-import com.hbouzidi.fiveprayers.location.tracker.LocationHelper;
-import com.hbouzidi.fiveprayers.notifier.PrayerAlarmScheduler;
+import com.hbouzidi.fiveprayers.FakeFivePrayerApplication;
+import com.hbouzidi.fiveprayers.di.factory.worker.WorkerProviderFactory;
 import com.hbouzidi.fiveprayers.preferences.PreferencesHelper;
-import com.hbouzidi.fiveprayers.timings.DayPrayer;
-import com.hbouzidi.fiveprayers.timings.TimingServiceFactory;
-import com.hbouzidi.fiveprayers.timings.aladhan.AladhanTimingsService;
-import com.hbouzidi.fiveprayers.timings.calculations.CalculationMethodEnum;
+import com.hbouzidi.fiveprayers.shadows.ShadowAladhanAPIService;
+import com.hbouzidi.fiveprayers.shadows.ShadowGeocoder;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.powermock.api.mockito.PowerMockito;
-import org.powermock.core.classloader.annotations.PowerMockIgnore;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.rule.PowerMockRule;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 
+import java.io.IOException;
 import java.util.Locale;
 
-import io.reactivex.rxjava3.core.Single;
+import io.appflate.restmock.JVMFileParser;
+import io.appflate.restmock.RESTMockServer;
+import io.appflate.restmock.RESTMockServerStarter;
+import io.appflate.restmock.android.AndroidLogger;
 
-import static org.mockito.ArgumentMatchers.any;
+import static io.appflate.restmock.utils.RequestMatchers.pathContains;
 
 /**
  * @author Hicham Bouzidi Idrissi

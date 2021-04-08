@@ -76,7 +76,6 @@ public class PrayerUpdater extends RxWorker {
                                 ));
 
         return dayPrayerSingle
-                .subscribeOn(AndroidSchedulers.mainThread())
                 .doOnSuccess(prayerAlarmScheduler::scheduleNextPrayerAlarms)
                 .map(dayPrayer -> {
                     Log.i(TAG, "Prayers alarm updated successfully");

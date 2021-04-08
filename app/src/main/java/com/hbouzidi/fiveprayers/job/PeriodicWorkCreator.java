@@ -29,18 +29,6 @@ public final class PeriodicWorkCreator {
                 .setRequiredNetworkType(NetworkType.CONNECTED)
                 .build();
 
-//        OneTimeWorkRequest oneTimeWorkRequest = new OneTimeWorkRequest
-//                .Builder(PrayerUpdater.class)
-//                .setConstraints(networkConstraint)
-//                .setBackoffCriteria(
-//                        BackoffPolicy.LINEAR,
-//                        10,
-//                        TimeUnit.MINUTES)
-//                .build();
-//
-//        WorkManager.getInstance(context)
-//                .enqueue(oneTimeWorkRequest);
-//
         PeriodicWorkRequest periodicWorkRequest =
                 new PeriodicWorkRequest
                         .Builder(PrayerUpdater.class, 60, TimeUnit.MINUTES, 50, TimeUnit.MINUTES)

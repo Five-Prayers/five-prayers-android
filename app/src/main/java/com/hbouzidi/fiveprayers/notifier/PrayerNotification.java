@@ -26,6 +26,9 @@ import com.hbouzidi.fiveprayers.preferences.PreferencesConstants;
 import com.hbouzidi.fiveprayers.preferences.PreferencesHelper;
 import com.hbouzidi.fiveprayers.ui.MainActivity;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import static android.content.Context.MODE_PRIVATE;
 
 /**
@@ -33,12 +36,19 @@ import static android.content.Context.MODE_PRIVATE;
  * Github : https://github.com/Five-Prayers/five-prayers-android
  * licenced under GPLv3 : https://www.gnu.org/licenses/gpl-3.0.en.html
  */
+@Singleton
 class PrayerNotification {
 
-    private PrayerNotification() {
+    private final AdhanPlayer adhanPlayer;
+    private final Context context;
+
+    @Inject
+    public PrayerNotification(AdhanPlayer adhanPlayer, Context context) {
+        this.adhanPlayer = adhanPlayer;
+        this.context = context;
     }
 
-    static void createNotificationChannel(Context context) {
+    public void createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             CharSequence name = NotifierConstants.ADTHAN_NOTIFICATION_CHANNEL_NAME;
             String description = NotifierConstants.ADTHAN_NOTIFICATION_CHANNEL_DESCRIPTION;
@@ -60,7 +70,7 @@ class PrayerNotification {
         }
     }
 
-    static void createNotification(Context context, Intent intent) {
+    public void createNotification(Intent intent) {
         int notificationId = intent.getIntExtra("notificationId", 0);
         String prayerTiming = intent.getStringExtra("prayerTiming");
         String prayerKey = intent.getStringExtra("prayerKey");
@@ -70,7 +80,7 @@ class PrayerNotification {
                 context.getResources().getIdentifier(prayerKey,
                         "string", context.getPackageName()));
 
-        PendingIntent pendingIntent = getNotificationIntent(context);
+        PendingIntent pendingIntent = getNotificationIntent();
 
         String closeActionTitle = context.getResources().getString(R.string.adthan_notification_close_action_title);
 
@@ -79,8 +89,8 @@ class PrayerNotification {
                 .setColor(ContextCompat.getColor(context, R.color.colorPrimary))
                 .setContentTitle(context.getString(R.string.adthan_notification_title))
                 .setStyle(new NotificationCompat.BigTextStyle().bigText(prayerName + " : " + prayerTiming + " (" + prayerCity + ")"))
-                .addAction(R.drawable.ic_notifications_24dp, closeActionTitle, getCloseNotificationActionIntent(notificationId, context))
-                .setDeleteIntent(createOnDismissedIntent(context, notificationId))
+                .addAction(R.drawable.ic_notifications_24dp, closeActionTitle, getCloseNotificationActionIntent(notificationId))
+                .setDeleteIntent(createOnDismissedIntent(notificationId))
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true);
 
@@ -89,13 +99,13 @@ class PrayerNotification {
         notificationManager.notify(notificationId, builder.build());
 
         if (PreferencesHelper.isVibrationActivated(context)) {
-            createVibration(context);
+            createVibration();
         }
 
-        setupAdhanCall(context, prayerKey);
+        setupAdhanCall(prayerKey);
     }
 
-    private static PendingIntent getNotificationIntent(Context context) {
+    private PendingIntent getNotificationIntent() {
         Intent notificationIntent = new Intent(context, MainActivity.class);
 
         notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
@@ -105,7 +115,7 @@ class PrayerNotification {
                 notificationIntent, 0);
     }
 
-    private static PendingIntent createOnDismissedIntent(Context context, int notificationId) {
+    private PendingIntent createOnDismissedIntent(int notificationId) {
         Intent intent = new Intent(context, NotificationDismissedReceiver.class);
         intent.setClass(context, NotificationDismissedReceiver.class);
         intent.putExtra("notificationId", notificationId);
@@ -114,7 +124,7 @@ class PrayerNotification {
                 notificationId, intent, PendingIntent.FLAG_ONE_SHOT);
     }
 
-    private static void setupAdhanCall(Context context, String prayerKey) {
+    private void setupAdhanCall(String prayerKey) {
         String adhanCallKeyPart = PreferencesConstants.ADTHAN_CALL_ENABLED_KEY;
         String callPreferenceKey = prayerKey + adhanCallKeyPart;
 
@@ -122,12 +132,12 @@ class PrayerNotification {
         boolean callEnabled = sharedPreferences.getBoolean(callPreferenceKey, false);
 
         if (callEnabled) {
-            AdhanPlayer.getInstance().playAdhan(context, PrayerEnum.FAJR.toString().equals(prayerKey));
-            setMediaSession(context);
+            adhanPlayer.playAdhan(context, PrayerEnum.FAJR.toString().equals(prayerKey));
+            setMediaSession();
         }
     }
 
-    private static void setMediaSession(Context context) {
+    private void setMediaSession() {
         MediaSessionCompat mediaSession = new MediaSessionCompat(context, "PrayerNotification");
         mediaSession.setPlaybackState(new PlaybackStateCompat.Builder()
                 .setState(PlaybackStateCompat.STATE_PLAYING, 0, 0)
@@ -138,7 +148,7 @@ class PrayerNotification {
                     @Override
                     public void onAdjustVolume(int direction) {
                         if (direction == -1) {
-                            AdhanPlayer.getInstance().stopAdhan();
+                            adhanPlayer.stopAdhan();
                         }
                         mediaSession.release();
                     }
@@ -146,10 +156,10 @@ class PrayerNotification {
         mediaSession.setPlaybackToRemote(myVolumeProvider);
         mediaSession.setActive(true);
 
-        AdhanPlayer.getInstance().setOnCompletionListener(mp -> mediaSession.release());
+        adhanPlayer.setOnCompletionListener(mp -> mediaSession.release());
     }
 
-    private static void createVibration(Context context) {
+    private void createVibration() {
         Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
         long[] pattern = new long[]{0, 1000, 500, 1000, 500, 500, 500};
 
@@ -164,7 +174,7 @@ class PrayerNotification {
         }
     }
 
-    private static PendingIntent getCloseNotificationActionIntent(int notificationId, Context context) {
+    private PendingIntent getCloseNotificationActionIntent(int notificationId) {
         Intent intentAction = new Intent(context, NotifierActionReceiver.class);
 
         intentAction.setAction(NotifierConstants.ADTHAN_NOTIFICATION_CANCEL_ADHAN_ACTION);

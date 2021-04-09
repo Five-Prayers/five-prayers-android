@@ -13,25 +13,22 @@ import com.hbouzidi.fiveprayers.preferences.PreferencesHelper;
 
 import java.io.IOException;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
 /**
  * @author Hicham Bouzidi Idrissi
  * Github : https://github.com/Five-Prayers/five-prayers-android
  * licenced under GPLv3 : https://www.gnu.org/licenses/gpl-3.0.en.html
-*/
+ */
+@Singleton
 public class AdhanPlayer {
 
-    public static MediaPlayer mediaPlayer;
-    private static AdhanPlayer adhanPlayer;
+    private final MediaPlayer mediaPlayer;
 
-    private AdhanPlayer() {
+    @Inject
+    public AdhanPlayer() {
         mediaPlayer = new MediaPlayer();
-    }
-
-    public static AdhanPlayer getInstance() {
-        if (adhanPlayer == null) {
-            adhanPlayer = new AdhanPlayer();
-        }
-        return adhanPlayer;
     }
 
     public void playAdhan(Context context, boolean fajr) {

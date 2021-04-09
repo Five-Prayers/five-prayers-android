@@ -5,7 +5,11 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
+import com.hbouzidi.fiveprayers.FivePrayerApplication;
+
 import java.util.Objects;
+
+import javax.inject.Inject;
 
 /**
  * @author Hicham Bouzidi Idrissi
@@ -14,8 +18,15 @@ import java.util.Objects;
  */
 public class NotifierActionReceiver extends BroadcastReceiver {
 
+    @Inject
+    AdhanPlayer adhanPlayer;
+
     @Override
     public void onReceive(Context context, Intent intent) {
+        ((FivePrayerApplication) context.getApplicationContext())
+                .receiverComponent
+                .inject(this);
+
         String action = intent.getAction();
         int notificationId = intent.getIntExtra("notificationId", 0);
 
@@ -34,6 +45,6 @@ public class NotifierActionReceiver extends BroadcastReceiver {
     }
 
     public void muteAdhanCaller() {
-        AdhanPlayer.getInstance().stopAdhan();
+        adhanPlayer.stopAdhan();
     }
 }

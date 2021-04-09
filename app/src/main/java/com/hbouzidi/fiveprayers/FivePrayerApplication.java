@@ -9,8 +9,10 @@ import androidx.work.WorkManager;
 import com.hbouzidi.fiveprayers.common.api.TLSSocketFactoryCompat;
 import com.hbouzidi.fiveprayers.di.component.ApplicationComponent;
 import com.hbouzidi.fiveprayers.di.component.DaggerApplicationComponent;
+import com.hbouzidi.fiveprayers.di.component.DaggerReceiverComponent;
 import com.hbouzidi.fiveprayers.di.component.DaggerServiceComponent;
 import com.hbouzidi.fiveprayers.di.component.DaggerWidgetComponent;
+import com.hbouzidi.fiveprayers.di.component.ReceiverComponent;
 import com.hbouzidi.fiveprayers.di.component.ServiceComponent;
 import com.hbouzidi.fiveprayers.di.component.WidgetComponent;
 import com.hbouzidi.fiveprayers.di.factory.worker.WorkerProviderFactory;
@@ -39,6 +41,11 @@ public class FivePrayerApplication extends MultiDexApplication {
             .build();
 
     public ServiceComponent serviceComponent = DaggerServiceComponent
+            .builder()
+            .appModule(new AppModule(this))
+            .build();
+
+    public ReceiverComponent receiverComponent = DaggerReceiverComponent
             .builder()
             .appModule(new AppModule(this))
             .build();

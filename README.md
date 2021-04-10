@@ -6,6 +6,7 @@
 <a href="https://github.com/Five-Prayers/five-prayers-android/actions" alt="Build Status" target="_blank"><img src="https://github.com/Five-Prayers/five-prayers-android/workflows/CI/badge.svg?branch=master"></a>
 <a href="https://android-arsenal.com/api?level=16" alt="Min API: 16" target="_blank"><img src="https://img.shields.io/badge/API-16%2B-brightgreen.svg?style=flat"></a>
 <a href="https://www.gnu.org/licenses/gpl-3.0" alt="License: GPLv3" target="_blank"><img src="https://img.shields.io/badge/License-GPL%20v3-blue.svg"></a>
+ <a href="https://github.com/Five-Prayers/five-prayers-android/branches" alt="Branches" target="_blank"><img src="https://img.shields.io/github/last-commit/five-prayers/five-prayers-android"></a>
 <a href="https://github.com/Five-Prayers/five-prayers-android/releases/latest" alt="Download: latest version" target="_blank"><img src="https://img.shields.io/github/v/release/Five-Prayers/five-prayers-android"></a>
  <a href="https://github.com/Five-Prayers/five-prayers-android/releases/latest" alt="Download: latest version" target="_blank"><img src="https://img.shields.io/github/downloads/Five-Prayers/five-prayers-android/total"></a>
 </p>

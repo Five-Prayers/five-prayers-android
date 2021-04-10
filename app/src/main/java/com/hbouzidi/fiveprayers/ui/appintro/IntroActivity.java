@@ -12,7 +12,7 @@ import com.github.appintro.AppIntro;
 import com.github.appintro.AppIntroFragment;
 import com.github.appintro.AppIntroPageTransformerType;
 import com.hbouzidi.fiveprayers.R;
-import com.hbouzidi.fiveprayers.ui.AlertHelper;
+import com.hbouzidi.fiveprayers.utils.AlertHelper;
 import com.hbouzidi.fiveprayers.ui.splashscreen.SplashScreenActivity;
 
 /**

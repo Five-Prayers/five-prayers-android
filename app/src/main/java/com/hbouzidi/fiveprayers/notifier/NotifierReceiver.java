@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.hbouzidi.fiveprayers.FivePrayerApplication;
-import com.hbouzidi.fiveprayers.widget.WidgetUpdater;
+import com.hbouzidi.fiveprayers.ui.widget.WidgetUpdater;
 
 import javax.inject.Inject;
 

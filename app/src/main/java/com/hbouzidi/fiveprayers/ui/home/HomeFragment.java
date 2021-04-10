@@ -31,12 +31,12 @@ import com.hbouzidi.fiveprayers.network.NetworkUtil;
 import com.hbouzidi.fiveprayers.notifier.NotifierJobService;
 import com.hbouzidi.fiveprayers.preferences.PreferencesConstants;
 import com.hbouzidi.fiveprayers.timings.DayPrayer;
-import com.hbouzidi.fiveprayers.ui.AlertHelper;
+import com.hbouzidi.fiveprayers.utils.AlertHelper;
 import com.hbouzidi.fiveprayers.ui.clock.AnalogClock;
 import com.hbouzidi.fiveprayers.utils.PrayerUtils;
 import com.hbouzidi.fiveprayers.utils.TimingUtils;
 import com.hbouzidi.fiveprayers.utils.UiUtils;
-import com.hbouzidi.fiveprayers.widget.WidgetUpdater;
+import com.hbouzidi.fiveprayers.ui.widget.WidgetUpdater;
 import com.mikhaellopez.circularprogressbar.CircularProgressBar;
 
 import org.apache.commons.lang3.StringUtils;

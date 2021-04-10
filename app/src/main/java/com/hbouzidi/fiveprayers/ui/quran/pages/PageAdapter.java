@@ -18,6 +18,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.hbouzidi.fiveprayers.BuildConfig;
+import com.hbouzidi.fiveprayers.FivePrayerApplication;
 import com.hbouzidi.fiveprayers.R;
 import com.hbouzidi.fiveprayers.database.QuranBookmarkRegistry;
 import com.hbouzidi.fiveprayers.quran.dto.BookmarkType;
@@ -28,6 +29,8 @@ import com.hbouzidi.fiveprayers.quran.dto.Surah;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.inject.Inject;
 
 /**
  * @author Hicham Bouzidi Idrissi
@@ -43,6 +46,8 @@ public class PageAdapter extends RecyclerView.Adapter<PageAdapter.Holder> {
 
     private final int textColor;
     private final int backgroundColor;
+
+    @Inject QuranBookmarkRegistry quranBookmarkRegistry;
 
     public PageAdapter(int textColor, int backgroundColor) {
         this.textColor = textColor;
@@ -60,8 +65,12 @@ public class PageAdapter extends RecyclerView.Adapter<PageAdapter.Holder> {
     @NonNull
     @Override
     public Holder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.page_item, viewGroup, false);
         context = viewGroup.getContext();
+        ((FivePrayerApplication) context.getApplicationContext())
+                .adapterComponent
+                .inject(this);
+
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.page_item, viewGroup, false);
         return new Holder(view);
     }
 
@@ -205,8 +214,6 @@ public class PageAdapter extends RecyclerView.Adapter<PageAdapter.Holder> {
     }
 
     private void initializeBookmarkIcon(ConstraintLayout bookmarkImageConstraintLayout, ImageView bookmarkImageView, QuranPage quranPage) {
-        QuranBookmarkRegistry quranBookmarkRegistry = QuranBookmarkRegistry.getInstance(context);
-
         QuranBookmark bookmarkByPageNumber = quranBookmarkRegistry.getBookmarkByPageNumber(quranPage.getPageNum(), BookmarkType.USER_MADE);
 
         bookmarkImageView.setImageResource((bookmarkByPageNumber == null) ? R.drawable.ic_bookmark_empty : R.drawable.ic_bookmark_filled);
@@ -217,7 +224,6 @@ public class PageAdapter extends RecyclerView.Adapter<PageAdapter.Holder> {
     private void setBookmarkImageOnClickListener(ConstraintLayout bookmarkImageConstraintLayout, ImageView bookmarkImageView, QuranPage quranPage) {
         bookmarkImageConstraintLayout.setOnClickListener(view -> {
 
-            QuranBookmarkRegistry quranBookmarkRegistry = QuranBookmarkRegistry.getInstance(context);
             QuranBookmark bookmarkByPageNumber = quranBookmarkRegistry.getBookmarkByPageNumber(quranPage.getPageNum(), BookmarkType.USER_MADE);
 
             if (bookmarkByPageNumber != null) {

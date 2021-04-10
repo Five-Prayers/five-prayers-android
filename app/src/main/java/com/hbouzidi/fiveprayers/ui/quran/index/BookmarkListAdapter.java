@@ -13,6 +13,7 @@ import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.hbouzidi.fiveprayers.FivePrayerApplication;
 import com.hbouzidi.fiveprayers.R;
 import com.hbouzidi.fiveprayers.database.QuranBookmarkRegistry;
 import com.hbouzidi.fiveprayers.quran.dto.BookmarkType;
@@ -22,6 +23,8 @@ import com.hbouzidi.fiveprayers.quran.dto.Surah;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.inject.Inject;
 
 /**
  * @author Hicham Bouzidi Idrissi
@@ -35,6 +38,8 @@ public class BookmarkListAdapter extends RecyclerView.Adapter<BookmarkListAdapte
     private List<QuranBookmark> quranBookmarks;
     private RecyclerView mRecyclerView;
     private final Context context;
+
+     @Inject QuranBookmarkRegistry quranBookmarkRegistry;
 
     public BookmarkListAdapter(Context context) {
         surahs = new ArrayList<>();
@@ -67,6 +72,10 @@ public class BookmarkListAdapter extends RecyclerView.Adapter<BookmarkListAdapte
     @NonNull
     @Override
     public Holder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        ((FivePrayerApplication) viewGroup.getContext().getApplicationContext())
+                .adapterComponent
+                .inject(this);
+
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.bookmark_item, viewGroup, false);
         return new Holder(view);
     }
@@ -143,7 +152,6 @@ public class BookmarkListAdapter extends RecyclerView.Adapter<BookmarkListAdapte
             Snackbar snackbar = Snackbar
                     .make(mRecyclerView, context.getText(R.string.msg_delete_bookmark_confirmation), Snackbar.LENGTH_LONG)
                     .setAction(context.getText(R.string.common_accept), view -> {
-                        QuranBookmarkRegistry quranBookmarkRegistry = QuranBookmarkRegistry.getInstance(context);
                         quranBookmarkRegistry.deleteBookmark(quranBookmarks.get(position).getQuranPage().getPageNum());
                         quranBookmarks.remove(position);
                         notifyItemRemoved(position);

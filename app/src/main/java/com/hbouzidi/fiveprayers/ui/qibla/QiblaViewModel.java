@@ -1,7 +1,6 @@
 package com.hbouzidi.fiveprayers.ui.qibla;
 
 import android.app.Application;
-import android.content.Context;
 import android.location.Location;
 
 import androidx.annotation.NonNull;
@@ -19,7 +18,6 @@ import javax.inject.Inject;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.observers.DisposableSingleObserver;
-import io.reactivex.rxjava3.schedulers.Schedulers;
 
 /**
  * @author Hicham Bouzidi Idrissi
@@ -45,7 +43,7 @@ public class QiblaViewModel extends AndroidViewModel {
 
         mLocation = new MutableLiveData<>();
 
-        setLiveData(application.getApplicationContext());
+        setLiveData();
     }
 
     public LiveData<Location> getLocation() {
@@ -58,7 +56,7 @@ public class QiblaViewModel extends AndroidViewModel {
         super.onCleared();
     }
 
-    private void setLiveData(Context context) {
+    private void setLiveData() {
         compositeDisposable = new CompositeDisposable();
         compositeDisposable.add(
                 locationHelper.getLocation()

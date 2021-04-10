@@ -54,13 +54,16 @@ public class HomeScreenWidgetProvider extends AppWidgetProvider {
     @Inject
     TimingServiceFactory timingServiceFactory;
 
+    @Inject
+    PreferencesHelper preferencesHelper;
+
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         ((FivePrayerApplication) context.getApplicationContext())
                 .widgetComponent
                 .inject(this);
 
-        TimingsService timingsService = timingServiceFactory.create(PreferencesHelper.getCalculationMethod(context));
+        TimingsService timingsService = timingServiceFactory.create(preferencesHelper.getCalculationMethod());
 
         Single<DayPrayer> dayPrayerSingle =
                 locationHelper.getLocation()

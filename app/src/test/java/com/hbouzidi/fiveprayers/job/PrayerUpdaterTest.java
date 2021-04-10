@@ -1,6 +1,5 @@
 package com.hbouzidi.fiveprayers.job;
 
-import android.app.AlarmManager;
 import android.content.Context;
 import android.location.Address;
 
@@ -20,16 +19,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
-import org.robolectric.Shadows;
 import org.robolectric.annotation.Config;
-import org.robolectric.shadows.ShadowAlarmManager;
-import org.robolectric.shadows.ShadowLegacySystemClock;
 
 import java.io.IOException;
-import java.time.Clock;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZoneOffset;
 import java.util.Locale;
 
 import io.appflate.restmock.JVMFileParser;
@@ -50,10 +42,13 @@ import static io.appflate.restmock.utils.RequestMatchers.pathContains;
 public class PrayerUpdaterTest {
 
     Context applicationContext;
+    PreferencesHelper preferencesHelper;
 
     @Before
     public void before() {
         applicationContext = ApplicationProvider.getApplicationContext();
+        preferencesHelper = new PreferencesHelper(applicationContext);
+
         RESTMockServerStarter.startSync(new JVMFileParser(), new AndroidLogger());
     }
 
@@ -65,9 +60,6 @@ public class PrayerUpdaterTest {
 
     @Test
     public void testPrayerUpdaterWork() throws Exception {
-        AlarmManager alarmMgr = (AlarmManager) applicationContext.getSystemService(Context.ALARM_SERVICE);
-        ShadowAlarmManager shadowAlarmManager = Shadows.shadowOf(alarmMgr);
-
         RESTMockServer
                 .whenGET(pathContains("/timings"))
                 .thenReturnFile(200, "responses/adhan_api_response.json");
@@ -79,7 +71,7 @@ public class PrayerUpdaterTest {
         lastKnownAddress.setCountryName("United Kindom");
         lastKnownAddress.setCountryCode("UK");
 
-        PreferencesHelper.updateAddressPreferences(applicationContext, lastKnownAddress);
+        preferencesHelper.updateAddressPreferences(lastKnownAddress);
 
         WorkerProviderFactory workerProviderFactory = ((FakeFivePrayerApplication) applicationContext).appComponent.workerProviderFactory();
 
@@ -107,7 +99,7 @@ public class PrayerUpdaterTest {
         lastKnownAddress.setCountryName("United Kindom");
         lastKnownAddress.setCountryCode("UK");
 
-        PreferencesHelper.updateAddressPreferences(applicationContext, lastKnownAddress);
+        preferencesHelper.updateAddressPreferences(lastKnownAddress);
 
         WorkerProviderFactory workerProviderFactory = ((FakeFivePrayerApplication) applicationContext).appComponent.workerProviderFactory();
 

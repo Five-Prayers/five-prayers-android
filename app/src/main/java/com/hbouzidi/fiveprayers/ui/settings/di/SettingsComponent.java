@@ -1,6 +1,7 @@
 package com.hbouzidi.fiveprayers.ui.settings.di;
 
 import com.hbouzidi.fiveprayers.ui.settings.location.AutoCompleteTextPreferenceDialog;
+import com.hbouzidi.fiveprayers.ui.settings.method.CalculationMethodPreference;
 
 import dagger.Subcomponent;
 
@@ -18,4 +19,6 @@ public interface SettingsComponent {
     }
 
     void inject(AutoCompleteTextPreferenceDialog autoCompleteTextPreferenceDialog);
+
+    void inject(CalculationMethodPreference calculationMethodPreference);
 }

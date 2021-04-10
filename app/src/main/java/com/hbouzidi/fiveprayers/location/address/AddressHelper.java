@@ -34,25 +34,27 @@ public class AddressHelper {
 
     private final Context context;
     private final NominatimAPIService nominatimAPIService;
+    private final PreferencesHelper preferencesHelper;
 
     @Inject
-    public AddressHelper(Context context, NominatimAPIService nominatimAPIService) {
+    public AddressHelper(Context context, NominatimAPIService nominatimAPIService, PreferencesHelper preferencesHelper) {
         this.context = context;
         this.nominatimAPIService = nominatimAPIService;
+        this.preferencesHelper = preferencesHelper;
     }
 
     public Single<Address> getAddressFromLocation(final Location location) {
 
         return Single.create(emitter -> {
-            boolean locationSetManually = PreferencesHelper.isLocationSetManually(context);
+            boolean locationSetManually = preferencesHelper.isLocationSetManually();
             if (locationSetManually) {
-                Address lastKnownAddress = PreferencesHelper.getLastKnownAddress(context);
+                Address lastKnownAddress = preferencesHelper.getLastKnownAddress();
                 emitter.onSuccess(lastKnownAddress);
             } else if (location != null) {
                 double latitude = location.getLatitude();
                 double longitude = location.getLongitude();
 
-                Address lastKnownAddress = PreferencesHelper.getLastKnownAddress(context);
+                Address lastKnownAddress = preferencesHelper.getLastKnownAddress();
 
                 if (!isAddressObsolete(lastKnownAddress, latitude, longitude)) {
                     emitter.onSuccess(lastKnownAddress);
@@ -89,7 +91,7 @@ public class AddressHelper {
         });
     }
 
-    private static Address getGeocoderAddresses(double latitude, double longitude, Context context) throws IOException {
+    private Address getGeocoderAddresses(double latitude, double longitude, Context context) throws IOException {
         Geocoder geocoder = new Geocoder(context, Locale.getDefault());
         List<Address> addressList = geocoder.getFromLocation(latitude, longitude, 1);
 
@@ -97,7 +99,7 @@ public class AddressHelper {
             Address address = addressList.get(0);
 
             if (address.getCountryName() != null && address.getLocality() != null) {
-                PreferencesHelper.updateAddressPreferences(context, address);
+                preferencesHelper.updateAddressPreferences(address);
                 return address;
             }
             return null;
@@ -118,7 +120,7 @@ public class AddressHelper {
             address.setLatitude(response.getLat());
             address.setLongitude(response.getLon());
 
-            PreferencesHelper.updateAddressPreferences(context, address);
+            preferencesHelper.updateAddressPreferences(address);
 
             return address;
         }

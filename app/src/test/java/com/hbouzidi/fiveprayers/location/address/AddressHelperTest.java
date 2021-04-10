@@ -57,17 +57,18 @@ public class AddressHelperTest {
 
     @Rule
     public MockitoRule initRule = MockitoJUnit.rule();
-    private NominatimAPIService nominatimAPIService;
     private AddressHelper addressHelper;
+    private PreferencesHelper preferencesHelper;
 
     @Before
     public void before() {
         RESTMockServerStarter.startSync(new JVMFileParser(), new AndroidLogger());
 
         applicationContext = ApplicationProvider.getApplicationContext();
+        preferencesHelper = new PreferencesHelper(applicationContext);
 
-        nominatimAPIService = new NominatimAPIService(provideRetrofit());
-        addressHelper = new AddressHelper(applicationContext, nominatimAPIService);
+        NominatimAPIService nominatimAPIService = new NominatimAPIService(provideRetrofit());
+        addressHelper = new AddressHelper(applicationContext, nominatimAPIService, preferencesHelper);
     }
 
     @After
@@ -102,7 +103,7 @@ public class AddressHelperTest {
         lastKnownAddress.setCountryName("United Kindom");
         lastKnownAddress.setCountryCode("UK");
 
-        PreferencesHelper.updateAddressPreferences(applicationContext, lastKnownAddress);
+        preferencesHelper.updateAddressPreferences(lastKnownAddress);
 
         Single<Address> addressSingle = addressHelper.getAddressFromLocation(newLocation);
 
@@ -132,7 +133,7 @@ public class AddressHelperTest {
         lastKnownAddress.setCountryName("United Kindom");
         lastKnownAddress.setCountryCode("UK");
 
-        PreferencesHelper.updateAddressPreferences(applicationContext, lastKnownAddress);
+        preferencesHelper.updateAddressPreferences(lastKnownAddress);
 
         Single<Address> addressSingle = addressHelper.getAddressFromLocation(newLocation);
 
@@ -167,7 +168,7 @@ public class AddressHelperTest {
         nominatimAddress.setCountry("Morocco");
         nominatimAddress.setCountryCode("MA");
 
-        PreferencesHelper.updateAddressPreferences(applicationContext, lastKnownAddress);
+        preferencesHelper.updateAddressPreferences(lastKnownAddress);
         ShadowGeocoder.setIsPresent(false);
 
         RESTMockServer.reset();

@@ -5,7 +5,10 @@ import android.util.AttributeSet;
 
 import androidx.preference.ListPreference;
 
+import com.hbouzidi.fiveprayers.FivePrayerApplication;
 import com.hbouzidi.fiveprayers.preferences.PreferencesHelper;
+
+import javax.inject.Inject;
 
 /**
  * @author Hicham Bouzidi Idrissi
@@ -14,11 +17,21 @@ import com.hbouzidi.fiveprayers.preferences.PreferencesHelper;
  */
 public class CalculationMethodPreference extends ListPreference {
 
+    @Inject
+    PreferencesHelper preferencesHelper;
+
     public CalculationMethodPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
 
+        ((FivePrayerApplication) getContext()
+                .getApplicationContext())
+                .appComponent
+                .settingsComponent()
+                .create()
+                .inject(this);
+
         OnPreferenceChangeListener onPreferenceChangeListener = (preference, newValue) -> {
-            PreferencesHelper.updateTimingAdjustmentPreference(String.valueOf(newValue), getContext());
+            preferencesHelper.updateTimingAdjustmentPreference(String.valueOf(newValue));
             return true;
         };
 

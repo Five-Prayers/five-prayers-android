@@ -23,17 +23,19 @@ import io.reactivex.rxjava3.core.Single;
 public class CalendarService {
 
     private final CalendarAPIService calendarAPIService;
+    private final PreferencesHelper preferencesHelper;
 
     @Inject
-    public CalendarService(CalendarAPIService calendarAPIService) {
+    public CalendarService(CalendarAPIService calendarAPIService, PreferencesHelper preferencesHelper) {
         this.calendarAPIService = calendarAPIService;
+        this.preferencesHelper = preferencesHelper;
     }
 
     public Single<List<AladhanDate>> getHijriCalendar(final int month,
                                                       final int year,
                                                       final Context context) {
 
-        int hijriAdjustment = PreferencesHelper.getHijriAdjustment(context);
+        int hijriAdjustment = preferencesHelper.getHijriAdjustment();
 
         return Single.create(emitter -> {
             Thread thread = new Thread(() -> {

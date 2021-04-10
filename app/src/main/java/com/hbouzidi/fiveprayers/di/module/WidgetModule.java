@@ -6,6 +6,7 @@ import android.content.Context;
 import com.hbouzidi.fiveprayers.location.address.AddressHelper;
 import com.hbouzidi.fiveprayers.location.osm.NominatimAPIService;
 import com.hbouzidi.fiveprayers.location.tracker.LocationHelper;
+import com.hbouzidi.fiveprayers.preferences.PreferencesHelper;
 import com.hbouzidi.fiveprayers.timings.TimingServiceFactory;
 import com.hbouzidi.fiveprayers.timings.aladhan.AladhanTimingsService;
 import com.hbouzidi.fiveprayers.timings.londonprayertimes.LondonUnifiedPrayerTimingsService;
@@ -31,8 +32,8 @@ public class WidgetModule {
 
     @Singleton
     @Provides
-    public AddressHelper providesAddressHelper(Context context, NominatimAPIService nominatimAPIService) {
-        return new AddressHelper(context, nominatimAPIService);
+    public AddressHelper providesAddressHelper(Context context, NominatimAPIService nominatimAPIService, PreferencesHelper preferencesHelper) {
+        return new AddressHelper(context, nominatimAPIService, preferencesHelper);
     }
 
     @Singleton

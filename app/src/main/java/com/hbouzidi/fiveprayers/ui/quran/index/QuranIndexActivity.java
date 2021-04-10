@@ -9,8 +9,11 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
+import com.hbouzidi.fiveprayers.FivePrayerApplication;
 import com.hbouzidi.fiveprayers.R;
 import com.hbouzidi.fiveprayers.preferences.PreferencesHelper;
+
+import javax.inject.Inject;
 
 /**
  * @author Hicham Bouzidi Idrissi
@@ -19,10 +22,19 @@ import com.hbouzidi.fiveprayers.preferences.PreferencesHelper;
  */
 public class QuranIndexActivity extends AppCompatActivity {
 
+    @Inject
+    PreferencesHelper preferencesHelper;
+
     private final int[] titles = {R.string.surat, R.string.bookmarks};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ((FivePrayerApplication) getApplicationContext())
+                .appComponent
+                .quranComponent()
+                .create()
+                .inject(this);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quran);
         QuranIndexPagerAdapter quranIndexPagerAdapter = new QuranIndexPagerAdapter(getSupportFragmentManager(), getLifecycle());
@@ -42,8 +54,8 @@ public class QuranIndexActivity extends AppCompatActivity {
 
     private void initNightModeSwitchButton() {
         SwitchCompat nightModeSwitchButton = findViewById(R.id.night_mode_switch);
-        nightModeSwitchButton.setChecked(PreferencesHelper.isNightModeActivated(getApplicationContext()));
+        nightModeSwitchButton.setChecked(preferencesHelper.isNightModeActivated());
 
-        nightModeSwitchButton.setOnCheckedChangeListener((buttonView, isChecked) -> PreferencesHelper.setNightModeActivated(getApplicationContext(), isChecked));
+        nightModeSwitchButton.setOnCheckedChangeListener((buttonView, isChecked) -> preferencesHelper.setNightModeActivated(isChecked));
     }
 }

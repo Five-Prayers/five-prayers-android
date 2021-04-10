@@ -45,6 +45,9 @@ public class QuranPageActivity extends AppCompatActivity {
     @Inject
     ViewModelProvider.Factory viewModelFactory;
 
+    @Inject
+    PreferencesHelper preferencesHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         ((FivePrayerApplication) getApplicationContext())
@@ -98,7 +101,7 @@ public class QuranPageActivity extends AppCompatActivity {
     }
 
     private void prepareColors() {
-        if (PreferencesHelper.isNightModeActivated(this)) {
+        if (preferencesHelper.isNightModeActivated()) {
             textColor = 255;
             backgroundColor = ResourcesCompat.getColor(getResources(), R.color.mine_shaft, null);
         } else {

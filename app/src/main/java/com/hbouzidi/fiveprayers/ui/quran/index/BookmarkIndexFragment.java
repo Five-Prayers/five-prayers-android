@@ -1,6 +1,5 @@
 package com.hbouzidi.fiveprayers.ui.quran.index;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,14 +7,10 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.hbouzidi.fiveprayers.FivePrayerApplication;
 import com.hbouzidi.fiveprayers.R;
-import com.hbouzidi.fiveprayers.preferences.PreferencesHelper;
 import com.hbouzidi.fiveprayers.quran.dto.BookmarkType;
 import com.hbouzidi.fiveprayers.quran.dto.QuranBookmark;
 
@@ -24,17 +19,12 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.inject.Inject;
-
 /**
  * @author Hicham Bouzidi Idrissi
  * Github : https://github.com/Five-Prayers/five-prayers-android
  * licenced under GPLv3 : https://www.gnu.org/licenses/gpl-3.0.en.html
  */
 public class BookmarkIndexFragment extends QuranBaseIndexFragment {
-
-    @Inject
-    ViewModelProvider.Factory viewModelFactory;
 
     private RecyclerView userMadeBookmarkRecyclerView;
     private RecyclerView automaticBookmarkRecyclerView;
@@ -50,17 +40,6 @@ public class BookmarkIndexFragment extends QuranBaseIndexFragment {
 
     public static BookmarkIndexFragment newInstance() {
         return new BookmarkIndexFragment();
-    }
-
-    @Override
-    public void onAttach(@NonNull Context context) {
-        ((FivePrayerApplication) context.getApplicationContext())
-                .appComponent
-                .quranComponent()
-                .create()
-                .inject(this);
-
-        super.onAttach(context);
     }
 
     @Override
@@ -94,13 +73,13 @@ public class BookmarkIndexFragment extends QuranBaseIndexFragment {
     public void onResume() {
         super.onResume();
 
-        if(quranIndexViewModel != null) {
+        if (quranIndexViewModel != null) {
             quranIndexViewModel.updateLiveData(requireContext());
         }
     }
 
     private void updateRecyclerViews(List<QuranBookmark> bookmarks) {
-        List<QuranBookmark> automaticBookmarks = PreferencesHelper.getSortedAutomaticBookmarkList(requireContext());
+        List<QuranBookmark> automaticBookmarks = preferencesHelper.getSortedAutomaticBookmarkList();
 
         ArrayList<QuranBookmark> userMadeBookmarks = bookmarks
                 .stream()

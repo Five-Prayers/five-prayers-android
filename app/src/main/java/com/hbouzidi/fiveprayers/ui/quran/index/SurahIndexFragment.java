@@ -35,9 +35,6 @@ import javax.inject.Inject;
  */
 public class SurahIndexFragment extends QuranBaseIndexFragment {
 
-    @Inject
-    ViewModelProvider.Factory viewModelFactory;
-
     private RecyclerView surahRecyclerView;
     private LinearLayout progressBarLinearLayout;
 
@@ -57,17 +54,6 @@ public class SurahIndexFragment extends QuranBaseIndexFragment {
 
         fragment.setArguments(args);
         return fragment;
-    }
-
-    @Override
-    public void onAttach(@NonNull Context context) {
-        ((FivePrayerApplication) context.getApplicationContext())
-                .appComponent
-                .quranComponent()
-                .create()
-                .inject(this);
-
-        super.onAttach(context);
     }
 
     @Override

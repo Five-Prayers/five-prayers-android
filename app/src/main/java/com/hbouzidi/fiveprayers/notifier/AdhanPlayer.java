@@ -25,9 +25,11 @@ import javax.inject.Singleton;
 public class AdhanPlayer {
 
     private final MediaPlayer mediaPlayer;
+    private final PreferencesHelper preferencesHelper;
 
     @Inject
-    public AdhanPlayer() {
+    public AdhanPlayer(PreferencesHelper preferencesHelper) {
+        this.preferencesHelper = preferencesHelper;
         mediaPlayer = new MediaPlayer();
     }
 
@@ -76,7 +78,7 @@ public class AdhanPlayer {
     private Uri getAdhanUri(Context context, boolean fajr) {
         int mediaId;
         if (fajr) {
-            switch (PreferencesHelper.getFajrAdhanCaller(context)) {
+            switch (preferencesHelper.getFajrAdhanCaller()) {
                 case "ADHAN_FAJR_ABDELBASSET_ABDESSAMAD_EGYPTE":
                     mediaId = R.raw.adhan_fajr_abdelbasset_abdessamad_egypte;
                     break;
@@ -90,7 +92,7 @@ public class AdhanPlayer {
                     mediaId = R.raw.short_prayer_call;
             }
         } else {
-            switch (PreferencesHelper.getAdhanCaller(context)) {
+            switch (preferencesHelper.getAdhanCaller()) {
                 case "ADHAN_ABDELBASSET_ABDESSAMAD_EGYPTE":
                     mediaId = R.raw.adhan_abdelbasset_abdessamad_egypte;
                     break;

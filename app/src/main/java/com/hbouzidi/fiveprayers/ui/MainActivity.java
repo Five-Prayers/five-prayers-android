@@ -13,9 +13,12 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.hbouzidi.fiveprayers.FivePrayerApplication;
 import com.hbouzidi.fiveprayers.R;
 import com.hbouzidi.fiveprayers.job.PeriodicWorkCreator;
 import com.hbouzidi.fiveprayers.preferences.PreferencesHelper;
+
+import javax.inject.Inject;
 
 /**
  * @author Hicham Bouzidi Idrissi
@@ -24,8 +27,15 @@ import com.hbouzidi.fiveprayers.preferences.PreferencesHelper;
  */
 public class MainActivity extends AppCompatActivity {
 
+    @Inject
+    PreferencesHelper preferencesHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ((FivePrayerApplication) getApplicationContext())
+                .defaultComponent
+                .inject(this);
+
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
@@ -43,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         navController.setGraph(navGraph);
-        PreferencesHelper.setFirstTimeLaunch(false, this);
+        preferencesHelper.setFirstTimeLaunch(false);
 
         PeriodicWorkCreator.schedulePrayerUpdater(this);
     }
@@ -55,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean displaySettingsScreenFirst() {
         return (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_DENIED) &&
-                PreferencesHelper.isFirstLaunch(this);
+                preferencesHelper.isFirstLaunch();
     }
 
     private void minimizeApp() {

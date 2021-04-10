@@ -40,11 +40,13 @@ import static android.content.Context.MODE_PRIVATE;
 class PrayerNotification {
 
     private final AdhanPlayer adhanPlayer;
+    private final PreferencesHelper preferencesHelper;
     private final Context context;
 
     @Inject
-    public PrayerNotification(AdhanPlayer adhanPlayer, Context context) {
+    public PrayerNotification(AdhanPlayer adhanPlayer, PreferencesHelper preferencesHelper, Context context) {
         this.adhanPlayer = adhanPlayer;
+        this.preferencesHelper = preferencesHelper;
         this.context = context;
     }
 
@@ -98,7 +100,7 @@ class PrayerNotification {
 
         notificationManager.notify(notificationId, builder.build());
 
-        if (PreferencesHelper.isVibrationActivated(context)) {
+        if (preferencesHelper.isVibrationActivated()) {
             createVibration();
         }
 

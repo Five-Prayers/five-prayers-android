@@ -35,6 +35,7 @@ public class HomeViewModel extends AndroidViewModel {
     private final LocationHelper locationHelper;
     private final AddressHelper addressHelper;
     private final TimingServiceFactory timingServiceFactory;
+    private final PreferencesHelper preferencesHelper;
 
     private final MutableLiveData<DayPrayer> mDayPrayers;
     private final MutableLiveData<String> mErrorMessage;
@@ -45,13 +46,15 @@ public class HomeViewModel extends AndroidViewModel {
     public HomeViewModel(@NonNull Application application,
                          @NonNull LocationHelper locationHelper,
                          @NonNull AddressHelper addressHelper,
-                         @NonNull TimingServiceFactory timingServiceFactory
+                         @NonNull TimingServiceFactory timingServiceFactory,
+                         @NonNull PreferencesHelper preferencesHelper
     ) {
         super(application);
 
         this.locationHelper = locationHelper;
         this.addressHelper = addressHelper;
         this.timingServiceFactory = timingServiceFactory;
+        this.preferencesHelper = preferencesHelper;
 
         todayDate = LocalDate.now();
         mDayPrayers = new MutableLiveData<>();
@@ -74,7 +77,7 @@ public class HomeViewModel extends AndroidViewModel {
     }
 
     private void setLiveData(Context context) {
-        TimingsService timingsService = timingServiceFactory.create(PreferencesHelper.getCalculationMethod(context));
+        TimingsService timingsService = timingServiceFactory.create(preferencesHelper.getCalculationMethod());
 
         compositeDisposable = new CompositeDisposable();
         compositeDisposable.add(

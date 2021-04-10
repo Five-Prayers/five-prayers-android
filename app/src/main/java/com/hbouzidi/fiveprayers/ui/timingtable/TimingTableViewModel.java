@@ -25,7 +25,6 @@ import javax.inject.Inject;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.observers.DisposableSingleObserver;
-import io.reactivex.rxjava3.schedulers.Schedulers;
 
 /**
  * @author Hicham Bouzidi Idrissi
@@ -36,6 +35,7 @@ public class TimingTableViewModel extends AndroidViewModel {
 
     private final LocationHelper locationHelper;
     private final AddressHelper addressHelper;
+    private final PreferencesHelper preferencesHelper;
     private final TimingServiceFactory timingServiceFactory;
     private final MutableLiveData<List<DayPrayer>> mCalendar;
     private CompositeDisposable compositeDisposable;
@@ -44,13 +44,15 @@ public class TimingTableViewModel extends AndroidViewModel {
     public TimingTableViewModel(@NonNull Application application,
                                 @NonNull LocationHelper locationHelper,
                                 @NonNull AddressHelper addressHelper,
-                                @NonNull TimingServiceFactory timingServiceFactory
+                                @NonNull TimingServiceFactory timingServiceFactory,
+                                @NonNull PreferencesHelper preferencesHelper
     ) {
         super(application);
 
         this.timingServiceFactory = timingServiceFactory;
         this.locationHelper = locationHelper;
         this.addressHelper = addressHelper;
+        this.preferencesHelper = preferencesHelper;
 
         this.mCalendar = new MutableLiveData<>();
     }
@@ -70,7 +72,7 @@ public class TimingTableViewModel extends AndroidViewModel {
     }
 
     private void setLiveData(LocalDate todayDate, Context context) {
-        TimingsService timingsService = timingServiceFactory.create(PreferencesHelper.getCalculationMethod(context));
+        TimingsService timingsService = timingServiceFactory.create(preferencesHelper.getCalculationMethod());
 
         compositeDisposable = new CompositeDisposable();
         compositeDisposable.add(

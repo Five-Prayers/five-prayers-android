@@ -4,6 +4,7 @@ import android.content.Context;
 import android.location.Address;
 
 import com.hbouzidi.fiveprayers.database.PrayerRegistry;
+import com.hbouzidi.fiveprayers.preferences.PreferencesHelper;
 import com.hbouzidi.fiveprayers.timings.AbstractTimingsService;
 import com.hbouzidi.fiveprayers.timings.TimingsPreferences;
 import com.hbouzidi.fiveprayers.timings.aladhan.AladhanAPIService;
@@ -37,16 +38,17 @@ public class LondonUnifiedPrayerTimingsService extends AbstractTimingsService {
     @Inject
     public LondonUnifiedPrayerTimingsService(AladhanAPIService aladhanAPIService,
                                              LondonUnifiedPrayerAPIService londonUnifiedPrayerAPIService,
-                                             PrayerRegistry prayerRegistry
+                                             PrayerRegistry prayerRegistry,
+                                             PreferencesHelper preferencesHelper
     ) {
-        super(prayerRegistry);
+        super(prayerRegistry, preferencesHelper);
         this.aladhanAPIService = aladhanAPIService;
         this.londonUnifiedPrayerAPIService = londonUnifiedPrayerAPIService;
     }
 
 
     protected void retrieveAndSaveTimings(LocalDate localDate, Address address, Context context) throws IOException {
-        TimingsPreferences timingsPreferences = getTimingsPreferences(context);
+        TimingsPreferences timingsPreferences = getTimingsPreferences();
 
         AladhanTodayTimingsResponse timingsByCity =
                 aladhanAPIService.getTimingsByLatLong(
@@ -81,7 +83,7 @@ public class LondonUnifiedPrayerTimingsService extends AbstractTimingsService {
     protected void retrieveAndSaveCalendar(Address address, int month, int year, Context context) throws IOException {
         List<AladhanData> aladhanCalendarData = new ArrayList<>();
 
-        TimingsPreferences timingsPreferences = getTimingsPreferences(context);
+        TimingsPreferences timingsPreferences = getTimingsPreferences();
 
         AladhanCalendarResponse calendarByCity =
                 aladhanAPIService.getCalendarByLatLong(

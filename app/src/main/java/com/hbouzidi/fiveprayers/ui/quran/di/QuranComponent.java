@@ -1,7 +1,7 @@
 package com.hbouzidi.fiveprayers.ui.quran.di;
 
-import com.hbouzidi.fiveprayers.ui.quran.index.BookmarkIndexFragment;
-import com.hbouzidi.fiveprayers.ui.quran.index.SurahIndexFragment;
+import com.hbouzidi.fiveprayers.ui.quran.index.QuranBaseIndexFragment;
+import com.hbouzidi.fiveprayers.ui.quran.index.QuranIndexActivity;
 import com.hbouzidi.fiveprayers.ui.quran.pages.QuranPageActivity;
 
 import dagger.Subcomponent;
@@ -21,7 +21,7 @@ public interface QuranComponent {
 
     void inject(QuranPageActivity quranPageActivity);
 
-    void inject(BookmarkIndexFragment bookmarkIndexFragment);
+    void inject(QuranIndexActivity quranIndexActivity);
 
-    void inject(SurahIndexFragment surahIndexFragment);
+    void inject(QuranBaseIndexFragment quranBaseIndexFragment);
 }

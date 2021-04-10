@@ -59,6 +59,9 @@ public class AutoCompleteTextPreferenceDialog extends PreferenceDialogFragmentCo
     @Inject
     AddressSearchService addressSearchService;
 
+    @Inject
+    PreferencesHelper preferencesHelper;
+
     public AutoCompleteTextPreferenceDialog(AutoCompleteTextPreference preference) {
         this.preference = preference;
         this.isSelectedText = false;
@@ -168,7 +171,7 @@ public class AutoCompleteTextPreferenceDialog extends PreferenceDialogFragmentCo
             String textValue = mEditText.getText().toString();
             if (preference.callChangeListener(textValue) && isSelectedText) {
                 preference.setText(textValue);
-                PreferencesHelper.updateAddressPreferences(context, selectedAddress);
+                preferencesHelper.updateAddressPreferences(selectedAddress);
             }
         }
     }

@@ -19,7 +19,7 @@ class QuranBookmarkModel implements BaseColumns {
     static final String COLUMN_NAME_BOOKMARK_TYPE = "bookmark_type";
 
     static final String SQL_CREATE_TABLE =
-            "CREATE TABLE " + TABLE_NAME + " (" +
+            "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + " (" +
                     _ID + " INTEGER PRIMARY KEY," +
                     COLUMN_NAME_DATE_TIMESTAMP + " INTEGER," +
                     COLUMN_NAME_PAGE_NUMBER + " INTEGER," +

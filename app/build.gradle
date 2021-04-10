@@ -26,8 +26,8 @@ android {
         applicationId "com.hbouzidi.fiveprayers"
         minSdkVersion 16
         targetSdkVersion 30
-        versionCode 18
-        versionName "1.5.0"
+        versionCode 19
+        versionName "2.0.0-beta"
         archivesBaseName = "$applicationId-v$versionCode($versionName)"
 
         vectorDrawables.useSupportLibrary = true
@@ -91,10 +91,10 @@ githubRelease {
     owner "five-Prayers"
     repo "five-prayers-android"
     tagName "${android.defaultConfig.versionName}"
-    targetCommitish "master"
+    targetCommitish "develop"
     releaseName "${android.defaultConfig.versionName}"
     draft false
-    prerelease false
+    prerelease true
     releaseAssets "app/build/outputs/apk/release/${archivesBaseName}-release.apk"
     overwrite false
     dryRun false

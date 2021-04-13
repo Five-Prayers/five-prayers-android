@@ -123,8 +123,9 @@ public class HomeScreenWidgetProvider extends AppWidgetProvider {
 
             remoteViews.setTextViewText(R.id.holiday_text_View, StringUtils.capitalize(holidayName));
             remoteViews.setViewVisibility(R.id.holiday_text_View, View.VISIBLE);
+        } else {
+            remoteViews.setViewVisibility(R.id.holiday_text_View, View.INVISIBLE);
         }
-        remoteViews.setViewVisibility(R.id.holiday_text_View, View.INVISIBLE);
     }
 
     private void populateHijriDateTextView(RemoteViews remoteViews, String hijriDate) {

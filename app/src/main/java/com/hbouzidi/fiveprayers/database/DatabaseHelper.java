@@ -12,7 +12,7 @@ import androidx.annotation.Nullable;
  * licenced under GPLv3 : https://www.gnu.org/licenses/gpl-3.0.en.html
  */
 public class DatabaseHelper extends SQLiteOpenHelper {
-    public static final int DATABASE_VERSION = 2;
+    public static final int DATABASE_VERSION = 3;
     public static final String DATABASE_NAME = "five_prayer.db";
 
     public DatabaseHelper(@Nullable Context context) {
@@ -28,7 +28,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL(PrayerModel.SQL_DELETE_TABLE);
-        db.execSQL(QuranBookmarkModel.SQL_DELETE_TABLE);
         onCreate(db);
     }
 }

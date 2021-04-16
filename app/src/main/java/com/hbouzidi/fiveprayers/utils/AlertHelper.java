@@ -1,4 +1,4 @@
-package com.hbouzidi.fiveprayers.ui;
+package com.hbouzidi.fiveprayers.utils;
 
 import android.content.Context;
 import android.view.View;

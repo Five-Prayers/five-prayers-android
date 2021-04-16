@@ -166,7 +166,8 @@
     <string name="settings_button_cancel" translatable="false">Cancel</string>
     <string name="title_location_preference_section">Location</string>
     <string name="title_checkbox_location_preference">Set location manually</string>
-    <string name="title_adhan_vibration_preference">Activate vibration</string>
+    <string name="title_adhan_vibration_preference">Enable vibration</string>
+    <string name="title_douae_adhan_preference">Enable dua after Adhan</string>
     <string name="title_edit_text_location_preference">Actual location</string>
     <string name="dialog_title_edit_text_location_preference">Search your City</string>
     <string name="title_prayer_timings_section">Prayer timings calculation</string>

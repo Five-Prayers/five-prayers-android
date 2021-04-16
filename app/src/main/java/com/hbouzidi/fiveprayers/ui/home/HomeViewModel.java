@@ -15,7 +15,11 @@ import com.hbouzidi.fiveprayers.timings.DayPrayer;
 import com.hbouzidi.fiveprayers.timings.TimingServiceFactory;
 import com.hbouzidi.fiveprayers.timings.TimingsService;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.time.LocalDate;
+
+import javax.inject.Inject;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
@@ -28,27 +32,38 @@ import io.reactivex.rxjava3.observers.DisposableSingleObserver;
  */
 public class HomeViewModel extends AndroidViewModel {
 
+    private final LocationHelper locationHelper;
+    private final AddressHelper addressHelper;
+    private final TimingServiceFactory timingServiceFactory;
+    private final PreferencesHelper preferencesHelper;
+
     private final MutableLiveData<DayPrayer> mDayPrayers;
-    private final MutableLiveData<Boolean> mLocationAvailable;
     private final MutableLiveData<String> mErrorMessage;
     private final LocalDate todayDate;
     private CompositeDisposable compositeDisposable;
 
-    public HomeViewModel(@NonNull Application application) {
+    @Inject
+    public HomeViewModel(@NonNull Application application,
+                         @NonNull LocationHelper locationHelper,
+                         @NonNull AddressHelper addressHelper,
+                         @NonNull TimingServiceFactory timingServiceFactory,
+                         @NonNull PreferencesHelper preferencesHelper
+    ) {
         super(application);
+
+        this.locationHelper = locationHelper;
+        this.addressHelper = addressHelper;
+        this.timingServiceFactory = timingServiceFactory;
+        this.preferencesHelper = preferencesHelper;
+
         todayDate = LocalDate.now();
         mDayPrayers = new MutableLiveData<>();
-        mLocationAvailable = new MutableLiveData<>();
         mErrorMessage = new MutableLiveData<>();
         setLiveData(application.getApplicationContext());
     }
 
     LiveData<DayPrayer> getDayPrayers() {
         return mDayPrayers;
-    }
-
-    LiveData<Boolean> isLocationAvailable() {
-        return mLocationAvailable;
     }
 
     LiveData<String> getError() {
@@ -62,23 +77,22 @@ public class HomeViewModel extends AndroidViewModel {
     }
 
     private void setLiveData(Context context) {
-        TimingsService timingsService = TimingServiceFactory.create(PreferencesHelper.getCalculationMethod(context));
+        TimingsService timingsService = timingServiceFactory.create(preferencesHelper.getCalculationMethod());
 
         compositeDisposable = new CompositeDisposable();
         compositeDisposable.add(
-                LocationHelper.getLocation(context)
-                        .flatMap(location ->
-                                AddressHelper.getAddressFromLocation(location, context)
-                        ).flatMap(address ->
-                        timingsService.getTimingsByCity(
-                                todayDate,
-                                address,
-                                context
-                        ))
+                locationHelper.getLocation()
+                        .flatMap(addressHelper::getAddressFromLocation)
+                        .flatMap(address ->
+                                timingsService.getTimingsByCity(
+                                        todayDate,
+                                        address,
+                                        context
+                                ))
                         .subscribeOn(AndroidSchedulers.mainThread())
                         .subscribeWith(new DisposableSingleObserver<DayPrayer>() {
                             @Override
-                            public void onSuccess(DayPrayer dayPrayer) {
+                            public void onSuccess(@NotNull DayPrayer dayPrayer) {
                                 mDayPrayers.postValue(dayPrayer);
                             }
 

@@ -2,11 +2,11 @@ package com.hbouzidi.fiveprayers.timings.calculations;
 
 import android.location.Address;
 
+import com.hbouzidi.fiveprayers.FakeFivePrayerApplication;
+
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.powermock.core.classloader.annotations.PowerMockIgnore;
-import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 
@@ -19,9 +19,7 @@ import java.util.Locale;
  */
 
 @RunWith(RobolectricTestRunner.class)
-@Config(maxSdk = 28)
-@PowerMockIgnore({"org.mockito.*", "org.robolectric.*", "android.*", "androidx.*"})
-@PrepareForTest({CountryCalculationMethod.class})
+@Config(sdk = 28, application = FakeFivePrayerApplication.class)
 public class CountryPreferencesHelperTest {
 
     @Test

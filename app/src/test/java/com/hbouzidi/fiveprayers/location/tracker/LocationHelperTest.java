@@ -7,6 +7,7 @@ import android.location.LocationManager;
 
 import androidx.test.core.app.ApplicationProvider;
 
+import com.hbouzidi.fiveprayers.FakeFivePrayerApplication;
 import com.hbouzidi.fiveprayers.exceptions.LocationException;
 import com.hbouzidi.fiveprayers.preferences.PreferencesConstants;
 import com.hbouzidi.fiveprayers.utils.UserPreferencesUtils;
@@ -33,14 +34,16 @@ import static android.content.Context.MODE_PRIVATE;
  */
 
 @RunWith(RobolectricTestRunner.class)
-@Config(minSdk = 18, maxSdk = 28)
+@Config(minSdk = 18, maxSdk = 28, application = FakeFivePrayerApplication.class)
 public class LocationHelperTest {
 
     Context applicationContext;
+    private LocationHelper locationHelper;
 
     @Before
     public void before() {
         applicationContext = ApplicationProvider.getApplicationContext();
+        locationHelper = new LocationHelper(applicationContext);
     }
 
     @Test
@@ -57,7 +60,7 @@ public class LocationHelperTest {
         shadowLocationManager.setLocationEnabled(true);
         shadowLocationManager.setLastKnownLocation(LocationManager.GPS_PROVIDER, newLocation);
 
-        Single<Location> locationSingle = LocationHelper.getLocation(applicationContext);
+        Single<Location> locationSingle = locationHelper.getLocation();
 
         TestObserver<Location> locationTestObserver = new TestObserver<>();
         locationSingle.subscribe(locationTestObserver);
@@ -82,7 +85,7 @@ public class LocationHelperTest {
         shadowLocationManager.setProviderEnabled(LocationManager.GPS_PROVIDER, true);
         shadowLocationManager.setLocationEnabled(true);
 
-        Single<Location> locationSingle = LocationHelper.getLocation(applicationContext);
+        Single<Location> locationSingle = locationHelper.getLocation();
 
         TestObserver<Location> locationTestObserver = new TestObserver<>();
         locationSingle.subscribe(locationTestObserver);
@@ -112,7 +115,7 @@ public class LocationHelperTest {
         shadowLocationManager.setProviderEnabled(LocationManager.NETWORK_PROVIDER, false);
         shadowLocationManager.setLocationEnabled(false);
 
-        Single<Location> locationSingle = LocationHelper.getLocation(applicationContext);
+        Single<Location> locationSingle = locationHelper.getLocation();
 
         TestObserver<Location> locationTestObserver = new TestObserver<>();
         locationSingle.subscribe(locationTestObserver);
@@ -135,7 +138,7 @@ public class LocationHelperTest {
         shadowLocationManager.setProviderEnabled(LocationManager.GPS_PROVIDER, true);
         shadowLocationManager.setLocationEnabled(true);
 
-        Single<Location> locationSingle = LocationHelper.getLocation(applicationContext);
+        Single<Location> locationSingle = locationHelper.getLocation();
 
         TestObserver<Location> locationTestObserver = new TestObserver<>();
         locationSingle.subscribe(locationTestObserver);
@@ -154,7 +157,7 @@ public class LocationHelperTest {
         shadowLocationManager.setProviderEnabled(LocationManager.NETWORK_PROVIDER, false);
         shadowLocationManager.setLocationEnabled(false);
 
-        Single<Location> locationSingle = LocationHelper.getLocation(applicationContext);
+        Single<Location> locationSingle = locationHelper.getLocation();
 
         TestObserver<Location> locationTestObserver = new TestObserver<>();
         locationSingle.subscribe(locationTestObserver);

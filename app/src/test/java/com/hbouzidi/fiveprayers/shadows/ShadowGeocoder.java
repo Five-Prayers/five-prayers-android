@@ -16,12 +16,12 @@ import java.util.List;
 import java.util.Locale;
 
 @Implements(Geocoder.class)
-public final class CustomShadowGeocoder {
+public final class ShadowGeocoder {
 
     private static boolean isPresent = true;
     private List<Address> fromLocation = new ArrayList<>();
 
-    public CustomShadowGeocoder() {
+    public ShadowGeocoder() {
         Address newAddress = new Address(Locale.getDefault());
         newAddress.setLatitude(48.9220615);
         newAddress.setLongitude(2.2533313);

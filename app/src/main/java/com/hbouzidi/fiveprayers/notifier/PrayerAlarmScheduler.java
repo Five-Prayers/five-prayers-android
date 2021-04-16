@@ -17,6 +17,9 @@ import com.hbouzidi.fiveprayers.utils.UiUtils;
 import java.time.LocalDateTime;
 import java.util.Map;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import static android.app.PendingIntent.FLAG_UPDATE_CURRENT;
 
 /**
@@ -24,11 +27,18 @@ import static android.app.PendingIntent.FLAG_UPDATE_CURRENT;
  * Github : https://github.com/Five-Prayers/five-prayers-android
  * licenced under GPLv3 : https://www.gnu.org/licenses/gpl-3.0.en.html
  */
+@Singleton
 public class PrayerAlarmScheduler {
 
     public static final String TAG = "PrayerAlarmScheduler";
+    private final Context context;
 
-    public static void scheduleNextPrayerAlarms(Context context, @NonNull DayPrayer dayPrayer) {
+    @Inject
+    public PrayerAlarmScheduler(Context context) {
+        this.context = context;
+    }
+
+    public void scheduleNextPrayerAlarms(@NonNull DayPrayer dayPrayer) {
         Log.i(TAG, "Start scheduling Alarm for: " + dayPrayer.getDate());
 
         Map<PrayerEnum, LocalDateTime> timings = dayPrayer.getTimings();

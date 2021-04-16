@@ -15,25 +15,22 @@ import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
 /**
  * @author Hicham Bouzidi Idrissi
  * Github : https://github.com/Five-Prayers/five-prayers-android
  * licenced under GPLv3 : https://www.gnu.org/licenses/gpl-3.0.en.html
  */
+@Singleton
 public class QuranBookmarkRegistry {
 
-    private static QuranBookmarkRegistry quranBookmarkRegistry;
     private final DatabaseHelper databaseHelper;
 
-    private QuranBookmarkRegistry(Context context) {
+    @Inject
+    public QuranBookmarkRegistry(Context context) {
         databaseHelper = new DatabaseHelper(context);
-    }
-
-    public static QuranBookmarkRegistry getInstance(Context context) {
-        if (quranBookmarkRegistry == null) {
-            quranBookmarkRegistry = new QuranBookmarkRegistry(context);
-        }
-        return quranBookmarkRegistry;
     }
 
     public long saveBookmark(QuranPage quranPage, BookmarkType bookmarkType) {

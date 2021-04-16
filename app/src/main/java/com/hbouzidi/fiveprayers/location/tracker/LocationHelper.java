@@ -12,6 +12,9 @@ import com.hbouzidi.fiveprayers.exceptions.LocationException;
 import com.hbouzidi.fiveprayers.preferences.PreferencesConstants;
 import com.hbouzidi.fiveprayers.utils.UserPreferencesUtils;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import io.reactivex.rxjava3.core.Single;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -21,9 +24,17 @@ import static android.content.Context.MODE_PRIVATE;
  * Github : https://github.com/Five-Prayers/five-prayers-android
  * licenced under GPLv3 : https://www.gnu.org/licenses/gpl-3.0.en.html
  */
+@Singleton
 public class LocationHelper {
 
-    public static Single<Location> getLocation(final Context context) {
+    private final Context context;
+
+    @Inject
+    public LocationHelper(Context context) {
+        this.context = context;
+    }
+
+    public Single<Location> getLocation() {
         final SharedPreferences sharedPreferences = context.getSharedPreferences(PreferencesConstants.LOCATION, MODE_PRIVATE);
 
         final double lastKnownLatitude = UserPreferencesUtils.getDouble(sharedPreferences, PreferencesConstants.LAST_KNOWN_LATITUDE, 0);
@@ -62,7 +73,7 @@ public class LocationHelper {
     }
 
     @NonNull
-    private static Location getLastKnownLocation(double lastKnownLatitude, double lastKnownLongitude) {
+    private Location getLastKnownLocation(double lastKnownLatitude, double lastKnownLongitude) {
         Location lastKnownLocation = new Location("");
         lastKnownLocation.setLatitude(lastKnownLatitude);
         lastKnownLocation.setLongitude(lastKnownLongitude);

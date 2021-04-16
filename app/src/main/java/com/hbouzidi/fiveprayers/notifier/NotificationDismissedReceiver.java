@@ -4,6 +4,10 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
+import com.hbouzidi.fiveprayers.FivePrayerApplication;
+
+import javax.inject.Inject;
+
 /**
  * @author Hicham Bouzidi Idrissi
  * Github : https://github.com/Five-Prayers/five-prayers-android
@@ -11,8 +15,15 @@ import android.content.Intent;
  */
 public class NotificationDismissedReceiver extends BroadcastReceiver {
 
+    @Inject
+    AdhanPlayer adhanPlayer;
+
     @Override
     public void onReceive(Context context, Intent intent) {
-        AdhanPlayer.getInstance().stopAdhan();
+        ((FivePrayerApplication) context.getApplicationContext())
+                .receiverComponent
+                .inject(this);
+
+        adhanPlayer.stopAdhan();
     }
 }

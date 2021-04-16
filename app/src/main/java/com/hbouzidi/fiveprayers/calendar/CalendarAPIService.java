@@ -1,44 +1,35 @@
 package com.hbouzidi.fiveprayers.calendar;
 
-import android.os.Build;
-
-import com.hbouzidi.fiveprayers.common.api.BaseAPIService;
-
 import java.io.IOException;
 
+import javax.inject.Inject;
+import javax.inject.Named;
+import javax.inject.Singleton;
+
 import retrofit2.Call;
+import retrofit2.Retrofit;
 
 /**
  * @author Hicham Bouzidi Idrissi
  * Github : https://github.com/Five-Prayers/five-prayers-android
  * licenced under GPLv3 : https://www.gnu.org/licenses/gpl-3.0.en.html
  */
-public class CalendarAPIService extends BaseAPIService {
+@Singleton
+public class CalendarAPIService {
 
-    private static CalendarAPIService calendarAPIService;
+    private final Retrofit retrofit;
 
-    private CalendarAPIService() {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            BASE_URL = "http://api.aladhan.com/v1/";
-        } else {
-            BASE_URL = "https://api.aladhan.com/v1/";
-        }
+    @Inject
+    public CalendarAPIService(@Named("adhan_api") Retrofit retrofit) {
+        this.retrofit = retrofit;
     }
-
-    public static CalendarAPIService getInstance() {
-        if (calendarAPIService == null) {
-            calendarAPIService = new CalendarAPIService();
-        }
-        return calendarAPIService;
-    }
-
 
     public CalendarAPIResponse getHijriCalendar(int month,
                                                 int year,
                                                 int adjustment) throws IOException {
 
 
-        CalendarAPIResource calendarAPIResource = provideRetrofit().create(CalendarAPIResource.class);
+        CalendarAPIResource calendarAPIResource = retrofit.create(CalendarAPIResource.class);
 
         Call<CalendarAPIResponse> call = calendarAPIResource.getHijriCalendar(month, year, adjustment);
 

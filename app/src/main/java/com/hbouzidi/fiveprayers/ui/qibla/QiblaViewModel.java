@@ -1,7 +1,6 @@
 package com.hbouzidi.fiveprayers.ui.qibla;
 
 import android.app.Application;
-import android.content.Context;
 import android.location.Location;
 
 import androidx.annotation.NonNull;
@@ -12,10 +11,13 @@ import androidx.lifecycle.MutableLiveData;
 import com.hbouzidi.fiveprayers.location.address.AddressHelper;
 import com.hbouzidi.fiveprayers.location.tracker.LocationHelper;
 
+import org.jetbrains.annotations.NotNull;
+
+import javax.inject.Inject;
+
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.observers.DisposableSingleObserver;
-import io.reactivex.rxjava3.schedulers.Schedulers;
 
 /**
  * @author Hicham Bouzidi Idrissi
@@ -24,14 +26,24 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
  */
 public class QiblaViewModel extends AndroidViewModel {
 
-    private MutableLiveData<Location> mLocation;
+    private final LocationHelper locationHelper;
+    private final MutableLiveData<Location> mLocation;
+    private final AddressHelper addressHelper;
+
     private CompositeDisposable compositeDisposable;
 
-
-    public QiblaViewModel(@NonNull Application application) {
+    @Inject
+    public QiblaViewModel(@NonNull Application application,
+                          @NonNull LocationHelper locationHelper,
+                          @NonNull AddressHelper addressHelper
+    ) {
         super(application);
+        this.locationHelper = locationHelper;
+        this.addressHelper = addressHelper;
+
         mLocation = new MutableLiveData<>();
-        setLiveData(application.getApplicationContext());
+
+        setLiveData();
     }
 
     public LiveData<Location> getLocation() {
@@ -44,17 +56,16 @@ public class QiblaViewModel extends AndroidViewModel {
         super.onCleared();
     }
 
-    private void setLiveData(Context context) {
+    private void setLiveData() {
         compositeDisposable = new CompositeDisposable();
         compositeDisposable.add(
-                LocationHelper.getLocation(context)
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
+                locationHelper.getLocation()
+                        .subscribeOn(AndroidSchedulers.mainThread())
                         .subscribeWith(new DisposableSingleObserver<Location>() {
                             @Override
-                            public void onSuccess(Location location) {
+                            public void onSuccess(@NotNull Location location) {
                                 mLocation.setValue(location);
-                                AddressHelper.getAddressFromLocation(location, context);
+                                addressHelper.getAddressFromLocation(location);
                             }
 
                             @Override

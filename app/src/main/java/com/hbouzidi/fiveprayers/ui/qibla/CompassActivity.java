@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.Surface;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.Animation;
@@ -20,10 +19,13 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.preference.PreferenceManagerFix;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.hbouzidi.fiveprayers.FivePrayerApplication;
 import com.hbouzidi.fiveprayers.R;
 import com.hbouzidi.fiveprayers.preferences.PreferencesConstants;
 
 import java.util.Locale;
+
+import javax.inject.Inject;
 
 import static android.view.View.INVISIBLE;
 
@@ -45,13 +47,22 @@ public class CompassActivity extends AppCompatActivity {
     SharedPreferences prefs;
     private Location location;
 
+    @Inject
+    ViewModelProvider.Factory viewModelFactory;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ((FivePrayerApplication) getApplicationContext())
+                .appComponent
+                .qiblaComponent()
+                .create()
+                .inject(this);
+
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_compass);
 
-        QiblaViewModel qiblaViewModel = new ViewModelProvider(this).get(QiblaViewModel.class);
+        QiblaViewModel qiblaViewModel = viewModelFactory.create(QiblaViewModel.class);
 
         prefs = getSharedPreferences("", MODE_PRIVATE);
 

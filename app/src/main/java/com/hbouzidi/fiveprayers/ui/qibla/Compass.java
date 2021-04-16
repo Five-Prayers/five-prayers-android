@@ -9,7 +9,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.util.Log;
 
-import com.hbouzidi.fiveprayers.ui.AlertHelper;
+import com.hbouzidi.fiveprayers.utils.AlertHelper;
 import com.yarolegovich.lovelydialog.LovelyCustomDialog;
 
 /**

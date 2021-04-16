@@ -26,7 +26,14 @@ import io.reactivex.rxjava3.core.Single;
  */
 public abstract class AbstractTimingsService implements TimingsService {
 
+    protected final PrayerRegistry prayerRegistry;
+    protected final PreferencesHelper preferencesHelper;
     protected String TAG = "AbstractTimingsService";
+
+    public AbstractTimingsService(PrayerRegistry prayerRegistry, PreferencesHelper preferencesHelper) {
+        this.prayerRegistry = prayerRegistry;
+        this.preferencesHelper = preferencesHelper;
+    }
 
     protected abstract void retrieveAndSaveTimings(LocalDate localDate, Address address, Context context) throws IOException;
 
@@ -45,14 +52,14 @@ public abstract class AbstractTimingsService implements TimingsService {
                     Log.e(TAG, "Cannot find timings, address must not be null");
                     emitter.onError(new TimingsException("Cannot find timings, address must not be null"));
                 } else {
-                    prayerTimings = getSavedPrayerTimings(localDate, address, context);
+                    prayerTimings = getSavedPrayerTimings(localDate, address);
 
                     if (prayerTimings != null) {
                         emitter.onSuccess(prayerTimings);
                     } else {
                         try {
                             retrieveAndSaveTimings(localDate, address, context);
-                            prayerTimings = getSavedPrayerTimings(localDate, address, context);
+                            prayerTimings = getSavedPrayerTimings(localDate, address);
 
                             emitter.onSuccess(prayerTimings);
 
@@ -80,14 +87,14 @@ public abstract class AbstractTimingsService implements TimingsService {
                     Log.e(TAG, "Cannot find calendar, address must not be null");
                     emitter.onError(new TimingsException("Cannot find calendar, address must not be null"));
                 } else {
-                    prayerCalendar = getSavedPrayerCalendar(address, month, year, context);
+                    prayerCalendar = getSavedPrayerCalendar(address, month, year);
 
                     if (prayerCalendar.size() == YearMonth.of(year, month).lengthOfMonth()) {
                         emitter.onSuccess(prayerCalendar);
                     } else {
                         try {
                             retrieveAndSaveCalendar(address, month, year, context);
-                            prayerCalendar = getSavedPrayerCalendar(address, month, year, context);
+                            prayerCalendar = getSavedPrayerCalendar(address, month, year);
 
                             emitter.onSuccess(prayerCalendar);
                         } catch (IOException e) {
@@ -101,10 +108,8 @@ public abstract class AbstractTimingsService implements TimingsService {
         });
     }
 
-    protected DayPrayer getSavedPrayerTimings(LocalDate localDate, Address address, Context context) {
-        TimingsPreferences timingsPreferences = getTimingsPreferences(context);
-
-        PrayerRegistry prayerRegistry = PrayerRegistry.getInstance(context);
+    protected DayPrayer getSavedPrayerTimings(LocalDate localDate, Address address) {
+        TimingsPreferences timingsPreferences = getTimingsPreferences();
 
         if (address.getLocality() != null && address.getCountryName() != null) {
             return prayerRegistry.getPrayerTimings(
@@ -123,10 +128,8 @@ public abstract class AbstractTimingsService implements TimingsService {
         return null;
     }
 
-    protected List<DayPrayer> getSavedPrayerCalendar(Address address, int month, int year, Context context) {
-        TimingsPreferences timingsPreferences = getTimingsPreferences(context);
-
-        PrayerRegistry prayerRegistry = PrayerRegistry.getInstance(context);
+    protected List<DayPrayer> getSavedPrayerCalendar(Address address, int month, int year) {
+        TimingsPreferences timingsPreferences = getTimingsPreferences();
 
         return prayerRegistry.getPrayerCalendar(
                 address.getLocality(),
@@ -141,13 +144,13 @@ public abstract class AbstractTimingsService implements TimingsService {
         );
     }
 
-    protected TimingsPreferences getTimingsPreferences(Context context) {
-        CalculationMethodEnum method = PreferencesHelper.getCalculationMethod(context);
-        String tune = PreferencesHelper.getTune(context);
-        LatitudeAdjustmentMethod latitudeAdjustmentMethod = PreferencesHelper.getLatitudeAdjustmentMethod(context);
-        SchoolAdjustmentMethod schoolAdjustmentMethod = PreferencesHelper.getSchoolAdjustmentMethod(context);
-        MidnightModeAdjustmentMethod midnightModeAdjustmentMethod = PreferencesHelper.getMidnightModeAdjustmentMethod(context);
-        int hijriAdjustment = PreferencesHelper.getHijriAdjustment(context);
+    protected TimingsPreferences getTimingsPreferences() {
+        CalculationMethodEnum method = preferencesHelper.getCalculationMethod();
+        String tune = preferencesHelper.getTune();
+        LatitudeAdjustmentMethod latitudeAdjustmentMethod = preferencesHelper.getLatitudeAdjustmentMethod();
+        SchoolAdjustmentMethod schoolAdjustmentMethod = preferencesHelper.getSchoolAdjustmentMethod();
+        MidnightModeAdjustmentMethod midnightModeAdjustmentMethod = preferencesHelper.getMidnightModeAdjustmentMethod();
+        int hijriAdjustment = preferencesHelper.getHijriAdjustment();
 
         return new TimingsPreferences(method, tune, latitudeAdjustmentMethod, schoolAdjustmentMethod,
                 midnightModeAdjustmentMethod, hijriAdjustment

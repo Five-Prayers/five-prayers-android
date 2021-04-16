@@ -1,12 +1,16 @@
 package com.hbouzidi.fiveprayers.ui.quran.index;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
+import com.hbouzidi.fiveprayers.FivePrayerApplication;
 import com.hbouzidi.fiveprayers.preferences.PreferencesHelper;
 import com.hbouzidi.fiveprayers.quran.dto.BookmarkType;
 import com.hbouzidi.fiveprayers.quran.dto.QuranBookmark;
@@ -19,6 +23,8 @@ import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 /**
  * @author Hicham Bouzidi Idrissi
  * Github : https://github.com/Five-Prayers/five-prayers-android
@@ -29,6 +35,23 @@ public class QuranBaseIndexFragment extends Fragment {
     protected List<Surah> surahs;
     protected List<QuranPage> quranPages;
     private final static int AUTOMATIC_BOOKMARK_MAX_SIZE = 3;
+
+    @Inject
+    ViewModelProvider.Factory viewModelFactory;
+
+    @Inject
+    PreferencesHelper preferencesHelper;
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        ((FivePrayerApplication) context.getApplicationContext())
+                .appComponent
+                .quranComponent()
+                .create()
+                .inject(this);
+
+        super.onAttach(context);
+    }
 
     protected void gotoSuraa(int pageNumber, List<Surah> surahs) {
         Bundle bundle = new Bundle();
@@ -62,7 +85,7 @@ public class QuranBaseIndexFragment extends Fragment {
         long timestamps = ZonedDateTime.now(ZoneOffset.systemDefault()).toEpochSecond();
         QuranBookmark newAutomaticBookmark = new QuranBookmark(timestamps, BookmarkType.AUTOMATIC, quranPage);
 
-        List<QuranBookmark> oldAutomaticBenchmarkList = PreferencesHelper.getSortedAutomaticBookmarkList(requireContext());
+        List<QuranBookmark> oldAutomaticBenchmarkList = preferencesHelper.getSortedAutomaticBookmarkList();
 
         oldAutomaticBenchmarkList.removeIf(item -> item.getQuranPage().getPageNum() == quranPage.getPageNum());
 
@@ -71,6 +94,6 @@ public class QuranBaseIndexFragment extends Fragment {
         }
 
         oldAutomaticBenchmarkList.add(newAutomaticBookmark);
-        PreferencesHelper.saveAutomaticBookmarkList(oldAutomaticBenchmarkList, requireContext());
+        preferencesHelper.saveAutomaticBookmarkList(oldAutomaticBenchmarkList);
     }
 }

@@ -20,30 +20,28 @@ import com.hbouzidi.fiveprayers.utils.TimingUtils;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.inject.Inject;
+import javax.inject.Singleton;
 
 /**
  * @author Hicham Bouzidi Idrissi
  * Github : https://github.com/Five-Prayers/five-prayers-android
  * licenced under GPLv3 : https://www.gnu.org/licenses/gpl-3.0.en.html
  */
+@Singleton
 public class PrayerRegistry {
 
-    private static PrayerRegistry prayerRegistry;
-    private DatabaseHelper databaseHelper;
+    private final DatabaseHelper databaseHelper;
 
-    private PrayerRegistry(Context context) {
+    @Inject
+    public PrayerRegistry(Context context) {
         databaseHelper = new DatabaseHelper(context);
-    }
-
-    public static PrayerRegistry getInstance(Context context) {
-        if (prayerRegistry == null) {
-            prayerRegistry = new PrayerRegistry(context);
-        }
-        return prayerRegistry;
     }
 
     public long savePrayerTiming(LocalDate localDate,
@@ -69,7 +67,7 @@ public class PrayerRegistry {
         ContentValues values = new ContentValues();
         values.put(PrayerModel.COLUMN_NAME_DATE, localDateString);
         values.put(PrayerModel.COLUMN_NAME_DATE_TIMESTAMP, aladhanDate.getTimestamp());
-        values.put(PrayerModel.COLUMN_NAME_TIMEZONE, data.getMeta().getTimezone());
+        values.put(PrayerModel.COLUMN_NAME_TIMEZONE, ZoneId.systemDefault().getId());
 
         values.put(PrayerModel.COLUMN_NAME_CITY, city);
         values.put(PrayerModel.COLUMN_NAME_COUNTRY, country);
@@ -119,6 +117,7 @@ public class PrayerRegistry {
         SQLiteDatabase db = databaseHelper.getReadableDatabase();
 
         String selection = PrayerModel.COLUMN_NAME_DATE + " = ?" +
+                " AND " + PrayerModel.COLUMN_NAME_TIMEZONE + " = ?" +
                 " AND " + PrayerModel.COLUMN_NAME_CITY + " = ?" +
                 " AND " + PrayerModel.COLUMN_NAME_COUNTRY + " = ?" +
                 " AND " + PrayerModel.COLUMN_NAME_CALCULATION_METHOD + " = ?" +
@@ -130,6 +129,7 @@ public class PrayerRegistry {
 
         String[] selectionArgs = {
                 TimingUtils.formatDateForAdhanAPI(localDate),
+                ZoneId.systemDefault().getId(),
                 city,
                 country,
                 String.valueOf(calculationMethodEnum),
@@ -200,6 +200,7 @@ public class PrayerRegistry {
 
         String selection = PrayerModel.COLUMN_NAME_GREGORIAN_MONTH_NUMBER + " = ?" +
                 " AND " + PrayerModel.COLUMN_NAME_GREGORIAN_YEAR + " = ?" +
+                " AND " + PrayerModel.COLUMN_NAME_TIMEZONE + " = ?" +
                 " AND " + PrayerModel.COLUMN_NAME_CITY + " = ?" +
                 " AND " + PrayerModel.COLUMN_NAME_COUNTRY + " = ?" +
                 " AND " + PrayerModel.COLUMN_NAME_CALCULATION_METHOD + " = ?" +
@@ -212,6 +213,7 @@ public class PrayerRegistry {
         String[] selectionArgs = {
                 String.valueOf(monthNumber),
                 String.valueOf(year),
+                ZoneId.systemDefault().getId(),
                 city,
                 country,
                 String.valueOf(calculationMethodEnum),

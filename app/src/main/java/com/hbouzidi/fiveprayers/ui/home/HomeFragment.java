@@ -22,6 +22,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.faltenreich.skeletonlayout.Skeleton;
+import com.hbouzidi.fiveprayers.FivePrayerApplication;
 import com.hbouzidi.fiveprayers.R;
 import com.hbouzidi.fiveprayers.common.ComplementaryTimingEnum;
 import com.hbouzidi.fiveprayers.common.HijriHoliday;
@@ -30,12 +31,12 @@ import com.hbouzidi.fiveprayers.network.NetworkUtil;
 import com.hbouzidi.fiveprayers.notifier.NotifierJobService;
 import com.hbouzidi.fiveprayers.preferences.PreferencesConstants;
 import com.hbouzidi.fiveprayers.timings.DayPrayer;
-import com.hbouzidi.fiveprayers.ui.AlertHelper;
+import com.hbouzidi.fiveprayers.utils.AlertHelper;
 import com.hbouzidi.fiveprayers.ui.clock.AnalogClock;
 import com.hbouzidi.fiveprayers.utils.PrayerUtils;
 import com.hbouzidi.fiveprayers.utils.TimingUtils;
 import com.hbouzidi.fiveprayers.utils.UiUtils;
-import com.hbouzidi.fiveprayers.widget.WidgetUpdater;
+import com.hbouzidi.fiveprayers.ui.widget.WidgetUpdater;
 import com.mikhaellopez.circularprogressbar.CircularProgressBar;
 
 import org.apache.commons.lang3.StringUtils;
@@ -44,6 +45,8 @@ import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.util.Map;
 import java.util.Objects;
+
+import javax.inject.Inject;
 
 import io.reactivex.rxjava3.disposables.Disposable;
 
@@ -55,6 +58,9 @@ import static android.content.Context.MODE_PRIVATE;
  * licenced under GPLv3 : https://www.gnu.org/licenses/gpl-3.0.en.html
  */
 public class HomeFragment extends Fragment {
+
+    @Inject
+    ViewModelProvider.Factory viewModelFactory;
 
     private LocalDateTime todayDate;
     private CountDownTimer TimeRemainingCTimer;
@@ -95,6 +101,17 @@ public class HomeFragment extends Fragment {
 
     private Disposable hasInternetDisposable;
 
+    @Override
+    public void onAttach(@NonNull Context context) {
+        ((FivePrayerApplication) context.getApplicationContext())
+                .appComponent
+                .homeComponent()
+                .create()
+                .inject(this);
+
+        super.onAttach(context);
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -106,7 +123,7 @@ public class HomeFragment extends Fragment {
         adhanCallsPreferences = PreferencesConstants.ADTHAN_CALLS_SHARED_PREFERENCES;
         adhanCallKeyPart = PreferencesConstants.ADTHAN_CALL_ENABLED_KEY;
 
-        HomeViewModel dashboardViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
+        HomeViewModel homeViewModel = viewModelFactory.create(HomeViewModel.class);
 
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
 
@@ -114,7 +131,7 @@ public class HomeFragment extends Fragment {
 
         skeleton.showSkeleton();
 
-        dashboardViewModel
+        homeViewModel
                 .getError()
                 .observe(
                         getViewLifecycleOwner(),
@@ -122,7 +139,7 @@ public class HomeFragment extends Fragment {
                                 getResources().getString(R.string.common_error),
                                 error));
 
-        dashboardViewModel.getDayPrayers().observe(getViewLifecycleOwner(), dayPrayer -> {
+        homeViewModel.getDayPrayers().observe(getViewLifecycleOwner(), dayPrayer -> {
             updateDatesTextViews(dayPrayer);
             updateNextPrayerViews(dayPrayer);
             updateTimingsTextViews(dayPrayer);
@@ -146,6 +163,7 @@ public class HomeFragment extends Fragment {
                 });
             }
         });
+
         return rootView;
     }
 

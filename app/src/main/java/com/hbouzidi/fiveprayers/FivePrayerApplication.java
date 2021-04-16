@@ -3,8 +3,25 @@ package com.hbouzidi.fiveprayers;
 import android.os.Build;
 
 import androidx.multidex.MultiDexApplication;
+import androidx.work.Configuration;
+import androidx.work.WorkManager;
 
 import com.hbouzidi.fiveprayers.common.api.TLSSocketFactoryCompat;
+import com.hbouzidi.fiveprayers.di.component.AdapterComponent;
+import com.hbouzidi.fiveprayers.di.component.ApplicationComponent;
+import com.hbouzidi.fiveprayers.di.component.DaggerAdapterComponent;
+import com.hbouzidi.fiveprayers.di.component.DaggerApplicationComponent;
+import com.hbouzidi.fiveprayers.di.component.DaggerDefaultComponent;
+import com.hbouzidi.fiveprayers.di.component.DaggerReceiverComponent;
+import com.hbouzidi.fiveprayers.di.component.DaggerServiceComponent;
+import com.hbouzidi.fiveprayers.di.component.DaggerWidgetComponent;
+import com.hbouzidi.fiveprayers.di.component.DefaultComponent;
+import com.hbouzidi.fiveprayers.di.component.ReceiverComponent;
+import com.hbouzidi.fiveprayers.di.component.ServiceComponent;
+import com.hbouzidi.fiveprayers.di.component.WidgetComponent;
+import com.hbouzidi.fiveprayers.di.factory.worker.WorkerProviderFactory;
+import com.hbouzidi.fiveprayers.di.module.AppModule;
+import com.hbouzidi.fiveprayers.di.module.WidgetModule;
 import com.hbouzidi.fiveprayers.ui.report.ErrorActivity;
 
 import cat.ereza.customactivityoncrash.config.CaocConfig;
@@ -16,6 +33,37 @@ import cat.ereza.customactivityoncrash.config.CaocConfig;
  */
 public class FivePrayerApplication extends MultiDexApplication {
 
+    public ApplicationComponent appComponent = DaggerApplicationComponent
+            .builder()
+            .appModule(new AppModule(this))
+            .build();
+
+    public WidgetComponent widgetComponent = DaggerWidgetComponent
+            .builder()
+            .appModule(new AppModule(this))
+            .widgetModule(new WidgetModule())
+            .build();
+
+    public ServiceComponent serviceComponent = DaggerServiceComponent
+            .builder()
+            .appModule(new AppModule(this))
+            .build();
+
+    public ReceiverComponent receiverComponent = DaggerReceiverComponent
+            .builder()
+            .appModule(new AppModule(this))
+            .build();
+
+    public AdapterComponent adapterComponent = DaggerAdapterComponent
+            .builder()
+            .appModule(new AppModule(this))
+            .build();
+
+    public DefaultComponent defaultComponent = DaggerDefaultComponent
+            .builder()
+            .appModule(new AppModule(this))
+            .build();
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -25,8 +73,21 @@ public class FivePrayerApplication extends MultiDexApplication {
             TLSSocketFactoryCompat.setAsDefault();
         }
 
-        CaocConfig.Builder.create()
+        CaocConfig
+                .Builder
+                .create()
                 .errorActivity(ErrorActivity.class)
                 .apply();
+
+        configureWorkManager();
+    }
+
+    private void configureWorkManager() {
+        WorkerProviderFactory factory = appComponent.workerProviderFactory();
+        Configuration config = new Configuration.Builder()
+                .setWorkerFactory(factory)
+                .build();
+
+        WorkManager.initialize(this, config);
     }
 }

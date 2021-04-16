@@ -17,6 +17,9 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import io.reactivex.rxjava3.core.Single;
 
 /**
@@ -24,23 +27,34 @@ import io.reactivex.rxjava3.core.Single;
  * Github : https://github.com/Five-Prayers/five-prayers-android
  * licenced under GPLv3 : https://www.gnu.org/licenses/gpl-3.0.en.html
  */
+@Singleton
 public class AddressHelper {
 
     private static final int MINIMUM_DISTANCE_FOR_OBSOLESCENCE = 1000; //1KM
 
-    public static Single<Address> getAddressFromLocation(final Location location,
-                                                         final Context context) {
+    private final Context context;
+    private final NominatimAPIService nominatimAPIService;
+    private final PreferencesHelper preferencesHelper;
+
+    @Inject
+    public AddressHelper(Context context, NominatimAPIService nominatimAPIService, PreferencesHelper preferencesHelper) {
+        this.context = context;
+        this.nominatimAPIService = nominatimAPIService;
+        this.preferencesHelper = preferencesHelper;
+    }
+
+    public Single<Address> getAddressFromLocation(final Location location) {
 
         return Single.create(emitter -> {
-            boolean locationSetManually = PreferencesHelper.isLocationSetManually(context);
+            boolean locationSetManually = preferencesHelper.isLocationSetManually();
             if (locationSetManually) {
-                Address lastKnownAddress = PreferencesHelper.getLastKnownAddress(context);
+                Address lastKnownAddress = preferencesHelper.getLastKnownAddress();
                 emitter.onSuccess(lastKnownAddress);
             } else if (location != null) {
                 double latitude = location.getLatitude();
                 double longitude = location.getLongitude();
 
-                Address lastKnownAddress = PreferencesHelper.getLastKnownAddress(context);
+                Address lastKnownAddress = preferencesHelper.getLastKnownAddress();
 
                 if (!isAddressObsolete(lastKnownAddress, latitude, longitude)) {
                     emitter.onSuccess(lastKnownAddress);
@@ -77,7 +91,7 @@ public class AddressHelper {
         });
     }
 
-    private static Address getGeocoderAddresses(double latitude, double longitude, Context context) throws IOException {
+    private Address getGeocoderAddresses(double latitude, double longitude, Context context) throws IOException {
         Geocoder geocoder = new Geocoder(context, Locale.getDefault());
         List<Address> addressList = geocoder.getFromLocation(latitude, longitude, 1);
 
@@ -85,7 +99,7 @@ public class AddressHelper {
             Address address = addressList.get(0);
 
             if (address.getCountryName() != null && address.getLocality() != null) {
-                PreferencesHelper.updateAddressPreferences(context, address);
+                preferencesHelper.updateAddressPreferences(address);
                 return address;
             }
             return null;
@@ -93,9 +107,7 @@ public class AddressHelper {
         return null;
     }
 
-    private static Address getNominatimAddress(double latitude, double longitude, Context context) throws IOException {
-        NominatimAPIService nominatimAPIService = NominatimAPIService.getInstance();
-
+    private Address getNominatimAddress(double latitude, double longitude, Context context) throws IOException {
         NominatimReverseGeocodeResponse response = nominatimAPIService.getAddressFromLocation(latitude, longitude);
 
         if (response != null && response.getAddress() != null && response.getAddress().getCountry() != null && response.getAddress().getLocality() != null) {
@@ -108,7 +120,7 @@ public class AddressHelper {
             address.setLatitude(response.getLat());
             address.setLongitude(response.getLon());
 
-            PreferencesHelper.updateAddressPreferences(context, address);
+            preferencesHelper.updateAddressPreferences(address);
 
             return address;
         }
@@ -116,7 +128,7 @@ public class AddressHelper {
         return null;
     }
 
-    private static boolean isAddressObsolete(Address lastKnownAddress, double latitude, double longitude) {
+    private boolean isAddressObsolete(Address lastKnownAddress, double latitude, double longitude) {
         if (lastKnownAddress.getLocality() != null) {
 
             Location LastKnownLocation = new Location("");

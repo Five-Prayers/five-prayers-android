@@ -7,12 +7,10 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.hbouzidi.fiveprayers.R;
-import com.hbouzidi.fiveprayers.preferences.PreferencesHelper;
 import com.hbouzidi.fiveprayers.quran.dto.BookmarkType;
 import com.hbouzidi.fiveprayers.quran.dto.QuranBookmark;
 
@@ -35,6 +33,7 @@ public class BookmarkIndexFragment extends QuranBaseIndexFragment {
     private BookmarkListAdapter automaticBookmarksListAdapter;
     private BookmarkListAdapter userMAdeBookmarksListAdapter;
     private LinearLayout emptyPlaceHolderLayout;
+    private QuranIndexViewModel quranIndexViewModel;
 
     public BookmarkIndexFragment() {
     }
@@ -55,7 +54,7 @@ public class BookmarkIndexFragment extends QuranBaseIndexFragment {
         automaticBookmarkSectionTitle = rootView.findViewById(R.id.automatic_bookmark_section_title);
         userMadeBookmarkSectionTitle = rootView.findViewById(R.id.user_made_bookmark_section_title);
 
-        QuranIndexViewModel quranIndexViewModel = new ViewModelProvider(this).get(QuranIndexViewModel.class);
+        quranIndexViewModel = viewModelFactory.create(QuranIndexViewModel.class);
 
         quranIndexViewModel.getSurahs().observe(getViewLifecycleOwner(), surahs -> this.surahs = surahs);
         quranIndexViewModel.getQuranPages().observe(getViewLifecycleOwner(), quranPages -> this.quranPages = quranPages);
@@ -74,12 +73,13 @@ public class BookmarkIndexFragment extends QuranBaseIndexFragment {
     public void onResume() {
         super.onResume();
 
-        QuranIndexViewModel quranIndexViewModel = new ViewModelProvider(this).get(QuranIndexViewModel.class);
-        quranIndexViewModel.updateLiveData(requireContext());
+        if (quranIndexViewModel != null) {
+            quranIndexViewModel.updateLiveData(requireContext());
+        }
     }
 
     private void updateRecyclerViews(List<QuranBookmark> bookmarks) {
-        List<QuranBookmark> automaticBookmarks = PreferencesHelper.getSortedAutomaticBookmarkList(requireContext());
+        List<QuranBookmark> automaticBookmarks = preferencesHelper.getSortedAutomaticBookmarkList();
 
         ArrayList<QuranBookmark> userMadeBookmarks = bookmarks
                 .stream()

@@ -1,4 +1,4 @@
-package com.hbouzidi.fiveprayers.widget;
+package com.hbouzidi.fiveprayers.ui.widget;
 
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.widget.RemoteViews;
 
 import com.hbouzidi.fiveprayers.R;
-import com.hbouzidi.fiveprayers.ui.widget.HomeScreenWidgetProvider;
 
 /**
  * @author Hicham Bouzidi Idrissi

@@ -25,6 +25,9 @@ import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import static android.content.Context.MODE_PRIVATE;
 
 /**
@@ -32,9 +35,17 @@ import static android.content.Context.MODE_PRIVATE;
  * Github : https://github.com/Five-Prayers/five-prayers-android
  * licenced under GPLv3 : https://www.gnu.org/licenses/gpl-3.0.en.html
  */
+@Singleton
 public class PreferencesHelper {
 
-    public static void setFirstTimeLaunch(boolean isFirstTime, Context context) {
+    private final Context context;
+
+    @Inject
+    public PreferencesHelper(Context context) {
+        this.context = context;
+    }
+
+    public void setFirstTimeLaunch(boolean isFirstTime) {
         final SharedPreferences sharedPreferences = context.getSharedPreferences(PreferencesConstants.LOCATION, MODE_PRIVATE);
         SharedPreferences.Editor edit = sharedPreferences.edit();
         edit.putBoolean(PreferencesConstants.FIRST_LAUNCH, isFirstTime);
@@ -42,19 +53,19 @@ public class PreferencesHelper {
         edit.apply();
     }
 
-    public static boolean isFirstLaunch(Context context) {
+    public boolean isFirstLaunch() {
         final SharedPreferences sharedPreferences = context.getSharedPreferences(PreferencesConstants.LOCATION, MODE_PRIVATE);
         return sharedPreferences.getBoolean(PreferencesConstants.FIRST_LAUNCH, true);
     }
 
-    public static CalculationMethodEnum getCalculationMethod(Context context) {
+    public CalculationMethodEnum getCalculationMethod() {
         final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         String timingsCalculationMethodId = defaultSharedPreferences.getString(PreferencesConstants.TIMINGS_CALCULATION_METHOD_PREFERENCE, String.valueOf(CalculationMethodEnum.getDefault()));
 
         return CalculationMethodEnum.valueOf(timingsCalculationMethodId);
     }
 
-    public static String getTune(Context context) {
+    public String getTune() {
         SharedPreferences sharedPreferences = context.getSharedPreferences(PreferencesConstants.TIMING_ADJUSTMENT, Context.MODE_PRIVATE);
 
         int fajrTimingAdjustment = sharedPreferences.getInt(PreferencesConstants.FAJR_TIMING_ADJUSTMENT, 0);
@@ -66,27 +77,27 @@ public class PreferencesHelper {
         return fajrTimingAdjustment + "," + fajrTimingAdjustment + ",0," + dohrTimingAdjustment + "," + asrTimingAdjustment + "," + maghrebTimingAdjustment + ",0," + ichaTimingAdjustment + ",0";
     }
 
-    public static int getHijriAdjustment(Context context) {
+    public int getHijriAdjustment() {
         final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
 
         return defaultSharedPreferences.getInt(PreferencesConstants.HIJRI_DAY_ADJUSTMENT_PREFERENCE, 0);
     }
 
-    public static LatitudeAdjustmentMethod getLatitudeAdjustmentMethod(Context context) {
+    public LatitudeAdjustmentMethod getLatitudeAdjustmentMethod() {
         final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         String latitudeAdjustmentMethod = defaultSharedPreferences.getString(PreferencesConstants.TIMINGS_LATITUDE_ADJUSTMENT_METHOD_PREFERENCE, LatitudeAdjustmentMethod.getDefault().toString());
 
         return LatitudeAdjustmentMethod.valueOf(latitudeAdjustmentMethod);
     }
 
-    public static SchoolAdjustmentMethod getSchoolAdjustmentMethod(Context context) {
+    public SchoolAdjustmentMethod getSchoolAdjustmentMethod() {
         final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         String schoolAdjustmentMethod = defaultSharedPreferences.getString(PreferencesConstants.SCHOOL_ADJUSTMENT_METHOD_PREFERENCE, SchoolAdjustmentMethod.getDefault().toString());
 
         return SchoolAdjustmentMethod.valueOf(schoolAdjustmentMethod);
     }
 
-    public static MidnightModeAdjustmentMethod getMidnightModeAdjustmentMethod(Context context) {
+    public MidnightModeAdjustmentMethod getMidnightModeAdjustmentMethod() {
         final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         String midnightModeAdjustmentMethod = defaultSharedPreferences.getString(PreferencesConstants.MIDNIGHT_MODE_ADJUSTMENT_METHOD_PREFERENCE, MidnightModeAdjustmentMethod.getDefault().toString());
 
@@ -94,7 +105,7 @@ public class PreferencesHelper {
     }
 
     @NonNull
-    public static Address getLastKnownAddress(Context context) {
+    public Address getLastKnownAddress() {
         final SharedPreferences sharedPreferences = context.getSharedPreferences(PreferencesConstants.LOCATION, MODE_PRIVATE);
         final String locality = sharedPreferences.getString(PreferencesConstants.LAST_KNOWN_LOCALITY, null);
         final String country = sharedPreferences.getString(PreferencesConstants.LAST_KNOWN_COUNTRY, null);
@@ -110,8 +121,8 @@ public class PreferencesHelper {
         return address;
     }
 
-    public static void updateTimingAdjustmentPreference(String methodName, Context context) {
-        if (!isCalculationPreferenceInitialized(context)) {
+    public void updateTimingAdjustmentPreference(String methodName) {
+        if (!isCalculationPreferenceInitialized()) {
             TimingsTuneEnum timingsTuneEnum = TimingsTuneEnum.getValueByName(methodName);
 
             SharedPreferences sharedPreferences = context.getSharedPreferences(PreferencesConstants.TIMING_ADJUSTMENT, Context.MODE_PRIVATE);
@@ -127,7 +138,7 @@ public class PreferencesHelper {
         }
     }
 
-    public static void updateAddressPreferences(Context context, Address address) {
+    public void updateAddressPreferences(Address address) {
         final SharedPreferences sharedPreferences = context.getSharedPreferences(PreferencesConstants.LOCATION, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(PreferencesConstants.LAST_KNOWN_LOCALITY, address.getLocality());
@@ -141,8 +152,8 @@ public class PreferencesHelper {
 
         CalculationMethodEnum calculationMethodByAddress = CountryCalculationMethod.getCalculationMethodByAddress(address);
 
-        PreferencesHelper.updateCalculationMethodPreferenceByAddress(String.valueOf(calculationMethodByAddress), context);
-        PreferencesHelper.updateTimingAdjustmentPreference(String.valueOf(calculationMethodByAddress), context);
+        updateCalculationMethodPreferenceByAddress(String.valueOf(calculationMethodByAddress));
+        updateTimingAdjustmentPreference(String.valueOf(calculationMethodByAddress));
 
         final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor defaultEditor = defaultSharedPreferences.edit();
@@ -151,39 +162,44 @@ public class PreferencesHelper {
         defaultEditor.apply();
     }
 
-    public static boolean isLocationSetManually(Context context) {
+    public boolean isLocationSetManually() {
         final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         return defaultSharedPreferences.getBoolean(PreferencesConstants.LOCATION_SET_MANUALLY_PREFERENCE, false);
     }
 
-    public static void setNightModeActivated(Context context, boolean activated) {
+    public void setNightModeActivated(boolean activated) {
         final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor edit = defaultSharedPreferences.edit();
         edit.putBoolean(PreferencesConstants.QURAN_NIGHT_MODE_ACTIVATED, activated);
         edit.apply();
     }
 
-    public static boolean isNightModeActivated(Context context) {
+    public boolean isNightModeActivated() {
         final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         return defaultSharedPreferences.getBoolean(PreferencesConstants.QURAN_NIGHT_MODE_ACTIVATED, false);
     }
 
-    public static Boolean isVibrationActivated(Context context) {
+    public Boolean isVibrationActivated() {
         final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         return defaultSharedPreferences.getBoolean(PreferencesConstants.ADHAN_VIBRATION_PREFERENCE, true);
     }
 
-    public static String getFajrAdhanCaller(Context context) {
+    public String getFajrAdhanCaller() {
         final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         return defaultSharedPreferences.getString(PreferencesConstants.ADTHAN_FAJR_CALLER, "SHORT_PRAYER_CALL");
     }
 
-    public static String getAdhanCaller(Context context) {
+    public String getAdhanCaller() {
         final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         return defaultSharedPreferences.getString(PreferencesConstants.ADTHAN_CALLER, "SHORT_PRAYER_CALL");
     }
 
-    public static void saveAutomaticBookmarkList(List<QuranBookmark> automaticBookmarks, Context context) {
+    public boolean isDouaeAfterAdhanEnabled() {
+        final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return defaultSharedPreferences.getBoolean(PreferencesConstants.DOUAE_AFTER_ADHAN_PREFERENCE, true);
+    }
+
+    public void saveAutomaticBookmarkList(List<QuranBookmark> automaticBookmarks) {
         final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor edit = defaultSharedPreferences.edit();
 
@@ -194,7 +210,7 @@ public class PreferencesHelper {
         edit.apply();
     }
 
-    public static List<QuranBookmark> getSortedAutomaticBookmarkList(Context context) {
+    public List<QuranBookmark> getSortedAutomaticBookmarkList() {
         final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         String listStr = defaultSharedPreferences.getString(PreferencesConstants.AUTOMATIC_BOOKMARK_LIST, null);
 
@@ -214,13 +230,13 @@ public class PreferencesHelper {
         return new ArrayList<>();
     }
 
-    private static boolean isCalculationPreferenceInitialized(Context context) {
+    private boolean isCalculationPreferenceInitialized() {
         final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         return defaultSharedPreferences.getBoolean(PreferencesConstants.CALCULATION_PREFERENCES_INITIALIZED, false);
     }
 
-    private static void updateCalculationMethodPreferenceByAddress(String methodName, Context context) {
-        if (!isCalculationPreferenceInitialized(context)) {
+    private void updateCalculationMethodPreferenceByAddress(String methodName) {
+        if (!isCalculationPreferenceInitialized()) {
             final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
             SharedPreferences.Editor defaultEditor = defaultSharedPreferences.edit();
             defaultEditor.putString(PreferencesConstants.TIMINGS_CALCULATION_METHOD_PREFERENCE, methodName);

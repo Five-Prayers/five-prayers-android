@@ -24,6 +24,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import static android.content.Context.DOWNLOAD_SERVICE;
 
 /**
@@ -44,9 +46,10 @@ public class QuranIndexViewModel extends AndroidViewModel {
     private final MutableLiveData<Boolean> mDownloadAndUnzipFinished;
     private final MutableLiveData<Boolean> mDownloadError;
     private final MutableLiveData<Boolean> mUnzipError;
+    private final QuranBookmarkRegistry quranBookmarkRegistry;
 
-
-    public QuranIndexViewModel(@NonNull Application application) {
+    @Inject
+    public QuranIndexViewModel(@NonNull Application application, QuranBookmarkRegistry quranBookmarkRegistry) {
         super(application);
         mSurahs = new MutableLiveData<>();
         mQuranPages = new MutableLiveData<>();
@@ -59,6 +62,8 @@ public class QuranIndexViewModel extends AndroidViewModel {
 
         mDownloadAndUnzipFinished = new MutableLiveData<>();
 
+        this.quranBookmarkRegistry = quranBookmarkRegistry;
+
         updateLiveData(application.getApplicationContext());
     }
 
@@ -69,7 +74,6 @@ public class QuranIndexViewModel extends AndroidViewModel {
         List<Surah> surahs = QuranParser.getInstance().getSurahs(context);
         mSurahs.postValue(surahs);
 
-        QuranBookmarkRegistry quranBookmarkRegistry = QuranBookmarkRegistry.getInstance(context);
         mQuranBookmarks.postValue(quranBookmarkRegistry.getAllBookmarks());
     }
 
@@ -137,15 +141,14 @@ public class QuranIndexViewModel extends AndroidViewModel {
                                 downloadedFile = new File(fullPath);
                             }
 
-                            Decompressor unzip = null;
+                            Decompressor unzip;
                             try {
                                 unzip = new Decompressor(downloadedFile, unzipDestinationFolder.getCanonicalPath());
+                                mDownloadAndUnzipFinished.postValue(unzip.unzip(mUnzipPercentage));
                             } catch (IOException e) {
                                 mDownloadError.postValue(true);
                                 Log.e(TAG, "Error while Unzipping Quran files : Cannot getCanonicalPath", e);
                             }
-
-                            mDownloadAndUnzipFinished.postValue(unzip.unzip(mUnzipPercentage));
 
                             if (downloadedFile.exists() && downloadedFile.delete()) {
                                 Log.i(TAG, "Temporary Quran zip file deleted");

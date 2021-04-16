@@ -1,9 +1,11 @@
-package com.hbouzidi.fiveprayers.common.api;
+package com.hbouzidi.fiveprayers.di.module;
 
+import android.app.Application;
 import android.os.Build;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.hbouzidi.fiveprayers.common.api.TLSSocketFactoryCompat;
 
 import java.security.KeyManagementException;
 import java.security.KeyStore;
@@ -14,11 +16,16 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import javax.inject.Named;
+import javax.inject.Singleton;
 import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
 
+import dagger.Module;
+import dagger.Provides;
+import okhttp3.Cache;
 import okhttp3.CipherSuite;
 import okhttp3.ConnectionSpec;
 import okhttp3.OkHttpClient;
@@ -32,23 +39,79 @@ import static com.hbouzidi.fiveprayers.BuildConfig.DEBUG;
  * Github : https://github.com/Five-Prayers/five-prayers-android
  * licenced under GPLv3 : https://www.gnu.org/licenses/gpl-3.0.en.html
  */
-public abstract class BaseAPIService {
+@Module
+public class NetworkModule {
 
-    protected String BASE_URL;
+    private final static String NOMINATIM_API_BASE_URL = "https://nominatim.openstreetmap.org/";
+    private final static String LUT_API_BASE_URL = "https://www.londonprayertimes.com/api/";
+    private final static String PHOTON_API_BASE_URL = "https://photon.komoot.de/api/";
 
-    protected Retrofit provideRetrofit() {
-        Gson gson = new GsonBuilder()
-                .setLenient()
-                .create();
+    public NetworkModule() {
+    }
 
+    @Named("nominatim_api")
+    @Provides
+    @Singleton
+    Retrofit provideNominatimApiRetrofit(Gson gson, @Named("nonCached") OkHttpClient okHttpClient) {
         return new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .client(provideOkHttpClient())
                 .addConverterFactory(GsonConverterFactory.create(gson))
+                .baseUrl(NOMINATIM_API_BASE_URL)
+                .client(okHttpClient)
                 .build();
     }
 
-    protected OkHttpClient provideOkHttpClient() {
+    @Named("adhan_api")
+    @Provides
+    @Singleton
+    Retrofit provideAdhanApiRetrofit(Gson gson, @Named("nonCached") OkHttpClient okHttpClient) {
+        return new Retrofit.Builder()
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .baseUrl(getAdhanAPIBaseUrl())
+                .client(okHttpClient)
+                .build();
+    }
+
+    @Named("lut_api")
+    @Provides
+    @Singleton
+    Retrofit provideLUTApiRetrofit(Gson gson, @Named("nonCached") OkHttpClient okHttpClient) {
+        return new Retrofit.Builder()
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .baseUrl(LUT_API_BASE_URL)
+                .client(okHttpClient)
+                .build();
+    }
+
+    @Named("photon_api")
+    @Provides
+    @Singleton
+    Retrofit providePhotonApiRetrofit(Gson gson, @Named("cached") OkHttpClient okHttpClient) {
+        return new Retrofit.Builder()
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .baseUrl(PHOTON_API_BASE_URL)
+                .client(okHttpClient)
+                .build();
+    }
+
+    @Provides
+    @Singleton
+    Gson provideGson() {
+        return new GsonBuilder()
+                .setLenient()
+                .create();
+    }
+
+    @Provides
+    @Singleton
+    Cache provideOkHttpCache(Application application) {
+        int cacheSize = 10 * 1024 * 1024; // 10 MiB
+        return new Cache(application.getCacheDir(), cacheSize);
+    }
+
+    @Named("nonCached")
+    @Provides
+    @Singleton
+    OkHttpClient provideNonCachedOkHttpClient() {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
@@ -60,6 +123,29 @@ public abstract class BaseAPIService {
                 .build();
     }
 
+    @Named("cached")
+    @Provides
+    @Singleton
+    OkHttpClient provideCachedOkHttpClient(Cache cache) {
+        OkHttpClient.Builder builder = new OkHttpClient.Builder();
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            enableModernTLS(builder);
+        }
+
+        return builder
+                .readTimeout(30, TimeUnit.SECONDS)
+                .cache(cache)
+                .build();
+    }
+
+
+    private String getAdhanAPIBaseUrl() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            return "http://api.aladhan.com/v1/";
+        }
+        return "https://api.aladhan.com/v1/";
+    }
 
     /**
      * Enable TLS 1.2 and 1.1 on Android Kitkat. This function is mostly taken
@@ -112,4 +198,6 @@ public abstract class BaseAPIService {
             }
         }
     }
+
+
 }

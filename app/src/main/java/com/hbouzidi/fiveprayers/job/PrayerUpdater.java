@@ -83,7 +83,7 @@ public class PrayerUpdater extends RxWorker {
                                 ));
 
         return dayPrayerSingle
-                .doOnSuccess(prayerAlarmScheduler::scheduleNextPrayerAlarms)
+                .doOnSuccess(prayerAlarmScheduler::scheduleAlarmsAndReminders)
                 .doAfterSuccess(dayPrayer -> widgetUpdater.updateHomeScreenWidget())
                 .map(dayPrayer -> {
                     Log.i(TAG, "Prayers alarm updated successfully");

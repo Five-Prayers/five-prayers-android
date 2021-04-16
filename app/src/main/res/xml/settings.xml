@@ -47,15 +47,28 @@
 
         <CheckBoxPreference
             android:layout="@layout/custom_switch_preference"
+            android:key="DOUAE_AFTER_ADHAN_PREFERENCE"
+            android:title="@string/title_douae_adhan_preference"
+            android:defaultValue="true" />
+
+        <CheckBoxPreference
+            android:layout="@layout/custom_switch_preference"
             android:key="ADHAN_VIBRATION_PREFERENCE"
             android:title="@string/title_adhan_vibration_preference"
             android:defaultValue="true" />
 
         <CheckBoxPreference
             android:layout="@layout/custom_switch_preference"
-            android:key="DOUAE_AFTER_ADHAN_PREFERENCE"
-            android:title="@string/title_douae_adhan_preference"
+            android:key="ADTHAN_REMINDER_ENABLED"
+            android:title="@string/title_adhan_reminder_preference"
             android:defaultValue="true" />
+
+        <com.hbouzidi.fiveprayers.ui.settings.adhan.AdhanReminderPreference
+            android:layout="@layout/custom_preference"
+            android:dependency="ADTHAN_REMINDER_ENABLED"
+            android:dialogTitle="@string/title_adhan_reminder_interval_preference"
+            android:key="ADTHAN_REMINDER_INTERVAL"
+            android:title="@string/title_adhan_reminder_interval_preference" />
     </PreferenceCategory>
 
     <PreferenceCategory

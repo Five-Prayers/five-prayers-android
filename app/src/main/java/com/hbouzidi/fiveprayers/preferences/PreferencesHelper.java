@@ -199,6 +199,16 @@ public class PreferencesHelper {
         return defaultSharedPreferences.getBoolean(PreferencesConstants.DOUAE_AFTER_ADHAN_PREFERENCE, true);
     }
 
+    public boolean isReminderEnabled() {
+        final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return defaultSharedPreferences.getBoolean(PreferencesConstants.ADTHAN_REMINDER_ENABLED, true);
+    }
+
+    public int getReminderInterval() {
+        final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return defaultSharedPreferences.getInt(PreferencesConstants.ADTHAN_REMINDER_INTERVAL, 10);
+    }
+
     public void saveAutomaticBookmarkList(List<QuranBookmark> automaticBookmarks) {
         final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor edit = defaultSharedPreferences.edit();

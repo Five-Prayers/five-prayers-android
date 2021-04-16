@@ -168,6 +168,8 @@
     <string name="title_edit_text_location_preference">الموقع الحالي</string>
     <string name="title_adhan_vibration_preference">تفعيل الاهتزاز</string>
     <string name="title_douae_adhan_preference">تفعيل الدعاء بعد الأذان</string>
+    <string name="title_adhan_reminder_preference">تفعيل التذكير قبل الأذان</string>
+    <string name="title_adhan_reminder_interval_preference">الفاصل الزمني للتذكير(دقائق)</string>
     <string name="dialog_title_edit_text_location_preference">ابحث عن مدينتك</string>
     <string name="title_prayer_timings_section">طرق الحساب</string>
     <string name="title_calculation_method_preference">طريقة حساب تقويم الصلاة</string>
@@ -206,6 +208,7 @@
     <string name="midnight_mode_adjustment_method_jafari">الجعفري (منتصف الغروب في الفجر)</string>
     <string name="title_midnight_mode_adjustment_method">حساب منتصف الليل</string>
     <string name="adthan_notification_title">حان وقت الصلاة</string>
+    <string name="adthan_reminder_notification_title">اقترب وقت الصلاة</string>
     <string name="adthan_notification_close_action_title">كتم صوت الأذان وإغلاقه</string>
 
     <!--   Errors Messages    -->

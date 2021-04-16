@@ -31,12 +31,12 @@ import com.hbouzidi.fiveprayers.network.NetworkUtil;
 import com.hbouzidi.fiveprayers.notifier.NotifierJobService;
 import com.hbouzidi.fiveprayers.preferences.PreferencesConstants;
 import com.hbouzidi.fiveprayers.timings.DayPrayer;
-import com.hbouzidi.fiveprayers.utils.AlertHelper;
 import com.hbouzidi.fiveprayers.ui.clock.AnalogClock;
+import com.hbouzidi.fiveprayers.ui.widget.WidgetUpdater;
+import com.hbouzidi.fiveprayers.utils.AlertHelper;
 import com.hbouzidi.fiveprayers.utils.PrayerUtils;
 import com.hbouzidi.fiveprayers.utils.TimingUtils;
 import com.hbouzidi.fiveprayers.utils.UiUtils;
-import com.hbouzidi.fiveprayers.ui.widget.WidgetUpdater;
 import com.mikhaellopez.circularprogressbar.CircularProgressBar;
 
 import org.apache.commons.lang3.StringUtils;
@@ -61,6 +61,9 @@ public class HomeFragment extends Fragment {
 
     @Inject
     ViewModelProvider.Factory viewModelFactory;
+
+    @Inject
+    WidgetUpdater widgetUpdater;
 
     private LocalDateTime todayDate;
     private CountDownTimer TimeRemainingCTimer;
@@ -145,7 +148,7 @@ public class HomeFragment extends Fragment {
             updateTimingsTextViews(dayPrayer);
             startNotifierService(dayPrayer);
 
-            WidgetUpdater.updateHomeScreenWidget(requireContext());
+            widgetUpdater.updateHomeScreenWidget();
 
             skeleton.showOriginal();
         });

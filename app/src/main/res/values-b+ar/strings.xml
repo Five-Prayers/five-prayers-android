@@ -167,6 +167,7 @@
     <string name="title_checkbox_location_preference">أدخل موقعك يدويًا</string>
     <string name="title_edit_text_location_preference">الموقع الحالي</string>
     <string name="title_adhan_vibration_preference">تفعيل الاهتزاز</string>
+    <string name="title_douae_adhan_preference">تفعيل الدعاء بعد الأذان</string>
     <string name="dialog_title_edit_text_location_preference">ابحث عن مدينتك</string>
     <string name="title_prayer_timings_section">طرق الحساب</string>
     <string name="title_calculation_method_preference">طريقة حساب تقويم الصلاة</string>

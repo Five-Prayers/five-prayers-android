@@ -12,13 +12,10 @@ import android.media.AudioAttributes;
 import android.os.Build;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
-import android.support.v4.media.session.MediaSessionCompat;
-import android.support.v4.media.session.PlaybackStateCompat;
 
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
-import androidx.media.VolumeProviderCompat;
 
 import com.hbouzidi.fiveprayers.R;
 import com.hbouzidi.fiveprayers.common.PrayerEnum;
@@ -134,31 +131,8 @@ class PrayerNotification {
         boolean callEnabled = sharedPreferences.getBoolean(callPreferenceKey, false);
 
         if (callEnabled) {
-            adhanPlayer.playAdhan(context, PrayerEnum.FAJR.toString().equals(prayerKey));
-            setMediaSession();
+            adhanPlayer.playAdhan(PrayerEnum.FAJR.toString().equals(prayerKey));
         }
-    }
-
-    private void setMediaSession() {
-        MediaSessionCompat mediaSession = new MediaSessionCompat(context, "PrayerNotification");
-        mediaSession.setPlaybackState(new PlaybackStateCompat.Builder()
-                .setState(PlaybackStateCompat.STATE_PLAYING, 0, 0)
-                .build());
-
-        VolumeProviderCompat myVolumeProvider =
-                new VolumeProviderCompat(VolumeProviderCompat.VOLUME_CONTROL_RELATIVE, 100, 50) {
-                    @Override
-                    public void onAdjustVolume(int direction) {
-                        if (direction == -1) {
-                            adhanPlayer.stopAdhan();
-                        }
-                        mediaSession.release();
-                    }
-                };
-        mediaSession.setPlaybackToRemote(myVolumeProvider);
-        mediaSession.setActive(true);
-
-        adhanPlayer.setOnCompletionListener(mp -> mediaSession.release());
     }
 
     private void createVibration() {

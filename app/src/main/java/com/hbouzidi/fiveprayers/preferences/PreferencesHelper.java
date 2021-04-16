@@ -194,6 +194,11 @@ public class PreferencesHelper {
         return defaultSharedPreferences.getString(PreferencesConstants.ADTHAN_CALLER, "SHORT_PRAYER_CALL");
     }
 
+    public boolean isDouaeAfterAdhanEnabled() {
+        final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return defaultSharedPreferences.getBoolean(PreferencesConstants.DOUAE_AFTER_ADHAN_PREFERENCE, true);
+    }
+
     public void saveAutomaticBookmarkList(List<QuranBookmark> automaticBookmarks) {
         final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor edit = defaultSharedPreferences.edit();

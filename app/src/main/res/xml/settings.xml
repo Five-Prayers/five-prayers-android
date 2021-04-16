@@ -50,6 +50,12 @@
             android:key="ADHAN_VIBRATION_PREFERENCE"
             android:title="@string/title_adhan_vibration_preference"
             android:defaultValue="true" />
+
+        <CheckBoxPreference
+            android:layout="@layout/custom_switch_preference"
+            android:key="DOUAE_AFTER_ADHAN_PREFERENCE"
+            android:title="@string/title_douae_adhan_preference"
+            android:defaultValue="true" />
     </PreferenceCategory>
 
     <PreferenceCategory

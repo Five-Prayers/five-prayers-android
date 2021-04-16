@@ -79,6 +79,7 @@ Five Prayers Android is not Google Framework dependent, so this app can be used 
 * Automatic or Manual location
 * Notification for prayer times 
 * Reads Adhan for prayer times
+* Read Dua after Adhan
 * Switches Adhan to Silent by pressing down volume button
 * Month Prayer times table
 * Qibla direction compass from [Android Qibla Direction](https://github.com/hassaanjamil/hj-android-lib-qibla-direction)

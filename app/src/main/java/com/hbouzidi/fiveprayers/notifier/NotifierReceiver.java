@@ -20,6 +20,9 @@ public class NotifierReceiver extends BroadcastReceiver {
     @Inject
     PrayerNotification prayerNotification;
 
+    @Inject
+    WidgetUpdater widgetUpdater;
+
     @Override
     public void onReceive(Context context, Intent intent) {
         ((FivePrayerApplication) context.getApplicationContext())
@@ -29,6 +32,6 @@ public class NotifierReceiver extends BroadcastReceiver {
         prayerNotification.createNotificationChannel();
         prayerNotification.createNotification(intent);
 
-        WidgetUpdater.updateHomeScreenWidget(context);
+        widgetUpdater.updateHomeScreenWidget();
     }
 }

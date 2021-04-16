@@ -8,14 +8,25 @@ import android.widget.RemoteViews;
 
 import com.hbouzidi.fiveprayers.R;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
 /**
  * @author Hicham Bouzidi Idrissi
  * Github : https://github.com/Five-Prayers/five-prayers-android
  * licenced under GPLv3 : https://www.gnu.org/licenses/gpl-3.0.en.html
  */
+@Singleton
 public class WidgetUpdater {
 
-    public static void updateHomeScreenWidget(Context context) {
+    private final Context context;
+
+    @Inject
+    public WidgetUpdater(Context context) {
+        this.context = context;
+    }
+
+    public void updateHomeScreenWidget() {
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.home_screen_widget);
 

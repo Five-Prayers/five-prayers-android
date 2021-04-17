@@ -62,8 +62,9 @@
     <string name="app_intro_permission_denied_dialog_title">إعلام</string>
     <string name="app_intro_permission_denied_dialog_message">لقد رفضت للتو السماح للتطبيق بالوصول إلى موقعك. تحتاج إلى إدخال مدينتك يدويًا في شاشة الإعدادات.</string>
 
-    <string name="SUNRISE">الشروق</string>
     <string name="FAJR">الصبح (الفجر)</string>
+    <string name="SUNRISE">الشروق</string>
+    <string name="DOHA">الضحى</string>
     <string name="DHOHR">الظهر</string>
     <string name="ASR">العصر</string>
     <string name="MAGHRIB">المغرب</string>
@@ -168,6 +169,9 @@
     <string name="title_edit_text_location_preference">الموقع الحالي</string>
     <string name="title_adhan_vibration_preference">تفعيل الاهتزاز</string>
     <string name="title_douae_adhan_preference">تفعيل الدعاء بعد الأذان</string>
+    <string name="title_adhan_reminder_preference">تفعيل التذكير قبل الأذان</string>
+    <string name="title_doha_reminder_preference">تفعيل تذكير صلاة الضحى</string>
+    <string name="title_adhan_reminder_interval_preference">الفاصل الزمني للتذكير(دقائق)</string>
     <string name="dialog_title_edit_text_location_preference">ابحث عن مدينتك</string>
     <string name="title_prayer_timings_section">طرق الحساب</string>
     <string name="title_calculation_method_preference">طريقة حساب تقويم الصلاة</string>
@@ -206,6 +210,8 @@
     <string name="midnight_mode_adjustment_method_jafari">الجعفري (منتصف الغروب في الفجر)</string>
     <string name="title_midnight_mode_adjustment_method">حساب منتصف الليل</string>
     <string name="adthan_notification_title">حان وقت الصلاة</string>
+    <string name="adthan_reminder_notification_title">اقترب وقت الصلاة</string>
+    <string name="complementary_timing_reminder_notification_title">%s دخل الآن وقت صلاة</string>
     <string name="adthan_notification_close_action_title">كتم صوت الأذان وإغلاقه</string>
 
     <!--   Errors Messages    -->

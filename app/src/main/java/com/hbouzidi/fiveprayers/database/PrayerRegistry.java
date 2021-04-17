@@ -38,6 +38,7 @@ import javax.inject.Singleton;
 public class PrayerRegistry {
 
     private final DatabaseHelper databaseHelper;
+    private final static int DOHA_INTERVAL = 15;
 
     @Inject
     public PrayerRegistry(Context context) {
@@ -289,10 +290,13 @@ public class PrayerRegistry {
         timings.put(PrayerEnum.MAGHRIB, TimingUtils.transformTimingToDate(maghribTiming, dateStr, TimingUtils.isBeforeOnSameDay(maghribTiming, dohrTiming)));
         timings.put(PrayerEnum.ICHA, TimingUtils.transformTimingToDate(ichaTiming, dateStr, TimingUtils.isBeforeOnSameDay(ichaTiming, dohrTiming)));
 
-        complementaryTiming.put(ComplementaryTimingEnum.SUNRISE, TimingUtils.transformTimingToDate(sunriseTiming, dateStr, false));
+        LocalDateTime sunriseTime = TimingUtils.transformTimingToDate(sunriseTiming, dateStr, false);
+
+        complementaryTiming.put(ComplementaryTimingEnum.SUNRISE, sunriseTime);
         complementaryTiming.put(ComplementaryTimingEnum.SUNSET, TimingUtils.transformTimingToDate(sunsetTiming, dateStr, TimingUtils.isBeforeOnSameDay(ichaTiming, dohrTiming)));
         complementaryTiming.put(ComplementaryTimingEnum.MIDNIGHT, TimingUtils.transformTimingToDate(midnightTiming, dateStr, TimingUtils.isBeforeOnSameDay(midnightTiming, dohrTiming)));
         complementaryTiming.put(ComplementaryTimingEnum.IMSAK, TimingUtils.transformTimingToDate(imsakTiming, dateStr, false));
+        complementaryTiming.put(ComplementaryTimingEnum.DOHA, sunriseTime.plusMinutes(DOHA_INTERVAL));
 
         dayPrayer.setTimings(timings);
         dayPrayer.setComplementaryTiming(complementaryTiming);

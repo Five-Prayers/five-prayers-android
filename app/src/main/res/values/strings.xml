@@ -64,8 +64,9 @@
     <string name="title_calendar">Prayer Calendar</string>
     <string name="desc_calendar_view_title">Monthly Prayer table</string>
 
-    <string name="SUNRISE">Sunrise</string>
     <string name="FAJR">As`Sobh (Fajr)</string>
+    <string name="SUNRISE">Sunrise</string>
+    <string name="DOHA">Ad`Dhuha</string>
     <string name="DHOHR">Ad`Dohr</string>
     <string name="ASR">Al Asr</string>
     <string name="MAGHRIB">Al Maghreb</string>
@@ -168,6 +169,9 @@
     <string name="title_checkbox_location_preference">Set location manually</string>
     <string name="title_adhan_vibration_preference">Enable vibration</string>
     <string name="title_douae_adhan_preference">Enable dua after Adhan</string>
+    <string name="title_adhan_reminder_preference">Enable reminder before Adhan</string>
+    <string name="title_doha_reminder_preference">Enable reminder for Ad`Dhuha prayer</string>
+    <string name="title_adhan_reminder_interval_preference">Reminder interval (min)</string>
     <string name="title_edit_text_location_preference">Actual location</string>
     <string name="dialog_title_edit_text_location_preference">Search your City</string>
     <string name="title_prayer_timings_section">Prayer timings calculation</string>
@@ -208,7 +212,9 @@
     <string name="midnight_mode_adjustment_method_standard">Default (Mid Sunset to Sunrise)</string>
     <string name="midnight_mode_adjustment_method_jafari">Jafari (Mid Sunset to Fajr)</string>
     <string name="title_midnight_mode_adjustment_method">Midnight mode</string>
-    <string name="adthan_notification_title">It\'s time for prayer</string>
+    <string name="adthan_notification_title">It\'s time to pray</string>
+    <string name="adthan_reminder_notification_title">The time for the next prayer is near</string>
+    <string name="complementary_timing_reminder_notification_title">Now is the time for %s prayer</string>
     <string name="adthan_notification_close_action_title">Silent and close</string>
 
     <!--   User Messages    -->
@@ -240,7 +246,7 @@
     <string name="quran">The Noble Quran</string>
     <string name="desc_quran">Recite the Holy Quran</string>
     <string name="title_checkbox_quran_night_mode">Night Mode</string>
-    <string name="title_notification_section">Notification</string>
+    <string name="title_notification_section">Notifications</string>
     <string name="dialog_title_fajr_adhan">Select Fajr Adhan</string>
     <string name="dialog_title_adhan">Select Adhan</string>
 

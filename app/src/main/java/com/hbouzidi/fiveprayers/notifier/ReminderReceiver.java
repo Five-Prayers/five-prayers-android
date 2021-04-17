@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.hbouzidi.fiveprayers.FivePrayerApplication;
-import com.hbouzidi.fiveprayers.ui.widget.WidgetUpdater;
 
 import javax.inject.Inject;
 
@@ -15,13 +14,10 @@ import javax.inject.Inject;
  * licenced under GPLv3 : https://www.gnu.org/licenses/gpl-3.0.en.html
  */
 
-public class NotifierReceiver extends BroadcastReceiver {
+public class ReminderReceiver extends BroadcastReceiver {
 
     @Inject
-    PrayerNotification prayerNotification;
-
-    @Inject
-    WidgetUpdater widgetUpdater;
+    ReminderNotification reminderNotification;
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -29,9 +25,7 @@ public class NotifierReceiver extends BroadcastReceiver {
                 .receiverComponent
                 .inject(this);
 
-        prayerNotification.createNotificationChannel();
-        prayerNotification.createNotification(intent);
-
-        widgetUpdater.updateHomeScreenWidget();
+        reminderNotification.createNotificationChannel();
+        reminderNotification.createNotification(intent);
     }
 }

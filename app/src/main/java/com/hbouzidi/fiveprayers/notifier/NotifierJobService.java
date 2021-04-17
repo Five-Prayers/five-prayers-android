@@ -37,7 +37,7 @@ public class NotifierJobService extends JobIntentService {
     @Override
     public void onHandleWork(@NonNull Intent intent) {
         DayPrayer dayPrayer = (DayPrayer) intent.getSerializableExtra("dayPrayer");
-        prayerAlarmScheduler.scheduleNextPrayerAlarms(Objects.requireNonNull(dayPrayer));
+        prayerAlarmScheduler.scheduleAlarmsAndReminders(Objects.requireNonNull(dayPrayer));
     }
 
     public static void enqueueWork(Context context, Intent intent) {

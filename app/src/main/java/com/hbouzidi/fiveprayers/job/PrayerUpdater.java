@@ -16,6 +16,7 @@ import com.hbouzidi.fiveprayers.preferences.PreferencesHelper;
 import com.hbouzidi.fiveprayers.timings.DayPrayer;
 import com.hbouzidi.fiveprayers.timings.TimingServiceFactory;
 import com.hbouzidi.fiveprayers.timings.TimingsService;
+import com.hbouzidi.fiveprayers.ui.widget.WidgetUpdater;
 
 import java.time.LocalDate;
 
@@ -38,6 +39,8 @@ public class PrayerUpdater extends RxWorker {
     private final TimingServiceFactory timingServiceFactory;
     private final PrayerAlarmScheduler prayerAlarmScheduler;
     private final PreferencesHelper preferencesHelper;
+    private final WidgetUpdater widgetUpdater;
+
     private int runAttemptCount = 0;
 
     @Inject
@@ -47,7 +50,8 @@ public class PrayerUpdater extends RxWorker {
                          @NonNull AddressHelper addressHelper,
                          @NonNull TimingServiceFactory timingServiceFactory,
                          @NonNull PrayerAlarmScheduler prayerAlarmScheduler,
-                         @NonNull PreferencesHelper PreferencesHelper
+                         @NonNull PreferencesHelper PreferencesHelper,
+                         @NonNull WidgetUpdater widgetUpdater
     ) {
         super(context, params);
         this.context = context;
@@ -55,7 +59,8 @@ public class PrayerUpdater extends RxWorker {
         this.addressHelper = addressHelper;
         this.timingServiceFactory = timingServiceFactory;
         this.prayerAlarmScheduler = prayerAlarmScheduler;
-        preferencesHelper = PreferencesHelper;
+        this.preferencesHelper = PreferencesHelper;
+        this.widgetUpdater = widgetUpdater;
 
         Log.i(TAG, "Prayer Updater Initialized");
     }
@@ -78,7 +83,8 @@ public class PrayerUpdater extends RxWorker {
                                 ));
 
         return dayPrayerSingle
-                .doOnSuccess(prayerAlarmScheduler::scheduleNextPrayerAlarms)
+                .doOnSuccess(prayerAlarmScheduler::scheduleAlarmsAndReminders)
+                .doAfterSuccess(dayPrayer -> widgetUpdater.updateHomeScreenWidget())
                 .map(dayPrayer -> {
                     Log.i(TAG, "Prayers alarm updated successfully");
                     return Result.success();
@@ -103,21 +109,24 @@ public class PrayerUpdater extends RxWorker {
         private final Provider<AddressHelper> addressHelperProvider;
         private final Provider<TimingServiceFactory> timingServiceFactoryProvider;
         private final Provider<PrayerAlarmScheduler> prayerAlarmSchedulerProvider;
-        private final Provider<PreferencesHelper> PreferencesHelperProvider;
+        private final Provider<PreferencesHelper> preferencesHelperProvider;
+        private final Provider<WidgetUpdater> widgetUpdaterProvider;
 
         @Inject
         public Factory(Provider<LocationHelper> locationHelperProvider,
                        Provider<AddressHelper> addressHelperProvider,
                        Provider<TimingServiceFactory> timingServiceFactoryProvider,
                        Provider<PrayerAlarmScheduler> prayerAlarmSchedulerProvider,
-                       Provider<PreferencesHelper> PreferencesHelperProvider
+                       Provider<PreferencesHelper> preferencesHelperProvider,
+                       Provider<WidgetUpdater> widgetUpdaterProvider
         ) {
 
             this.locationHelperProvider = locationHelperProvider;
             this.addressHelperProvider = addressHelperProvider;
             this.timingServiceFactoryProvider = timingServiceFactoryProvider;
             this.prayerAlarmSchedulerProvider = prayerAlarmSchedulerProvider;
-            this.PreferencesHelperProvider = PreferencesHelperProvider;
+            this.preferencesHelperProvider = preferencesHelperProvider;
+            this.widgetUpdaterProvider = widgetUpdaterProvider;
         }
 
         @Override
@@ -128,7 +137,8 @@ public class PrayerUpdater extends RxWorker {
                     addressHelperProvider.get(),
                     timingServiceFactoryProvider.get(),
                     prayerAlarmSchedulerProvider.get(),
-                    PreferencesHelperProvider.get()
+                    preferencesHelperProvider.get(),
+                    widgetUpdaterProvider.get()
             );
         }
     }

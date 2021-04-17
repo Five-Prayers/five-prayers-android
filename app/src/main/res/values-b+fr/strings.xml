@@ -64,8 +64,9 @@
     <string name="app_intro_permission_denied_dialog_title">Information</string>
     <string name="app_intro_permission_denied_dialog_message">Vous venez de refuser que l\'application accède à votre position. vous devez saisir manuellement votre ville dans l\'écran des paramètres.</string>
 
-    <string name="SUNRISE">Chorouk</string>
     <string name="FAJR">As`Sobh (Fajr)</string>
+    <string name="SUNRISE">Chorouk</string>
+    <string name="DOHA">Ad`Doha</string>
     <string name="DHOHR">Ad`Dohr</string>
     <string name="ASR">Al Asr</string>
     <string name="MAGHRIB">Al Maghreb</string>
@@ -172,6 +173,7 @@
     <string name="title_douae_adhan_preference">Activer Douaa après Adhan</string>
     <string name="title_adhan_reminder_preference">Activer le rappel avant Adhan</string>
     <string name="title_adhan_reminder_interval_preference">Intervalle de rappel (min)</string>
+    <string name="title_doha_reminder_preference">Activer le rappel pour la prière Ad`Doha</string>
     <string name="dialog_title_edit_text_location_preference">Rechercher votre ville</string>
     <string name="title_prayer_timings_section">Calcul des prières</string>
     <string name="title_calculation_method_preference">Méthode de calcul</string>
@@ -213,6 +215,7 @@
     <string name="title_midnight_mode_adjustment_method">Calcul du minuit</string>
     <string name="adthan_notification_title">Il est temps de prier</string>
     <string name="adthan_reminder_notification_title">L\'heure de la prochaine prière est proche</string>
+    <string name="complementary_timing_reminder_notification_title">Le moment est venu pour la prière de %s</string>
     <string name="adthan_notification_close_action_title">Couper le son et fermer</string>
 
     <!--   User Messages    -->

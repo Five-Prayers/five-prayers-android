@@ -22,6 +22,7 @@ public class PreferencesConstants {
     public static final String ADTHAN_CALLS_SHARED_PREFERENCES = "ADTHAN_CALLS";
     public static final String ADTHAN_CALL_ENABLED_KEY = "_ADTHAN_CALL_ENABLED";
     public static final String ADTHAN_REMINDER_ENABLED = "ADTHAN_REMINDER_ENABLED";
+    public static final String DOHA_TIMING_REMINDER_ENABLED = "DOHA_TIMING_REMINDER_ENABLED";
     public static final String ADTHAN_REMINDER_INTERVAL = "ADTHAN_REMINDER_INTERVAL";
     public static final String ADTHAN_CALLER = "ADHAN_CALLER";
     public static final String ADTHAN_FAJR_CALLER = "ADHAN_FAJR_CALLER";

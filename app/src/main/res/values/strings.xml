@@ -64,8 +64,9 @@
     <string name="title_calendar">Prayer Calendar</string>
     <string name="desc_calendar_view_title">Monthly Prayer table</string>
 
-    <string name="SUNRISE">Sunrise</string>
     <string name="FAJR">As`Sobh (Fajr)</string>
+    <string name="SUNRISE">Sunrise</string>
+    <string name="DOHA">Ad`Dhuha</string>
     <string name="DHOHR">Ad`Dohr</string>
     <string name="ASR">Al Asr</string>
     <string name="MAGHRIB">Al Maghreb</string>
@@ -169,6 +170,7 @@
     <string name="title_adhan_vibration_preference">Enable vibration</string>
     <string name="title_douae_adhan_preference">Enable dua after Adhan</string>
     <string name="title_adhan_reminder_preference">Enable reminder before Adhan</string>
+    <string name="title_doha_reminder_preference">Enable reminder for Ad`Dhuha prayer</string>
     <string name="title_adhan_reminder_interval_preference">Reminder interval (min)</string>
     <string name="title_edit_text_location_preference">Actual location</string>
     <string name="dialog_title_edit_text_location_preference">Search your City</string>
@@ -212,6 +214,7 @@
     <string name="title_midnight_mode_adjustment_method">Midnight mode</string>
     <string name="adthan_notification_title">It\'s time to pray</string>
     <string name="adthan_reminder_notification_title">The time for the next prayer is near</string>
+    <string name="complementary_timing_reminder_notification_title">Now is the time for %s prayer</string>
     <string name="adthan_notification_close_action_title">Silent and close</string>
 
     <!--   User Messages    -->

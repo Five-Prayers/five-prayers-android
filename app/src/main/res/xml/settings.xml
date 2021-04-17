@@ -59,6 +59,12 @@
 
         <CheckBoxPreference
             android:layout="@layout/custom_switch_preference"
+            android:key="DOHA_TIMING_REMINDER_ENABLED"
+            android:title="@string/title_doha_reminder_preference"
+            android:defaultValue="false" />
+
+        <CheckBoxPreference
+            android:layout="@layout/custom_switch_preference"
             android:key="ADTHAN_REMINDER_ENABLED"
             android:title="@string/title_adhan_reminder_preference"
             android:defaultValue="true" />

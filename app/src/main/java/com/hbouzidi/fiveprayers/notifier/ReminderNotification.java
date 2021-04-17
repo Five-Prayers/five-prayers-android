@@ -17,6 +17,7 @@ import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
 
 import com.hbouzidi.fiveprayers.R;
+import com.hbouzidi.fiveprayers.common.TimingType;
 import com.hbouzidi.fiveprayers.preferences.PreferencesHelper;
 import com.hbouzidi.fiveprayers.ui.MainActivity;
 
@@ -63,6 +64,9 @@ class ReminderNotification {
     }
 
     public void createNotification(Intent intent) {
+        String notificationTitle;
+
+        String prayerType = intent.getStringExtra("prayerType");
         int notificationId = intent.getIntExtra("notificationId", 0);
         String prayerTiming = intent.getStringExtra("prayerTiming");
         String prayerKey = intent.getStringExtra("prayerKey");
@@ -74,10 +78,16 @@ class ReminderNotification {
 
         PendingIntent pendingIntent = getNotificationIntent();
 
+        if (prayerType != null && prayerType.equals(TimingType.COMPLEMENTARY.toString())) {
+            notificationTitle = context.getString(R.string.complementary_timing_reminder_notification_title, prayerName);
+        } else {
+            notificationTitle = context.getString(R.string.adthan_reminder_notification_title);
+        }
+
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, NotifierConstants.ADTHAN_NOTIFICATION_CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_mosque_24dp)
                 .setColor(ContextCompat.getColor(context, R.color.colorPrimary))
-                .setContentTitle(context.getString(R.string.adthan_reminder_notification_title))
+                .setContentTitle(notificationTitle)
                 .setStyle(new NotificationCompat.BigTextStyle().bigText(prayerName + " : " + prayerTiming + " (" + prayerCity + ")"))
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true);

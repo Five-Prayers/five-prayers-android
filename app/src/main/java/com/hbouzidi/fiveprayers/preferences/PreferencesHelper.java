@@ -199,6 +199,11 @@ public class PreferencesHelper {
         return defaultSharedPreferences.getBoolean(PreferencesConstants.DOUAE_AFTER_ADHAN_PREFERENCE, true);
     }
 
+    public boolean isDohaReminderEnabled() {
+        final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return defaultSharedPreferences.getBoolean(PreferencesConstants.DOHA_TIMING_REMINDER_ENABLED, false);
+    }
+
     public boolean isReminderEnabled() {
         final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         return defaultSharedPreferences.getBoolean(PreferencesConstants.ADTHAN_REMINDER_ENABLED, true);

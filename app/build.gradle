@@ -26,8 +26,8 @@ android {
         applicationId "com.hbouzidi.fiveprayers"
         minSdkVersion 16
         targetSdkVersion 30
-        versionCode 20
-        versionName "2.1.0"
+        versionCode 21
+        versionName "2.1.1"
         archivesBaseName = "$applicationId-v$versionCode($versionName)"
 
         vectorDrawables.useSupportLibrary = true

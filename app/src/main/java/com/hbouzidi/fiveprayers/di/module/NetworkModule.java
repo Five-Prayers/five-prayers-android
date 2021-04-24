@@ -1,7 +1,13 @@
 package com.hbouzidi.fiveprayers.di.module;
 
 import android.app.Application;
+import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Build;
+import android.util.Log;
+
+import androidx.core.content.pm.PackageInfoCompat;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -29,6 +35,7 @@ import okhttp3.Cache;
 import okhttp3.CipherSuite;
 import okhttp3.ConnectionSpec;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -41,6 +48,8 @@ import static com.hbouzidi.fiveprayers.BuildConfig.DEBUG;
  */
 @Module
 public class NetworkModule {
+
+    private final static String TAG = "NetworkModule";
 
     private final static String NOMINATIM_API_BASE_URL = "https://nominatim.openstreetmap.org/";
     private final static String LUT_API_BASE_URL = "https://www.londonprayertimes.com/api/";
@@ -111,7 +120,7 @@ public class NetworkModule {
     @Named("nonCached")
     @Provides
     @Singleton
-    OkHttpClient provideNonCachedOkHttpClient() {
+    OkHttpClient provideNonCachedOkHttpClient(Context context) {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
@@ -119,6 +128,17 @@ public class NetworkModule {
         }
 
         return builder
+                .addInterceptor(chain -> {
+                    Request original = chain.request();
+
+                    Request request = original.newBuilder()
+                            .header("User-Agent", buildUserAgent(context))
+                            .header("content-type", "application/json")
+                            .method(original.method(), original.body())
+                            .build();
+
+                    return chain.proceed(request);
+                })
                 .readTimeout(30, TimeUnit.SECONDS)
                 .build();
     }
@@ -139,6 +159,55 @@ public class NetworkModule {
                 .build();
     }
 
+    private String buildUserAgent(Context context) {
+
+        return "Five Prayers Android" +
+                " / " +
+                getVersionName(context) +
+                "(" +
+                getVersionCode(context) +
+                ")" +
+                "; " +
+                getInstallerPackageName(context) +
+                "; " +
+                "(" +
+                Build.MANUFACTURER +
+                "; " +
+                Build.MODEL +
+                "; SDK " +
+                Build.VERSION.SDK_INT +
+                "; Android" +
+                Build.VERSION.RELEASE;
+    }
+
+    private String getInstallerPackageName(Context context) {
+        PackageManager manager = context.getPackageManager();
+        String installerPackageName = manager.getInstallerPackageName(context.getPackageName());
+
+        return installerPackageName != null ? installerPackageName : "StandAloneInstall";
+    }
+
+    private String getVersionName(Context context) {
+        PackageManager manager = context.getPackageManager();
+        try {
+            PackageInfo info = manager.getPackageInfo(context.getPackageName(), 0);
+            return info.versionName;
+        } catch (PackageManager.NameNotFoundException e) {
+            Log.e(TAG, "Cannot get version name", e);
+            return "Unknown-versionName";
+        }
+    }
+
+    private String getVersionCode(Context context) {
+        PackageManager manager = context.getPackageManager();
+        try {
+            PackageInfo info = manager.getPackageInfo(context.getPackageName(), 0);
+            return String.valueOf(PackageInfoCompat.getLongVersionCode(info));
+        } catch (PackageManager.NameNotFoundException e) {
+            Log.e(TAG, "Cannot get version code", e);
+            return "Unknown-versionCode";
+        }
+    }
 
     private String getAdhanAPIBaseUrl() {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
@@ -198,6 +267,4 @@ public class NetworkModule {
             }
         }
     }
-
-
 }

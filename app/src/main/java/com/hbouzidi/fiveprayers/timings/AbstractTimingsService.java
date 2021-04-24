@@ -61,10 +61,14 @@ public abstract class AbstractTimingsService implements TimingsService {
                             retrieveAndSaveTimings(localDate, address, context);
                             prayerTimings = getSavedPrayerTimings(localDate, address);
 
-                            emitter.onSuccess(prayerTimings);
+                            if (prayerTimings != null) {
+                                emitter.onSuccess(prayerTimings);
+                            } else {
+                                emitter.onError(new Exception("Cannot retrieve timings from API"));
+                            }
 
                         } catch (IOException e) {
-                            Log.e(TAG, "Cannot retrieve timing from API", e);
+                            Log.e(TAG, "Cannot retrieve timings from API", e);
                             emitter.onError(e);
                         }
                     }

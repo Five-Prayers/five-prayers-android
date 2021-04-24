@@ -47,15 +47,6 @@ platform :android do
     desc "- Submit a new Internal Build to Play Store"
     desc "- Commit and push the version bump"
     lane :release do
-        # Make sure we start off with a clean slate
-        ensure_git_status_clean
-
-        # Increment version code
-        increment_version_code(app_project_dir: '**/app')
-
-        # Increment version name
-        increment_version_name(app_project_dir: '**/app', bump_type: 'patch')
-
         # Build bundle and apk
         gradle( task: 'assemble', build_type: 'Release')
         gradle( task: 'bundle', build_type: 'Release')

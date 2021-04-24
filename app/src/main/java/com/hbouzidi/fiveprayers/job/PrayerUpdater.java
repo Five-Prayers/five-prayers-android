@@ -76,11 +76,7 @@ public class PrayerUpdater extends RxWorker {
                 locationHelper.getLocation()
                         .flatMap(addressHelper::getAddressFromLocation)
                         .flatMap(address ->
-                                timingsService.getTimingsByCity(
-                                        LocalDate.now(),
-                                        address,
-                                        context
-                                ));
+                                timingsService.getTimingsByCity(LocalDate.now(), address));
 
         return dayPrayerSingle
                 .doOnSuccess(prayerAlarmScheduler::scheduleAlarmsAndReminders)

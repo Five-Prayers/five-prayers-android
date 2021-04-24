@@ -84,11 +84,7 @@ public class HomeViewModel extends AndroidViewModel {
                 locationHelper.getLocation()
                         .flatMap(addressHelper::getAddressFromLocation)
                         .flatMap(address ->
-                                timingsService.getTimingsByCity(
-                                        todayDate,
-                                        address,
-                                        context
-                                ))
+                                timingsService.getTimingsByCity(todayDate, address))
                         .subscribeOn(AndroidSchedulers.mainThread())
                         .subscribeWith(new DisposableSingleObserver<DayPrayer>() {
                             @Override

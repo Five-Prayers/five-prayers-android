@@ -1,6 +1,5 @@
 package com.hbouzidi.fiveprayers.timings.aladhan;
 
-import android.content.Context;
 import android.location.Address;
 
 import com.hbouzidi.fiveprayers.database.PrayerRegistry;
@@ -31,7 +30,7 @@ public class AladhanTimingsService extends AbstractTimingsService {
         this.aladhanAPIService = aladhanAPIService;
     }
 
-    protected void retrieveAndSaveTimings(LocalDate localDate, Address address, Context context) throws IOException {
+    protected void retrieveAndSaveTimings(LocalDate localDate, Address address) throws IOException {
         TimingsPreferences timingsPreferences = getTimingsPreferences();
 
         AladhanTodayTimingsResponse timingsByCity =
@@ -60,7 +59,7 @@ public class AladhanTimingsService extends AbstractTimingsService {
         }
     }
 
-    protected void retrieveAndSaveCalendar(Address address, int month, int year, Context context) throws IOException {
+    protected void retrieveAndSaveCalendar(Address address, int month, int year) throws IOException {
         TimingsPreferences timingsPreferences = getTimingsPreferences();
 
         AladhanCalendarResponse CalendarByCity =

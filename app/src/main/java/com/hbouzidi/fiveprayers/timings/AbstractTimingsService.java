@@ -1,6 +1,5 @@
 package com.hbouzidi.fiveprayers.timings;
 
-import android.content.Context;
 import android.location.Address;
 import android.util.Log;
 
@@ -35,13 +34,11 @@ public abstract class AbstractTimingsService implements TimingsService {
         this.preferencesHelper = preferencesHelper;
     }
 
-    protected abstract void retrieveAndSaveTimings(LocalDate localDate, Address address, Context context) throws IOException;
+    protected abstract void retrieveAndSaveTimings(LocalDate localDate, Address address) throws IOException;
 
-    protected abstract void retrieveAndSaveCalendar(Address address, int month, int year, Context context) throws IOException;
+    protected abstract void retrieveAndSaveCalendar(Address address, int month, int year) throws IOException;
 
-    public Single<DayPrayer> getTimingsByCity(final LocalDate localDate,
-                                              final Address address,
-                                              final Context context) {
+    public Single<DayPrayer> getTimingsByCity(final LocalDate localDate, final Address address) {
 
         return Single.create(emitter -> {
             Thread thread = new Thread(() -> {
@@ -58,7 +55,7 @@ public abstract class AbstractTimingsService implements TimingsService {
                         emitter.onSuccess(prayerTimings);
                     } else {
                         try {
-                            retrieveAndSaveTimings(localDate, address, context);
+                            retrieveAndSaveTimings(localDate, address);
                             prayerTimings = getSavedPrayerTimings(localDate, address);
 
                             if (prayerTimings != null) {
@@ -78,10 +75,7 @@ public abstract class AbstractTimingsService implements TimingsService {
         });
     }
 
-    public Single<List<DayPrayer>> getCalendarByCity(
-            final Address address,
-            int month, int year,
-            final Context context) {
+    public Single<List<DayPrayer>> getCalendarByCity(final Address address, int month, int year) {
 
         return Single.create(emitter -> {
             Thread thread = new Thread(() -> {
@@ -97,7 +91,7 @@ public abstract class AbstractTimingsService implements TimingsService {
                         emitter.onSuccess(prayerCalendar);
                     } else {
                         try {
-                            retrieveAndSaveCalendar(address, month, year, context);
+                            retrieveAndSaveCalendar(address, month, year);
                             prayerCalendar = getSavedPrayerCalendar(address, month, year);
 
                             emitter.onSuccess(prayerCalendar);

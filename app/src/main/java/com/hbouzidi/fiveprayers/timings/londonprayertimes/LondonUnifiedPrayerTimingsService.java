@@ -47,7 +47,7 @@ public class LondonUnifiedPrayerTimingsService extends AbstractTimingsService {
     }
 
 
-    protected void retrieveAndSaveTimings(LocalDate localDate, Address address, Context context) throws IOException {
+    protected void retrieveAndSaveTimings(LocalDate localDate, Address address) throws IOException {
         TimingsPreferences timingsPreferences = getTimingsPreferences();
 
         AladhanTodayTimingsResponse timingsByCity =
@@ -80,7 +80,7 @@ public class LondonUnifiedPrayerTimingsService extends AbstractTimingsService {
         }
     }
 
-    protected void retrieveAndSaveCalendar(Address address, int month, int year, Context context) throws IOException {
+    protected void retrieveAndSaveCalendar(Address address, int month, int year) throws IOException {
         List<AladhanData> aladhanCalendarData = new ArrayList<>();
 
         TimingsPreferences timingsPreferences = getTimingsPreferences();

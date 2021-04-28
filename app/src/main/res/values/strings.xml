@@ -32,6 +32,7 @@
     <string name="common.sunset">Sunset</string>
     <string name="common.close">Close</string>
     <string name="common.license">license</string>
+    <string name="common.offline">Offline</string>
 
     <string name="app_name">Five Prayers</string>
     <string name="title_home">Prayers</string>

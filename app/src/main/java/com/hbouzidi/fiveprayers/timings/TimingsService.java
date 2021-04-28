@@ -14,10 +14,7 @@ import io.reactivex.rxjava3.core.Single;
  */
 public interface TimingsService {
 
-    Single<DayPrayer> getTimingsByCity(final LocalDate localDate,
-                                       final Address address);
+    Single<DayPrayer> getTimingsByCity(final LocalDate localDate, final Address address);
 
-    Single<List<DayPrayer>> getCalendarByCity(
-            final Address address,
-            int month, int year);
+    Single<List<DayPrayer>> getCalendarByCity(final Address address, int month, int year);
 }

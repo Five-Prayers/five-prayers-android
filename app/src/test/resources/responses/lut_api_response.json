@@ -1,0 +1,16 @@
+{
+  "city": "london",
+  "date": "2021-04-25",
+  "fajr": "04:06",
+  "fajr_jamat": "04:26",
+  "sunrise": "05:41",
+  "dhuhr": "13:03",
+  "dhuhr_jamat": "13:30",
+  "asr": "16:57",
+  "asr_2": "17:59",
+  "asr_jamat": "18:30",
+  "magrib": "20:17",
+  "magrib_jamat": "20:32",
+  "isha": "21:30",
+  "isha_jamat": "22:00"
+}

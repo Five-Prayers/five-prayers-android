@@ -1,10 +1,10 @@
 package com.hbouzidi.fiveprayers.calendar;
 
-import android.content.Context;
 import android.util.Log;
 
 import com.hbouzidi.fiveprayers.preferences.PreferencesHelper;
 import com.hbouzidi.fiveprayers.timings.aladhan.AladhanDate;
+import com.hbouzidi.fiveprayers.timings.offline.OfflineTimingsService;
 
 import java.io.IOException;
 import java.util.List;
@@ -23,18 +23,19 @@ import io.reactivex.rxjava3.core.Single;
 public class CalendarService {
 
     private final CalendarAPIService calendarAPIService;
+    private final OfflineTimingsService offlineTimingsService;
     private final PreferencesHelper preferencesHelper;
 
     @Inject
-    public CalendarService(CalendarAPIService calendarAPIService, PreferencesHelper preferencesHelper) {
+    public CalendarService(CalendarAPIService calendarAPIService,
+                           OfflineTimingsService offlineTimingsService,
+                           PreferencesHelper preferencesHelper) {
         this.calendarAPIService = calendarAPIService;
+        this.offlineTimingsService = offlineTimingsService;
         this.preferencesHelper = preferencesHelper;
     }
 
-    public Single<List<AladhanDate>> getHijriCalendar(final int month,
-                                                      final int year,
-                                                      final Context context) {
-
+    public Single<List<AladhanDate>> getHijriCalendar(final int month, final int year) {
         int hijriAdjustment = preferencesHelper.getHijriAdjustment();
 
         return Single.create(emitter -> {
@@ -45,13 +46,13 @@ public class CalendarService {
                     if (hijriCalendar != null) {
                         emitter.onSuccess(hijriCalendar.getData());
                     } else {
-                        emitter.onError(new Exception("Cannot get Hijri Calendar. Response was null"));
-                        Log.e(CalendarService.class.getName(), "Cannot get Hijri Calendar. Response was null");
+                        Log.i(CalendarService.class.getName(), "Offline calendar");
+                        emitter.onSuccess(offlineTimingsService.getHijriCalendar(month, year, hijriAdjustment));
                     }
 
                 } catch (IOException e) {
-                    Log.e(CalendarService.class.getName(), "Cannot get Hijri Calendar from API");
-                    emitter.onError(e);
+                    Log.i(CalendarService.class.getName(), "Offline calendar", e);
+                    emitter.onSuccess(offlineTimingsService.getHijriCalendar(month, year, hijriAdjustment));
                 }
             });
             thread.start();

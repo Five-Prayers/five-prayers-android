@@ -11,6 +11,13 @@ public class AladhanMonth {
     private String en;
     private String ar;
 
+    public AladhanMonth() {
+    }
+
+    public AladhanMonth(int number) {
+        this.number = String.valueOf(number);
+    }
+
     public String getNumber() {
         return number;
     }

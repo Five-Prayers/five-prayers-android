@@ -27,7 +27,6 @@ import com.hbouzidi.fiveprayers.R;
 import com.hbouzidi.fiveprayers.common.ComplementaryTimingEnum;
 import com.hbouzidi.fiveprayers.common.HijriHoliday;
 import com.hbouzidi.fiveprayers.common.PrayerEnum;
-import com.hbouzidi.fiveprayers.network.NetworkUtil;
 import com.hbouzidi.fiveprayers.notifier.NotifierJobService;
 import com.hbouzidi.fiveprayers.preferences.PreferencesConstants;
 import com.hbouzidi.fiveprayers.timings.DayPrayer;
@@ -102,8 +101,6 @@ public class HomeFragment extends Fragment {
     private String adhanCallKeyPart;
     private Skeleton skeleton;
 
-    private Disposable hasInternetDisposable;
-
     @Override
     public void onAttach(@NonNull Context context) {
         ((FivePrayerApplication) context.getApplicationContext())
@@ -159,11 +156,6 @@ public class HomeFragment extends Fragment {
             @Override
             public void onGlobalLayout() {
                 rootView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                hasInternetDisposable = NetworkUtil.hasInternetConnection().subscribe((hasInternet, throwable) -> {
-                    if (!hasInternet) {
-                        AlertHelper.displayAlertDialog(requireActivity(), getResources().getString(R.string.common_error), getResources().getString(R.string.network_unavailable));
-                    }
-                });
             }
         });
 
@@ -173,9 +165,6 @@ public class HomeFragment extends Fragment {
     @Override
     public void onDestroy() {
         cancelTimer();
-        if (hasInternetDisposable != null) {
-            hasInternetDisposable.dispose();
-        }
         super.onDestroy();
     }
 
@@ -312,10 +301,20 @@ public class HomeFragment extends Fragment {
 
         hijriTextView.setText(StringUtils.capitalize(hijriDate));
         gregorianTextView.setText(StringUtils.capitalize(gregorianDate));
-        String locationText = dayPrayer.getCity();
-        String country = dayPrayer.getCountry() + " (" + timezone + ")";
-        countryTextView.setText(StringUtils.capitalize(country));
-        locationTextView.setText(StringUtils.capitalize(locationText));
+
+        if (dayPrayer.getCountry() != null) {
+            String country = dayPrayer.getCountry() + " (" + timezone + ")";
+            countryTextView.setText(StringUtils.capitalize(country));
+        } else {
+            countryTextView.setText(StringUtils.capitalize(timezone));
+        }
+
+        if (dayPrayer.getCity() != null) {
+            String locationText = dayPrayer.getCity();
+            locationTextView.setText(StringUtils.capitalize(locationText));
+        } else {
+            locationTextView.setText(getString(R.string.common_offline));
+        }
 
         String methodKey = String.valueOf(dayPrayer.getCalculationMethodEnum()).toLowerCase();
         int id = getResources().getIdentifier("short_method_" + methodKey, "string", context.getPackageName());

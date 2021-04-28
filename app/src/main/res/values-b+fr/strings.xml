@@ -32,6 +32,7 @@
     <string name="common.sunset">Coucher du soleil</string>
     <string name="common.close">Fermer</string>
     <string name="common.license">Licence</string>
+    <string name="common.offline">Hors ligne</string>
 
     <string name="app_name">Cinq Prières</string>
     <string name="title_home">Prières</string>

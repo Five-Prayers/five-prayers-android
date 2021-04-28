@@ -199,6 +199,12 @@ dependencies {
     //https://github.com/yarolegovich/LovelyDialog
     implementation 'com.yarolegovich:lovely-dialog:1.1.1'
 
+    //https://github.com/batoulapps/adhan-java
+    implementation 'com.batoulapps.adhan:adhan:1.2.1'
+
+    //https://github.com/aminography/PrimeCalendar
+    implementation 'com.aminography:primecalendar:1.3.2'
+
     //Testing
     testImplementation 'junit:junit:4.13.1'
     testImplementation 'androidx.test:core:1.3.0'

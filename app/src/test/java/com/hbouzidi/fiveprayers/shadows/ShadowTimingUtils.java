@@ -1,6 +1,10 @@
-package com.hbouzidi.fiveprayers.utils;
+package com.hbouzidi.fiveprayers.shadows;
 
 import androidx.annotation.NonNull;
+
+import com.hbouzidi.fiveprayers.utils.TimingUtils;
+
+import org.robolectric.annotation.Implements;
 
 import java.time.Duration;
 import java.time.Instant;
@@ -22,13 +26,16 @@ import java.util.regex.Pattern;
  * Github : https://github.com/Five-Prayers/five-prayers-android
  * licenced under GPLv3 : https://www.gnu.org/licenses/gpl-3.0.en.html
  */
-public class TimingUtils {
+@Implements(TimingUtils.class)
+public class ShadowTimingUtils {
 
     public final static int DOHA_INTERVAL = 15;
     public static final String ADHAN_API_DEFAULT_FORMAT = "dd-MM-yyyy";
     public static final String LUT_API_DEFAULT_FORMAT = "yyyy-MM-dd";
     public static final String TIMING_DEFAULT_FORMAT = "HH:mm";
     public static final String DEFAULT_DATE_TIME_FORMAT = "dd-MM-yyyy HH:mm";
+
+    public static String TIMEZONE = "Europe/Paris";
 
     public static LocalDateTime transformTimingToDate(String timing, String dateStr, boolean timingAfterMidnight) {
         String[] timingParts = getTimingParts(timing);
@@ -140,19 +147,19 @@ public class TimingUtils {
 
     public static LocalDateTime convertToLocalDateTime(Date dateToConvert, ZoneId zone) {
         return Instant.ofEpochMilli(dateToConvert.getTime())
-                .atZone(zone)
+                .atZone(ZoneId.of(TIMEZONE))
                 .toLocalDateTime();
     }
 
     public static long getTimestampsFromLocalDateTime(LocalDateTime localDateTime, ZoneId zone) {
-        return localDateTime.atZone(zone).toEpochSecond();
+        return localDateTime.atZone(ZoneId.of(TIMEZONE)).toEpochSecond();
     }
 
     public static long getTimestampsFromLocalDate(LocalDate localDate, ZoneId zone) {
-        return getTimestampsFromLocalDateTime(LocalDateTime.of(localDate, LocalTime.of(0, 0)), zone);
+        return getTimestampsFromLocalDateTime(LocalDateTime.of(localDate, LocalTime.of(0, 0)), ZoneId.of(TIMEZONE));
     }
 
     public static String getDefaultTimeZone() {
-        return ZoneId.systemDefault().getId();
+        return TIMEZONE;
     }
 }

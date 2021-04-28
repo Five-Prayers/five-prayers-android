@@ -21,8 +21,10 @@ import com.hbouzidi.fiveprayers.utils.UserPreferencesUtils;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import javax.inject.Inject;
@@ -75,6 +77,25 @@ public class PreferencesHelper {
         int ichaTimingAdjustment = sharedPreferences.getInt(PreferencesConstants.ICHA_TIMING_ADJUSTMENT, 0);
 
         return fajrTimingAdjustment + "," + fajrTimingAdjustment + ",0," + dohrTimingAdjustment + "," + asrTimingAdjustment + "," + maghrebTimingAdjustment + ",0," + ichaTimingAdjustment + ",0";
+    }
+
+    public Map<String, Integer> getTuneMap() {
+        HashMap<String, Integer> map = new HashMap<>();
+        SharedPreferences sharedPreferences = context.getSharedPreferences(PreferencesConstants.TIMING_ADJUSTMENT, Context.MODE_PRIVATE);
+
+        int fajrTimingAdjustment = sharedPreferences.getInt(PreferencesConstants.FAJR_TIMING_ADJUSTMENT, 0);
+        int dohrTimingAdjustment = sharedPreferences.getInt(PreferencesConstants.DOHR_TIMING_ADJUSTMENT, 0);
+        int asrTimingAdjustment = sharedPreferences.getInt(PreferencesConstants.ASR_TIMING_ADJUSTMENT, 0);
+        int maghrebTimingAdjustment = sharedPreferences.getInt(PreferencesConstants.MAGHREB_TIMING_ADJUSTMENT, 0);
+        int ichaTimingAdjustment = sharedPreferences.getInt(PreferencesConstants.ICHA_TIMING_ADJUSTMENT, 0);
+
+        map.put(PreferencesConstants.FAJR_TIMING_ADJUSTMENT, fajrTimingAdjustment);
+        map.put(PreferencesConstants.DOHR_TIMING_ADJUSTMENT, dohrTimingAdjustment);
+        map.put(PreferencesConstants.ASR_TIMING_ADJUSTMENT, asrTimingAdjustment);
+        map.put(PreferencesConstants.MAGHREB_TIMING_ADJUSTMENT, maghrebTimingAdjustment);
+        map.put(PreferencesConstants.ICHA_TIMING_ADJUSTMENT, ichaTimingAdjustment);
+
+        return map;
     }
 
     public int getHijriAdjustment() {
@@ -157,7 +178,13 @@ public class PreferencesHelper {
 
         final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor defaultEditor = defaultSharedPreferences.edit();
-        defaultEditor.putString(PreferencesConstants.LOCATION_PREFERENCE, address.getLocality() + ", " + address.getCountryName());
+
+        if (address.getLocality() != null && address.getCountryName() != null) {
+            defaultEditor.putString(PreferencesConstants.LOCATION_PREFERENCE, address.getLocality() + ", " + address.getCountryName());
+        } else {
+            defaultEditor.putString(PreferencesConstants.LOCATION_PREFERENCE, address.getLatitude() + ", " + address.getLongitude());
+        }
+
         defaultEditor.putBoolean(PreferencesConstants.CALCULATION_PREFERENCES_INITIALIZED, true);
         defaultEditor.apply();
     }

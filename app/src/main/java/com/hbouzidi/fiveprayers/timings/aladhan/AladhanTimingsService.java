@@ -6,6 +6,7 @@ import com.hbouzidi.fiveprayers.database.PrayerRegistry;
 import com.hbouzidi.fiveprayers.preferences.PreferencesHelper;
 import com.hbouzidi.fiveprayers.timings.AbstractTimingsService;
 import com.hbouzidi.fiveprayers.timings.TimingsPreferences;
+import com.hbouzidi.fiveprayers.timings.offline.OfflineTimingsService;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -25,8 +26,11 @@ public class AladhanTimingsService extends AbstractTimingsService {
     protected String TAG = "AladhanTimingsService";
 
     @Inject
-    public AladhanTimingsService(AladhanAPIService aladhanAPIService, PrayerRegistry prayerRegistry, PreferencesHelper preferencesHelper) {
-        super(prayerRegistry, preferencesHelper);
+    public AladhanTimingsService(AladhanAPIService aladhanAPIService,
+                                 PrayerRegistry prayerRegistry,
+                                 OfflineTimingsService offlineTimingsService,
+                                 PreferencesHelper preferencesHelper) {
+        super(prayerRegistry, offlineTimingsService, preferencesHelper);
         this.aladhanAPIService = aladhanAPIService;
     }
 
@@ -35,6 +39,7 @@ public class AladhanTimingsService extends AbstractTimingsService {
 
         AladhanTodayTimingsResponse timingsByCity =
                 aladhanAPIService.getTimingsByLatLong(
+                        localDate,
                         address.getLatitude(),
                         address.getLongitude(),
                         timingsPreferences.getMethod(),
@@ -44,7 +49,7 @@ public class AladhanTimingsService extends AbstractTimingsService {
                         timingsPreferences.getHijriAdjustment(),
                         timingsPreferences.getTune());
 
-        if (timingsByCity != null) {
+        if (timingsByCity != null && address.getLocality() != null) {
             prayerRegistry.savePrayerTiming(localDate,
                     address.getLocality(),
                     address.getCountryName(),

@@ -180,8 +180,9 @@ public class CompassActivity extends AppCompatActivity {
                 SharedPreferences defaultSharedPreferences = PreferenceManagerFix.getDefaultSharedPreferences(this);
                 strYourLocation = getResources().getString(R.string.your_location) + " " +
                         defaultSharedPreferences.getString(PreferencesConstants.LOCATION_PREFERENCE, "");
-            } else
+            } else {
                 strYourLocation = getResources().getString(R.string.unable_to_get_your_location);
+            }
             tvYourLocation.setText(strYourLocation);
             String strKaabaDirection = String.format(Locale.ENGLISH, "%.0f", kaabaDegs)
                     + " " + getResources().getString(R.string.degree) + " " + getDirectionString(kaabaDegs);

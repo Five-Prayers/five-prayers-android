@@ -64,22 +64,15 @@ public class AddressHelper {
                             Address geocoderAddresses = getGeocoderAddresses(latitude, longitude, context);
                             if (geocoderAddresses != null) {
                                 emitter.onSuccess(geocoderAddresses);
-                            } else if (getNominatimAddress(latitude, longitude, context) != null) {
-                                emitter.onSuccess(Objects.requireNonNull(getNominatimAddress(latitude, longitude, context)));
-                            } else if (lastKnownAddress.getLocality() != null) {
-                                emitter.onSuccess(lastKnownAddress);
+                            } else if (getNominatimAddress(latitude, longitude) != null) {
+                                emitter.onSuccess(Objects.requireNonNull(getNominatimAddress(latitude, longitude)));
                             } else {
-                                Log.e(AddressHelper.class.getName(), "Unable connect to get address");
-                                emitter.onError(new LocationException(context.getResources().getString(R.string.enable_to_reverse_geolocalisation)));
+                                Log.i(AddressHelper.class.getName(), "Offline address");
+                                emitter.onSuccess(getOfflineAddress(latitude, longitude));
                             }
                         } catch (Exception e) {
-                            if (lastKnownAddress.getLocality() != null) {
-                                Log.i(AddressHelper.class.getName(), "Unable connect to get address from API, return last known", e);
-                                emitter.onSuccess(lastKnownAddress);
-                            } else {
-                                Log.e(AddressHelper.class.getName(), "Unable connect to get address from API", e);
-                                emitter.onError(new LocationException(context.getResources().getString(R.string.enable_to_reverse_geolocalisation)));
-                            }
+                            Log.i(AddressHelper.class.getName(), "Offline address");
+                            emitter.onSuccess(getOfflineAddress(latitude, longitude));
                         }
                     });
                     thread.start();
@@ -107,7 +100,7 @@ public class AddressHelper {
         return null;
     }
 
-    private Address getNominatimAddress(double latitude, double longitude, Context context) throws IOException {
+    private Address getNominatimAddress(double latitude, double longitude) throws IOException {
         NominatimReverseGeocodeResponse response = nominatimAPIService.getAddressFromLocation(latitude, longitude);
 
         if (response != null && response.getAddress() != null && response.getAddress().getCountry() != null && response.getAddress().getLocality() != null) {
@@ -128,8 +121,18 @@ public class AddressHelper {
         return null;
     }
 
+    private Address getOfflineAddress(double latitude, double longitude) {
+        Address address = new Address(Locale.getDefault());
+        address.setLatitude(latitude);
+        address.setLongitude(longitude);
+
+        preferencesHelper.updateAddressPreferences(address);
+
+        return address;
+    }
+
     private boolean isAddressObsolete(Address lastKnownAddress, double latitude, double longitude) {
-        if (lastKnownAddress.getLocality() != null) {
+        if (lastKnownAddress.getLocality() != null && lastKnownAddress.getCountryName() != null) {
 
             Location LastKnownLocation = new Location("");
             LastKnownLocation.setLatitude(lastKnownAddress.getLatitude());

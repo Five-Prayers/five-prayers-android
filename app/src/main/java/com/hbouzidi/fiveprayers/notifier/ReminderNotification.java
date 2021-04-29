@@ -84,11 +84,17 @@ class ReminderNotification {
             notificationTitle = context.getString(R.string.adthan_reminder_notification_title);
         }
 
+        String content = prayerName + " : " + prayerTiming;
+
+        if (prayerCity != null) {
+            content += " (" + prayerCity + ")";
+        }
+
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, NotifierConstants.ADTHAN_NOTIFICATION_CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_mosque_24dp)
                 .setColor(ContextCompat.getColor(context, R.color.colorPrimary))
                 .setContentTitle(notificationTitle)
-                .setStyle(new NotificationCompat.BigTextStyle().bigText(prayerName + " : " + prayerTiming + " (" + prayerCity + ")"))
+                .setStyle(new NotificationCompat.BigTextStyle().bigText(content))
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true);
 

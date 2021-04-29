@@ -83,11 +83,17 @@ class PrayerNotification {
 
         String closeActionTitle = context.getResources().getString(R.string.adthan_notification_close_action_title);
 
+        String content = prayerName + " : " + prayerTiming;
+
+        if (prayerCity != null) {
+            content += " (" + prayerCity + ")";
+        }
+
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, NotifierConstants.ADTHAN_NOTIFICATION_CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_mosque_24dp)
                 .setColor(ContextCompat.getColor(context, R.color.colorPrimary))
                 .setContentTitle(context.getString(R.string.adthan_notification_title))
-                .setStyle(new NotificationCompat.BigTextStyle().bigText(prayerName + " : " + prayerTiming + " (" + prayerCity + ")"))
+                .setStyle(new NotificationCompat.BigTextStyle().bigText(content))
                 .addAction(R.drawable.ic_notifications_24dp, closeActionTitle, getCloseNotificationActionIntent(notificationId))
                 .setDeleteIntent(createOnDismissedIntent(notificationId))
                 .setContentIntent(pendingIntent)

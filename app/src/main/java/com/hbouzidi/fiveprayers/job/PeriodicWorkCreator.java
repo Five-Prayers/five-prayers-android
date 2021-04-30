@@ -23,7 +23,7 @@ public final class PeriodicWorkCreator {
 
         PeriodicWorkRequest periodicWorkRequest =
                 new PeriodicWorkRequest
-                        .Builder(PrayerUpdater.class, 60, TimeUnit.MINUTES, 50, TimeUnit.MINUTES)
+                        .Builder(PrayerUpdater.class, 30, TimeUnit.MINUTES, 15, TimeUnit.MINUTES)
                         .setBackoffCriteria(
                                 BackoffPolicy.LINEAR,
                                 10,

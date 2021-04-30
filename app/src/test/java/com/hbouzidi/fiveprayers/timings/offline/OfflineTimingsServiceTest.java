@@ -41,7 +41,7 @@ import java.util.Locale;
  * licenced under GPLv3 : https://www.gnu.org/licenses/gpl-3.0.en.html
  */
 @RunWith(RobolectricTestRunner.class)
-@Config(minSdk = 18, maxSdk = 28, application = FakeFivePrayerApplication.class, shadows = {ShadowTimingUtils.class})
+@Config(minSdk = 28, maxSdk = 28, application = FakeFivePrayerApplication.class, shadows = {ShadowTimingUtils.class})
 public class OfflineTimingsServiceTest {
 
     Context applicationContext;

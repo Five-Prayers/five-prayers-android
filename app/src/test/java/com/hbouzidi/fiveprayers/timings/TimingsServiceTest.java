@@ -136,6 +136,7 @@ public class TimingsServiceTest {
 
                     Assertions.assertThat(dayPrayer.getComplementaryTiming().get(ComplementaryTimingEnum.SUNRISE).withNano(0)).isEqualTo(LocalDateTime.of(localDate, LocalTime.of(5, 44)));
                     Assertions.assertThat(dayPrayer.getComplementaryTiming().get(ComplementaryTimingEnum.DOHA).withNano(0)).isEqualTo(LocalDateTime.of(localDate, LocalTime.of(5, 59)));
+                    Assertions.assertThat(dayPrayer.getComplementaryTiming().get(ComplementaryTimingEnum.LAST_THIRD_OF_THE_NIGHT).withNano(0)).isEqualTo(LocalDateTime.of(localDate.plusDays(1), LocalTime.of(1, 0)));
 
                     return true;
                 });
@@ -182,6 +183,7 @@ public class TimingsServiceTest {
 
                     Assertions.assertThat(dayPrayer.getComplementaryTiming().get(ComplementaryTimingEnum.SUNRISE).withNano(0)).isEqualTo(LocalDateTime.of(localDate, LocalTime.of(5, 44)));
                     Assertions.assertThat(dayPrayer.getComplementaryTiming().get(ComplementaryTimingEnum.DOHA).withNano(0)).isEqualTo(LocalDateTime.of(localDate, LocalTime.of(5, 59)));
+                    Assertions.assertThat(dayPrayer.getComplementaryTiming().get(ComplementaryTimingEnum.LAST_THIRD_OF_THE_NIGHT).withNano(0)).isEqualTo(LocalDateTime.of(localDate.plusDays(1), LocalTime.of(0, 58)));
 
                     return true;
                 });
@@ -229,6 +231,7 @@ public class TimingsServiceTest {
 
                     Assertions.assertThat(dayPrayer.getComplementaryTiming().get(ComplementaryTimingEnum.SUNRISE).withNano(0)).isEqualTo(LocalDateTime.of(localDate, LocalTime.of(5, 44)));
                     Assertions.assertThat(dayPrayer.getComplementaryTiming().get(ComplementaryTimingEnum.DOHA).withNano(0)).isEqualTo(LocalDateTime.of(localDate, LocalTime.of(5, 59)));
+                    Assertions.assertThat(dayPrayer.getComplementaryTiming().get(ComplementaryTimingEnum.LAST_THIRD_OF_THE_NIGHT).withNano(0)).isEqualTo(LocalDateTime.of(localDate.plusDays(1), LocalTime.of(0, 58)));
 
                     return true;
                 });
@@ -280,6 +283,7 @@ public class TimingsServiceTest {
 
                     Assertions.assertThat(dayPrayer.getComplementaryTiming().get(ComplementaryTimingEnum.SUNRISE).withNano(0)).isEqualTo(LocalDateTime.of(localDate, LocalTime.of(5, 41)));
                     Assertions.assertThat(dayPrayer.getComplementaryTiming().get(ComplementaryTimingEnum.DOHA).withNano(0)).isEqualTo(LocalDateTime.of(localDate, LocalTime.of(5, 56)));
+                    Assertions.assertThat(dayPrayer.getComplementaryTiming().get(ComplementaryTimingEnum.LAST_THIRD_OF_THE_NIGHT).withNano(0)).isEqualTo(LocalDateTime.of(localDate.plusDays(1), LocalTime.of(1, 29)));
 
                     return true;
                 });
@@ -332,6 +336,7 @@ public class TimingsServiceTest {
 
                     Assertions.assertThat(dayPrayer.getComplementaryTiming().get(ComplementaryTimingEnum.SUNRISE).withNano(0)).isEqualTo(LocalDateTime.of(localDate, LocalTime.of(5, 44)));
                     Assertions.assertThat(dayPrayer.getComplementaryTiming().get(ComplementaryTimingEnum.DOHA).withNano(0)).isEqualTo(LocalDateTime.of(localDate, LocalTime.of(5, 59)));
+                    Assertions.assertThat(dayPrayer.getComplementaryTiming().get(ComplementaryTimingEnum.LAST_THIRD_OF_THE_NIGHT).withNano(0)).isEqualTo(LocalDateTime.of(localDate.plusDays(1), LocalTime.of(0, 58)).withNano(0));
 
                     return true;
                 });
@@ -379,6 +384,7 @@ public class TimingsServiceTest {
 
                     Assertions.assertThat(dayPrayer.getComplementaryTiming().get(ComplementaryTimingEnum.SUNRISE).withNano(0)).isEqualTo(LocalDateTime.of(localDate, LocalTime.of(5, 42)));
                     Assertions.assertThat(dayPrayer.getComplementaryTiming().get(ComplementaryTimingEnum.DOHA).withNano(0)).isEqualTo(LocalDateTime.of(localDate, LocalTime.of(5, 57)));
+                    Assertions.assertThat(dayPrayer.getComplementaryTiming().get(ComplementaryTimingEnum.LAST_THIRD_OF_THE_NIGHT).withNano(0)).isEqualTo(LocalDateTime.of(localDate.plusDays(1), LocalTime.of(1, 4)));
 
                     return true;
                 });
@@ -426,6 +432,7 @@ public class TimingsServiceTest {
 
                     Assertions.assertThat(dayPrayer.getComplementaryTiming().get(ComplementaryTimingEnum.SUNRISE).withNano(0)).isEqualTo(LocalDateTime.of(localDate, LocalTime.of(5, 42)));
                     Assertions.assertThat(dayPrayer.getComplementaryTiming().get(ComplementaryTimingEnum.DOHA).withNano(0)).isEqualTo(LocalDateTime.of(localDate, LocalTime.of(5, 57)));
+                    Assertions.assertThat(dayPrayer.getComplementaryTiming().get(ComplementaryTimingEnum.LAST_THIRD_OF_THE_NIGHT).withNano(0)).isEqualTo(LocalDateTime.of(localDate.plusDays(1), LocalTime.of(1, 5)));
 
                     return true;
                 });
@@ -477,6 +484,7 @@ public class TimingsServiceTest {
 
                     Assertions.assertThat(dayPrayer.getComplementaryTiming().get(ComplementaryTimingEnum.SUNRISE).withNano(0)).isEqualTo(LocalDateTime.of(localDate, LocalTime.of(5, 44)));
                     Assertions.assertThat(dayPrayer.getComplementaryTiming().get(ComplementaryTimingEnum.DOHA).withNano(0)).isEqualTo(LocalDateTime.of(localDate, LocalTime.of(5, 59)));
+                    Assertions.assertThat(dayPrayer.getComplementaryTiming().get(ComplementaryTimingEnum.LAST_THIRD_OF_THE_NIGHT).withNano(0)).isEqualTo(LocalDateTime.of(localDate.plusDays(1), LocalTime.of(1, 0)));
 
                     return true;
                 });
@@ -529,6 +537,7 @@ public class TimingsServiceTest {
 
                     Assertions.assertThat(dayPrayer.getComplementaryTiming().get(ComplementaryTimingEnum.SUNRISE).withNano(0)).isEqualTo(LocalDateTime.of(localDate, LocalTime.of(5, 44)));
                     Assertions.assertThat(dayPrayer.getComplementaryTiming().get(ComplementaryTimingEnum.DOHA).withNano(0)).isEqualTo(LocalDateTime.of(localDate, LocalTime.of(5, 59)));
+                    Assertions.assertThat(dayPrayer.getComplementaryTiming().get(ComplementaryTimingEnum.LAST_THIRD_OF_THE_NIGHT).withNano(0)).isEqualTo(LocalDateTime.of(localDate.plusDays(1), LocalTime.of(0, 58)));
 
                     return true;
                 });
@@ -581,6 +590,7 @@ public class TimingsServiceTest {
 
                     Assertions.assertThat(dayPrayer.getComplementaryTiming().get(ComplementaryTimingEnum.SUNRISE).withNano(0)).isEqualTo(LocalDateTime.of(localDate, LocalTime.of(5, 44)));
                     Assertions.assertThat(dayPrayer.getComplementaryTiming().get(ComplementaryTimingEnum.DOHA).withNano(0)).isEqualTo(LocalDateTime.of(localDate, LocalTime.of(5, 59)));
+                    Assertions.assertThat(dayPrayer.getComplementaryTiming().get(ComplementaryTimingEnum.LAST_THIRD_OF_THE_NIGHT).withNano(0)).isEqualTo(LocalDateTime.of(localDate.plusDays(1), LocalTime.of(0, 58)));
 
                     return true;
                 });
@@ -637,6 +647,7 @@ public class TimingsServiceTest {
 
                     Assertions.assertThat(dayPrayer.getComplementaryTiming().get(ComplementaryTimingEnum.SUNRISE).withNano(0)).isEqualTo(LocalDateTime.of(localDate, LocalTime.of(5, 41)));
                     Assertions.assertThat(dayPrayer.getComplementaryTiming().get(ComplementaryTimingEnum.DOHA).withNano(0)).isEqualTo(LocalDateTime.of(localDate, LocalTime.of(5, 56)));
+                    Assertions.assertThat(dayPrayer.getComplementaryTiming().get(ComplementaryTimingEnum.LAST_THIRD_OF_THE_NIGHT).withNano(0)).isEqualTo(LocalDateTime.of(localDate.plusDays(1), LocalTime.of(1, 29)));
 
                     return true;
                 });
@@ -693,6 +704,7 @@ public class TimingsServiceTest {
 
                     Assertions.assertThat(dayPrayer.getComplementaryTiming().get(ComplementaryTimingEnum.SUNRISE).withNano(0)).isEqualTo(LocalDateTime.of(localDate, LocalTime.of(5, 44)));
                     Assertions.assertThat(dayPrayer.getComplementaryTiming().get(ComplementaryTimingEnum.DOHA).withNano(0)).isEqualTo(LocalDateTime.of(localDate, LocalTime.of(5, 59)));
+                    Assertions.assertThat(dayPrayer.getComplementaryTiming().get(ComplementaryTimingEnum.LAST_THIRD_OF_THE_NIGHT).withNano(0)).isEqualTo(LocalDateTime.of(localDate.plusDays(1), LocalTime.of(0, 58)));
 
                     return true;
                 });

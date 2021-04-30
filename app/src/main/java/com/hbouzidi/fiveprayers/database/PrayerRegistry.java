@@ -21,6 +21,7 @@ import com.hbouzidi.fiveprayers.utils.TimingUtils;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -284,10 +285,13 @@ public class PrayerRegistry {
                 cursor.getInt(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_GREGORIAN_YEAR))
         );
 
-        timings.put(PrayerEnum.FAJR, TimingUtils.transformTimingToDate(fajrTiming, dateStr, false));
+        LocalDateTime fajrTime = TimingUtils.transformTimingToDate(fajrTiming, dateStr, false);
+        LocalDateTime maghribTime = TimingUtils.transformTimingToDate(maghribTiming, dateStr, TimingUtils.isBeforeOnSameDay(maghribTiming, dohrTiming));
+
+        timings.put(PrayerEnum.FAJR, fajrTime);
         timings.put(PrayerEnum.DHOHR, TimingUtils.transformTimingToDate(dohrTiming, dateStr, false));
         timings.put(PrayerEnum.ASR, TimingUtils.transformTimingToDate(asrTiming, dateStr, false));
-        timings.put(PrayerEnum.MAGHRIB, TimingUtils.transformTimingToDate(maghribTiming, dateStr, TimingUtils.isBeforeOnSameDay(maghribTiming, dohrTiming)));
+        timings.put(PrayerEnum.MAGHRIB, maghribTime);
         timings.put(PrayerEnum.ICHA, TimingUtils.transformTimingToDate(ichaTiming, dateStr, TimingUtils.isBeforeOnSameDay(ichaTiming, dohrTiming)));
 
         LocalDateTime sunriseTime = TimingUtils.transformTimingToDate(sunriseTiming, dateStr, false);
@@ -297,6 +301,7 @@ public class PrayerRegistry {
         complementaryTiming.put(ComplementaryTimingEnum.MIDNIGHT, TimingUtils.transformTimingToDate(midnightTiming, dateStr, TimingUtils.isBeforeOnSameDay(midnightTiming, dohrTiming)));
         complementaryTiming.put(ComplementaryTimingEnum.IMSAK, TimingUtils.transformTimingToDate(imsakTiming, dateStr, false));
         complementaryTiming.put(ComplementaryTimingEnum.DOHA, sunriseTime.plusMinutes(TimingUtils.DOHA_INTERVAL));
+        complementaryTiming.put(ComplementaryTimingEnum.LAST_THIRD_OF_THE_NIGHT, getLastThirdOfTheNight(fajrTime, maghribTime));
 
         dayPrayer.setTimings(timings);
         dayPrayer.setComplementaryTiming(complementaryTiming);
@@ -306,5 +311,11 @@ public class PrayerRegistry {
         dayPrayer.setLongitude(cursor.getDouble(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_LONGITUDE)));
 
         return dayPrayer;
+    }
+
+    private LocalDateTime getLastThirdOfTheNight(LocalDateTime fajrTime, LocalDateTime maghribTime) {
+        final long nightDurationInSeconds =  maghribTime.until(fajrTime.plus(1, ChronoUnit.DAYS), ChronoUnit.SECONDS);
+
+        return maghribTime.plus((long) (nightDurationInSeconds * (2.0 / 3.0)), ChronoUnit.SECONDS).withSecond(0).withNano(0);
     }
 }

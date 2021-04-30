@@ -11,6 +11,7 @@ import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -154,5 +155,17 @@ public class TimingUtils {
 
     public static String getDefaultTimeZone() {
         return ZoneId.systemDefault().getId();
+    }
+
+    public static LocalDateTime getLastThirdOfTheNight(LocalDateTime fajrTime, LocalDateTime maghribTime) {
+        final long nightDurationInSeconds = maghribTime.until(fajrTime.plus(1, ChronoUnit.DAYS), ChronoUnit.SECONDS);
+
+        LocalDateTime lastThirdOfTheNight = maghribTime.plus((long) (nightDurationInSeconds * (2.0 / 3.0)), ChronoUnit.SECONDS).withSecond(0).withNano(0);
+
+        if (lastThirdOfTheNight.toLocalDate().isAfter(maghribTime.toLocalDate())) {
+            return lastThirdOfTheNight.minus(1, ChronoUnit.DAYS);
+        }
+
+        return lastThirdOfTheNight;
     }
 }

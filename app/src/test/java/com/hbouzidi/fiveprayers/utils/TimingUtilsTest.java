@@ -1,5 +1,6 @@
 package com.hbouzidi.fiveprayers.utils;
 
+import org.assertj.core.api.Assertions;
 import org.junit.Test;
 
 import java.text.ParseException;
@@ -163,5 +164,32 @@ public class TimingUtilsTest {
         long timestamps = TimingUtils.getTimestampsFromLocalDateTime(LocalDateTime.of(2021, 4, 25, 19, 7), ZoneId.of("Europe/Paris"));
 
         assertEquals(1619370420, timestamps);
+    }
+
+    @Test
+    public void getLastThirdOfTheNight() {
+        LocalDateTime fajr1 = LocalDateTime.of(2021, 5, 13, 3, 0);
+        LocalDateTime maghrib1 = LocalDateTime.of(2021, 5, 13, 19, 0);
+
+        LocalDateTime lastThirdOfTheNight1 = TimingUtils.getLastThirdOfTheNight(fajr1, maghrib1);
+        Assertions.assertThat(lastThirdOfTheNight1).isEqualTo(LocalDateTime.of(2021, 5, 13, 0, 20));
+
+        LocalDateTime fajr2 = LocalDateTime.of(2021, 5, 13, 2, 0);
+        LocalDateTime maghrib2 = LocalDateTime.of(2021, 5, 13, 18, 0);
+
+        LocalDateTime lastThirdOfTheNight2 = TimingUtils.getLastThirdOfTheNight(fajr2, maghrib2);
+        Assertions.assertThat(lastThirdOfTheNight2).isEqualTo(LocalDateTime.of(2021, 5, 13, 23, 20));
+
+        LocalDateTime fajr3 = LocalDateTime.of(2021, 5, 13, 2, 0);
+        LocalDateTime maghrib3 = LocalDateTime.of(2021, 5, 13, 21, 0);
+
+        LocalDateTime lastThirdOfTheNight3 = TimingUtils.getLastThirdOfTheNight(fajr3, maghrib3);
+        Assertions.assertThat(lastThirdOfTheNight3).isEqualTo(LocalDateTime.of(2021, 5, 13, 0, 20));
+
+        LocalDateTime fajr4 = LocalDateTime.of(2021, 5, 13, 6, 0);
+        LocalDateTime maghrib4 = LocalDateTime.of(2021, 5, 13, 18, 0);
+
+        LocalDateTime lastThirdOfTheNight4 = TimingUtils.getLastThirdOfTheNight(fajr4, maghrib4);
+        Assertions.assertThat(lastThirdOfTheNight4).isEqualTo(LocalDateTime.of(2021, 5, 13, 2, 0));
     }
 }

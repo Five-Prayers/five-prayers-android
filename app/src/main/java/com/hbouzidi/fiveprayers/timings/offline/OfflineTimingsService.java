@@ -34,6 +34,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -169,19 +170,22 @@ public class OfflineTimingsService {
 
         dayPrayer.setCalculationMethodEnum(internalMethod);
 
-        timings.put(PrayerEnum.FAJR, TimingUtils.convertToLocalDateTime(prayerTimes.fajr, ZoneId.systemDefault()));
+        LocalDateTime fajrTime = TimingUtils.convertToLocalDateTime(prayerTimes.fajr, ZoneId.systemDefault());
+        LocalDateTime maghribTime = TimingUtils.convertToLocalDateTime(prayerTimes.maghrib, ZoneId.systemDefault());
+
+        timings.put(PrayerEnum.FAJR, fajrTime);
         timings.put(PrayerEnum.DHOHR, TimingUtils.convertToLocalDateTime(prayerTimes.dhuhr, ZoneId.systemDefault()));
         timings.put(PrayerEnum.ASR, TimingUtils.convertToLocalDateTime(prayerTimes.asr, ZoneId.systemDefault()));
-        timings.put(PrayerEnum.MAGHRIB, TimingUtils.convertToLocalDateTime(prayerTimes.maghrib, ZoneId.systemDefault()));
+        timings.put(PrayerEnum.MAGHRIB, maghribTime);
         timings.put(PrayerEnum.ICHA, TimingUtils.convertToLocalDateTime(prayerTimes.isha, ZoneId.systemDefault()));
 
         SunnahTimes sunnahTimes = new SunnahTimes(prayerTimes);
 
         complementaryTiming.put(ComplementaryTimingEnum.SUNRISE, TimingUtils.convertToLocalDateTime(prayerTimes.sunrise, ZoneId.systemDefault()));
-        complementaryTiming.put(ComplementaryTimingEnum.SUNSET, TimingUtils.convertToLocalDateTime(prayerTimes.maghrib, ZoneId.systemDefault()));
+        complementaryTiming.put(ComplementaryTimingEnum.SUNSET, maghribTime);
         complementaryTiming.put(ComplementaryTimingEnum.DOHA, TimingUtils.convertToLocalDateTime(prayerTimes.sunrise, ZoneId.systemDefault()).plusMinutes(TimingUtils.DOHA_INTERVAL));
         complementaryTiming.put(ComplementaryTimingEnum.MIDNIGHT, TimingUtils.convertToLocalDateTime(sunnahTimes.middleOfTheNight, ZoneId.systemDefault()));
-        complementaryTiming.put(ComplementaryTimingEnum.LAST_THIRD_OF_THE_NIGHT, TimingUtils.convertToLocalDateTime(sunnahTimes.lastThirdOfTheNight, ZoneId.systemDefault()));
+        complementaryTiming.put(ComplementaryTimingEnum.LAST_THIRD_OF_THE_NIGHT, TimingUtils.getLastThirdOfTheNight(fajrTime, maghribTime));
 
         dayPrayer.setTimings(timings);
         dayPrayer.setComplementaryTiming(complementaryTiming);

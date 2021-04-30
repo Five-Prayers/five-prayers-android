@@ -3,31 +3,31 @@
   "status": "OK",
   "data": {
     "timings": {
-      "Fajr": "03:17",
-      "Sunrise": "05:20",
-      "Dhuhr": "12:02",
-      "Asr": "15:43",
-      "Sunset": "18:46",
-      "Maghrib": "18:46",
-      "Isha": "20:41",
-      "Imsak": "03:07",
-      "Midnight": "00:03"
+      "Fajr": "04:03",
+      "Sunrise": "05:42",
+      "Dhuhr": "12:25",
+      "Asr": "16:07",
+      "Sunset": "19:08",
+      "Maghrib": "19:08",
+      "Isha": "20:38",
+      "Imsak": "03:53",
+      "Midnight": "00:25"
     },
     "date": {
-      "readable": "08 Apr 2021",
-      "timestamp": "1617864876",
+      "readable": "27 Apr 2021",
+      "timestamp": "1619510344",
       "hijri": {
-        "date": "25-08-1442",
+        "date": "15-09-1442",
         "format": "DD-MM-YYYY",
-        "day": "25",
+        "day": "15",
         "weekday": {
-          "en": "Al Khamees",
-          "ar": "\u0627\u0644\u062e\u0645\u064a\u0633"
+          "en": "Al Thalaata",
+          "ar": "\u0627\u0644\u062b\u0644\u0627\u062b\u0627\u0621"
         },
         "month": {
-          "number": 8,
-          "en": "Sha\u02bfb\u0101n",
-          "ar": "\u0634\u064e\u0639\u0652\u0628\u0627\u0646"
+          "number": 9,
+          "en": "Rama\u1e0d\u0101n",
+          "ar": "\u0631\u064e\u0645\u064e\u0636\u0627\u0646"
         },
         "year": "1442",
         "designation": {
@@ -37,11 +37,11 @@
         "holidays": []
       },
       "gregorian": {
-        "date": "08-04-2021",
+        "date": "27-04-2021",
         "format": "DD-MM-YYYY",
-        "day": "08",
+        "day": "27",
         "weekday": {
-          "en": "Thursday"
+          "en": "Tuesday"
         },
         "month": {
           "number": 4,
@@ -55,15 +55,15 @@
       }
     },
     "meta": {
-      "latitude": 51.5073886,
-      "longitude": -0.1276878,
-      "timezone": "GMT",
+      "latitude": 33.9715904,
+      "longitude": -6.8498129,
+      "timezone": "Africa\/Casablanca",
       "method": {
-        "id": 3,
-        "name": "Muslim World League",
+        "id": 8,
+        "name": "Gulf Region",
         "params": {
-          "Fajr": 18,
-          "Isha": 17
+          "Fajr": 19.5,
+          "Isha": "90 min"
         }
       },
       "latitudeAdjustmentMethod": "ANGLE_BASED",

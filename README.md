@@ -43,7 +43,7 @@ Five Prayers Android is not Google Framework dependent, so this app can be used 
 
 ### Features
 
-* Worldwide Prayer Times
+* Worldwide Prayer Times (Online and Offline)
 
 * <details>
   <summary>Different prayer times calculation methods based on <a href="https://aladhan.com">Aladhan.com</a> API</summary>
@@ -169,7 +169,8 @@ Please keep use of this code for non-profit purposes only. Also, please note tha
 * [LovelyDialog](https://github.com/yarolegovich/LovelyDialog)
 * [Android Qibla Direction](https://github.com/hassaanjamil/hj-android-lib-qibla-direction)
 * [Quran Android](https://github.com/quran/quran_android)
-* [NewPipe](https://github.com/TeamNewPipe/NewPipe)
+* [PrimeCalendar](https://github.com/aminography/PrimeCalendar)
+* [Adhan Java](https://github.com/batoulapps/adhan-java)
 
 ## License
 [![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](http://www.gnu.org/licenses/gpl-3.0.en.html)  

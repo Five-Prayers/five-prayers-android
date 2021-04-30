@@ -42,7 +42,16 @@ public class TimingTableActivity extends AppCompatActivity {
         ).attach();
 
         SharedPreferences sharedPreferences = getSharedPreferences(PreferencesConstants.LOCATION, MODE_PRIVATE);
-        String toolBarTitle = getString(R.string.calendar_view_title) + " " + sharedPreferences.getString(PreferencesConstants.LAST_KNOWN_LOCALITY, "");
+
+        String lastKnownLocality = sharedPreferences.getString(PreferencesConstants.LAST_KNOWN_LOCALITY, "");
+        String toolBarTitle;
+
+        if (!lastKnownLocality.isEmpty()) {
+            toolBarTitle = getString(R.string.calendar_view_title) + " " + sharedPreferences.getString(PreferencesConstants.LAST_KNOWN_LOCALITY, "");
+        } else {
+            toolBarTitle = getString(R.string.title_calendar);
+        }
+
         ((TextView) findViewById(R.id.timing_table_toolbar_title)).setText(toolBarTitle);
 
         FloatingActionButton fab = findViewById(R.id.fab);

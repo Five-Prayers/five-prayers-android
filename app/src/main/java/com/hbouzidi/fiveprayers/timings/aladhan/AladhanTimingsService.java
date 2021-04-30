@@ -1,12 +1,12 @@
 package com.hbouzidi.fiveprayers.timings.aladhan;
 
-import android.content.Context;
 import android.location.Address;
 
 import com.hbouzidi.fiveprayers.database.PrayerRegistry;
 import com.hbouzidi.fiveprayers.preferences.PreferencesHelper;
 import com.hbouzidi.fiveprayers.timings.AbstractTimingsService;
 import com.hbouzidi.fiveprayers.timings.TimingsPreferences;
+import com.hbouzidi.fiveprayers.timings.offline.OfflineTimingsService;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -26,16 +26,20 @@ public class AladhanTimingsService extends AbstractTimingsService {
     protected String TAG = "AladhanTimingsService";
 
     @Inject
-    public AladhanTimingsService(AladhanAPIService aladhanAPIService, PrayerRegistry prayerRegistry, PreferencesHelper preferencesHelper) {
-        super(prayerRegistry, preferencesHelper);
+    public AladhanTimingsService(AladhanAPIService aladhanAPIService,
+                                 PrayerRegistry prayerRegistry,
+                                 OfflineTimingsService offlineTimingsService,
+                                 PreferencesHelper preferencesHelper) {
+        super(prayerRegistry, offlineTimingsService, preferencesHelper);
         this.aladhanAPIService = aladhanAPIService;
     }
 
-    protected void retrieveAndSaveTimings(LocalDate localDate, Address address, Context context) throws IOException {
+    protected void retrieveAndSaveTimings(LocalDate localDate, Address address) throws IOException {
         TimingsPreferences timingsPreferences = getTimingsPreferences();
 
         AladhanTodayTimingsResponse timingsByCity =
                 aladhanAPIService.getTimingsByLatLong(
+                        localDate,
                         address.getLatitude(),
                         address.getLongitude(),
                         timingsPreferences.getMethod(),
@@ -45,7 +49,7 @@ public class AladhanTimingsService extends AbstractTimingsService {
                         timingsPreferences.getHijriAdjustment(),
                         timingsPreferences.getTune());
 
-        if (timingsByCity != null) {
+        if (timingsByCity != null && address.getLocality() != null) {
             prayerRegistry.savePrayerTiming(localDate,
                     address.getLocality(),
                     address.getCountryName(),
@@ -60,7 +64,7 @@ public class AladhanTimingsService extends AbstractTimingsService {
         }
     }
 
-    protected void retrieveAndSaveCalendar(Address address, int month, int year, Context context) throws IOException {
+    protected void retrieveAndSaveCalendar(Address address, int month, int year) throws IOException {
         TimingsPreferences timingsPreferences = getTimingsPreferences();
 
         AladhanCalendarResponse CalendarByCity =

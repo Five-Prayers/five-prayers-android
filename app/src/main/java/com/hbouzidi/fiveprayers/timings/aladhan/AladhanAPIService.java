@@ -6,9 +6,10 @@ import com.hbouzidi.fiveprayers.timings.calculations.CalculationMethodEnum;
 import com.hbouzidi.fiveprayers.timings.calculations.LatitudeAdjustmentMethod;
 import com.hbouzidi.fiveprayers.timings.calculations.MidnightModeAdjustmentMethod;
 import com.hbouzidi.fiveprayers.timings.calculations.SchoolAdjustmentMethod;
+import com.hbouzidi.fiveprayers.utils.TimingUtils;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.time.ZoneId;
 
 import javax.inject.Inject;
@@ -33,16 +34,20 @@ public class AladhanAPIService {
         this.retrofit = retrofit;
     }
 
-    public AladhanTodayTimingsResponse getTimingsByLatLong(final double latitude,
-                                                           final double longitude,
-                                                           final CalculationMethodEnum method,
-                                                           final LatitudeAdjustmentMethod latitudeAdjustmentMethod,
-                                                           SchoolAdjustmentMethod schoolAdjustmentMethod,
-                                                           MidnightModeAdjustmentMethod midnightModeAdjustmentMethod, final int adjustment,
-                                                           final String tune
+    public AladhanTodayTimingsResponse getTimingsByLatLong(
+            final LocalDate localDate,
+            final double latitude,
+            final double longitude,
+            final CalculationMethodEnum method,
+            final LatitudeAdjustmentMethod latitudeAdjustmentMethod,
+            SchoolAdjustmentMethod schoolAdjustmentMethod,
+            MidnightModeAdjustmentMethod midnightModeAdjustmentMethod,
+            final int adjustment,
+            final String tune
+
     ) throws IOException {
 
-        long epochSecond = LocalDateTime.now().atZone(ZoneId.systemDefault()).toEpochSecond();
+        long epochSecond = TimingUtils.getTimestampsFromLocalDate(localDate, ZoneId.systemDefault());
 
         AladhanAPIResource aladhanAPIResource = retrofit.create(AladhanAPIResource.class);
 

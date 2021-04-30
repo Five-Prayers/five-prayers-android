@@ -17,6 +17,15 @@ public class AladhanDateType {
     private AladhanDesignation designation;
     private List<String> holidays;
 
+    public AladhanDateType() {
+    }
+
+    public AladhanDateType(int year, AladhanMonth month, int day) {
+        this.year = String.valueOf(year);
+        this.month = month;
+        this.day = String.valueOf(day);
+    }
+
     public String getDate() {
         return date;
     }

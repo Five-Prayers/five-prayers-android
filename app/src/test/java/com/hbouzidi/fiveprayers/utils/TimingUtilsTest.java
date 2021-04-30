@@ -2,9 +2,11 @@ package com.hbouzidi.fiveprayers.utils;
 
 import org.junit.Test;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.Date;
 
@@ -121,7 +123,7 @@ public class TimingUtilsTest {
     }
 
     @Test
-    public void getLocalDateFromTimestamps(){
+    public void getLocalDateFromTimestamps() {
         int timestamps = 1491379261;
         LocalDate localDate = TimingUtils.getLocalDateFromTimestamps(timestamps);
 
@@ -139,5 +141,27 @@ public class TimingUtilsTest {
         assertEquals(5, zonedDateTime.getDayOfMonth());
         assertEquals(4, zonedDateTime.getMonthValue());
         assertEquals(2017, zonedDateTime.getYear());
+    }
+
+    @Test
+    public void convertToLocalDateTime() throws ParseException {
+        String sDate = "31/12/1998 23:37:50";
+        Date date = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").parse(sDate);
+
+        LocalDateTime localDateTime = TimingUtils.convertToLocalDateTime(date, ZoneId.of("Europe/Paris"));
+
+        assertEquals(23, localDateTime.getHour());
+        assertEquals(37, localDateTime.getMinute());
+        assertEquals(50, localDateTime.getSecond());
+        assertEquals(31, localDateTime.getDayOfMonth());
+        assertEquals(12, localDateTime.getMonthValue());
+        assertEquals(1998, localDateTime.getYear());
+    }
+
+    @Test
+    public void getTimestamps()  {
+        long timestamps = TimingUtils.getTimestampsFromLocalDateTime(LocalDateTime.of(2021, 4, 25, 19, 7), ZoneId.of("Europe/Paris"));
+
+        assertEquals(1619370420, timestamps);
     }
 }

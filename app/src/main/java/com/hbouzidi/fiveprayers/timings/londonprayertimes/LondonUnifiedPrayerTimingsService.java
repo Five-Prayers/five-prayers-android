@@ -1,6 +1,5 @@
 package com.hbouzidi.fiveprayers.timings.londonprayertimes;
 
-import android.content.Context;
 import android.location.Address;
 
 import com.hbouzidi.fiveprayers.database.PrayerRegistry;
@@ -13,6 +12,7 @@ import com.hbouzidi.fiveprayers.timings.aladhan.AladhanData;
 import com.hbouzidi.fiveprayers.timings.aladhan.AladhanTimings;
 import com.hbouzidi.fiveprayers.timings.aladhan.AladhanTodayTimingsResponse;
 import com.hbouzidi.fiveprayers.timings.calculations.SchoolAdjustmentMethod;
+import com.hbouzidi.fiveprayers.timings.offline.OfflineTimingsService;
 import com.hbouzidi.fiveprayers.utils.TimingUtils;
 
 import java.io.IOException;
@@ -39,19 +39,21 @@ public class LondonUnifiedPrayerTimingsService extends AbstractTimingsService {
     public LondonUnifiedPrayerTimingsService(AladhanAPIService aladhanAPIService,
                                              LondonUnifiedPrayerAPIService londonUnifiedPrayerAPIService,
                                              PrayerRegistry prayerRegistry,
+                                             OfflineTimingsService offlineTimingsService,
                                              PreferencesHelper preferencesHelper
     ) {
-        super(prayerRegistry, preferencesHelper);
+        super(prayerRegistry, offlineTimingsService, preferencesHelper);
         this.aladhanAPIService = aladhanAPIService;
         this.londonUnifiedPrayerAPIService = londonUnifiedPrayerAPIService;
     }
 
 
-    protected void retrieveAndSaveTimings(LocalDate localDate, Address address, Context context) throws IOException {
+    protected void retrieveAndSaveTimings(LocalDate localDate, Address address) throws IOException {
         TimingsPreferences timingsPreferences = getTimingsPreferences();
 
         AladhanTodayTimingsResponse timingsByCity =
                 aladhanAPIService.getTimingsByLatLong(
+                        localDate,
                         address.getLatitude(),
                         address.getLongitude(),
                         timingsPreferences.getMethod(),
@@ -80,7 +82,7 @@ public class LondonUnifiedPrayerTimingsService extends AbstractTimingsService {
         }
     }
 
-    protected void retrieveAndSaveCalendar(Address address, int month, int year, Context context) throws IOException {
+    protected void retrieveAndSaveCalendar(Address address, int month, int year) throws IOException {
         List<AladhanData> aladhanCalendarData = new ArrayList<>();
 
         TimingsPreferences timingsPreferences = getTimingsPreferences();
@@ -136,7 +138,7 @@ public class LondonUnifiedPrayerTimingsService extends AbstractTimingsService {
         aladhanTimings.setIsha(londonTimings.getIsha());
         aladhanTimings.setImsak(data.getTimings().getImsak());
         aladhanTimings.setMidnight(data.getTimings().getMidnight());
-        aladhanTimings.setSunrise(data.getTimings().getSunrise());
+        aladhanTimings.setSunrise(londonTimings.getSunrise());
         aladhanTimings.setSunset(data.getTimings().getSunset());
 
         aladhanData.setTimings(aladhanTimings);

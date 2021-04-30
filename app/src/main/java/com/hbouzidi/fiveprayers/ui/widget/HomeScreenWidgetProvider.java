@@ -70,11 +70,7 @@ public class HomeScreenWidgetProvider extends AppWidgetProvider {
                         .flatMap(location ->
                                 addressHelper.getAddressFromLocation(location)
                         ).flatMap(address ->
-                        timingsService.getTimingsByCity(
-                                LocalDate.now(),
-                                address,
-                                context
-                        ));
+                        timingsService.getTimingsByCity(LocalDate.now(), address));
 
         dayPrayerSingle
                 .subscribeOn(AndroidSchedulers.mainThread())

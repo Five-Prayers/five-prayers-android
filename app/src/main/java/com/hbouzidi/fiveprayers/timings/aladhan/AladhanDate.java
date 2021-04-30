@@ -11,6 +11,14 @@ public class AladhanDate {
     private AladhanDateType hijri;
     private AladhanDateType gregorian;
 
+    public AladhanDate() {
+    }
+
+    public AladhanDate(AladhanDateType hijri, AladhanDateType gregorian) {
+        this.hijri = hijri;
+        this.gregorian = gregorian;
+    }
+
     public AladhanDateType getHijri() {
         return hijri;
     }

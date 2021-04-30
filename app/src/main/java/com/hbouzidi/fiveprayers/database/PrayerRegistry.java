@@ -11,6 +11,7 @@ import com.hbouzidi.fiveprayers.common.PrayerEnum;
 import com.hbouzidi.fiveprayers.timings.DayPrayer;
 import com.hbouzidi.fiveprayers.timings.aladhan.AladhanData;
 import com.hbouzidi.fiveprayers.timings.aladhan.AladhanDate;
+import com.hbouzidi.fiveprayers.timings.aladhan.AladhanMeta;
 import com.hbouzidi.fiveprayers.timings.aladhan.AladhanTimings;
 import com.hbouzidi.fiveprayers.timings.calculations.CalculationMethodEnum;
 import com.hbouzidi.fiveprayers.timings.calculations.LatitudeAdjustmentMethod;
@@ -20,7 +21,7 @@ import com.hbouzidi.fiveprayers.utils.TimingUtils;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -38,7 +39,6 @@ import javax.inject.Singleton;
 public class PrayerRegistry {
 
     private final DatabaseHelper databaseHelper;
-    private final static int DOHA_INTERVAL = 15;
 
     @Inject
     public PrayerRegistry(Context context) {
@@ -63,12 +63,13 @@ public class PrayerRegistry {
         SQLiteDatabase db = databaseHelper.getWritableDatabase();
 
         AladhanDate aladhanDate = data.getDate();
+        AladhanMeta meta = data.getMeta();
         AladhanTimings aladhanTimings = data.getTimings();
 
         ContentValues values = new ContentValues();
         values.put(PrayerModel.COLUMN_NAME_DATE, localDateString);
         values.put(PrayerModel.COLUMN_NAME_DATE_TIMESTAMP, aladhanDate.getTimestamp());
-        values.put(PrayerModel.COLUMN_NAME_TIMEZONE, ZoneId.systemDefault().getId());
+        values.put(PrayerModel.COLUMN_NAME_TIMEZONE, meta.getTimezone());
 
         values.put(PrayerModel.COLUMN_NAME_CITY, city);
         values.put(PrayerModel.COLUMN_NAME_COUNTRY, country);
@@ -99,8 +100,8 @@ public class PrayerRegistry {
         values.put(PrayerModel.COLUMN_NAME_MIDNIGHT_MODE_ADJUSTMENT_METHOD, String.valueOf(midnightModeAdjustmentMethod));
         values.put(PrayerModel.COLUMN_NAME_HIJRI_ADJUSTMENT, hijriAdjustment);
 
-        values.put(PrayerModel.COLUMN_NAME_LATITUDE, data.getMeta().getLatitude());
-        values.put(PrayerModel.COLUMN_NAME_LONGITUDE, data.getMeta().getLongitude());
+        values.put(PrayerModel.COLUMN_NAME_LATITUDE, meta.getLatitude());
+        values.put(PrayerModel.COLUMN_NAME_LONGITUDE, meta.getLongitude());
 
         return db.insertWithOnConflict(PrayerModel.TABLE_NAME, null, values, SQLiteDatabase.CONFLICT_IGNORE);
     }
@@ -130,7 +131,7 @@ public class PrayerRegistry {
 
         String[] selectionArgs = {
                 TimingUtils.formatDateForAdhanAPI(localDate),
-                ZoneId.systemDefault().getId(),
+                TimingUtils.getDefaultTimeZone(),
                 city,
                 country,
                 String.valueOf(calculationMethodEnum),
@@ -214,7 +215,7 @@ public class PrayerRegistry {
         String[] selectionArgs = {
                 String.valueOf(monthNumber),
                 String.valueOf(year),
-                ZoneId.systemDefault().getId(),
+                TimingUtils.getDefaultTimeZone(),
                 city,
                 country,
                 String.valueOf(calculationMethodEnum),
@@ -284,10 +285,13 @@ public class PrayerRegistry {
                 cursor.getInt(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_GREGORIAN_YEAR))
         );
 
-        timings.put(PrayerEnum.FAJR, TimingUtils.transformTimingToDate(fajrTiming, dateStr, false));
+        LocalDateTime fajrTime = TimingUtils.transformTimingToDate(fajrTiming, dateStr, false);
+        LocalDateTime maghribTime = TimingUtils.transformTimingToDate(maghribTiming, dateStr, TimingUtils.isBeforeOnSameDay(maghribTiming, dohrTiming));
+
+        timings.put(PrayerEnum.FAJR, fajrTime);
         timings.put(PrayerEnum.DHOHR, TimingUtils.transformTimingToDate(dohrTiming, dateStr, false));
         timings.put(PrayerEnum.ASR, TimingUtils.transformTimingToDate(asrTiming, dateStr, false));
-        timings.put(PrayerEnum.MAGHRIB, TimingUtils.transformTimingToDate(maghribTiming, dateStr, TimingUtils.isBeforeOnSameDay(maghribTiming, dohrTiming)));
+        timings.put(PrayerEnum.MAGHRIB, maghribTime);
         timings.put(PrayerEnum.ICHA, TimingUtils.transformTimingToDate(ichaTiming, dateStr, TimingUtils.isBeforeOnSameDay(ichaTiming, dohrTiming)));
 
         LocalDateTime sunriseTime = TimingUtils.transformTimingToDate(sunriseTiming, dateStr, false);
@@ -296,7 +300,8 @@ public class PrayerRegistry {
         complementaryTiming.put(ComplementaryTimingEnum.SUNSET, TimingUtils.transformTimingToDate(sunsetTiming, dateStr, TimingUtils.isBeforeOnSameDay(ichaTiming, dohrTiming)));
         complementaryTiming.put(ComplementaryTimingEnum.MIDNIGHT, TimingUtils.transformTimingToDate(midnightTiming, dateStr, TimingUtils.isBeforeOnSameDay(midnightTiming, dohrTiming)));
         complementaryTiming.put(ComplementaryTimingEnum.IMSAK, TimingUtils.transformTimingToDate(imsakTiming, dateStr, false));
-        complementaryTiming.put(ComplementaryTimingEnum.DOHA, sunriseTime.plusMinutes(DOHA_INTERVAL));
+        complementaryTiming.put(ComplementaryTimingEnum.DOHA, sunriseTime.plusMinutes(TimingUtils.DOHA_INTERVAL));
+        complementaryTiming.put(ComplementaryTimingEnum.LAST_THIRD_OF_THE_NIGHT, getLastThirdOfTheNight(fajrTime, maghribTime));
 
         dayPrayer.setTimings(timings);
         dayPrayer.setComplementaryTiming(complementaryTiming);
@@ -306,5 +311,11 @@ public class PrayerRegistry {
         dayPrayer.setLongitude(cursor.getDouble(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_LONGITUDE)));
 
         return dayPrayer;
+    }
+
+    private LocalDateTime getLastThirdOfTheNight(LocalDateTime fajrTime, LocalDateTime maghribTime) {
+        final long nightDurationInSeconds =  maghribTime.until(fajrTime.plus(1, ChronoUnit.DAYS), ChronoUnit.SECONDS);
+
+        return maghribTime.plus((long) (nightDurationInSeconds * (2.0 / 3.0)), ChronoUnit.SECONDS).withSecond(0).withNano(0);
     }
 }

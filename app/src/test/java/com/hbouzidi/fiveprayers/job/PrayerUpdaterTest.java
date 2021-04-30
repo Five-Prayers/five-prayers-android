@@ -59,10 +59,10 @@ public class PrayerUpdaterTest {
     }
 
     @Test
-    public void testPrayerUpdaterWork() throws Exception {
+    public void should_not_throws_error_when_api_service_is_available() throws Exception {
         RESTMockServer
                 .whenGET(pathContains("/timings"))
-                .thenReturnFile(200, "responses/adhan_api_response.json");
+                .thenReturnFile(200, "responses/london_adhan_api_response.json");
 
         Address lastKnownAddress = new Address(Locale.getDefault());
         lastKnownAddress.setLatitude(51.5073509);
@@ -85,12 +85,11 @@ public class PrayerUpdaterTest {
         Assert.assertEquals(ListenableWorker.Result.success(), result);
     }
 
-
     @Test
-    public void testPrayerUpdaterWork_when_single_throw_error() throws Exception {
+    public void should_not_throws_error_when_api_service_is_not_available_because_of_offline_calculations() throws Exception {
         RESTMockServer
                 .whenGET(pathContains("/timings"))
-                .thenReturnFile(500, "responses/adhan_api_response.json");
+                .thenReturnFile(500, "responses/london_adhan_api_response.json");
 
         Address lastKnownAddress = new Address(Locale.getDefault());
         lastKnownAddress.setLatitude(51.5073509);
@@ -110,6 +109,6 @@ public class PrayerUpdaterTest {
 
         ListenableWorker.Result result = prayerUpdater.startWork().get();
 
-        Assert.assertEquals(ListenableWorker.Result.retry(), result);
+        Assert.assertEquals(ListenableWorker.Result.success(), result);
     }
 }

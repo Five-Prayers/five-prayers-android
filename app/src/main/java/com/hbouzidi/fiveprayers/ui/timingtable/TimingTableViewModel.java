@@ -79,12 +79,7 @@ public class TimingTableViewModel extends AndroidViewModel {
                 locationHelper.getLocation()
                         .flatMap(addressHelper::getAddressFromLocation)
                         .flatMap(address ->
-                                timingsService.getCalendarByCity(
-                                        address,
-                                        todayDate.getMonthValue(),
-                                        todayDate.getYear(),
-                                        context
-                                ))
+                                timingsService.getCalendarByCity(address, todayDate.getMonthValue(), todayDate.getYear()))
                         .subscribeOn(AndroidSchedulers.mainThread())
                         .subscribeWith(new DisposableSingleObserver<List<DayPrayer>>() {
                             @Override

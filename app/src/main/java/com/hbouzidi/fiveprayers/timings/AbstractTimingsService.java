@@ -1,16 +1,15 @@
 package com.hbouzidi.fiveprayers.timings;
 
-import android.content.Context;
 import android.location.Address;
 import android.util.Log;
 
 import com.hbouzidi.fiveprayers.database.PrayerRegistry;
-import com.hbouzidi.fiveprayers.exceptions.TimingsException;
 import com.hbouzidi.fiveprayers.preferences.PreferencesHelper;
 import com.hbouzidi.fiveprayers.timings.calculations.CalculationMethodEnum;
 import com.hbouzidi.fiveprayers.timings.calculations.LatitudeAdjustmentMethod;
 import com.hbouzidi.fiveprayers.timings.calculations.MidnightModeAdjustmentMethod;
 import com.hbouzidi.fiveprayers.timings.calculations.SchoolAdjustmentMethod;
+import com.hbouzidi.fiveprayers.timings.offline.OfflineTimingsService;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -27,50 +26,48 @@ import io.reactivex.rxjava3.core.Single;
 public abstract class AbstractTimingsService implements TimingsService {
 
     protected final PrayerRegistry prayerRegistry;
+    private final OfflineTimingsService offlineTimingsService;
     protected final PreferencesHelper preferencesHelper;
     protected String TAG = "AbstractTimingsService";
 
-    public AbstractTimingsService(PrayerRegistry prayerRegistry, PreferencesHelper preferencesHelper) {
+    public AbstractTimingsService(PrayerRegistry prayerRegistry,
+                                  OfflineTimingsService offlineTimingsService,
+                                  PreferencesHelper preferencesHelper) {
         this.prayerRegistry = prayerRegistry;
+        this.offlineTimingsService = offlineTimingsService;
         this.preferencesHelper = preferencesHelper;
     }
 
-    protected abstract void retrieveAndSaveTimings(LocalDate localDate, Address address, Context context) throws IOException;
+    protected abstract void retrieveAndSaveTimings(LocalDate localDate, Address address) throws IOException;
 
-    protected abstract void retrieveAndSaveCalendar(Address address, int month, int year, Context context) throws IOException;
+    protected abstract void retrieveAndSaveCalendar(Address address, int month, int year) throws IOException;
 
-    public Single<DayPrayer> getTimingsByCity(final LocalDate localDate,
-                                              final Address address,
-                                              final Context context) {
+    public Single<DayPrayer> getTimingsByCity(final LocalDate localDate, final Address address) {
 
         return Single.create(emitter -> {
             Thread thread = new Thread(() -> {
 
                 DayPrayer prayerTimings;
 
-                if (address == null) {
-                    Log.e(TAG, "Cannot find timings, address must not be null");
-                    emitter.onError(new TimingsException("Cannot find timings, address must not be null"));
+                prayerTimings = getSavedPrayerTimings(localDate, address);
+
+                if (prayerTimings != null) {
+                    emitter.onSuccess(prayerTimings);
                 } else {
-                    prayerTimings = getSavedPrayerTimings(localDate, address);
+                    try {
+                        retrieveAndSaveTimings(localDate, address);
+                        prayerTimings = getSavedPrayerTimings(localDate, address);
 
-                    if (prayerTimings != null) {
-                        emitter.onSuccess(prayerTimings);
-                    } else {
-                        try {
-                            retrieveAndSaveTimings(localDate, address, context);
-                            prayerTimings = getSavedPrayerTimings(localDate, address);
-
-                            if (prayerTimings != null) {
-                                emitter.onSuccess(prayerTimings);
-                            } else {
-                                emitter.onError(new Exception("Cannot retrieve timings from API"));
-                            }
-
-                        } catch (IOException e) {
-                            Log.e(TAG, "Cannot retrieve timings from API", e);
-                            emitter.onError(e);
+                        if (prayerTimings != null) {
+                            emitter.onSuccess(prayerTimings);
+                        } else {
+                            Log.i(TAG, "Offline timings calculation");
+                            emitter.onSuccess(offlineTimingsService.getPrayerTimings(localDate, address, getTimingsPreferences()));
                         }
+
+                    } catch (IOException e) {
+                        Log.i(TAG, "Offline timings calculation", e);
+                        emitter.onSuccess(offlineTimingsService.getPrayerTimings(localDate, address, getTimingsPreferences()));
                     }
                 }
             });
@@ -78,33 +75,30 @@ public abstract class AbstractTimingsService implements TimingsService {
         });
     }
 
-    public Single<List<DayPrayer>> getCalendarByCity(
-            final Address address,
-            int month, int year,
-            final Context context) {
+    public Single<List<DayPrayer>> getCalendarByCity(final Address address, int month, int year) {
 
         return Single.create(emitter -> {
             Thread thread = new Thread(() -> {
                 List<DayPrayer> prayerCalendar;
 
-                if (address == null) {
-                    Log.e(TAG, "Cannot find calendar, address must not be null");
-                    emitter.onError(new TimingsException("Cannot find calendar, address must not be null"));
+                prayerCalendar = getSavedPrayerCalendar(address, month, year);
+
+                if (prayerCalendar != null && (prayerCalendar.size() == YearMonth.of(year, month).lengthOfMonth())) {
+                    emitter.onSuccess(prayerCalendar);
                 } else {
-                    prayerCalendar = getSavedPrayerCalendar(address, month, year);
+                    try {
+                        retrieveAndSaveCalendar(address, month, year);
+                        prayerCalendar = getSavedPrayerCalendar(address, month, year);
 
-                    if (prayerCalendar.size() == YearMonth.of(year, month).lengthOfMonth()) {
-                        emitter.onSuccess(prayerCalendar);
-                    } else {
-                        try {
-                            retrieveAndSaveCalendar(address, month, year, context);
-                            prayerCalendar = getSavedPrayerCalendar(address, month, year);
-
+                        if (prayerCalendar != null && !prayerCalendar.isEmpty()) {
                             emitter.onSuccess(prayerCalendar);
-                        } catch (IOException e) {
-                            Log.e(TAG, "Cannot find calendar from API");
-                            emitter.onError(e);
+                        } else {
+                            Log.i(TAG, "Offline calendar calculation");
+                            emitter.onSuccess(offlineTimingsService.getPrayerCalendar(address, month, year, getTimingsPreferences()));
                         }
+                    } catch (IOException e) {
+                        Log.i(TAG, "Offline calendar calculation", e);
+                        emitter.onSuccess(offlineTimingsService.getPrayerCalendar(address, month, year, getTimingsPreferences()));
                     }
                 }
             });
@@ -135,17 +129,22 @@ public abstract class AbstractTimingsService implements TimingsService {
     protected List<DayPrayer> getSavedPrayerCalendar(Address address, int month, int year) {
         TimingsPreferences timingsPreferences = getTimingsPreferences();
 
-        return prayerRegistry.getPrayerCalendar(
-                address.getLocality(),
-                address.getCountryName(),
-                month, year,
-                timingsPreferences.getMethod(),
-                timingsPreferences.getLatitudeAdjustmentMethod(),
-                timingsPreferences.getSchoolAdjustmentMethod(),
-                timingsPreferences.getMidnightModeAdjustmentMethod(),
-                timingsPreferences.getHijriAdjustment(),
-                timingsPreferences.getTune()
-        );
+        if (address.getLocality() != null && address.getCountryName() != null) {
+
+            return prayerRegistry.getPrayerCalendar(
+                    address.getLocality(),
+                    address.getCountryName(),
+                    month, year,
+                    timingsPreferences.getMethod(),
+                    timingsPreferences.getLatitudeAdjustmentMethod(),
+                    timingsPreferences.getSchoolAdjustmentMethod(),
+                    timingsPreferences.getMidnightModeAdjustmentMethod(),
+                    timingsPreferences.getHijriAdjustment(),
+                    timingsPreferences.getTune()
+            );
+        }
+
+        return null;
     }
 
     protected TimingsPreferences getTimingsPreferences() {

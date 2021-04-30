@@ -99,7 +99,7 @@ public class CalendarActivity extends AppCompatActivity {
             holidayRecyclerView.setVisibility(View.INVISIBLE);
 
             compositeDisposable.add(
-                    calendarService.getHijriCalendar(calendarMonth.getMonth(), calendarMonth.getYear(), getApplicationContext())
+                    calendarService.getHijriCalendar(calendarMonth.getMonth(), calendarMonth.getYear())
                             .subscribeOn(Schedulers.io())
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribeWith(new DisposableSingleObserver<List<AladhanDate>>() {

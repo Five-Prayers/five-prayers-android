@@ -19,17 +19,24 @@ import java.util.Locale;
 public final class ShadowGeocoder {
 
     private static boolean isPresent = true;
+    private static boolean localityIsNull = false;
     private List<Address> fromLocation = new ArrayList<>();
+    private final Address newAddress;
+    private final Address newAddressWithNullLocality;
 
     public ShadowGeocoder() {
-        Address newAddress = new Address(Locale.getDefault());
+        newAddress = new Address(Locale.getDefault());
         newAddress.setLatitude(48.9220615);
         newAddress.setLongitude(2.2533313);
         newAddress.setLocality("Colombes");
         newAddress.setCountryName("France");
         newAddress.setCountryCode("FR");
 
-        this.fromLocation.add(newAddress);
+        newAddressWithNullLocality = new Address(Locale.getDefault());
+        newAddressWithNullLocality.setLatitude(48.9220615);
+        newAddressWithNullLocality.setLongitude(2.2533313);
+        newAddressWithNullLocality.setCountryName("France");
+        newAddressWithNullLocality.setCountryCode("FR");
     }
 
     /**
@@ -50,6 +57,13 @@ public final class ShadowGeocoder {
     @Implementation
     protected List<Address> getFromLocation(double latitude, double longitude, int maxResults)
             throws IOException {
+
+        if (localityIsNull) {
+            this.fromLocation.add(newAddressWithNullLocality);
+        }
+        this.fromLocation.add(newAddress);
+
+
         if (isPresent) {
             Preconditions.checkArgument(
                     -90 <= latitude && latitude <= 90, "Latitude must be between -90 and 90, got %s", latitude);
@@ -69,6 +83,10 @@ public final class ShadowGeocoder {
      */
     public static void setIsPresent(boolean value) {
         isPresent = value;
+    }
+
+    public static void setLocalityIsNull(boolean value) {
+        localityIsNull = value;
     }
 
     /**

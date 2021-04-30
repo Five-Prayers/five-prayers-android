@@ -2,6 +2,8 @@ package com.hbouzidi.fiveprayers.ui.settings.adhan;
 
 import android.content.ContentResolver;
 import android.content.res.Resources;
+import android.media.AudioAttributes;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -101,10 +103,7 @@ public class AdhanPreferenceDialog extends PreferenceDialogFragmentCompat {
                     Uri uri = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + getContext().getPackageName() + "/" + mediaId);
 
                     try {
-                        mMediaPlayer.reset();
-                        mMediaPlayer.setDataSource(getContext(), uri);
-                        mMediaPlayer.prepare();
-                        mMediaPlayer.start();
+                        initializeAndPlayAdhan(uri);
                     } catch (IOException | IllegalStateException e) {
                         Log.e(TAG, "Cannot preview Adhan", e);
                     }
@@ -127,5 +126,27 @@ public class AdhanPreferenceDialog extends PreferenceDialogFragmentCompat {
     public void stopAdhanPreview() {
         mMediaPlayer.stop();
         mMediaPlayer.release();
+    }
+
+    private void initializeAndPlayAdhan(Uri uri) throws IOException {
+        mMediaPlayer.reset();
+        mMediaPlayer.setDataSource(getContext(), uri);
+        setAudioAttribute();
+        mMediaPlayer.setLooping(false);
+        mMediaPlayer.prepare();
+        mMediaPlayer.start();
+    }
+
+    private void setAudioAttribute() {
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            AudioAttributes.Builder builder = new AudioAttributes.Builder();
+            builder.setUsage(AudioAttributes.USAGE_ALARM);
+            builder.setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION);
+            builder.setLegacyStreamType(AudioManager.STREAM_ALARM);
+
+            mMediaPlayer.setAudioAttributes(builder.build());
+        } else {
+            mMediaPlayer.setAudioStreamType(AudioManager.STREAM_ALARM);
+        }
     }
 }

@@ -72,6 +72,7 @@
     <string name="ASR">Al Asr</string>
     <string name="MAGHRIB">Al Maghreb</string>
     <string name="ICHA">Al Ichaa</string>
+    <string name="LAST_THIRD_OF_THE_NIGHT">Dernier tiers de la nuit</string>
 
     <string name="SHORT_FAJR">Fajr</string>
     <string name="SHORT_DHOHR">Dohr</string>
@@ -168,13 +169,18 @@
     <string name="short_method_london_unified_prayer_times">Horaires de prière unifiés à Londres</string>
 
     <string name="title_location_preference_section">Localisation</string>
+    <string name="sub_title_reminder_preference_section">Rappel d\'Adhan</string>
+    <string name="sub_title_dhuha_reminder_preference_section">Rappel de la prière Ad`Doha</string>
+    <string name="sub_title_lton_reminder_preference_section">Rappel du dernier tiers de la nuit</string>
     <string name="title_checkbox_location_preference">Saisir votre localisation manuellement</string>
     <string name="title_edit_text_location_preference">Localisation actuelle</string>
     <string name="title_adhan_vibration_preference">Activer la vibration</string>
     <string name="title_douae_adhan_preference">Activer Douaa après Adhan</string>
     <string name="title_adhan_reminder_preference">Activer le rappel avant Adhan</string>
+    <string name="title_enable_reminder_sound_preference">Activer le rappel</string>
+    <string name="title_reminder_sound_preference">Activer le son du rappel</string>
     <string name="title_adhan_reminder_interval_preference">Intervalle de rappel (min)</string>
-    <string name="title_doha_reminder_preference">Activer le rappel pour la prière Ad`Doha</string>
+    <string name="title_doha_reminder_preference">Activer le rappel de la prière Ad`Doha</string>
     <string name="dialog_title_edit_text_location_preference">Rechercher votre ville</string>
     <string name="title_prayer_timings_section">Calcul des prières</string>
     <string name="title_calculation_method_preference">Méthode de calcul</string>
@@ -216,7 +222,6 @@
     <string name="title_midnight_mode_adjustment_method">Calcul du minuit</string>
     <string name="adthan_notification_title">Il est temps de prier</string>
     <string name="adthan_reminder_notification_title">L\'heure de la prochaine prière est proche</string>
-    <string name="complementary_timing_reminder_notification_title">Le moment est venu pour la prière de %s</string>
     <string name="adthan_notification_close_action_title">Couper le son et fermer</string>
 
     <!--   User Messages    -->

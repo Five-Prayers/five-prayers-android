@@ -1,7 +1,11 @@
 package com.hbouzidi.fiveprayers.ui.settings;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.preference.Preference;
@@ -31,6 +35,16 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     @Override
     public void onCreatePreferencesFix(@Nullable Bundle savedInstanceState, String rootKey) {
         setPreferencesFromResource(R.xml.settings, rootKey);
+    }
+
+    @Nullable
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        setDivider(new ColorDrawable(Color.TRANSPARENT));
+        setDividerHeight(0);
+
     }
 
     @Override

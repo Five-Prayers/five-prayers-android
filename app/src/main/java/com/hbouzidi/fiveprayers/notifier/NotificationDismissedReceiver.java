@@ -18,6 +18,9 @@ public class NotificationDismissedReceiver extends BroadcastReceiver {
     @Inject
     AdhanPlayer adhanPlayer;
 
+    @Inject
+    ReminderPlayer reminderPlayer;
+
     @Override
     public void onReceive(Context context, Intent intent) {
         ((FivePrayerApplication) context.getApplicationContext())
@@ -25,5 +28,6 @@ public class NotificationDismissedReceiver extends BroadcastReceiver {
                 .inject(this);
 
         adhanPlayer.stopAdhan();
+        reminderPlayer.stop();
     }
 }

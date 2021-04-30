@@ -53,7 +53,11 @@ public class PrayerAlarmScheduler {
         }
 
         if (preferencesHelper.isDohaReminderEnabled()) {
-            scheduleDohaComplementaryTiming(dayPrayer);
+            scheduleComplementaryTiming(dayPrayer, ComplementaryTimingEnum.DOHA, 1);
+        }
+
+        if (preferencesHelper.isLastThirdOfTheNightReminderEnabled()) {
+            scheduleComplementaryTiming(dayPrayer, ComplementaryTimingEnum.LAST_THIRD_OF_THE_NIGHT, 2);
         }
     }
 
@@ -85,7 +89,7 @@ public class PrayerAlarmScheduler {
         Map<PrayerEnum, LocalDateTime> timings = dayPrayer.getTimings();
         int reminderInterval = preferencesHelper.getReminderInterval();
 
-        int index = 0;
+        int index = 10;
         for (PrayerEnum key : timings.keySet()) {
             index++;
 
@@ -104,19 +108,18 @@ public class PrayerAlarmScheduler {
         Log.i(TAG, "End scheduling Reminders for: " + dayPrayer.getDate());
     }
 
-    private void scheduleDohaComplementaryTiming(@NonNull DayPrayer dayPrayer) {
+    private void scheduleComplementaryTiming(@NonNull DayPrayer dayPrayer, ComplementaryTimingEnum complementaryTimingEnum, int requestCode) {
         Log.i(TAG, "Start scheduling Complementary Timings for: " + dayPrayer.getDate());
 
         Map<ComplementaryTimingEnum, LocalDateTime> complementaryTimings = dayPrayer.getComplementaryTiming();
-
-        LocalDateTime complementaryTiming = complementaryTimings.get(ComplementaryTimingEnum.DOHA);
+        LocalDateTime complementaryTiming = complementaryTimings.get(complementaryTimingEnum);
 
         if (complementaryTiming != null && LocalDateTime.now().isBefore(complementaryTiming)) {
 
-            Log.i(TAG, "Scheduling " + ComplementaryTimingEnum.DOHA.toString() + " Reminder at : " + TimingUtils.formatTiming(complementaryTiming));
+            Log.i(TAG, "Scheduling " + complementaryTimingEnum.toString() + " Reminder at : " + TimingUtils.formatTiming(complementaryTiming));
 
-            schedule(dayPrayer, complementaryTiming, TimingType.COMPLEMENTARY, ComplementaryTimingEnum.DOHA.toString(),
-                    3000, 1, TimingUtils.getTimeInMilliIgnoringSeconds(complementaryTiming), ReminderReceiver.class);
+            schedule(dayPrayer, complementaryTiming, TimingType.COMPLEMENTARY, complementaryTimingEnum.toString(),
+                    3000, requestCode, TimingUtils.getTimeInMilliIgnoringSeconds(complementaryTiming), ReminderReceiver.class);
         }
 
         Log.i(TAG, "End scheduling Complementary Timings for: " + dayPrayer.getDate());

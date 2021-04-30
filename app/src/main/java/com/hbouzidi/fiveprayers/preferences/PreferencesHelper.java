@@ -231,9 +231,19 @@ public class PreferencesHelper {
         return defaultSharedPreferences.getBoolean(PreferencesConstants.DOHA_TIMING_REMINDER_ENABLED, false);
     }
 
+    public boolean isLastThirdOfTheNightReminderEnabled() {
+        final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return defaultSharedPreferences.getBoolean(PreferencesConstants.LAST_THIRD_OF_THE_NIGHT_TIMING_REMINDER_ENABLED, false);
+    }
+
     public boolean isReminderEnabled() {
         final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         return defaultSharedPreferences.getBoolean(PreferencesConstants.ADTHAN_REMINDER_ENABLED, true);
+    }
+
+    public boolean isReminderCallEnabled() {
+        final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return defaultSharedPreferences.getBoolean(PreferencesConstants.ADTHAN_REMINDER_CALL_ENABLED, true);
     }
 
     public int getReminderInterval() {

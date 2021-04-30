@@ -301,7 +301,7 @@ public class PrayerRegistry {
         complementaryTiming.put(ComplementaryTimingEnum.MIDNIGHT, TimingUtils.transformTimingToDate(midnightTiming, dateStr, TimingUtils.isBeforeOnSameDay(midnightTiming, dohrTiming)));
         complementaryTiming.put(ComplementaryTimingEnum.IMSAK, TimingUtils.transformTimingToDate(imsakTiming, dateStr, false));
         complementaryTiming.put(ComplementaryTimingEnum.DOHA, sunriseTime.plusMinutes(TimingUtils.DOHA_INTERVAL));
-        complementaryTiming.put(ComplementaryTimingEnum.LAST_THIRD_OF_THE_NIGHT, getLastThirdOfTheNight(fajrTime, maghribTime));
+        complementaryTiming.put(ComplementaryTimingEnum.LAST_THIRD_OF_THE_NIGHT, TimingUtils.getLastThirdOfTheNight(fajrTime, maghribTime));
 
         dayPrayer.setTimings(timings);
         dayPrayer.setComplementaryTiming(complementaryTiming);
@@ -311,11 +311,5 @@ public class PrayerRegistry {
         dayPrayer.setLongitude(cursor.getDouble(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_LONGITUDE)));
 
         return dayPrayer;
-    }
-
-    private LocalDateTime getLastThirdOfTheNight(LocalDateTime fajrTime, LocalDateTime maghribTime) {
-        final long nightDurationInSeconds =  maghribTime.until(fajrTime.plus(1, ChronoUnit.DAYS), ChronoUnit.SECONDS);
-
-        return maghribTime.plus((long) (nightDurationInSeconds * (2.0 / 3.0)), ChronoUnit.SECONDS).withSecond(0).withNano(0);
     }
 }

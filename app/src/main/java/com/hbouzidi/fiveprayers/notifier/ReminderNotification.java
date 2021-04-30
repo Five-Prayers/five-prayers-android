@@ -6,6 +6,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.media.AudioAttributes;
 import android.os.Build;
@@ -15,9 +16,11 @@ import android.os.Vibrator;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
+import androidx.preference.PreferenceManager;
 
 import com.hbouzidi.fiveprayers.R;
 import com.hbouzidi.fiveprayers.common.TimingType;
+import com.hbouzidi.fiveprayers.preferences.PreferencesConstants;
 import com.hbouzidi.fiveprayers.preferences.PreferencesHelper;
 import com.hbouzidi.fiveprayers.ui.MainActivity;
 
@@ -32,11 +35,13 @@ import javax.inject.Singleton;
 @Singleton
 class ReminderNotification {
 
+    private final ReminderPlayer reminderPlayer;
     private final PreferencesHelper preferencesHelper;
     private final Context context;
 
     @Inject
-    public ReminderNotification(PreferencesHelper preferencesHelper, Context context) {
+    public ReminderNotification(ReminderPlayer reminderPlayer, PreferencesHelper preferencesHelper, Context context) {
+        this.reminderPlayer = reminderPlayer;
         this.preferencesHelper = preferencesHelper;
         this.context = context;
     }
@@ -78,8 +83,10 @@ class ReminderNotification {
 
         PendingIntent pendingIntent = getNotificationIntent();
 
-        if (prayerType != null && prayerType.equals(TimingType.COMPLEMENTARY.toString())) {
-            notificationTitle = context.getString(R.string.complementary_timing_reminder_notification_title, prayerName);
+        boolean isComplementaryTiming = prayerType.equals(TimingType.COMPLEMENTARY.toString());
+
+        if (prayerType != null && isComplementaryTiming) {
+            notificationTitle = context.getString(R.string.adthan_notification_title);
         } else {
             notificationTitle = context.getString(R.string.adthan_reminder_notification_title);
         }
@@ -95,6 +102,7 @@ class ReminderNotification {
                 .setColor(ContextCompat.getColor(context, R.color.colorPrimary))
                 .setContentTitle(notificationTitle)
                 .setStyle(new NotificationCompat.BigTextStyle().bigText(content))
+                .setDeleteIntent(createOnDismissedIntent(notificationId))
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true);
 
@@ -105,6 +113,8 @@ class ReminderNotification {
         if (preferencesHelper.isVibrationActivated()) {
             createVibration();
         }
+
+        setupCall(!isComplementaryTiming, prayerKey);
     }
 
     private PendingIntent getNotificationIntent() {
@@ -129,6 +139,33 @@ class ReminderNotification {
                             .build());
         } else {
             vibrator.vibrate(pattern, -1);
+        }
+    }
+
+    private PendingIntent createOnDismissedIntent(int notificationId) {
+        Intent intent = new Intent(context, NotificationDismissedReceiver.class);
+        intent.setClass(context, NotificationDismissedReceiver.class);
+        intent.putExtra("notificationId", notificationId);
+
+        return PendingIntent.getBroadcast(context.getApplicationContext(),
+                notificationId, intent, PendingIntent.FLAG_ONE_SHOT);
+    }
+
+    private void setupCall(boolean isReminder, String prayerKey) {
+        boolean callEnabled;
+
+        if (isReminder) {
+            callEnabled = preferencesHelper.isReminderCallEnabled();
+        } else {
+            String adhanCallKeyPart = PreferencesConstants.TIMING_REMINDER_CALL_ENABLED;
+            String callPreferenceKey = prayerKey + adhanCallKeyPart;
+
+            final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+            callEnabled = defaultSharedPreferences.getBoolean(callPreferenceKey, false);
+        }
+
+        if (callEnabled) {
+            reminderPlayer.playAdhan(isReminder);
         }
     }
 }

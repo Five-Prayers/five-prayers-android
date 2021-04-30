@@ -72,6 +72,7 @@
     <string name="ASR">Al Asr</string>
     <string name="MAGHRIB">Al Maghreb</string>
     <string name="ICHA">Al Ichaa</string>
+    <string name="LAST_THIRD_OF_THE_NIGHT">Last third of the Night</string>
 
     <string name="SHORT_FAJR">Fajr</string>
     <string name="SHORT_DHOHR">Dohr</string>
@@ -166,11 +167,17 @@
     <string name="gps_settings_text" translatable="false">GPS is not enabled. Do you want to go to settings menu?</string>
     <string name="settings_button_ok" translatable="false">Settings</string>
     <string name="settings_button_cancel" translatable="false">Cancel</string>
+
     <string name="title_location_preference_section">Location</string>
+    <string name="sub_title_reminder_preference_section">Adhan reminder</string>
+    <string name="sub_title_dhuha_reminder_preference_section">Dhuha prayer reminder</string>
+    <string name="sub_title_lton_reminder_preference_section">Last third of the Night reminder</string>
     <string name="title_checkbox_location_preference">Set location manually</string>
     <string name="title_adhan_vibration_preference">Enable vibration</string>
     <string name="title_douae_adhan_preference">Enable dua after Adhan</string>
     <string name="title_adhan_reminder_preference">Enable reminder before Adhan</string>
+    <string name="title_enable_reminder_sound_preference">Enable reminder</string>
+    <string name="title_reminder_sound_preference">Enable reminder sound</string>
     <string name="title_doha_reminder_preference">Enable reminder for Ad`Dhuha prayer</string>
     <string name="title_adhan_reminder_interval_preference">Reminder interval (min)</string>
     <string name="title_edit_text_location_preference">Actual location</string>
@@ -215,7 +222,6 @@
     <string name="title_midnight_mode_adjustment_method">Midnight mode</string>
     <string name="adthan_notification_title">It\'s time to pray</string>
     <string name="adthan_reminder_notification_title">The time for the next prayer is near</string>
-    <string name="complementary_timing_reminder_notification_title">Now is the time for %s prayer</string>
     <string name="adthan_notification_close_action_title">Silent and close</string>
 
     <!--   User Messages    -->

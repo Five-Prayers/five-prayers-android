@@ -243,7 +243,7 @@ public class PreferencesHelper {
 
     public boolean isReminderCallEnabled() {
         final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        return defaultSharedPreferences.getBoolean(PreferencesConstants.ADTHAN_REMINDER_CALL_ENABLED, true);
+        return defaultSharedPreferences.getBoolean(PreferencesConstants.ADTHAN_REMINDER_CALL_ENABLED, false);
     }
 
     public int getReminderInterval() {

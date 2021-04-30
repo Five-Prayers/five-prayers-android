@@ -102,7 +102,7 @@
                 android:title="@string/title_adhan_reminder_preference" />
 
             <CheckBoxPreference
-                android:defaultValue="true"
+                android:defaultValue="false"
                 android:dependency="ADTHAN_REMINDER_ENABLED"
                 android:key="ADTHAN_REMINDER_CALL_ENABLED"
                 android:layout="@layout/custom_switch_preference"

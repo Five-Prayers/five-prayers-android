@@ -70,12 +70,14 @@
             android:maxLines="1"
             android:textSize="@dimen/text_middle"
             android:textStyle="normal"
+            android:ellipsize="end"
+            android:scrollHorizontally="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/hijriTextView"
-            tools:text="1st Day Of Ramadan" />
+            tools:text="First Day Of Ramadan" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -18,14 +18,17 @@
             android:id="@+id/hijri_date_text_View"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
             android:layout_marginStart="@dimen/spacing_xmedium"
             android:layout_marginLeft="@dimen/spacing_xmedium"
+            android:layout_weight="1"
             android:gravity="start|center"
-            tools:text="30 Joumada Ath`Thania"
+            android:shadowColor="#000000"
+            android:shadowDx="1.5"
+            android:shadowDy="1.5"
+            android:shadowRadius="1.5"
             android:textColor="@color/black_squeeze"
             android:textSize="@dimen/text_middle"
-            />
+            tools:text="30 Joumada Ath`Thania" />
 
         <TextView
             android:id="@+id/holiday_text_View"
@@ -35,6 +38,10 @@
             android:layout_marginRight="@dimen/spacing_xmedium"
             android:layout_weight="1"
             android:gravity="end|center"
+            android:shadowColor="#000000"
+            android:shadowDx="1.5"
+            android:shadowDy="1.5"
+            android:shadowRadius="1.5"
             android:textColor="@color/black_squeeze"
             android:textSize="@dimen/text_middle"
             tools:text="@string/FIRST_DAY_OF_RAMADAN" />
@@ -59,10 +66,13 @@
                 android:layout_height="0dp"
                 android:layout_weight="0.5"
                 android:gravity="center"
-                tools:text="@string/SHORT_FAJR"
+                android:shadowColor="#000000"
+                android:shadowDx="1.5"
+                android:shadowDy="1.5"
+                android:shadowRadius="1.5"
                 android:textColor="@color/black_squeeze"
                 android:textSize="@dimen/text_middle"
-                />
+                tools:text="@string/SHORT_FAJR" />
 
             <TextView
                 android:id="@+id/fajr_text_View"
@@ -70,6 +80,10 @@
                 android:layout_height="0dp"
                 android:layout_weight="0.5"
                 android:gravity="center"
+                android:shadowColor="#000000"
+                android:shadowDx="1.5"
+                android:shadowDy="1.5"
+                android:shadowRadius="1.5"
                 android:textColor="@color/black_squeeze"
                 android:textSize="@dimen/text_middle"
                 tools:text="000" />
@@ -87,9 +101,13 @@
                 android:layout_height="0dp"
                 android:layout_weight="0.5"
                 android:gravity="center"
-                tools:text="@string/SUNRISE"
+                android:shadowColor="#000000"
+                android:shadowDx="1.5"
+                android:shadowDy="1.5"
+                android:shadowRadius="1.5"
                 android:textColor="@color/black_squeeze"
-                android:textSize="@dimen/text_middle" />
+                android:textSize="@dimen/text_middle"
+                tools:text="@string/SUNRISE" />
 
             <TextView
                 android:id="@+id/chourouk_text_View"
@@ -97,6 +115,10 @@
                 android:layout_height="0dp"
                 android:layout_weight="0.5"
                 android:gravity="center"
+                android:shadowColor="#000000"
+                android:shadowDx="1.5"
+                android:shadowDy="1.5"
+                android:shadowRadius="1.5"
                 android:textColor="@color/black_squeeze"
                 android:textSize="@dimen/text_middle"
                 tools:text="7:30 AM" />
@@ -114,10 +136,13 @@
                 android:layout_height="0dp"
                 android:layout_weight="0.5"
                 android:gravity="center"
-                tools:text="@string/SHORT_DHOHR"
+                android:shadowColor="#000000"
+                android:shadowDx="1.5"
+                android:shadowDy="1.5"
+                android:shadowRadius="1.5"
                 android:textColor="@color/black_squeeze"
                 android:textSize="@dimen/text_middle"
-                />
+                tools:text="@string/SHORT_DHOHR" />
 
             <TextView
                 android:id="@+id/dohr_text_View"
@@ -125,6 +150,10 @@
                 android:layout_height="0dp"
                 android:layout_weight="0.5"
                 android:gravity="center"
+                android:shadowColor="#000000"
+                android:shadowDx="1.5"
+                android:shadowDy="1.5"
+                android:shadowRadius="1.5"
                 android:textColor="@color/black_squeeze"
                 android:textSize="@dimen/text_middle"
                 tools:text="000" />
@@ -142,10 +171,13 @@
                 android:layout_height="0dp"
                 android:layout_weight="0.5"
                 android:gravity="center"
-                tools:text="@string/SHORT_ASR"
+                android:shadowColor="#000000"
+                android:shadowDx="1.5"
+                android:shadowDy="1.5"
+                android:shadowRadius="1.5"
                 android:textColor="@color/black_squeeze"
                 android:textSize="@dimen/text_middle"
-                />
+                tools:text="@string/SHORT_ASR" />
 
             <TextView
                 android:id="@+id/asr_text_View"
@@ -153,6 +185,10 @@
                 android:layout_height="0dp"
                 android:layout_weight="0.5"
                 android:gravity="center"
+                android:shadowColor="#000000"
+                android:shadowDx="1.5"
+                android:shadowDy="1.5"
+                android:shadowRadius="1.5"
                 android:textColor="@color/black_squeeze"
                 android:textSize="@dimen/text_middle"
                 tools:text="000" />
@@ -170,10 +206,13 @@
                 android:layout_height="0dp"
                 android:layout_weight="0.5"
                 android:gravity="center"
-                tools:text="@string/SHORT_MAGHRIB"
+                android:shadowColor="#000000"
+                android:shadowDx="1.5"
+                android:shadowDy="1.5"
+                android:shadowRadius="1.5"
                 android:textColor="@color/black_squeeze"
                 android:textSize="@dimen/text_middle"
-                />
+                tools:text="@string/SHORT_MAGHRIB" />
 
             <TextView
                 android:id="@+id/maghrib_text_View"
@@ -181,6 +220,10 @@
                 android:layout_height="0dp"
                 android:layout_weight="0.5"
                 android:gravity="center"
+                android:shadowColor="#000000"
+                android:shadowDx="1.5"
+                android:shadowDy="1.5"
+                android:shadowRadius="1.5"
                 android:textColor="@color/black_squeeze"
                 android:textSize="@dimen/text_middle"
                 tools:text="000" />
@@ -198,10 +241,13 @@
                 android:layout_height="0dp"
                 android:layout_weight="0.5"
                 android:gravity="center"
-                tools:text="@string/SHORT_ICHA"
+                android:shadowColor="#000000"
+                android:shadowDx="1.5"
+                android:shadowDy="1.5"
+                android:shadowRadius="1.5"
                 android:textColor="@color/black_squeeze"
                 android:textSize="@dimen/text_middle"
-                />
+                tools:text="@string/SHORT_ICHA" />
 
             <TextView
                 android:id="@+id/ichaa_text_View"
@@ -209,6 +255,10 @@
                 android:layout_height="0dp"
                 android:layout_weight="0.5"
                 android:gravity="center"
+                android:shadowColor="#000000"
+                android:shadowDx="1.5"
+                android:shadowDy="1.5"
+                android:shadowRadius="1.5"
                 android:textColor="@color/black_squeeze"
                 android:textSize="@dimen/text_middle"
                 tools:text="000" />

@@ -66,7 +66,7 @@
     <string name="app_intro_permission_denied_dialog_message">Vous venez de refuser que l\'application accède à votre position. vous devez saisir manuellement votre ville dans l\'écran des paramètres.</string>
 
     <string name="FAJR">As`Sobh (Fajr)</string>
-    <string name="SUNRISE">Chorouk</string>
+    <string name="SUNRISE">Levé</string>
     <string name="DOHA">Ad`Doha</string>
     <string name="DHOHR">Ad`Dohr</string>
     <string name="ASR">Al Asr</string>
@@ -87,12 +87,17 @@
     <string name="MID_SHAABAN_NIGHT">Laila Al Baraah</string>
     <string name="MID_SHAABAN">Moitié de Chaaban</string>
     <string name="FIRST_DAY_OF_RAMADAN">1er jour de Ramadan</string>
-    <string name="FIRST_DAY_OF_LAILAT_AL_QADR">Lailat Al Qadr</string>
-    <string name="SECOND_DAY_OF_LAILAT_AL_QADR">Lailat Al Qadr</string>
-    <string name="THIRD_DAY_OF_LAILAT_AL_QADR">Lailat Al Qadr</string>
-    <string name="FOURTH_DAY_OF_LAILAT_AL_QADR">Lailat Al Qadr</string>
-    <string name="FIFTH_DAY_OF_LAILAT_AL_QADR">Lailat Al Qadr</string>
-    <string name="SIXT_DAY_OF_LAILAT_AL_QADR">Lailat Al Qadr</string>
+    <string name="DAY_20_OF_RAMADAN">Derniers jours de Ramadan</string>
+    <string name="DAY_21_OF_RAMADAN">Derniers jours de Ramadan</string>
+    <string name="DAY_22_OF_RAMADAN">Derniers jours de Ramadan</string>
+    <string name="DAY_23_OF_RAMADAN">Derniers jours de Ramadan</string>
+    <string name="DAY_24_OF_RAMADAN">Derniers jours de Ramadan</string>
+    <string name="DAY_25_OF_RAMADAN">Derniers jours de Ramadan</string>
+    <string name="DAY_26_OF_RAMADAN">Derniers jours de Ramadan</string>
+    <string name="DAY_27_OF_RAMADAN">Derniers jours de Ramadan</string>
+    <string name="DAY_28_OF_RAMADAN">Derniers jours de Ramadan</string>
+    <string name="DAY_29_OF_RAMADAN">Derniers jours de Ramadan</string>
+    <string name="DAY_30_OF_RAMADAN">Derniers jours de Ramadan</string>
     <string name="EID_AL_FITR">Eid Al Fitr</string>
     <string name="FIRST_DAY_OF_AL_Hajj">Al Hajj</string>
     <string name="DAY_OF_ARAFAH">Jour de Arafah</string>

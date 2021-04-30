@@ -37,8 +37,8 @@
 
         <ImageView
             android:id="@+id/hijri_calendar_date_month_text_view"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
             android:layout_gravity="bottom|start"
             app:srcCompat="@drawable/ic_first_24dp"
             android:visibility="invisible"
@@ -46,10 +46,10 @@
 
         <ImageView
             android:id="@+id/hijri_calendar_holiday_date"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
             android:layout_gravity="top|start"
-            app:srcCompat="@drawable/ic_bell_holiday_24dp"
+            app:srcCompat="@drawable/ic_celebration_flag_24dp"
             android:visibility="invisible"
             />
     </FrameLayout>

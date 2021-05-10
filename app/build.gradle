@@ -26,8 +26,8 @@ android {
         applicationId "com.hbouzidi.fiveprayers"
         minSdkVersion 16
         targetSdkVersion 30
-        versionCode 23
-        versionName "2.2.1"
+        versionCode 24
+        versionName "2.2.2"
         archivesBaseName = "$applicationId-v$versionCode($versionName)"
 
         vectorDrawables.useSupportLibrary = true
@@ -82,6 +82,12 @@ android {
                 forkEvery = 100 // means only 100 tests will get ran in a single process,
                                 // so they never hit the heap size.
             }
+        }
+    }
+
+    bundle {
+        language {
+            enableSplit = false
         }
     }
 }

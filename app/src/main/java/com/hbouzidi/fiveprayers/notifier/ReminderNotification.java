@@ -98,13 +98,18 @@ class ReminderNotification {
         }
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, NotifierConstants.ADTHAN_NOTIFICATION_CHANNEL_ID)
-                .setSmallIcon(R.drawable.ic_mosque_24dp)
                 .setColor(ContextCompat.getColor(context, R.color.colorPrimary))
                 .setContentTitle(notificationTitle)
                 .setStyle(new NotificationCompat.BigTextStyle().bigText(content))
                 .setDeleteIntent(createOnDismissedIntent(notificationId))
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true);
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            builder.setSmallIcon(android.R.drawable.ic_popup_reminder);
+        } else {
+            builder.setSmallIcon(R.drawable.ic_mosque_24dp);
+        }
 
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
 

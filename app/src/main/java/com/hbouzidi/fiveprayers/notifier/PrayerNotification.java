@@ -90,14 +90,22 @@ class PrayerNotification {
         }
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, NotifierConstants.ADTHAN_NOTIFICATION_CHANNEL_ID)
-                .setSmallIcon(R.drawable.ic_mosque_24dp)
                 .setColor(ContextCompat.getColor(context, R.color.colorPrimary))
                 .setContentTitle(context.getString(R.string.adthan_notification_title))
                 .setStyle(new NotificationCompat.BigTextStyle().bigText(content))
-                .addAction(R.drawable.ic_notifications_24dp, closeActionTitle, getCloseNotificationActionIntent(notificationId))
                 .setDeleteIntent(createOnDismissedIntent(notificationId))
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true);
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            builder
+                    .addAction(android.R.drawable.ic_popup_reminder, closeActionTitle, getCloseNotificationActionIntent(notificationId))
+                    .setSmallIcon(android.R.drawable.ic_popup_reminder);
+        } else {
+            builder
+                    .addAction(R.drawable.ic_notifications_24dp, closeActionTitle, getCloseNotificationActionIntent(notificationId))
+                    .setSmallIcon(R.drawable.ic_mosque_24dp);
+        }
 
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
 

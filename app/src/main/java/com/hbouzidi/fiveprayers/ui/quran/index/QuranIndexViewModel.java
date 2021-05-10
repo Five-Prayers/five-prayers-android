@@ -19,6 +19,7 @@ import com.hbouzidi.fiveprayers.quran.dto.QuranPage;
 import com.hbouzidi.fiveprayers.quran.dto.Surah;
 import com.hbouzidi.fiveprayers.quran.parser.QuranParser;
 import com.hbouzidi.fiveprayers.utils.Decompressor;
+import com.hbouzidi.fiveprayers.utils.FileDownloader;
 
 import java.io.File;
 import java.io.IOException;
@@ -163,6 +164,34 @@ public class QuranIndexViewModel extends AndroidViewModel {
                 cursor.close();
             }
         }).start();
+    }
+
+    public void legacyDownloadAnsUnzipQuranImages(Context applicationContext) {
+        String url = BuildConfig.QURAN_IMAGES_ZIP_URL;
+
+        File unzipDestinationFolder = new File(applicationContext.getFilesDir().getAbsolutePath() + "/" + BuildConfig.QURAN_IMAGES_FOLDER_NAME);
+
+        mPercentage.postValue(0);
+        mUnzipPercentage.postValue(0);
+
+        FileDownloader fileDownloader = new FileDownloader(applicationContext.getFilesDir().getAbsolutePath() + BuildConfig.QURAN_IMAGES_FOLDER_NAME + ".zip", downloadedFile -> {
+            Decompressor unzip;
+            try {
+                unzip = new Decompressor(downloadedFile, unzipDestinationFolder.getCanonicalPath());
+                mDownloadAndUnzipFinished.postValue(unzip.unzip(mUnzipPercentage));
+            } catch (IOException e) {
+                mDownloadError.postValue(true);
+                Log.e(TAG, "Error while Unzipping Quran files : Cannot getCanonicalPath", e);
+            }
+
+            if (downloadedFile.exists() && downloadedFile.delete()) {
+                Log.i(TAG, "Temporary Quran zip file deleted");
+            } else {
+                Log.e(TAG, "Cannot delete temporary Quran zip file deleted");
+            }
+        });
+
+        new Thread(() -> fileDownloader.download(url, mPercentage)).start();
     }
 
     public MutableLiveData<List<Surah>> getSurahs() {

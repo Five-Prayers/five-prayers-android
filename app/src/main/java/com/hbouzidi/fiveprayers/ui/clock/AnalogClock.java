@@ -6,8 +6,8 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.widget.RelativeLayout;
 
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.AppCompatImageView;
-import androidx.core.content.ContextCompat;
 
 import com.hbouzidi.fiveprayers.R;
 
@@ -58,10 +58,10 @@ public class AnalogClock extends RelativeLayout {
         Drawable minuteDrawable = typedArray.getDrawable(R.styleable.SimpleAnalogClock_minuteDrawable);
         Drawable secondDrawable = typedArray.getDrawable(R.styleable.SimpleAnalogClock_secondDrawable);
 
-        setFaceDrawable(faceDrawable != null ? faceDrawable : ContextCompat.getDrawable(context, R.drawable.clock_00_face))
-                .setHourDrawable(hourDrawable != null ? hourDrawable : ContextCompat.getDrawable(context, R.drawable.clock_00_short))
-                .setMinuteDrawable(minuteDrawable != null ? minuteDrawable : ContextCompat.getDrawable(context, R.drawable.clock_00_long))
-                .setSecondDrawable(secondDrawable != null ? secondDrawable : ContextCompat.getDrawable(context, R.drawable.clock_00_second));
+        setFaceDrawable(faceDrawable != null ? faceDrawable : AppCompatResources.getDrawable(context, R.drawable.clock_00_face))
+                .setHourDrawable(hourDrawable != null ? hourDrawable : AppCompatResources.getDrawable(context, R.drawable.clock_00_short))
+                .setMinuteDrawable(minuteDrawable != null ? minuteDrawable : AppCompatResources.getDrawable(context, R.drawable.clock_00_long))
+                .setSecondDrawable(secondDrawable != null ? secondDrawable : AppCompatResources.getDrawable(context, R.drawable.clock_00_second));
 
         int faceColor = typedArray.getColor(R.styleable.SimpleAnalogClock_faceTint, -1);
         int hourColor = typedArray.getColor(R.styleable.SimpleAnalogClock_hourTint, -1);

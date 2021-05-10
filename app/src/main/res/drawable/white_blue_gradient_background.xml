@@ -8,5 +8,4 @@
                 android:type="linear" />
         </shape>
     </item>
-    <item android:drawable="@drawable/mosque_background"/>
 </layer-list>

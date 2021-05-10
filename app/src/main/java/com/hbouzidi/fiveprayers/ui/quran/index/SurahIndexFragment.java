@@ -5,6 +5,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,21 +13,16 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.hbouzidi.fiveprayers.BuildConfig;
-import com.hbouzidi.fiveprayers.FivePrayerApplication;
 import com.hbouzidi.fiveprayers.R;
 import com.hbouzidi.fiveprayers.quran.dto.Surah;
 
 import java.io.File;
 import java.util.List;
 import java.util.Objects;
-
-import javax.inject.Inject;
 
 /**
  * @author Hicham Bouzidi Idrissi
@@ -107,7 +103,12 @@ public class SurahIndexFragment extends QuranBaseIndexFragment {
         File file = new File(requireContext().getFilesDir().getAbsolutePath(), BuildConfig.QURAN_IMAGES_FOLDER_NAME);
 
         if (!file.exists() || Objects.requireNonNull(file.listFiles()).length != QURAN_PAGES_COUNT) {
-            quranIndexViewModel.downloadAnsUnzipQuranImages(requireContext());
+
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+                quranIndexViewModel.legacyDownloadAnsUnzipQuranImages(requireContext());
+            } else {
+                quranIndexViewModel.downloadAnsUnzipQuranImages(requireContext());
+            }
 
             progressBarLinearLayout.setVisibility(View.VISIBLE);
             surahRecyclerView.setVisibility(View.INVISIBLE);

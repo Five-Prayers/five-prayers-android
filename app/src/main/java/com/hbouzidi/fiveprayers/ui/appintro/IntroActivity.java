@@ -3,6 +3,7 @@ package com.hbouzidi.fiveprayers.ui.appintro;
 import android.Manifest;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,8 +13,8 @@ import com.github.appintro.AppIntro;
 import com.github.appintro.AppIntroFragment;
 import com.github.appintro.AppIntroPageTransformerType;
 import com.hbouzidi.fiveprayers.R;
-import com.hbouzidi.fiveprayers.utils.AlertHelper;
 import com.hbouzidi.fiveprayers.ui.splashscreen.SplashScreenActivity;
+import com.hbouzidi.fiveprayers.utils.AlertHelper;
 
 /**
  * @author Hicham Bouzidi Idrissi
@@ -54,6 +55,17 @@ public class IntroActivity extends AppIntro {
                 Color.WHITE
         ));
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            addSlide(AppIntroFragment.newInstance(
+                    getResources().getString(R.string.app_intro_frag_3_title),
+                    getResources().getString(R.string.app_intro_frag_3_5_description),
+                    R.drawable.ic_question_200dp,
+                    0xFF17C5FF,
+                    Color.WHITE,
+                    Color.WHITE
+            ));
+        }
+
         addSlide(AppIntroFragment.newInstance(
                 getResources().getString(R.string.app_intro_frag_4_title),
                 getResources().getString(R.string.app_intro_frag_4_description),
@@ -68,6 +80,13 @@ public class IntroActivity extends AppIntro {
                 permissions,
                 3,
                 false);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            askForPermissions(
+                    new String[]{Manifest.permission.ACCESS_BACKGROUND_LOCATION},
+                    4,
+                    false);
+        }
 
         AppIntroPageTransformerType.Parallax parallax = new AppIntroPageTransformerType.Parallax(
                 1.0,

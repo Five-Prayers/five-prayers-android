@@ -58,6 +58,9 @@
     <string name="app_intro_frag_3_description">Afin de calculer efficacement les horaires de prière,
         cette application a besoin de votre autorisation pour connaître la position de votre téléphone.(recommandé)</string>
 
+    <string name="app_intro_frag_3_5_description">Nous avons également besoin de votre autorisation pour utiliser les fonctionnalités de localisation en arrière-plan
+        pour mettre à jour les horaires de prière sans ouvrir l\'application. Veuillez sélectionner l\'option \"Toujours autoriser\" sur l\'écran suivant (recommandé)</string>
+
     <string name="app_intro_frag_4_title">Profitez-en !</string>
     <string name="app_intro_frag_4_description">Cinq Prières pour Android présente de superbes fonctionnalités pour tous les utilisateurs,
         comme: Horaires de prière dans le monde, différentes méthodes de calcul, notifications, lecture de l\'Adhan, direction de Qibla et plus encore …</string>

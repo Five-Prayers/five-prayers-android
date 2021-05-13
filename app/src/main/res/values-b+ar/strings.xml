@@ -56,6 +56,9 @@
     <string name="app_intro_frag_3_title">نحن بحاجة إلى إذنك</string>
     <string name="app_intro_frag_3_description">من أجل حساب أوقات الصلاة بكفاءة
         يحتاج هذا التطبيق إلى إذنك لمعرفة موقع هاتفك. (موصى به)</string>
+
+    <string name="app_intro_frag_3_5_description">نحتاج أيضًا إلى إذنك لاستخدام إمكانات الموقع في الخلفية
+        لتحديث مواقيت الصلاة دون فتح التطبيق ، يرجى تحديد خيار السماح طوال الوقت في الشاشة التالية (موصى به)</string>
     <string name="app_intro_frag_4_title">استمتع !</string>
     <string name="app_intro_frag_4_description">تقدم Five Prayers Android ميزات رائعة لجميع المستخدمين
 مثل: أوقات الصلاة حول العالم ، طرق حساب مختلفة ، إشعارات ، قراءة الأذان ، إتجاه القبلة والمزيد …</string>

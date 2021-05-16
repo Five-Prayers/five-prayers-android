@@ -9,7 +9,10 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -147,16 +150,20 @@ public class TimingUtilsTest {
     @Test
     public void convertToLocalDateTime() throws ParseException {
         String sDate = "31/12/1998 23:37:50";
-        Date date = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").parse(sDate);
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.ENGLISH);
+        simpleDateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+
+        Date date = simpleDateFormat.parse(sDate);
 
         LocalDateTime localDateTime = TimingUtils.convertToLocalDateTime(date, ZoneId.of("Europe/Paris"));
 
-        assertEquals(23, localDateTime.getHour());
+        assertEquals(0, localDateTime.getHour());
         assertEquals(37, localDateTime.getMinute());
         assertEquals(50, localDateTime.getSecond());
-        assertEquals(31, localDateTime.getDayOfMonth());
-        assertEquals(12, localDateTime.getMonthValue());
-        assertEquals(1998, localDateTime.getYear());
+        assertEquals(1, localDateTime.getDayOfMonth());
+        assertEquals(1, localDateTime.getMonthValue());
+        assertEquals(1999, localDateTime.getYear());
     }
 
     @Test

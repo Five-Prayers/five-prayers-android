@@ -75,7 +75,7 @@ Five Prayers Android is not Google Framework dependent, so this app can be used 
 </details>
 
 * Prayer times Adjustement
-* Hijri Calendar.
+* Hijri Calendar
 * Automatic or Manual location
 * Notification for prayer times 
 * Reads Adhan for prayer times

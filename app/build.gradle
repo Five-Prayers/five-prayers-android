@@ -78,9 +78,11 @@ android {
         // Fix OutOfMemory errors
         unitTests {
             all {
-                maxParallelForks = Runtime.runtime.availableProcessors()
-                forkEvery = 100 // means only 100 tests will get ran in a single process,
+                maxParallelForks = 2
+                forkEvery = 80 // means only 80 tests will get ran in a single process,
                                 // so they never hit the heap size.
+                maxHeapSize = "2048m"
+                minHeapSize = "1024m"
             }
         }
     }

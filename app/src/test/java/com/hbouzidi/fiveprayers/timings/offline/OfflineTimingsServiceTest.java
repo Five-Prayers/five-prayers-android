@@ -3,6 +3,7 @@ package com.hbouzidi.fiveprayers.timings.offline;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.location.Address;
+import android.util.Log;
 
 import androidx.test.core.app.ApplicationProvider;
 
@@ -91,7 +92,7 @@ public class OfflineTimingsServiceTest {
 
         Assertions.assertThat(prayerTimings.getTimings().get(PrayerEnum.FAJR).withNano(0)).isEqualTo(LocalDateTime.of(2021, 4, 25, 4, 34));
         Assertions.assertThat(prayerTimings.getTimings().get(PrayerEnum.DHOHR).withNano(0)).isEqualTo(LocalDateTime.of(2021, 4, 25, 13, 49));
-//        Assertions.assertThat(prayerTimings.getTimings().get(PrayerEnum.ASR).withNano(0)).isEqualTo(LocalDateTime.of(2021, 4, 25, 17, 46));
+        Assertions.assertThat(prayerTimings.getTimings().get(PrayerEnum.ASR).withNano(0)).isEqualTo(LocalDateTime.of(2021, 4, 25, 17, 46));
         Assertions.assertThat(prayerTimings.getTimings().get(PrayerEnum.MAGHRIB).withNano(0)).isEqualTo(LocalDateTime.of(2021, 4, 25, 20, 58));
         Assertions.assertThat(prayerTimings.getTimings().get(PrayerEnum.ICHA).withNano(0)).isEqualTo(LocalDateTime.of(2021, 4, 25, 22, 57));
 
@@ -133,7 +134,7 @@ public class OfflineTimingsServiceTest {
 
         Assertions.assertThat(prayerTimings.getTimings().get(PrayerEnum.FAJR).withNano(0)).isEqualTo(LocalDateTime.of(2021, 4, 25, 4, 35));
         Assertions.assertThat(prayerTimings.getTimings().get(PrayerEnum.DHOHR).withNano(0)).isEqualTo(LocalDateTime.of(2021, 4, 25, 13, 50));
-     //   Assertions.assertThat(prayerTimings.getTimings().get(PrayerEnum.ASR).withNano(0)).isEqualTo(LocalDateTime.of(2021, 4, 25, 17, 47));
+        Assertions.assertThat(prayerTimings.getTimings().get(PrayerEnum.ASR).withNano(0)).isEqualTo(LocalDateTime.of(2021, 4, 25, 17, 47));
         Assertions.assertThat(prayerTimings.getTimings().get(PrayerEnum.MAGHRIB).withNano(0)).isEqualTo(LocalDateTime.of(2021, 4, 25, 20, 59));
         Assertions.assertThat(prayerTimings.getTimings().get(PrayerEnum.ICHA).withNano(0)).isEqualTo(LocalDateTime.of(2021, 4, 25, 22, 56));
 
@@ -173,11 +174,26 @@ public class OfflineTimingsServiceTest {
         Assertions.assertThat(prayerTimings.getHijriMonthNumber()).isEqualTo(9);
         Assertions.assertThat(prayerTimings.getHijriYear()).isEqualTo(1442);
 
-        Assertions.assertThat(prayerTimings.getTimings().get(PrayerEnum.FAJR).withNano(0)).isEqualTo(LocalDateTime.of(2021, 4, 25, 4, 29));
-        Assertions.assertThat(prayerTimings.getTimings().get(PrayerEnum.DHOHR).withNano(0)).isEqualTo(LocalDateTime.of(2021, 4, 25, 13, 49));
-  //      Assertions.assertThat(prayerTimings.getTimings().get(PrayerEnum.ASR).withNano(0)).isEqualTo(LocalDateTime.of(2021, 4, 25, 17, 46));
-        Assertions.assertThat(prayerTimings.getTimings().get(PrayerEnum.MAGHRIB).withNano(0)).isEqualTo(LocalDateTime.of(2021, 4, 25, 20, 58));
-        Assertions.assertThat(prayerTimings.getTimings().get(PrayerEnum.ICHA).withNano(0)).isEqualTo(prayerTimings.getTimings().get(PrayerEnum.MAGHRIB).plusMinutes(120).withNano(0));
+        Assertions.assertThat(prayerTimings.getTimings().get(PrayerEnum.FAJR).withNano(0))
+                .as("FAJR Time %s", prayerTimings.getTimings().get(PrayerEnum.FAJR).withNano(0))
+                .isEqualTo(LocalDateTime.of(2021, 4, 25, 4, 29));
+
+        Assertions.assertThat(prayerTimings.getTimings().get(PrayerEnum.DHOHR).withNano(0))
+                .as("DHOHR Time %s", prayerTimings.getTimings().get(PrayerEnum.DHOHR).withNano(0))
+                .isEqualTo(LocalDateTime.of(2021, 4, 25, 13, 49));
+
+            Assertions.assertThat(prayerTimings.getTimings().get(PrayerEnum.ASR).withNano(0))
+                    .as("ASR Time %s", prayerTimings.getTimings().get(PrayerEnum.ASR).withNano(0))
+                    .isEqualTo(LocalDateTime.of(2021, 4, 25, 17, 46));
+
+
+        Assertions.assertThat(prayerTimings.getTimings().get(PrayerEnum.MAGHRIB).withNano(0))
+                .as("MAGHRIB Time %s", prayerTimings.getTimings().get(PrayerEnum.MAGHRIB).withNano(0))
+                .isEqualTo(LocalDateTime.of(2021, 4, 25, 20, 58));
+
+        Assertions.assertThat(prayerTimings.getTimings().get(PrayerEnum.ICHA).withNano(0))
+                .as("ICHA Time %s", prayerTimings.getTimings().get(PrayerEnum.ICHA).withNano(0))
+                .isEqualTo(prayerTimings.getTimings().get(PrayerEnum.MAGHRIB).plusMinutes(120).withNano(0));
 
         Assertions.assertThat(prayerTimings.getComplementaryTiming().get(ComplementaryTimingEnum.SUNRISE).withNano(0)).isEqualTo(LocalDateTime.of(2021, 4, 25, 6, 41));
         Assertions.assertThat(prayerTimings.getComplementaryTiming().get(ComplementaryTimingEnum.DOHA).withNano(0)).isEqualTo(LocalDateTime.of(2021, 4, 25, 6, 56));
@@ -217,7 +233,7 @@ public class OfflineTimingsServiceTest {
 
         Assertions.assertThat(prayerTimings.getTimings().get(PrayerEnum.FAJR).withNano(0)).isEqualTo(LocalDateTime.of(2021, 5, 25, 3, 24));
         Assertions.assertThat(prayerTimings.getTimings().get(PrayerEnum.DHOHR).withNano(0)).isEqualTo(LocalDateTime.of(2021, 5, 25, 13, 48));
-  //      Assertions.assertThat(prayerTimings.getTimings().get(PrayerEnum.ASR).withNano(0)).isEqualTo(LocalDateTime.of(2021, 5, 25, 18, 1));
+        Assertions.assertThat(prayerTimings.getTimings().get(PrayerEnum.ASR).withNano(0)).isEqualTo(LocalDateTime.of(2021, 5, 25, 18, 1));
         Assertions.assertThat(prayerTimings.getTimings().get(PrayerEnum.MAGHRIB).withNano(0)).isEqualTo(LocalDateTime.of(2021, 5, 25, 21, 39));
         Assertions.assertThat(prayerTimings.getTimings().get(PrayerEnum.ICHA).withNano(0)).isEqualTo(prayerTimings.getTimings().get(PrayerEnum.MAGHRIB).plusMinutes(90).withNano(0));
 
@@ -259,7 +275,7 @@ public class OfflineTimingsServiceTest {
 
         Assertions.assertThat(prayerTimings.getTimings().get(PrayerEnum.FAJR).withNano(0)).isEqualTo(LocalDateTime.of(2021, 5, 25, 3, 24));
         Assertions.assertThat(prayerTimings.getTimings().get(PrayerEnum.DHOHR).withNano(0)).isEqualTo(LocalDateTime.of(2021, 5, 25, 13, 48));
-    //    Assertions.assertThat(prayerTimings.getTimings().get(PrayerEnum.ASR).withNano(0)).isEqualTo(LocalDateTime.of(2021, 5, 25, 19, 12));
+        Assertions.assertThat(prayerTimings.getTimings().get(PrayerEnum.ASR).withNano(0)).isEqualTo(LocalDateTime.of(2021, 5, 25, 19, 12));
         Assertions.assertThat(prayerTimings.getTimings().get(PrayerEnum.MAGHRIB).withNano(0)).isEqualTo(LocalDateTime.of(2021, 5, 25, 21, 39));
         Assertions.assertThat(prayerTimings.getTimings().get(PrayerEnum.ICHA).withNano(0)).isEqualTo(prayerTimings.getTimings().get(PrayerEnum.MAGHRIB).plusMinutes(90).withNano(0));
 

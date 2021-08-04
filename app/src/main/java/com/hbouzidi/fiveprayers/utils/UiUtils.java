@@ -1,5 +1,10 @@
 package com.hbouzidi.fiveprayers.utils;
 
+import android.content.ContentResolver;
+import android.content.Context;
+import android.content.res.Resources;
+import android.net.Uri;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -60,5 +65,13 @@ public class UiUtils {
 
     public static String formatShortHijriDate(int day, String monthName) {
         return String.format(Locale.getDefault(), "%1$02d", day) + " " + monthName;
+    }
+
+    public static Uri uriFromRaw(String name, Context context) {
+        Resources res = context.getResources();
+        int mediaId = res.getIdentifier(name.toLowerCase(), "raw",
+                context.getPackageName());
+
+        return Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + context.getPackageName() + "/" + mediaId);
     }
 }

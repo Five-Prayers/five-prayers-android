@@ -25,25 +25,26 @@
         android:icon="@drawable/ic_notifications_24dp"
         android:layout="@layout/custom_preference_category"
         android:title="@string/title_notification_section">
-        <com.hbouzidi.fiveprayers.ui.settings.adhan.AdhanCallerPreference
-            android:defaultValue="SHORT_PRAYER_CALL"
-            android:dialogTitle="@string/dialog_title_fajr_adhan"
-            android:entries="@array/entries_fajr_adhan_list_preference"
-            android:entryValues="@array/entryvalues_fajr_adhan_list_preference"
-            android:key="ADHAN_FAJR_CALLER"
-            android:layout="@layout/custom_preference"
-            android:title="@string/title_adhan_fajr"
-            app:useSimpleSummaryProvider="true" />
 
-        <com.hbouzidi.fiveprayers.ui.settings.adhan.AdhanCallerPreference
-            android:defaultValue="SHORT_PRAYER_CALL"
-            android:dialogTitle="@string/dialog_title_adhan"
-            android:entries="@array/entries_adhan_list_preference"
-            android:entryValues="@array/entryvalues_adhan_list_preference"
-            android:key="ADHAN_CALLER"
+        <com.hbouzidi.fiveprayers.ui.settings.adhan.AdhanAudioPreference
+            android:key="ADHAN_FAJR_CALLER_URI"
+            android:dialogTitle="@string/dialog_title_fajr_adhan"
+            android:title="@string/title_adhan_fajr"
             android:layout="@layout/custom_preference"
+            app:extraRingtoneTitles="@array/entries_fajr_adhan_list_preference"
+            app:extraRingtones="@array/entryvalues_fajr_adhan_list_preference"
+            app:useSimpleSummaryProvider="true"
+            />
+
+        <com.hbouzidi.fiveprayers.ui.settings.adhan.AdhanAudioPreference
+            android:key="ADHAN_CALLER_URI"
+            android:dialogTitle="@string/dialog_title_adhan"
             android:title="@string/title_adhan_rest_prayers"
-            app:useSimpleSummaryProvider="true" />
+            android:layout="@layout/custom_preference"
+            app:extraRingtoneTitles="@array/entries_adhan_list_preference"
+            app:extraRingtones="@array/entryvalues_adhan_list_preference"
+            app:useSimpleSummaryProvider="true"
+            />
 
         <CheckBoxPreference
             android:defaultValue="true"

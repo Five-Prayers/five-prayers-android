@@ -12,6 +12,7 @@ if (secretsPropertiesFile.exists()) {
     secretsProperties.setProperty("PRIVACY_POLICY_URL", "${System.getenv('PRIVACY_POLICY_URL')}")
     secretsProperties.setProperty("QURAN_IMAGES_ZIP_URL", "${System.getenv('QURAN_IMAGES_ZIP_URL')}")
     secretsProperties.setProperty("QURAN_IMAGES_FOLDER_NAME", "${System.getenv('QURAN_IMAGES_FOLDER_NAME')}")
+    secretsProperties.setProperty("CUSTOM_ADHAN_SOUNDS_FOLDER_NAME", "${System.getenv('CUSTOM_ADHAN_SOUNDS_FOLDER_NAME')}")
     secretsProperties.setProperty("SIGNING_KEYSTORE_FILE", "${System.getenv('SIGNING_KEYSTORE_FILE')}")
     secretsProperties.setProperty("SIGNING_KEYSTORE_PASSWORD", "${System.getenv('SIGNING_KEYSTORE_PASSWORD')}")
     secretsProperties.setProperty("SIGNING_KEY_PASSWORD", "${System.getenv('SIGNING_KEY_PASSWORD')}")
@@ -26,8 +27,8 @@ android {
         applicationId "com.hbouzidi.fiveprayers"
         minSdkVersion 16
         targetSdkVersion 30
-        versionCode 25
-        versionName "2.2.3"
+        versionCode 26
+        versionName "2.3.0"
         archivesBaseName = "$applicationId-v$versionCode($versionName)"
 
         vectorDrawables.useSupportLibrary = true
@@ -42,6 +43,7 @@ android {
         buildConfigField("String", "PRIVACY_POLICY_URL", secretsProperties['PRIVACY_POLICY_URL'])
         buildConfigField("String", "QURAN_IMAGES_ZIP_URL", secretsProperties['QURAN_IMAGES_ZIP_URL'])
         buildConfigField("String", "QURAN_IMAGES_FOLDER_NAME", secretsProperties['QURAN_IMAGES_FOLDER_NAME'])
+        buildConfigField("String", "CUSTOM_ADHAN_SOUNDS_FOLDER_NAME", secretsProperties['CUSTOM_ADHAN_SOUNDS_FOLDER_NAME'])
     }
 
     signingConfigs {
@@ -119,9 +121,9 @@ dependencies {
 
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
 
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.google.android.material:material:1.3.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'androidx.appcompat:appcompat:1.3.1'
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.0'
     implementation 'androidx.vectordrawable:vectordrawable:1.1.0'
     implementation 'androidx.navigation:navigation-fragment:2.3.5'
     implementation 'androidx.navigation:navigation-ui:2.3.5'
@@ -129,8 +131,8 @@ dependencies {
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
     implementation "androidx.work:work-runtime:2.5.0"
     implementation "androidx.work:work-rxjava3:2.5.0"
-    implementation 'androidx.core:core:1.3.2'
-    implementation 'androidx.media:media:1.3.0'
+    implementation 'androidx.core:core:1.6.0'
+    implementation 'androidx.media:media:1.4.0'
     implementation "androidx.preference:preference:1.1.1"
     implementation 'androidx.multidex:multidex:2.0.1'
     implementation group: 'com.grack', name: 'nanojson', version: '1.6'
@@ -215,7 +217,7 @@ dependencies {
 
     //Testing
     testImplementation 'junit:junit:4.13.1'
-    testImplementation 'androidx.test:core:1.3.0'
+    testImplementation 'androidx.test:core:1.4.0'
     testImplementation 'androidx.work:work-testing:2.5.0'
     testImplementation 'org.mockito:mockito-core:3.8.0'
     testImplementation 'org.robolectric:robolectric:4.5'
@@ -226,8 +228,8 @@ dependencies {
         exclude module: 'okhttp'
     }
     testImplementation 'com.squareup.assertj:assertj-android:1.2.0'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 }
 
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat

@@ -79,6 +79,7 @@ Five Prayers Android is not Google Framework dependent, so this app can be used 
 * Automatic or Manual location
 * Notification for prayer times 
 * Reads Adhan for prayer times
+* Play Adhan from device files
 * Read Dua after Adhan
 * Reminders before each prayer
 * Reminder for Duha prayer

@@ -27,6 +27,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
@@ -69,6 +72,9 @@ public class AdhanAudioPreferenceDialog extends PreferenceDialogFragmentCompat {
     private final MediaPlayer mMediaPlayer;
     private String mValue;
 
+    private ActivityResultLauncher<Intent> intentActivityResultLauncher;
+    private ActivityResultLauncher<String> activityResultLauncher;
+
     public AdhanAudioPreferenceDialog(AdhanAudioPreference preference) {
         final Bundle b = new Bundle();
         b.putString(ARG_KEY, preference.getKey());
@@ -93,6 +99,13 @@ public class AdhanAudioPreferenceDialog extends PreferenceDialogFragmentCompat {
         // apply to the dialog, so needs to be in code:
         Window window = requireActivity().getWindow();
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+
+        intentActivityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), this::activityResultCallback);
+        activityResultLauncher = registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
+            if (!isGranted) {
+                Toast.makeText(requireContext(), getString(R.string.preference_unable_add_new_adhan), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @NonNull
@@ -153,46 +166,6 @@ public class AdhanAudioPreferenceDialog extends PreferenceDialogFragmentCompat {
 
         sounds.putAll(getSounds());
         return sounds;
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == getExtraRingtonePreference().getCustomRingtoneRequestCode()) {
-            if (resultCode == RESULT_OK) {
-                final Uri fileUri = data.getData();
-                final Context context = getContext();
-
-                try {
-                    File newFile = addCustomExternalRingtone(context, fileUri);
-
-                    if (newFile != null) {
-                        final Map<String, Uri> sounds = getAllSoundsMap();
-                        final String[] titleArray = sounds.keySet().toArray(new String[0]);
-                        final Uri[] uriArray = sounds.values().toArray(new Uri[0]);
-
-                        int index = ArrayUtils.indexOf(titleArray, newFile.getName());
-
-                        final ListView listView = ((AlertDialog) getDialog()).getListView();
-                        listView.setAdapter(buildAdapter(context));
-
-                        listView.setItemChecked(index, true);
-                        listView.setSelection(index);
-                        listView.clearFocus();
-
-                        mValue = uriArray[index].toString();
-                    } else {
-                        Toast.makeText(context, getString(R.string.preference_unable_add_new_adhan), Toast.LENGTH_SHORT).show();
-                    }
-                } catch (IOException | IllegalArgumentException e) {
-                    Log.e(TAG, "Unable to add new ringtone: ", e);
-                }
-
-            } else {
-                Toast.makeText(requireContext(), getString(R.string.preference_unable_add_new_adhan), Toast.LENGTH_SHORT).show();
-            }
-        } else {
-            super.onActivityResult(requestCode, resultCode, data);
-        }
     }
 
     @Override
@@ -287,9 +260,9 @@ public class AdhanAudioPreferenceDialog extends PreferenceDialogFragmentCompat {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                 chooseFile.putExtra(Intent.EXTRA_MIME_TYPES, new String[]{"audio/*", "application/ogg"});
             }
-            startActivityForResult(chooseFile, getExtraRingtonePreference().getCustomRingtoneRequestCode());
+            intentActivityResultLauncher.launch(chooseFile);
         } else {
-            requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, getExtraRingtonePreference().getPermissionRequestCode());
+            activityResultLauncher.launch(Manifest.permission.WRITE_EXTERNAL_STORAGE);
         }
     }
 
@@ -464,6 +437,44 @@ public class AdhanAudioPreferenceDialog extends PreferenceDialogFragmentCompat {
         @Override
         public long getItemId(int position) {
             return position;
+        }
+    }
+
+    private void activityResultCallback(ActivityResult result) {
+        if (result.getResultCode() == RESULT_OK) {
+            final Uri fileUri = result.getData().getData();
+
+            final Context context = getContext();
+
+            try {
+                File newFile = addCustomExternalRingtone(context, fileUri);
+
+                if (newFile != null) {
+                    final Map<String, Uri> sounds = getAllSoundsMap();
+                    final String[] titleArray = sounds.keySet().toArray(new String[0]);
+                    final Uri[] uriArray = sounds.values().toArray(new Uri[0]);
+
+                    int index = ArrayUtils.indexOf(titleArray, newFile.getName());
+
+                    final ListView listView = ((AlertDialog) getDialog()).getListView();
+                    listView.setAdapter(buildAdapter(context));
+
+                    listView.setItemChecked(index, true);
+                    listView.setSelection(index);
+                    listView.clearFocus();
+
+                    mValue = uriArray[index].toString();
+                    initializeAndPlayAdhan(Uri.parse(mValue));
+
+                } else {
+                    Toast.makeText(context, getString(R.string.preference_unable_add_new_adhan), Toast.LENGTH_SHORT).show();
+                }
+            } catch (IOException | IllegalArgumentException e) {
+                Log.e(TAG, "Unable to add new ringtone: ", e);
+            }
+
+        } else {
+            Toast.makeText(requireContext(), getString(R.string.preference_unable_add_new_adhan), Toast.LENGTH_SHORT).show();
         }
     }
 }

@@ -32,7 +32,6 @@ import javax.inject.Inject;
 public class QuranPageActivity extends AppCompatActivity {
 
     public static final String LAST_PAGE_SHOWN_IDENTIFIER = "LAST_PAGE_SHOWN_IDENTIFIER";
-    public static final int AYAH_ACTIVITY_REQUEST_CODE = 1000;
 
     private RecyclerView PagesRecyclerView;
 

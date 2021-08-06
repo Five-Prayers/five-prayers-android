@@ -1,12 +1,15 @@
 package com.hbouzidi.fiveprayers.ui.quran.index;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -25,6 +28,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import static android.app.Activity.RESULT_OK;
+
 /**
  * @author Hicham Bouzidi Idrissi
  * Github : https://github.com/Five-Prayers/five-prayers-android
@@ -36,11 +41,20 @@ public class QuranBaseIndexFragment extends Fragment {
     protected List<QuranPage> quranPages;
     private final static int AUTOMATIC_BOOKMARK_MAX_SIZE = 3;
 
+    private ActivityResultLauncher<Intent> intentActivityResultLauncher;
+
     @Inject
     ViewModelProvider.Factory viewModelFactory;
 
     @Inject
     PreferencesHelper preferencesHelper;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        intentActivityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), this::activityResultCallback);
+    }
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -61,24 +75,7 @@ public class QuranBaseIndexFragment extends Fragment {
         Intent ayahsAcivity = new Intent(requireContext(), QuranPageActivity.class);
         ayahsAcivity.putExtra("BUNDLE", bundle);
 
-        startActivityForResult(ayahsAcivity, QuranPageActivity.AYAH_ACTIVITY_REQUEST_CODE);
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode) {
-            case (QuranPageActivity.AYAH_ACTIVITY_REQUEST_CODE): {
-                if (resultCode == Activity.RESULT_OK) {
-                    int lastpageShown = data.getIntExtra(QuranPageActivity.LAST_PAGE_SHOWN_IDENTIFIER, 0);
-
-                    if (lastpageShown != 0) {
-                        saveAutomaticBookmark(quranPages.get(lastpageShown - 1));
-                    }
-                }
-                break;
-            }
-        }
+        intentActivityResultLauncher.launch(ayahsAcivity);
     }
 
     private void saveAutomaticBookmark(QuranPage quranPage) {
@@ -95,5 +92,15 @@ public class QuranBaseIndexFragment extends Fragment {
 
         oldAutomaticBenchmarkList.add(newAutomaticBookmark);
         preferencesHelper.saveAutomaticBookmarkList(oldAutomaticBenchmarkList);
+    }
+
+    private void activityResultCallback(ActivityResult result) {
+        if (result.getResultCode() == RESULT_OK) {
+            int lastpageShown = result.getData().getIntExtra(QuranPageActivity.LAST_PAGE_SHOWN_IDENTIFIER, 0);
+
+            if (lastpageShown != 0) {
+                saveAutomaticBookmark(quranPages.get(lastpageShown - 1));
+            }
+        }
     }
 }

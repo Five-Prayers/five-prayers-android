@@ -1,4 +1,7 @@
 <resources>
+    <string name="whats_new_dialog_title">ميزة جديدة</string>
+    <string name="whats_new_dialog_message">أصبح من الممكن الآن تشغيل الأذان من أصوات الجهاز.\nيرجى الذهاب إلى شاشة الإعدادات وإضافة الأذان المفضل لديك.\nيرجى ملاحظة أنه تم إعادة ضبط إعدادات الأذان الخاصة بك.</string>
+
     <string name="about_five_prayers">حول التطبيق</string>
     <string name="open_source_projects_used">مشاريع مفتوحة المصدر</string>
     <string name="privacy_policy_title">سياسة خصوصية</string>
@@ -194,6 +197,8 @@
     <string name="title_edit_text_timing_adjustment_preference">ضبط أوقات الصلاة</string>
     <string name="dialog_title_edit_text_timing_adjustment_preference">تعديل الجدول (بالدقائق)</string>
     <string name="preference_title_contact">اتصل بنا</string>
+    <string name="preference_add_new_adhan">إضافة ملف الأذان</string>
+    <string name="preference_unable_add_new_adhan">تعذر إضافة ملف الأذان</string>
 
     <string name="latitude_adjustment_method_middle_of_the_night">منتصف الليل</string>
     <string name="latitude_adjustment_method_one_seventh">السابع من الليل</string>
@@ -264,6 +269,9 @@
     <string name="adhan_meshary_al_fasy">مشاري راشد العفاسي</string>
     <string name="adhan_omar_al_kazabri">عمر القزابري</string>
     <string name="adhan_riad_al_djazairi">رياض الجزائري</string>
+    <string name="adhan_manssour_el_zahrani">منصور الزهراني</string>
+    <string name="adhan_nurdin_al_haddiwi_fajr_morocco">نور الدين الحديوي</string>
+    <string name="adhan_nurdin_hamza_al_maghriby">نور الدين المغربي (القدس)</string>
     <string name="short_prayer_call">تذكير قصير بالعربية</string>
     <string name="title_adhan_fajr">أذان الفجر</string>
     <string name="title_adhan_rest_prayers">أذان باقي الصلوات</string>

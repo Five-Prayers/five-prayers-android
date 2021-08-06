@@ -31,4 +31,9 @@
         <attr name="minuteRotation" format="float" />
         <attr name="secondRotation" format="float" />
     </declare-styleable>
+
+    <declare-styleable name="ExtraRingtonePreference">
+        <attr name="extraRingtones" format="reference"/>
+        <attr name="extraRingtoneTitles" format="reference"/>
+    </declare-styleable>
 </resources>

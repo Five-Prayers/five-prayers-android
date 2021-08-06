@@ -9,6 +9,8 @@ public class PreferencesConstants {
 
     // Default
     public static final String FIRST_LAUNCH = "FIRST_LAUNCH";
+    public static final String APP_META = "APP_META";
+    public static final String PREVIOUS_INSTALLED_VERSION = "PREVIOUS_INSTALLED_VERSION";
     public static final String LOCATION_SET_MANUALLY_PREFERENCE = "LOCATION_SET_MANUALLY_PREFERENCE";
     public static final String LOCATION_PREFERENCE = "LOCATION_PREFERENCE";
     public static final String CALCULATION_PREFERENCES_INITIALIZED = "CALCULATION_PREFERENCES_INITIALIZED";
@@ -29,11 +31,11 @@ public class PreferencesConstants {
     public static final String LAST_THIRD_OF_THE_NIGHT_TIMING_REMINDER_ENABLED = "LAST_THIRD_OF_THE_NIGHT_TIMING_REMINDER_ENABLED";
     public static final String LAST_THIRD_OF_THE_NIGHT_TIMING_REMINDER_CALL_ENABLED = "LAST_THIRD_OF_THE_NIGHT_TIMING_REMINDER_CALL_ENABLED";
     public static final String ADTHAN_REMINDER_INTERVAL = "ADTHAN_REMINDER_INTERVAL";
-    public static final String ADTHAN_CALLER = "ADHAN_CALLER";
-    public static final String ADTHAN_FAJR_CALLER = "ADHAN_FAJR_CALLER";
+    public static final String ADTHAN_CALLER = "ADHAN_CALLER_URI";
+    public static final String ADTHAN_FAJR_CALLER = "ADHAN_FAJR_CALLER_URI";
     public static final String ADHAN_VIBRATION_PREFERENCE = "ADHAN_VIBRATION_PREFERENCE";
     public static final String DOUAE_AFTER_ADHAN_PREFERENCE = "DOUAE_AFTER_ADHAN_PREFERENCE";
-    public static final String SHORT_PRAYER_CALL = "SHORT_PRAYER_CALL";
+    public static final String SHORT_PRAYER_CALL = "short_prayer_call";
     public static final String ADHAN_FAJR_ABDELBASSET_ABDESSAMAD_EGYPTE = "ADHAN_FAJR_ABDELBASSET_ABDESSAMAD_EGYPTE";
     public static final String ADHAN_FAJR_AL_HARAM_EL_MADANI_SAOUDIA = "ADHAN_FAJR_AL_HARAM_EL_MADANI_SAOUDIA";
     public static final String ADHAN_FAJR_MESHARY_AL_FASY_KUWAIT = "ADHAN_FAJR_MESHARY_AL_FASY_KUWAIT";

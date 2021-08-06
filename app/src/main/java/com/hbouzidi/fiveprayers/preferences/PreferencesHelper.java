@@ -16,6 +16,7 @@ import com.hbouzidi.fiveprayers.timings.calculations.LatitudeAdjustmentMethod;
 import com.hbouzidi.fiveprayers.timings.calculations.MidnightModeAdjustmentMethod;
 import com.hbouzidi.fiveprayers.timings.calculations.SchoolAdjustmentMethod;
 import com.hbouzidi.fiveprayers.timings.calculations.TimingsTuneEnum;
+import com.hbouzidi.fiveprayers.utils.UiUtils;
 import com.hbouzidi.fiveprayers.utils.UserPreferencesUtils;
 
 import java.lang.reflect.Type;
@@ -213,12 +214,12 @@ public class PreferencesHelper {
 
     public String getFajrAdhanCaller() {
         final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        return defaultSharedPreferences.getString(PreferencesConstants.ADTHAN_FAJR_CALLER, "SHORT_PRAYER_CALL");
+        return defaultSharedPreferences.getString(PreferencesConstants.ADTHAN_FAJR_CALLER, UiUtils.uriFromRaw(PreferencesConstants.SHORT_PRAYER_CALL, context).toString());
     }
 
     public String getAdhanCaller() {
         final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        return defaultSharedPreferences.getString(PreferencesConstants.ADTHAN_CALLER, "SHORT_PRAYER_CALL");
+        return defaultSharedPreferences.getString(PreferencesConstants.ADTHAN_CALLER, UiUtils.uriFromRaw(PreferencesConstants.SHORT_PRAYER_CALL, context).toString());
     }
 
     public boolean isDouaeAfterAdhanEnabled() {

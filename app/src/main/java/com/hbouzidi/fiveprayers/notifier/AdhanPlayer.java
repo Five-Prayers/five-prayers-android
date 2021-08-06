@@ -15,6 +15,7 @@ import androidx.media.VolumeProviderCompat;
 import com.hbouzidi.fiveprayers.R;
 import com.hbouzidi.fiveprayers.preferences.PreferencesConstants;
 import com.hbouzidi.fiveprayers.preferences.PreferencesHelper;
+import com.hbouzidi.fiveprayers.utils.UiUtils;
 
 import java.io.IOException;
 
@@ -54,7 +55,7 @@ public class AdhanPlayer {
             adhanMediaPlayer.start();
 
             if (preferencesHelper.isDouaeAfterAdhanEnabled() &&
-                    !preferencesHelper.getAdhanCaller().equals(PreferencesConstants.SHORT_PRAYER_CALL)) {
+                    !Uri.parse(preferencesHelper.getAdhanCaller()).equals(UiUtils.uriFromRaw(PreferencesConstants.SHORT_PRAYER_CALL, context))) {
 
                 adhanMediaPlayer.setNextMediaPlayer(douaMediaPlayer);
             }
@@ -83,7 +84,7 @@ public class AdhanPlayer {
 
     private void initializeAdhanMediaPlayer(boolean fajr) throws IOException {
         adhanMediaPlayer.reset();
-        adhanMediaPlayer.setDataSource(context, getAdhanUri(context, fajr));
+        adhanMediaPlayer.setDataSource(context, getAdhanUri(fajr));
         setAudioAttribute(adhanMediaPlayer);
         adhanMediaPlayer.setLooping(false);
         adhanMediaPlayer.prepare();
@@ -110,41 +111,11 @@ public class AdhanPlayer {
         }
     }
 
-    private Uri getAdhanUri(Context context, boolean fajr) {
-        int mediaId;
+    private Uri getAdhanUri(boolean fajr) {
         if (fajr) {
-            switch (preferencesHelper.getFajrAdhanCaller()) {
-                case PreferencesConstants.ADHAN_FAJR_ABDELBASSET_ABDESSAMAD_EGYPTE:
-                    mediaId = R.raw.adhan_fajr_abdelbasset_abdessamad_egypte;
-                    break;
-                case PreferencesConstants.ADHAN_FAJR_AL_HARAM_EL_MADANI_SAOUDIA:
-                    mediaId = R.raw.adhan_fajr_al_haram_el_madani_saoudia;
-                    break;
-                case PreferencesConstants.ADHAN_FAJR_MESHARY_AL_FASY_KUWAIT:
-                    mediaId = R.raw.adhan_fajr_meshary_al_fasy_kuwait;
-                    break;
-                default:
-                    mediaId = R.raw.short_prayer_call;
-            }
-        } else {
-            switch (preferencesHelper.getAdhanCaller()) {
-                case PreferencesConstants.ADHAN_ABDELBASSET_ABDESSAMAD_EGYPTE:
-                    mediaId = R.raw.adhan_abdelbasset_abdessamad_egypte;
-                    break;
-                case PreferencesConstants.ADHAN_OMAR_AL_KAZABRI_MOROCCO:
-                    mediaId = R.raw.adhan_omar_al_kazabri_morocco;
-                    break;
-                case PreferencesConstants.ADHAN_RIAD_AL_DJAZAIRI_ALGERIA:
-                    mediaId = R.raw.adhan_riad_al_djazairi_algeria;
-                    break;
-                case PreferencesConstants.ADHAN_MESHARY_AL_FASY_KUWAIT:
-                    mediaId = R.raw.adhan_meshary_al_fasy_kuwait;
-                    break;
-                default:
-                    mediaId = R.raw.short_prayer_call;
-            }
+            return Uri.parse(preferencesHelper.getFajrAdhanCaller());
         }
-        return Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + context.getPackageName() + "/" + mediaId);
+        return Uri.parse(preferencesHelper.getAdhanCaller());
     }
 
     private Uri getDouaeUri(Context context) {

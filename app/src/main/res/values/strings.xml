@@ -1,4 +1,8 @@
 <resources>
+    <!-- Common -->
+    <string name="whats_new_dialog_title">New feature</string>
+    <string name="whats_new_dialog_message">It\'s now possible to play Adhan from your device sounds.\nPlease go to settings screen and add your favorite Adhan.\nPlease note that your Adhan settings was reset.\nEnjoy !</string>
+
     <string name="about_five_prayers">About Five Prayers</string>
     <string name="open_source_projects_used">Open Source Projects Used</string>
     <string name="privacy_policy_title">Privacy Policy</string>
@@ -196,6 +200,8 @@
     <string name="title_edit_text_timing_adjustment_preference">Adjust prayer timings</string>
     <string name="dialog_title_edit_text_timing_adjustment_preference">Timings adjustment (in minutes)</string>
     <string name="preference_title_contact">Contact us</string>
+    <string name="preference_add_new_adhan">Add new Adhan file</string>
+    <string name="preference_unable_add_new_adhan">Unable to add new Adhan file</string>
 
     <string name="latitude_adjustment_method_middle_of_the_night">Middle of the Night</string>
     <string name="latitude_adjustment_method_one_seventh">One Seventh</string>
@@ -271,6 +277,9 @@
     <string name="adhan_omar_al_kazabri">Omar Al Kazabri</string>
     <string name="adhan_riad_al_djazairi">Riad Al Djazairi</string>
     <string name="short_prayer_call">Short Call (no Adhan)</string>
+    <string name="adhan_manssour_el_zahrani">Manssour El Zahrani</string>
+    <string name="adhan_nurdin_al_haddiwi_fajr_morocco">Nurdin Al Haddiwi</string>
+    <string name="adhan_nurdin_hamza_al_maghriby">Nurdin Al Maghriby (Al Quds)</string>
     <string name="title_adhan_fajr">Fajr Adhan</string>
     <string name="title_adhan_rest_prayers">Adhan of other prayers</string>
     <string name="title_adhan">Adhan</string>

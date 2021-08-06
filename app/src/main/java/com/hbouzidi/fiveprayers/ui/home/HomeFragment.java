@@ -24,6 +24,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.faltenreich.skeletonlayout.Skeleton;
+import com.hbouzidi.fiveprayers.BuildConfig;
 import com.hbouzidi.fiveprayers.FivePrayerApplication;
 import com.hbouzidi.fiveprayers.R;
 import com.hbouzidi.fiveprayers.common.ComplementaryTimingEnum;
@@ -39,6 +40,7 @@ import com.hbouzidi.fiveprayers.utils.PrayerUtils;
 import com.hbouzidi.fiveprayers.utils.TimingUtils;
 import com.hbouzidi.fiveprayers.utils.UiUtils;
 import com.mikhaellopez.circularprogressbar.CircularProgressBar;
+import com.yarolegovich.lovelydialog.LovelyStandardDialog;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -48,8 +50,6 @@ import java.util.Map;
 import java.util.Objects;
 
 import javax.inject.Inject;
-
-import io.reactivex.rxjava3.disposables.Disposable;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -131,6 +131,8 @@ public class HomeFragment extends Fragment {
 
         initializeViews(rootView);
 
+        showWhatsNewDialog();
+
         skeleton.showSkeleton();
 
         homeViewModel
@@ -162,6 +164,26 @@ public class HomeFragment extends Fragment {
         });
 
         return rootView;
+    }
+
+    private void showWhatsNewDialog() {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(PreferencesConstants.APP_META, MODE_PRIVATE);
+        int previousVersion = sharedPreferences.getInt(PreferencesConstants.PREVIOUS_INSTALLED_VERSION, 0);
+
+        if (previousVersion < BuildConfig.VERSION_CODE) {
+            new LovelyStandardDialog(requireActivity(), LovelyStandardDialog.ButtonLayout.VERTICAL)
+                    .setCancelable(false)
+                    .setTitle(getResources().getString(R.string.whats_new_dialog_title))
+                    .setTopColorRes(R.color.colorPrimary)
+                    .setIcon(android.R.drawable.ic_dialog_info)
+                    .setButtonsColorRes(R.color.amaranth)
+                    .setMessage(getResources().getString(R.string.whats_new_dialog_message))
+                    .setNegativeButton(R.string.common_ok, v -> sharedPreferences
+                            .edit()
+                            .putInt(PreferencesConstants.PREVIOUS_INSTALLED_VERSION, BuildConfig.VERSION_CODE)
+                            .apply())
+                    .show();
+        }
     }
 
     @Override

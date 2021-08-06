@@ -9,6 +9,8 @@ public class PreferencesConstants {
 
     // Default
     public static final String FIRST_LAUNCH = "FIRST_LAUNCH";
+    public static final String APP_META = "APP_META";
+    public static final String PREVIOUS_INSTALLED_VERSION = "PREVIOUS_INSTALLED_VERSION";
     public static final String LOCATION_SET_MANUALLY_PREFERENCE = "LOCATION_SET_MANUALLY_PREFERENCE";
     public static final String LOCATION_PREFERENCE = "LOCATION_PREFERENCE";
     public static final String CALCULATION_PREFERENCES_INITIALIZED = "CALCULATION_PREFERENCES_INITIALIZED";

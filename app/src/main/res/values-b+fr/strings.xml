@@ -1,4 +1,7 @@
 <resources>
+    <string name="whats_new_dialog_title">Nouvelle fonctionnalité</string>
+    <string name="whats_new_dialog_message">Il est désormais possible d\'ajouter Adhan à partir des sons de l\'appareil.\nVeuillez accéder à l\'écran des paramètres et ajouter votre Adhan préféré.\nVeuillez noter que vos paramètres Adhan ont été réinitialisés.</string>
+
     <string name="about_five_prayers">À propos de Five Prayers</string>
     <string name="open_source_projects_used">Projets Open Source</string>
     <string name="privacy_policy_title">Politique de confidentialité</string>

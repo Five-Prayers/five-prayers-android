@@ -1,7 +1,7 @@
 <resources>
     <!-- Common -->
-    <string name="whats_new_dialog_title">New feature</string>
-    <string name="whats_new_dialog_message">It\'s now possible to play Adhan from your device sounds.\nPlease go to settings screen and add your favorite Adhan.\nPlease note that your Adhan settings was reset.\nEnjoy !</string>
+    <string name="whats_new_dialog_title">Bug Fix</string>
+    <string name="whats_new_dialog_message">Correction du réglage manuel de l\'emplacement, en particulier pour les téléphones sans gapps installés.</string>
 
     <string name="about_five_prayers">About Five Prayers</string>
     <string name="open_source_projects_used">Open Source Projects Used</string>

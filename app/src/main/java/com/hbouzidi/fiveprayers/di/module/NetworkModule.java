@@ -20,6 +20,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Named;
@@ -53,7 +54,7 @@ public class NetworkModule {
 
     private final static String NOMINATIM_API_BASE_URL = "https://nominatim.openstreetmap.org/";
     private final static String LUT_API_BASE_URL = "https://www.londonprayertimes.com/api/";
-    private final static String PHOTON_API_BASE_URL = "https://photon.komoot.de/api/";
+    private final static String PHOTON_API_BASE_URL = "https://photon.komoot.io/api/";
 
     public NetworkModule() {
     }
@@ -250,7 +251,7 @@ public class NetworkModule {
             // don't support the old cipher suites.
             // https://github.com/square/okhttp/issues/4053#issuecomment-402579554
             final List<CipherSuite> cipherSuites =
-                    new ArrayList<>(ConnectionSpec.MODERN_TLS.cipherSuites());
+                    new ArrayList<>(Objects.requireNonNull(ConnectionSpec.MODERN_TLS.cipherSuites()));
             cipherSuites.add(CipherSuite.TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256);
             cipherSuites.add(CipherSuite.TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384);
             cipherSuites.add(CipherSuite.TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256);

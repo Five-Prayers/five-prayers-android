@@ -1,7 +1,7 @@
 <resources>
     <!-- Common -->
     <string name="whats_new_dialog_title">Bug Fix</string>
-    <string name="whats_new_dialog_message">Correction du réglage manuel de l\'emplacement, en particulier pour les téléphones sans gapps installés.</string>
+    <string name="whats_new_dialog_message">Fix location manually setting, especially for phones without gapps installed.</string>
 
     <string name="about_five_prayers">About Five Prayers</string>
     <string name="open_source_projects_used">Open Source Projects Used</string>

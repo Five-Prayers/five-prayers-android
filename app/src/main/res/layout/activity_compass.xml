@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@drawable/white_blue_gradient_background"
     tools:context=".ui.qibla.CompassActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -24,6 +24,7 @@
             android:minHeight="?actionBarSize"
             android:padding="@dimen/appbar_padding"
             android:text="@string/title_qibla_direction"
+            android:textColor="?attr/colorPrimaryDark"
             android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -39,7 +40,7 @@
         android:layout_marginLeft="@dimen/fab_margin"
         android:layout_marginBottom="16dp"
         android:contentDescription="@string/common.close"
-        android:tint="@color/white"
+        android:tint="?attr/tooltipTextColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/ic_back_52dp" />
@@ -85,7 +86,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:gravity="center_horizontal"
-            android:textColor="@color/stratos"
+            android:textColor="?attr/textColorPrimary"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -123,7 +124,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:gravity="center_horizontal"
-            android:textColor="@color/stratos"
+            android:textColor="?attr/textColorPrimary"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/footer_image"
             app:layout_constraintEnd_toEndOf="parent"

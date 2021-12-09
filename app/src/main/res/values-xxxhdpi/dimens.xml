@@ -1,5 +1,5 @@
 <resources>
-    <dimen name="text_middle">12sp</dimen>
+    <dimen name="text_middle">13sp</dimen>
     <dimen name="text_large">15sp</dimen>
     <dimen name="text_smlarge">20sp</dimen>
     <dimen name="text_mlarge">25sp</dimen>

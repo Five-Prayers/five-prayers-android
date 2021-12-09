@@ -7,8 +7,8 @@
     <color name="textPrimary">@color/mine_shaft</color>
     <color name="textSecondary">@color/boulder</color>
 
-    <color name="sunrise">@color/turbo</color>
-    <color name="sunset">@color/scarlet</color>
+    <color name="sunrise">#FFBF00</color>
+    <color name="sunset">#FF4800</color>
 
     <color name="dialog_button">@color/thunderbird</color>
     <color name="dialog_title">@color/mine_shaft</color>
@@ -27,21 +27,28 @@
     <color name="carnation">#F56662</color>
     <color name="white">#FFFFFF</color>
     <color name="mystic">#DDE5EB</color>
+    <color name="aqua_haze">#EAF2F4</color>
     <color name="flirt">#9B0493</color>
     <color name="pigment_indigo">#510391</color>
-    <color name="mine_shaft">#212121</color>
+    <color name="mine_shaft">#272727</color>
     <color name="black">#000000</color>
+    <color name="cold_gray">#121212</color>
     <color name="french_lilac">#E1BEE7</color>
+    <color name="gray">#818181</color>
     <color name="boulder">#757575</color>
     <color name="silver">#BDBDBD</color>
     <color name="amaranth">#E91E63</color>
     <color name="aquamarine_blue">#6DE3D1</color>
+    <color name="alabaster">#FAFAFA</color>
     <color name="polar">#EAFAFA</color>
     <color name="dew">#FBFFFE</color>
     <color name="zircon">#F5F6FF</color>
+    <color name="alice_lue">#F5FAFF</color>
     <color name="dodger_blue">#17C5FF</color>
     <color name="stratos">#000C59</color>
+    <color name="orange">#FE5920</color>
     <color name="scarlet">#FF3700</color>
+    <color name="blaze_orange">#FF6D00</color>
     <color name="turbo">#FFE500</color>
     <color name="scotch_mist">#FFFEF4</color>
     <color name="spray">#7FDDED</color>
@@ -50,5 +57,7 @@
     <color name="thunderbird">#C4161C</color>
     <color name="catskill_white">#F4F6FA</color>
     <color name="nobel">#B3B2B2</color>
+    <color name="tundora">#484848</color>
+    <color name="jade">#00C167</color>
 
 </resources>

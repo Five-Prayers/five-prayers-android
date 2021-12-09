@@ -129,6 +129,8 @@
     <string name="settings_button_ok" translatable="false">الإعدادات</string>
     <string name="settings_button_cancel" translatable="false">إلغاء</string>
 
+    <string name="method_fajr_angle">زاوية الفجر</string>
+    <string name="method_ichaa_angle">زاوية العشاء</string>
     <string name="method_shia_ithna_ansari">الشيعة اثنا عشري ، معهد ليفا للأبحاث ، قم</string>
     <string name="method_university_of_islamic_sciences_karachi">جامعة العلوم الإسلامية - كراتشي</string>
     <string name="method_islamic_society_of_north_america">الجمعية الإسلامية لأمريكا الشمالية</string>

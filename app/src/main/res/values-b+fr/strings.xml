@@ -131,6 +131,8 @@
     <string name="settings_button_ok" translatable="false">Settings</string>
     <string name="settings_button_cancel" translatable="false">Cancel</string>
 
+    <string name="method_fajr_angle">Angle pour Fajr</string>
+    <string name="method_ichaa_angle">Angle pour Ichaa</string>
     <string name="method_shia_ithna_ansari">Shia Ithna Ashari, Leva Research Institute, Qum</string>
     <string name="method_university_of_islamic_sciences_karachi">Université des Sciences Islamiques - Karachi</string>
     <string name="method_islamic_society_of_north_america">Société Islamique d\'Amérique du Nord</string>

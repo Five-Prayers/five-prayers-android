@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (C) 2019 Leonard Dizon.
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,16 +15,45 @@
   -->
 
 <resources>
+    <declare-styleable name="mainStyles">
+
+        <attr name="textColorPrimary" format="color" />
+        <attr name="textColorSecondary" format="color" />
+
+        <attr name="mainBackgroundStartColor" format="color" />
+        <attr name="mainBackgroundEndColor" format="color" />
+
+        <attr name="navigationBackgroundStartColor" format="color" />
+        <attr name="navigationBackgroundEndColor" format="color" />
+
+        <attr name="navigationCheckedColor" format="color" />
+        <attr name="navigationUnCheckedColor" format="color" />
+
+        <attr name="progressbarBackgroundColor" format="color" />
+        <attr name="progressbarColor" format="color" />
+        <attr name="progressbarMainTextColor" format="color" />
+
+        <attr name="notificationEnabledIconColor" format="color" />
+        <attr name="notificationDisabledIconColor" format="color" />
+
+        <attr name="iconsMainColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="tooltipStyle">
+        <attr name="tooltipBackgroundColor" format="color" />
+        <attr name="tooltipTextColor" format="color" />
+    </declare-styleable>
+
     <declare-styleable name="SimpleAnalogClock">
         <attr name="faceDrawable" format="reference" />
         <attr name="hourDrawable" format="reference" />
         <attr name="minuteDrawable" format="reference" />
         <attr name="secondDrawable" format="reference" />
 
-        <attr name="faceTint" format="color"/>
-        <attr name="hourTint" format="color"/>
-        <attr name="minuteTint" format="color"/>
-        <attr name="secondTint" format="color"/>
+        <attr name="faceTint" format="color" />
+        <attr name="hourTint" format="color" />
+        <attr name="minuteTint" format="color" />
+        <attr name="secondTint" format="color" />
 
         <attr name="hourRotation" format="float" />
         <attr name="minuteRotation" format="float" />
@@ -33,7 +61,7 @@
     </declare-styleable>
 
     <declare-styleable name="ExtraRingtonePreference">
-        <attr name="extraRingtones" format="reference"/>
-        <attr name="extraRingtoneTitles" format="reference"/>
+        <attr name="extraRingtones" format="reference" />
+        <attr name="extraRingtoneTitles" format="reference" />
     </declare-styleable>
 </resources>

@@ -1,8 +1,11 @@
 package com.hbouzidi.fiveprayers.ui.home;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -10,9 +13,11 @@ import android.os.CountDownTimer;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,10 +25,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.faltenreich.skeletonlayout.Skeleton;
+import com.google.android.material.animation.AnimationUtils;
 import com.hbouzidi.fiveprayers.BuildConfig;
 import com.hbouzidi.fiveprayers.FivePrayerApplication;
 import com.hbouzidi.fiveprayers.R;
@@ -46,10 +53,16 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
+import java.time.format.TextStyle;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 
 import javax.inject.Inject;
+
+import cl.jesualex.stooltip.Position;
+import cl.jesualex.stooltip.Tooltip;
+import cl.jesualex.stooltip.TooltipBuilder;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -70,12 +83,12 @@ public class HomeFragment extends Fragment {
     private CountDownTimer TimeRemainingCTimer;
     private Context context;
 
-    private TextView countryTextView;
+    //   private TextView countryTextView;
     private TextView locationTextView;
     private TextView calculationMethodTextView;
-    private TextView hijriTextView;
-    private TextView holidayIndicatorTextView;
-    private TextView gregorianTextView;
+    //   private TextView hijriTextView;
+    //   private TextView holidayIndicatorTextView;
+    private TextView todayDateTextView;
     private TextView prayerNametextView;
     private TextView prayerTimetextView;
     private TextView timeRemainingTextView;
@@ -103,6 +116,8 @@ public class HomeFragment extends Fragment {
     private String adhanCallKeyPart;
     private Skeleton skeleton;
 
+    private ConstraintLayout rootContainer;
+
     @Override
     public void onAttach(@NonNull Context context) {
         ((FivePrayerApplication) context.getApplicationContext())
@@ -125,6 +140,10 @@ public class HomeFragment extends Fragment {
         adhanCallsPreferences = PreferencesConstants.ADTHAN_CALLS_SHARED_PREFERENCES;
         adhanCallKeyPart = PreferencesConstants.ADTHAN_CALL_ENABLED_KEY;
 
+        TypedArray typedArray = requireContext().getTheme().obtainStyledAttributes(R.styleable.mainStyles);
+        int navigationBackgroundStartColor = typedArray.getColor(R.styleable.mainStyles_navigationBackgroundStartColor, ContextCompat.getColor(requireContext(), R.color.alabaster));
+        typedArray.recycle();
+
         HomeViewModel homeViewModel = viewModelFactory.create(HomeViewModel.class);
 
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
@@ -133,6 +152,7 @@ public class HomeFragment extends Fragment {
 
         showWhatsNewDialog();
 
+        skeleton.setMaskColor(navigationBackgroundStartColor);
         skeleton.showSkeleton();
 
         homeViewModel
@@ -194,16 +214,11 @@ public class HomeFragment extends Fragment {
 
     private void initializeViews(View rootView) {
         skeleton = rootView.findViewById(R.id.skeletonLayout);
-        View container = rootView.findViewById(R.id.container);
-
-        Drawable drawable = AppCompatResources.getDrawable(context, R.drawable.mosque_background);
-        container.setBackground(drawable);
+        rootContainer = rootView.findViewById(R.id.container);
 
         locationTextView = rootView.findViewById(R.id.location_text_view);
-        countryTextView = rootView.findViewById(R.id.country_text_view);
-        hijriTextView = rootView.findViewById(R.id.hijriTextView);
-        gregorianTextView = rootView.findViewById(R.id.gregorianTextView);
-        holidayIndicatorTextView = rootView.findViewById(R.id.holiday_indicator_text_view);
+        todayDateTextView = rootView.findViewById(R.id.todayDateTextView);
+        //    holidayIndicatorTextView = rootView.findViewById(R.id.holiday_indicator_text_view);
         prayerNametextView = rootView.findViewById(R.id.prayerNametextView);
         prayerTimetextView = rootView.findViewById(R.id.prayerTimetextView);
         timeRemainingTextView = rootView.findViewById(R.id.timeRemainingTextView);
@@ -311,40 +326,60 @@ public class HomeFragment extends Fragment {
         startAnimationTimer(timeRemaining, timeBetween, dayPrayer);
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private void updateDatesTextViews(DayPrayer dayPrayer) {
-        holidayIndicatorTextView.setVisibility(View.INVISIBLE);
+        //holidayIndicatorTextView.setVisibility(View.INVISIBLE);
+
+        ZonedDateTime zonedDateTime = TimingUtils.getZonedDateTimeFromTimestamps(dayPrayer.getTimestamp(), dayPrayer.getTimezone());
+        String nameOfTheDay = zonedDateTime.getDayOfWeek().getDisplayName(TextStyle.SHORT, Locale.getDefault());
 
         String hijriMonth = context.getResources().getString(
                 getResources().getIdentifier("hijri_month_" + dayPrayer.getHijriMonthNumber(), "string", context.getPackageName()));
 
-        String hijriDate = UiUtils.formatHijriDate(
+        String hijriDate = UiUtils.formatFullHijriDate(
+                nameOfTheDay,
                 dayPrayer.getHijriDay(),
                 hijriMonth,
                 dayPrayer.getHijriYear()
         );
 
-        ZonedDateTime zonedDateTime = TimingUtils.getZonedDateTimeFromTimestamps(dayPrayer.getTimestamp(), dayPrayer.getTimezone());
         String gregorianDate = UiUtils.formatReadableGregorianDate(zonedDateTime);
         String timezone = UiUtils.formatReadableTimezone(zonedDateTime);
 
-        hijriTextView.setText(StringUtils.capitalize(hijriDate));
-        gregorianTextView.setText(StringUtils.capitalize(gregorianDate));
+        todayDateTextView.setText(StringUtils.capitalize(hijriDate));
+
+        todayDateTextView.setOnTouchListener((v, event) -> {
+            if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                if (todayDateTextView.getText().equals(StringUtils.capitalize(hijriDate))) {
+                    todayDateTextView.setText(StringUtils.capitalize(gregorianDate));
+                } else {
+                    todayDateTextView.setText(StringUtils.capitalize(hijriDate));
+                }
+            }
+            return false;
+        });
+
+        String locationText;
+        if (dayPrayer.getCity() != null) {
+            locationText = StringUtils.capitalize(dayPrayer.getCity());
+        } else {
+            locationText = getString(R.string.common_offline);
+        }
 
         if (dayPrayer.getCountry() != null) {
-            String country = dayPrayer.getCountry() + " (" + timezone + ")";
-            countryTextView.setText(StringUtils.capitalize(country));
+            locationText += StringUtils.capitalize(" - " + dayPrayer.getCountry() + " (" + timezone + ")");
         } else {
-            countryTextView.setText(StringUtils.capitalize(timezone));
+            locationText += StringUtils.capitalize(" (" + timezone + ")");
         }
 
-        if (dayPrayer.getCity() != null) {
-            String locationText = dayPrayer.getCity();
-            locationTextView.setText(StringUtils.capitalize(locationText));
-        } else {
-            locationTextView.setText(getString(R.string.common_offline));
-        }
+        locationTextView.setText(locationText);
 
         String methodKey = String.valueOf(dayPrayer.getCalculationMethodEnum()).toLowerCase();
+        String fajrAngle = dayPrayer.getCalculationMethodEnum().getFajrAngle();
+        String ichaAngle = dayPrayer.getCalculationMethodEnum().getIchaAngle();
+        String tooltipText = requireContext().getString(R.string.method_fajr_angle) + " : " + UiUtils.formatCalculationMethodAngle(fajrAngle) +
+                "° - " + requireContext().getString(R.string.method_ichaa_angle) + " : " + UiUtils.formatCalculationMethodAngle(ichaAngle) + "°";
+
         int id = getResources().getIdentifier("short_method_" + methodKey, "string", context.getPackageName());
 
         if (id != 0) {
@@ -352,14 +387,36 @@ public class HomeFragment extends Fragment {
             calculationMethodTextView.setText(methodName);
         }
 
+        TypedArray typedArray = requireContext().getTheme().obtainStyledAttributes(R.styleable.tooltipStyle);
+        int toolTipBackgroundColor = typedArray.getColor(R.styleable.tooltipStyle_tooltipBackgroundColor, ContextCompat.getColor(requireContext(), R.color.alabaster));
+        int toolTipTextColor = typedArray.getColor(R.styleable.tooltipStyle_tooltipTextColor, ContextCompat.getColor(requireContext(), R.color.mine_shaft));
+        typedArray.recycle();
+
+        calculationMethodTextView.setOnTouchListener((v, event) -> {
+            if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                Tooltip.on(calculationMethodTextView)
+                        .text(tooltipText)
+                        .textColor(toolTipTextColor)
+                        .textSize(13)
+                        .color(toolTipBackgroundColor)
+                        .border(toolTipTextColor, 1f)
+                        .clickToHide(true)
+                        .arrowSize(0, 0)
+                        .corner(10)
+                        .position(Position.END)
+                        .show(5000);
+            }
+            return false;
+        });
+
         HijriHoliday holiday = HijriHoliday.getHoliday(dayPrayer.getHijriDay(), dayPrayer.getHijriMonthNumber());
 
         if (holiday != null) {
             String holidayName = getResources().getString(
                     getResources().getIdentifier(holiday.toString(), "string", context.getPackageName()));
 
-            holidayIndicatorTextView.setText(holidayName);
-            holidayIndicatorTextView.setVisibility(View.VISIBLE);
+            //     holidayIndicatorTextView.setText(holidayName);
+            //    holidayIndicatorTextView.setVisibility(View.VISIBLE);
         }
     }
 

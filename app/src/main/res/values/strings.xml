@@ -127,6 +127,8 @@
     <string name="hijri_month_11">Dhou Al Qi`da</string>
     <string name="hijri_month_12">Dhou Al Hijja</string>
 
+    <string name="method_fajr_angle">Fajr angle</string>
+    <string name="method_ichaa_angle">Ichaa angle</string>
     <string name="method_shia_ithna_ansari">Shia Ithna Ashari, Leva Research Institute, Qum</string>
     <string name="method_university_of_islamic_sciences_karachi">University of Islamic Sciences, Karachi</string>
     <string name="method_islamic_society_of_north_america">Islamic Society of North America</string>

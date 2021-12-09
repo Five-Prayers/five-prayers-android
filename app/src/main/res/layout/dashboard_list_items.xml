@@ -15,7 +15,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:layout_weight="1"
-        app:cardElevation="3dp"
+        app:cardElevation="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,7 +23,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="?attr/navigationBackgroundEndColor">
 
             <ImageView
                 android:id="@+id/dash_image"
@@ -36,7 +37,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.39999998"
-                app:srcCompat="@drawable/ic_compass_24dp" />
+                app:srcCompat="@drawable/ic_compass_24dp"
+                app:tint="?attr/iconsMainColor" />
 
             <TextView
                 android:id="@+id/header"
@@ -45,7 +47,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="5dp"
                 android:gravity="center"
-                android:textColor="@color/colorPrimary"
+                android:textColor="?attr/textColorPrimary"
                 android:textSize="@dimen/text_middle"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/sub_header"
@@ -60,6 +62,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="3dp"
                 android:gravity="center"
+                android:textColor="?attr/textColorSecondary"
                 android:textSize="@dimen/text_middle"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

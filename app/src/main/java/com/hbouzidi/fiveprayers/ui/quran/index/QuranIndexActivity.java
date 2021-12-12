@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
+import androidx.core.content.ContextCompat;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -42,6 +43,8 @@ public class QuranIndexActivity extends AppCompatActivity {
         viewPager.setAdapter(quranIndexPagerAdapter);
 
         TabLayout tabLayout = findViewById(R.id.tabs);
+        tabLayout.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.tab_color_selector));
+
         new TabLayoutMediator(tabLayout, viewPager,
                 (tab, position) -> tab.setText(getString(titles[position]))
         ).attach();

@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:background="@color/zircon"
+            android:background="?attr/navigationBackgroundEndColor"
             android:orientation="horizontal">
 
             <TextView
@@ -25,7 +25,7 @@
                 android:layout_gravity="center"
                 android:layout_weight="4"
                 android:gravity="center"
-                android:textColor="@color/stratos"
+                android:textColor="?attr/textColorPrimary"
                 android:textSize="@dimen/text_middle"
                 tools:text="Header Data" />
         </LinearLayout>

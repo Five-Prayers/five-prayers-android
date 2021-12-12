@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/root"
     android:layout_width="wrap_content"
-    android:background="@color/polar"
     android:layout_height="@dimen/cell_height">
 
     <LinearLayout
@@ -11,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_vertical"
-        android:background="@color/zircon"
+        android:background="?attr/navigationBackgroundEndColor"
         android:orientation="vertical">
 
         <TextView
@@ -21,7 +20,7 @@
             android:ellipsize="end"
             android:gravity="center"
             android:maxLines="1"
-            android:textColor="@color/stratos"
+            android:textColor="?attr/textColorPrimary"
             android:textSize="@dimen/text_middle"
             tools:text="Row Data" />
     </LinearLayout>

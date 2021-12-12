@@ -95,7 +95,7 @@ public abstract class TimingTableBaseFragment extends Fragment {
     private void initializeTableView(List<DayPrayer> calendar) {
         loadingLinearLayout.setVisibility(View.INVISIBLE);
 
-        String month = LocalDate.now().getMonth().getDisplayName(TextStyle.SHORT, Locale.getDefault());
+        String month = tableLocalDate.getMonth().getDisplayName(TextStyle.SHORT, Locale.getDefault());
 
         TableViewAdapter tableViewAdapter = new TableViewAdapter(StringUtils.capitalize(month));
 

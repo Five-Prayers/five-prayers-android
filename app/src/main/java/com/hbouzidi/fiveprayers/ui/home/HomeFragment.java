@@ -142,6 +142,7 @@ public class HomeFragment extends Fragment {
 
         TypedArray typedArray = requireContext().getTheme().obtainStyledAttributes(R.styleable.mainStyles);
         int navigationBackgroundStartColor = typedArray.getColor(R.styleable.mainStyles_navigationBackgroundStartColor, ContextCompat.getColor(requireContext(), R.color.alabaster));
+        int navigationBackgroundEndColor = typedArray.getColor(R.styleable.mainStyles_navigationBackgroundEndColor, ContextCompat.getColor(requireContext(), R.color.alabaster));
         typedArray.recycle();
 
         HomeViewModel homeViewModel = viewModelFactory.create(HomeViewModel.class);
@@ -153,6 +154,7 @@ public class HomeFragment extends Fragment {
         showWhatsNewDialog();
 
         skeleton.setMaskColor(navigationBackgroundStartColor);
+        skeleton.setShimmerColor(navigationBackgroundEndColor);
         skeleton.showSkeleton();
 
         homeViewModel
@@ -331,7 +333,7 @@ public class HomeFragment extends Fragment {
         //holidayIndicatorTextView.setVisibility(View.INVISIBLE);
 
         ZonedDateTime zonedDateTime = TimingUtils.getZonedDateTimeFromTimestamps(dayPrayer.getTimestamp(), dayPrayer.getTimezone());
-        String nameOfTheDay = zonedDateTime.getDayOfWeek().getDisplayName(TextStyle.SHORT, Locale.getDefault());
+        String nameOfTheDay = zonedDateTime.getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.getDefault());
 
         String hijriMonth = context.getResources().getString(
                 getResources().getIdentifier("hijri_month_" + dayPrayer.getHijriMonthNumber(), "string", context.getPackageName()));

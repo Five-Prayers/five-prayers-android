@@ -31,6 +31,7 @@
     <color name="flirt">#9B0493</color>
     <color name="pigment_indigo">#510391</color>
     <color name="mine_shaft">#272727</color>
+    <color name="mine_shaft_light">#303030</color>
     <color name="black">#000000</color>
     <color name="cold_gray">#121212</color>
     <color name="french_lilac">#E1BEE7</color>
@@ -45,6 +46,7 @@
     <color name="zircon">#F5F6FF</color>
     <color name="alice_lue">#F5FAFF</color>
     <color name="dodger_blue">#17C5FF</color>
+    <color name="dodger_blue_light">#12C0FA</color>
     <color name="stratos">#000C59</color>
     <color name="orange">#FE5920</color>
     <color name="scarlet">#FF3700</color>

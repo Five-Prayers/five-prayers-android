@@ -44,6 +44,13 @@
         <attr name="tooltipTextColor" format="color" />
     </declare-styleable>
 
+    <declare-styleable name="toolbarStyle">
+        <attr name="toolbarBackgroundColor" format="color" />
+        <attr name="toolbarTextColorPrimary" format="color" />
+        <attr name="toolbarTextColorSecondary" format="color" />
+        <attr name="toolbarTabBackground" format="reference" />
+    </declare-styleable>
+
     <declare-styleable name="SimpleAnalogClock">
         <attr name="faceDrawable" format="reference" />
         <attr name="hourDrawable" format="reference" />

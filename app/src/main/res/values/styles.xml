@@ -13,7 +13,7 @@
         <item name="mainBackgroundStartColor">@color/white</item>
         <item name="mainBackgroundEndColor">@color/alabaster</item>
         <item name="navigationBackgroundStartColor">@color/alabaster</item>
-        <item name="navigationBackgroundEndColor">@color/alice_lue</item>
+        <item name="navigationBackgroundEndColor">@color/black_squeeze</item>
         <item name="navigationCheckedColor">@color/dodger_blue</item>
         <item name="navigationUnCheckedColor">@color/boulder</item>
 
@@ -26,9 +26,15 @@
         <item name="notificationEnabledIconColor">@color/jade</item>
         <item name="notificationDisabledIconColor">@color/amaranth</item>
 
-        <!-- Tooltip text appearance -->
+        <!-- Tooltip appearance -->
         <item name="tooltipBackgroundColor">@color/dodger_blue</item>
         <item name="tooltipTextColor">@color/alabaster</item>
+
+        <!-- toolbar appearance -->
+        <item name="toolbarBackgroundColor">@color/dodger_blue</item>
+        <item name="toolbarTextColorPrimary">@color/alabaster</item>
+        <item name="toolbarTextColorSecondary">#DBDDDF</item>
+        <item name="toolbarTabBackground">@drawable/tab_color_selector</item>
 
         <item name="alertDialogTheme">@style/AlertDialogTheme</item>
         <item name="android:textViewStyle">@style/RobotoTextViewStyle</item>
@@ -40,6 +46,68 @@
         <item name="secondTint">@color/dodger_blue</item>
 
         <item name="iconsMainColor">@color/dodger_blue</item>
+    </style>
+
+
+    <!-- Dark theme -->
+    <style name="AppDarkTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/orange</item>
+        <item name="colorPrimaryDark">@color/cold_gray</item>
+        <item name="colorAccent">@color/orange</item>
+
+        <item name="textColorPrimary">@color/alabaster</item>
+        <item name="textColorSecondary">@color/gray</item>
+
+        <!-- Background colors -->
+        <item name="mainBackgroundStartColor">@color/cold_gray</item>
+        <item name="mainBackgroundEndColor">@color/cold_gray</item>
+        <item name="navigationBackgroundStartColor">@color/mine_shaft</item>
+        <item name="navigationBackgroundEndColor">@color/mine_shaft_light</item>
+        <item name="navigationCheckedColor">@color/orange</item>
+        <item name="navigationUnCheckedColor">@color/gray</item>
+
+        <!-- Progressbar colors -->
+        <item name="progressbarBackgroundColor">@color/boulder</item>
+        <item name="progressbarColor">@color/orange</item>
+        <item name="progressbarMainTextColor">@color/scarlet</item>
+
+        <item name="colorSecondary">@color/orange</item>
+
+        <!-- Tooltip appearance -->
+        <item name="tooltipBackgroundColor">@color/orange</item>
+        <item name="tooltipTextColor">@color/mine_shaft</item>
+
+        <!-- toolbar appearance -->
+        <item name="toolbarBackgroundColor">@color/mine_shaft</item>
+        <item name="toolbarTextColorPrimary">@color/alabaster</item>
+        <item name="toolbarTextColorSecondary">@color/gray</item>
+        <item name="toolbarTabBackground">@drawable/tab_color_selector_dark</item>
+
+        <item name="alertDialogTheme">@style/AlertDialogTheme</item>
+        <item name="android:textViewStyle">@style/RobotoTextViewStyle</item>
+        <item name="buttonStyle">@style/RobotoButtonStyle</item>
+
+        <item name="faceTint">@color/orange</item>
+        <item name="hourTint">@color/blaze_orange</item>
+        <item name="minuteTint">@color/blaze_orange</item>
+        <item name="secondTint">@color/blaze_orange</item>
+
+        <!-- Notification icons colors -->
+        <item name="notificationEnabledIconColor">@color/blaze_orange</item>
+        <item name="notificationDisabledIconColor">@color/tundora</item>
+
+
+        <item name="iconsMainColor">@color/orange</item>
+    </style>
+
+
+    <!-- Tab layout appearance -->
+    <style name="FivePrayerTabLayout" parent="Widget.Design.TabLayout">
+        <item name="tabGravity">fill</item>
+        <item name="tabMaxWidth">0dp</item>
+        <item name="tabBackground">?attr/toolbarTabBackground</item>
+        <item name="tabSelectedTextColor">?attr/toolbarTextColorPrimary</item>
+        <item name="tabTextColor">?attr/toolbarTextColorSecondary</item>
     </style>
 
     <style name="Theme.AppCompat.Light.NoActionBar.FullScreen" parent="@style/Theme.AppCompat.Light.NoActionBar">
@@ -88,50 +156,5 @@
     <style name="TooltipTextAppearance">
         <item name="android:textColor">@color/mine_shaft</item>
         <item name="android:textSize">@dimen/text_middle</item>
-    </style>
-
-    <!-- Dark theme -->
-    <style name="AppDarkTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/orange</item>
-        <item name="colorPrimaryDark">@color/cold_gray</item>
-        <item name="colorAccent">@color/orange</item>
-
-        <item name="textColorPrimary">@color/alabaster</item>
-        <item name="textColorSecondary">@color/gray</item>
-
-        <!-- Background colors -->
-        <item name="mainBackgroundStartColor">@color/cold_gray</item>
-        <item name="mainBackgroundEndColor">@color/cold_gray</item>
-        <item name="navigationBackgroundStartColor">@color/mine_shaft</item>
-        <item name="navigationBackgroundEndColor">@color/mine_shaft</item>
-        <item name="navigationCheckedColor">@color/orange</item>
-        <item name="navigationUnCheckedColor">@color/gray</item>
-
-        <!-- Progressbar colors -->
-        <item name="progressbarBackgroundColor">@color/boulder</item>
-        <item name="progressbarColor">@color/orange</item>
-        <item name="progressbarMainTextColor">@color/scarlet</item>
-
-        <item name="colorSecondary">@color/orange</item>
-
-        <!-- Tooltip text appearance -->
-        <item name="tooltipBackgroundColor">@color/orange</item>
-        <item name="tooltipTextColor">@color/mine_shaft</item>
-
-        <item name="alertDialogTheme">@style/AlertDialogTheme</item>
-        <item name="android:textViewStyle">@style/RobotoTextViewStyle</item>
-        <item name="buttonStyle">@style/RobotoButtonStyle</item>
-
-        <item name="faceTint">@color/orange</item>
-        <item name="hourTint">@color/blaze_orange</item>
-        <item name="minuteTint">@color/blaze_orange</item>
-        <item name="secondTint">@color/blaze_orange</item>
-
-        <!-- Notification icons colors -->
-        <item name="notificationEnabledIconColor">@color/blaze_orange</item>
-        <item name="notificationDisabledIconColor">@color/tundora</item>
-
-
-        <item name="iconsMainColor">@color/orange</item>
     </style>
 </resources>

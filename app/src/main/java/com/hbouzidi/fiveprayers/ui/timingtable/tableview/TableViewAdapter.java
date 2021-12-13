@@ -18,6 +18,8 @@ import com.hbouzidi.fiveprayers.ui.timingtable.tableview.model.Cell;
 import com.hbouzidi.fiveprayers.ui.timingtable.tableview.model.ColumnHeader;
 import com.hbouzidi.fiveprayers.ui.timingtable.tableview.model.RowHeader;
 
+import java.text.NumberFormat;
+import java.util.Locale;
 import java.util.Objects;
 
 /**
@@ -85,7 +87,8 @@ public class TableViewAdapter extends AbstractTableAdapter<ColumnHeader, RowHead
     public void onBindRowHeaderViewHolder(@NonNull AbstractViewHolder holder, @Nullable RowHeader rowHeaderItemModel,
                                           int rowPosition) {
         RowHeaderViewHolder rowHeaderViewHolder = (RowHeaderViewHolder) holder;
-        rowHeaderViewHolder.row_header_textview.setText(String.valueOf(Objects.requireNonNull(rowHeaderItemModel).getData()));
+        String data = String.valueOf(Objects.requireNonNull(rowHeaderItemModel).getData());
+        rowHeaderViewHolder.row_header_textview.setText(NumberFormat.getInstance(Locale.getDefault()).format(Integer.valueOf(data)));
     }
 
     @NonNull

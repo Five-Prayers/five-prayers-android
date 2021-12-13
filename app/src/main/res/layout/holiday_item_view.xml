@@ -14,7 +14,7 @@
         android:layout_gravity="center"
         android:fontFamily="sans-serif-condensed"
         android:inputType="textCapSentences"
-        android:textColor="@color/stratos"
+        android:textColor="?attr/textColorPrimary"
         android:textSize="@dimen/text_large"
         android:textStyle="bold"
         tools:ignore="TextViewEdits" />

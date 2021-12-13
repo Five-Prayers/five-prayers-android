@@ -109,9 +109,12 @@ public class CalendarActivity extends AppCompatActivity {
 
                                     updateToolbarSubtitle();
 
+                                    int currentMonth = LocalDate.now().getMonth().getValue();
                                     LocalDate firstDateOfCurrentMonth = calendarMonth.getYearMonth().atDay(1);
-                                    selectDate(firstDateOfCurrentMonth);
 
+                                    if(calendarMonth.getMonth() != currentMonth) {
+                                        selectDate(firstDateOfCurrentMonth);
+                                    }
                                     calendarView.notifyCalendarChanged();
                                 }
 

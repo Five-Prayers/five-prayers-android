@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="1dp"
-        android:background="@color/white"
+        android:background="?attr/colorPrimary"
         tools:layout_editor_absoluteX="92dp"
         tools:layout_editor_absoluteY="55dp">
 
@@ -23,7 +23,7 @@
             android:layout_marginEnd="4dp"
             android:layout_marginRight="4dp"
             android:gravity="center"
-            android:textColor="@color/stratos"
+            android:textColor="?attr/textColorPrimary"
             android:textSize="@dimen/text_middle"
             tools:text="24" />
 
@@ -32,25 +32,25 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:textColor="@color/flirt"
-            android:textSize="@dimen/text_middle"/>
+            android:textColor="?attr/textColorSecondary"
+            android:textSize="@dimen/text_middle" />
 
         <ImageView
             android:id="@+id/hijri_calendar_date_month_text_view"
             android:layout_width="18dp"
             android:layout_height="18dp"
             android:layout_gravity="bottom|start"
-            app:srcCompat="@drawable/ic_first_24dp"
             android:visibility="invisible"
-            />
+            app:srcCompat="@drawable/ic_first_24dp"
+            app:tint="?attr/iconsMainColor" />
 
         <ImageView
             android:id="@+id/hijri_calendar_holiday_date"
             android:layout_width="18dp"
             android:layout_height="18dp"
             android:layout_gravity="top|start"
-            app:srcCompat="@drawable/ic_celebration_flag_24dp"
             android:visibility="invisible"
-            />
+            app:srcCompat="@drawable/ic_celebration_flag_24dp"
+            app:tint="?attr/iconsMainColor" />
     </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

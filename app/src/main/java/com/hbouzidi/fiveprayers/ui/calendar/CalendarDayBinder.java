@@ -14,8 +14,10 @@ import com.kizitonwose.calendarview.model.CalendarDay;
 import com.kizitonwose.calendarview.model.DayOwner;
 import com.kizitonwose.calendarview.ui.DayBinder;
 
+import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * @author Hicham Bouzidi Idrissi
@@ -26,6 +28,8 @@ public class CalendarDayBinder implements DayBinder<DayViewContainer> {
 
     @Override
     public void bind(@NonNull DayViewContainer dayViewContainer, @NonNull CalendarDay calendarDay) {
+        NumberFormat numberFormat = NumberFormat.getInstance(Locale.getDefault());
+
         dayViewContainer.setCalendarDay(calendarDay);
         TextView dayTextView = dayViewContainer.getDayTextView();
         TextView hijriDayTextView = dayViewContainer.getHijriDayTextView();
@@ -59,17 +63,19 @@ public class CalendarDayBinder implements DayBinder<DayViewContainer> {
             hijriHolidayDateMonthTextView.setVisibility(View.INVISIBLE);
             calendarDayLayout.setBackground(null);
         }
-        dayTextView.setText(String.valueOf(calendarDay.getDay()));
+        dayTextView.setText(numberFormat.format(calendarDay.getDay()));
     }
 
     private void updateHijriDate(@NonNull CalendarDay calendarDay, TextView hijriDayTextView, ImageView hijriCalendarDateMonthTextView, ImageView hijriHolidayDateMonthTextView, List<AladhanDate> aladhanDates) {
+        NumberFormat numberFormat = NumberFormat.getInstance(Locale.getDefault());
+
         if (aladhanDates != null) {
             String gregorianMonth = aladhanDates.get(0).getGregorian().getMonth().getNumber();
 
             if (Integer.valueOf(gregorianMonth).equals(calendarDay.getDate().getMonthValue())) {
                 AladhanDateType hijriDate = aladhanDates.get(calendarDay.getDay() - 1).getHijri();
                 String hijriDayNumber = hijriDate.getDay();
-                hijriDayTextView.setText(hijriDayNumber);
+                hijriDayTextView.setText(numberFormat.format(Integer.parseInt(hijriDayNumber)));
                 hijriDayTextView.setVisibility(View.VISIBLE);
 
                 if (hijriDayNumber.equals("01")) {

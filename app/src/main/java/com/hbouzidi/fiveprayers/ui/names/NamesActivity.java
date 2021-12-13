@@ -19,7 +19,6 @@ import com.hbouzidi.fiveprayers.R;
 public class NamesActivity extends AppCompatActivity {
 
     private RecyclerView namesRecyclerView;
-    private ConstraintLayout namesContentLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +26,7 @@ public class NamesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_names);
 
         namesRecyclerView = findViewById(R.id.names_recycler_view);
-        namesContentLayout = findViewById(R.id.names_content_layout);
+        ConstraintLayout namesContentLayout = findViewById(R.id.names_content_layout);
 
         ViewCompat.setLayoutDirection(namesContentLayout, ViewCompat.LAYOUT_DIRECTION_RTL);
 

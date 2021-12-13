@@ -18,7 +18,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="?attr/navigationBackgroundStartColor">
 
             <TextView
                 android:id="@+id/name_text_view_1"
@@ -26,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/font_allah_names"
-                android:textColor="@color/stratos"
+                android:textColor="?attr/colorAccent"
                 android:textSize="100sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -38,8 +39,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:gravity="center_horizontal"
+                android:textColor="?attr/textColorPrimary"
                 android:textStyle="bold"
-                android:textColor="@color/textPrimary"
                 app:autoSizeMaxTextSize="25sp"
                 app:autoSizeMinTextSize="12sp"
                 app:autoSizeStepGranularity="2sp"
@@ -54,8 +55,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:gravity="center_horizontal"
+                android:textColor="?attr/textColorSecondary"
                 android:textStyle="bold"
-                android:textColor="@color/boulder"
                 app:autoSizeMaxTextSize="25sp"
                 app:autoSizeMinTextSize="12sp"
                 app:autoSizeStepGranularity="2sp"
@@ -78,7 +79,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="?attr/navigationBackgroundStartColor">
 
             <TextView
                 android:id="@+id/name_text_view_2"
@@ -86,7 +88,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/font_allah_names"
-                android:textColor="@color/stratos"
+                android:textColor="?attr/colorAccent"
                 android:textSize="100sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -98,8 +100,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:gravity="center_horizontal"
+                android:textColor="?attr/textColorPrimary"
                 android:textStyle="bold"
-                android:textColor="@color/textPrimary"
                 app:autoSizeMaxTextSize="25sp"
                 app:autoSizeMinTextSize="12sp"
                 app:autoSizeStepGranularity="2sp"
@@ -114,8 +116,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:gravity="center_horizontal"
+                android:textColor="?attr/textColorSecondary"
                 android:textStyle="bold"
-                android:textColor="@color/boulder"
                 app:autoSizeMaxTextSize="25sp"
                 app:autoSizeMinTextSize="12sp"
                 app:autoSizeStepGranularity="2sp"
@@ -138,7 +140,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="?attr/navigationBackgroundStartColor">
 
             <TextView
                 android:id="@+id/name_text_view_3"
@@ -146,7 +149,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/font_allah_names"
-                android:textColor="@color/stratos"
+                android:textColor="?attr/colorAccent"
                 android:textSize="100sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -158,8 +161,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:gravity="center_horizontal"
+                android:textColor="?attr/textColorPrimary"
                 android:textStyle="bold"
-                android:textColor="@color/textPrimary"
                 app:autoSizeMaxTextSize="25sp"
                 app:autoSizeMinTextSize="12sp"
                 app:autoSizeStepGranularity="2sp"
@@ -174,8 +177,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:gravity="center_horizontal"
+                android:textColor="?attr/textColorSecondary"
                 android:textStyle="bold"
-                android:textColor="@color/boulder"
                 app:autoSizeMaxTextSize="25sp"
                 app:autoSizeMinTextSize="12sp"
                 app:autoSizeStepGranularity="2sp"

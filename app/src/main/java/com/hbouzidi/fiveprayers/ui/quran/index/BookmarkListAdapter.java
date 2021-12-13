@@ -21,8 +21,10 @@ import com.hbouzidi.fiveprayers.quran.dto.QuranBookmark;
 import com.hbouzidi.fiveprayers.quran.dto.QuranPage;
 import com.hbouzidi.fiveprayers.quran.dto.Surah;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import javax.inject.Inject;
 
@@ -82,6 +84,8 @@ public class BookmarkListAdapter extends RecyclerView.Adapter<BookmarkListAdapte
 
     @Override
     public void onBindViewHolder(@NonNull Holder holder, int i) {
+        NumberFormat numberFormat = NumberFormat.getInstance(Locale.getDefault());
+
         QuranBookmark quranBookmark = quranBookmarks.get(i);
         QuranPage quranPage = quranBookmark.getQuranPage();
 
@@ -91,13 +95,13 @@ public class BookmarkListAdapter extends RecyclerView.Adapter<BookmarkListAdapte
         int hizbNumber = quranPage.getRubHizb() / 4;
         juzInfoBuilder
                 .append("الجزء ")
-                .append(quranPage.getJuz())
+                .append(numberFormat.format(quranPage.getJuz()))
                 .append(" - الحزب ")
-                .append(hizbNumber == 0 ? 1 : hizbNumber);
+                .append(hizbNumber == 0 ? numberFormat.format(1) : numberFormat.format(hizbNumber));
 
         holder.bookmarkSurahNameTextView.setText(surahName);
         holder.bookmarkSurahDetailsTextView.setText(juzInfoBuilder);
-        holder.bookmarkPageNumTextView.setText(String.valueOf(quranPage.getPageNum()));
+        holder.bookmarkPageNumTextView.setText(numberFormat.format(quranPage.getPageNum()));
 
         if (BookmarkType.USER_MADE.equals(quranBookmark.getBookmarkType())) {
             holder.bookmarkImageView.setImageDrawable(ResourcesCompat.getDrawable(context.getResources(), R.drawable.ic_bookmark_filled, null));

@@ -13,7 +13,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/blue_border"
+        android:background="?attr/navigationBackgroundEndColor"
         android:orientation="horizontal"
         android:padding="@dimen/spacing_xsmall">
 
@@ -24,7 +24,7 @@
             android:layout_margin="@dimen/spacing_xmedium"
             android:fontFamily="@font/pdms"
             android:gravity="center_vertical"
-            android:textColor="@color/colorPrimary"
+            android:textColor="?attr/textColorPrimary"
             android:textSize="@dimen/text_middle"
             tools:text="@tools:sample/lorem" />
 
@@ -44,10 +44,10 @@
                     android:id="@+id/surah_name_text_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="@dimen/text_smlarge"
                     android:fontFamily="@font/kitab"
+                    android:gravity="center_horizontal"
+                    android:textColor="?attr/textColorPrimary"
+                    android:textSize="@dimen/text_smlarge"
                     tools:text="@tools:sample/lorem" />
             </LinearLayout>
 
@@ -61,7 +61,7 @@
                     android:id="@+id/surah_revelation_text_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="?attr/textColorPrimary"
                     android:textSize="@dimen/text_middle"
                     tools:text="makkia" />
 
@@ -71,13 +71,13 @@
                     android:layout_marginStart="@dimen/spacing_xmedium"
                     android:layout_marginEnd="@dimen/spacing_xmedium"
                     android:text=" - "
-                    android:textColor="@color/colorPrimary" />
+                    android:textColor="?attr/textColorPrimary" />
 
                 <TextView
                     android:id="@+id/surah_ayahs_num_text_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="?attr/textColorPrimary"
                     android:textSize="@dimen/text_middle"
                     tools:text="1" />
             </LinearLayout>
@@ -91,9 +91,9 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/spacing_xmedium"
             android:gravity="center_horizontal"
-            tools:text="551"
-            android:textColor="@color/colorPrimary"
-            android:textSize="@dimen/text_middle" />
+            android:textColor="?attr/textColorPrimary"
+            android:textSize="@dimen/text_middle"
+            tools:text="551" />
 
 
     </LinearLayout>

@@ -15,6 +15,7 @@
         android:id="@+id/bookmark_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="?attr/navigationBackgroundEndColor"
         android:orientation="horizontal"
         android:padding="@dimen/spacing_xsmall">
 
@@ -25,7 +26,7 @@
             android:layout_margin="@dimen/spacing_xmedium"
             android:gravity="center_vertical"
             app:srcCompat="@drawable/ic_bookmark_automatic_24dp"
-            app:tint="@color/colorPrimary"
+            app:tint="?attr/colorAccent"
             tools:text="@tools:sample/lorem" />
 
         <LinearLayout
@@ -44,10 +45,10 @@
                     android:id="@+id/bookmark_surah_name_text_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="@dimen/text_smlarge"
                     android:fontFamily="@font/kitab"
+                    android:gravity="center_horizontal"
+                    android:textColor="?attr/textColorPrimary"
+                    android:textSize="@dimen/text_smlarge"
                     tools:text="@tools:sample/lorem" />
             </LinearLayout>
 
@@ -61,7 +62,7 @@
                     android:id="@+id/bookmark_surah_details_text_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="?attr/textColorPrimary"
                     android:textSize="@dimen/text_middle"
                     tools:text="makkia" />
             </LinearLayout>
@@ -72,26 +73,28 @@
             android:layout_height="wrap_content"
             android:gravity="end"
             android:orientation="vertical">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_xmedium"
-                android:layout_marginRight="@dimen/spacing_xmedium"
-                android:layout_marginEnd="@dimen/spacing_xmedium"
                 android:layout_gravity="end"
+                android:layout_marginTop="@dimen/spacing_xmedium"
+                android:layout_marginEnd="@dimen/spacing_xmedium"
+                android:layout_marginRight="@dimen/spacing_xmedium"
                 android:text="@string/common_page"
-                android:textColor="@color/colorPrimary"
+                android:textColor="?attr/textColorPrimary"
                 android:textSize="@dimen/text_middle" />
+
             <TextView
                 android:id="@+id/bookmark_page_num_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/spacing_xmedium"
-                android:layout_marginEnd="@dimen/spacing_xmedium"
                 android:layout_gravity="end"
-                tools:text="551"
-                android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/text_middle" />
+                android:layout_marginEnd="@dimen/spacing_xmedium"
+                android:layout_marginRight="@dimen/spacing_xmedium"
+                android:textColor="?attr/textColorPrimary"
+                android:textSize="@dimen/text_middle"
+                tools:text="551" />
         </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

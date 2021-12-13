@@ -11,8 +11,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.hbouzidi.fiveprayers.R;
 import com.hbouzidi.fiveprayers.quran.dto.Surah;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * @author Hicham Bouzidi Idrissi
@@ -45,13 +47,15 @@ public class SurahAdapter extends RecyclerView.Adapter<SurahAdapter.Holder> {
 
     @Override
     public void onBindViewHolder(@NonNull Holder holder, int i) {
+        NumberFormat numberFormat = NumberFormat.getInstance(Locale.getDefault());
+
         Surah surah = surahs.get(i);
 
         holder.surahNameTextView.setText(surah.getName());
-        holder.surahPageNumberTextView.setText(String.valueOf(surah.getPage()));
-        holder.surahNumberTextView.setText(String.valueOf(surah.getNumber()));
+        holder.surahPageNumberTextView.setText(numberFormat.format(surah.getPage()));
+        holder.surahNumberTextView.setText(numberFormat.format(surah.getNumber()));
 
-        String numberOfAyahText = surah.getNumberOfAyahs() + " " + holder.itemView.getContext().getString(R.string.ayahs);
+        String numberOfAyahText = numberFormat.format(surah.getNumberOfAyahs()) + " " + holder.itemView.getContext().getString(R.string.ayahs);
 
         holder.surahAyahsNumberTextView.setText(numberOfAyahText);
         holder.surahRevelationTextView.setText(

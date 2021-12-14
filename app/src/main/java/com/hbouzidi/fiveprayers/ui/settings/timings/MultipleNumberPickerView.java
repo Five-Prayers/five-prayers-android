@@ -20,11 +20,11 @@ public class MultipleNumberPickerView extends ConstraintLayout {
     private static final int MAX_VALUE = 30;
     private static final int MIN_VALUE = -30;
 
-    private NumberPicker fajrNumberPicker;
-    private NumberPicker dohrNumberPicker;
-    private NumberPicker asrNumberPicker;
-    private NumberPicker maghrebNumberPicker;
-    private NumberPicker ichaNumberPicker;
+    private final NumberPicker fajrNumberPicker;
+    private final NumberPicker dohrNumberPicker;
+    private final NumberPicker asrNumberPicker;
+    private final NumberPicker maghrebNumberPicker;
+    private final NumberPicker ichaNumberPicker;
 
     public MultipleNumberPickerView(Context context) {
         this(context, null);
@@ -35,11 +35,11 @@ public class MultipleNumberPickerView extends ConstraintLayout {
 
         LayoutInflater.from(context).inflate(R.layout.number_pref, this);
 
-        fajrNumberPicker = (NumberPicker) findViewById(R.id.fajr_number_picker);
-        dohrNumberPicker = (NumberPicker) findViewById(R.id.dohr_number_picker);
-        asrNumberPicker = (NumberPicker) findViewById(R.id.asr_number_picker);
-        maghrebNumberPicker = (NumberPicker) findViewById(R.id.maghreb_number_picker);
-        ichaNumberPicker = (NumberPicker) findViewById(R.id.icha_number_picker);
+        fajrNumberPicker = findViewById(R.id.fajr_number_picker);
+        dohrNumberPicker = findViewById(R.id.dohr_number_picker);
+        asrNumberPicker = findViewById(R.id.asr_number_picker);
+        maghrebNumberPicker = findViewById(R.id.maghreb_number_picker);
+        ichaNumberPicker = findViewById(R.id.icha_number_picker);
 
         fajrNumberPicker.setMax(MAX_VALUE);
         fajrNumberPicker.setMin(MIN_VALUE);

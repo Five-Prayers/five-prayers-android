@@ -8,8 +8,6 @@ import android.view.WindowManager;
 
 import androidx.preference.PreferenceDialogFragmentCompat;
 
-import com.travijuu.numberpicker.library.NumberPicker;
-
 /**
  * @author Hicham Bouzidi Idrissi
  * Github : https://github.com/Five-Prayers/five-prayers-android
@@ -17,18 +15,7 @@ import com.travijuu.numberpicker.library.NumberPicker;
  */
 public class NumberPickerPreferenceDialog extends PreferenceDialogFragmentCompat {
 
-    private Context context;
-
-    public static final int MAX_VALUE = 10;
-    public static final int MIN_VALUE = 0;
-
-    public static final boolean WRAP_SELECTOR_WHEEL = true;
-
-    private NumberPicker picker;
-    private int value;
-
     private final NumberPickerPreference preference;
-    private NumberPicker numberPicker;
     private MultipleNumberPickerView multipleNumberPickerView;
 
     public NumberPickerPreferenceDialog(NumberPickerPreference preference) {
@@ -52,9 +39,8 @@ public class NumberPickerPreferenceDialog extends PreferenceDialogFragmentCompat
 
     @Override
     protected View onCreateDialogView(Context context) {
-        this.context = context;
 
-        multipleNumberPickerView = new MultipleNumberPickerView(this.context);
+        multipleNumberPickerView = new MultipleNumberPickerView(context);
         setPickersInitialValues();
 
         return multipleNumberPickerView;

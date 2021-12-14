@@ -1,6 +1,5 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:numberpicker="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -19,6 +18,6 @@
         numberpicker:max="30"
         numberpicker:min="10"
         numberpicker:unit="5"
-        numberpicker:value="10"></com.travijuu.numberpicker.library.NumberPicker>
-
+        numberpicker:value="10"
+        numberpicker:custom_layout="@layout/number_picker_custom_layout" />
 </androidx.constraintlayout.widget.ConstraintLayout>

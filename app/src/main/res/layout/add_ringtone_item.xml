@@ -23,9 +23,10 @@
         android:layout_height="24dp"
         android:layout_marginLeft="24dp"
         android:layout_marginRight="24dp"
+        android:contentDescription="@string/preference_add_new_adhan"
         android:scaleType="centerCrop"
         app:srcCompat="@drawable/ic_plus"
-        android:contentDescription="@string/preference_add_new_adhan" />
+        app:tint="?attr/iconsMainColor" />
 
     <TextView
         android:id="@+id/add_ringtone_text"

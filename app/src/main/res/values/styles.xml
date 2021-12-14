@@ -8,6 +8,9 @@
 
         <item name="textColorPrimary">@color/mine_shaft</item>
         <item name="textColorSecondary">@color/gray</item>
+        <item name="android:textColorTertiary">@color/gray</item>
+        <item name="android:textColorHint">@color/gray</item>
+        <item name="android:editTextColor">@color/gray</item>
 
         <!-- Background colors -->
         <item name="mainBackgroundStartColor">@color/white</item>
@@ -40,12 +43,18 @@
         <item name="android:textViewStyle">@style/RobotoTextViewStyle</item>
         <item name="buttonStyle">@style/RobotoButtonStyle</item>
 
+        <!-- Main icons colors -->
+        <item name="iconsMainColor">@color/dodger_blue</item>
+
+        <!-- Checkbox colors -->
+        <item name="colorControlActivated">@color/spray</item>
+        <item name="colorControlNormal">@color/gray</item>
+
+        <!-- Clock colors -->
         <item name="faceTint">@color/dodger_blue</item>
         <item name="hourTint">@color/dodger_blue</item>
         <item name="minuteTint">@color/dodger_blue</item>
         <item name="secondTint">@color/dodger_blue</item>
-
-        <item name="iconsMainColor">@color/dodger_blue</item>
     </style>
 
 
@@ -57,6 +66,10 @@
 
         <item name="textColorPrimary">@color/alabaster</item>
         <item name="textColorSecondary">@color/gray</item>
+        <item name="android:textColorTertiary">@color/gray</item>
+        <item name="android:textColorHint">@color/gray</item>
+        <item name="android:editTextColor">@color/gray</item>
+
 
         <!-- Background colors -->
         <item name="mainBackgroundStartColor">@color/cold_gray</item>
@@ -87,16 +100,22 @@
         <item name="android:textViewStyle">@style/RobotoTextViewStyle</item>
         <item name="buttonStyle">@style/RobotoButtonStyle</item>
 
-        <item name="faceTint">@color/orange</item>
-        <item name="hourTint">@color/blaze_orange</item>
-        <item name="minuteTint">@color/blaze_orange</item>
-        <item name="secondTint">@color/blaze_orange</item>
-
         <!-- Notification icons colors -->
         <item name="notificationEnabledIconColor">@color/blaze_orange</item>
         <item name="notificationDisabledIconColor">@color/tundora</item>
 
+        <!-- Main icons colors -->
         <item name="iconsMainColor">@color/orange</item>
+
+        <!-- Checkbox colors -->
+        <item name="colorControlActivated">@color/orange</item>
+        <item name="colorControlNormal">@color/gray</item>
+
+        <!-- Clock colors -->
+        <item name="faceTint">@color/orange</item>
+        <item name="hourTint">@color/blaze_orange</item>
+        <item name="minuteTint">@color/blaze_orange</item>
+        <item name="secondTint">@color/blaze_orange</item>
     </style>
 
 
@@ -128,32 +147,41 @@
         <item name="buttonBarNegativeButtonStyle">@style/NegativeButtonStyle</item>
         <item name="buttonBarPositiveButtonStyle">@style/PositiveButtonStyle</item>
         <item name="android:windowTitleStyle">@style/WindowTitleStyle</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">@dimen/text_large</item>
+        <item name="android:textColor">?attr/textColorSecondary</item>
+        <item name="textColorAlertDialogListItem">?attr/textColorPrimary</item>
         <item name="android:fontFamily">sans-serif-condensed</item>
+        <item name="android:colorBackground">?attr/navigationBackgroundStartColor</item>
+
+        <item name="android:editTextPreferenceStyle">@style/myStyle</item>
+
+    </style>
+
+    <style name="myStyle" parent="Preference.DialogPreference.EditTextPreference">
+        <item name="colorPrimary">?attr/textColorSecondary</item>
+        <item name="colorPrimaryDark">?attr/textColorSecondary</item>
+        <item name="textFillColor">?attr/textColorSecondary</item>
+        <item name="android:editTextColor">?attr/textColorSecondary</item>
+        <item name="android:textColorHint">?attr/textColorSecondary</item>
+        <item name="android:textColor">?attr/colorAccent</item>
     </style>
 
     <style name="NegativeButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
-        <item name="android:textColor">@color/dialog_button</item>
+        <item name="android:textColor">?attr/colorAccent</item>
         <item name="android:textStyle">bold</item>
     </style>
 
     <style name="PositiveButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
-        <item name="android:textColor">@color/dialog_button</item>
+        <item name="android:textColor">?attr/colorAccent</item>
         <item name="android:textStyle">bold</item>
     </style>
 
     <style name="NeutralButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
-        <item name="android:textColor">@color/dialog_button</item>
+        <item name="android:textColor">?attr/colorAccent</item>
         <item name="android:textStyle">bold</item>
     </style>
 
     <style name="WindowTitleStyle" parent="TextAppearance.AppCompat.Title">
-        <item name="android:textColor">@color/dialog_title</item>
-    </style>
-
-    <!-- Tooltip text appearance -->
-    <style name="TooltipTextAppearance">
-        <item name="android:textColor">@color/mine_shaft</item>
-        <item name="android:textSize">@dimen/text_middle</item>
+        <item name="android:textColor">?attr/textColorPrimary</item>
     </style>
 </resources>

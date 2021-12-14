@@ -22,9 +22,8 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/spacing_xmedium"
-            android:fontFamily="@font/pdms"
             android:gravity="center_vertical"
-            android:textColor="?attr/textColorPrimary"
+            android:textColor="?attr/textColorSecondary"
             android:textSize="@dimen/text_middle"
             tools:text="@tools:sample/lorem" />
 
@@ -61,7 +60,7 @@
                     android:id="@+id/surah_revelation_text_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="?attr/textColorPrimary"
+                    android:textColor="?attr/textColorSecondary"
                     android:textSize="@dimen/text_middle"
                     tools:text="makkia" />
 
@@ -71,13 +70,13 @@
                     android:layout_marginStart="@dimen/spacing_xmedium"
                     android:layout_marginEnd="@dimen/spacing_xmedium"
                     android:text=" - "
-                    android:textColor="?attr/textColorPrimary" />
+                    android:textColor="?attr/textColorSecondary" />
 
                 <TextView
                     android:id="@+id/surah_ayahs_num_text_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="?attr/textColorPrimary"
+                    android:textColor="?attr/textColorSecondary"
                     android:textSize="@dimen/text_middle"
                     tools:text="1" />
             </LinearLayout>
@@ -88,13 +87,12 @@
         <TextView
             android:id="@+id/surah_page_num_text_view"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_margin="@dimen/spacing_xmedium"
-            android:gravity="center_horizontal"
-            android:textColor="?attr/textColorPrimary"
+            android:gravity="center_vertical"
+            android:textColor="?attr/textColorSecondary"
             android:textSize="@dimen/text_middle"
-            tools:text="551" />
-
+            tools:text="155" />
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>

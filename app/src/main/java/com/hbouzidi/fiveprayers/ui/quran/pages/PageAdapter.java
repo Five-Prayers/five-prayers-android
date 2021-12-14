@@ -27,8 +27,10 @@ import com.hbouzidi.fiveprayers.quran.dto.QuranPage;
 import com.hbouzidi.fiveprayers.quran.dto.Surah;
 
 import java.io.File;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import javax.inject.Inject;
 
@@ -47,7 +49,8 @@ public class PageAdapter extends RecyclerView.Adapter<PageAdapter.Holder> {
     private final int textColor;
     private final int backgroundColor;
 
-    @Inject QuranBookmarkRegistry quranBookmarkRegistry;
+    @Inject
+    QuranBookmarkRegistry quranBookmarkRegistry;
 
     public PageAdapter(int textColor, int backgroundColor) {
         this.textColor = textColor;
@@ -76,6 +79,8 @@ public class PageAdapter extends RecyclerView.Adapter<PageAdapter.Holder> {
 
     @Override
     public void onBindViewHolder(@NonNull Holder holder, int index) {
+        NumberFormat numberFormat = NumberFormat.getInstance(Locale.getDefault());
+
         QuranPage previousQuranPage = null;
         QuranPage currentQuranPage = quranPage.get(index);
         boolean displayQuarterInfo = false;
@@ -101,7 +106,7 @@ public class PageAdapter extends RecyclerView.Adapter<PageAdapter.Holder> {
 
         holder.ayahsConstraintLayout.setBackgroundColor(backgroundColor);
 
-        holder.pageNumTextView.setText(String.valueOf(currentQuranPage.getPageNum()));
+        holder.pageNumTextView.setText(numberFormat.format(currentQuranPage.getPageNum()));
         holder.surahNameTextView.setText(surahName);
         holder.juzTextView.setText(getHizbInfoBuilder(currentQuranPage, displayQuarterInfo, hizbQuarter));
 
@@ -168,29 +173,46 @@ public class PageAdapter extends RecyclerView.Adapter<PageAdapter.Holder> {
 
     @NonNull
     private StringBuilder getHizbInfoBuilder(QuranPage item, boolean displayQuarterInfo, int hizbQuarter) {
+        NumberFormat numberFormat = NumberFormat.getInstance(Locale.getDefault());
+
         StringBuilder hizbInfoBuilder = new StringBuilder();
         hizbInfoBuilder
                 .append("الجزء ")
-                .append(item.getJuz());
+                .append(numberFormat.format(item.getJuz()));
 
         if (displayQuarterInfo) {
             int hizbNum = hizbQuarter / 4;
 
             if (hizbQuarter % 4 == 2) {
-                hizbInfoBuilder.append(" ,1/4 ");
+                hizbInfoBuilder
+                        .append(" ,")
+                        .append(numberFormat.format(1))
+                        .append("/")
+                        .append(numberFormat.format(4))
+                        .append(" ");
                 hizbNum++;
             } else if (hizbQuarter % 4 == 3) {
-                hizbInfoBuilder.append(" ,1/2 ");
+                hizbInfoBuilder
+                        .append(" ,")
+                        .append(numberFormat.format(1))
+                        .append("/")
+                        .append(numberFormat.format(2))
+                        .append(" ");
                 hizbNum++;
             } else if (hizbQuarter % 4 == 0) {
-                hizbInfoBuilder.append(" ,3/4 ");
+                hizbInfoBuilder
+                        .append(" ,")
+                        .append(numberFormat.format(3))
+                        .append("/")
+                        .append(numberFormat.format(4))
+                        .append(" ");
             } else {
                 hizbInfoBuilder.append(" ,");
                 hizbNum++;
             }
 
             hizbInfoBuilder.append("الحزب ");
-            hizbInfoBuilder.append(hizbNum);
+            hizbInfoBuilder.append(numberFormat.format(hizbNum));
         }
         return hizbInfoBuilder;
     }

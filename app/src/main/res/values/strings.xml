@@ -46,6 +46,13 @@
     <string name="title_settings">Settings</string>
     <string name="label.unknown_location">Unknown Location</string>
 
+    <!-- App Theme preferences -->
+    <string name="theme_preference_section">Colors</string>
+    <string name="theme_preference_title">Theme</string>
+    <string name="theme_preference_dialog_title">Choose your preferred theme</string>
+    <string name="theme_preference_name_white_blue">Blue sky (Default)</string>
+    <string name="theme_preference_name_dark_orange">Orange night</string>
+
     <!-- App Intro -->
     <string name="app_intro_frag_1_title">Welcome to Five Prayers Android</string>
     <string name="app_intro_frag_1_description">An open source set of muslim tools, lightweight and ads free</string>

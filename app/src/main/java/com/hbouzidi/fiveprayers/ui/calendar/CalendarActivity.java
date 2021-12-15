@@ -5,7 +5,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,6 +15,7 @@ import com.hbouzidi.fiveprayers.calendar.CalendarService;
 import com.hbouzidi.fiveprayers.common.HijriHoliday;
 import com.hbouzidi.fiveprayers.timings.aladhan.AladhanDate;
 import com.hbouzidi.fiveprayers.timings.aladhan.AladhanDateType;
+import com.hbouzidi.fiveprayers.ui.BaseActivity;
 import com.hbouzidi.fiveprayers.utils.UiUtils;
 import com.kizitonwose.calendarview.CalendarView;
 import com.kizitonwose.calendarview.model.CalendarMonth;
@@ -50,7 +50,7 @@ import kotlin.Unit;
  * Github : https://github.com/Five-Prayers/five-prayers-android
  * licenced under GPLv3 : https://www.gnu.org/licenses/gpl-3.0.en.html
  */
-public class CalendarActivity extends AppCompatActivity {
+public class CalendarActivity extends BaseActivity {
 
     private static final String TAG = "CalendarActivity";
 

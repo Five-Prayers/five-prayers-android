@@ -2,7 +2,6 @@ package com.hbouzidi.fiveprayers.ui.quran.index;
 
 import android.os.Bundle;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.core.content.ContextCompat;
 import androidx.viewpager2.widget.ViewPager2;
@@ -13,6 +12,7 @@ import com.google.android.material.tabs.TabLayoutMediator;
 import com.hbouzidi.fiveprayers.FivePrayerApplication;
 import com.hbouzidi.fiveprayers.R;
 import com.hbouzidi.fiveprayers.preferences.PreferencesHelper;
+import com.hbouzidi.fiveprayers.ui.BaseActivity;
 
 import javax.inject.Inject;
 
@@ -21,7 +21,7 @@ import javax.inject.Inject;
  * Github : https://github.com/Five-Prayers/five-prayers-android
  * licenced under GPLv3 : https://www.gnu.org/licenses/gpl-3.0.en.html
  */
-public class QuranIndexActivity extends AppCompatActivity {
+public class QuranIndexActivity extends BaseActivity {
 
     @Inject
     PreferencesHelper preferencesHelper;

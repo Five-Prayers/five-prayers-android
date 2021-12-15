@@ -3,6 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <PreferenceCategory
+        android:icon="@drawable/ic_art_palette_15dp"
+        android:layout="@layout/custom_preference_category"
+        android:title="@string/theme_preference_section">
+
+        <ListPreference
+            android:defaultValue="THEME_WHITE_BLUE"
+            android:dialogTitle="@string/theme_preference_dialog_title"
+            android:entries="@array/entries_theme_list_preference"
+            android:entryValues="@array/entryvalues_theme_list_preference"
+            android:key="THEME_PREFERENCE"
+            android:layout="@layout/custom_preference"
+            android:title="@string/theme_preference_title"
+            app:useSimpleSummaryProvider="true" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
         android:icon="@drawable/ic_location_15"
         android:layout="@layout/custom_preference_category"
         android:title="@string/title_location_preference_section">

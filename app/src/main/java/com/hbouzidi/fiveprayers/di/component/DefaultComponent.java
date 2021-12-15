@@ -2,6 +2,7 @@ package com.hbouzidi.fiveprayers.di.component;
 
 import com.hbouzidi.fiveprayers.di.module.AppModule;
 import com.hbouzidi.fiveprayers.di.module.NetworkModule;
+import com.hbouzidi.fiveprayers.ui.BaseActivity;
 import com.hbouzidi.fiveprayers.ui.DefaultActivity;
 import com.hbouzidi.fiveprayers.ui.MainActivity;
 
@@ -25,4 +26,6 @@ public interface DefaultComponent {
     void inject(MainActivity mainActivity);
 
     void inject(DefaultActivity defaultActivity);
+
+    void inject(BaseActivity baseActivity);
 }

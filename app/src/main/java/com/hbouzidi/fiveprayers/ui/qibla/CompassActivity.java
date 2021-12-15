@@ -14,7 +14,6 @@ import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.preference.PreferenceManagerFix;
 
@@ -22,6 +21,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.hbouzidi.fiveprayers.FivePrayerApplication;
 import com.hbouzidi.fiveprayers.R;
 import com.hbouzidi.fiveprayers.preferences.PreferencesConstants;
+import com.hbouzidi.fiveprayers.ui.BaseActivity;
 
 import java.util.Locale;
 
@@ -34,7 +34,7 @@ import static android.view.View.INVISIBLE;
  * @link https://github.com/hassaanjamil/hj-android-lib-qibla-direction
  * Updated By Hicham Bouzidi Idrissi
  */
-public class CompassActivity extends AppCompatActivity {
+public class CompassActivity extends BaseActivity {
     private static final String TAG = CompassActivity.class.getSimpleName();
 
     private Compass compass;

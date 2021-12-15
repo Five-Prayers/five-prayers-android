@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string-array name="entries_theme_list_preference">
+        <item>@string/theme_preference_name_white_blue</item>
+        <item>@string/theme_preference_name_dark_orange</item>
+    </string-array>
+    <string-array name="entryvalues_theme_list_preference">
+        <item>THEME_WHITE_BLUE</item>
+        <item>THEME_DARK_ORANGE</item>
+    </string-array>
+
     <string-array name="entries_calculation_method_list_preference">
         <item>@string/method_shia_ithna_ansari</item>
         <item>@string/method_university_of_islamic_sciences_karachi</item>

@@ -9,6 +9,7 @@ import androidx.preference.PreferenceManager;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.hbouzidi.fiveprayers.R;
 import com.hbouzidi.fiveprayers.quran.dto.QuranBookmark;
 import com.hbouzidi.fiveprayers.timings.calculations.CalculationMethodEnum;
 import com.hbouzidi.fiveprayers.timings.calculations.CountryCalculationMethod;
@@ -294,6 +295,19 @@ public class PreferencesHelper {
             SharedPreferences.Editor defaultEditor = defaultSharedPreferences.edit();
             defaultEditor.putString(PreferencesConstants.TIMINGS_CALCULATION_METHOD_PREFERENCE, methodName);
             defaultEditor.apply();
+        }
+    }
+
+    public int getThemePreference() {
+        final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        String preferencesString = defaultSharedPreferences.getString(PreferencesConstants.THEME_PREFERENCE, PreferencesConstants.THEME_PREFERENCE_NAME_THEME_WHITE_BLUE);
+
+        switch (preferencesString) {
+            case PreferencesConstants.THEME_PREFERENCE_NAME_THEME_DARK_ORANGE:
+                return R.style.AppDarkTheme;
+            case PreferencesConstants.THEME_PREFERENCE_NAME_THEME_WHITE_BLUE:
+            default:
+                return R.style.AppTheme;
         }
     }
 }

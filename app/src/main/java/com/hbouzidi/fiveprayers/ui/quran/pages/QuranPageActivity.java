@@ -6,7 +6,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -19,6 +18,7 @@ import com.hbouzidi.fiveprayers.R;
 import com.hbouzidi.fiveprayers.preferences.PreferencesHelper;
 import com.hbouzidi.fiveprayers.quran.dto.QuranPage;
 import com.hbouzidi.fiveprayers.quran.dto.Surah;
+import com.hbouzidi.fiveprayers.ui.BaseActivity;
 
 import java.util.List;
 
@@ -29,7 +29,7 @@ import javax.inject.Inject;
  * Github : https://github.com/Five-Prayers/five-prayers-android
  * licenced under GPLv3 : https://www.gnu.org/licenses/gpl-3.0.en.html
  */
-public class QuranPageActivity extends AppCompatActivity {
+public class QuranPageActivity extends BaseActivity {
 
     public static final String LAST_PAGE_SHOWN_IDENTIFIER = "LAST_PAGE_SHOWN_IDENTIFIER";
 

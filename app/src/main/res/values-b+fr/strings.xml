@@ -43,6 +43,13 @@
     <string name="title_settings">Paramètres</string>
     <string name="label.unknown_location">Localisation inconnue</string>
 
+    <!-- App Theme preferences -->
+    <string name="theme_preference_section">Couleurs</string>
+    <string name="theme_preference_title">Thème</string>
+    <string name="theme_preference_dialog_title">Choisissez votre thème préféré</string>
+    <string name="theme_preference_name_white_blue">Ciel bleu (par défaut)</string>
+    <string name="theme_preference_name_dark_orange">Nuit orange</string>
+
     <string name="calendar_view_title">Calendrier de prière à</string>
     <string name="title_calendar">Calendrier de prière</string>
     <string name="desc_calendar_view_title">Table mensuelle de prière</string>

@@ -17,12 +17,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import com.grack.nanojson.JsonWriter;
 import com.hbouzidi.fiveprayers.BuildConfig;
 import com.hbouzidi.fiveprayers.R;
+import com.hbouzidi.fiveprayers.ui.BaseActivity;
 import com.hbouzidi.fiveprayers.utils.TimingUtils;
 import com.yarolegovich.lovelydialog.LovelyStandardDialog;
 
@@ -39,7 +39,7 @@ import cat.ereza.customactivityoncrash.CustomActivityOnCrash;
  * inspired from NewPipe : https://github.com/TeamNewPipe/NewPipe
  * licenced under GPLv3 : https://www.gnu.org/licenses/gpl-3.0.en.html
  */
-public class ErrorActivity extends AppCompatActivity {
+public class ErrorActivity extends BaseActivity {
 
     private static final String TAG = "ErrorActivity";
     private static final String ERROR_EMAIL_ADDRESS = BuildConfig.ERROR_EMAIL_ADDRESS;

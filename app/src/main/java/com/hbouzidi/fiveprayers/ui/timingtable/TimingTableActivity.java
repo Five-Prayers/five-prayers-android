@@ -4,7 +4,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -12,6 +11,7 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.hbouzidi.fiveprayers.R;
 import com.hbouzidi.fiveprayers.preferences.PreferencesConstants;
+import com.hbouzidi.fiveprayers.ui.BaseActivity;
 import com.hbouzidi.fiveprayers.utils.UiUtils;
 
 import org.apache.commons.lang3.StringUtils;
@@ -23,7 +23,7 @@ import java.time.LocalDate;
  * Github : https://github.com/Five-Prayers/five-prayers-android
  * licenced under GPLv3 : https://www.gnu.org/licenses/gpl-3.0.en.html
  */
-public class TimingTableActivity extends AppCompatActivity {
+public class TimingTableActivity extends BaseActivity {
 
     private final String[] titles = {StringUtils.capitalize(UiUtils.formatShortDate(LocalDate.now())),
             StringUtils.capitalize(UiUtils.formatShortDate(LocalDate.now().plusMonths(1)))};

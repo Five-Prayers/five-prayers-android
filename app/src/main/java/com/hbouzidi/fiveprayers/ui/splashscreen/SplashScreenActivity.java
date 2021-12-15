@@ -6,9 +6,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.ProgressBar;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.hbouzidi.fiveprayers.R;
+import com.hbouzidi.fiveprayers.ui.BaseActivity;
 import com.hbouzidi.fiveprayers.ui.MainActivity;
 
 /**
@@ -16,7 +15,7 @@ import com.hbouzidi.fiveprayers.ui.MainActivity;
  * Github : https://github.com/Five-Prayers/five-prayers-android
  * licenced under GPLv3 : https://www.gnu.org/licenses/gpl-3.0.en.html
  */
-public class SplashScreenActivity extends AppCompatActivity {
+public class SplashScreenActivity extends BaseActivity {
 
     private static final String TAG = "SplashScreenActivity";
     private static final int LOADING_TIME = 1200;

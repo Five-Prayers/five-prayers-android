@@ -43,6 +43,13 @@
     <string name="title_settings">الإعدادات</string>
     <string name="label.unknown_location">موقع غير معروف</string>
 
+    <!-- App Theme preferences -->
+    <string name="theme_preference_section">الألوان</string>
+    <string name="theme_preference_title">لون المظهر</string>
+    <string name="theme_preference_dialog_title">اختر لون المظهر المفضل لديك</string>
+    <string name="theme_preference_name_white_blue">السماء الزرقاء (افتراضي)</string>
+    <string name="theme_preference_name_dark_orange">ليلة برتقالية</string>
+
     <string name="calendar_view_title">تقويم الصلاة في</string>
     <string name="title_calendar">تقويم الصلاة</string>
     <string name="desc_calendar_view_title">طاولة الصلاة الشهرية</string>

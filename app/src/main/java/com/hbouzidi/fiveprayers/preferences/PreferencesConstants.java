@@ -64,4 +64,9 @@ public class PreferencesConstants {
     // Quran
     public static final String QURAN_NIGHT_MODE_ACTIVATED = "QURAN_NIGHT_MODE_ACTIVATED";
     public static final String AUTOMATIC_BOOKMARK_LIST = "AUTOMATIC_BOOKMARK_LIST";
+
+    // Theme
+    public static final String THEME_PREFERENCE = "THEME_PREFERENCE";
+    public static final String THEME_PREFERENCE_NAME_THEME_WHITE_BLUE = "THEME_WHITE_BLUE";
+    public static final String THEME_PREFERENCE_NAME_THEME_DARK_ORANGE = "THEME_DARK_ORANGE";
 }

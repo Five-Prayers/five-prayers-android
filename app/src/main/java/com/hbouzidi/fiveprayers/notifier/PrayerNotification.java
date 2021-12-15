@@ -103,7 +103,7 @@ class PrayerNotification {
                     .setSmallIcon(android.R.drawable.ic_popup_reminder);
         } else {
             builder
-                    .addAction(R.drawable.ic_notifications_24dp, closeActionTitle, getCloseNotificationActionIntent(notificationId))
+                    .addAction(R.drawable.ic_notifications_on_24dp, closeActionTitle, getCloseNotificationActionIntent(notificationId))
                     .setSmallIcon(R.drawable.ic_mosque_24dp);
         }
 

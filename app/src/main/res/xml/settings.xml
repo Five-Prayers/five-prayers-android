@@ -38,7 +38,7 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:icon="@drawable/ic_notifications_24dp"
+        android:icon="@drawable/ic_notifications_on_24dp"
         android:layout="@layout/custom_preference_category"
         android:title="@string/title_notification_section">
 

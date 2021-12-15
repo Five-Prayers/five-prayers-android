@@ -36,7 +36,7 @@
         <!-- toolbar appearance -->
         <item name="toolbarBackgroundColor">@color/dodger_blue</item>
         <item name="toolbarTextColorPrimary">@color/alabaster</item>
-        <item name="toolbarTextColorSecondary">#DBDDDF</item>
+        <item name="toolbarTextColorSecondary">@color/iron</item>
         <item name="toolbarTabBackground">@drawable/tab_color_selector</item>
 
         <item name="alertDialogTheme">@style/AlertDialogTheme</item>

@@ -39,6 +39,7 @@
     <string name="common.offline">Offline</string>
     <string name="common.plus" translatable="false">+</string>
     <string name="common.minus" translatable="false">-</string>
+    <string name="common.minutes">minutes</string>
 
     <string name="app_name">Five Prayers</string>
     <string name="title_home">Prayers</string>

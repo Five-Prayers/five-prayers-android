@@ -1,10 +1,14 @@
 package com.hbouzidi.fiveprayers.utils;
 
 import android.content.Context;
+import android.content.res.TypedArray;
+import android.view.Gravity;
 import android.view.View;
 
+import androidx.core.content.ContextCompat;
+
 import com.hbouzidi.fiveprayers.R;
-import com.yarolegovich.lovelydialog.LovelyStandardDialog;
+import com.yarolegovich.lovelydialog.LovelyCustomDialog;
 
 /**
  * @author Hicham Bouzidi Idrissi
@@ -14,46 +18,69 @@ import com.yarolegovich.lovelydialog.LovelyStandardDialog;
 public class AlertHelper {
 
     public static void displayAlertDialog(final Context context, String title, String message) {
-        new LovelyStandardDialog(context, LovelyStandardDialog.ButtonLayout.VERTICAL)
-                .setCancelable(false)
+        TypedArray typedArray = context.getTheme().obtainStyledAttributes(R.styleable.mainStyles);
+        int topColor = typedArray.getColor(R.styleable.mainStyles_navigationBackgroundStartColor, ContextCompat.getColor(context, R.color.colorAccent));
+        int topTitleColor = typedArray.getColor(R.styleable.mainStyles_textColorPrimary, ContextCompat.getColor(context, R.color.textColorPrimary));
+        int iconTintColor = typedArray.getColor(R.styleable.mainStyles_iconsMainColor, ContextCompat.getColor(context, R.color.colorAccent));
+
+        LovelyCustomDialog lovelyCustomDialog = new LovelyCustomDialog(context)
+                .setView(R.layout.custom_dialog_view)
+                .setTopColor(topColor)
                 .setTitle(title)
-                .setTopColorRes(R.color.turbo)
+                .setTopTitleColor(topTitleColor)
+                .setTitleGravity(Gravity.CENTER_HORIZONTAL)
+                .setMessage(message)
+                .setMessageGravity(Gravity.FILL)
                 .setIcon(android.R.drawable.ic_dialog_alert)
-                .setIconTintColor(R.color.black)
-                .setButtonsColorRes(R.color.amaranth)
-                .setMessage(message)
-                .setNegativeButton(R.string.common_ok, v -> {
-                })
-                .show();
+                .setIconTintColor(iconTintColor)
+                .setCancelable(false);
+
+        lovelyCustomDialog.setListener(R.id.btnOK, v -> lovelyCustomDialog.dismiss());
+        lovelyCustomDialog.show();
     }
 
-    public static void displayInformationDialog(final Context context, String title, String message) {
-        new LovelyStandardDialog(context, LovelyStandardDialog.ButtonLayout.VERTICAL)
-                .setCancelable(false)
+    public static LovelyCustomDialog createCustomInformationDialog(final Context context, String title, String message) {
+        TypedArray typedArray = context.getTheme().obtainStyledAttributes(R.styleable.mainStyles);
+        int topColor = typedArray.getColor(R.styleable.mainStyles_navigationBackgroundEndColor, ContextCompat.getColor(context, R.color.colorAccent));
+        int topTitleColor = typedArray.getColor(R.styleable.mainStyles_textColorPrimary, ContextCompat.getColor(context, R.color.textColorPrimary));
+        int iconTintColor = typedArray.getColor(R.styleable.mainStyles_iconsMainColor, ContextCompat.getColor(context, R.color.colorAccent));
+
+        return new LovelyCustomDialog(context)
+                .setView(R.layout.custom_dialog_view)
+                .setTopColor(topColor)
                 .setTitle(title)
-                .setTopColorRes(R.color.colorPrimary)
-                .setIcon(android.R.drawable.ic_dialog_info)
-                .setButtonsColorRes(R.color.amaranth)
+                .setTopTitleColor(topTitleColor)
+                .setTitleGravity(Gravity.CENTER_HORIZONTAL)
                 .setMessage(message)
-                .setNegativeButton(R.string.common_ok, v -> {
-                })
-                .show();
+                .setMessageGravity(Gravity.FILL)
+                .setIcon(R.drawable.ic_information_24dp)
+                .setIconTintColor(iconTintColor)
+                .setCancelable(false);
     }
 
-    public static void displayDialogError(final Context context, String message, View.OnClickListener onNegativeButtonClickListener) {
-        LovelyStandardDialog errorDialog = new LovelyStandardDialog(context, LovelyStandardDialog.ButtonLayout.VERTICAL)
-                .setCancelable(false)
+    public static void displayDialogError(final Context context, String message, View.OnClickListener onClickListener) {
+        TypedArray typedArray = context.getTheme().obtainStyledAttributes(R.styleable.mainStyles);
+        int topColor = typedArray.getColor(R.styleable.mainStyles_navigationBackgroundStartColor, ContextCompat.getColor(context, R.color.colorAccent));
+        int iconTintColor = typedArray.getColor(R.styleable.mainStyles_iconsMainColor, ContextCompat.getColor(context, R.color.colorAccent));
+        int topTitleColor = typedArray.getColor(R.styleable.mainStyles_textColorPrimary, ContextCompat.getColor(context, R.color.textColorPrimary));
+
+        LovelyCustomDialog lovelyCustomDialog = new LovelyCustomDialog(context)
+                .setView(R.layout.custom_dialog_view)
+                .setTopColor(topColor)
                 .setTitle(context.getString(R.string.common_alert))
-                .setTopColorRes(R.color.scarlet)
+                .setTopTitleColor(topTitleColor)
+                .setTitleGravity(Gravity.CENTER_HORIZONTAL)
+                .setMessage(message)
+                .setMessageGravity(Gravity.FILL)
                 .setIcon(android.R.drawable.ic_dialog_alert)
-                .setIconTintColor(R.color.black)
-                .setButtonsColorRes(R.color.amaranth)
-                .setMessage(message);
+                .setIconTintColor(iconTintColor)
+                .setCancelable(false);
 
-        if(onNegativeButtonClickListener != null) {
-            errorDialog
-                    .setNegativeButton(R.string.common_ok, onNegativeButtonClickListener);
+        if (onClickListener != null) {
+            lovelyCustomDialog.setListener(R.id.btnOK, onClickListener);
         }
-        errorDialog.show();
+
+        lovelyCustomDialog.setListener(R.id.btnOK, v -> lovelyCustomDialog.dismiss());
+        lovelyCustomDialog.show();
     }
 }

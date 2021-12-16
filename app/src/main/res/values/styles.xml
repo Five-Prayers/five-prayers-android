@@ -8,6 +8,9 @@
 
         <item name="textColorPrimary">@color/mine_shaft</item>
         <item name="textColorSecondary">@color/gray</item>
+
+        <item name="android:textColorPrimary">@color/mine_shaft</item>
+        <item name="android:textColorSecondary">@color/gray</item>
         <item name="android:textColorTertiary">@color/gray</item>
         <item name="android:textColorHint">@color/gray</item>
         <item name="android:editTextColor">@color/gray</item>
@@ -66,6 +69,9 @@
 
         <item name="textColorPrimary">@color/alabaster</item>
         <item name="textColorSecondary">@color/gray</item>
+
+        <item name="android:textColorPrimary">@color/alabaster</item>
+        <item name="android:textColorSecondary">@color/gray</item>
         <item name="android:textColorTertiary">@color/gray</item>
         <item name="android:textColorHint">@color/gray</item>
         <item name="android:editTextColor">@color/gray</item>

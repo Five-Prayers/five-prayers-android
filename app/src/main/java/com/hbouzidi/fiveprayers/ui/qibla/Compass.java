@@ -186,18 +186,16 @@ public class Compass implements SensorEventListener {
     }
 
     private LovelyCustomDialog createCalibratingDialog(final Activity activity) {
-        LovelyCustomDialog calibrationDialog = new LovelyCustomDialog(activity)
-                .setView(com.hbouzidi.fiveprayers.R.layout.calibrate_compass_dialog)
-                .setTitle(activity.getString(com.hbouzidi.fiveprayers.R.string.dialog_title_sensor_not_calibrate))
-                .setMessage(activity.getString(com.hbouzidi.fiveprayers.R.string.dialog_message_sensor_not_calibrate))
-                .setTopColorRes(com.hbouzidi.fiveprayers.R.color.colorPrimary)
-                .setIcon(android.R.drawable.ic_dialog_info)
-                .setCancelable(false);
+        LovelyCustomDialog customInformationDialog = AlertHelper.createCustomInformationDialog(activity,
+                activity.getString(com.hbouzidi.fiveprayers.R.string.dialog_title_sensor_not_calibrate),
+                activity.getString(com.hbouzidi.fiveprayers.R.string.dialog_message_sensor_not_calibrate)
+        );
 
-        calibrationDialog.setListener(com.hbouzidi.fiveprayers.R.id.btnOK, v -> {
+        customInformationDialog.setListener(com.hbouzidi.fiveprayers.R.id.btnOK, v -> {
             dialogDismissed = true;
-            calibrationDialog.dismiss();
+            customInformationDialog.dismiss();
         });
-        return calibrationDialog;
+
+        return customInformationDialog;
     }
 }

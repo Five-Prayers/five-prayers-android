@@ -4,8 +4,8 @@
     <color name="colorPrimaryDark">@color/dodger_blue</color>
     <color name="colorPrimaryLight">@color/dodger_blue</color>
     <color name="colorAccent">@color/spray</color>
-    <color name="textPrimary">@color/mine_shaft</color>
-    <color name="textSecondary">@color/boulder</color>
+    <color name="textColorPrimary">@color/mine_shaft</color>
+    <color name="textColorSecondary">@color/boulder</color>
 
     <color name="sunrise">#FFBF00</color>
     <color name="sunset">#FF4800</color>

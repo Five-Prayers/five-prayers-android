@@ -36,6 +36,7 @@
     <string name="common.close">إغلاق</string>
     <string name="common.license">رخصة التطبيق</string>
     <string name="common.offline">غير متصل على الانترنت</string>
+    <string name="common.minutes">دقيقة</string>
 
     <string name="app_name">خمس صلوات</string>
     <string name="title_home">صلاة</string>

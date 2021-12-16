@@ -7,10 +7,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.content.res.TypedArray;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -84,14 +86,23 @@ public class ErrorActivity extends BaseActivity {
     }
 
     private void openPrivacyPolicyDialog(final Context context, final String action) {
+        TypedArray typedArray = context.getTheme().obtainStyledAttributes(R.styleable.mainStyles);
+        int topColor = typedArray.getColor(R.styleable.mainStyles_navigationBackgroundEndColor, ContextCompat.getColor(context, R.color.colorAccent));
+        int iconTintColor = typedArray.getColor(R.styleable.mainStyles_iconsMainColor, ContextCompat.getColor(context, R.color.colorAccent));
+        int topTitleColor = typedArray.getColor(R.styleable.mainStyles_textColorPrimary, ContextCompat.getColor(context, R.color.textColorPrimary));
+        int colorAccent = typedArray.getColor(R.styleable.mainStyles_colorAccent, ContextCompat.getColor(context, R.color.colorAccent));
+
         new LovelyStandardDialog(context, LovelyStandardDialog.ButtonLayout.VERTICAL)
                 .setCancelable(false)
-                .setTopColorRes(R.color.colorPrimary)
-                .setButtonsColorRes(R.color.amaranth)
+                .setTopColor(topColor)
+                .setButtonsColor(colorAccent)
                 .setIcon(android.R.drawable.ic_dialog_alert)
+                .setIconTintColor(iconTintColor)
                 .setTitle(R.string.privacy_policy_title)
+                .setTopTitleColor(topTitleColor)
+                .setTitleGravity(Gravity.CENTER_HORIZONTAL)
+                .setMessageGravity(Gravity.FILL)
                 .setMessage(R.string.start_accept_privacy_policy)
-                .setCancelable(false)
                 .setNeutralButton(R.string.read_privacy_policy, v -> openUrlInBrowser(context, PRIVACY_POLICY_URL))
                 .setPositiveButton(R.string.common_accept, v -> {
                     if (action.equals("EMAIL")) {

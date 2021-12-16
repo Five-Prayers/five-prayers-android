@@ -14,6 +14,9 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DecimalStyle;
 import java.time.format.FormatStyle;
 import java.util.Locale;
+import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author Hicham Bouzidi Idrissi
@@ -75,11 +78,6 @@ public class UiUtils {
                 .withZone(ZoneId.systemDefault())
                 .withLocale(Locale.getDefault());
         return zonedDateTime.format(formatter);
-    }
-
-    public static String formatCalculationMethodAngle(String angle) {
-        NumberFormat numberFormat = NumberFormat.getInstance();
-        return numberFormat.format(Float.parseFloat(angle));
     }
 
     public static String formatFullHijriDate(String nameOfTheDay, int day, String monthName, int year) {

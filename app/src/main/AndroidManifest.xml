@@ -46,7 +46,7 @@
         </activity>
         <activity android:name=".ui.appintro.IntroActivity" />
         <activity android:name=".ui.splashscreen.SplashScreenActivity" />
-        <activity android:name=".ui.MainActivity" />
+        <activity android:name=".ui.MainActivity" android:screenOrientation="portrait"/>
         <activity android:name=".ui.calendar.CalendarActivity" />
         <activity android:name=".ui.timingtable.TimingTableActivity" android:screenOrientation="portrait"/>
         <activity android:name=".ui.qibla.CompassActivity" android:screenOrientation="portrait"/>

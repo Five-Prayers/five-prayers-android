@@ -298,7 +298,7 @@ public class PreferencesHelper {
         }
     }
 
-    public int getThemePreference() {
+    public int getThemePreferenceId() {
         final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         String preferencesString = defaultSharedPreferences.getString(PreferencesConstants.THEME_PREFERENCE, PreferencesConstants.THEME_PREFERENCE_NAME_THEME_WHITE_BLUE);
 
@@ -309,5 +309,10 @@ public class PreferencesHelper {
             default:
                 return R.style.AppTheme;
         }
+    }
+
+    public String getThemePreference() {
+        final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return defaultSharedPreferences.getString(PreferencesConstants.THEME_PREFERENCE, PreferencesConstants.THEME_PREFERENCE_NAME_THEME_WHITE_BLUE);
     }
 }

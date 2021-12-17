@@ -33,17 +33,14 @@ import javax.inject.Singleton;
  * licenced under GPLv3 : https://www.gnu.org/licenses/gpl-3.0.en.html
  */
 @Singleton
-class ReminderNotification {
+class ReminderNotification extends BaseNotification {
 
     private final ReminderPlayer reminderPlayer;
-    private final PreferencesHelper preferencesHelper;
-    private final Context context;
 
     @Inject
     public ReminderNotification(ReminderPlayer reminderPlayer, PreferencesHelper preferencesHelper, Context context) {
+        super(preferencesHelper, context);
         this.reminderPlayer = reminderPlayer;
-        this.preferencesHelper = preferencesHelper;
-        this.context = context;
     }
 
     public void createNotificationChannel() {
@@ -108,7 +105,7 @@ class ReminderNotification {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             builder.setSmallIcon(android.R.drawable.ic_popup_reminder);
         } else {
-            builder.setSmallIcon(R.drawable.ic_mosque_24dp);
+            builder.setSmallIcon(getNotificationIcon());
         }
 
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);

@@ -27,7 +27,7 @@ public class BaseActivity extends AppCompatActivity {
                 .inject(this);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            int theme = preferencesHelper.getThemePreference();
+            int theme = preferencesHelper.getThemePreferenceId();
             setTheme(theme);
         }
 

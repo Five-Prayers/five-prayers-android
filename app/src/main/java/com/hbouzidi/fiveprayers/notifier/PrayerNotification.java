@@ -34,17 +34,14 @@ import static android.content.Context.MODE_PRIVATE;
  * licenced under GPLv3 : https://www.gnu.org/licenses/gpl-3.0.en.html
  */
 @Singleton
-class PrayerNotification {
+class PrayerNotification extends BaseNotification {
 
     private final AdhanPlayer adhanPlayer;
-    private final PreferencesHelper preferencesHelper;
-    private final Context context;
 
     @Inject
     public PrayerNotification(AdhanPlayer adhanPlayer, PreferencesHelper preferencesHelper, Context context) {
+        super(preferencesHelper, context);
         this.adhanPlayer = adhanPlayer;
-        this.preferencesHelper = preferencesHelper;
-        this.context = context;
     }
 
     public void createNotificationChannel() {
@@ -103,8 +100,8 @@ class PrayerNotification {
                     .setSmallIcon(android.R.drawable.ic_popup_reminder);
         } else {
             builder
-                    .addAction(R.drawable.ic_notifications_on_24dp, closeActionTitle, getCloseNotificationActionIntent(notificationId))
-                    .setSmallIcon(R.drawable.ic_mosque_24dp);
+                    .addAction(getActionIcon(), closeActionTitle, getCloseNotificationActionIntent(notificationId))
+                    .setSmallIcon(getNotificationIcon());
         }
 
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);

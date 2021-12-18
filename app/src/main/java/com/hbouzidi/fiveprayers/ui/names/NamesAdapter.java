@@ -1,15 +1,16 @@
 package com.hbouzidi.fiveprayers.ui.names;
 
 import android.content.Context;
-import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.res.ResourcesCompat;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
 
 import com.hbouzidi.fiveprayers.R;
 import com.hbouzidi.fiveprayers.names.AllahNames;
@@ -47,9 +48,21 @@ public class NamesAdapter extends RecyclerView.Adapter<NamesAdapter.Holder> {
         AllahName secondName = names.get(i * 3 + 1);
         AllahName thirdName = names.get(i * 3 + 2);
 
-        holder.firstNameTextView.setText(firstName.getFontReference());
-        holder.secondNameTextView.setText(secondName.getFontReference());
-        holder.thirdNameTextView.setText(thirdName.getFontReference());
+        holder.firstNameCardView.setVisibility(View.VISIBLE);
+        holder.thirdNameCardView.setVisibility(View.VISIBLE);
+
+        int firstNameId = context.getResources().getIdentifier(firstName.getDrawableName(), "drawable", context.getPackageName());
+        int secondNameId = context.getResources().getIdentifier(secondName.getDrawableName(), "drawable", context.getPackageName());
+        int thirdNameId = context.getResources().getIdentifier(thirdName.getDrawableName(), "drawable", context.getPackageName());
+
+        holder.firstNameImageView.setImageDrawable(VectorDrawableCompat.create(context.getResources(), firstNameId, null));
+        holder.firstNameImageView.setContentDescription(firstName.getTransliteration());
+
+        holder.secondNameImageView.setImageDrawable(VectorDrawableCompat.create(context.getResources(), secondNameId, null));
+        holder.secondNameImageView.setContentDescription(secondName.getTransliteration());
+
+        holder.thirdNameImageView.setImageDrawable(VectorDrawableCompat.create(context.getResources(), thirdNameId, null));
+        holder.thirdNameImageView.setContentDescription(thirdName.getTransliteration());
 
         holder.firstTransliterationTextView.setText(firstName.getTransliteration());
         holder.secondTransliterationTextView.setText(secondName.getTransliteration());
@@ -67,6 +80,11 @@ public class NamesAdapter extends RecyclerView.Adapter<NamesAdapter.Holder> {
         holder.firstTranslationTextView.setText(context.getResources().getString(firstNameTranslationIndex));
         holder.secondTranslationTextView.setText(context.getResources().getString(secondNameTranslationIndex));
         holder.thirdTranslationTextView.setText(context.getResources().getString(thirdNameTranslationIndex));
+
+        if (firstName.getNumber() == 0 && thirdName.getNumber() == 0) {
+            holder.firstNameCardView.setVisibility(View.INVISIBLE);
+            holder.thirdNameCardView.setVisibility(View.INVISIBLE);
+        }
     }
 
     @Override
@@ -74,11 +92,11 @@ public class NamesAdapter extends RecyclerView.Adapter<NamesAdapter.Holder> {
         return names.size() / 3;
     }
 
-    class Holder extends RecyclerView.ViewHolder {
+    static class Holder extends RecyclerView.ViewHolder {
 
-        TextView firstNameTextView;
-        TextView secondNameTextView;
-        TextView thirdNameTextView;
+        ImageView firstNameImageView;
+        ImageView secondNameImageView;
+        ImageView thirdNameImageView;
 
         TextView firstTransliterationTextView;
         TextView secondTransliterationTextView;
@@ -88,20 +106,18 @@ public class NamesAdapter extends RecyclerView.Adapter<NamesAdapter.Holder> {
         TextView secondTranslationTextView;
         TextView thirdTranslationTextView;
 
+        CardView firstNameCardView;
+        CardView secondNameCardView;
+        CardView thirdNameCardView;
+
         View itemView;
 
         public Holder(@NonNull View itemView) {
             super(itemView);
 
-            Typeface typeface = ResourcesCompat.getFont(context, R.font.font_allah_names);
-
-            firstNameTextView = itemView.findViewById(R.id.name_text_view_1);
-            secondNameTextView = itemView.findViewById(R.id.name_text_view_2);
-            thirdNameTextView = itemView.findViewById(R.id.name_text_view_3);
-
-            firstNameTextView.setTypeface(typeface);
-            secondNameTextView.setTypeface(typeface);
-            thirdNameTextView.setTypeface(typeface);
+            firstNameImageView = itemView.findViewById(R.id.name_image_view_1);
+            secondNameImageView = itemView.findViewById(R.id.name_image_view_2);
+            thirdNameImageView = itemView.findViewById(R.id.name_image_view_3);
 
             firstTransliterationTextView = itemView.findViewById(R.id.transliteration_text_view_1);
             secondTransliterationTextView = itemView.findViewById(R.id.transliteration_text_view_2);
@@ -110,6 +126,10 @@ public class NamesAdapter extends RecyclerView.Adapter<NamesAdapter.Holder> {
             firstTranslationTextView = itemView.findViewById(R.id.translation_text_view_1);
             secondTranslationTextView = itemView.findViewById(R.id.translation_text_view_2);
             thirdTranslationTextView = itemView.findViewById(R.id.translation_text_view_3);
+
+            firstNameCardView = itemView.findViewById(R.id.card_view_1);
+            secondNameCardView = itemView.findViewById(R.id.card_view_2);
+            thirdNameCardView = itemView.findViewById(R.id.card_view_3);
 
             this.itemView = itemView;
         }

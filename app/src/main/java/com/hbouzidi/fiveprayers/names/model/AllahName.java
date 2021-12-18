@@ -11,12 +11,14 @@ public class AllahName {
     private String name;
     private String transliteration;
     private String fontReference;
+    private String drawableName;
 
-    public AllahName(int number, String name, String transliteration, String fontReference) {
+    public AllahName(int number, String drawableName, String name, String transliteration, String fontReference) {
         this.name = name;
         this.transliteration = transliteration;
         this.number = number;
         this.fontReference = fontReference;
+        this.drawableName = drawableName;
     }
 
     public String getName() {
@@ -49,5 +51,13 @@ public class AllahName {
 
     public void setFontReference(String fontReference) {
         this.fontReference = fontReference;
+    }
+
+    public String getDrawableName() {
+        return drawableName;
+    }
+
+    public void setDrawableName(String drawableName) {
+        this.drawableName = drawableName;
     }
 }

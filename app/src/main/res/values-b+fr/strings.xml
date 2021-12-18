@@ -295,6 +295,7 @@
     <string name="names_view_title">Asma’ Allah al-Ḥusná</string>
     <string name="ndesc_ames_view_title">Les plus beaux noms de Dieu</string>
 
+    <string name="ALLAH_NAME_0">Le Seul Vrai Dieu</string>
     <string name="ALLAH_NAME_1">Le Tout-Miséricordieux</string>
     <string name="ALLAH_NAME_2">Le Très-Miséricordieux</string>
     <string name="ALLAH_NAME_3">Le Souverain</string>
@@ -333,7 +334,7 @@
     <string name="ALLAH_NAME_36">Le Très Haut</string>
     <string name="ALLAH_NAME_37">Le Très Grand</string>
     <string name="ALLAH_NAME_38">Le Gardien</string>
-    <string name="ALLAH_NAME_39">Celui qui ne laisse aucun détail lorsqu\'Il juge</string>
+    <string name="ALLAH_NAME_39">Celui qui ne laisse aucun détail</string>
     <string name="ALLAH_NAME_40">Celui qui règle les comptes</string>
     <string name="ALLAH_NAME_41">Le Sublime</string>
     <string name="ALLAH_NAME_42">Le Généreux</string>

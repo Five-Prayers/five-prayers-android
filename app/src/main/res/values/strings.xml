@@ -299,7 +299,8 @@
     <string name="names_view_title">Beautiful Names of God</string>
     <string name="ndesc_ames_view_title">99 Names of God</string>
 
-    <string name="ALLAH_NAME_1">The Most or Entirely Merciful</string>
+    <string name="ALLAH_NAME_0">The One and The True God</string>
+    <string name="ALLAH_NAME_1">The Entirely Merciful</string>
     <string name="ALLAH_NAME_2">The Bestower of Mercy</string>
     <string name="ALLAH_NAME_3">The King and Owner of Dominion</string>
     <string name="ALLAH_NAME_4">The Absolutely Pure</string>
@@ -377,13 +378,13 @@
     <string name="ALLAH_NAME_76">The Hidden One, Knower of the Hidden</string>
     <string name="ALLAH_NAME_77">The Governor, The Patron</string>
     <string name="ALLAH_NAME_78">The Self Exalted</string>
-    <string name="ALLAH_NAME_79">The Source of Goodness, the Kind Benefactor</string>
+    <string name="ALLAH_NAME_79">The Source of Goodness</string>
     <string name="ALLAH_NAME_80">The Ever-Pardoning, The Relenting</string>
     <string name="ALLAH_NAME_81">The Avenger</string>
     <string name="ALLAH_NAME_82">The Pardoner</string>
     <string name="ALLAH_NAME_83">The Most Kind</string>
-    <string name="ALLAH_NAME_84">Master of the Kingdom, Owner of the Dominion</string>
-    <string name="ALLAH_NAME_85">Possessor of Glory and Honour, Lord of Majesty and Generosity</string>
+    <string name="ALLAH_NAME_84">Owner of the Dominion</string>
+    <string name="ALLAH_NAME_85">Possessor of Glory and Honour</string>
     <string name="ALLAH_NAME_86">The Equitable, the Requiter</string>
     <string name="ALLAH_NAME_87">The Gatherer, the Uniter</string>
     <string name="ALLAH_NAME_88">The Self-Sufficient, The Wealthy</string>

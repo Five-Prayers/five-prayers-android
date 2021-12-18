@@ -2,6 +2,7 @@ package com.hbouzidi.fiveprayers.ui.settings.location;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.res.TypedArray;
 import android.location.Address;
 import android.os.Bundle;
 import android.os.Handler;
@@ -96,6 +97,11 @@ public class AutoCompleteTextPreferenceDialog extends PreferenceDialogFragmentCo
     @Override
     protected View onCreateDialogView(Context context) {
         this.context = context;
+        int[] attrs = {R.attr.navigationBackgroundEndColor};
+        TypedArray ta = context.obtainStyledAttributes(attrs);
+        int colorRes = ta.getResourceId(0, R.color.gray);
+        ta.recycle();
+
         mEditText = new AutoCompleteLoading(this.context);
 
         autoSuggestAdapter = new AutoSuggestAdapter(this.context, android.R.layout.simple_dropdown_item_1line);
@@ -109,6 +115,7 @@ public class AutoCompleteTextPreferenceDialog extends PreferenceDialogFragmentCo
         mEditText.setHint(context.getString(R.string.title_edit_text_location_preference));
         mEditText.setLoadingIndicator(progressBar);
         mEditText.setAdapter(autoSuggestAdapter);
+        mEditText.setDropDownBackgroundResource(colorRes);
         mEditText.setOnItemClickListener(
                 (parent, view, position, id) -> {
                     isSelectedText = true;

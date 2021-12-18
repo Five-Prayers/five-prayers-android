@@ -15,7 +15,6 @@ import android.os.Vibrator;
 
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
-import androidx.core.content.ContextCompat;
 
 import com.hbouzidi.fiveprayers.R;
 import com.hbouzidi.fiveprayers.common.PrayerEnum;
@@ -87,7 +86,7 @@ class PrayerNotification extends BaseNotification {
         }
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, NotifierConstants.ADTHAN_NOTIFICATION_CHANNEL_ID)
-                .setColor(ContextCompat.getColor(context, R.color.colorPrimary))
+                .setColor(getNotificationColor())
                 .setContentTitle(context.getString(R.string.adthan_notification_title))
                 .setStyle(new NotificationCompat.BigTextStyle().bigText(content))
                 .setDeleteIntent(createOnDismissedIntent(notificationId))

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 
 import androidx.core.content.res.ResourcesCompat;
 import androidx.lifecycle.ViewModelProvider;
@@ -69,6 +70,9 @@ public class QuranPageActivity extends BaseActivity {
 
         QuranPageViewModel quranPageViewModel = viewModelFactory.create(QuranPageViewModel.class);
         quranPageViewModel.getPages().observe(this, this::initRecyclerView);
+
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
     private void initRecyclerView(List<QuranPage> quranPages) {

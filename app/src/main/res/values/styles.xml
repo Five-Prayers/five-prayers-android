@@ -1,10 +1,10 @@
 <resources>
 
     <!-- Default blue white theme -->
-    <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+    <style name="BlueWhiteTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
         <item name="colorPrimary">@color/white</item>
         <item name="colorPrimaryDark">@color/dodger_blue</item>
-        <item name="colorAccent">@color/spray</item>
+        <item name="colorAccent">@color/dodger_blue</item>
 
         <item name="textColorPrimary">@color/mine_shaft</item>
         <item name="textColorSecondary">@color/gray</item>
@@ -26,7 +26,7 @@
         <!-- Progressbar colors -->
         <item name="progressbarBackgroundColor">@color/aqua_haze</item>
         <item name="progressbarColor">@color/dodger_blue</item>
-        <item name="progressbarMainTextColor">@color/pickled_bluewood</item>
+        <item name="progressbarMainTextColor">@color/curious_blue</item>
 
         <!-- Notification icons colors -->
         <item name="notificationEnabledIconColor">@color/jade</item>
@@ -55,14 +55,14 @@
 
         <!-- Clock colors -->
         <item name="faceTint">@color/dodger_blue</item>
-        <item name="hourTint">@color/dodger_blue</item>
-        <item name="minuteTint">@color/dodger_blue</item>
-        <item name="secondTint">@color/dodger_blue</item>
+        <item name="hourTint">@color/curious_blue</item>
+        <item name="minuteTint">@color/curious_blue</item>
+        <item name="secondTint">@color/curious_blue</item>
     </style>
 
 
     <!-- Dark theme -->
-    <style name="AppDarkTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+    <style name="DarkOrangeTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
         <item name="colorPrimary">@color/black</item>
         <item name="colorPrimaryDark">@color/cold_gray</item>
         <item name="colorAccent">@color/orange</item>
@@ -86,7 +86,7 @@
         <item name="navigationUnCheckedColor">@color/gray</item>
 
         <!-- Progressbar colors -->
-        <item name="progressbarBackgroundColor">@color/boulder</item>
+        <item name="progressbarBackgroundColor">@color/mine_shaft_light</item>
         <item name="progressbarColor">@color/orange</item>
         <item name="progressbarMainTextColor">@color/scarlet</item>
 
@@ -100,7 +100,7 @@
         <item name="toolbarBackgroundColor">@color/mine_shaft</item>
         <item name="toolbarTextColorPrimary">@color/alabaster</item>
         <item name="toolbarTextColorSecondary">@color/gray</item>
-        <item name="toolbarTabBackground">@drawable/tab_color_selector_dark</item>
+        <item name="toolbarTabBackground">@drawable/tab_color_selector_dark_orange</item>
 
         <item name="alertDialogTheme">@style/AlertDialogTheme</item>
         <item name="android:textViewStyle">@style/RobotoTextViewStyle</item>
@@ -124,6 +124,66 @@
         <item name="secondTint">@color/blaze_orange</item>
     </style>
 
+    <style name="DarkTurquoiseTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/mirage</item>
+        <item name="colorPrimaryDark">@color/port_gore</item>
+        <item name="colorAccent">@color/turquoise_blue</item>
+
+        <item name="textColorPrimary">@color/alabaster</item>
+        <item name="textColorSecondary">@color/silver</item>
+
+        <item name="android:textColorPrimary">@color/alabaster</item>
+        <item name="android:textColorSecondary">@color/silver</item>
+        <item name="android:textColorTertiary">@color/silver</item>
+        <item name="android:textColorHint">@color/silver</item>
+        <item name="android:editTextColor">@color/silver</item>
+
+        <!-- Background colors -->
+        <item name="mainBackgroundStartColor">@color/port_gore</item>
+        <item name="mainBackgroundEndColor">@color/port_gore</item>
+        <item name="navigationBackgroundStartColor">@color/rhino</item>
+        <item name="navigationBackgroundEndColor">@color/rhino_light</item>
+        <item name="navigationCheckedColor">@color/turquoise_blue</item>
+        <item name="navigationUnCheckedColor">@color/silver</item>
+
+        <!-- Progressbar colors -->
+        <item name="progressbarBackgroundColor">@color/rhino_light</item>
+        <item name="progressbarColor">@color/turquoise_blue</item>
+        <item name="progressbarMainTextColor">@color/keppel</item>
+
+        <item name="colorSecondary">@color/turquoise_blue</item>
+
+        <!-- Tooltip appearance -->
+        <item name="tooltipBackgroundColor">@color/turquoise_blue</item>
+        <item name="tooltipTextColor">@color/rhino</item>
+
+        <!-- toolbar appearance -->
+        <item name="toolbarBackgroundColor">@color/rhino</item>
+        <item name="toolbarTextColorPrimary">@color/alabaster</item>
+        <item name="toolbarTextColorSecondary">@color/silver</item>
+        <item name="toolbarTabBackground">@drawable/tab_color_selector_dark_turquoise</item>
+
+        <item name="alertDialogTheme">@style/AlertDialogTheme</item>
+        <item name="android:textViewStyle">@style/RobotoTextViewStyle</item>
+        <item name="buttonStyle">@style/RobotoButtonStyle</item>
+
+        <!-- Notification icons colors -->
+        <item name="notificationEnabledIconColor">@color/keppel</item>
+        <item name="notificationDisabledIconColor">@color/boulder</item>
+
+        <!-- Main icons colors -->
+        <item name="iconsMainColor">@color/turquoise_blue</item>
+
+        <!-- Checkbox colors -->
+        <item name="colorControlActivated">@color/turquoise_blue</item>
+        <item name="colorControlNormal">@color/silver</item>
+
+        <!-- Clock colors -->
+        <item name="faceTint">@color/turquoise_blue</item>
+        <item name="hourTint">@color/keppel</item>
+        <item name="minuteTint">@color/keppel</item>
+        <item name="secondTint">@color/keppel</item>
+    </style>
 
     <!-- Tab layout appearance -->
     <style name="FivePrayerTabLayout" parent="Widget.Design.TabLayout">
@@ -134,9 +194,11 @@
         <item name="tabTextColor">?attr/toolbarTextColorSecondary</item>
     </style>
 
-    <style name="Theme.AppCompat.Light.NoActionBar.FullScreen" parent="@style/Theme.AppCompat.Light.NoActionBar">
+    <style name="Theme.AppCompat.DayNight.NoActionBar.FullScreen" parent="@style/Theme.AppCompat.DayNight.NoActionBar">
         <item name="android:windowNoTitle">true</item>
+        <item name="windowNoTitle">true</item>
         <item name="android:windowActionBar">false</item>
+        <item name="windowActionBar">false</item>
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowContentOverlay">@null</item>
     </style>

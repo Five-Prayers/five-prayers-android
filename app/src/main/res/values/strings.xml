@@ -53,6 +53,7 @@
     <string name="theme_preference_dialog_title">Choose your preferred theme</string>
     <string name="theme_preference_name_white_blue">Blue sky (Default)</string>
     <string name="theme_preference_name_dark_orange">Orange night</string>
+    <string name="theme_preference_name_dark_Turquoise">Nightly aurore</string>
 
     <!-- App Intro -->
     <string name="app_intro_frag_1_title">Welcome to Five Prayers Android</string>

@@ -69,4 +69,5 @@ public class PreferencesConstants {
     public static final String THEME_PREFERENCE = "THEME_PREFERENCE";
     public static final String THEME_PREFERENCE_NAME_THEME_WHITE_BLUE = "THEME_WHITE_BLUE";
     public static final String THEME_PREFERENCE_NAME_THEME_DARK_ORANGE = "THEME_DARK_ORANGE";
+    public static final String THEME_PREFERENCE_NAME_THEME_DARK_TURQUOISE = "THEME_DARK_TURQUOISE";
 }

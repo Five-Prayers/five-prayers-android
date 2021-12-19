@@ -3,10 +3,12 @@
     <string-array name="entries_theme_list_preference">
         <item>@string/theme_preference_name_white_blue</item>
         <item>@string/theme_preference_name_dark_orange</item>
+        <item>@string/theme_preference_name_dark_Turquoise</item>
     </string-array>
     <string-array name="entryvalues_theme_list_preference">
         <item>THEME_WHITE_BLUE</item>
         <item>THEME_DARK_ORANGE</item>
+        <item>THEME_DARK_TURQUOISE</item>
     </string-array>
 
     <string-array name="entries_calculation_method_list_preference">

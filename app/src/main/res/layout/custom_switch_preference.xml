@@ -36,8 +36,6 @@
             android:layout_alignParentRight="true"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
-            android:orientation="vertical"
-            android:thumb="@drawable/tab_color_selector_dark"
-            android:track="@drawable/tab_color_selector_dark" />
+            android:orientation="vertical" />
     </RelativeLayout>
 </LinearLayout>

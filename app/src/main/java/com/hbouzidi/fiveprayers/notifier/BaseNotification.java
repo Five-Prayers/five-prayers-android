@@ -3,6 +3,7 @@ package com.hbouzidi.fiveprayers.notifier;
 import android.content.Context;
 
 import androidx.annotation.ColorInt;
+import androidx.annotation.DrawableRes;
 
 import com.hbouzidi.fiveprayers.R;
 import com.hbouzidi.fiveprayers.preferences.PreferencesConstants;
@@ -23,24 +24,14 @@ public class BaseNotification {
         this.context = context;
     }
 
+    @DrawableRes
     protected int getActionIcon() {
-        switch (preferencesHelper.getThemePreference()) {
-            case PreferencesConstants.THEME_PREFERENCE_NAME_THEME_DARK_ORANGE:
-                return R.drawable.ic_notifications_on_24dp_dark;
-            case PreferencesConstants.THEME_PREFERENCE_NAME_THEME_WHITE_BLUE:
-            default:
-                return R.drawable.ic_notifications_on_24dp_blue;
-        }
+        return R.drawable.ic_notifications_on_24dp_blue;
     }
 
+    @DrawableRes
     protected int getNotificationIcon() {
-        switch (preferencesHelper.getThemePreference()) {
-            case PreferencesConstants.THEME_PREFERENCE_NAME_THEME_DARK_ORANGE:
-                return R.drawable.ic_mosque_24dp_dark;
-            case PreferencesConstants.THEME_PREFERENCE_NAME_THEME_WHITE_BLUE:
-            default:
-                return R.drawable.ic_mosque_24dp_blue;
-        }
+        return R.drawable.ic_mosque_24dp_blue;
     }
 
     @ColorInt
@@ -48,6 +39,8 @@ public class BaseNotification {
         switch (preferencesHelper.getThemePreference()) {
             case PreferencesConstants.THEME_PREFERENCE_NAME_THEME_DARK_ORANGE:
                 return context.getResources().getColor(R.color.orange);
+            case PreferencesConstants.THEME_PREFERENCE_NAME_THEME_DARK_TURQUOISE:
+                return context.getResources().getColor(R.color.turquoise_blue);
             case PreferencesConstants.THEME_PREFERENCE_NAME_THEME_WHITE_BLUE:
             default:
                 return context.getResources().getColor(R.color.dodger_blue);

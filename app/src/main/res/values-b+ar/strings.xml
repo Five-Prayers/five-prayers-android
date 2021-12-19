@@ -50,6 +50,7 @@
     <string name="theme_preference_dialog_title">اختر لون المظهر المفضل لديك</string>
     <string name="theme_preference_name_white_blue">السماء الزرقاء (افتراضي)</string>
     <string name="theme_preference_name_dark_orange">ليلة برتقالية</string>
+    <string name="theme_preference_name_dark_Turquoise">الشفق الليلي</string>
 
     <string name="calendar_view_title">تقويم الصلاة في</string>
     <string name="title_calendar">تقويم الصلاة</string>

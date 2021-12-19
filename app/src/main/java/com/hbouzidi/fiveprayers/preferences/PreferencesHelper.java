@@ -304,10 +304,12 @@ public class PreferencesHelper {
 
         switch (preferencesString) {
             case PreferencesConstants.THEME_PREFERENCE_NAME_THEME_DARK_ORANGE:
-                return R.style.AppDarkTheme;
+                return R.style.DarkOrangeTheme;
+            case PreferencesConstants.THEME_PREFERENCE_NAME_THEME_DARK_TURQUOISE:
+                return R.style.DarkTurquoiseTheme;
             case PreferencesConstants.THEME_PREFERENCE_NAME_THEME_WHITE_BLUE:
             default:
-                return R.style.AppTheme;
+                return R.style.BlueWhiteTheme;
         }
     }
 

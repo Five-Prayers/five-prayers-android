@@ -41,6 +41,8 @@
     <color name="silver">#BDBDBD</color>
     <color name="amaranth">#E91E63</color>
     <color name="aquamarine_blue">#6DE3D1</color>
+    <color name="turquoise_blue">#4EE7C7</color>
+    <color name="keppel">#3EB59C</color>
     <color name="alabaster">#FAFAFA</color>
     <color name="polar">#EAFAFA</color>
     <color name="dew">#FBFFFE</color>
@@ -48,7 +50,11 @@
     <color name="alice_lue">#F5FAFF</color>
     <color name="dodger_blue">#17C5FF</color>
     <color name="dodger_blue_light">#12C0FA</color>
+    <color name="curious_blue">#16ACDD</color>
     <color name="stratos">#000C59</color>
+    <color name="port_gore">#212747</color>
+    <color name="rhino">#283250</color>
+    <color name="rhino_light">#2D3755</color>
     <color name="orange">#FE5920</color>
     <color name="scarlet">#FF3700</color>
     <color name="blaze_orange">#FF6D00</color>

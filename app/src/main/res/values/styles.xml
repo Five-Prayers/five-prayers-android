@@ -19,12 +19,12 @@
         <item name="mainBackgroundStartColor">@color/white</item>
         <item name="mainBackgroundEndColor">@color/alabaster</item>
         <item name="navigationBackgroundStartColor">@color/alabaster</item>
-        <item name="navigationBackgroundEndColor">@color/black_squeeze</item>
+        <item name="navigationBackgroundEndColor">@color/wild_sand</item>
         <item name="navigationCheckedColor">@color/dodger_blue</item>
         <item name="navigationUnCheckedColor">@color/boulder</item>
 
         <!-- Progressbar colors -->
-        <item name="progressbarBackgroundColor">@color/aqua_haze</item>
+        <item name="progressbarBackgroundColor">@color/wild_sand</item>
         <item name="progressbarColor">@color/dodger_blue</item>
         <item name="progressbarMainTextColor">@color/curious_blue</item>
 

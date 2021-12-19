@@ -29,16 +29,16 @@ Download the current debug version by adding the following repo to the F-Droid A
 
 ## Screenshots
 
-[<img src="screenshots/pixel_4xl/Screenshot_0_pixel_4xl_3_21.png" width=160>](screenshots/pixel_4xl/Screenshot_0_pixel_4xl_3_21.png)
-[<img src="screenshots/pixel_4xl/Screenshot_1_pixel_4xl_3_21.png" width=160>](screenshots/pixel_4xl/Screenshot_1_pixel_4xl_3_21.png)
-[<img src="screenshots/pixel_4xl/Screenshot_2_pixel_4xl_3_21.png" width=160>](screenshots/pixel_4xl/Screenshot_2_pixel_4xl_3_21.png)
-[<img src="screenshots/pixel_4xl/Screenshot_3_pixel_4xl_3_21.png" width=160>](screenshots/pixel_4xl/Screenshot_3_pixel_4xl_3_21.png)
-[<img src="screenshots/pixel_4xl/Screenshot_4_pixel_4xl_3_21.png" width=160>](screenshots/pixel_4xl/Screenshot_4_pixel_4xl_3_21.png)
-[<img src="screenshots/pixel_4xl/Screenshot_5_pixel_4xl_3_21.png" width=160>](screenshots/pixel_4xl/Screenshot_5_pixel_4xl_3_21.png)
-[<img src="screenshots/pixel_4xl/Screenshot_6_pixel_4xl_3_21.png" width=160>](screenshots/pixel_4xl/Screenshot_6_pixel_4xl_3_21.png)
-[<img src="screenshots/pixel_4xl/Screenshot_7_pixel_4xl_3_21.png" width=160>](screenshots/pixel_4xl/Screenshot_7_pixel_4xl_3_21.png)
-[<img src="screenshots/pixel_4xl/Screenshot_8_pixel_4xl_3_21.png" width=160>](screenshots/pixel_4xl/Screenshot_8_pixel_4xl_3_21.png)
-[<img src="screenshots/pixel_4xl/Screenshot_10_pixel_4xl_3_21.png" width=160>](screenshots/pixel_4xl/Screenshot_10_pixel_4xl_3_21.png)
+[<img src="screenshots/pixel_4xl/Screenshot_0.png" width=160>](screenshots/pixel_4xl/Screenshot_0.png)
+[<img src="screenshots/pixel_4xl/Screenshot_1.png" width=160>](screenshots/pixel_4xl/Screenshot_1.png)
+[<img src="screenshots/pixel_4xl/Screenshot_2.png" width=160>](screenshots/pixel_4xl/Screenshot_2.png)
+[<img src="screenshots/pixel_4xl/Screenshot_3.png" width=160>](screenshots/pixel_4xl/Screenshot_3.png)
+[<img src="screenshots/pixel_4xl/Screenshot_5.png" width=160>](screenshots/pixel_4xl/Screenshot_5.png)
+[<img src="screenshots/pixel_4xl/Screenshot_7.png" width=160>](screenshots/pixel_4xl/Screenshot_7.png)
+[<img src="screenshots/pixel_4xl/Screenshot_8.png" width=160>](screenshots/pixel_4xl/Screenshot_8.png)
+[<img src="screenshots/pixel_4xl/Screenshot_9.png" width=160>](screenshots/pixel_4xl/Screenshot_9.png)
+[<img src="screenshots/pixel_4xl/Screenshot_10.png" width=160>](screenshots/pixel_4xl/Screenshot_10.png)
+[<img src="screenshots/pixel_4xl/Screenshot_12.png" width=160>](screenshots/pixel_4xl/Screenshot_12.png)
 
 ## Description
 
@@ -93,6 +93,7 @@ Five Prayers Android is not Google Framework dependent, so this app can be used 
 * Quran (Please consider this open-source project if your are looking for more features [Quran Android](https://github.com/quran/quran_android))
 * 99 Names of God
 * Home Screen Widget
+* Dark Themes
 
 ## Translating
 

@@ -46,7 +46,6 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_asma_allah_alhusna_original_artboard_3"
                     app:tint="?attr/colorAccent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -155,7 +154,6 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_asma_allah_alhusna_original_artboard_3"
                     app:tint="?attr/colorAccent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -264,7 +262,6 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_asma_allah_alhusna_original_artboard_3"
                     app:tint="?attr/colorAccent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 

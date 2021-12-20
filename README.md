@@ -31,8 +31,8 @@ Download the current debug version by adding the following repo to the F-Droid A
 
 [<img src="screenshots/pixel_4xl/Screenshot_0.png" width=160>](screenshots/pixel_4xl/Screenshot_0.png)
 [<img src="screenshots/pixel_4xl/Screenshot_1.png" width=160>](screenshots/pixel_4xl/Screenshot_1.png)
-[<img src="screenshots/pixel_4xl/Screenshot_2.png" width=160>](screenshots/pixel_4xl/Screenshot_2.png)
 [<img src="screenshots/pixel_4xl/Screenshot_3.png" width=160>](screenshots/pixel_4xl/Screenshot_3.png)
+[<img src="screenshots/pixel_4xl/Screenshot_4.png" width=160>](screenshots/pixel_4xl/Screenshot_4.png)
 [<img src="screenshots/pixel_4xl/Screenshot_5.png" width=160>](screenshots/pixel_4xl/Screenshot_5.png)
 [<img src="screenshots/pixel_4xl/Screenshot_7.png" width=160>](screenshots/pixel_4xl/Screenshot_7.png)
 [<img src="screenshots/pixel_4xl/Screenshot_8.png" width=160>](screenshots/pixel_4xl/Screenshot_8.png)

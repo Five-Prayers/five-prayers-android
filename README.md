@@ -16,11 +16,23 @@
 <a href="https://play.google.com/store/apps/details?id=com.hbouzidi.fiveprayers" alt="Play Store Link" target="_blank">
   <img alt="Android app on Google Play" src="https://developer.android.com/images/brand/en_app_rgb_wo_45.png" />
 </a>
-</p>
 
 F-Droid Repo:<br>
 Download the current version by adding the following repo to the F-Droid App
 [https://raw.githubusercontent.com/Five-Prayers/fdroid-repo-stable/main/fdroid/repo](https://raw.githubusercontent.com/Five-Prayers/fdroid-repo-stable/main/fdroid/repo)
+
+You can use this fingerprint to valide repo's signature : 
+
+```
+C8 E3 6E 27 BA 66 CB 81 D9 24 9C 55 C6 7A 8E 53 21 AF DB CC F8 1E EB 0D 49 5E 8E 3A 01 FE 16 93
+```
+ 
+<p align="center">
+<a href="https://f-droid.org/fr/packages/com.hbouzidi.fiveprayers" alt="F-Droid Link" target="_blank">
+  <img alt="Android app on Fdroid" src="https://f-droid.org/assets/fdroid-logo-text_S0MUfk_FsnAYL7n2MQye-34IoSNm6QM6xYjDnMqkufo=.svg" />
+</a>
+ 
+</p>
 
 <hr>
 <p align="center"><a href="#screenshots">Screenshots</a> &bull; <a href="#description">Description</a> &bull; <a href="#features">Features</a> &bull; <a href="#translating">Translating</a> &bull; <a href="#contributing">Contributing</a></p>

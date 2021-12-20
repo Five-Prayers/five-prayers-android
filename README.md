@@ -18,6 +18,10 @@
 </a>
 </p>
 
+F-Droid Repo:<br>
+Download the current debug version by adding the following repo to the F-Droid App
+[https://raw.githubusercontent.com/Five-Prayers/fdroid-repo-stable/main/fdroid/repo](https://raw.githubusercontent.com/Five-Prayers/fdroid-repo-stable/main/fdroid/repo)
+
 <hr>
 <p align="center"><a href="#screenshots">Screenshots</a> &bull; <a href="#description">Description</a> &bull; <a href="#features">Features</a> &bull; <a href="#translating">Translating</a> &bull; <a href="#contributing">Contributing</a></p>
 <p align="center"><a href="#publishing-and-using-five-prayers-for-android-code-in-other-projects">Publishing and using Five Prayers</a> &bull; <a href="#open-source-projects-used">Open Source Projects Used</a> &bull; <a href="#privacy-policy">Privacy Policy</a> &bull; <a href="#license">License</a> </p>

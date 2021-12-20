@@ -1,7 +1,6 @@
 <resources>
-    <!-- Common -->
-    <string name="whats_new_dialog_title">Bug Fix</string>
-    <string name="whats_new_dialog_message">Fix location manually setting, especially for phones without gapps installed.</string>
+    <string name="whats_new_dialog_title">New feature</string>
+    <string name="whats_new_dialog_message">Application is supporting Dark Mode, you can enable it in Settings</string>
 
     <string name="about_five_prayers">About Five Prayers</string>
     <string name="open_source_projects_used">Open Source Projects Used</string>

@@ -19,7 +19,7 @@
 </p>
 
 F-Droid Repo:<br>
-Download the current debug version by adding the following repo to the F-Droid App
+Download the current version by adding the following repo to the F-Droid App
 [https://raw.githubusercontent.com/Five-Prayers/fdroid-repo-stable/main/fdroid/repo](https://raw.githubusercontent.com/Five-Prayers/fdroid-repo-stable/main/fdroid/repo)
 
 <hr>

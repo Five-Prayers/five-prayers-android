@@ -14,9 +14,6 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DecimalStyle;
 import java.time.format.FormatStyle;
 import java.util.Locale;
-import java.util.Objects;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * @author Hicham Bouzidi Idrissi
@@ -39,9 +36,13 @@ public class UiUtils {
     public static String formatShortDate(LocalDate localDate) {
         DateTimeFormatter formatter = DateTimeFormatter
                 .ofPattern(GREGORIAN_MONTH_YEAR_FORMAT, Locale.getDefault())
-                .withDecimalStyle(DecimalStyle.of(Locale.getDefault()))
                 .withLocale(Locale.getDefault());
-        return localDate.format(formatter);
+
+        try {
+            return localDate.format(formatter.withDecimalStyle(DecimalStyle.of(Locale.getDefault())));
+        } catch (UnsupportedOperationException e) {
+            return localDate.format(formatter);
+        }
     }
 
     public static String formatTiming(LocalDateTime localDateTime) {
@@ -50,34 +51,50 @@ public class UiUtils {
 
         DateTimeFormatter formatter = DateTimeFormatter
                 .ofLocalizedTime(FormatStyle.SHORT)
-                .withDecimalStyle(DecimalStyle.of(Locale.getDefault()))
                 .withLocale(Locale.getDefault());
-        return zdt.format(formatter);
+
+        try {
+            return zdt.format(formatter.withDecimalStyle(DecimalStyle.of(Locale.getDefault())));
+        } catch (UnsupportedOperationException e) {
+            return zdt.format(formatter);
+        }
     }
 
     public static String formatReadableGregorianDate(ZonedDateTime zonedDateTime) {
         DateTimeFormatter formatter = DateTimeFormatter
                 .ofLocalizedDate(FormatStyle.FULL)
-                .withDecimalStyle(DecimalStyle.of(Locale.getDefault()))
                 .withLocale(Locale.getDefault());
-        return zonedDateTime.toLocalDate().format(formatter).replaceAll("[٬،.]", "");
+
+        try {
+            return zonedDateTime.toLocalDate()
+                    .format(formatter.withDecimalStyle(DecimalStyle.of(Locale.getDefault()))).replaceAll("[٬،.]", "");
+        } catch (UnsupportedOperationException e) {
+            return zonedDateTime.toLocalDate().format(formatter).replaceAll("[٬،.]", "");
+        }
     }
 
     public static String formatReadableGregorianDate(LocalDate localDate) {
         DateTimeFormatter formatter = DateTimeFormatter
                 .ofLocalizedDate(FormatStyle.FULL)
-                .withDecimalStyle(DecimalStyle.of(Locale.getDefault()))
                 .withLocale(Locale.getDefault());
-        return localDate.format(formatter).replaceAll("[٬،.]", "");
+
+        try {
+            return localDate.format(formatter.withDecimalStyle(DecimalStyle.of(Locale.getDefault()))).replaceAll("[٬،.]", "");
+        } catch (UnsupportedOperationException e) {
+            return localDate.format(formatter).replaceAll("[٬،.]", "");
+        }
     }
 
     public static String formatReadableTimezone(ZonedDateTime zonedDateTime) {
         DateTimeFormatter formatter = DateTimeFormatter
                 .ofPattern(TIME_ZONE_READABLE_FORMAT, Locale.getDefault())
-                .withDecimalStyle(DecimalStyle.of(Locale.getDefault()))
                 .withZone(ZoneId.systemDefault())
                 .withLocale(Locale.getDefault());
-        return zonedDateTime.format(formatter);
+        try {
+            return zonedDateTime.format(formatter.withDecimalStyle(DecimalStyle.of(Locale.getDefault())));
+        } catch (UnsupportedOperationException e) {
+            return zonedDateTime.format(formatter);
+        }
     }
 
     public static String formatFullHijriDate(String nameOfTheDay, int day, String monthName, int year) {

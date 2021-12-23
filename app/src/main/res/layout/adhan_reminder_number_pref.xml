@@ -15,7 +15,7 @@
         numberpicker:layout_constraintEnd_toEndOf="parent"
         numberpicker:layout_constraintStart_toStartOf="parent"
         numberpicker:layout_constraintTop_toTopOf="parent"
-        numberpicker:max="30"
+        numberpicker:max="60"
         numberpicker:min="10"
         numberpicker:unit="5"
         numberpicker:value="10"

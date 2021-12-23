@@ -17,8 +17,8 @@ import com.travijuu.numberpicker.library.NumberPicker;
  */
 public class MultipleNumberPickerView extends ConstraintLayout {
 
-    private static final int MAX_VALUE = 30;
-    private static final int MIN_VALUE = -30;
+    private static final int MAX_VALUE = 60;
+    private static final int MIN_VALUE = -60;
 
     private final NumberPicker fajrNumberPicker;
     private final NumberPicker dohrNumberPicker;

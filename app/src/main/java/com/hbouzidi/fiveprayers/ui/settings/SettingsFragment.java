@@ -1,5 +1,6 @@
 package com.hbouzidi.fiveprayers.ui.settings;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -13,8 +14,10 @@ import androidx.fragment.app.DialogFragment;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceManager;
 
+import com.hbouzidi.fiveprayers.FivePrayerApplication;
 import com.hbouzidi.fiveprayers.R;
 import com.hbouzidi.fiveprayers.preferences.PreferencesConstants;
+import com.hbouzidi.fiveprayers.ui.BaseActivity;
 import com.hbouzidi.fiveprayers.ui.settings.adhan.AdhanAudioPreference;
 import com.hbouzidi.fiveprayers.ui.settings.adhan.AdhanAudioPreferenceDialog;
 import com.hbouzidi.fiveprayers.ui.settings.adhan.AdhanReminderPreference;
@@ -25,7 +28,11 @@ import com.hbouzidi.fiveprayers.ui.settings.location.AutoCompleteTextPreference;
 import com.hbouzidi.fiveprayers.ui.settings.location.AutoCompleteTextPreferenceDialog;
 import com.hbouzidi.fiveprayers.ui.settings.timings.NumberPickerPreference;
 import com.hbouzidi.fiveprayers.ui.settings.timings.NumberPickerPreferenceDialog;
+import com.hbouzidi.fiveprayers.ui.widget.WidgetUpdater;
+import com.hbouzidi.fiveprayers.utils.LocaleHelper;
 import com.takisoft.preferencex.PreferenceFragmentCompat;
+
+import javax.inject.Inject;
 
 /**
  * @author Hicham Bouzidi Idrissi
@@ -35,6 +42,23 @@ import com.takisoft.preferencex.PreferenceFragmentCompat;
 public class SettingsFragment extends PreferenceFragmentCompat implements SharedPreferences.OnSharedPreferenceChangeListener {
 
     private static final String DIALOG_FRAGMENT_TAG = "PreferencesDialogFragment";
+
+    @Inject
+    LocaleHelper localeUtils;
+
+    @Inject
+    WidgetUpdater widgetUpdater;
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        ((FivePrayerApplication) requireContext().getApplicationContext())
+                .appComponent
+                .settingsComponent()
+                .create()
+                .inject(this);
+
+        super.onAttach(context);
+    }
 
     @Override
     public void onCreatePreferencesFix(@Nullable Bundle savedInstanceState, String rootKey) {
@@ -91,6 +115,13 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         if (PreferencesConstants.THEME_PREFERENCE.equals(key)) {
             requireActivity().recreate();
+        }
+
+        if (PreferencesConstants.USE_ARABIC_LOCALE.equals(key) || PreferencesConstants.ARABIC_NUMERALS_TYPE.equals(key)) {
+            BaseActivity baseActivity = (BaseActivity) requireActivity();
+            localeUtils.refreshLocale(requireContext(), baseActivity);
+            requireActivity().recreate();
+            widgetUpdater.updateHomeScreenWidget(requireContext());
         }
     }
 

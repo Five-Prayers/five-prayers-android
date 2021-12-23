@@ -51,6 +51,12 @@
     <string name="theme_preference_name_white_blue">Ciel bleu (par défaut)</string>
     <string name="theme_preference_name_dark_orange">Nuit orange</string>
     <string name="theme_preference_name_dark_Turquoise">Aurore nocturne</string>
+    <string name="theme_preference_use_arabic_locale">Mode arabe (الوضع العربي)</string>
+    <string name="theme_preference_use_arabic_locale_summay">L\'application sera traduite en arabe</string>
+    <string name="theme_preference_numerals_title">Type de chiffres</string>
+    <string name="theme_preference_numerals_dialog_title">Choisissez le type de chiffres</string>
+    <string name="theme_preference_numerals_type_arabic_indic">Chiffres arabes-indiens</string>
+    <string name="theme_preference_numerals_type_arabic">Chiffres arabes</string>
 
     <string name="calendar_view_title">Calendrier de prière à</string>
     <string name="title_calendar">Calendrier de prière</string>

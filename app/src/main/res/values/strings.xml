@@ -1,6 +1,6 @@
 <resources>
     <string name="whats_new_dialog_title">New feature</string>
-    <string name="whats_new_dialog_message">Application is supporting Dark Mode, you can enable it in Settings</string>
+    <string name="whats_new_dialog_message">Possibility to translate the application in arabic, you can enable it in Settings</string>
 
     <string name="about_five_prayers">About Five Prayers</string>
     <string name="open_source_projects_used">Open Source Projects Used</string>

@@ -70,4 +70,10 @@ public class PreferencesConstants {
     public static final String THEME_PREFERENCE_NAME_THEME_WHITE_BLUE = "THEME_WHITE_BLUE";
     public static final String THEME_PREFERENCE_NAME_THEME_DARK_ORANGE = "THEME_DARK_ORANGE";
     public static final String THEME_PREFERENCE_NAME_THEME_DARK_TURQUOISE = "THEME_DARK_TURQUOISE";
+
+    // Locale
+    public static final String USE_ARABIC_LOCALE = "USE_ARABIC_LOCALE";
+    public static final String ARABIC_NUMERALS_TYPE = "ARABIC_NUMERALS_TYPE";
+    public static final String ARABIC_NUMERALS_TYPE_ARABIC = "ARABIC_NUMERALS_TYPE_ARABIC";
+    public static final String ARABIC_NUMERALS_TYPE_ARABIC_INDIC = "ARABIC_NUMERALS_TYPE_ARABIC_INDIC";
 }

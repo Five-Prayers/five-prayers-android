@@ -16,6 +16,25 @@
             android:layout="@layout/custom_preference"
             android:title="@string/theme_preference_title"
             app:useSimpleSummaryProvider="true" />
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="USE_ARABIC_LOCALE"
+            android:layout="@layout/custom_switch_preference"
+            android:summary="@string/theme_preference_use_arabic_locale_summay"
+            app:useSimpleSummaryProvider="true"
+            android:title="@string/theme_preference_use_arabic_locale" />
+
+        <ListPreference
+            android:dependency="USE_ARABIC_LOCALE"
+            android:defaultValue="ARABIC_NUMERALS_TYPE_ARABIC"
+            android:dialogTitle="@string/theme_preference_numerals_dialog_title"
+            android:entries="@array/entries__arabic_numerals_type_list_preference"
+            android:entryValues="@array/entryvalues_arabic_numerals_type_list_preference"
+            android:key="ARABIC_NUMERALS_TYPE"
+            android:layout="@layout/custom_preference"
+            android:title="@string/theme_preference_numerals_title"
+            app:useSimpleSummaryProvider="true" />
     </PreferenceCategory>
 
     <PreferenceCategory

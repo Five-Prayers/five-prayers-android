@@ -45,7 +45,7 @@
     <string name="label.unknown_location">Localisation inconnue</string>
 
     <!-- App Theme preferences -->
-    <string name="theme_preference_section">Couleurs</string>
+    <string name="theme_preference_section">Apparence</string>
     <string name="theme_preference_title">Thème</string>
     <string name="theme_preference_dialog_title">Choisissez votre thème préféré</string>
     <string name="theme_preference_name_white_blue">Ciel bleu (par défaut)</string>

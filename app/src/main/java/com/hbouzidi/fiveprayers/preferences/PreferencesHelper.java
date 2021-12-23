@@ -317,4 +317,14 @@ public class PreferencesHelper {
         final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         return defaultSharedPreferences.getString(PreferencesConstants.THEME_PREFERENCE, PreferencesConstants.THEME_PREFERENCE_NAME_THEME_WHITE_BLUE);
     }
+
+    public boolean useArabicLocale() {
+        final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return defaultSharedPreferences.getBoolean(PreferencesConstants.USE_ARABIC_LOCALE, false);
+    }
+
+    public String getArabicNumeralsType() {
+        final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return defaultSharedPreferences.getString(PreferencesConstants.ARABIC_NUMERALS_TYPE, PreferencesConstants.ARABIC_NUMERALS_TYPE_ARABIC);
+    }
 }

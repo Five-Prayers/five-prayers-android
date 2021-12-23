@@ -45,7 +45,7 @@
     <string name="label.unknown_location">موقع غير معروف</string>
 
     <!-- App Theme preferences -->
-    <string name="theme_preference_section">الألوان</string>
+    <string name="theme_preference_section">إعدادات المظهر</string>
     <string name="theme_preference_title">لون المظهر</string>
     <string name="theme_preference_dialog_title">اختر لون المظهر المفضل لديك</string>
     <string name="theme_preference_name_white_blue">السماء الزرقاء (افتراضي)</string>

@@ -25,9 +25,6 @@ import java.time.LocalDate;
  */
 public class TimingTableActivity extends BaseActivity {
 
-    private final String[] titles = {StringUtils.capitalize(UiUtils.formatShortDate(LocalDate.now())),
-            StringUtils.capitalize(UiUtils.formatShortDate(LocalDate.now().plusMonths(1)))};
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +32,9 @@ public class TimingTableActivity extends BaseActivity {
         TimingTablePagerAdapter timingTableIndexPagerAdapter = new TimingTablePagerAdapter(getSupportFragmentManager(), getLifecycle());
         ViewPager2 viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(timingTableIndexPagerAdapter);
+
+        String[] titles = {StringUtils.capitalize(UiUtils.formatShortDate(LocalDate.now())),
+                StringUtils.capitalize(UiUtils.formatShortDate(LocalDate.now().plusMonths(1)))};
 
         TabLayout tabLayout = findViewById(R.id.tabs);
         new TabLayoutMediator(tabLayout, viewPager,

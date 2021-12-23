@@ -23,6 +23,7 @@ import com.hbouzidi.fiveprayers.preferences.PreferencesHelper;
 import com.hbouzidi.fiveprayers.timings.DayPrayer;
 import com.hbouzidi.fiveprayers.timings.TimingServiceFactory;
 import com.hbouzidi.fiveprayers.timings.TimingsService;
+import com.hbouzidi.fiveprayers.utils.LocaleHelper;
 import com.hbouzidi.fiveprayers.utils.PrayerUtils;
 import com.hbouzidi.fiveprayers.utils.UiUtils;
 
@@ -57,11 +58,16 @@ public class HomeScreenWidgetProvider extends AppWidgetProvider {
     @Inject
     PreferencesHelper preferencesHelper;
 
+    @Inject
+    LocaleHelper localeUtils;
+
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         ((FivePrayerApplication) context.getApplicationContext())
                 .widgetComponent
                 .inject(this);
+
+        localeUtils.refreshLocale(context, null);
 
         TimingsService timingsService = timingServiceFactory.create(preferencesHelper.getCalculationMethod());
 
@@ -78,11 +84,18 @@ public class HomeScreenWidgetProvider extends AppWidgetProvider {
                     @Override
                     public void onSuccess(@NotNull DayPrayer dayPrayer) {
                         for (int widgetId : appWidgetIds) {
-                            RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.home_screen_widget);
+
+                            int layoutId = R.layout.home_screen_widget;
+
+                            if (localeUtils.getLocale().getLanguage().equals("ar")) {
+                                layoutId = R.layout.home_screen_widget_rtl;
+                            }
+
+                            RemoteViews remoteViews = new RemoteViews(context.getPackageName(), layoutId);
 
                             PrayerEnum nextPrayerKey = PrayerUtils.getNextPrayer(dayPrayer.getTimings(), LocalDateTime.now());
 
-                            String hijriMonth = context.getResources().getString(
+                            String hijriMonth = context.getApplicationContext().getResources().getString(
                                     context.getResources().getIdentifier("hijri_month_" + dayPrayer.getHijriMonthNumber(), "string", context.getPackageName()));
 
                             String hijriDate = UiUtils.formatHijriDate(

@@ -1,5 +1,6 @@
 package com.hbouzidi.fiveprayers.ui.settings.di;
 
+import com.hbouzidi.fiveprayers.ui.settings.SettingsFragment;
 import com.hbouzidi.fiveprayers.ui.settings.location.AutoCompleteTextPreferenceDialog;
 import com.hbouzidi.fiveprayers.ui.settings.method.CalculationMethodPreference;
 
@@ -17,6 +18,8 @@ public interface SettingsComponent {
     interface Factory {
         SettingsComponent create();
     }
+
+    void inject(SettingsFragment settingsFragment);
 
     void inject(AutoCompleteTextPreferenceDialog autoCompleteTextPreferenceDialog);
 

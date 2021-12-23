@@ -19,14 +19,11 @@ import javax.inject.Singleton;
 @Singleton
 public class WidgetUpdater {
 
-    private final Context context;
-
     @Inject
-    public WidgetUpdater(Context context) {
-        this.context = context;
+    public WidgetUpdater() {
     }
 
-    public void updateHomeScreenWidget() {
+    public void updateHomeScreenWidget(Context context) {
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.home_screen_widget);
 

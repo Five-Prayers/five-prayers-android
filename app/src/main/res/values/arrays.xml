@@ -11,6 +11,15 @@
         <item>THEME_DARK_TURQUOISE</item>
     </string-array>
 
+    <string-array name="entries__arabic_numerals_type_list_preference">
+        <item>@string/theme_preference_numerals_type_arabic</item>
+        <item>@string/theme_preference_numerals_type_arabic_indic</item>
+    </string-array>
+    <string-array name="entryvalues_arabic_numerals_type_list_preference">
+        <item>ARABIC_NUMERALS_TYPE_ARABIC</item>
+        <item>ARABIC_NUMERALS_TYPE_ARABIC_INDIC</item>
+    </string-array>
+
     <string-array name="entries_calculation_method_list_preference">
         <item>@string/method_shia_ithna_ansari</item>
         <item>@string/method_university_of_islamic_sciences_karachi</item>

@@ -77,7 +77,6 @@ public class HomeFragment extends Fragment {
 
     private LocalDateTime todayDate;
     private CountDownTimer TimeRemainingCTimer;
-    private Context context;
 
     private TextView locationTextView;
     private TextView calculationMethodTextView;
@@ -112,7 +111,7 @@ public class HomeFragment extends Fragment {
 
     @Override
     public void onAttach(@NonNull Context context) {
-        ((FivePrayerApplication) context.getApplicationContext())
+        ((FivePrayerApplication) requireContext().getApplicationContext())
                 .appComponent
                 .homeComponent()
                 .create()
@@ -126,7 +125,6 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        context = requireActivity().getApplicationContext();
         todayDate = LocalDateTime.now();
 
         adhanCallsPreferences = PreferencesConstants.ADTHAN_CALLS_SHARED_PREFERENCES;
@@ -163,7 +161,7 @@ public class HomeFragment extends Fragment {
             updateTimingsTextViews(dayPrayer);
             startNotifierService(dayPrayer);
 
-            widgetUpdater.updateHomeScreenWidget();
+            widgetUpdater.updateHomeScreenWidget(requireContext());
 
             skeleton.showOriginal();
         });
@@ -181,7 +179,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void showWhatsNewDialog() {
-        SharedPreferences sharedPreferences = context.getSharedPreferences(PreferencesConstants.APP_META, MODE_PRIVATE);
+        SharedPreferences sharedPreferences = requireContext().getSharedPreferences(PreferencesConstants.APP_META, MODE_PRIVATE);
         int previousVersion = sharedPreferences.getInt(PreferencesConstants.PREVIOUS_INSTALLED_VERSION, 0);
 
         if (previousVersion < BuildConfig.VERSION_CODE) {
@@ -311,8 +309,8 @@ public class HomeFragment extends Fragment {
         long timeRemaining = TimingUtils.getTimeBetweenTwoPrayer(todayDate, Objects.requireNonNull(timings.get(nextPrayerKey)));
         long timeBetween = TimingUtils.getTimeBetweenTwoPrayer(Objects.requireNonNull(timings.get(previousPrayerKey)), Objects.requireNonNull(timings.get(nextPrayerKey)));
 
-        String prayerName = context.getResources().getString(
-                getResources().getIdentifier(nextPrayerKey.toString(), "string", context.getPackageName()));
+        String prayerName = requireContext().getResources().getString(
+                getResources().getIdentifier(nextPrayerKey.toString(), "string", requireContext().getPackageName()));
 
         prayerNametextView.setText(prayerName);
         prayerTimetextView.setText(UiUtils.formatTiming(Objects.requireNonNull(timings.get(nextPrayerKey))));
@@ -328,8 +326,8 @@ public class HomeFragment extends Fragment {
         ZonedDateTime zonedDateTime = TimingUtils.getZonedDateTimeFromTimestamps(dayPrayer.getTimestamp(), dayPrayer.getTimezone());
         String nameOfTheDay = zonedDateTime.getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.getDefault());
 
-        String hijriMonth = context.getResources().getString(
-                getResources().getIdentifier("hijri_month_" + dayPrayer.getHijriMonthNumber(), "string", context.getPackageName()));
+        String hijriMonth = requireContext().getResources().getString(
+                getResources().getIdentifier("hijri_month_" + dayPrayer.getHijriMonthNumber(), "string", requireContext().getPackageName()));
 
         String hijriDate = UiUtils.formatFullHijriDate(
                 nameOfTheDay,
@@ -376,7 +374,7 @@ public class HomeFragment extends Fragment {
         String tooltipText = formatCalculationMethodAngle(fajrAngle, ichaAngle, isIchaAngleInMinute);
 
 
-        int id = getResources().getIdentifier("short_method_" + methodKey, "string", context.getPackageName());
+        int id = getResources().getIdentifier("short_method_" + methodKey, "string", requireContext().getPackageName());
 
         if (id != 0) {
             String methodName = getResources().getString(id);
@@ -409,7 +407,7 @@ public class HomeFragment extends Fragment {
 //
 //        if (holiday != null) {
 //            String holidayName = getResources().getString(
-//                    getResources().getIdentifier(holiday.toString(), "string", context.getPackageName()));
+//                    getResources().getIdentifier(holiday.toString(), "string", requireContext().getPackageName()));
 //
 //                holidayIndicatorTextView.setText(holidayName);
 //                holidayIndicatorTextView.setVisibility(View.VISIBLE);
@@ -441,7 +439,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void initializeImageViewIcon(ConstraintLayout adhanCallConstraintLayout, ImageView adhanCallImageView, PrayerEnum prayerEnum) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences(adhanCallsPreferences, MODE_PRIVATE);
+        SharedPreferences sharedPreferences = requireContext().getSharedPreferences(adhanCallsPreferences, MODE_PRIVATE);
         String callPreferenceKey = prayerEnum.toString() + adhanCallKeyPart;
 
         boolean adhanCallEnabled = sharedPreferences.getBoolean(callPreferenceKey, false);
@@ -453,9 +451,9 @@ public class HomeFragment extends Fragment {
 
     private void setNotifImgOnClickListener(ConstraintLayout adhanCallConstraintLayout, ImageView imageView, String callPreferenceKey) {
         adhanCallConstraintLayout.setOnClickListener(view -> {
-            SharedPreferences sharedPreferences = context.getSharedPreferences(adhanCallsPreferences, MODE_PRIVATE);
+            SharedPreferences sharedPreferences = requireContext().getSharedPreferences(adhanCallsPreferences, MODE_PRIVATE);
 
-            Vibrator vibe = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
+            Vibrator vibe = (Vibrator) requireContext().getSystemService(Context.VIBRATOR_SERVICE);
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 vibe.vibrate(VibrationEffect.createOneShot(10, VibrationEffect.DEFAULT_AMPLITUDE));
@@ -475,12 +473,12 @@ public class HomeFragment extends Fragment {
     }
 
     private void startNotifierService(DayPrayer dayPrayer) {
-        Intent intent = new Intent(context, NotifierJobService.class);
+        Intent intent = new Intent(requireContext(), NotifierJobService.class);
         Bundle bundle = new Bundle();
         bundle.putSerializable("dayPrayer", dayPrayer);
         intent.putExtras(bundle);
 
-        NotifierJobService.enqueueWork(context, intent);
+        NotifierJobService.enqueueWork(requireContext(), intent);
     }
 
     private String formatCalculationMethodAngle(String fajrAngle, String ichaAngle, boolean isAngleInMinute) {

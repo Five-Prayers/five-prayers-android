@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.hbouzidi.fiveprayers.FivePrayerApplication;
 import com.hbouzidi.fiveprayers.preferences.PreferencesHelper;
+import com.hbouzidi.fiveprayers.utils.LocaleHelper;
 
 import javax.inject.Inject;
 
@@ -20,6 +21,9 @@ public class BaseActivity extends AppCompatActivity {
     @Inject
     PreferencesHelper preferencesHelper;
 
+    @Inject
+    LocaleHelper localeUtils;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         ((FivePrayerApplication) getApplicationContext())
@@ -30,6 +34,8 @@ public class BaseActivity extends AppCompatActivity {
             int theme = preferencesHelper.getThemePreferenceId();
             setTheme(theme);
         }
+
+        localeUtils.refreshLocale(getBaseContext(), this);
 
         super.onCreate(savedInstanceState);
     }

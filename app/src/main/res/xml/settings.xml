@@ -76,6 +76,31 @@
 
         <PreferenceCategory
             android:layout="@layout/custom_preference_sub_category"
+            android:title="@string/sub_title_reminder_preference_section">
+
+            <CheckBoxPreference
+                android:defaultValue="true"
+                android:key="ADTHAN_REMINDER_ENABLED"
+                android:layout="@layout/custom_switch_preference"
+                android:title="@string/title_adhan_reminder_preference" />
+
+            <CheckBoxPreference
+                android:defaultValue="false"
+                android:dependency="ADTHAN_REMINDER_ENABLED"
+                android:key="ADTHAN_REMINDER_CALL_ENABLED"
+                android:layout="@layout/custom_switch_preference"
+                android:title="@string/title_reminder_sound_preference" />
+
+            <com.hbouzidi.fiveprayers.ui.settings.adhan.AdhanReminderPreference
+                android:dependency="ADTHAN_REMINDER_ENABLED"
+                android:dialogTitle="@string/title_adhan_reminder_interval_preference"
+                android:key="ADTHAN_REMINDER_INTERVAL"
+                android:layout="@layout/custom_preference"
+                android:title="@string/title_adhan_reminder_interval_preference" />
+        </PreferenceCategory>
+
+        <PreferenceCategory
+            android:layout="@layout/custom_preference_sub_category"
             android:title="@string/sub_title_lton_reminder_preference_section">
             <CheckBoxPreference
                 android:defaultValue="false"
@@ -106,31 +131,6 @@
                 android:key="DOHA_TIMING_REMINDER_CALL_ENABLED"
                 android:layout="@layout/custom_switch_preference"
                 android:title="@string/title_reminder_sound_preference" />
-        </PreferenceCategory>
-
-        <PreferenceCategory
-            android:layout="@layout/custom_preference_sub_category"
-            android:title="@string/sub_title_reminder_preference_section">
-
-            <CheckBoxPreference
-                android:defaultValue="true"
-                android:key="ADTHAN_REMINDER_ENABLED"
-                android:layout="@layout/custom_switch_preference"
-                android:title="@string/title_adhan_reminder_preference" />
-
-            <CheckBoxPreference
-                android:defaultValue="false"
-                android:dependency="ADTHAN_REMINDER_ENABLED"
-                android:key="ADTHAN_REMINDER_CALL_ENABLED"
-                android:layout="@layout/custom_switch_preference"
-                android:title="@string/title_reminder_sound_preference" />
-
-            <com.hbouzidi.fiveprayers.ui.settings.adhan.AdhanReminderPreference
-                android:dependency="ADTHAN_REMINDER_ENABLED"
-                android:dialogTitle="@string/title_adhan_reminder_interval_preference"
-                android:key="ADTHAN_REMINDER_INTERVAL"
-                android:layout="@layout/custom_preference"
-                android:title="@string/title_adhan_reminder_interval_preference" />
         </PreferenceCategory>
     </PreferenceCategory>
 

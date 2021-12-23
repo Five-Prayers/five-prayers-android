@@ -51,6 +51,12 @@
     <string name="theme_preference_name_white_blue">السماء الزرقاء (افتراضي)</string>
     <string name="theme_preference_name_dark_orange">ليلة برتقالية</string>
     <string name="theme_preference_name_dark_Turquoise">الشفق الليلي</string>
+    <string name="theme_preference_use_arabic_locale">الوضع العربي</string>
+    <string name="theme_preference_use_arabic_locale_summay">سيتم تحويل التطبيق إلى اللغة العربية</string>
+    <string name="theme_preference_numerals_title">نوع الأرقام</string>
+    <string name="theme_preference_numerals_dialog_title">اختر نوع الأرقام</string>
+    <string name="theme_preference_numerals_type_arabic_indic">الأرقام العربية الهندية</string>
+    <string name="theme_preference_numerals_type_arabic">الأرقام العربية</string>
 
     <string name="calendar_view_title">تقويم الصلاة في</string>
     <string name="title_calendar">تقويم الصلاة</string>

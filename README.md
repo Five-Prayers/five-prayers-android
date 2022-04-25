@@ -8,7 +8,9 @@
 <a href="https://www.gnu.org/licenses/gpl-3.0" alt="License: GPLv3" target="_blank"><img src="https://img.shields.io/badge/License-GPL%20v3-blue.svg"></a>
  <a href="https://github.com/Five-Prayers/five-prayers-android/branches" alt="Branches" target="_blank"><img src="https://img.shields.io/github/last-commit/five-prayers/five-prayers-android"></a>
 <a href="https://github.com/Five-Prayers/five-prayers-android/releases/latest" alt="Download: latest version" target="_blank"><img src="https://img.shields.io/github/v/release/Five-Prayers/five-prayers-android"></a>
- <a href="https://github.com/Five-Prayers/five-prayers-android/releases/latest" alt="Download: latest version" target="_blank"><img src="https://img.shields.io/github/downloads/Five-Prayers/five-prayers-android/total"></a>
+<a href="https://github.com/Five-Prayers/five-prayers-android/releases/latest" alt="Download: latest version" target="_blank"><img src="https://img.shields.io/github/downloads/Five-Prayers/five-prayers-android/total?logo=Github"></a>
+<a href="https://play.google.com/store/apps/details?id=com.hbouzidi.fiveprayers" alt="Download: latest version" target="_blank"><img src="https://PlayBadges.pavi2410.me/badge/downloads?id=com.hbouzidi.fiveprayers"></a>
+ 
 </p>
 
 <hr>

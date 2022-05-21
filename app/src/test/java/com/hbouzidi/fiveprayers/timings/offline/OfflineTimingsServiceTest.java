@@ -86,7 +86,7 @@ public class OfflineTimingsServiceTest {
         Assertions.assertThat(prayerTimings.getGregorianMonthNumber()).isEqualTo(4);
         Assertions.assertThat(prayerTimings.getGregorianYear()).isEqualTo(2021);
 
-        Assertions.assertThat(prayerTimings.getHijriDay()).isEqualTo(13);
+        Assertions.assertThat(prayerTimings.getHijriDay()).isEqualTo(14);
         Assertions.assertThat(prayerTimings.getHijriMonthNumber()).isEqualTo(9);
         Assertions.assertThat(prayerTimings.getHijriYear()).isEqualTo(1442);
 
@@ -128,7 +128,7 @@ public class OfflineTimingsServiceTest {
         Assertions.assertThat(prayerTimings.getGregorianMonthNumber()).isEqualTo(4);
         Assertions.assertThat(prayerTimings.getGregorianYear()).isEqualTo(2021);
 
-        Assertions.assertThat(prayerTimings.getHijriDay()).isEqualTo(12);
+        Assertions.assertThat(prayerTimings.getHijriDay()).isEqualTo(13);
         Assertions.assertThat(prayerTimings.getHijriMonthNumber()).isEqualTo(9);
         Assertions.assertThat(prayerTimings.getHijriYear()).isEqualTo(1442);
 
@@ -170,7 +170,7 @@ public class OfflineTimingsServiceTest {
         Assertions.assertThat(prayerTimings.getGregorianMonthNumber()).isEqualTo(4);
         Assertions.assertThat(prayerTimings.getGregorianYear()).isEqualTo(2021);
 
-        Assertions.assertThat(prayerTimings.getHijriDay()).isEqualTo(13);
+        Assertions.assertThat(prayerTimings.getHijriDay()).isEqualTo(14);
         Assertions.assertThat(prayerTimings.getHijriMonthNumber()).isEqualTo(9);
         Assertions.assertThat(prayerTimings.getHijriYear()).isEqualTo(1442);
 
@@ -227,7 +227,7 @@ public class OfflineTimingsServiceTest {
         Assertions.assertThat(prayerTimings.getGregorianMonthNumber()).isEqualTo(5);
         Assertions.assertThat(prayerTimings.getGregorianYear()).isEqualTo(2021);
 
-        Assertions.assertThat(prayerTimings.getHijriDay()).isEqualTo(13);
+        Assertions.assertThat(prayerTimings.getHijriDay()).isEqualTo(14);
         Assertions.assertThat(prayerTimings.getHijriMonthNumber()).isEqualTo(10);
         Assertions.assertThat(prayerTimings.getHijriYear()).isEqualTo(1442);
 
@@ -269,7 +269,7 @@ public class OfflineTimingsServiceTest {
         Assertions.assertThat(prayerTimings.getGregorianMonthNumber()).isEqualTo(5);
         Assertions.assertThat(prayerTimings.getGregorianYear()).isEqualTo(2021);
 
-        Assertions.assertThat(prayerTimings.getHijriDay()).isEqualTo(13);
+        Assertions.assertThat(prayerTimings.getHijriDay()).isEqualTo(14);
         Assertions.assertThat(prayerTimings.getHijriMonthNumber()).isEqualTo(10);
         Assertions.assertThat(prayerTimings.getHijriYear()).isEqualTo(1442);
 
@@ -361,11 +361,77 @@ public class OfflineTimingsServiceTest {
     }
 
     @Test
+    public void should_get_calendar_on_february () {
+        Address address = new Address(Locale.getDefault());
+        address.setLatitude(48.9220615);
+        address.setLongitude(2.2533313);
+
+        setTunes(0, 0, 0, 0, 0);
+
+        TimingsPreferences timingsPreferences = new TimingsPreferences(
+                CalculationMethodEnum.getDefault(),
+                null,
+                LatitudeAdjustmentMethod.getDefault(),
+                SchoolAdjustmentMethod.getDefault(),
+                MidnightModeAdjustmentMethod.getDefault(),
+                0
+        );
+
+        List<DayPrayer> prayerCalendar = offlineTimingsService.getPrayerCalendar(address, 2, 2022, timingsPreferences);
+
+        Assertions.assertThat(prayerCalendar).isNotNull();
+        Assertions.assertThat(prayerCalendar.size()).isEqualTo(28);
+        Assertions.assertThat(prayerCalendar.get(prayerCalendar.size() - 1).getHijriDay()).isEqualTo(27);
+        Assertions.assertThat(prayerCalendar.get(prayerCalendar.size() - 1).getTimings().get(PrayerEnum.ICHA).withNano(0)).isEqualTo(LocalDateTime.of(2022, 2, 28, 20, 12));
+    }
+
+    @Test
+    public void should_get_calendar_on_february_leap_year() {
+        Address address = new Address(Locale.getDefault());
+        address.setLatitude(48.9220615);
+        address.setLongitude(2.2533313);
+
+        setTunes(0, 0, 0, 0, 0);
+
+        TimingsPreferences timingsPreferences = new TimingsPreferences(
+                CalculationMethodEnum.getDefault(),
+                null,
+                LatitudeAdjustmentMethod.getDefault(),
+                SchoolAdjustmentMethod.getDefault(),
+                MidnightModeAdjustmentMethod.getDefault(),
+                0
+        );
+
+        List<DayPrayer> prayerCalendar = offlineTimingsService.getPrayerCalendar(address, 2, 2020, timingsPreferences);
+
+        Assertions.assertThat(prayerCalendar).isNotNull();
+        Assertions.assertThat(prayerCalendar.size()).isEqualTo(29);
+        Assertions.assertThat(prayerCalendar.get(prayerCalendar.size() - 1).getHijriDay()).isEqualTo(6);
+        Assertions.assertThat(prayerCalendar.get(prayerCalendar.size() - 1).getTimings().get(PrayerEnum.ICHA).withNano(0)).isEqualTo(LocalDateTime.of(2020, 2, 29, 20, 12));
+    }
+
+    @Test
     public void should_get_hijri_calendar() {
         List<AladhanDate> hijriCalendar = offlineTimingsService.getHijriCalendar(4, 2021, 0);
 
         Assertions.assertThat(hijriCalendar).isNotNull();
         Assertions.assertThat(hijriCalendar.size()).isEqualTo(30);
+    }
+
+    @Test
+    public void should_get_hijri_calendar_on_february() {
+        List<AladhanDate> hijriCalendar = offlineTimingsService.getHijriCalendar(2, 2022, 0);
+
+        Assertions.assertThat(hijriCalendar).isNotNull();
+        Assertions.assertThat(hijriCalendar.size()).isEqualTo(28);
+    }
+
+    @Test
+    public void should_get_hijri_calendar_on_february_leap_year() {
+        List<AladhanDate> hijriCalendar = offlineTimingsService.getHijriCalendar(2, 2020, 0);
+
+        Assertions.assertThat(hijriCalendar).isNotNull();
+        Assertions.assertThat(hijriCalendar.size()).isEqualTo(29);
     }
 
     private void setTunes(int fajrTimingAdjustment, int dohrTimingAdjustment, int asrTimingAdjustment, int maghrebTimingAdjustment, int ichaTimingAdjustment) {

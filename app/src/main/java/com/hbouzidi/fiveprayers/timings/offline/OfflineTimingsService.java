@@ -1,5 +1,7 @@
 package com.hbouzidi.fiveprayers.timings.offline;
 
+import static java.util.Calendar.DAY_OF_MONTH;
+
 import android.location.Address;
 
 import androidx.annotation.NonNull;
@@ -33,8 +35,8 @@ import com.hbouzidi.fiveprayers.utils.TimingUtils;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Month;
+import java.time.Year;
 import java.time.ZoneId;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -42,8 +44,6 @@ import java.util.Map;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
-
-import static java.util.Calendar.DAY_OF_MONTH;
 
 /**
  * @author Hicham Bouzidi Idrissi
@@ -86,7 +86,7 @@ public class OfflineTimingsService {
     public List<DayPrayer> getPrayerCalendar(Address address, int month, int year, TimingsPreferences timingsPreferences) {
         List<DayPrayer> dayPrayers = new ArrayList<>();
 
-        for (int day = 1; day <= Month.of(month).maxLength(); day++) {
+        for (int day = 1; day <= Month.of(month).length(Year.of(year).isLeap()); day++) {
             dayPrayers.add(getPrayerTimings(LocalDate.of(year, month, day), address, timingsPreferences));
         }
 
@@ -96,7 +96,7 @@ public class OfflineTimingsService {
     public List<AladhanDate> getHijriCalendar(int month, int year, int adjustment) {
         List<AladhanDate> aladhanDates = new ArrayList<>();
 
-        for (int day = 1; day <= Month.of(month).maxLength(); day++) {
+        for (int day = 1; day <= Month.of(month).length(Year.of(year).isLeap()); day++) {
             PrimeCalendar calendar = CalendarFactory.newInstance(CalendarType.CIVIL);
             calendar.set(year, month - 1, day);
 

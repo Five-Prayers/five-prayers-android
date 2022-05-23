@@ -222,8 +222,9 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     testImplementation 'androidx.test:core:1.4.0'
     testImplementation 'androidx.work:work-testing:2.7.1'
-    testImplementation 'org.mockito:mockito-core:3.8.0'
-    testImplementation 'org.robolectric:robolectric:4.5'
+    testImplementation 'org.mockito:mockito-core:4.5.1'
+    testImplementation 'org.robolectric:robolectric:4.8.1'
+    testImplementation 'org.threeten:threetenbp:1.6.0'
 
     //https://github.com/andrzejchm/RESTMock
     //noinspection GradleDependency --> depend on okhttp version.

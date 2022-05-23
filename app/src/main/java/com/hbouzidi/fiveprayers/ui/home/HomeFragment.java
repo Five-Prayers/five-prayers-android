@@ -1,8 +1,9 @@
 package com.hbouzidi.fiveprayers.ui.home;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.os.Build;
@@ -31,7 +32,7 @@ import com.hbouzidi.fiveprayers.FivePrayerApplication;
 import com.hbouzidi.fiveprayers.R;
 import com.hbouzidi.fiveprayers.common.ComplementaryTimingEnum;
 import com.hbouzidi.fiveprayers.common.PrayerEnum;
-import com.hbouzidi.fiveprayers.notifier.NotifierJobService;
+import com.hbouzidi.fiveprayers.job.WorkCreator;
 import com.hbouzidi.fiveprayers.preferences.PreferencesConstants;
 import com.hbouzidi.fiveprayers.timings.DayPrayer;
 import com.hbouzidi.fiveprayers.ui.clock.AnalogClock;
@@ -59,8 +60,6 @@ import javax.inject.Inject;
 
 import cl.jesualex.stooltip.Position;
 import cl.jesualex.stooltip.Tooltip;
-
-import static android.content.Context.MODE_PRIVATE;
 
 /**
  * @author Hicham Bouzidi Idrissi
@@ -159,7 +158,7 @@ public class HomeFragment extends Fragment {
             updateDatesTextViews(dayPrayer);
             updateNextPrayerViews(dayPrayer);
             updateTimingsTextViews(dayPrayer);
-            startNotifierService(dayPrayer);
+            startNotifierService();
 
             widgetUpdater.updateHomeScreenWidget(requireContext());
 
@@ -472,13 +471,8 @@ public class HomeFragment extends Fragment {
         });
     }
 
-    private void startNotifierService(DayPrayer dayPrayer) {
-        Intent intent = new Intent(requireContext(), NotifierJobService.class);
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("dayPrayer", dayPrayer);
-        intent.putExtras(bundle);
-
-        NotifierJobService.enqueueWork(requireContext(), intent);
+    private void startNotifierService() {
+        WorkCreator.scheduleOneTimePrayerUpdater(requireContext());
     }
 
     private String formatCalculationMethodAngle(String fajrAngle, String ichaAngle, boolean isAngleInMinute) {

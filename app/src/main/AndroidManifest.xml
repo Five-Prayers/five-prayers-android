@@ -95,12 +95,6 @@
             </intent-filter>
         </receiver>
 
-        <service
-            android:name=".notifier.NotifierJobService"
-            android:enabled="true"
-            android:exported="false"
-            android:permission="android.permission.BIND_JOB_SERVICE" />
-
         <!-- Disable androidx.startup only for WorkManagerInitializer -->
         <provider
             android:name="androidx.startup.InitializationProvider"

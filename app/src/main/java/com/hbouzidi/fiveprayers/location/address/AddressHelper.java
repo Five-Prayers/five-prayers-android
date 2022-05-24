@@ -15,7 +15,6 @@ import com.hbouzidi.fiveprayers.preferences.PreferencesHelper;
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
-import java.util.Objects;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -60,17 +59,13 @@ public class AddressHelper {
                     emitter.onSuccess(lastKnownAddress);
                 } else {
                     Thread thread = new Thread(() -> {
-                        try {
-                            Address geocoderAddresses = getGeocoderAddresses(latitude, longitude, context);
-                            if (geocoderAddresses != null) {
-                                emitter.onSuccess(geocoderAddresses);
-                            } else if (getNominatimAddress(latitude, longitude) != null) {
-                                emitter.onSuccess(Objects.requireNonNull(getNominatimAddress(latitude, longitude)));
-                            } else {
-                                Log.i(AddressHelper.class.getName(), "Offline address");
-                                emitter.onSuccess(getOfflineAddress(latitude, longitude));
-                            }
-                        } catch (Exception e) {
+
+                        Address geocoderAddresses = getGeocoderAddresses(latitude, longitude, context);
+                        if (geocoderAddresses != null) {
+                            emitter.onSuccess(geocoderAddresses);
+                        } else if (getNominatimAddress(latitude, longitude) != null) {
+                            emitter.onSuccess(getNominatimAddress(latitude, longitude));
+                        } else {
                             Log.i(AddressHelper.class.getName(), "Offline address");
                             emitter.onSuccess(getOfflineAddress(latitude, longitude));
                         }
@@ -84,41 +79,51 @@ public class AddressHelper {
         });
     }
 
-    private Address getGeocoderAddresses(double latitude, double longitude, Context context) throws IOException {
-        Geocoder geocoder = new Geocoder(context, Locale.getDefault());
-        List<Address> addressList = geocoder.getFromLocation(latitude, longitude, 1);
+    private Address getGeocoderAddresses(double latitude, double longitude, Context context) {
+        try {
+            Geocoder geocoder = new Geocoder(context, Locale.getDefault());
+            List<Address> addressList = geocoder.getFromLocation(latitude, longitude, 1);
 
-        if (addressList != null && addressList.size() > 0) {
-            Address address = addressList.get(0);
+            if (addressList != null && addressList.size() > 0) {
+                Address address = addressList.get(0);
 
-            if (address.getCountryName() != null && address.getLocality() != null) {
-                preferencesHelper.updateAddressPreferences(address);
-                return address;
+                if (address.getCountryName() != null && address.getLocality() != null) {
+                    preferencesHelper.updateAddressPreferences(address);
+                    return address;
+                }
+                return null;
             }
             return null;
+        } catch (IOException e) {
+            Log.e("ADDRESS_HELPER", "Cannot get address from Geocoder", e);
+            return null;
         }
-        return null;
     }
 
-    private Address getNominatimAddress(double latitude, double longitude) throws IOException {
-        NominatimReverseGeocodeResponse response = nominatimAPIService.getAddressFromLocation(latitude, longitude);
+    private Address getNominatimAddress(double latitude, double longitude) {
+        try {
+            NominatimReverseGeocodeResponse response = nominatimAPIService.getAddressFromLocation(latitude, longitude);
 
-        if (response != null && response.getAddress() != null && response.getAddress().getCountry() != null && response.getAddress().getLocality() != null) {
-            Address address = new Address(Locale.getDefault());
-            address.setCountryName(response.getAddress().getCountry());
-            address.setCountryCode(response.getAddress().getCountryCode());
-            address.setAddressLine(1, response.getAddress().getState());
-            address.setLocality(response.getAddress().getLocality());
-            address.setPostalCode(response.getAddress().getPostcode());
-            address.setLatitude(response.getLat());
-            address.setLongitude(response.getLon());
+            if (response != null && response.getAddress() != null && response.getAddress().getCountry() != null && response.getAddress().getLocality() != null) {
+                Address address = new Address(Locale.getDefault());
+                address.setCountryName(response.getAddress().getCountry());
+                address.setCountryCode(response.getAddress().getCountryCode());
+                address.setAddressLine(1, response.getAddress().getState());
+                address.setLocality(response.getAddress().getLocality());
+                address.setPostalCode(response.getAddress().getPostcode());
+                address.setLatitude(response.getLat());
+                address.setLongitude(response.getLon());
 
-            preferencesHelper.updateAddressPreferences(address);
+                preferencesHelper.updateAddressPreferences(address);
 
-            return address;
+                return address;
+            }
+
+            return null;
+        } catch (IOException e) {
+            Log.e("ADDRESS_HELPER", "Cannot get address from Nominatim", e);
+            return null;
         }
-
-        return null;
     }
 
     private Address getOfflineAddress(double latitude, double longitude) {

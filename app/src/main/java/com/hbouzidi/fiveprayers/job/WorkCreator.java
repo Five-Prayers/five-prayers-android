@@ -3,11 +3,15 @@ package com.hbouzidi.fiveprayers.job;
 import android.content.Context;
 
 import androidx.work.BackoffPolicy;
+import androidx.work.Data;
 import androidx.work.ExistingPeriodicWorkPolicy;
 import androidx.work.ExistingWorkPolicy;
 import androidx.work.OneTimeWorkRequest;
 import androidx.work.PeriodicWorkRequest;
 import androidx.work.WorkManager;
+
+import com.google.gson.Gson;
+import com.hbouzidi.fiveprayers.timings.DayPrayer;
 
 import java.util.concurrent.TimeUnit;
 
@@ -36,14 +40,17 @@ public final class WorkCreator {
                 .enqueueUniquePeriodicWork("FIVE_PRAYERS_UPDATER", ExistingPeriodicWorkPolicy.KEEP, periodicWorkRequest);
     }
 
-    public static void scheduleOneTimePrayerUpdater(Context context) {
+    public static void scheduleOneTimePrayerUpdater(Context context, DayPrayer dayPrayer) {
+        Gson gson = new Gson();
+        String dayPrayerString = gson.toJson(dayPrayer);
+
+        Data data = new Data.Builder()
+                .putString("DAY_PRAYER_PARAM",dayPrayerString)
+                .build();
 
         OneTimeWorkRequest oneTimeWorkRequest = new OneTimeWorkRequest
-                .Builder(PrayerUpdater.class)
-                .setBackoffCriteria(
-                        BackoffPolicy.LINEAR,
-                        10,
-                        TimeUnit.MINUTES)
+                .Builder(InstantPrayerScheduler.class)
+                .setInputData(data)
                 .build();
 
         WorkManager.getInstance(context)

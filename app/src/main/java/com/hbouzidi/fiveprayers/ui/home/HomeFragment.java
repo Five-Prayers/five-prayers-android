@@ -158,7 +158,7 @@ public class HomeFragment extends Fragment {
             updateDatesTextViews(dayPrayer);
             updateNextPrayerViews(dayPrayer);
             updateTimingsTextViews(dayPrayer);
-            startNotifierService();
+            startPrayerSchedulerWork(dayPrayer);
 
             widgetUpdater.updateHomeScreenWidget(requireContext());
 
@@ -471,8 +471,8 @@ public class HomeFragment extends Fragment {
         });
     }
 
-    private void startNotifierService() {
-        WorkCreator.scheduleOneTimePrayerUpdater(requireContext());
+    private void startPrayerSchedulerWork(DayPrayer dayPrayer) {
+        WorkCreator.scheduleOneTimePrayerUpdater(requireContext(), dayPrayer);
     }
 
     private String formatCalculationMethodAngle(String fajrAngle, String ichaAngle, boolean isAngleInMinute) {

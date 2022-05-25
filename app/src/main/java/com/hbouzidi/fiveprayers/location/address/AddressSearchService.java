@@ -8,6 +8,7 @@ import android.util.Log;
 import com.hbouzidi.fiveprayers.location.photon.Feature;
 import com.hbouzidi.fiveprayers.location.photon.PhotonAPIResponse;
 import com.hbouzidi.fiveprayers.location.photon.PhotonAPIService;
+import com.hbouzidi.fiveprayers.utils.LocaleHelper;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -30,11 +31,13 @@ import io.reactivex.rxjava3.core.Single;
 public class AddressSearchService {
 
     private final PhotonAPIService photonAPIService;
+    private LocaleHelper localeHelper;
     private final Context context;
 
     @Inject
-    public AddressSearchService(PhotonAPIService photonAPIService, Context context) {
+    public AddressSearchService(PhotonAPIService photonAPIService, LocaleHelper localeHelper, Context context) {
         this.photonAPIService = photonAPIService;
+        this.localeHelper = localeHelper;
         this.context = context;
     }
 
@@ -55,7 +58,7 @@ public class AddressSearchService {
     }
 
     private List<Address> getAddressesFromGeocoder(String locationName, int limit, Context context) {
-        Geocoder geocoder = new Geocoder(context, Locale.getDefault());
+        Geocoder geocoder = new Geocoder(context, localeHelper.getLocale());
         try {
             return geocoder.getFromLocationName(locationName, limit);
         } catch (IOException e) {

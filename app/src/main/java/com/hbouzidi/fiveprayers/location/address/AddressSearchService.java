@@ -1,4 +1,4 @@
-package com.hbouzidi.fiveprayers.location;
+package com.hbouzidi.fiveprayers.location.address;
 
 import android.content.Context;
 import android.location.Address;
@@ -30,13 +30,15 @@ import io.reactivex.rxjava3.core.Single;
 public class AddressSearchService {
 
     private final PhotonAPIService photonAPIService;
+    private final Context context;
 
     @Inject
-    public AddressSearchService(PhotonAPIService photonAPIService) {
+    public AddressSearchService(PhotonAPIService photonAPIService, Context context) {
         this.photonAPIService = photonAPIService;
+        this.context = context;
     }
 
-    public Single<List<Address>> searchForLocation(final String locationName, final int limit, final Context context) {
+    public Single<List<Address>> searchForLocation(final String locationName, final int limit) {
         return Single.create(emitter -> {
             Thread thread = new Thread(() -> {
                 List<Address> addressesFromGeocoder = getAddressesFromGeocoder(locationName, limit, context);

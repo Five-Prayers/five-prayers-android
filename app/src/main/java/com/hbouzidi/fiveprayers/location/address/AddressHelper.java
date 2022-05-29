@@ -62,11 +62,13 @@ public class AddressHelper {
 
                         Address geocoderAddresses = getGeocoderAddresses(latitude, longitude, context);
                         if (geocoderAddresses != null) {
+                            Log.i(AddressHelper.class.getName(), "Geocoder address");
                             emitter.onSuccess(geocoderAddresses);
                         } else if (getNominatimAddress(latitude, longitude) != null) {
+                            Log.i(AddressHelper.class.getName(), "Nominatim address");
                             emitter.onSuccess(getNominatimAddress(latitude, longitude));
                         } else {
-                            Log.i(AddressHelper.class.getName(), "Offline address");
+                            Log.i(AddressHelper.class.getName(), "Unknown address");
                             emitter.onSuccess(getOfflineAddress(latitude, longitude));
                         }
                     });

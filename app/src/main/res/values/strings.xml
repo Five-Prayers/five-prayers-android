@@ -40,6 +40,10 @@
     <string name="common.minus" translatable="false">-</string>
     <string name="common.minutes">minutes</string>
 
+    <string name="location_alert_title">Location Error</string>
+    <string name="location_alert_settings_button_title">Enable location service</string>
+    <string name="location_alert_manual_position_button_title">Set location manually</string>
+
     <string name="app_name">Five Prayers</string>
     <string name="title_home">Prayers</string>
     <string name="title_dashboard">Services</string>

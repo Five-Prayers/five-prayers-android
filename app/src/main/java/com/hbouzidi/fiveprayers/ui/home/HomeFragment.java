@@ -150,8 +150,8 @@ public class HomeFragment extends Fragment {
                 .getError()
                 .observe(
                         getViewLifecycleOwner(),
-                        error -> AlertHelper.displayAlertDialog(requireActivity(),
-                                getResources().getString(R.string.common_error),
+                        error -> AlertHelper.displayLocationErrorDialog(requireActivity(),
+                                getResources().getString(R.string.location_alert_title),
                                 error));
 
         homeViewModel.getDayPrayers().observe(getViewLifecycleOwner(), dayPrayer -> {

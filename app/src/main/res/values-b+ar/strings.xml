@@ -38,6 +38,10 @@
     <string name="common.offline">غير متصل على الانترنت</string>
     <string name="common.minutes">دقيقة</string>
 
+    <string name="location_alert_title">خطأ في الحصول على الموقع</string>
+    <string name="location_alert_settings_button_title">تمكين الوصول إلى الموقع</string>
+    <string name="location_alert_manual_position_button_title">اضبط الموقع يدويًا</string>
+
     <string name="app_name">خمس صلوات</string>
     <string name="title_home">صلاة</string>
     <string name="title_dashboard">خدمات</string>

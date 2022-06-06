@@ -14,6 +14,7 @@ import com.hbouzidi.fiveprayers.FakeFivePrayerApplication;
 import com.hbouzidi.fiveprayers.location.photon.PhotonAPIService;
 import com.hbouzidi.fiveprayers.preferences.PreferencesHelper;
 import com.hbouzidi.fiveprayers.shadows.ShadowGeocoder;
+import com.hbouzidi.fiveprayers.utils.LocaleHelper;
 
 import org.junit.After;
 import org.junit.Before;
@@ -54,17 +55,18 @@ public class AddressSearchServiceTest {
     @Rule
     public MockitoRule initRule = MockitoJUnit.rule();
     private AddressSearchService addressSearchService;
-    private PreferencesHelper preferencesHelper;
 
     @Before
     public void before() {
         RESTMockServerStarter.startSync(new JVMFileParser(), new AndroidLogger());
 
         applicationContext = ApplicationProvider.getApplicationContext();
-        preferencesHelper = new PreferencesHelper(applicationContext);
+        PreferencesHelper preferencesHelper = new PreferencesHelper(applicationContext);
+
+        LocaleHelper localeHelper = new LocaleHelper(preferencesHelper);
 
         PhotonAPIService photonAPIService = new PhotonAPIService(provideRetrofit());
-        addressSearchService = new AddressSearchService(photonAPIService, applicationContext);
+        addressSearchService = new AddressSearchService(photonAPIService, localeHelper, applicationContext);
     }
 
     @After
@@ -138,7 +140,7 @@ public class AddressSearchServiceTest {
     }
 
     @Test
-    public void should_not_get_address_when_nor_geocoder_nor_photon_availables() throws Exception {
+    public void should_not_get_address_when_nor_geocoder_nor_photon_available() throws Exception {
         TestObserver<List<Address>> addressTestObserver = new TestObserver<>();
 
         Single<List<Address>> addressSingle = addressSearchService.searchForLocation("berlin", 3);

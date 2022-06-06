@@ -31,7 +31,7 @@ import io.reactivex.rxjava3.core.Single;
 public class AddressSearchService {
 
     private final PhotonAPIService photonAPIService;
-    private LocaleHelper localeHelper;
+    private final LocaleHelper localeHelper;
     private final Context context;
 
     @Inject

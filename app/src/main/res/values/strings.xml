@@ -84,7 +84,7 @@
         like : Worldwide Prayer Timings, different calculation methods, notifications, reads Adhan, Qibla direction and more</string>
 
     <string name="app_intro_permission_denied_dialog_title">Information</string>
-    <string name="app_intro_permission_denied_dialog_message">You refused to allow the application to access your location. You have to manually enter your city in the settings screen.</string>
+    <string name="app_intro_permission_denied_dialog_message">The application needs to know your location to calculate prayer times correctly. You can set your location manually in the settings screen.</string>
 
     <string name="last_update_time_key">last_update_time_key</string>
 

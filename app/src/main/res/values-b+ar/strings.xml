@@ -86,7 +86,7 @@
 مثل: أوقات الصلاة حول العالم ، طرق حساب مختلفة ، إشعارات ، قراءة الأذان ، إتجاه القبلة والمزيد …</string>
 
     <string name="app_intro_permission_denied_dialog_title">إعلام</string>
-    <string name="app_intro_permission_denied_dialog_message">لقد رفضت للتو السماح للتطبيق بالوصول إلى موقعك. تحتاج إلى إدخال مدينتك يدويًا في شاشة الإعدادات.</string>
+    <string name="app_intro_permission_denied_dialog_message">يحتاج التطبيق إلى معرفة موقعك لحساب مواقيت الصلاة بشكل صحيح. يمكنك ضبط موقعك يدويًا في شاشة الإعدادات.</string>
 
     <string name="FAJR">الصبح (الفجر)</string>
     <string name="SUNRISE">الشروق</string>

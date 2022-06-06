@@ -88,7 +88,7 @@
         comme: Horaires de prière dans le monde, différentes méthodes de calcul, notifications, lecture de l\'Adhan, direction de Qibla et plus encore …</string>
 
     <string name="app_intro_permission_denied_dialog_title">Information</string>
-    <string name="app_intro_permission_denied_dialog_message">Vous venez de refuser que l\'application accède à votre position. vous devez saisir manuellement votre ville dans l\'écran des paramètres.</string>
+    <string name="app_intro_permission_denied_dialog_message">L\'application a besoin de connaître votre emplacement pour calculer correctement les heures de prière. Vous pouvez définir votre emplacement manuellement dans l\'écran des paramètres.</string>
 
     <string name="FAJR">As`Sobh (Fajr)</string>
     <string name="SUNRISE">Levé</string>

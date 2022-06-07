@@ -124,7 +124,7 @@ class ReminderNotification extends BaseNotification {
         notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
                 | Intent.FLAG_ACTIVITY_SINGLE_TOP);
 
-        return PendingIntent.getActivity(context, 0,
+        return PendingIntentCreator.getActivity(context, 0,
                 notificationIntent, 0);
     }
 
@@ -148,7 +148,7 @@ class ReminderNotification extends BaseNotification {
         intent.setClass(context, NotificationDismissedReceiver.class);
         intent.putExtra("notificationId", notificationId);
 
-        return PendingIntent.getBroadcast(context.getApplicationContext(),
+        return PendingIntentCreator.getBroadcast(context.getApplicationContext(),
                 notificationId, intent, PendingIntent.FLAG_ONE_SHOT);
     }
 

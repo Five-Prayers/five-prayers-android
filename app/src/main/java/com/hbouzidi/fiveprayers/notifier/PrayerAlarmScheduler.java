@@ -139,7 +139,7 @@ public class PrayerAlarmScheduler {
 
         intent.addFlags(Intent.FLAG_RECEIVER_FOREGROUND);
 
-        PendingIntent alarmIntent = PendingIntent.getBroadcast(context, requestCode, intent, FLAG_UPDATE_CURRENT);
+        PendingIntent alarmIntent = PendingIntentCreator.getBroadcast(context, requestCode, intent, FLAG_UPDATE_CURRENT);
         alarmMgr.cancel(alarmIntent);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {

@@ -207,6 +207,7 @@
     <string name="sub_title_dhuha_reminder_preference_section">Dhuha prayer reminder</string>
     <string name="sub_title_lton_reminder_preference_section">Last third of the Night reminder</string>
     <string name="title_checkbox_location_preference">Set location manually</string>
+    <string name="title_adhan_notifications_preference">Enable Notifications</string>
     <string name="title_adhan_vibration_preference">Enable vibration</string>
     <string name="title_douae_adhan_preference">Enable dua after Adhan</string>
     <string name="title_adhan_reminder_preference">Enable reminder before Adhan</string>

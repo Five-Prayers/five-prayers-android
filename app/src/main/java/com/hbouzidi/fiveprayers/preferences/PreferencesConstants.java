@@ -83,4 +83,5 @@ public class PreferencesConstants {
     public static final String SILENT_START_TIME = "SILENT_START_TIME";
     public static final String SILENT_TIME_INTERVAL = "SILENT_TIME_INTERVAL";
     public static final String SILENT_TIME_INTERVAL_FOR_FRIDAY_PRAYER = "SILENT_TIME_INTERVAL_FOR_FRIDAY_PRAYER";
+    public static final String NOTIFICATIONS_ENABLED = "NOTIFICATIONS_ENABLED";
 }

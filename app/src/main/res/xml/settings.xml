@@ -61,7 +61,21 @@
         android:layout="@layout/custom_preference_category"
         android:title="@string/title_notification_section">
 
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="NOTIFICATIONS_ENABLED"
+            android:layout="@layout/custom_switch_preference"
+            android:title="@string/title_adhan_notifications_preference" />
+
+        <CheckBoxPreference
+            android:dependency="NOTIFICATIONS_ENABLED"
+            android:defaultValue="true"
+            android:key="ADHAN_VIBRATION_PREFERENCE"
+            android:layout="@layout/custom_switch_preference"
+            android:title="@string/title_adhan_vibration_preference" />
+
         <com.hbouzidi.fiveprayers.ui.settings.adhan.AdhanAudioPreference
+            android:dependency="NOTIFICATIONS_ENABLED"
             android:key="ADHAN_FAJR_CALLER_URI"
             android:dialogTitle="@string/dialog_title_fajr_adhan"
             android:title="@string/title_adhan_fajr"
@@ -72,6 +86,7 @@
             />
 
         <com.hbouzidi.fiveprayers.ui.settings.adhan.AdhanAudioPreference
+            android:dependency="NOTIFICATIONS_ENABLED"
             android:key="ADHAN_CALLER_URI"
             android:dialogTitle="@string/dialog_title_adhan"
             android:title="@string/title_adhan_rest_prayers"
@@ -82,18 +97,14 @@
             />
 
         <CheckBoxPreference
+            android:dependency="NOTIFICATIONS_ENABLED"
             android:defaultValue="true"
             android:key="DOUAE_AFTER_ADHAN_PREFERENCE"
             android:layout="@layout/custom_switch_preference"
             android:title="@string/title_douae_adhan_preference" />
 
-        <CheckBoxPreference
-            android:defaultValue="true"
-            android:key="ADHAN_VIBRATION_PREFERENCE"
-            android:layout="@layout/custom_switch_preference"
-            android:title="@string/title_adhan_vibration_preference" />
-
         <PreferenceCategory
+            android:dependency="NOTIFICATIONS_ENABLED"
             android:layout="@layout/custom_preference_sub_category"
             android:title="@string/sub_title_reminder_preference_section">
 
@@ -119,6 +130,7 @@
         </PreferenceCategory>
 
         <PreferenceCategory
+            android:dependency="NOTIFICATIONS_ENABLED"
             android:layout="@layout/custom_preference_sub_category"
             android:title="@string/sub_title_lton_reminder_preference_section">
             <CheckBoxPreference
@@ -136,6 +148,7 @@
         </PreferenceCategory>
 
         <PreferenceCategory
+            android:dependency="NOTIFICATIONS_ENABLED"
             android:layout="@layout/custom_preference_sub_category"
             android:title="@string/sub_title_dhuha_reminder_preference_section">
             <CheckBoxPreference

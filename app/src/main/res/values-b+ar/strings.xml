@@ -204,6 +204,7 @@
     <string name="sub_title_lton_reminder_preference_section">تذكير الثلث الأخير من الليل</string>
     <string name="title_checkbox_location_preference">أدخل موقعك يدويًا</string>
     <string name="title_edit_text_location_preference">الموقع الحالي</string>
+    <string name="title_adhan_notifications_preference">تفعيل الإشعارات</string>
     <string name="title_adhan_vibration_preference">تفعيل الاهتزاز</string>
     <string name="title_douae_adhan_preference">تفعيل الدعاء بعد الأذان</string>
     <string name="title_adhan_reminder_preference">تفعيل التذكير قبل الأذان</string>

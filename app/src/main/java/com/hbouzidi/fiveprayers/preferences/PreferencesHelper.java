@@ -360,4 +360,9 @@ public class PreferencesHelper {
         final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         return defaultSharedPreferences.getInt(PreferencesConstants.SILENT_TIME_INTERVAL_FOR_FRIDAY_PRAYER, 45);
     }
+
+    public boolean isNotificationsEnabled() {
+        final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return defaultSharedPreferences.getBoolean(PreferencesConstants.NOTIFICATIONS_ENABLED, true);
+    }
 }

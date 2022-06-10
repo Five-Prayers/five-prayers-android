@@ -140,8 +140,6 @@ public class HomeFragment extends Fragment {
 
         initializeViews(rootView);
 
-        showWhatsNewDialog();
-
         skeleton.setMaskColor(navigationBackgroundStartColor);
         skeleton.setShimmerColor(navigationBackgroundEndColor);
         skeleton.showSkeleton();
@@ -163,6 +161,8 @@ public class HomeFragment extends Fragment {
             widgetUpdater.updateHomeScreenWidget(requireContext());
 
             skeleton.showOriginal();
+
+            showWhatsNewDialog();
         });
 
         ViewTreeObserver observer = rootView.getViewTreeObserver();

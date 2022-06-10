@@ -22,6 +22,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" tools:ignore="ScopedStorage" />
+    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
 
     <application
         android:name=".FivePrayerApplication"
@@ -74,6 +76,9 @@
             android:enabled="true" />
         <receiver
             android:name=".notifier.ReminderReceiver"
+            android:enabled="true" />
+        <receiver
+            android:name=".notifier.SilenterReceiver"
             android:enabled="true" />
         <receiver
             android:name=".notifier.NotifierActionReceiver"

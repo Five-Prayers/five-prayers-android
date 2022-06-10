@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2">
+<declare-styleable name="Number_Picker_Preference" parent="preference">
+    <attr format="integer" name="maxValue"/>
+    <attr format="integer" name="minValue"/>
+    <attr format="integer" name="unitValue"/>
+    <attr format="integer" name="initialValue"/>
+</declare-styleable>
+</resources>

@@ -22,12 +22,12 @@ import com.hbouzidi.fiveprayers.ui.settings.adhan.AdhanAudioPreference;
 import com.hbouzidi.fiveprayers.ui.settings.adhan.AdhanAudioPreferenceDialog;
 import com.hbouzidi.fiveprayers.ui.settings.adhan.AdhanReminderPreference;
 import com.hbouzidi.fiveprayers.ui.settings.adhan.AdhanReminderPreferenceDialog;
-import com.hbouzidi.fiveprayers.ui.settings.hijri.HijriDayAdjustmentPreference;
-import com.hbouzidi.fiveprayers.ui.settings.hijri.HijriDayAdjustmentPreferenceDialog;
+import com.hbouzidi.fiveprayers.ui.settings.common.NumberPickerPreference;
+import com.hbouzidi.fiveprayers.ui.settings.common.NumberPickerPreferenceDialog;
 import com.hbouzidi.fiveprayers.ui.settings.location.AutoCompleteTextPreference;
 import com.hbouzidi.fiveprayers.ui.settings.location.AutoCompleteTextPreferenceDialog;
-import com.hbouzidi.fiveprayers.ui.settings.timings.NumberPickerPreference;
-import com.hbouzidi.fiveprayers.ui.settings.timings.NumberPickerPreferenceDialog;
+import com.hbouzidi.fiveprayers.ui.settings.timings.MultipleNumberPickerPreference;
+import com.hbouzidi.fiveprayers.ui.settings.timings.MultipleNumberPickerPreferenceDialog;
 import com.hbouzidi.fiveprayers.ui.widget.WidgetUpdater;
 import com.hbouzidi.fiveprayers.utils.LocaleHelper;
 import com.takisoft.preferencex.PreferenceFragmentCompat;
@@ -92,8 +92,8 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
         if (preference instanceof NumberPickerPreference) {
             dialogFragment = new NumberPickerPreferenceDialog((NumberPickerPreference) preference);
         }
-        if (preference instanceof HijriDayAdjustmentPreference) {
-            dialogFragment = new HijriDayAdjustmentPreferenceDialog((HijriDayAdjustmentPreference) preference);
+        if (preference instanceof MultipleNumberPickerPreference) {
+            dialogFragment = new MultipleNumberPickerPreferenceDialog((MultipleNumberPickerPreference) preference);
         }
         if (preference instanceof AdhanAudioPreference) {
             dialogFragment = new AdhanAudioPreferenceDialog((AdhanAudioPreference) preference);

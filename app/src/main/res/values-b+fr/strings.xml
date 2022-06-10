@@ -223,6 +223,15 @@
     <string name="preference_add_new_adhan">Ajouter un fichier Adhan</string>
     <string name="preference_unable_add_new_adhan">Impossible d\'ajouter un fichier Adhan</string>
 
+    <string name="title_silenter_preference_section">Mode silencieux</string>
+    <string name="text_silenter_preference_section">Mettre le téléphone en \'Ne pas déranger\' après l\'appel à la prière</string>
+    <string name="error_summary_silenter_preference_section">L\'application n\'est pas autorisée à passer à l\'état \'Ne pas déranger\'</string>
+    <string name="title_silenter_start_time">Commence après (en minutes)</string>
+    <string name="dialog_title_silenter_start_time">Début du Mode silencieux</string>
+    <string name="title_silenter_duration">Durée (en minutes)</string>
+    <string name="title_silenter_duration_friday_prayer">Durée après la prière du Vendredi (en minutes)</string>
+    <string name="dialog_title_silenter_duration">Durée du mode silencieux</string>
+
     <string name="latitude_adjustment_method_middle_of_the_night">Milieu de la nuit</string>
     <string name="latitude_adjustment_method_one_seventh">Septième de la nuit</string>
     <string name="latitude_adjustment_method_angle_based">Basé sur la triangulation</string>

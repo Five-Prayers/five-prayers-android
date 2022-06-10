@@ -221,6 +221,15 @@
     <string name="preference_add_new_adhan">إضافة ملف الأذان</string>
     <string name="preference_unable_add_new_adhan">تعذر إضافة ملف الأذان</string>
 
+    <string name="title_silenter_preference_section">وضع الصامت</string>
+    <string name="text_silenter_preference_section">تغيير الهاتف إلى وضع الصامت أثناء أوقات الصلاة</string>
+    <string name="error_summary_silenter_preference_section">لا يُسمح للتطبيق بالتغيير إلى حالة \'عدم الإزعاج\'</string>
+    <string name="title_silenter_start_time">وقت البدء بعد الأذان (بالدقائق)</string>
+    <string name="dialog_title_silenter_start_time">وقت البدء بعد الأذان (بالدقائق)</string>
+    <string name="title_silenter_duration">المدة (بالدقائق)</string>
+    <string name="title_silenter_duration_friday_prayer">المدة بعد صلاة الجمعة (بالدقائق)</string>
+    <string name="dialog_title_silenter_duration">المدة (بالدقائق)</string>
+
     <string name="latitude_adjustment_method_middle_of_the_night">منتصف الليل</string>
     <string name="latitude_adjustment_method_one_seventh">السابع من الليل</string>
     <string name="latitude_adjustment_method_angle_based">على أساس التثليث</string>

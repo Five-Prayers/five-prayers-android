@@ -1,4 +1,4 @@
-package com.hbouzidi.fiveprayers.ui.settings.hijri;
+package com.hbouzidi.fiveprayers.ui.settings.common;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
+import androidx.annotation.NonNull;
 import androidx.preference.PreferenceDialogFragmentCompat;
 
 /**
@@ -13,12 +14,12 @@ import androidx.preference.PreferenceDialogFragmentCompat;
  * Github : https://github.com/Five-Prayers/five-prayers-android
  * licenced under GPLv3 : https://www.gnu.org/licenses/gpl-3.0.en.html
  */
-public class HijriDayAdjustmentPreferenceDialog extends PreferenceDialogFragmentCompat {
+public class NumberPickerPreferenceDialog extends PreferenceDialogFragmentCompat {
 
-    private final HijriDayAdjustmentPreference preference;
+    private final NumberPickerPreference preference;
     private NumberPickerView numberPickerView;
 
-    public HijriDayAdjustmentPreferenceDialog(HijriDayAdjustmentPreference preference) {
+    public NumberPickerPreferenceDialog(NumberPickerPreference preference) {
         this.preference = preference;
 
         final Bundle b = new Bundle();
@@ -38,7 +39,7 @@ public class HijriDayAdjustmentPreferenceDialog extends PreferenceDialogFragment
     }
 
     @Override
-    protected View onCreateDialogView(Context context) {
+    protected View onCreateDialogView(@NonNull Context context) {
 
         numberPickerView = new NumberPickerView(context);
 
@@ -56,12 +57,14 @@ public class HijriDayAdjustmentPreferenceDialog extends PreferenceDialogFragment
     }
 
     private void setPickerInitialValues() {
-        int adjustment = preference.getAdjustment();
-        numberPickerView.setNumberPickerValue(adjustment);
+        numberPickerView.setValue(preference.getValue());
+        numberPickerView.setMaxValue(preference.getMaxValue());
+        numberPickerView.setMinValue(preference.getMinValue());
+        numberPickerView.setUnitValue(preference.getUnitValue());
     }
 
     private void updatePreferenceValues() {
-        int numberPickerValue = numberPickerView.getNumberPickerValue();
-        preference.setAdjustment(numberPickerValue);
+        int numberPickerValue = numberPickerView.getValue();
+        preference.setValue(numberPickerValue);
     }
 }

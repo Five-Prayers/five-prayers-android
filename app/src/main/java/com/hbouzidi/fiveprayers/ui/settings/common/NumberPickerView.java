@@ -1,4 +1,4 @@
-package com.hbouzidi.fiveprayers.ui.settings.hijri;
+package com.hbouzidi.fiveprayers.ui.settings.common;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -17,7 +17,7 @@ import com.travijuu.numberpicker.library.NumberPicker;
  */
 public class NumberPickerView extends ConstraintLayout {
 
-    private NumberPicker numberPicker;
+    private final NumberPicker numberPicker;
 
     public NumberPickerView(Context context) {
         this(context, null);
@@ -26,16 +26,28 @@ public class NumberPickerView extends ConstraintLayout {
     public NumberPickerView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
 
-        LayoutInflater.from(context).inflate(R.layout.hijri_day_number_pref, this);
+        LayoutInflater.from(context).inflate(R.layout.number_picker_pref, this);
 
-        numberPicker = (NumberPicker) findViewById(R.id.numberPicker);
+        numberPicker = findViewById(R.id.numberPicker);
     }
 
-    public void setNumberPickerValue(int adjustment) {
-        numberPicker.setValue(adjustment);
+    public void setMaxValue(int maxValue) {
+        numberPicker.setMax(maxValue);
     }
 
-    public int getNumberPickerValue() {
+    public void setMinValue(int minValue) {
+        numberPicker.setMin(minValue);
+    }
+
+    public void setUnitValue(int unitValue) {
+        numberPicker.setUnit(unitValue);
+    }
+
+    public void setValue(int value) {
+        numberPicker.setValue(value);
+    }
+
+    public int getValue() {
         return numberPicker.getValue();
     }
 }

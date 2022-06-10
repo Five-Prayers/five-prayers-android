@@ -154,6 +154,53 @@
     </PreferenceCategory>
 
     <PreferenceCategory
+        android:icon="@drawable/ic_mute_24dp"
+        android:layout="@layout/custom_preference_category"
+        android:title="@string/title_silenter_preference_section">
+
+        <com.hbouzidi.fiveprayers.ui.settings.silenter.SilenterCheckBoxPreference
+            android:key="SILENTER_ENABLED"
+            android:layout="@layout/custom_switch_preference"
+            android:title="@string/text_silenter_preference_section" />
+
+        <com.hbouzidi.fiveprayers.ui.settings.common.NumberPickerPreference
+            android:dependency="SILENTER_ENABLED"
+            android:dialogTitle="@string/dialog_title_silenter_start_time"
+            android:key="SILENT_START_TIME"
+            android:layout="@layout/custom_preference"
+            android:title="@string/title_silenter_start_time"
+            app:initialValue="5"
+            app:maxValue="30"
+            app:minValue="5"
+            app:unitValue="5"
+            />
+
+        <com.hbouzidi.fiveprayers.ui.settings.common.NumberPickerPreference
+            android:dependency="SILENTER_ENABLED"
+            android:dialogTitle="@string/dialog_title_silenter_duration"
+            android:key="SILENT_TIME_INTERVAL"
+            android:layout="@layout/custom_preference"
+            android:title="@string/title_silenter_duration"
+            app:initialValue="15"
+            app:maxValue="90"
+            app:minValue="5"
+            app:unitValue="5"
+            />
+
+        <com.hbouzidi.fiveprayers.ui.settings.common.NumberPickerPreference
+            android:dependency="SILENTER_ENABLED"
+            android:dialogTitle="@string/dialog_title_silenter_duration"
+            android:key="SILENT_TIME_INTERVAL_FOR_FRIDAY_PRAYER"
+            android:layout="@layout/custom_preference"
+            android:title="@string/title_silenter_duration_friday_prayer"
+            app:initialValue="45"
+            app:maxValue="90"
+            app:minValue="5"
+            app:unitValue="5"
+            />
+    </PreferenceCategory>
+
+    <PreferenceCategory
         android:icon="@drawable/ic_calculator_24dp"
         android:layout="@layout/custom_preference_category"
         android:title="@string/title_prayer_timings_section">
@@ -167,7 +214,7 @@
             android:title="@string/title_calculation_method_preference"
             app:useSimpleSummaryProvider="true" />
 
-        <com.hbouzidi.fiveprayers.ui.settings.timings.NumberPickerPreference
+        <com.hbouzidi.fiveprayers.ui.settings.timings.MultipleNumberPickerPreference
             android:dialogTitle="@string/dialog_title_edit_text_timing_adjustment_preference"
             android:key="number_preference"
             android:layout="@layout/custom_preference"
@@ -208,11 +255,15 @@
         android:icon="@drawable/ic_calendar_24dp"
         android:layout="@layout/custom_preference_category"
         android:title="@string/calendar">
-        <com.hbouzidi.fiveprayers.ui.settings.hijri.HijriDayAdjustmentPreference
+        <com.hbouzidi.fiveprayers.ui.settings.common.NumberPickerPreference
             android:dialogTitle="@string/dialog_title_hijri_day_adjustment_preference"
             android:key="HIJRI_DAY_ADJUSTMENT_PREFERENCE"
             android:layout="@layout/custom_preference"
-            android:title="@string/title_hijri_day_adjustment_preference" />
+            android:title="@string/title_hijri_day_adjustment_preference"
+            app:maxValue="3"
+            app:minValue="-3"
+            app:unitValue="1"
+            />
     </PreferenceCategory>
 
     <PreferenceCategory

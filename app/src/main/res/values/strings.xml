@@ -269,6 +269,9 @@
     <string name="adthan_reminder_notification_title">The time for the next prayer is near</string>
     <string name="adthan_notification_close_action_title">Silent and close</string>
 
+    <string name="scheduling_adhan_alert_notification_title">Not able to schedule Adhan</string>
+    <string name="scheduling_adhan_alert_notification_text">Scheduling exact alarm permission was revoked on your phone, without it, you cannot receive any Adhan notification. Please grant this permission to continue using Five Prayers correctly</string>
+    <string name="scheduling_adhan_alert_notification_action_title">Grant this permission</string>
     <!--   User Messages    -->
 
     <string name="location_service_unavailable">Unable to find your location: Please verify that location service is enabled on your phone or set your location manually in the settings section</string>

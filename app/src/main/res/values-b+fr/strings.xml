@@ -267,6 +267,9 @@
     <string name="adthan_reminder_notification_title">L\'heure de la prochaine prière est proche</string>
     <string name="adthan_notification_close_action_title">Couper le son et fermer</string>
 
+    <string name="scheduling_adhan_alert_notification_title">Impossible de programmer Adhan</string>
+    <string name="scheduling_adhan_alert_notification_text">L\'autorisation pour utiliser l\'alarme a été révoquée sur votre téléphone, sans elle, vous ne pouvez recevoir aucune notification Adhan. Veuillez accorder cette autorisation pour continuer à utiliser l\'application correctement</string>
+    <string name="scheduling_adhan_alert_notification_action_title">Accorder cette autorisation</string>
     <!--   User Messages    -->
 
     <string name="location_service_unavailable">Impossible de trouver votre position: veuillez vérifier que le service de localisation est activé sur votre téléphone ou définissez votre position manuellement dans la section des paramètres</string>

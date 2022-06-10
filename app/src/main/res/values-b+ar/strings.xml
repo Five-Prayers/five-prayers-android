@@ -263,6 +263,9 @@
     <string name="adthan_reminder_notification_title">اقترب وقت الصلاة</string>
     <string name="adthan_notification_close_action_title">كتم صوت الأذان وإغلاقه</string>
 
+    <string name="scheduling_adhan_alert_notification_title">غير قادر على جدولة موعد الأذان</string>
+    <string name="scheduling_adhan_alert_notification_text">تم إبطال إذن جدولة التنبيه الدقيق على هاتفك ، وبدون ذلك ، لا يمكنك تلقي أي إخطار بالأذان. يرجى منح هذا الإذن لمواصلة استخدام التطبيق بشكل صحيح</string>
+    <string name="scheduling_adhan_alert_notification_action_title">امنح هذا الإذن</string>
     <!--   Errors Messages    -->
 
     <string name="location_service_unavailable">لا يمكن العثور على موقعك: يرجى التحقق من تمكين خدمة الموقع على هاتفك أو تعيين موقعك يدويًا في قسم الإعدادات</string>

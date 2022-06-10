@@ -40,14 +40,20 @@ public class PrayerAlarmScheduler {
     public static final String TAG = "PrayerAlarmScheduler";
     private final Context context;
     private final PreferencesHelper preferencesHelper;
+    private final CannotScheduleExactAlarmNotification cannotScheduleExactAlarmNotification;
 
     @Inject
-    public PrayerAlarmScheduler(Context context, PreferencesHelper preferencesHelper) {
+    public PrayerAlarmScheduler(Context context, PreferencesHelper preferencesHelper, CannotScheduleExactAlarmNotification cannotScheduleExactAlarmNotification) {
         this.context = context;
         this.preferencesHelper = preferencesHelper;
+        this.cannotScheduleExactAlarmNotification = cannotScheduleExactAlarmNotification;
     }
 
     public void scheduleAlarmsAndReminders(@NonNull DayPrayer dayPrayer) {
+        if (!canScheduleExactAlarms()) {
+            return;
+        }
+
         scheduleNextPrayerAlarms(dayPrayer);
 
         if (preferencesHelper.isReminderEnabled()) {
@@ -65,6 +71,20 @@ public class PrayerAlarmScheduler {
         if (preferencesHelper.isSilenterEnabled()) {
             scheduleSilenter(dayPrayer);
         }
+    }
+
+    private boolean canScheduleExactAlarms() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            AlarmManager alarmMgr = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+            if (alarmMgr.canScheduleExactAlarms()) {
+                return true;
+            } else {
+                cannotScheduleExactAlarmNotification.createNotificationChannel();
+                cannotScheduleExactAlarmNotification.createNotification();
+                return false;
+            }
+        }
+        return true;
     }
 
     private void scheduleNextPrayerAlarms(@NonNull DayPrayer dayPrayer) {

@@ -255,7 +255,7 @@
     <string name="degree" translatable="false">°</string>
     <string name="dialog_message_sensor_not_exist">Your device doesn\'t have the required sensors</string>
     <string name="dialog_title_sensor_not_calibrate">Calibration needed</string>
-    <string name="dialog_message_sensor_not_calibrate">Please calibrate your sensors, by pointing your phone up toward the sky and move if in a figure 8 motion</string>
+    <string name="dialog_message_sensor_not_calibrate">Please calibrate your sensors, by pointing your phone up toward the sky and move it in a figure 8 motion</string>
 
     <string name="title_qibla_direction">Qibla Direction</string>
     <string name="desc_qibla_direction">Locate Qibla direction</string>

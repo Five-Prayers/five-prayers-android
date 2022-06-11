@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.hbouzidi.fiveprayers">
 
+    <uses-sdk tools:overrideLibrary="androidx.core.splashscreen"/>
+
     <queries>
         <intent>
             <action android:name="android.intent.action.VIEW" />
@@ -34,7 +36,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/BlueWhiteTheme">
+        android:theme="@style/Theme.App">
         <activity android:name=".ui.names.NamesActivity" />
         <activity android:name=".ui.quran.index.QuranIndexActivity" />
         <activity
@@ -50,7 +52,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.appintro.IntroActivity" />
+        <activity android:name=".ui.appintro.IntroActivity" android:theme="@style/Theme.AppCompat"/>
         <activity
             android:name=".ui.splashscreen.SplashScreenActivity"
             android:screenOrientation="portrait" />

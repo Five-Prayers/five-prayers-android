@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.hbouzidi.fiveprayers.FivePrayerApplication;
+import com.hbouzidi.fiveprayers.preferences.PreferencesHelper;
 
 import javax.inject.Inject;
 
@@ -19,13 +20,18 @@ public class ReminderReceiver extends BroadcastReceiver {
     @Inject
     ReminderNotification reminderNotification;
 
+    @Inject
+    PreferencesHelper preferencesHelper;
+
     @Override
     public void onReceive(Context context, Intent intent) {
         ((FivePrayerApplication) context.getApplicationContext())
                 .receiverComponent
                 .inject(this);
 
-        reminderNotification.createNotificationChannel();
-        reminderNotification.createNotification(intent);
+        if (preferencesHelper.isNotificationsEnabled()) {
+            reminderNotification.createNotificationChannel();
+            reminderNotification.createNotification(intent);
+        }
     }
 }

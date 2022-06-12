@@ -2,7 +2,6 @@ package com.hbouzidi.fiveprayers.ui.appintro;
 
 import android.Manifest;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -27,57 +26,56 @@ public class IntroActivity extends AppIntro {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        addSlide(AppIntroFragment.newInstance(
+        addSlide(AppIntroFragment.createInstance(
                 getResources().getString(R.string.app_intro_frag_1_title),
                 getResources().getString(R.string.app_intro_frag_1_description),
                 R.drawable.ic_mosque_200dp,
-                0xFF17C5FF,
-                Color.WHITE,
-                Color.WHITE
+                R.color.dodger_blue,
+                R.color.white,
+                R.color.white
         ));
 
-        addSlide(AppIntroFragment.newInstance(
+        addSlide(AppIntroFragment.createInstance(
                 getResources().getString(R.string.app_intro_frag_2_title),
                 getResources().getString(R.string.app_intro_frag_2_description),
                 R.drawable.ic_data_privacy_200dp,
-                0xFF17C5FF,
-                Color.WHITE,
-                Color.WHITE
+                R.color.dodger_blue,
+                R.color.white,
+                R.color.white
         ));
 
 
-        addSlide(AppIntroFragment.newInstance(
+        addSlide(AppIntroFragment.createInstance(
                 getResources().getString(R.string.app_intro_frag_3_title),
                 getResources().getString(R.string.app_intro_frag_3_description),
                 R.drawable.ic_question_200dp,
-                0xFF17C5FF,
-                Color.WHITE,
-                Color.WHITE
+                R.color.dodger_blue,
+                R.color.white,
+                R.color.white
         ));
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            addSlide(AppIntroFragment.newInstance(
+            addSlide(AppIntroFragment.createInstance(
                     getResources().getString(R.string.app_intro_frag_3_title),
                     getResources().getString(R.string.app_intro_frag_3_5_description),
                     R.drawable.ic_question_200dp,
-                    0xFF17C5FF,
-                    Color.WHITE,
-                    Color.WHITE
+                    R.color.dodger_blue,
+                    R.color.white,
+                    R.color.white
             ));
         }
 
-        addSlide(AppIntroFragment.newInstance(
+        addSlide(AppIntroFragment.createInstance(
                 getResources().getString(R.string.app_intro_frag_4_title),
                 getResources().getString(R.string.app_intro_frag_4_description),
                 R.drawable.ic_hassan_mosque_20dp,
-                0xFF17C5FF,
-                Color.WHITE,
-                Color.WHITE
+                R.color.dodger_blue,
+                R.color.white,
+                R.color.white
         ));
 
-        String[] permissions = {Manifest.permission.ACCESS_FINE_LOCATION};
         askForPermissions(
-                permissions,
+                new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                 3,
                 false);
 
@@ -105,10 +103,12 @@ public class IntroActivity extends AppIntro {
                 getResources().getString(R.string.app_intro_permission_denied_dialog_message));
     }
 
+    @Override
     protected void onSkipPressed(Fragment currentFragment) {
         super.onSkipPressed(currentFragment);
     }
 
+    @Override
     protected void onDonePressed(Fragment currentFragment) {
         super.onDonePressed(currentFragment);
 

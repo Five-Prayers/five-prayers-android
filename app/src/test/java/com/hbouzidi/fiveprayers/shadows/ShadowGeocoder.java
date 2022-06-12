@@ -19,6 +19,7 @@ import java.util.Locale;
 public final class ShadowGeocoder {
 
     private static boolean isPresent = true;
+    private static boolean throwException = false;
     private static boolean localityIsNull = false;
     private List<Address> fromLocation = new ArrayList<>();
     private final Address newAddress;
@@ -47,6 +48,10 @@ public final class ShadowGeocoder {
         return isPresent;
     }
 
+    public static void setThrowException(boolean throwException) {
+        ShadowGeocoder.throwException = throwException;
+    }
+
     /**
      * Returns an empty list by default, or the last value set by {@link #setFromLocation(List)}
      *
@@ -58,11 +63,13 @@ public final class ShadowGeocoder {
     protected List<Address> getFromLocation(double latitude, double longitude, int maxResults)
             throws IOException {
 
+        if(throwException)
+            throw new IOException();
+
         if (localityIsNull) {
             this.fromLocation.add(newAddressWithNullLocality);
         }
         this.fromLocation.add(newAddress);
-
 
         if (isPresent) {
             Preconditions.checkArgument(
@@ -76,6 +83,13 @@ public final class ShadowGeocoder {
         return Collections.emptyList();
     }
 
+    @Implementation
+    public List<Address> getFromLocationName(String locationName, int maxResults) throws IOException {
+        if(throwException)
+            throw new IOException();
+
+        return isPresent ? Collections.singletonList(newAddress) : Collections.emptyList();
+    }
     /**
      * Sets the value to be returned by {@link Geocoder#isPresent()}.
      *
@@ -99,6 +113,8 @@ public final class ShadowGeocoder {
     @Resetter
     public static void reset() {
         isPresent = true;
+        localityIsNull = false;
+        throwException = false;
     }
 }
 

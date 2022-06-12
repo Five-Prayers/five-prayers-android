@@ -31,7 +31,7 @@ public class BaseNotification {
 
     @DrawableRes
     protected int getNotificationIcon() {
-        return R.drawable.ic_mosque_24dp_blue;
+        return R.drawable.ic_mosque_24dp;
     }
 
     @ColorInt

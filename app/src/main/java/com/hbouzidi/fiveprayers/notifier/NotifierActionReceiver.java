@@ -34,9 +34,6 @@ public class NotifierActionReceiver extends BroadcastReceiver {
             muteAdhanCaller();
             closeNotification(notificationId, context);
         }
-
-        Intent it = new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
-        context.sendBroadcast(it);
     }
 
     public void closeNotification(int notificationId, Context context) {

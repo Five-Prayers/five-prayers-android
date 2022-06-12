@@ -13,12 +13,12 @@ import androidx.preference.PreferenceDialogFragmentCompat;
  * Github : https://github.com/Five-Prayers/five-prayers-android
  * licenced under GPLv3 : https://www.gnu.org/licenses/gpl-3.0.en.html
  */
-public class NumberPickerPreferenceDialog extends PreferenceDialogFragmentCompat {
+public class MultipleNumberPickerPreferenceDialog extends PreferenceDialogFragmentCompat {
 
-    private final NumberPickerPreference preference;
+    private final MultipleNumberPickerPreference preference;
     private MultipleNumberPickerView multipleNumberPickerView;
 
-    public NumberPickerPreferenceDialog(NumberPickerPreference preference) {
+    public MultipleNumberPickerPreferenceDialog(MultipleNumberPickerPreference preference) {
         this.preference = preference;
 
         final Bundle b = new Bundle();

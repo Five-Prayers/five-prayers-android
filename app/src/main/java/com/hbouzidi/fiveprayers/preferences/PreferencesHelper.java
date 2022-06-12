@@ -1,8 +1,11 @@
 package com.hbouzidi.fiveprayers.preferences;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.location.Address;
+import android.media.AudioManager;
 
 import androidx.annotation.NonNull;
 import androidx.preference.PreferenceManager;
@@ -31,8 +34,6 @@ import java.util.stream.Collectors;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
-
-import static android.content.Context.MODE_PRIVATE;
 
 /**
  * @author Hicham Bouzidi Idrissi
@@ -326,5 +327,42 @@ public class PreferencesHelper {
     public String getArabicNumeralsType() {
         final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         return defaultSharedPreferences.getString(PreferencesConstants.ARABIC_NUMERALS_TYPE, PreferencesConstants.ARABIC_NUMERALS_TYPE_ARABIC);
+    }
+
+    public boolean isSilenterEnabled() {
+        final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return defaultSharedPreferences.getBoolean(PreferencesConstants.SILENTER_ENABLED, false);
+    }
+
+    public void savePreviousRingerModeBeforeSilent(int ringerMode) {
+        final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor edit = defaultSharedPreferences.edit();
+        edit.putInt(PreferencesConstants.PREVIOUS_RINGER_MODE_BEFORE_SILENT, ringerMode);
+        edit.apply();
+    }
+
+    public int getPreviousRingerModeBeforeSilent() {
+        final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return defaultSharedPreferences.getInt(PreferencesConstants.PREVIOUS_RINGER_MODE_BEFORE_SILENT, AudioManager.RINGER_MODE_NORMAL);
+    }
+
+    public int getSilenterStartTime() {
+        final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return defaultSharedPreferences.getInt(PreferencesConstants.SILENT_START_TIME, 5);
+    }
+
+    public int getSilenterInterval() {
+        final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return defaultSharedPreferences.getInt(PreferencesConstants.SILENT_TIME_INTERVAL, 15);
+    }
+
+    public int getSilenterIntervalForFridayPrayer() {
+        final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return defaultSharedPreferences.getInt(PreferencesConstants.SILENT_TIME_INTERVAL_FOR_FRIDAY_PRAYER, 45);
+    }
+
+    public boolean isNotificationsEnabled() {
+        final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return defaultSharedPreferences.getBoolean(PreferencesConstants.NOTIFICATIONS_ENABLED, true);
     }
 }

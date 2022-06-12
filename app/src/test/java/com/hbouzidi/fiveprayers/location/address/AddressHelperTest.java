@@ -54,7 +54,7 @@ import static org.junit.Assert.assertNull;
  */
 
 @RunWith(RobolectricTestRunner.class)
-@Config(minSdk = 18, maxSdk = 28, application = FakeFivePrayerApplication.class, shadows = {ShadowGeocoder.class})
+@Config(minSdk = 28, maxSdk = 28, application = FakeFivePrayerApplication.class, shadows = {ShadowGeocoder.class})
 public class AddressHelperTest {
 
     Context applicationContext;
@@ -77,8 +77,7 @@ public class AddressHelperTest {
 
     @After
     public void tearDown() throws IOException {
-        ShadowGeocoder.setIsPresent(true);
-        ShadowGeocoder.setLocalityIsNull(false);
+        ShadowGeocoder.reset();
         RESTMockServer.shutdown();
     }
 
@@ -280,6 +279,48 @@ public class AddressHelperTest {
 
         preferencesHelper.updateAddressPreferences(lastKnownAddress);
         ShadowGeocoder.setIsPresent(false);
+
+        RESTMockServer.reset();
+        RESTMockServer
+                .whenGET(pathContains("/reverse"))
+                .thenReturnFile(200, "responses/nominatim_response.json");
+
+        Single<Address> addressSingle = addressHelper.getAddressFromLocation(newLocation);
+
+        addressSingle.subscribe(addressTestObserver);
+
+        addressTestObserver.await();
+        addressTestObserver.assertComplete();
+        addressTestObserver.assertValue(address -> {
+            assertEquals("Rabat", address.getLocality());
+            assertEquals("Morocco", address.getCountryName());
+            return true;
+        });
+    }
+
+    @Test
+    public void should_get_address_from_nominatim_when_address_is_obsolete_and_geocoder_throw_exception() throws Exception {
+        TestObserver<Address> addressTestObserver = new TestObserver<>();
+
+        Location newLocation = new Location(LocationManager.GPS_PROVIDER);
+        newLocation.setLatitude(-6.8498129);
+        newLocation.setLongitude(33.9715904);
+
+        Address lastKnownAddress = new Address(Locale.getDefault());
+        lastKnownAddress.setLatitude(51.5073509);
+        lastKnownAddress.setLongitude(-0.1277583);
+        lastKnownAddress.setLocality("London");
+        lastKnownAddress.setCountryName("United Kindom");
+        lastKnownAddress.setCountryCode("UK");
+
+        NominatimAddress nominatimAddress = new NominatimAddress();
+        nominatimAddress.setCity("Rabat");
+        nominatimAddress.setCountry("Morocco");
+        nominatimAddress.setCountryCode("MA");
+
+        preferencesHelper.updateAddressPreferences(lastKnownAddress);
+        ShadowGeocoder.setIsPresent(true);
+        ShadowGeocoder.setThrowException(true);
 
         RESTMockServer.reset();
         RESTMockServer

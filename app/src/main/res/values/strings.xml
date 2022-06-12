@@ -1,6 +1,6 @@
 <resources>
     <string name="whats_new_dialog_title">New feature</string>
-    <string name="whats_new_dialog_message">Possibility to translate the application in arabic, you can enable it in Settings</string>
+    <string name="whats_new_dialog_message">It\'s now possible to mute the phone after Adhan ! you can enable it in Settings screen</string>
 
     <string name="about_five_prayers">About Five Prayers</string>
     <string name="open_source_projects_used">Open Source Projects Used</string>
@@ -39,6 +39,10 @@
     <string name="common.plus" translatable="false">+</string>
     <string name="common.minus" translatable="false">-</string>
     <string name="common.minutes">minutes</string>
+
+    <string name="location_alert_title">Location Error</string>
+    <string name="location_alert_settings_button_title">Enable location service</string>
+    <string name="location_alert_manual_position_button_title">Set location manually</string>
 
     <string name="app_name">Five Prayers</string>
     <string name="title_home">Prayers</string>
@@ -80,7 +84,7 @@
         like : Worldwide Prayer Timings, different calculation methods, notifications, reads Adhan, Qibla direction and more</string>
 
     <string name="app_intro_permission_denied_dialog_title">Information</string>
-    <string name="app_intro_permission_denied_dialog_message">You refused to allow the application to access your location. You have to manually enter your city in the settings screen.</string>
+    <string name="app_intro_permission_denied_dialog_message">The application needs to know your location to calculate prayer times correctly. You can set your location manually in the settings screen.</string>
 
     <string name="last_update_time_key">last_update_time_key</string>
 
@@ -203,6 +207,7 @@
     <string name="sub_title_dhuha_reminder_preference_section">Dhuha prayer reminder</string>
     <string name="sub_title_lton_reminder_preference_section">Last third of the Night reminder</string>
     <string name="title_checkbox_location_preference">Set location manually</string>
+    <string name="title_adhan_notifications_preference">Enable Notifications</string>
     <string name="title_adhan_vibration_preference">Enable vibration</string>
     <string name="title_douae_adhan_preference">Enable dua after Adhan</string>
     <string name="title_adhan_reminder_preference">Enable reminder before Adhan</string>
@@ -220,6 +225,15 @@
     <string name="preference_title_contact">Contact us</string>
     <string name="preference_add_new_adhan">Add new Adhan file</string>
     <string name="preference_unable_add_new_adhan">Unable to add new Adhan file</string>
+
+    <string name="title_silenter_preference_section">Silent Mode</string>
+    <string name="text_silenter_preference_section">Turn phone on \'do not disturb\' state during prayer times</string>
+    <string name="error_summary_silenter_preference_section">The application is not allowed to change to \'Do Not Disturb\' state</string>
+    <string name="title_silenter_start_time">Start time after Adhan (in minutes)</string>
+    <string name="dialog_title_silenter_start_time">Start time</string>
+    <string name="title_silenter_duration">Duration (in minutes)</string>
+    <string name="title_silenter_duration_friday_prayer">Duration for Friday prayer (in minutes)</string>
+    <string name="dialog_title_silenter_duration">Duration</string>
 
     <string name="latitude_adjustment_method_middle_of_the_night">Middle of the Night</string>
     <string name="latitude_adjustment_method_one_seventh">One Seventh</string>
@@ -241,7 +255,7 @@
     <string name="degree" translatable="false">°</string>
     <string name="dialog_message_sensor_not_exist">Your device doesn\'t have the required sensors</string>
     <string name="dialog_title_sensor_not_calibrate">Calibration needed</string>
-    <string name="dialog_message_sensor_not_calibrate">Please calibrate your sensors, by pointing your phone up toward the sky and move if in a figure 8 motion</string>
+    <string name="dialog_message_sensor_not_calibrate">Please calibrate your sensors, by pointing your phone up toward the sky and move it in a figure 8 motion</string>
 
     <string name="title_qibla_direction">Qibla Direction</string>
     <string name="desc_qibla_direction">Locate Qibla direction</string>
@@ -256,6 +270,9 @@
     <string name="adthan_reminder_notification_title">The time for the next prayer is near</string>
     <string name="adthan_notification_close_action_title">Silent and close</string>
 
+    <string name="scheduling_adhan_alert_notification_title">Not able to schedule Adhan</string>
+    <string name="scheduling_adhan_alert_notification_text">Scheduling exact alarm permission was revoked on your phone, without it, you cannot receive any Adhan notification. Please grant this permission to continue using Five Prayers correctly</string>
+    <string name="scheduling_adhan_alert_notification_action_title">Grant this permission</string>
     <!--   User Messages    -->
 
     <string name="location_service_unavailable">Unable to find your location: Please verify that location service is enabled on your phone or set your location manually in the settings section</string>

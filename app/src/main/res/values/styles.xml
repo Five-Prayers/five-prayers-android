@@ -1,5 +1,8 @@
 <resources>
 
+    <style name="Theme.App" parent="BlueWhiteTheme">
+    </style>
+
     <!-- Default blue white theme -->
     <style name="BlueWhiteTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
         <item name="colorPrimary">@color/white</item>

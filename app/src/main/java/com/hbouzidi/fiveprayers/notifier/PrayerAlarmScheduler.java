@@ -1,5 +1,7 @@
 package com.hbouzidi.fiveprayers.notifier;
 
+import static android.app.PendingIntent.FLAG_UPDATE_CURRENT;
+
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
@@ -18,14 +20,14 @@ import com.hbouzidi.fiveprayers.timings.DayPrayer;
 import com.hbouzidi.fiveprayers.utils.TimingUtils;
 import com.hbouzidi.fiveprayers.utils.UiUtils;
 
+import java.time.DayOfWeek;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.Map;
 import java.util.Objects;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
-
-import static android.app.PendingIntent.FLAG_UPDATE_CURRENT;
 
 /**
  * @author Hicham Bouzidi Idrissi
@@ -38,14 +40,20 @@ public class PrayerAlarmScheduler {
     public static final String TAG = "PrayerAlarmScheduler";
     private final Context context;
     private final PreferencesHelper preferencesHelper;
+    private final CannotScheduleExactAlarmNotification cannotScheduleExactAlarmNotification;
 
     @Inject
-    public PrayerAlarmScheduler(Context context, PreferencesHelper preferencesHelper) {
+    public PrayerAlarmScheduler(Context context, PreferencesHelper preferencesHelper, CannotScheduleExactAlarmNotification cannotScheduleExactAlarmNotification) {
         this.context = context;
         this.preferencesHelper = preferencesHelper;
+        this.cannotScheduleExactAlarmNotification = cannotScheduleExactAlarmNotification;
     }
 
     public void scheduleAlarmsAndReminders(@NonNull DayPrayer dayPrayer) {
+        if (!canScheduleExactAlarms()) {
+            return;
+        }
+
         scheduleNextPrayerAlarms(dayPrayer);
 
         if (preferencesHelper.isReminderEnabled()) {
@@ -59,6 +67,24 @@ public class PrayerAlarmScheduler {
         if (preferencesHelper.isLastThirdOfTheNightReminderEnabled()) {
             scheduleComplementaryTiming(dayPrayer, ComplementaryTimingEnum.LAST_THIRD_OF_THE_NIGHT, 2);
         }
+
+        if (preferencesHelper.isSilenterEnabled()) {
+            scheduleSilenter(dayPrayer);
+        }
+    }
+
+    private boolean canScheduleExactAlarms() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            AlarmManager alarmMgr = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+            if (alarmMgr.canScheduleExactAlarms()) {
+                return true;
+            } else {
+                cannotScheduleExactAlarmNotification.createNotificationChannel();
+                cannotScheduleExactAlarmNotification.createNotification();
+                return false;
+            }
+        }
+        return true;
     }
 
     private void scheduleNextPrayerAlarms(@NonNull DayPrayer dayPrayer) {
@@ -75,8 +101,8 @@ public class PrayerAlarmScheduler {
             if (prayerTiming != null && LocalDateTime.now().isBefore(prayerTiming)) {
                 Log.i(TAG, "Scheduling " + key.toString() + " Alarm at : " + TimingUtils.formatTiming(prayerTiming));
 
-                schedule(dayPrayer, prayerTiming, TimingType.STANDARD, key.toString(),
-                        1000, index, TimingUtils.getTimeInMilliIgnoringSeconds(prayerTiming), NotifierReceiver.class);
+                scheduleNotifications(dayPrayer, prayerTiming, TimingType.STANDARD, key.toString(),
+                        1000, index, prayerTiming, NotifierReceiver.class);
             }
         }
 
@@ -100,8 +126,8 @@ public class PrayerAlarmScheduler {
 
                 Log.i(TAG, "Scheduling " + key.toString() + " Reminder at : " + TimingUtils.formatTiming(reminderTiming));
 
-                schedule(dayPrayer, prayerTiming, TimingType.STANDARD, key.toString(),
-                        2000, index, TimingUtils.getTimeInMilliIgnoringSeconds(reminderTiming), ReminderReceiver.class);
+                scheduleNotifications(dayPrayer, prayerTiming, TimingType.STANDARD, key.toString(),
+                        2000, index, reminderTiming, ReminderReceiver.class);
             }
         }
 
@@ -118,16 +144,16 @@ public class PrayerAlarmScheduler {
 
             Log.i(TAG, "Scheduling " + complementaryTimingEnum.toString() + " Reminder at : " + TimingUtils.formatTiming(complementaryTiming));
 
-            schedule(dayPrayer, complementaryTiming, TimingType.COMPLEMENTARY, complementaryTimingEnum.toString(),
-                    3000, requestCode, TimingUtils.getTimeInMilliIgnoringSeconds(complementaryTiming), ReminderReceiver.class);
+            scheduleNotifications(dayPrayer, complementaryTiming, TimingType.COMPLEMENTARY, complementaryTimingEnum.toString(),
+                    3000, requestCode, complementaryTiming, ReminderReceiver.class);
         }
 
         Log.i(TAG, "End scheduling Complementary Timings for: " + dayPrayer.getDate());
     }
 
-    private void schedule(@NonNull DayPrayer dayPrayer, LocalDateTime prayerTiming, TimingType timingType,
-                          String prayerKey, int notificationId, int requestCode, long timeInMilliIgnoringSeconds,
-                          Class<? extends BroadcastReceiver> receiverClass) {
+    private void scheduleNotifications(@NonNull DayPrayer dayPrayer, LocalDateTime prayerTiming, TimingType timingType,
+                                       String prayerKey, int notificationId, int requestCode, LocalDateTime timingToSchedule,
+                                       Class<? extends BroadcastReceiver> receiverClass) {
 
         AlarmManager alarmMgr = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(context, receiverClass);
@@ -139,15 +165,71 @@ public class PrayerAlarmScheduler {
 
         intent.addFlags(Intent.FLAG_RECEIVER_FOREGROUND);
 
-        PendingIntent alarmIntent = PendingIntent.getBroadcast(context, requestCode, intent, FLAG_UPDATE_CURRENT);
+        PendingIntent alarmIntent = PendingIntentCreator.getBroadcast(context, requestCode, intent, FLAG_UPDATE_CURRENT);
         alarmMgr.cancel(alarmIntent);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            alarmMgr.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, timeInMilliIgnoringSeconds, alarmIntent);
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            alarmMgr.setExact(AlarmManager.RTC_WAKEUP, timeInMilliIgnoringSeconds, alarmIntent);
+        scheduleAlarm(timingToSchedule, alarmMgr, alarmIntent);
+    }
+
+    private void scheduleSilenter(DayPrayer dayPrayer) {
+        Log.i(TAG, "Start scheduling Silenter for: " + dayPrayer.getDate());
+
+        Map<PrayerEnum, LocalDateTime> timings = dayPrayer.getTimings();
+
+        int index = 20;
+        for (PrayerEnum key : timings.keySet()) {
+            index++;
+
+            LocalDateTime prayerTiming = timings.get(key);
+
+            if (prayerTiming != null && LocalDateTime.now().isBefore(prayerTiming)) {
+                AlarmManager alarmMgr = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+
+                PendingIntent silentAlarmIntent = getSilenterPendingIntent(index, alarmMgr, true);
+                PendingIntent unSilentAlarmIntent = getSilenterPendingIntent(index + 10, alarmMgr, false);
+
+                LocalDateTime silentTiming = prayerTiming.plus(preferencesHelper.getSilenterStartTime(), ChronoUnit.MINUTES);
+                scheduleAlarm(silentTiming, alarmMgr, silentAlarmIntent);
+                Log.i(TAG, "Scheduling " + key.toString() + " Silenter at : " + TimingUtils.formatTiming(silentTiming));
+
+                LocalDateTime unSilentTiming = getUnSilentTiming(prayerTiming, key);
+                scheduleAlarm(unSilentTiming, alarmMgr, unSilentAlarmIntent);
+                Log.i(TAG, "Scheduling " + key + " Un-Silenter at : " + TimingUtils.formatTiming(unSilentTiming));
+            }
+        }
+
+        Log.i(TAG, "End scheduling Silenter for: " + dayPrayer.getDate());
+    }
+
+    private PendingIntent getSilenterPendingIntent(int index, AlarmManager alarmMgr, boolean turnToSilent) {
+        Intent silentIntent = new Intent(context, SilenterReceiver.class);
+        silentIntent.putExtra("TURN_TO_SILENT", turnToSilent);
+        silentIntent.addFlags(Intent.FLAG_RECEIVER_FOREGROUND);
+
+        PendingIntent silentAlarmIntent = PendingIntentCreator.getBroadcast(context, index, silentIntent, FLAG_UPDATE_CURRENT);
+        alarmMgr.cancel(silentAlarmIntent);
+        return silentAlarmIntent;
+    }
+
+    private LocalDateTime getUnSilentTiming(LocalDateTime prayerTiming, PrayerEnum key) {
+        int silenterInterval;
+
+        if (prayerTiming.getDayOfWeek().equals(DayOfWeek.FRIDAY) && PrayerEnum.DHOHR.equals(key)) {
+            silenterInterval = preferencesHelper.getSilenterIntervalForFridayPrayer();
         } else {
-            alarmMgr.set(AlarmManager.RTC_WAKEUP, timeInMilliIgnoringSeconds, alarmIntent);
+            silenterInterval = preferencesHelper.getSilenterInterval();
+        }
+
+        return prayerTiming.plus(preferencesHelper.getSilenterStartTime(), ChronoUnit.MINUTES).plus(silenterInterval, ChronoUnit.MINUTES);
+    }
+
+    private void scheduleAlarm(LocalDateTime timingToSchedule, AlarmManager alarmMgr, PendingIntent pendingIntent) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            alarmMgr.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, TimingUtils.getTimeInMilliIgnoringSeconds(timingToSchedule), pendingIntent);
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            alarmMgr.setExact(AlarmManager.RTC_WAKEUP, TimingUtils.getTimeInMilliIgnoringSeconds(timingToSchedule), pendingIntent);
+        } else {
+            alarmMgr.set(AlarmManager.RTC_WAKEUP, TimingUtils.getTimeInMilliIgnoringSeconds(timingToSchedule), pendingIntent);
         }
     }
 }

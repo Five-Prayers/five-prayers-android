@@ -16,7 +16,7 @@ import java.text.DecimalFormat;
  * Github : https://github.com/Five-Prayers/five-prayers-android
  * licenced under GPLv3 : https://www.gnu.org/licenses/gpl-3.0.en.html
  */
-public class NumberPickerPreference extends DialogPreference {
+public class MultipleNumberPickerPreference extends DialogPreference {
 
     private int fajrTimingAdjustment;
     private int dohrTimingAdjustment;
@@ -24,7 +24,7 @@ public class NumberPickerPreference extends DialogPreference {
     private int maghrebTimingAdjustment;
     private int ichaTimingAdjustment;
 
-    public NumberPickerPreference(Context context, AttributeSet attrs) {
+    public MultipleNumberPickerPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
 
         SharedPreferences sharedPreferences = context.getSharedPreferences(PreferencesConstants.TIMING_ADJUSTMENT, Context.MODE_PRIVATE);

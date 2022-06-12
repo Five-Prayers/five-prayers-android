@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.hbouzidi.fiveprayers.FivePrayerApplication;
+import com.hbouzidi.fiveprayers.preferences.PreferencesHelper;
 import com.hbouzidi.fiveprayers.ui.widget.WidgetUpdater;
 
 import javax.inject.Inject;
@@ -23,14 +24,19 @@ public class NotifierReceiver extends BroadcastReceiver {
     @Inject
     WidgetUpdater widgetUpdater;
 
+    @Inject
+    PreferencesHelper preferencesHelper;
+
     @Override
     public void onReceive(Context context, Intent intent) {
         ((FivePrayerApplication) context.getApplicationContext())
                 .receiverComponent
                 .inject(this);
 
-        prayerNotification.createNotificationChannel();
-        prayerNotification.createNotification(intent);
+        if(preferencesHelper.isNotificationsEnabled()) {
+            prayerNotification.createNotificationChannel();
+            prayerNotification.createNotification(intent);
+        }
 
         widgetUpdater.updateHomeScreenWidget(context);
     }

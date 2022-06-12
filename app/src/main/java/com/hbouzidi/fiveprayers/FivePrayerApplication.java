@@ -13,11 +13,9 @@ import com.hbouzidi.fiveprayers.di.component.DaggerAdapterComponent;
 import com.hbouzidi.fiveprayers.di.component.DaggerApplicationComponent;
 import com.hbouzidi.fiveprayers.di.component.DaggerDefaultComponent;
 import com.hbouzidi.fiveprayers.di.component.DaggerReceiverComponent;
-import com.hbouzidi.fiveprayers.di.component.DaggerServiceComponent;
 import com.hbouzidi.fiveprayers.di.component.DaggerWidgetComponent;
 import com.hbouzidi.fiveprayers.di.component.DefaultComponent;
 import com.hbouzidi.fiveprayers.di.component.ReceiverComponent;
-import com.hbouzidi.fiveprayers.di.component.ServiceComponent;
 import com.hbouzidi.fiveprayers.di.component.WidgetComponent;
 import com.hbouzidi.fiveprayers.di.factory.worker.WorkerProviderFactory;
 import com.hbouzidi.fiveprayers.di.module.AppModule;
@@ -42,11 +40,6 @@ public class FivePrayerApplication extends MultiDexApplication {
             .builder()
             .appModule(new AppModule(this))
             .widgetModule(new WidgetModule())
-            .build();
-
-    public ServiceComponent serviceComponent = DaggerServiceComponent
-            .builder()
-            .appModule(new AppModule(this))
             .build();
 
     public ReceiverComponent receiverComponent = DaggerReceiverComponent

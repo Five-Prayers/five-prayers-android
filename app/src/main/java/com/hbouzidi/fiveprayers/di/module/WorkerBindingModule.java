@@ -2,6 +2,7 @@ package com.hbouzidi.fiveprayers.di.module;
 
 import com.hbouzidi.fiveprayers.di.factory.worker.ChildWorkerFactory;
 import com.hbouzidi.fiveprayers.di.factory.worker.WorkerKey;
+import com.hbouzidi.fiveprayers.job.InstantPrayerScheduler;
 import com.hbouzidi.fiveprayers.job.PrayerUpdater;
 
 import dagger.Binds;
@@ -19,4 +20,9 @@ public interface WorkerBindingModule {
     @IntoMap
     @WorkerKey(PrayerUpdater.class)
     ChildWorkerFactory bindPrayerUpdaterWorker(PrayerUpdater.Factory factory);
+
+    @Binds
+    @IntoMap
+    @WorkerKey(InstantPrayerScheduler.class)
+    ChildWorkerFactory bindInstantPrayerSchedulerWorker(InstantPrayerScheduler.Factory factory);
 }

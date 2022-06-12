@@ -7,6 +7,7 @@ import com.hbouzidi.fiveprayers.notifier.ReminderReceiver;
 import com.hbouzidi.fiveprayers.notifier.NotificationDismissedReceiver;
 import com.hbouzidi.fiveprayers.notifier.NotifierActionReceiver;
 import com.hbouzidi.fiveprayers.notifier.NotifierReceiver;
+import com.hbouzidi.fiveprayers.notifier.SilenterReceiver;
 
 import javax.inject.Singleton;
 
@@ -33,4 +34,6 @@ public interface ReceiverComponent {
     void inject(NotifierReceiver notifierReceiver);
 
     void inject(ReminderReceiver beforeAdhanAlertReceiver);
+
+    void inject(SilenterReceiver silenterReceiver);
 }

@@ -22,7 +22,7 @@ import androidx.preference.PreferenceDialogFragmentCompat;
 
 import com.hbouzidi.fiveprayers.FivePrayerApplication;
 import com.hbouzidi.fiveprayers.R;
-import com.hbouzidi.fiveprayers.location.AddressSearchService;
+import com.hbouzidi.fiveprayers.location.address.AddressSearchService;
 import com.hbouzidi.fiveprayers.preferences.PreferencesHelper;
 
 import org.jetbrains.annotations.NotNull;
@@ -186,7 +186,7 @@ public class AutoCompleteTextPreferenceDialog extends PreferenceDialogFragmentCo
     private void retrieveData(String str) {
         CompositeDisposable compositeDisposable = new CompositeDisposable();
         compositeDisposable.add(
-                addressSearchService.searchForLocation(str, SEARCH_RESULTS_LIMIT, this.context)
+                addressSearchService.searchForLocation(str, SEARCH_RESULTS_LIMIT)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribeWith(new DisposableSingleObserver<List<Address>>() {

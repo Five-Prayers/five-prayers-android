@@ -14,7 +14,7 @@ import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.hbouzidi.fiveprayers.FivePrayerApplication;
 import com.hbouzidi.fiveprayers.R;
-import com.hbouzidi.fiveprayers.job.PeriodicWorkCreator;
+import com.hbouzidi.fiveprayers.job.WorkCreator;
 import com.hbouzidi.fiveprayers.preferences.PreferencesHelper;
 
 import javax.inject.Inject;
@@ -54,7 +54,7 @@ public class MainActivity extends BaseActivity {
         navController.setGraph(navGraph);
         preferencesHelper.setFirstTimeLaunch(false);
 
-        PeriodicWorkCreator.schedulePrayerUpdater(this);
+        WorkCreator.schedulePeriodicPrayerUpdater(this);
     }
 
     @Override
@@ -63,7 +63,10 @@ public class MainActivity extends BaseActivity {
     }
 
     private boolean displaySettingsScreenFirst() {
-        return (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_DENIED) &&
+        return (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                == PackageManager.PERMISSION_DENIED) &&
+                (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
+                        == PackageManager.PERMISSION_DENIED) &&
                 preferencesHelper.isFirstLaunch();
     }
 

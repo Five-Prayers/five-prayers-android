@@ -1,10 +1,11 @@
 package com.hbouzidi.fiveprayers.ui.splashscreen;
 
-import android.animation.ObjectAnimator;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.ProgressBar;
+
+import androidx.core.splashscreen.SplashScreen;
 
 import com.hbouzidi.fiveprayers.R;
 import com.hbouzidi.fiveprayers.ui.BaseActivity;
@@ -18,32 +19,36 @@ import com.hbouzidi.fiveprayers.ui.MainActivity;
 public class SplashScreenActivity extends BaseActivity {
 
     private static final String TAG = "SplashScreenActivity";
-    private static final int LOADING_TIME = 1200;
+    private static final int LOADING_TIME = 1500;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash_screen);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            SplashScreen.installSplashScreen(this);
+            super.onCreate(savedInstanceState);
 
-        ProgressBar progressBar = findViewById(R.id.splash_progressbar);
-        ObjectAnimator objectAnimator = ObjectAnimator.ofInt(progressBar, "progress", 100);
-        objectAnimator.setDuration(LOADING_TIME);
-        objectAnimator.start();
+            Intent intent = new Intent(getBaseContext(), MainActivity.class);
+            startActivity(intent);
+            finish();
+        } else {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_splash_screen);
 
-        Thread myThread = new Thread() {
-            @Override
-            public void run() {
-                try {
-                    sleep(1200);
-                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                    startActivity(intent);
-                    finish();
-                } catch (InterruptedException e) {
-                    Log.e(TAG, "Cannot start MainActivity", e);
+            Thread myThread = new Thread() {
+                @Override
+                public void run() {
+                    try {
+                        sleep(LOADING_TIME);
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    } catch (InterruptedException e) {
+                        Log.e(TAG, "Cannot start MainActivity", e);
+                    }
                 }
-            }
-        };
-        myThread.start();
+            };
+            myThread.start();
+        }
     }
 
     @Override

@@ -16,9 +16,6 @@
         numberpicker:layout_constraintEnd_toEndOf="parent"
         numberpicker:layout_constraintStart_toStartOf="parent"
         numberpicker:layout_constraintTop_toTopOf="parent"
-        numberpicker:max="3"
-        numberpicker:min="-3"
-        numberpicker:unit="1"
         numberpicker:value="0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

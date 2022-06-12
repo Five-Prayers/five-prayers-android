@@ -90,6 +90,7 @@ public class TimingsServiceTest {
 
     @After
     public void tearDown() throws IOException {
+        ShadowTimingUtils.TIMEZONE = "Europe/Paris";
         RESTMockServer.shutdown();
         RESTMockServer.reset();
     }

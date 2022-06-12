@@ -1,6 +1,6 @@
 <resources>
     <string name="whats_new_dialog_title">Nouvelle fonctionnalité</string>
-    <string name="whats_new_dialog_message">Possibilité de traduire l\'application en arabe, vous pouvez l\'activer dans Paramètres</string>
+    <string name="whats_new_dialog_message">Il est possible de mettre le téléphone en mode silencieux après l\'Adhan ! vous pouvez l\'activer dans l\'écran des paramètres</string>
 
     <string name="about_five_prayers">À propos de Five Prayers</string>
     <string name="open_source_projects_used">Projets Open Source</string>
@@ -37,6 +37,10 @@
     <string name="common.license">Licence</string>
     <string name="common.offline">Hors ligne</string>
     <string name="common.minutes">minutes</string>
+
+    <string name="location_alert_title">Erreur de localisation</string>
+    <string name="location_alert_settings_button_title">Activer la localisation</string>
+    <string name="location_alert_manual_position_button_title">Définir l\'emplacement manuellement</string>
 
     <string name="app_name">Cinq Prières</string>
     <string name="title_home">Prières</string>
@@ -84,7 +88,7 @@
         comme: Horaires de prière dans le monde, différentes méthodes de calcul, notifications, lecture de l\'Adhan, direction de Qibla et plus encore …</string>
 
     <string name="app_intro_permission_denied_dialog_title">Information</string>
-    <string name="app_intro_permission_denied_dialog_message">Vous venez de refuser que l\'application accède à votre position. vous devez saisir manuellement votre ville dans l\'écran des paramètres.</string>
+    <string name="app_intro_permission_denied_dialog_message">L\'application a besoin de connaître votre emplacement pour calculer correctement les heures de prière. Vous pouvez définir votre emplacement manuellement dans l\'écran des paramètres.</string>
 
     <string name="FAJR">As`Sobh (Fajr)</string>
     <string name="SUNRISE">Levé</string>
@@ -202,6 +206,7 @@
     <string name="sub_title_lton_reminder_preference_section">Rappel du dernier tiers de la nuit</string>
     <string name="title_checkbox_location_preference">Saisir votre localisation manuellement</string>
     <string name="title_edit_text_location_preference">Localisation actuelle</string>
+    <string name="title_adhan_notifications_preference">Activer les Notifications</string>
     <string name="title_adhan_vibration_preference">Activer la vibration</string>
     <string name="title_douae_adhan_preference">Activer Douaa après Adhan</string>
     <string name="title_adhan_reminder_preference">Activer le rappel avant Adhan</string>
@@ -218,6 +223,15 @@
     <string name="preference_title_contact">Contactez-nous</string>
     <string name="preference_add_new_adhan">Ajouter un fichier Adhan</string>
     <string name="preference_unable_add_new_adhan">Impossible d\'ajouter un fichier Adhan</string>
+
+    <string name="title_silenter_preference_section">Mode silencieux</string>
+    <string name="text_silenter_preference_section">Mettre le téléphone en \'Ne pas déranger\' après l\'appel à la prière</string>
+    <string name="error_summary_silenter_preference_section">L\'application n\'est pas autorisée à passer à l\'état \'Ne pas déranger\'</string>
+    <string name="title_silenter_start_time">Commence après (en minutes)</string>
+    <string name="dialog_title_silenter_start_time">Début du Mode silencieux</string>
+    <string name="title_silenter_duration">Durée (en minutes)</string>
+    <string name="title_silenter_duration_friday_prayer">Durée après la prière du Vendredi (en minutes)</string>
+    <string name="dialog_title_silenter_duration">Durée du mode silencieux</string>
 
     <string name="latitude_adjustment_method_middle_of_the_night">Milieu de la nuit</string>
     <string name="latitude_adjustment_method_one_seventh">Septième de la nuit</string>
@@ -254,6 +268,9 @@
     <string name="adthan_reminder_notification_title">L\'heure de la prochaine prière est proche</string>
     <string name="adthan_notification_close_action_title">Couper le son et fermer</string>
 
+    <string name="scheduling_adhan_alert_notification_title">Impossible de programmer Adhan</string>
+    <string name="scheduling_adhan_alert_notification_text">L\'autorisation pour utiliser l\'alarme a été révoquée sur votre téléphone, sans elle, vous ne pouvez recevoir aucune notification Adhan. Veuillez accorder cette autorisation pour continuer à utiliser l\'application correctement</string>
+    <string name="scheduling_adhan_alert_notification_action_title">Accorder cette autorisation</string>
     <!--   User Messages    -->
 
     <string name="location_service_unavailable">Impossible de trouver votre position: veuillez vérifier que le service de localisation est activé sur votre téléphone ou définissez votre position manuellement dans la section des paramètres</string>

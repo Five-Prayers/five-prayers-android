@@ -28,7 +28,7 @@ android {
         minSdkVersion 16
         targetSdkVersion 32
         versionCode 31
-        versionName "2.6.0-snapshot"
+        versionName "2.6.0"
         archivesBaseName = "$applicationId-v$versionCode($versionName)"
 
         vectorDrawables.useSupportLibrary = true

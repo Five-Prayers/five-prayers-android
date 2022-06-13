@@ -99,6 +99,7 @@ Five Prayers Android is not Google Framework dependent, so this app can be used 
 * Reminders before each prayer
 * Reminder for Duha prayer
 * Switches Adhan to Silent by pressing down volume button
+* Automatically mute the phone after Adhan call
 * Month Prayer times table
 * Qibla direction compass from [Android Qibla Direction](https://github.com/hassaanjamil/hj-android-lib-qibla-direction)
 * Quran (Please consider this open-source project if your are looking for more features [Quran Android](https://github.com/quran/quran_android))

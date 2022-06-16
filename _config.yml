@@ -6,4 +6,6 @@ github:
     repository_url: https://github.com/Five-Prayers/five-prayers-android
     is_user_page: false
     is_project_page : true
+play_store:
+    url: https://play.google.com/store/apps/details?id=com.hbouzidi.fiveprayers
     

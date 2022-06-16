@@ -5,4 +5,5 @@ logo: ic_launcher.png
 github:
     repository_url: https://github.com/Five-Prayers/five-prayers-android
     is_user_page: false
+    is_project_page : false
     

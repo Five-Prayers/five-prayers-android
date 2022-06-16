@@ -72,12 +72,12 @@
     <string name="app_intro_frag_2_description">Five Prayers Android project aims to provide a private,
         anonymous and ads free experience for all users. Therefore, the app does not collect any data without your consent</string>
 
-    <string name="app_intro_frag_3_title">We need your permission</string>
+    <string name="app_intro_frag_3_title">Use your location data</string>
     <string name="app_intro_frag_3_description">In order to calculate prayer timings effectively,
-        this application need your permission to use your localisation capabilities. (recommended)</string>
+        this application need your permission to use your location capabilities. (recommended)</string>
 
-    <string name="app_intro_frag_3_5_description">We need also your permission to use background localisation capabilities
-        to update prayer timings without opening the application, please select \"allow all the time option\" in the next screen (recommended)</string>
+    <string name="app_intro_frag_3_5_description">We need also your permission to use background location capabilities
+        to update prayer timings even when the app is closed or not used, please select \"allow all the time option\" in the next screen (recommended)</string>
 
     <string name="app_intro_frag_4_title">Enjoy !</string>
     <string name="app_intro_frag_4_description">Five Prayer Android introduces great features and capabilities for all users,

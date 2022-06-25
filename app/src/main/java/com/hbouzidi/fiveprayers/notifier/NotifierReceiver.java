@@ -38,6 +38,6 @@ public class NotifierReceiver extends BroadcastReceiver {
             prayerNotification.createNotification(intent);
         }
 
-        widgetUpdater.updateHomeScreenWidget(context);
+        widgetUpdater.updateHomeScreenWidgets(context);
     }
 }

@@ -116,6 +116,17 @@
         </receiver>
 
         <receiver
+            android:name=".ui.widget.NextPrayerHomeScreenWidgetProvider"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/next_prayer_home_screen_widget_info" />
+        </receiver>
+
+        <receiver
             android:name="androidx.media.session.MediaButtonReceiver"
             android:exported="false">
             <intent-filter>

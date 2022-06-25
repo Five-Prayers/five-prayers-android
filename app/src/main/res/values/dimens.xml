@@ -22,7 +22,7 @@
     <dimen name="text_large">15sp</dimen>
     <dimen name="text_smlarge">20sp</dimen>
     <dimen name="text_mlarge">25sp</dimen>
-    <dimen name="text_xmlarge">20sp</dimen>
+    <dimen name="text_xmlarge">30sp</dimen>
     <dimen name="text_xxlarge">35sp</dimen>
     <dimen name="text_xxxlarge">45sp</dimen>
 
@@ -32,7 +32,6 @@
     <dimen name="appbar_padding">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
 
-
     <dimen name="cell_height">40dp</dimen>
     <dimen name="row_header_width">55dp</dimen>
     <dimen name="text_size">12sp</dimen>
@@ -41,4 +40,7 @@
     <dimen name="default_row_header_width">55dp</dimen>
     <dimen name="default_column_header_height">40dp</dimen>
 
+    <dimen name="widget_text_small">14sp</dimen>
+    <dimen name="widget_text_medium">16sp</dimen>
+    <dimen name="widget_text_large">28sp</dimen>
 </resources>

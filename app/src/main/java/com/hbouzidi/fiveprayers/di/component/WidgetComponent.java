@@ -4,6 +4,7 @@ import com.hbouzidi.fiveprayers.di.module.AppModule;
 import com.hbouzidi.fiveprayers.di.module.NetworkModule;
 import com.hbouzidi.fiveprayers.di.module.WidgetModule;
 import com.hbouzidi.fiveprayers.ui.widget.HomeScreenWidgetProvider;
+import com.hbouzidi.fiveprayers.ui.widget.NextPrayerHomeScreenWidgetProvider;
 
 import javax.inject.Singleton;
 
@@ -24,4 +25,6 @@ import dagger.Component;
 public interface WidgetComponent {
 
     void inject(HomeScreenWidgetProvider homeScreenWidgetProvider);
+
+    void inject(NextPrayerHomeScreenWidgetProvider nextPrayerHomeScreenWidgetProvider);
 }

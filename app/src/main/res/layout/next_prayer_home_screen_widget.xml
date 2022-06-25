@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/top_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_xmedium"
+        android:layout_marginLeft="@dimen/spacing_xmedium"
+        android:layout_marginEnd="@dimen/spacing_xmedium"
+        android:layout_marginRight="@dimen/spacing_xmedium"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.55"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.3"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/empty_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.25"
+                    android:fontFamily="sans-serif-condensed-medium"
+                    android:gravity="center|top"
+                    android:maxLines="1"
+                    android:shadowColor="#000000"
+                    android:shadowDx="1.5"
+                    android:shadowDy="1.5"
+                    android:shadowRadius="1.5"
+                    android:textAlignment="center"
+                    android:textColor="@color/black_squeeze"
+                    android:textSize="@dimen/widget_text_small" />
+
+                <TextView
+                    android:id="@+id/common_in_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.75"
+                    android:fontFamily="sans-serif-condensed-medium"
+                    android:gravity="center|top"
+                    android:maxLines="1"
+                    android:shadowColor="#000000"
+                    android:shadowDx="1.5"
+                    android:shadowDy="1.5"
+                    android:shadowRadius="1.5"
+                    android:textAlignment="center"
+                    android:textColor="@color/black_squeeze"
+                    android:textSize="@dimen/widget_text_small"
+                    tools:text="in 0:45" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.7"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.25"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/common_at_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-condensed-medium"
+                        android:gravity="center"
+                        android:maxLines="2"
+                        android:shadowColor="#000000"
+                        android:shadowDx="1.5"
+                        android:shadowDy="1.5"
+                        android:shadowRadius="1.5"
+                        android:textAlignment="center"
+                        android:textColor="@color/black_squeeze"
+                        android:textSize="@dimen/widget_text_small"
+                        tools:text="11:AM PM" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.75"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/next_prayer_name_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-condensed-medium"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:shadowColor="#000000"
+                        android:shadowDx="1.5"
+                        android:shadowDy="1.5"
+                        android:shadowRadius="1.5"
+                        android:text="Maghreb"
+                        android:textColor="@color/black_squeeze"
+                        android:textSize="@dimen/widget_text_large" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.45"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/next_next_prayer_name_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/spacing_middle"
+                    android:layout_marginLeft="@dimen/spacing_middle"
+                    android:layout_weight="0.5"
+                    android:fontFamily="sans-serif-condensed-medium"
+                    android:gravity="center|start|bottom"
+                    android:maxLines="1"
+                    android:shadowColor="#000000"
+                    android:shadowDx="1.5"
+                    android:shadowDy="1.5"
+                    android:shadowRadius="1.5"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/black_squeeze"
+                    android:textSize="@dimen/widget_text_medium"
+                    tools:text="Asr" />
+
+                <TextView
+                    android:id="@+id/next_next_prayer_timing_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/spacing_middle"
+                    android:layout_marginLeft="@dimen/spacing_middle"
+                    android:layout_weight="0.50"
+                    android:fontFamily="sans-serif-condensed-medium"
+                    android:gravity="center|end|bottom"
+                    android:maxLines="1"
+                    android:shadowColor="#000000"
+                    android:shadowDx="1.5"
+                    android:shadowDy="1.5"
+                    android:shadowRadius="1.5"
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/black_squeeze"
+                    android:textSize="@dimen/widget_text_medium"
+                    tools:text="4:10 PM" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/next_next_next_prayer_name_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/spacing_middle"
+                    android:layout_marginLeft="@dimen/spacing_middle"
+                    android:layout_weight="0.50"
+                    android:fontFamily="sans-serif-condensed-medium"
+                    android:gravity="center|start|top"
+                    android:maxLines="1"
+                    android:shadowColor="#000000"
+                    android:shadowDx="1.5"
+                    android:shadowDy="1.5"
+                    android:shadowRadius="1.5"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/black_squeeze"
+                    android:textSize="@dimen/widget_text_medium"
+                    tools:text="Maghreb" />
+
+                <TextView
+                    android:id="@+id/next_next_next_prayer_timing_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/spacing_middle"
+                    android:layout_marginLeft="@dimen/spacing_middle"
+                    android:layout_weight="0.50"
+                    android:fontFamily="sans-serif-condensed-medium"
+                    android:gravity="center|end|top"
+                    android:maxLines="1"
+                    android:shadowColor="#000000"
+                    android:shadowDx="1.5"
+                    android:shadowDy="1.5"
+                    android:shadowRadius="1.5"
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/black_squeeze"
+                    android:textSize="@dimen/widget_text_medium"
+                    tools:text="7:58 PM" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/widget_horizontal_progressbar"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/top_layout"
+        android:layout_gravity="center|top"
+        android:minHeight="5dp"
+        android:progressDrawable="@drawable/progess_drawable" />
+
+    <TextView
+        android:id="@+id/dates_text_View"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/widget_horizontal_progressbar"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:gravity="center|top"
+        android:shadowColor="#000000"
+        android:shadowDx="1.5"
+        android:shadowDy="1.5"
+        android:shadowRadius="1.5"
+        android:textAlignment="center"
+        android:textColor="@color/black_squeeze"
+        android:textSize="@dimen/widget_text_small"
+        tools:text="Sat. 18 Dhou Al Qi`da 1443 - 18 June" />
+
+    <LinearLayout
+        android:id="@+id/update_widget_ll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/dates_text_View"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="@dimen/spacing_medium"
+        android:gravity="end"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/update_time_text_View"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:gravity="end|top"
+            android:shadowColor="#000000"
+            android:shadowDx="1.5"
+            android:shadowDy="1.5"
+            android:shadowRadius="1.5"
+            android:textAlignment="textEnd"
+            android:textColor="@color/black_squeeze"
+            android:textSize="11sp"
+            tools:text="Update 00:06 PM" />
+    </LinearLayout>
+</RelativeLayout>

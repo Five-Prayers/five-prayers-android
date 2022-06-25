@@ -4,6 +4,7 @@ import android.content.Context;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
+import androidx.core.content.ContextCompat;
 
 import com.hbouzidi.fiveprayers.R;
 import com.hbouzidi.fiveprayers.preferences.PreferencesConstants;
@@ -38,12 +39,12 @@ public class BaseNotification {
     protected int getNotificationColor() {
         switch (preferencesHelper.getThemePreference()) {
             case PreferencesConstants.THEME_PREFERENCE_NAME_THEME_DARK_ORANGE:
-                return context.getResources().getColor(R.color.orange);
+                return ContextCompat.getColor(context, R.color.orange);
             case PreferencesConstants.THEME_PREFERENCE_NAME_THEME_DARK_TURQUOISE:
-                return context.getResources().getColor(R.color.turquoise_blue);
+                return ContextCompat.getColor(context, R.color.turquoise_blue);
             case PreferencesConstants.THEME_PREFERENCE_NAME_THEME_WHITE_BLUE:
             default:
-                return context.getResources().getColor(R.color.dodger_blue);
+                return ContextCompat.getColor(context, R.color.dodger_blue);
         }
     }
 }

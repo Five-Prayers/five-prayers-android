@@ -6,4 +6,8 @@
     <dimen name="text_xmlarge">20sp</dimen>
     <dimen name="text_xxlarge">23sp</dimen>
     <dimen name="text_xxxlarge">33sp</dimen>
+
+    <dimen name="widget_text_small">12sp</dimen>
+    <dimen name="widget_text_medium">13sp</dimen>
+    <dimen name="widget_text_large">24sp</dimen>
 </resources>

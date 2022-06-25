@@ -16,13 +16,14 @@
 
 
         <TextView
-            android:id="@+id/hijri_date_text_View"
+            android:id="@+id/date_text_View"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginStart="@dimen/spacing_xmedium"
             android:layout_marginLeft="@dimen/spacing_xmedium"
             android:layout_weight="1"
-            android:gravity="start|center"
+            android:gravity="center"
+            android:textAlignment="center"
             android:shadowColor="#000000"
             android:shadowDx="1.5"
             android:shadowDy="1.5"
@@ -30,22 +31,6 @@
             android:textColor="@color/black_squeeze"
             android:textSize="@dimen/text_middle"
             tools:text="30 Joumada Ath`Thania" />
-
-        <TextView
-            android:id="@+id/holiday_text_View"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginEnd="@dimen/spacing_xmedium"
-            android:layout_marginRight="@dimen/spacing_xmedium"
-            android:layout_weight="1"
-            android:gravity="end|center"
-            android:shadowColor="#000000"
-            android:shadowDx="1.5"
-            android:shadowDy="1.5"
-            android:shadowRadius="1.5"
-            android:textColor="@color/black_squeeze"
-            android:textSize="@dimen/text_middle"
-            tools:text="@string/FIRST_DAY_OF_RAMADAN" />
     </LinearLayout>
 
     <LinearLayout

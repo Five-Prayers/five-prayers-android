@@ -39,6 +39,11 @@
     <string name="common.plus" translatable="false">+</string>
     <string name="common.minus" translatable="false">-</string>
     <string name="common.minutes">minutes</string>
+    <string name="common.hours.separator">h</string>
+    <string name="common.minutes.separator">m</string>
+    <string name="common.in">in</string>
+    <string name="common.at">at</string>
+    <string name="common.update">Update</string>
 
     <string name="location_alert_title">Location Error</string>
     <string name="location_alert_settings_button_title">Enable location service</string>
@@ -102,6 +107,7 @@
     <string name="LAST_THIRD_OF_THE_NIGHT">Last third of the Night</string>
 
     <string name="SHORT_FAJR">Fajr</string>
+    <string name="SHORT_SUNRISE">Sunrise</string>
     <string name="SHORT_DHOHR">Dohr</string>
     <string name="SHORT_ASR">Asr</string>
     <string name="SHORT_MAGHRIB">Maghreb</string>

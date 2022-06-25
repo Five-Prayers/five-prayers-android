@@ -37,6 +37,11 @@
     <string name="common.license">رخصة التطبيق</string>
     <string name="common.offline">غير متصل على الانترنت</string>
     <string name="common.minutes">دقيقة</string>
+    <string name="common.hours.separator">س</string>
+    <string name="common.minutes.separator">د</string>
+    <string name="common.in">بعد</string>
+    <string name="common.at">على</string>
+    <string name="common.update">تحديث</string>
 
     <string name="location_alert_title">خطأ في الحصول على الموقع</string>
     <string name="location_alert_settings_button_title">تمكين الوصول إلى الموقع</string>
@@ -98,6 +103,7 @@
     <string name="LAST_THIRD_OF_THE_NIGHT">الثلث الأخير من الليل</string>
 
     <string name="SHORT_FAJR">الفجر</string>
+    <string name="SHORT_SUNRISE">الشروق</string>
     <string name="SHORT_DHOHR">الظهر</string>
     <string name="SHORT_ASR">العصر</string>
     <string name="SHORT_MAGHRIB">المغرب</string>

@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.text.SpannableString;
 import android.text.style.StyleSpan;
-import android.view.View;
 import android.widget.RemoteViews;
 
 import androidx.core.content.ContextCompat;
@@ -15,7 +14,6 @@ import androidx.core.content.ContextCompat;
 import com.hbouzidi.fiveprayers.FivePrayerApplication;
 import com.hbouzidi.fiveprayers.R;
 import com.hbouzidi.fiveprayers.common.ComplementaryTimingEnum;
-import com.hbouzidi.fiveprayers.common.HijriHoliday;
 import com.hbouzidi.fiveprayers.common.PrayerEnum;
 import com.hbouzidi.fiveprayers.location.address.AddressHelper;
 import com.hbouzidi.fiveprayers.location.tracker.LocationHelper;
@@ -25,6 +23,7 @@ import com.hbouzidi.fiveprayers.timings.TimingServiceFactory;
 import com.hbouzidi.fiveprayers.timings.TimingsService;
 import com.hbouzidi.fiveprayers.utils.LocaleHelper;
 import com.hbouzidi.fiveprayers.utils.PrayerUtils;
+import com.hbouzidi.fiveprayers.utils.TimingUtils;
 import com.hbouzidi.fiveprayers.utils.UiUtils;
 
 import org.apache.commons.lang3.StringUtils;
@@ -32,6 +31,9 @@ import org.jetbrains.annotations.NotNull;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
+import java.time.format.TextStyle;
+import java.util.Locale;
 
 import javax.inject.Inject;
 
@@ -104,9 +106,7 @@ public class HomeScreenWidgetProvider extends AppWidgetProvider {
                                     dayPrayer.getHijriYear()
                             );
 
-                            populateHolidayTextView(dayPrayer, remoteViews, context);
-
-                            populateHijriDateTextView(remoteViews, hijriDate);
+                            populateDateTextView(remoteViews, dayPrayer, context);
 
                             populateTimingsTextViews(dayPrayer, remoteViews, nextPrayerKey, context);
 
@@ -123,22 +123,23 @@ public class HomeScreenWidgetProvider extends AppWidgetProvider {
                 });
     }
 
-    private void populateHolidayTextView(@NotNull DayPrayer dayPrayer, RemoteViews remoteViews, Context context) {
-        HijriHoliday holiday = HijriHoliday.getHoliday(dayPrayer.getHijriDay(), dayPrayer.getHijriMonthNumber());
+    private void populateDateTextView(RemoteViews remoteViews, DayPrayer dayPrayer, Context context) {
+        ZonedDateTime zonedDateTime = TimingUtils.getZonedDateTimeFromTimestamps(dayPrayer.getTimestamp(), dayPrayer.getTimezone());
+        String nameOfTheDay = zonedDateTime.getDayOfWeek().getDisplayName(TextStyle.SHORT, Locale.getDefault());
 
-        if (holiday != null) {
-            String holidayName = context.getResources().getString(
-                    context.getResources().getIdentifier(holiday.toString(), "string", context.getPackageName()));
+        String hijriMonth = context.getApplicationContext().getResources().getString(
+                context.getResources().getIdentifier("hijri_month_" + dayPrayer.getHijriMonthNumber(), "string", context.getPackageName()));
 
-            remoteViews.setTextViewText(R.id.holiday_text_View, StringUtils.capitalize(holidayName));
-            remoteViews.setViewVisibility(R.id.holiday_text_View, View.VISIBLE);
-        } else {
-            remoteViews.setViewVisibility(R.id.holiday_text_View, View.INVISIBLE);
-        }
-    }
+        String hijriDate = UiUtils.formatFullHijriDate(
+                nameOfTheDay,
+                dayPrayer.getHijriDay(),
+                hijriMonth,
+                dayPrayer.getHijriYear()
+        );
 
-    private void populateHijriDateTextView(RemoteViews remoteViews, String hijriDate) {
-        remoteViews.setTextViewText(R.id.hijri_date_text_View, StringUtils.capitalize(hijriDate));
+        String gregorianDate = UiUtils.formatMediumReadableGregorianDate(zonedDateTime);
+
+        remoteViews.setTextViewText(R.id.date_text_View, StringUtils.capitalize(hijriDate) + " - " + StringUtils.capitalize(gregorianDate));
     }
 
     private void populateTimingsTextViews(@NotNull DayPrayer dayPrayer, RemoteViews remoteViews, PrayerEnum nextPrayerKey, Context context) {

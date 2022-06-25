@@ -158,7 +158,7 @@ public class HomeFragment extends Fragment {
             updateTimingsTextViews(dayPrayer);
             startPrayerSchedulerWork(dayPrayer);
 
-            widgetUpdater.updateHomeScreenWidget(requireContext());
+            widgetUpdater.updateHomeScreenWidgets(requireContext());
 
             skeleton.showOriginal();
 

@@ -121,7 +121,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
             BaseActivity baseActivity = (BaseActivity) requireActivity();
             localeUtils.refreshLocale(requireContext(), baseActivity);
             requireActivity().recreate();
-            widgetUpdater.updateHomeScreenWidget(requireContext());
+            widgetUpdater.updateHomeScreenWidgets(requireContext());
         }
     }
 

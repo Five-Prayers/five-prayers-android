@@ -37,6 +37,11 @@
     <string name="common.license">Licence</string>
     <string name="common.offline">Hors ligne</string>
     <string name="common.minutes">minutes</string>
+    <string name="common.hours.separator">h</string>
+    <string name="common.minutes.separator">m</string>
+    <string name="common.in">dans</string>
+    <string name="common.at">à</string>
+    <string name="common.update">Mise à jour</string>
 
     <string name="location_alert_title">Erreur de localisation</string>
     <string name="location_alert_settings_button_title">Activer la localisation</string>
@@ -100,6 +105,7 @@
     <string name="LAST_THIRD_OF_THE_NIGHT">Dernier tiers de la nuit</string>
 
     <string name="SHORT_FAJR">Fajr</string>
+    <string name="SHORT_SUNRISE">Levé</string>
     <string name="SHORT_DHOHR">Dohr</string>
     <string name="SHORT_ASR">Asr</string>
     <string name="SHORT_MAGHRIB">Maghreb</string>

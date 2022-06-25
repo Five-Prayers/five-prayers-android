@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.widget.RemoteViews;
 
 import com.hbouzidi.fiveprayers.R;
+import com.hbouzidi.fiveprayers.utils.LocaleHelper;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -20,12 +21,25 @@ import javax.inject.Singleton;
 public class WidgetUpdater {
 
     @Inject
+    LocaleHelper localeUtils;
+
+    @Inject
     public WidgetUpdater() {
     }
 
-    public void updateHomeScreenWidget(Context context) {
+    public void updateHomeScreenWidgets(Context context) {
+        updateHomeScreenWidget(context);
+        updateNextPrayerHomeScreenWidget(context);
+    }
+
+    private void updateHomeScreenWidget(Context context) {
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
-        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.home_screen_widget);
+        int layoutId = R.layout.home_screen_widget;
+
+        if (localeUtils.getLocale().getLanguage().equals("ar")) {
+            layoutId = R.layout.home_screen_widget_rtl;
+        }
+        RemoteViews views = new RemoteViews(context.getPackageName(), layoutId);
 
         appWidgetManager.updateAppWidget(new ComponentName(context.getPackageName(), HomeScreenWidgetProvider.class.getName()), views);
 
@@ -34,6 +48,28 @@ public class WidgetUpdater {
         intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
 
         int[] ids = AppWidgetManager.getInstance(context).getAppWidgetIds(new ComponentName(context, HomeScreenWidgetProvider.class));
+        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
+        context.sendBroadcast(intent);
+    }
+
+    private void updateNextPrayerHomeScreenWidget(Context context) {
+        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+
+        int layoutId = R.layout.next_prayer_home_screen_widget;
+
+        if (localeUtils.getLocale().getLanguage().equals("ar")) {
+            layoutId = R.layout.next_prayer_home_screen_widget_rtl;
+        }
+
+        RemoteViews views = new RemoteViews(context.getPackageName(), layoutId);
+
+        appWidgetManager.updateAppWidget(new ComponentName(context.getPackageName(), NextPrayerHomeScreenWidgetProvider.class.getName()), views);
+
+
+        Intent intent = new Intent(context, NextPrayerHomeScreenWidgetProvider.class);
+        intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+
+        int[] ids = AppWidgetManager.getInstance(context).getAppWidgetIds(new ComponentName(context, NextPrayerHomeScreenWidgetProvider.class));
         intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
         context.sendBroadcast(intent);
     }

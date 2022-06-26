@@ -17,7 +17,7 @@ public class UiUtilsTest {
     @Test
     public void formatTimeForTimer() {
         String str = UiUtils.formatTimeForTimer(21767000);
-        assertEquals("- 06:02:47", str);
+        assertEquals("- 6:2:47", str);
     }
 
     @Test

@@ -36,12 +36,12 @@ public class NotifierActionReceiver extends BroadcastReceiver {
         }
     }
 
-    public void closeNotification(int notificationId, Context context) {
+    private void closeNotification(int notificationId, Context context) {
         NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         manager.cancel(notificationId);
     }
 
-    public void muteAdhanCaller() {
+    private void muteAdhanCaller() {
         adhanPlayer.stopAdhan();
     }
 }

@@ -6,6 +6,8 @@ import android.content.Intent;
 
 import com.hbouzidi.fiveprayers.job.WorkCreator;
 
+import java.util.Objects;
+
 /**
  * @author Hicham Bouzidi Idrissi
  * Github : https://github.com/Five-Prayers/five-prayers-android
@@ -15,6 +17,10 @@ public class NotifierBootReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        WorkCreator.schedulePeriodicPrayerUpdater(context);
+        String action = intent.getAction();
+
+        if (Objects.equals(action, Intent.ACTION_BOOT_COMPLETED)) {
+            WorkCreator.schedulePeriodicPrayerUpdater(context);
+        }
     }
 }

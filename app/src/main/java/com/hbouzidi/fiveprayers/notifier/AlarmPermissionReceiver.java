@@ -1,5 +1,6 @@
 package com.hbouzidi.fiveprayers.notifier;
 
+import android.app.AlarmManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -15,6 +16,10 @@ public class AlarmPermissionReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        WorkCreator.schedulePeriodicPrayerUpdater(context);
+        String action = intent.getAction();
+
+        if (action.equals(AlarmManager.ACTION_SCHEDULE_EXACT_ALARM_PERMISSION_STATE_CHANGED)) {
+            WorkCreator.schedulePeriodicPrayerUpdater(context);
+        }
     }
 }

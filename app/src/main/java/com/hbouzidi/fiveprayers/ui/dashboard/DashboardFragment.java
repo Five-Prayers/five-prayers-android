@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.hbouzidi.fiveprayers.R;
 import com.hbouzidi.fiveprayers.ui.calendar.CalendarActivity;
+import com.hbouzidi.fiveprayers.ui.dailyverse.DailyVerseActivity;
 import com.hbouzidi.fiveprayers.ui.names.NamesActivity;
 import com.hbouzidi.fiveprayers.ui.qibla.CompassActivity;
 import com.hbouzidi.fiveprayers.ui.quran.index.QuranIndexActivity;
@@ -35,18 +36,19 @@ public class DashboardFragment extends Fragment {
 
         ArrayList<DashboardModel> dashboardModelArrayList = new ArrayList<>();
 
-        int heads[] = {R.string.title_qibla_direction, R.string.title_calendar, R.string.gregorian_hijri_calendar, R.string.quran, R.string.names_view_title};
+        int heads[] = {R.string.title_qibla_direction, R.string.title_calendar, R.string.gregorian_hijri_calendar, R.string.quran, R.string.names_view_title, R.string.daily_verse_title};
 
-        int subs[] = {R.string.desc_qibla_direction, R.string.desc_calendar_view_title, R.string.desc_gregorian_hijri_calendar, R.string.desc_quran, R.string.ndesc_ames_view_title};
+        int subs[] = {R.string.desc_qibla_direction, R.string.desc_calendar_view_title, R.string.desc_gregorian_hijri_calendar, R.string.desc_quran, R.string.ndesc_ames_view_title, R.string.daily_verse__description};
 
         int images[] = {R.drawable.ic_compass_24dp, R.drawable.ic_table_24dp, R.drawable.ic_calendar_24dp, R.drawable.ic_quran_24dp,
-                R.drawable.ic_alah_24dp};
+                R.drawable.ic_alah_24dp, R.drawable.ic_book_24dp};
 
         Intent intents[] = {new Intent(getActivity(), CompassActivity.class),
                 new Intent(getActivity(), TimingTableActivity.class),
                 new Intent(getActivity(), CalendarActivity.class),
                 new Intent(getActivity(), QuranIndexActivity.class),
-                new Intent(getActivity(), NamesActivity.class)
+                new Intent(getActivity(), NamesActivity.class),
+                new Intent(getActivity(), DailyVerseActivity.class)
         };
 
         for (int count = 0; count < heads.length; count++) {

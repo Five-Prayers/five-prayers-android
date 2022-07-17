@@ -365,4 +365,22 @@ public class PreferencesHelper {
         final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         return defaultSharedPreferences.getBoolean(PreferencesConstants.NOTIFICATIONS_ENABLED, true);
     }
+
+    public boolean isDailyVerseEnabled() {
+        final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return defaultSharedPreferences.getBoolean(PreferencesConstants.TODAY_VERSE_ENABLED, true);
+    }
+
+    public String getDailyVerseKey() {
+        final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return defaultSharedPreferences.getString(PreferencesConstants.TODAY_VERSE_KEY, "0");
+    }
+
+    public void setDailyVerseKey(String key) {
+        final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+
+        SharedPreferences.Editor edit = defaultSharedPreferences.edit();
+        edit.putString(PreferencesConstants.TODAY_VERSE_KEY, key);
+        edit.apply();
+    }
 }

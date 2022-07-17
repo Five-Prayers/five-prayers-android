@@ -6,6 +6,7 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.hbouzidi.fiveprayers.quran.dto.Ayah;
 import com.hbouzidi.fiveprayers.quran.dto.QuranPage;
 import com.hbouzidi.fiveprayers.quran.dto.Surah;
 
@@ -15,7 +16,9 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Hicham Bouzidi Idrissi
@@ -30,10 +33,12 @@ public class QuranParser {
 
     private List<Surah> surahList;
     private List<QuranPage> quranPages;
+    private Map<String, List<Ayah>> todayVerses;
 
     private QuranParser() {
         surahList = new ArrayList<>();
         quranPages = new ArrayList<>();
+        todayVerses = new HashMap<>();
     }
 
     public static QuranParser getInstance() {
@@ -55,6 +60,13 @@ public class QuranParser {
             parsePagesFromAssets(context);
         }
         return quranPages;
+    }
+
+    public Map<String, List<Ayah>> getDailyVerses(Context context) {
+        if (todayVerses.isEmpty()) {
+            parseVersesFromAssets(context);
+        }
+        return todayVerses;
     }
 
     private void parseSurahsFromAssets(Context context) {
@@ -87,6 +99,21 @@ public class QuranParser {
             quranPages = gson.fromJson(reader, type);
         } catch (IOException e) {
             Log.e(TAG, "cannot parse quran-pages.json", e);
+        }
+    }
+
+    private void parseVersesFromAssets(Context context) {
+        AssetManager assetManager = context.getAssets();
+        try {
+            InputStream ims = assetManager.open("daily-verses.json");
+            Gson gson = new Gson();
+            Reader reader = new InputStreamReader(ims);
+
+            Type type = new TypeToken<Map<String,ArrayList<Ayah>>>() {
+            }.getType();
+            todayVerses = gson.fromJson(reader, type);
+        } catch (IOException e) {
+            Log.e(TAG, "cannot parse daily-verses.json", e);
         }
     }
 }

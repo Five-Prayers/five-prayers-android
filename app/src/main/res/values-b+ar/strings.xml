@@ -237,6 +237,8 @@
     <string name="title_silenter_duration_friday_prayer">المدة بعد صلاة الجمعة (بالدقائق)</string>
     <string name="dialog_title_silenter_duration">المدة (بالدقائق)</string>
 
+    <string name="title_daily_verse_preference">تفعيل الآيات اليومية</string>
+
     <string name="latitude_adjustment_method_middle_of_the_night">منتصف الليل</string>
     <string name="latitude_adjustment_method_one_seventh">السابع من الليل</string>
     <string name="latitude_adjustment_method_angle_based">على أساس التثليث</string>
@@ -294,13 +296,19 @@
     <string name="msg_delete_bookmark_confirmation">هل تريد حذف هذه الإشارة المرجعية؟</string>
     <string name="msg_empty_bookmarks_place_holer">لا توجد إشارات مرجعية !</string>
 
+    <string name="daily_verse_title">آية اليوم</string>
+    <string name="daily_verse__description">اقرأ آية اليوم</string>
+    <string name="daily_verse_notification_title">آية اليوم</string>
+    <string name="daily_verse_notification_description">اقرأ آية اليوم: %1$s - آية %2$d</string>
+    <string name="daily_verse_notification_action_title">شاهد المزيد</string>
+
     <string name="juz_to_display">الجزء %d</string>
     <string name="hizb_to_display">الحزب %d</string>
     <string name="part_to_display">%s  الحزب  %d</string>
     <string name="quran">القرآن الكريم</string>
     <string name="desc_quran">اقرأ القرآن الكريم</string>
     <string name="title_checkbox_quran_night_mode">وضع الليل</string>
-    <string name="title_notification_section">إشعار الأذان</string>
+    <string name="title_notification_section">الإشعارات</string>
     <string name="dialog_title_fajr_adhan">حدد أذان فجر</string>
     <string name="dialog_title_adhan">حدد الأذان</string>
 

@@ -3,12 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.hbouzidi.fiveprayers">
 
-    <uses-sdk tools:overrideLibrary="androidx.core.splashscreen"/>
+    <uses-sdk tools:overrideLibrary="androidx.core.splashscreen" />
 
     <queries>
         <intent>
             <action android:name="android.intent.action.VIEW" />
+
             <category android:name="android.intent.category.BROWSABLE" />
+
             <data android:scheme="https" />
         </intent>
     </queries>
@@ -52,7 +54,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.appintro.IntroActivity" android:theme="@style/Theme.AppCompat"/>
+        <activity
+            android:name=".ui.appintro.IntroActivity"
+            android:theme="@style/Theme.AppCompat" />
         <activity
             android:name=".ui.splashscreen.SplashScreenActivity"
             android:screenOrientation="portrait" />
@@ -70,6 +74,11 @@
             android:name=".ui.report.ErrorActivity"
             android:label="@string/error_title"
             android:process=":error_activity" />
+        <activity
+            android:name=".ui.dailyverse.DailyVerseActivity"
+            android:launchMode="singleTask"
+            android:taskAffinity=""
+            android:excludeFromRecents="true" />
 
         <receiver
             android:name=".notifier.NotifierBootReceiver"
@@ -103,29 +112,28 @@
             android:name=".notifier.NotifierActionReceiver"
             android:enabled="true" />
         <receiver android:name=".notifier.NotificationDismissedReceiver" />
-
         <receiver
             android:name=".ui.widget.HomeScreenWidgetProvider"
             android:exported="false">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
+
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/home_screen_widget_info" />
         </receiver>
-
         <receiver
             android:name=".ui.widget.NextPrayerHomeScreenWidgetProvider"
             android:exported="false">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
+
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/next_prayer_home_screen_widget_info" />
         </receiver>
-
         <receiver
             android:name=".notifier.CustomMediaButtonReceiver"
             android:exported="false">
@@ -133,20 +141,22 @@
                 <action android:name="android.intent.action.MEDIA_BUTTON" />
             </intent-filter>
         </receiver>
-
+        <receiver
+            android:name=".notifier.DailyVerseReceiver"
+            android:enabled="true" />
         <!-- Disable androidx.startup only for WorkManagerInitializer -->
         <provider
             android:name="androidx.startup.InitializationProvider"
             android:authorities="${applicationId}.androidx-startup"
             android:exported="false"
             tools:node="merge">
+
             <!-- If you are using androidx.startup to initialize other components -->
             <meta-data
                 android:name="androidx.work.WorkManagerInitializer"
                 android:value="androidx.startup"
                 tools:node="remove" />
         </provider>
-
     </application>
 
 </manifest>

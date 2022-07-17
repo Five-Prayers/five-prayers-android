@@ -71,6 +71,10 @@ public class PrayerAlarmScheduler {
         if (preferencesHelper.isSilenterEnabled()) {
             scheduleSilenter(dayPrayer);
         }
+
+        if (preferencesHelper.isDailyVerseEnabled()) {
+            scheduleDailyVerse(dayPrayer);
+        }
     }
 
     private boolean canScheduleExactAlarms() {
@@ -199,6 +203,29 @@ public class PrayerAlarmScheduler {
         }
 
         Log.i(TAG, "End scheduling Silenter for: " + dayPrayer.getDate());
+    }
+
+    private void scheduleDailyVerse(DayPrayer dayPrayer) {
+        Log.i(TAG, "Start scheduling Daily Verse for: " + dayPrayer.getDate());
+
+        Map<ComplementaryTimingEnum, LocalDateTime> timings = dayPrayer.getComplementaryTiming();
+
+        LocalDateTime sunriseTiming = timings.get(ComplementaryTimingEnum.SUNRISE);
+
+            if (sunriseTiming != null && LocalDateTime.now().isBefore(sunriseTiming)) {
+                Log.i(TAG, "Scheduling Daily Verse at : " + TimingUtils.formatTiming(sunriseTiming));
+
+                AlarmManager alarmMgr = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+                Intent intent = new Intent(context, DailyVerseReceiver.class);
+
+                intent.addFlags(Intent.FLAG_RECEIVER_FOREGROUND);
+
+                PendingIntent alarmIntent = PendingIntentCreator.getBroadcast(context, 542, intent, FLAG_UPDATE_CURRENT);
+                alarmMgr.cancel(alarmIntent);
+
+                scheduleAlarm(sunriseTiming, alarmMgr, alarmIntent);
+            }
+        Log.i(TAG, "End scheduling Daily Verse for: " + dayPrayer.getDate());
     }
 
     private PendingIntent getSilenterPendingIntent(int index, AlarmManager alarmMgr, boolean turnToSilent) {

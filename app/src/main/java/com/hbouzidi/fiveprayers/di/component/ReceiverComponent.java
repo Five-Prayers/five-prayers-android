@@ -3,6 +3,7 @@ package com.hbouzidi.fiveprayers.di.component;
 import com.hbouzidi.fiveprayers.di.module.AppModule;
 import com.hbouzidi.fiveprayers.di.module.NetworkModule;
 import com.hbouzidi.fiveprayers.di.module.WidgetModule;
+import com.hbouzidi.fiveprayers.notifier.DailyVerseReceiver;
 import com.hbouzidi.fiveprayers.notifier.ReminderReceiver;
 import com.hbouzidi.fiveprayers.notifier.NotificationDismissedReceiver;
 import com.hbouzidi.fiveprayers.notifier.NotifierActionReceiver;
@@ -36,4 +37,6 @@ public interface ReceiverComponent {
     void inject(ReminderReceiver beforeAdhanAlertReceiver);
 
     void inject(SilenterReceiver silenterReceiver);
+
+    void inject(DailyVerseReceiver dailyVerseReceiver);
 }

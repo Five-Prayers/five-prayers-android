@@ -70,6 +70,13 @@
         <CheckBoxPreference
             android:dependency="NOTIFICATIONS_ENABLED"
             android:defaultValue="true"
+            android:key="TODAY_VERSE_ENABLED"
+            android:layout="@layout/custom_switch_preference"
+            android:title="@string/title_daily_verse_preference" />
+
+        <CheckBoxPreference
+            android:dependency="NOTIFICATIONS_ENABLED"
+            android:defaultValue="true"
             android:key="ADHAN_VIBRATION_PREFERENCE"
             android:layout="@layout/custom_switch_preference"
             android:title="@string/title_adhan_vibration_preference" />

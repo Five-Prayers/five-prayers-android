@@ -241,6 +241,8 @@
     <string name="title_silenter_duration_friday_prayer">Duration for Friday prayer (in minutes)</string>
     <string name="dialog_title_silenter_duration">Duration</string>
 
+    <string name="title_daily_verse_preference">Enable daily verses</string>
+
     <string name="latitude_adjustment_method_middle_of_the_night">Middle of the Night</string>
     <string name="latitude_adjustment_method_one_seventh">One Seventh</string>
     <string name="latitude_adjustment_method_angle_based">Angle Based</string>
@@ -301,6 +303,12 @@
     <string name="usermade_bookmarks_title">Favorites</string>
     <string name="msg_delete_bookmark_confirmation">Remove this Bookmark ?</string>
     <string name="msg_empty_bookmarks_place_holer">There is no Bookmarks to show !</string>
+
+    <string name="daily_verse_title">Today\'s verse</string>
+    <string name="daily_verse__description">Read Today\'s verse</string>
+    <string name="daily_verse_notification_title">Today\'s verse</string>
+    <string name="daily_verse_notification_description">Read Today\'s verse: Surat %1$s - Ayah %2$d</string>
+    <string name="daily_verse_notification_action_title">See more</string>
 
     <string name="juz_to_display">الجزء %d</string>
     <string name="hizb_to_display">الحزب %d</string>

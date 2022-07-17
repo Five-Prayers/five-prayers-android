@@ -3,7 +3,23 @@ package com.hbouzidi.fiveprayers.utils;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Point;
+import android.graphics.Typeface;
 import android.net.Uri;
+import android.os.Build;
+import android.text.Layout;
+import android.text.StaticLayout;
+import android.text.TextDirectionHeuristics;
+import android.text.TextPaint;
+import android.view.Display;
+import android.view.WindowManager;
+
+import androidx.annotation.ColorRes;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
 
 import java.text.NumberFormat;
 import java.time.LocalDate;
@@ -142,5 +158,70 @@ public class UiUtils {
                 context.getPackageName());
 
         return Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + context.getPackageName() + "/" + mediaId);
+    }
+
+    public static Bitmap textToBitmap(String text,
+                                      int textSize, int fontId,
+                                      @ColorRes int textColorRes,
+                                      @ColorRes int textShadowColorRes,
+                                      @ColorRes int backgroundColorRes, Context context) {
+
+        Typeface font = ResourcesCompat.getFont(context, fontId);
+
+        // prepare canvas
+        Resources resources = context.getResources();
+        float scale = resources.getDisplayMetrics().density;
+
+        // new antialiased Paint
+        TextPaint paint = new TextPaint(Paint.ANTI_ALIAS_FLAG);
+        // text color - #3D3D3D
+        paint.setColor(ContextCompat.getColor(context, textColorRes));
+        // text size in pixels
+        paint.setTextSize((int) (textSize * scale));
+        // text shadow
+        paint.setShadowLayer(1f, 0f, 1f, ContextCompat.getColor(context, textShadowColorRes));
+        paint.setTypeface(font);
+        paint.setTextAlign(Paint.Align.LEFT);
+
+        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        Display display = wm.getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+
+        // init StaticLayout for text
+        StaticLayout textLayout;
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            textLayout = StaticLayout.Builder
+                    .obtain(text, 0, text.length(), paint, (int) (size.x * 0.8))
+                    .setAlignment(Layout.Alignment.ALIGN_CENTER)
+                    .setTextDirection(TextDirectionHeuristics.RTL)
+                    .build();
+        } else {
+            textLayout = new StaticLayout(
+                    text, paint, (int) (size.x * 0.8), Layout.Alignment.ALIGN_CENTER, 1.0f, 1.0f, true);
+        }
+
+        Bitmap bitmap = Bitmap.createBitmap(textLayout.getWidth(), textLayout.getHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        canvas.drawColor(ContextCompat.getColor(context, backgroundColorRes));
+
+        // set text width to canvas width minus 16dp padding
+        int textWidth = textLayout.getWidth();
+
+        // get height of multiline text
+        int textHeight = textLayout.getHeight();
+
+        // get position of text's top left corner
+        int x = (bitmap.getWidth() - textWidth) / 2;
+        int y = (bitmap.getHeight() - textHeight) / 2;
+
+        // draw text to the Canvas center
+        canvas.save();
+        canvas.translate(x, y);
+        textLayout.draw(canvas);
+        canvas.restore();
+
+        return bitmap;
     }
 }

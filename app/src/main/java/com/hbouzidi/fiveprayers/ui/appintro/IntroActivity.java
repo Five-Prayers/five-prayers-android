@@ -97,13 +97,6 @@ public class IntroActivity extends AppIntro {
     }
 
     @Override
-    protected void onUserDeniedPermission(@NonNull String permissionName) {
-        AlertHelper.displayAlertDialog(this,
-                getResources().getString(R.string.app_intro_permission_denied_dialog_title),
-                getResources().getString(R.string.app_intro_permission_denied_dialog_message));
-    }
-
-    @Override
     protected void onSkipPressed(Fragment currentFragment) {
         super.onSkipPressed(currentFragment);
     }

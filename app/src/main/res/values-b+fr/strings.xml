@@ -53,6 +53,11 @@
     <string name="title_settings">Paramètres</string>
     <string name="label.unknown_location">Localisation inconnue</string>
 
+    <!-- Widgets -->
+    <string name="simple_widget_description">Widget Simple</string>
+    <string name="clock_widget_description">Widget avec horloge</string>
+    <string name="next_prayer_widget_description">Widget avec prière suivante</string>
+
     <!-- App Theme preferences -->
     <string name="theme_preference_section">Apparence</string>
     <string name="theme_preference_title">Thème</string>
@@ -434,4 +439,16 @@
     <string name="ALLAH_NAME_98">Celui qui agit avec droiture</string>
     <string name="ALLAH_NAME_99">Le Patient</string>
     <string name="error_title">Error Activity</string>
+
+    <string name="title_weather_information_preference">Météo</string>
+    <string name="title_weather_api_key">Clé d\'API (sur openweathermap.org)</string>
+    <string name="title_temperature_unit">Mesure de la température</string>
+
+    <string name="temperature_unit_standard">K</string>
+    <string name="temperature_unit_metric">°C</string>
+    <string name="temperature_unit_imperial">°F</string>
+
+    <string name="title_temperature_unit_standard">Kelvin</string>
+    <string name="title_temperature_unit_metric">Celsius</string>
+    <string name="title_temperature_unit_imperial">Fahrenheit</string>
 </resources>

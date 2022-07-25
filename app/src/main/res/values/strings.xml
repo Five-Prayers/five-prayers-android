@@ -55,6 +55,11 @@
     <string name="title_settings">Settings</string>
     <string name="label.unknown_location">Unknown Location</string>
 
+    <!-- Widgets -->
+    <string name="simple_widget_description">Simple Widget</string>
+    <string name="clock_widget_description">Clock Widget</string>
+    <string name="next_prayer_widget_description">Next Prayer Widget</string>
+
     <!-- App Theme preferences -->
     <string name="theme_preference_section">Appearance</string>
     <string name="theme_preference_title">Theme</string>
@@ -437,4 +442,16 @@
     <string name="ALLAH_NAME_98">The Guide, Infallible Teacher</string>
     <string name="ALLAH_NAME_99">The Forbearing, The Patient</string>
     <string name="error_title">Error Activity</string>
+
+    <string name="title_weather_information_preference">Weather</string>
+    <string name="title_weather_api_key">API Key (from openweathermap.org)</string>
+    <string name="title_temperature_unit">Temperature unit</string>
+
+    <string name="temperature_unit_standard">K</string>
+    <string name="temperature_unit_metric">°C</string>
+    <string name="temperature_unit_imperial">°F</string>
+
+    <string name="title_temperature_unit_standard">Kelvin</string>
+    <string name="title_temperature_unit_metric">Celsius</string>
+    <string name="title_temperature_unit_imperial">Fahrenheit</string>
 </resources>

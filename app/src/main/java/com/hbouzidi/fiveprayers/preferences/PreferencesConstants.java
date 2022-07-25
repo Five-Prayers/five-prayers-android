@@ -88,4 +88,8 @@ public class PreferencesConstants {
     // Today verse
     public static final String TODAY_VERSE_ENABLED = "TODAY_VERSE_ENABLED";
     public static final String TODAY_VERSE_KEY = "TODAY_VERSE_KEY";
+
+    // OpenWeather
+    public static final String OPEN_WEATHER_API_KEY = "OPEN_WEATHER_API_KEY";
+    public static final String OPEN_WEATHER_UNIT = "OPEN_WEATHER_UNIT";
 }

@@ -13,6 +13,7 @@ import androidx.preference.PreferenceManager;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.hbouzidi.fiveprayers.R;
+import com.hbouzidi.fiveprayers.openweathermap.TemperatureUnit;
 import com.hbouzidi.fiveprayers.quran.dto.QuranBookmark;
 import com.hbouzidi.fiveprayers.timings.calculations.CalculationMethodEnum;
 import com.hbouzidi.fiveprayers.timings.calculations.CountryCalculationMethod;
@@ -382,5 +383,15 @@ public class PreferencesHelper {
         SharedPreferences.Editor edit = defaultSharedPreferences.edit();
         edit.putString(PreferencesConstants.TODAY_VERSE_KEY, key);
         edit.apply();
+    }
+
+    public String getOpenWeatherAPIKey() {
+        final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return defaultSharedPreferences.getString(PreferencesConstants.OPEN_WEATHER_API_KEY, null);
+    }
+
+    public String getOpenWeatherUnit() {
+        final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return defaultSharedPreferences.getString(PreferencesConstants.OPEN_WEATHER_UNIT, TemperatureUnit.metric.toString());
     }
 }

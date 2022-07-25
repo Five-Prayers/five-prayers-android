@@ -55,7 +55,8 @@ public class AdhanPlayer {
             adhanMediaPlayer.start();
 
             if (preferencesHelper.isDouaeAfterAdhanEnabled() &&
-                    !Uri.parse(preferencesHelper.getAdhanCaller()).equals(UiUtils.uriFromRaw(PreferencesConstants.SHORT_PRAYER_CALL, context))) {
+                    !Uri.parse(preferencesHelper.getAdhanCaller()).equals(UiUtils.uriFromRaw(PreferencesConstants.SHORT_PRAYER_CALL, context)) &&
+                    !Uri.parse(preferencesHelper.getAdhanCaller()).equals(UiUtils.uriFromRaw(PreferencesConstants.TAKBEER_ONLY_CALL, context))) {
 
                 adhanMediaPlayer.setNextMediaPlayer(douaMediaPlayer);
             }

@@ -106,6 +106,7 @@
         <item>@string/adhan_al_haram_el_madani</item>
         <item>@string/adhan_meshary_al_fasy</item>
         <item>@string/adhan_nurdin_al_haddiwi_fajr_morocco</item>
+        <item>@string/takbeer_only_call</item>
         <item>@string/short_prayer_call</item>
     </string-array>
     <string-array name="entryvalues_fajr_adhan_list_preference">
@@ -113,6 +114,7 @@
         <item>ADHAN_FAJR_AL_HARAM_EL_MADANI_SAOUDIA</item>
         <item>ADHAN_FAJR_MESHARY_AL_FASY_KUWAIT</item>
         <item>ADHAN_FAJR_NURDIN_AL_HADDIWI_FAJR_MOROCCO</item>
+        <item>TAKBEER_ONLY_CALL</item>
         <item>SHORT_PRAYER_CALL</item>
     </string-array>
 
@@ -123,6 +125,8 @@
         <item>@string/adhan_nurdin_hamza_al_maghriby</item>
         <item>@string/adhan_omar_al_kazabri</item>
         <item>@string/adhan_riad_al_djazairi</item>
+        <item>@string/adhan_sayed_al_nakshabandi</item>
+        <item>@string/takbeer_only_call</item>
         <item>@string/short_prayer_call</item>
     </string-array>
     <string-array name="entryvalues_adhan_list_preference">
@@ -132,6 +136,8 @@
         <item>ADHAN_OMAR_AL_KAZABRI_MOROCCO</item>
         <item>ADHAN_NURDIN_HAMZA_AL_MAGHRIBY_QUDS</item>
         <item>ADHAN_RIAD_AL_DJAZAIRI_ALGERIA</item>
+        <item>ADHAN_SAYED_AL_NAKSHABANDI_EGYPTE</item>
+        <item>TAKBEER_ONLY_CALL</item>
         <item>SHORT_PRAYER_CALL</item>
     </string-array>
 

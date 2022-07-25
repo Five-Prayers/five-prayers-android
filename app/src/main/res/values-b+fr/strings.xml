@@ -330,7 +330,10 @@
     <string name="adhan_manssour_el_zahrani">Manssour El Zahrani</string>
     <string name="adhan_nurdin_al_haddiwi_fajr_morocco">Nurdin Al Haddiwi</string>
     <string name="adhan_nurdin_hamza_al_maghriby">Nurdin Al Maghriby (Al Quds)</string>
+    <string name="adhan_sayed_al_nakshabandi">Sayed Al Nakshabandi</string>
+
     <string name="short_prayer_call">Rappel court (Pas d\'Adhan)</string>
+    <string name="takbeer_only_call">Takbir seul</string>
     <string name="title_adhan_fajr">Adhan al Fajr</string>
     <string name="title_adhan_rest_prayers">Adhan des autres prières</string>
     <string name="title_adhan">Adhan</string>

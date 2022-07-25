@@ -36,12 +36,14 @@ public class PreferencesConstants {
     public static final String ADHAN_VIBRATION_PREFERENCE = "ADHAN_VIBRATION_PREFERENCE";
     public static final String DOUAE_AFTER_ADHAN_PREFERENCE = "DOUAE_AFTER_ADHAN_PREFERENCE";
     public static final String SHORT_PRAYER_CALL = "short_prayer_call";
+    public static final String TAKBEER_ONLY_CALL = "TAKBEER_ONLY_CALL";
     public static final String ADHAN_FAJR_ABDELBASSET_ABDESSAMAD_EGYPTE = "ADHAN_FAJR_ABDELBASSET_ABDESSAMAD_EGYPTE";
     public static final String ADHAN_FAJR_AL_HARAM_EL_MADANI_SAOUDIA = "ADHAN_FAJR_AL_HARAM_EL_MADANI_SAOUDIA";
     public static final String ADHAN_FAJR_MESHARY_AL_FASY_KUWAIT = "ADHAN_FAJR_MESHARY_AL_FASY_KUWAIT";
     public static final String ADHAN_ABDELBASSET_ABDESSAMAD_EGYPTE = "ADHAN_ABDELBASSET_ABDESSAMAD_EGYPTE";
     public static final String ADHAN_OMAR_AL_KAZABRI_MOROCCO = "ADHAN_OMAR_AL_KAZABRI_MOROCCO";
     public static final String ADHAN_RIAD_AL_DJAZAIRI_ALGERIA = "ADHAN_RIAD_AL_DJAZAIRI_ALGERIA";
+    public static final String ADHAN_SAYED_AL_NAKSHABANDI_EGYPTE = "ADHAN_SAYED_AL_NAKSHABANDI_EGYPTE";
     public static final String ADHAN_MESHARY_AL_FASY_KUWAIT = "ADHAN_MESHARY_AL_FASY_KUWAIT";
 
     // Timings adjustment

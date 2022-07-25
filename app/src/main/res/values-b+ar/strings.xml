@@ -325,7 +325,10 @@
     <string name="adhan_manssour_el_zahrani">منصور الزهراني</string>
     <string name="adhan_nurdin_al_haddiwi_fajr_morocco">نور الدين الحديوي</string>
     <string name="adhan_nurdin_hamza_al_maghriby">نور الدين المغربي (القدس)</string>
+    <string name="adhan_sayed_al_nakshabandi">سيد النقشبندي</string>
+
     <string name="short_prayer_call">تذكير قصير بالعربية</string>
+    <string name="takbeer_only_call">تكبير فقط</string>
     <string name="title_adhan_fajr">أذان الفجر</string>
     <string name="title_adhan_rest_prayers">أذان باقي الصلوات</string>
     <string name="title_adhan">أذان</string>

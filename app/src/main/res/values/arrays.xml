@@ -134,4 +134,15 @@
         <item>ADHAN_RIAD_AL_DJAZAIRI_ALGERIA</item>
         <item>SHORT_PRAYER_CALL</item>
     </string-array>
+
+    <string-array name="entries_temperature_unit_list_preference">
+        <item>@string/title_temperature_unit_standard</item>
+        <item>@string/title_temperature_unit_metric</item>
+        <item>@string/title_temperature_unit_imperial</item>
+    </string-array>
+    <string-array name="entryvalues_temperature_unit_list_preference">
+        <item>standard</item>
+        <item>metric</item>
+        <item>imperial</item>
+    </string-array>
 </resources>

@@ -53,6 +53,11 @@
     <string name="title_settings">الإعدادات</string>
     <string name="label.unknown_location">موقع غير معروف</string>
 
+    <!-- Widgets -->
+    <string name="simple_widget_description">ودجت بسيط</string>
+    <string name="clock_widget_description">ودجت مع الساعة</string>
+    <string name="next_prayer_widget_description">ودجت مع الصلاة المقبلة</string>
+
     <!-- App Theme preferences -->
     <string name="theme_preference_section">إعدادات المظهر</string>
     <string name="theme_preference_title">لون المظهر</string>
@@ -429,4 +434,16 @@
     <string name="ALLAH_NAME_98">الرشيد</string>
     <string name="ALLAH_NAME_99">الصبور</string>
     <string name="error_title">Error Activity</string>
+
+    <string name="title_weather_information_preference">معلومات الطقس</string>
+    <string name="title_weather_api_key">مفتاح واجهة التطبيق البرمجية (openweathermap.org)</string>
+    <string name="title_temperature_unit">وحدة درجة الحرارة</string>
+
+    <string name="temperature_unit_standard">ك</string>
+    <string name="temperature_unit_metric">°م</string>
+    <string name="temperature_unit_imperial">°ف</string>
+
+    <string name="title_temperature_unit_standard">وحدة الحرارة المطلقة</string>
+    <string name="title_temperature_unit_metric">درجة مئوية/ سلسيوس</string>
+    <string name="title_temperature_unit_imperial">فهرنهايت</string>
 </resources>

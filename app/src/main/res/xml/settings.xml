@@ -38,6 +38,29 @@
     </PreferenceCategory>
 
     <PreferenceCategory
+        android:icon="@drawable/ic_weather"
+        android:layout="@layout/custom_preference_category"
+        android:title="@string/title_weather_information_preference">
+
+        <EditTextPreference
+            android:key="OPEN_WEATHER_API_KEY"
+            android:layout="@layout/custom_preference"
+            android:title="@string/title_weather_api_key"
+            android:persistent="true"
+            android:dialogTitle="@string/title_weather_api_key"
+            app:useSimpleSummaryProvider="true" />
+
+        <ListPreference
+            android:defaultValue="metric"
+            android:dialogTitle="@string/title_temperature_unit"
+            android:entries="@array/entries_temperature_unit_list_preference"
+            android:entryValues="@array/entryvalues_temperature_unit_list_preference"
+            android:key="OPEN_WEATHER_UNIT"
+            android:layout="@layout/custom_preference"
+            android:title="@string/title_temperature_unit"
+            app:useSimpleSummaryProvider="true" />
+    </PreferenceCategory>
+    <PreferenceCategory
         android:icon="@drawable/ic_location_15"
         android:layout="@layout/custom_preference_category"
         android:title="@string/title_location_preference_section">

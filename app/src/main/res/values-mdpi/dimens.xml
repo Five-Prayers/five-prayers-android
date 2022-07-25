@@ -10,6 +10,7 @@
     <dimen name="widget_text_small">13sp</dimen>
     <dimen name="widget_text_medium">15sp</dimen>
     <dimen name="widget_text_large">26sp</dimen>
+    <dimen name="widget_text_xxxlarge">60sp</dimen>
 
     <dimen name="quran_text_large">14sp</dimen>
 </resources>

@@ -99,12 +99,14 @@ Five Prayers Android is not Google Framework dependent, so this app can be used 
 * Reminders before each prayer
 * Reminder for Duha prayer
 * Switches Adhan to Silent by pressing down volume button
-* Automatically mute the phone after Adhan call
+* Automatically turn the phone to 'no disturb' mode after Adhan
 * Month Prayer times table
 * Qibla direction compass from [Android Qibla Direction](https://github.com/hassaanjamil/hj-android-lib-qibla-direction)
 * Quran (Please consider this open-source project if your are looking for more features [Quran Android](https://github.com/quran/quran_android))
+* Daily Ayah notification
 * 99 Names of God
-* Home Screen Widget
+* Multiple Home Screen Widgets
+* Weather information in Clock Widget (Go to OpenWeatherMap and sign up for free. It may take a while before the API-Key is activated!)
 * Dark Themes
 
 ## Translating
@@ -150,6 +152,9 @@ Please refer to this page <a href="https://five-prayers.github.io/five-prayers-a
 * [Quran Android](https://github.com/quran/quran_android)
 * [PrimeCalendar](https://github.com/aminography/PrimeCalendar)
 * [Adhan Java](https://github.com/batoulapps/adhan-java)
+* [Weather Project](https://codeberg.org/BeoCode/Weather)
+* [Weather Icons by E. Flowers & L. Bischoff](https://erikflowers.github.io/weather-icons/)
+
 
 ## License
 [![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](http://www.gnu.org/licenses/gpl-3.0.en.html)  

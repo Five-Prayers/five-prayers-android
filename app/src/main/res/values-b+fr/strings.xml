@@ -1,6 +1,6 @@
 <resources>
     <string name="whats_new_dialog_title">Nouvelle fonctionnalité</string>
-    <string name="whats_new_dialog_message">Il est possible de mettre le téléphone en mode silencieux après l\'Adhan ! vous pouvez l\'activer dans l\'écran des paramètres</string>
+    <string name="whats_new_dialog_message">Nous avons ajouté des notifications Ayahs quotidiennes et un nouveau Widget avec des informations météorologiques</string>
 
     <string name="about_five_prayers">À propos de Five Prayers</string>
     <string name="open_source_projects_used">Projets Open Source</string>

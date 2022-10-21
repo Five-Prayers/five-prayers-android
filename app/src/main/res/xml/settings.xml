@@ -126,6 +126,15 @@
             app:useSimpleSummaryProvider="true"
             />
 
+        <com.hbouzidi.fiveprayers.ui.settings.common.VolumeSeekbarPreference
+            android:layout="@layout/seekbar_preference"
+            android:dependency="NOTIFICATIONS_ENABLED"
+            android:title="@string/title_adhan_volume"
+            app:seekBarIncrement="1"
+            app:showSeekBarValue="true"
+            android:summaryOn="true"
+            app:min="1" />
+
         <CheckBoxPreference
             android:dependency="NOTIFICATIONS_ENABLED"
             android:defaultValue="true"

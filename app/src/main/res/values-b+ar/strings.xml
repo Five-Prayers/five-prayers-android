@@ -332,6 +332,7 @@
     <string name="title_adhan_fajr">أذان الفجر</string>
     <string name="title_adhan_rest_prayers">أذان باقي الصلوات</string>
     <string name="title_adhan">أذان</string>
+    <string name="title_adhan_volume">صوت الأذان</string>
 
     <string name="names_view_title">أسماء الله الحسنى‎</string>
     <string name="ndesc_ames_view_title"></string>

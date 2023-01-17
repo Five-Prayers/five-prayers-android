@@ -337,6 +337,7 @@
     <string name="title_adhan_fajr">Adhan al Fajr</string>
     <string name="title_adhan_rest_prayers">Adhan des autres prières</string>
     <string name="title_adhan">Adhan</string>
+    <string name="title_adhan_volume">Volume de l\'Adhan</string>
 
     <string name="names_view_title">Asma’ Allah al-Ḥusná</string>
     <string name="ndesc_ames_view_title">Les plus beaux noms de Dieu</string>

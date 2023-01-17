@@ -340,6 +340,7 @@
     <string name="title_adhan_fajr">Fajr Adhan</string>
     <string name="title_adhan_rest_prayers">Adhan of other prayers</string>
     <string name="title_adhan">Adhan</string>
+    <string name="title_adhan_volume">Adhan Volume</string>
 
     <string name="names_view_title">Beautiful Names of God</string>
     <string name="ndesc_ames_view_title">99 Names of God</string>

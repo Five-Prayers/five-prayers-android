@@ -37,8 +37,7 @@ public class ShadowAladhanAPIService {
                                                            final CalculationMethodEnum method,
                                                            final LatitudeAdjustmentMethod latitudeAdjustmentMethod,
                                                            SchoolAdjustmentMethod schoolAdjustmentMethod,
-                                                           MidnightModeAdjustmentMethod midnightModeAdjustmentMethod, final int adjustment,
-                                                           final String tune
+                                                           MidnightModeAdjustmentMethod midnightModeAdjustmentMethod, final int adjustment
     ) throws IOException {
 
         long epochSecond = LocalDateTime.now().atZone(ZoneId.systemDefault()).toEpochSecond();
@@ -52,7 +51,7 @@ public class ShadowAladhanAPIService {
                         latitudeAdjustmentMethod.getValue(),
                         schoolAdjustmentMethod.getValue(),
                         midnightModeAdjustmentMethod.getValue(),
-                        adjustment, tune, ZoneId.systemDefault().getId());
+                        adjustment, ZoneId.systemDefault().getId());
 
         return call.execute().body();
     }
@@ -65,8 +64,7 @@ public class ShadowAladhanAPIService {
             final LatitudeAdjustmentMethod latitudeAdjustmentMethod,
             SchoolAdjustmentMethod schoolAdjustmentMethod,
             MidnightModeAdjustmentMethod midnightModeAdjustmentMethod,
-            final int adjustment,
-            final String tune) throws IOException {
+            final int adjustment) throws IOException {
 
         AladhanAPIResource aladhanAPIResource = provideRetrofit().create(AladhanAPIResource.class);
 
@@ -78,7 +76,6 @@ public class ShadowAladhanAPIService {
                         schoolAdjustmentMethod.getValue(),
                         midnightModeAdjustmentMethod.getValue(),
                         adjustment,
-                        tune,
                         ZoneId.systemDefault().getId()
                 );
 

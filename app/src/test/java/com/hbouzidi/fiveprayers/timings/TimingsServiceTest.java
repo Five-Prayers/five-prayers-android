@@ -77,7 +77,7 @@ public class TimingsServiceTest {
         PreferencesHelper preferencesHelper = new PreferencesHelper(applicationContext);
 
         AladhanAPIService aladhanAPIService = new AladhanAPIService(provideRetrofit());
-        PrayerRegistry prayerRegistry = new PrayerRegistry(applicationContext);
+        PrayerRegistry prayerRegistry = new PrayerRegistry(applicationContext, preferencesHelper);
         OfflineTimingsService offlineTimingsService = new OfflineTimingsService(preferencesHelper);
 
         AladhanTimingsService aladhanTimingsService = new AladhanTimingsService(aladhanAPIService, prayerRegistry, offlineTimingsService, preferencesHelper);

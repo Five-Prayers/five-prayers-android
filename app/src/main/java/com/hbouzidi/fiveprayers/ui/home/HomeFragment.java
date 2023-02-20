@@ -6,6 +6,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.TypedArray;
+import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -352,16 +353,11 @@ public class HomeFragment extends Fragment {
         });
 
         String locationText;
-        if (dayPrayer.getCity() != null) {
+        if (dayPrayer.getCity() != null && dayPrayer.getCountry() != null) {
             locationText = StringUtils.capitalize(dayPrayer.getCity());
-        } else {
-            locationText = getString(R.string.common_offline);
-        }
-
-        if (dayPrayer.getCountry() != null) {
             locationText += StringUtils.capitalize(" - " + dayPrayer.getCountry() + " (" + timezone + ")");
         } else {
-            locationText += StringUtils.capitalize(" (" + timezone + ")");
+            locationText = UiUtils.convertAndFormatCoordinates(dayPrayer.getLatitude(), dayPrayer.getLongitude());
         }
 
         locationTextView.setText(locationText);

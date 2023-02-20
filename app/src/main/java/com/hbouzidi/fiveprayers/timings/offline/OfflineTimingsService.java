@@ -160,7 +160,7 @@ public class OfflineTimingsService {
         Map<PrayerEnum, LocalDateTime> timings = new LinkedHashMap<>(5);
         Map<ComplementaryTimingEnum, LocalDateTime> complementaryTiming = new LinkedHashMap<>(4);
 
-        DayPrayer dayPrayer = new DayPrayer(TimingUtils.formatDateForAdhanAPI(localDate), epochSecond, null, null,
+        DayPrayer dayPrayer = new DayPrayer(TimingUtils.formatDateForAdhanAPI(localDate), epochSecond, address.getLocality(), address.getCountryName(),
                 hijriCalendar.getDayOfMonth(),
                 hijriCalendar.getMonth() + 1,
                 hijriCalendar.getYear(),

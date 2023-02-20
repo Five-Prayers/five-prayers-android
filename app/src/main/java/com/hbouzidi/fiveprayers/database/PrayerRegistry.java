@@ -8,6 +8,8 @@ import android.util.Log;
 
 import com.hbouzidi.fiveprayers.common.ComplementaryTimingEnum;
 import com.hbouzidi.fiveprayers.common.PrayerEnum;
+import com.hbouzidi.fiveprayers.preferences.PreferencesConstants;
+import com.hbouzidi.fiveprayers.preferences.PreferencesHelper;
 import com.hbouzidi.fiveprayers.timings.DayPrayer;
 import com.hbouzidi.fiveprayers.timings.aladhan.AladhanData;
 import com.hbouzidi.fiveprayers.timings.aladhan.AladhanDate;
@@ -21,7 +23,7 @@ import com.hbouzidi.fiveprayers.utils.TimingUtils;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -39,10 +41,12 @@ import javax.inject.Singleton;
 public class PrayerRegistry {
 
     private final DatabaseHelper databaseHelper;
+    private final PreferencesHelper preferencesHelper;
 
     @Inject
-    public PrayerRegistry(Context context) {
+    public PrayerRegistry(Context context, PreferencesHelper preferencesHelper) {
         databaseHelper = new DatabaseHelper(context);
+        this.preferencesHelper = preferencesHelper;
     }
 
     public long savePrayerTiming(LocalDate localDate,
@@ -272,6 +276,8 @@ public class PrayerRegistry {
 
         String calculationMethod = cursor.getString(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_CALCULATION_METHOD));
 
+        Map<String, Integer> tuneMap = preferencesHelper.getTuneMap();
+
         dayPrayer = new DayPrayer(
                 dateStr,
                 cursor.getLong(cursor.getColumnIndex(PrayerModel.COLUMN_NAME_DATE_TIMESTAMP)),
@@ -286,13 +292,20 @@ public class PrayerRegistry {
         );
 
         LocalDateTime fajrTime = TimingUtils.transformTimingToDate(fajrTiming, dateStr, false);
+        LocalDateTime dohrTime = TimingUtils.transformTimingToDate(dohrTiming, dateStr, false);
+        LocalDateTime asrTime = TimingUtils.transformTimingToDate(asrTiming, dateStr, false);
         LocalDateTime maghribTime = TimingUtils.transformTimingToDate(maghribTiming, dateStr, TimingUtils.isBeforeOnSameDay(maghribTiming, dohrTiming));
+        LocalDateTime ichaeTime = TimingUtils.transformTimingToDate(ichaTiming, dateStr, TimingUtils.isBeforeOnSameDay(ichaTiming, dohrTiming));
 
-        timings.put(PrayerEnum.FAJR, fajrTime);
-        timings.put(PrayerEnum.DHOHR, TimingUtils.transformTimingToDate(dohrTiming, dateStr, false));
-        timings.put(PrayerEnum.ASR, TimingUtils.transformTimingToDate(asrTiming, dateStr, false));
-        timings.put(PrayerEnum.MAGHRIB, maghribTime);
-        timings.put(PrayerEnum.ICHA, TimingUtils.transformTimingToDate(ichaTiming, dateStr, TimingUtils.isBeforeOnSameDay(ichaTiming, dohrTiming)));
+        timings.put(PrayerEnum.FAJR, fajrTime.plus(tuneMap.get(PreferencesConstants.FAJR_TIMING_ADJUSTMENT), ChronoUnit.MINUTES));
+
+        timings.put(PrayerEnum.DHOHR, dohrTime.plus(tuneMap.get(PreferencesConstants.DOHR_TIMING_ADJUSTMENT), ChronoUnit.MINUTES));
+
+        timings.put(PrayerEnum.ASR, asrTime.plus(tuneMap.get(PreferencesConstants.ASR_TIMING_ADJUSTMENT), ChronoUnit.MINUTES));
+
+        timings.put(PrayerEnum.MAGHRIB, maghribTime.plus(tuneMap.get(PreferencesConstants.MAGHREB_TIMING_ADJUSTMENT), ChronoUnit.MINUTES));
+
+        timings.put(PrayerEnum.ICHA, ichaeTime.plus(tuneMap.get(PreferencesConstants.ICHA_TIMING_ADJUSTMENT), ChronoUnit.MINUTES));
 
         LocalDateTime sunriseTime = TimingUtils.transformTimingToDate(sunriseTiming, dateStr, false);
 

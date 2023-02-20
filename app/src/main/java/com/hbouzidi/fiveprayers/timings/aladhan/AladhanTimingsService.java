@@ -46,8 +46,8 @@ public class AladhanTimingsService extends AbstractTimingsService {
                         timingsPreferences.getLatitudeAdjustmentMethod(),
                         timingsPreferences.getSchoolAdjustmentMethod(),
                         timingsPreferences.getMidnightModeAdjustmentMethod(),
-                        timingsPreferences.getHijriAdjustment(),
-                        timingsPreferences.getTune());
+                        timingsPreferences.getHijriAdjustment()
+                );
 
         if (timingsByCity != null && address.getLocality() != null) {
             prayerRegistry.savePrayerTiming(localDate,
@@ -76,8 +76,8 @@ public class AladhanTimingsService extends AbstractTimingsService {
                         timingsPreferences.getLatitudeAdjustmentMethod(),
                         timingsPreferences.getSchoolAdjustmentMethod(),
                         timingsPreferences.getMidnightModeAdjustmentMethod(),
-                        timingsPreferences.getHijriAdjustment(),
-                        timingsPreferences.getTune());
+                        timingsPreferences.getHijriAdjustment()
+                );
 
         if (CalendarByCity != null) {
             prayerRegistry.saveCalendar(

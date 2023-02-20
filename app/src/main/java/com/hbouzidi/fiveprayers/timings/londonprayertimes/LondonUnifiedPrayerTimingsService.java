@@ -60,8 +60,8 @@ public class LondonUnifiedPrayerTimingsService extends AbstractTimingsService {
                         timingsPreferences.getLatitudeAdjustmentMethod(),
                         timingsPreferences.getSchoolAdjustmentMethod(),
                         timingsPreferences.getMidnightModeAdjustmentMethod(),
-                        timingsPreferences.getHijriAdjustment(),
-                        timingsPreferences.getTune());
+                        timingsPreferences.getHijriAdjustment()
+                );
 
         LondonUnifiedTimingsResponse londonTimings = londonUnifiedPrayerAPIService.getLondonTimings();
 
@@ -96,8 +96,8 @@ public class LondonUnifiedPrayerTimingsService extends AbstractTimingsService {
                         timingsPreferences.getLatitudeAdjustmentMethod(),
                         timingsPreferences.getSchoolAdjustmentMethod(),
                         timingsPreferences.getMidnightModeAdjustmentMethod(),
-                        timingsPreferences.getHijriAdjustment(),
-                        timingsPreferences.getTune());
+                        timingsPreferences.getHijriAdjustment()
+                );
 
         LondonUnifiedCalendarResponse londonCalendar = londonUnifiedPrayerAPIService.getLondonCalendar(month, year);
 

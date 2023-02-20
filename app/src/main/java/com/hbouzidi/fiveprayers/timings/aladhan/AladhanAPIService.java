@@ -42,8 +42,7 @@ public class AladhanAPIService {
             final LatitudeAdjustmentMethod latitudeAdjustmentMethod,
             SchoolAdjustmentMethod schoolAdjustmentMethod,
             MidnightModeAdjustmentMethod midnightModeAdjustmentMethod,
-            final int adjustment,
-            final String tune
+            final int adjustment
 
     ) throws IOException {
 
@@ -58,7 +57,7 @@ public class AladhanAPIService {
                         latitudeAdjustmentMethod.getValue(),
                         schoolAdjustmentMethod.getValue(),
                         midnightModeAdjustmentMethod.getValue(),
-                        adjustment, tune, ZoneId.systemDefault().getId());
+                        adjustment, ZoneId.systemDefault().getId());
 
         return call.execute().body();
     }
@@ -71,8 +70,7 @@ public class AladhanAPIService {
             final LatitudeAdjustmentMethod latitudeAdjustmentMethod,
             SchoolAdjustmentMethod schoolAdjustmentMethod,
             MidnightModeAdjustmentMethod midnightModeAdjustmentMethod,
-            final int adjustment,
-            final String tune) throws IOException {
+            final int adjustment) throws IOException {
 
         AladhanAPIResource aladhanAPIResource = retrofit.create(AladhanAPIResource.class);
 
@@ -84,7 +82,6 @@ public class AladhanAPIService {
                         schoolAdjustmentMethod.getValue(),
                         midnightModeAdjustmentMethod.getValue(),
                         adjustment,
-                        tune,
                         ZoneId.systemDefault().getId()
                 );
 

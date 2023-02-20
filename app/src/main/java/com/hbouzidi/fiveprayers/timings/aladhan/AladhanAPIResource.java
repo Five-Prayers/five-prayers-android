@@ -22,8 +22,7 @@ public interface AladhanAPIResource {
             @Query("latitudeAdjustmentMethod") int latitudeAdjustmentMethod,
             @Query("school") int school,
             @Query("midnightMode") int midnightMode,
-            @Query("adjustment") int adjustment,
-            @Query("tune") String tune);
+            @Query("adjustment") int adjustment);
 
     @GET("timings/{date_or_timestamp}")
     Call<AladhanTodayTimingsResponse> getTimingsByLatLong(
@@ -36,7 +35,6 @@ public interface AladhanAPIResource {
             @Query("school") int school,
             @Query("midnightMode") int midnightMode,
             @Query("adjustment") int adjustment,
-            @Query("tune") String tune,
             @Query("timezonestring") String timezonestring
     );
 
@@ -52,8 +50,7 @@ public interface AladhanAPIResource {
             @Query("latitudeAdjustmentMethod") int latitudeAdjustmentMethod,
             @Query("school") int school,
             @Query("midnightMode") int midnightMode,
-            @Query("adjustment") int adjustment,
-            @Query("tune") String tune
+            @Query("adjustment") int adjustment
     );
 
     @GET("calendar")
@@ -69,7 +66,6 @@ public interface AladhanAPIResource {
             @Query("school") int school,
             @Query("midnightMode") int midnightMode,
             @Query("adjustment") int adjustment,
-            @Query("tune") String tune,
             @Query("timezonestring") String timezonestring
     );
 }

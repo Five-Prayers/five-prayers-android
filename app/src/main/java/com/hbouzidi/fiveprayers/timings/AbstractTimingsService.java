@@ -43,6 +43,7 @@ public abstract class AbstractTimingsService implements TimingsService {
     protected abstract void retrieveAndSaveCalendar(Address address, int month, int year) throws IOException;
 
     public Single<DayPrayer> getTimingsByCity(final LocalDate localDate, final Address address) {
+        preferencesHelper.setOfflineCalculationMode(false);
 
         return Single.create(emitter -> {
             Thread thread = new Thread(() -> {
@@ -62,11 +63,13 @@ public abstract class AbstractTimingsService implements TimingsService {
                             emitter.onSuccess(prayerTimings);
                         } else {
                             Log.i(TAG, "Offline timings calculation");
+                            preferencesHelper.setOfflineCalculationMode(true);
                             emitter.onSuccess(offlineTimingsService.getPrayerTimings(localDate, address, getTimingsPreferences()));
                         }
 
                     } catch (IOException e) {
                         Log.i(TAG, "Offline timings calculation", e);
+                        preferencesHelper.setOfflineCalculationMode(true);
                         emitter.onSuccess(offlineTimingsService.getPrayerTimings(localDate, address, getTimingsPreferences()));
                     }
                 }

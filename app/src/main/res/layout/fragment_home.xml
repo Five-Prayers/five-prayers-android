@@ -147,6 +147,19 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.0"
                         tools:text="L\'Union des Organisations Islamiques de France (UOIF)" />
+
+                    <ImageView
+                        android:id="@+id/calculation_mode_indicator"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginLeft="4dp"
+                        android:contentDescription="@string/your_location"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/calculation_method_text_view"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:visibility="gone"
+                        app:srcCompat="@drawable/ic_network_offline_24dp" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>

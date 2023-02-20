@@ -394,4 +394,17 @@ public class PreferencesHelper {
         final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         return defaultSharedPreferences.getString(PreferencesConstants.OPEN_WEATHER_UNIT, TemperatureUnit.metric.toString());
     }
+
+    public void setOfflineCalculationMode(boolean mode) {
+        final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+
+        SharedPreferences.Editor edit = defaultSharedPreferences.edit();
+        edit.putBoolean(PreferencesConstants.OFFLINE_CALCULATION_MODE, mode);
+        edit.apply();
+    }
+
+    public boolean isOfflineCalculationMode() {
+        final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return defaultSharedPreferences.getBoolean(PreferencesConstants.OFFLINE_CALCULATION_MODE, false);
+    }
 }

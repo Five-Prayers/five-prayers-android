@@ -94,4 +94,5 @@ public class PreferencesConstants {
     // OpenWeather
     public static final String OPEN_WEATHER_API_KEY = "OPEN_WEATHER_API_KEY";
     public static final String OPEN_WEATHER_UNIT = "OPEN_WEATHER_UNIT";
+    public static final String OFFLINE_CALCULATION_MODE = "OFFLINE_CALCULATION_MODE";
 }

@@ -21,7 +21,7 @@ import com.hbouzidi.fiveprayers.utils.TimingUtils;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -69,7 +69,7 @@ public class PrayerRegistry {
         ContentValues values = new ContentValues();
         values.put(PrayerModel.COLUMN_NAME_DATE, localDateString);
         values.put(PrayerModel.COLUMN_NAME_DATE_TIMESTAMP, aladhanDate.getTimestamp());
-        values.put(PrayerModel.COLUMN_NAME_TIMEZONE, meta.getTimezone());
+        values.put(PrayerModel.COLUMN_NAME_TIMEZONE, TimingUtils.getDefaultTimeZone());
 
         values.put(PrayerModel.COLUMN_NAME_CITY, city);
         values.put(PrayerModel.COLUMN_NAME_COUNTRY, country);

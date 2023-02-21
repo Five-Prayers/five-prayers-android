@@ -262,8 +262,7 @@ public class NetworkModule {
             // Necessary because some servers (e.g. Framatube.org)
             // don't support the old cipher suites.
             // https://github.com/square/okhttp/issues/4053#issuecomment-402579554
-            final List<CipherSuite> cipherSuites =
-                    new ArrayList<>(Objects.requireNonNull(ConnectionSpec.MODERN_TLS.cipherSuites()));
+            final List<CipherSuite> cipherSuites = new ArrayList<>(ConnectionSpec.MODERN_TLS.cipherSuites());
             cipherSuites.add(CipherSuite.TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256);
             cipherSuites.add(CipherSuite.TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384);
             cipherSuites.add(CipherSuite.TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256);

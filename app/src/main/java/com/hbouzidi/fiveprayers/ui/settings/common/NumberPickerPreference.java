@@ -30,10 +30,10 @@ public class NumberPickerPreference extends DialogPreference {
         final TypedArray a = context.obtainStyledAttributes(
                 attrs, R.styleable.Number_Picker_Preference, 0, 0);
 
-        maxValue = a.getInt(R.styleable.Number_Picker_Preference_maxValue, 3);
-        minValue = a.getInt(R.styleable.Number_Picker_Preference_minValue, -3);
-        unitValue = a.getInt(R.styleable.Number_Picker_Preference_unitValue, 1);
-        int initialValue = a.getInt(R.styleable.Number_Picker_Preference_initialValue, 0);
+        maxValue = a.getInt(R.styleable.Number_Picker_Preference_npMaxValue, 3);
+        minValue = a.getInt(R.styleable.Number_Picker_Preference_npMinValue, -3);
+        unitValue = a.getInt(R.styleable.Number_Picker_Preference_npUnitValue, 1);
+        int initialValue = a.getInt(R.styleable.Number_Picker_Preference_npInitialValue, 0);
 
         final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         value = defaultSharedPreferences.getInt(getKey(), initialValue);

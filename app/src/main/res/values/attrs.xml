@@ -20,6 +20,8 @@
 
         <attr name="progressbarBackgroundColor" format="color" />
         <attr name="progressbarColor" format="color" />
+        <attr name="progressbarStartColor" format="color" />
+        <attr name="progressbarEndColor" format="color" />
         <attr name="progressbarMainTextColor" format="color" />
 
         <attr name="notificationEnabledIconColor" format="color" />

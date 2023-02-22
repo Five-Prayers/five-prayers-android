@@ -221,10 +221,7 @@
             android:key="SILENT_START_TIME"
             android:layout="@layout/custom_preference"
             android:title="@string/title_silenter_start_time"
-            app:initialValue="5"
-            app:maxValue="30"
-            app:minValue="5"
-            app:unitValue="5"
+
             />
 
         <com.hbouzidi.fiveprayers.ui.settings.common.NumberPickerPreference
@@ -233,10 +230,10 @@
             android:key="SILENT_TIME_INTERVAL"
             android:layout="@layout/custom_preference"
             android:title="@string/title_silenter_duration"
-            app:initialValue="15"
-            app:maxValue="90"
-            app:minValue="5"
-            app:unitValue="5"
+            app:npInitialValue="15"
+            app:npMaxValue="90"
+            app:npMinValue="5"
+            app:npUnitValue="5"
             />
 
         <com.hbouzidi.fiveprayers.ui.settings.common.NumberPickerPreference
@@ -245,10 +242,10 @@
             android:key="SILENT_TIME_INTERVAL_FOR_FRIDAY_PRAYER"
             android:layout="@layout/custom_preference"
             android:title="@string/title_silenter_duration_friday_prayer"
-            app:initialValue="45"
-            app:maxValue="90"
-            app:minValue="5"
-            app:unitValue="5"
+            app:npInitialValue="45"
+            app:npMaxValue="90"
+            app:npMinValue="5"
+            app:npUnitValue="5"
             />
     </PreferenceCategory>
 
@@ -312,9 +309,9 @@
             android:key="HIJRI_DAY_ADJUSTMENT_PREFERENCE"
             android:layout="@layout/custom_preference"
             android:title="@string/title_hijri_day_adjustment_preference"
-            app:maxValue="3"
-            app:minValue="-3"
-            app:unitValue="1"
+            app:npMaxValue="3"
+            app:npMinValue="-3"
+            app:npUnitValue="1"
             />
     </PreferenceCategory>
 

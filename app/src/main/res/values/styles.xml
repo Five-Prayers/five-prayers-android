@@ -28,7 +28,9 @@
 
         <!-- Progressbar colors -->
         <item name="progressbarBackgroundColor">@color/wild_sand</item>
-        <item name="progressbarColor">@color/dodger_blue</item>
+        <item name="progressbarColor">@color/spray</item>
+        <item name="progressbarStartColor">@color/bondi_blue</item>
+        <item name="progressbarEndColor">@color/dodger_blue</item>
         <item name="progressbarMainTextColor">@color/curious_blue</item>
 
         <!-- Notification icons colors -->
@@ -91,6 +93,8 @@
         <!-- Progressbar colors -->
         <item name="progressbarBackgroundColor">@color/mine_shaft_light</item>
         <item name="progressbarColor">@color/orange</item>
+        <item name="progressbarStartColor">@color/scarlet</item>
+        <item name="progressbarEndColor">@color/blaze_orange</item>
         <item name="progressbarMainTextColor">@color/scarlet</item>
 
         <item name="colorSecondary">@color/orange</item>
@@ -152,6 +156,8 @@
         <!-- Progressbar colors -->
         <item name="progressbarBackgroundColor">@color/rhino_light</item>
         <item name="progressbarColor">@color/turquoise_blue</item>
+        <item name="progressbarStartColor">@color/keppel</item>
+        <item name="progressbarEndColor">@color/aquamarine_blue</item>
         <item name="progressbarMainTextColor">@color/keppel</item>
 
         <item name="colorSecondary">@color/turquoise_blue</item>

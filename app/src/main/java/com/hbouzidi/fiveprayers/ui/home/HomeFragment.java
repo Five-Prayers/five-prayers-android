@@ -6,6 +6,8 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.TypedArray;
+import android.graphics.LinearGradient;
+import android.graphics.Shader;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -43,6 +45,7 @@ import com.hbouzidi.fiveprayers.utils.PrayerUtils;
 import com.hbouzidi.fiveprayers.utils.TimingUtils;
 import com.hbouzidi.fiveprayers.utils.UiUtils;
 import com.mikhaellopez.circularprogressbar.CircularProgressBar;
+import com.owl93.dpb.CircularProgressView;
 import com.yarolegovich.lovelydialog.LovelyCustomDialog;
 
 import org.apache.commons.lang3.StringUtils;
@@ -110,6 +113,9 @@ public class HomeFragment extends Fragment {
     private ImageView calculationModeIndicator;
 
     private CircularProgressBar circularProgressBar;
+
+    private CircularProgressView circularProgressView;
+
     private String adhanCallsPreferences;
     private String adhanCallKeyPart;
     private Skeleton skeleton;
@@ -221,6 +227,13 @@ public class HomeFragment extends Fragment {
         prayerTimetextView = rootView.findViewById(R.id.prayerTimetextView);
         timeRemainingTextView = rootView.findViewById(R.id.timeRemainingTextView);
         circularProgressBar = rootView.findViewById(R.id.circularProgressBar);
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP_MR1) {
+            circularProgressBar = rootView.findViewById(R.id.circularProgressBar);
+        } else {
+            circularProgressView = rootView.findViewById(R.id.progress_view);
+        }
+
         calculationMethodTextView = rootView.findViewById(R.id.calculation_method_text_view);
 
         fajrClock = rootView.findViewById(R.id.farj_clock_view);
@@ -321,7 +334,23 @@ public class HomeFragment extends Fragment {
 
         prayerNametextView.setText(prayerName);
         prayerTimetextView.setText(UiUtils.formatTiming(Objects.requireNonNull(timings.get(nextPrayerKey))));
+
         timeRemainingTextView.setText(UiUtils.formatTimeForTimer(timeRemaining));
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
+            circularProgressView.setText(UiUtils.formatTiming(Objects.requireNonNull(timings.get(nextPrayerKey))));
+
+            TypedArray typedArray = requireContext().getTheme().obtainStyledAttributes(R.styleable.mainStyles);
+            int startColor = typedArray.getColor(R.styleable.mainStyles_progressbarEndColor, ContextCompat.getColor(requireContext(), R.color.textColorPrimary));
+            int endColor = typedArray.getColor(R.styleable.mainStyles_progressbarColor, ContextCompat.getColor(requireContext(), R.color.textColorPrimary));
+
+            Shader textShader = new LinearGradient(0, 0, prayerNametextView.getPaint().measureText(prayerName), prayerNametextView.getTextSize(),
+                    new int[]{startColor, endColor},
+                    null, Shader.TileMode.CLAMP);
+
+            prayerNametextView.getPaint().setShader(textShader);
+            timeRemainingTextView.getPaint().setShader(textShader);
+        }
 
         startAnimationTimer(timeRemaining, timeBetween, dayPrayer);
     }
@@ -423,11 +452,16 @@ public class HomeFragment extends Fragment {
     }
 
     private void startAnimationTimer(final long timeRemaining, final long timeBetween, final DayPrayer dayPrayer) {
-        circularProgressBar.setProgressWithAnimation(getProgressBarPercentage(timeRemaining, timeBetween), 1000L);
+
         TimeRemainingCTimer = new CountDownTimer(timeRemaining, 1000L) {
             public void onTick(long millisUntilFinished) {
                 timeRemainingTextView.setText(UiUtils.formatTimeForTimer(millisUntilFinished));
-                circularProgressBar.setProgress(getProgressBarPercentage(timeRemaining, timeBetween));
+
+                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP_MR1) {
+                    circularProgressBar.setProgress(getProgressBarPercentage(timeRemaining, timeBetween));
+                } else {
+                    circularProgressView.animateProgressChange(getProgressBarPercentage(timeRemaining, timeBetween), 2000L);
+                }
             }
 
             public void onFinish() {

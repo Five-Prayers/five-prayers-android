@@ -1,0 +1,7 @@
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="true">
+  <item android:drawable="@drawable/ic_launcher_foreground_color_three" android:duration="100" />
+  <item android:drawable="@drawable/ic_launcher_foreground_color_one" android:duration="400" />
+  <item android:drawable="@drawable/ic_launcher_foreground_color_two" android:duration="500" />
+  <item android:drawable="@drawable/ic_launcher_foreground_color_three" android:duration="2000" />
+</animation-list>

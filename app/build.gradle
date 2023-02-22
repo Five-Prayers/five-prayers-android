@@ -222,6 +222,9 @@ dependencies {
     //https://github.com/jesualex/sTooltip
     implementation 'com.github.luisvasquez:sTooltip:1.5.1'
 
+    //https://github.com/owl-93/Determinate-Progress-View
+    implementation 'com.github.owl-93.Determinate-Progress-View:release:v1.4.4'
+
     //Testing
     testImplementation 'junit:junit:4.13.2'
     testImplementation 'androidx.test:core:1.5.0'

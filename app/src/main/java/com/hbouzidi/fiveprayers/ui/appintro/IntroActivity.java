@@ -65,9 +65,20 @@ public class IntroActivity extends AppIntro {
             ));
         }
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            addSlide(AppIntroFragment.createInstance(
+                    getResources().getString(R.string.app_intro_frag_4_title),
+                    getResources().getString(R.string.app_intro_frag_4_description),
+                    R.drawable.ic_question_200dp,
+                    R.color.dodger_blue,
+                    R.color.white,
+                    R.color.white
+            ));
+        }
+
         addSlide(AppIntroFragment.createInstance(
-                getResources().getString(R.string.app_intro_frag_4_title),
-                getResources().getString(R.string.app_intro_frag_4_description),
+                getResources().getString(R.string.app_intro_frag_5_title),
+                getResources().getString(R.string.app_intro_frag_5_description),
                 R.drawable.ic_hassan_mosque_20dp,
                 R.color.dodger_blue,
                 R.color.white,
@@ -83,6 +94,13 @@ public class IntroActivity extends AppIntro {
             askForPermissions(
                     new String[]{Manifest.permission.ACCESS_BACKGROUND_LOCATION},
                     4,
+                    false);
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            askForPermissions(
+                    new String[]{Manifest.permission.POST_NOTIFICATIONS},
+                    5,
                     false);
         }
 

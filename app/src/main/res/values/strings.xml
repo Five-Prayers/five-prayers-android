@@ -89,8 +89,12 @@
     <string name="app_intro_frag_3_5_description">We need also your permission to use background location capabilities
         to update prayer timings even when the app is closed or not used, please select \"allow all the time option\" in the next screen (recommended)</string>
 
-    <string name="app_intro_frag_4_title">Enjoy !</string>
-    <string name="app_intro_frag_4_description">Five Prayer Android introduces great features and capabilities for all users,
+    <string name="app_intro_frag_4_title">Allow Five Prayers to send notifications</string>
+    <string name="app_intro_frag_4_description">We need your permission to send you Adhan notifications, without this, Adhan calls will not works !
+        Please select \"allow\" in the next screen (recommended)</string>
+
+    <string name="app_intro_frag_5_title">Enjoy !</string>
+    <string name="app_intro_frag_5_description">Five Prayer Android introduces great features and capabilities for all users,
         like : Worldwide Prayer Timings, different calculation methods, notifications, reads Adhan, Qibla direction and more</string>
 
     <string name="app_intro_permission_denied_dialog_title">Information</string>

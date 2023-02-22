@@ -93,8 +93,12 @@
     <string name="app_intro_frag_3_5_description">Nous avons également besoin de votre autorisation pour utiliser les fonctionnalités de localisation en arrière-plan
         pour mettre à jour les horaires de prière sans ouvrir l\'application. Veuillez sélectionner l\'option \"Toujours autoriser\" sur l\'écran suivant (recommandé)</string>
 
-    <string name="app_intro_frag_4_title">Profitez-en !</string>
-    <string name="app_intro_frag_4_description">Cinq Prières pour Android présente de superbes fonctionnalités pour tous les utilisateurs,
+    <string name="app_intro_frag_4_title">Autoriser l\'application à envoyer des notifications</string>
+    <string name="app_intro_frag_4_description">Nous avons besoin de votre permission pour vous envoyer des notifications, sans cela, les appels Adhan ne fonctionneront pas !
+        Veuillez sélectionner \"autoriser\" dans l\'écran suivant (recommandé)</string>
+
+    <string name="app_intro_frag_5_title">Profitez-en !</string>
+    <string name="app_intro_frag_5_description">Cinq Prières pour Android présente de superbes fonctionnalités pour tous les utilisateurs,
         comme: Horaires de prière dans le monde, différentes méthodes de calcul, notifications, lecture de l\'Adhan, direction de Qibla et plus encore …</string>
 
     <string name="app_intro_permission_denied_dialog_title">Information</string>

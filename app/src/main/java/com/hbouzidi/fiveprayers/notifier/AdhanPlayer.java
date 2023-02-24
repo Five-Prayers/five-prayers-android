@@ -48,17 +48,17 @@ public class AdhanPlayer {
             try {
                 initializeAdhanMediaPlayer(fajr);
                 initializeDouaeMediaPlayer();
-            } catch (IOException e) {
+
+                adhanMediaPlayer.start();
+
+                if (preferencesHelper.isDouaeAfterAdhanEnabled() &&
+                        !Uri.parse(getCallerUriString(fajr)).equals(UiUtils.uriFromRaw(PreferencesConstants.SHORT_PRAYER_CALL, context)) &&
+                        !Uri.parse(getCallerUriString(fajr)).equals(UiUtils.uriFromRaw(PreferencesConstants.TAKBEER_ONLY_CALL, context))) {
+
+                    adhanMediaPlayer.setNextMediaPlayer(douaMediaPlayer);
+                }
+            } catch (Exception e) {
                 Log.e("AdhanPlayer", "Cannot play Adhan", e);
-            }
-
-            adhanMediaPlayer.start();
-
-            if (preferencesHelper.isDouaeAfterAdhanEnabled() &&
-                    !Uri.parse(preferencesHelper.getAdhanCaller()).equals(UiUtils.uriFromRaw(PreferencesConstants.SHORT_PRAYER_CALL, context)) &&
-                    !Uri.parse(preferencesHelper.getAdhanCaller()).equals(UiUtils.uriFromRaw(PreferencesConstants.TAKBEER_ONLY_CALL, context))) {
-
-                adhanMediaPlayer.setNextMediaPlayer(douaMediaPlayer);
             }
         }
 
@@ -79,8 +79,14 @@ public class AdhanPlayer {
         MediaSessionCompat adhanMediaSession = createMediaSession("Adhan");
         MediaSessionCompat douaeMediaSession = createMediaSession("Douae");
 
-        adhanMediaPlayer.setOnCompletionListener(mp -> adhanMediaSession.release());
-        douaMediaPlayer.setOnCompletionListener(mp -> douaeMediaSession.release());
+        adhanMediaPlayer.setOnCompletionListener(mp -> {
+            adhanMediaSession.release();
+            Log.i("AdhanPlayer", "adhan Media Player released");
+        });
+        douaMediaPlayer.setOnCompletionListener(mp -> {
+            douaeMediaSession.release();
+            Log.i("AdhanPlayer", "douae Media Player released");
+        });
     }
 
     private void initializeAdhanMediaPlayer(boolean fajr) throws IOException {
@@ -143,5 +149,9 @@ public class AdhanPlayer {
         mediaSession.setActive(true);
 
         return mediaSession;
+    }
+
+    private String getCallerUriString(boolean fajr) {
+        return fajr ? preferencesHelper.getFajrAdhanCaller() : preferencesHelper.getAdhanCaller();
     }
 }

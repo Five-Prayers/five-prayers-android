@@ -104,7 +104,7 @@ githubRelease {
     owner "five-Prayers"
     repo "five-prayers-android"
     tagName "${android.defaultConfig.versionName}"
-    targetCommitish "master"
+    targetCommitish "main"
     releaseName "${android.defaultConfig.versionName}"
     draft false
     prerelease false

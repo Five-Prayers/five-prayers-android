@@ -47,7 +47,7 @@ public class UiUtils {
         long minutes = seconds / 60;
         long hours = minutes / 60;
 
-        return "- " + String.format(Locale.getDefault(), "%1$02d", Math.abs(hours)).replaceFirst("^[0٠]+(?!$)", "") + ":" + String.format(Locale.getDefault(), "%1$02d", Math.abs(minutes % 60)).replaceFirst("^[0٠]+(?!$)", "") + ":" + String.format(Locale.getDefault(), "%1$02d", Math.abs(seconds % 60)).replaceFirst("^[0٠]+(?!$)", "");
+        return "- " + String.format(Locale.getDefault(), "%1$02d", Math.abs(hours)) + ":" + String.format(Locale.getDefault(), "%1$02d", Math.abs(minutes % 60)) + ":" + String.format(Locale.getDefault(), "%1$02d", Math.abs(seconds % 60));
     }
 
     public static String formatTimeForWidgetTimer(long time, String hoursSeparator, String minutesSeparator) {

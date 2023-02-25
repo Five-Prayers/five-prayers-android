@@ -154,8 +154,9 @@
 
             <com.owl93.dpb.CircularProgressView
                 android:id="@+id/progress_view"
-                android:layout_width="170dp"
-                android:layout_height="170dp"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="1"
                 app:direction="cw"
                 app:gradientCenterColor="?attr/progressbarColor"
                 app:gradientEndColor="?attr/progressbarEndColor"
@@ -179,7 +180,7 @@
                 app:textGradientStartColor="?attr/progressbarStartColor"
                 app:textGradientStyle="sweep"
                 app:textGradient_linearAngle="0"
-                app:textSize="@dimen/text_xmlarge"
+                app:textSize="@dimen/_30ssp"
                 app:trackColor="?attr/progressbarBackgroundColor" />
 
             <TextView
@@ -212,7 +213,7 @@
                 android:gravity="center"
                 android:maxLines="1"
                 android:textColor="?attr/textColorPrimary"
-                android:textSize="@dimen/text_large"
+                android:textSize="@dimen/_15ssp"
                 app:layout_constraintEnd_toEndOf="@+id/progress_view"
                 app:layout_constraintStart_toStartOf="@+id/progress_view"
                 app:layout_constraintTop_toTopOf="@+id/progress_view"
@@ -227,7 +228,7 @@
                 android:gravity="center"
                 android:maxLines="1"
                 android:textColor="?attr/textColorSecondary"
-                android:textSize="@dimen/text_middle"
+                android:textSize="@dimen/_12ssp"
                 android:textStyle="normal"
                 app:layout_constraintBottom_toBottomOf="@+id/progress_view"
                 app:layout_constraintEnd_toEndOf="@+id/progress_view"

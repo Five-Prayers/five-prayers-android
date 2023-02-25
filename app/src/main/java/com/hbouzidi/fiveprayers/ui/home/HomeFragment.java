@@ -352,6 +352,7 @@ public class HomeFragment extends Fragment {
             timeRemainingTextView.getPaint().setShader(textShader);
         }
 
+        cancelTimer();
         startAnimationTimer(timeRemaining, timeBetween, dayPrayer);
     }
 
@@ -447,8 +448,8 @@ public class HomeFragment extends Fragment {
 //        }
     }
 
-    private float getProgressBarPercentage(long timeRemaining, long timeBetween) {
-        return 100 - ((float) (timeRemaining * 100) / (timeBetween));
+    private float getProgressBarPercentage(long millisUntilFinished, long timeBetween) {
+        return ((float) ((timeBetween - millisUntilFinished) * 100) / (timeBetween));
     }
 
     private void startAnimationTimer(final long timeRemaining, final long timeBetween, final DayPrayer dayPrayer) {
@@ -458,9 +459,10 @@ public class HomeFragment extends Fragment {
                 timeRemainingTextView.setText(UiUtils.formatTimeForTimer(millisUntilFinished));
 
                 if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP_MR1) {
-                    circularProgressBar.setProgress(getProgressBarPercentage(timeRemaining, timeBetween));
+                    circularProgressBar.setProgress(getProgressBarPercentage(millisUntilFinished, timeBetween));
                 } else {
-                    circularProgressView.animateProgressChange(getProgressBarPercentage(timeRemaining, timeBetween), 2000L);
+                    float progressBarPercentage = getProgressBarPercentage(millisUntilFinished, timeBetween);
+                    circularProgressView.animateProgressChange(progressBarPercentage, 2000L);
                 }
             }
 

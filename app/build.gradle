@@ -225,6 +225,9 @@ dependencies {
     //https://github.com/owl-93/Determinate-Progress-View
     implementation 'com.github.owl-93.Determinate-Progress-View:release:v1.4.4'
 
+    //https://github.com/intuit/ssp
+    implementation 'com.intuit.ssp:ssp-android:1.1.0'
+
     //Testing
     testImplementation 'junit:junit:4.13.2'
     testImplementation 'androidx.test:core:1.5.0'

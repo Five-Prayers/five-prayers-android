@@ -1,6 +1,6 @@
 <resources>
-    <string name="whats_new_dialog_title">New feature</string>
-    <string name="whats_new_dialog_message">It is now possible to adjust the volume from the settings screen</string>
+    <string name="whats_new_dialog_title">Bug fix</string>
+    <string name="whats_new_dialog_message">Fix Adhan in some devices</string>
 
     <string name="about_five_prayers">About Five Prayers</string>
     <string name="open_source_projects_used">Open Source Projects Used</string>

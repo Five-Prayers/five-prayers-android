@@ -1,6 +1,6 @@
 <resources>
-    <string name="whats_new_dialog_title">Nouvelle fonctionnalité</string>
-    <string name="whats_new_dialog_message">Il est maintenant possible d\'ajuster le volume depuis l\'écran des paramètres</string>
+    <string name="whats_new_dialog_title">Correction de bogues</string>
+    <string name="whats_new_dialog_message">Correction d\'Adhan sur certains appareils</string>
 
     <string name="about_five_prayers">À propos de Five Prayers</string>
     <string name="open_source_projects_used">Projets Open Source</string>

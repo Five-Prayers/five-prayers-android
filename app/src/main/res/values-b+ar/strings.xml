@@ -1,6 +1,6 @@
 <resources>
-    <string name="whats_new_dialog_title">ميزة جديدة</string>
-    <string name="whats_new_dialog_message">من الممكن الآن ضبط مستوى الصوت من شاشة الإعدادات</string>
+    <string name="whats_new_dialog_title">إصلاح الخلل</string>
+    <string name="whats_new_dialog_message">إصلاح الأذان في بعض الأجهزة</string>
 
     <string name="about_five_prayers">حول التطبيق</string>
     <string name="open_source_projects_used">مشاريع مفتوحة المصدر</string>

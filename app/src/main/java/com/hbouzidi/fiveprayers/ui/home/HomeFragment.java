@@ -35,6 +35,7 @@ import com.hbouzidi.fiveprayers.R;
 import com.hbouzidi.fiveprayers.common.ComplementaryTimingEnum;
 import com.hbouzidi.fiveprayers.common.PrayerEnum;
 import com.hbouzidi.fiveprayers.job.WorkCreator;
+import com.hbouzidi.fiveprayers.openweathermap.OpenWeatherMapResponse;
 import com.hbouzidi.fiveprayers.preferences.PreferencesConstants;
 import com.hbouzidi.fiveprayers.preferences.PreferencesHelper;
 import com.hbouzidi.fiveprayers.timings.DayPrayer;
@@ -119,6 +120,9 @@ public class HomeFragment extends Fragment {
     private String adhanCallsPreferences;
     private String adhanCallKeyPart;
     private Skeleton skeleton;
+    private ImageView weatherStatusImage;
+    private TextView weatherActualTemp;
+    private TextView weatherStatusText;
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -172,8 +176,9 @@ public class HomeFragment extends Fragment {
 
             widgetUpdater.updateHomeScreenWidgets(requireContext());
 
-            skeleton.showOriginal();
+            homeViewModel.getOpenWeatherData().observe(getViewLifecycleOwner(), this::updateWeatherInformations);
 
+            skeleton.showOriginal();
             showWhatsNewDialog();
         });
 
@@ -187,6 +192,21 @@ public class HomeFragment extends Fragment {
         });
 
         return rootView;
+    }
+
+    private void updateWeatherInformations(OpenWeatherMapResponse openWeatherMapResponse) {
+        int iconId = requireContext().getResources().getIdentifier("ic_" + openWeatherMapResponse.getWeather().get(0).getIcon(), "mipmap", requireContext().getPackageName());
+        String tempUnit = requireContext().getApplicationContext().getResources().getString(requireContext().getResources().getIdentifier("temperature_unit_" + preferencesHelper.getOpenWeatherUnit(), "string", requireContext().getPackageName()));
+        String description = openWeatherMapResponse.getWeather().get(0).getDescription();
+        int temp = (int) openWeatherMapResponse.getMain().getTemp();
+
+        weatherStatusImage.setImageResource(iconId);
+        weatherActualTemp.setText(String.format(" - %s %s", String.format(Locale.getDefault(), "%1$02d", temp), tempUnit));
+        weatherStatusText.setText(StringUtils.capitalize(description));
+
+        weatherStatusImage.setVisibility(View.VISIBLE);
+        weatherActualTemp.setVisibility(View.VISIBLE);
+        weatherStatusText.setVisibility(View.VISIBLE);
     }
 
     private void showWhatsNewDialog() {
@@ -280,6 +300,10 @@ public class HomeFragment extends Fragment {
         ichaLabel = rootView.findViewById(R.id.icha_label_text_view);
 
         calculationModeIndicator = rootView.findViewById(R.id.calculation_mode_indicator);
+
+        weatherStatusImage = rootView.findViewById(R.id.weather_status_image);
+        weatherActualTemp = rootView.findViewById(R.id.weather_actual_temp);
+        weatherStatusText = rootView.findViewById(R.id.weather_status_text);
     }
 
     private void updateTimingsTextViews(DayPrayer dayPrayer) {
@@ -449,7 +473,7 @@ public class HomeFragment extends Fragment {
     }
 
     private float getProgressBarPercentage(long millisUntilFinished, long timeBetween) {
-        return ((float) ((timeBetween - millisUntilFinished) * 100) / (timeBetween));
+        return ((float) (Math.abs(timeBetween - millisUntilFinished) * 100) / (timeBetween));
     }
 
     private void startAnimationTimer(final long timeRemaining, final long timeBetween, final DayPrayer dayPrayer) {

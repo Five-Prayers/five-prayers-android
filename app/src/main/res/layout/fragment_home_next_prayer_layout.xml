@@ -50,30 +50,64 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/todayDateTextView">
 
-            <ImageView
-                android:layout_width="15dp"
-                android:layout_height="15dp"
-                android:layout_marginEnd="4dp"
-                android:layout_marginRight="4dp"
-                android:contentDescription="@string/your_location"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/location_text_view"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_location_15" />
-
-            <TextView
-                android:id="@+id/location_text_view"
+            <LinearLayout
+                android:id="@+id/weather_linear_layout"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-condensed"
+                android:layout_height="match_parent"
                 android:gravity="center"
-                android:maxLines="1"
-                android:textColor="?attr/textColorSecondary"
-                android:textSize="@dimen/text_middle"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Republic of the congo" />
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginRight="4dp"
+                    android:contentDescription="@string/your_location"
+                    app:srcCompat="@drawable/ic_location_15" />
+
+                <TextView
+                    android:id="@+id/location_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:maxLines="1"
+                    android:textColor="?attr/textColorSecondary"
+                    android:textSize="@dimen/text_middle"
+                    tools:text="Republic of the congo" />
+
+                <TextView
+                    android:id="@+id/weather_actual_temp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:fontFamily="sans-serif-condensed"
+                    android:maxLines="1"
+                    android:textColor="?attr/textColorSecondary"
+                    android:textSize="@dimen/text_middle" />
+
+                <TextView
+                    android:id="@+id/weather_status_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:visibility="gone"
+                    android:fontFamily="sans-serif-condensed"
+                    android:maxLines="1"
+                    android:textColor="?attr/textColorSecondary"
+                    android:textSize="@dimen/text_middle" />
+
+                <ImageView
+                    android:id="@+id/weather_status_image"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:visibility="gone"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginLeft="4dp" />
+            </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 

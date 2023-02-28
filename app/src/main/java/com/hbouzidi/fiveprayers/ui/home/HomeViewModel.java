@@ -1,7 +1,6 @@
 package com.hbouzidi.fiveprayers.ui.home;
 
 import android.app.Application;
-import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -10,6 +9,9 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.hbouzidi.fiveprayers.location.address.AddressHelper;
 import com.hbouzidi.fiveprayers.location.tracker.LocationHelper;
+import com.hbouzidi.fiveprayers.openweathermap.OpenWeatherMapAPIService;
+import com.hbouzidi.fiveprayers.openweathermap.OpenWeatherMapResponse;
+import com.hbouzidi.fiveprayers.openweathermap.TemperatureUnit;
 import com.hbouzidi.fiveprayers.preferences.PreferencesHelper;
 import com.hbouzidi.fiveprayers.timings.DayPrayer;
 import com.hbouzidi.fiveprayers.timings.TimingServiceFactory;
@@ -35,10 +37,14 @@ public class HomeViewModel extends AndroidViewModel {
     private final LocationHelper locationHelper;
     private final AddressHelper addressHelper;
     private final TimingServiceFactory timingServiceFactory;
+    private final OpenWeatherMapAPIService openWeatherMapAPIService;
     private final PreferencesHelper preferencesHelper;
 
     private final MutableLiveData<DayPrayer> mDayPrayers;
+    private final MutableLiveData<OpenWeatherMapResponse> mOpenWeatherMapResponse;
     private final MutableLiveData<String> mErrorMessage;
+
+    private final MutableLiveData<String> mmOpenWeatherMapErrorMessage;
     private final LocalDate todayDate;
     private CompositeDisposable compositeDisposable;
 
@@ -47,6 +53,7 @@ public class HomeViewModel extends AndroidViewModel {
                          @NonNull LocationHelper locationHelper,
                          @NonNull AddressHelper addressHelper,
                          @NonNull TimingServiceFactory timingServiceFactory,
+                         @NonNull OpenWeatherMapAPIService openWeatherMapAPIService,
                          @NonNull PreferencesHelper preferencesHelper
     ) {
         super(application);
@@ -54,16 +61,23 @@ public class HomeViewModel extends AndroidViewModel {
         this.locationHelper = locationHelper;
         this.addressHelper = addressHelper;
         this.timingServiceFactory = timingServiceFactory;
+        this.openWeatherMapAPIService = openWeatherMapAPIService;
         this.preferencesHelper = preferencesHelper;
 
         todayDate = LocalDate.now();
         mDayPrayers = new MutableLiveData<>();
+        mOpenWeatherMapResponse = new MutableLiveData<>();
         mErrorMessage = new MutableLiveData<>();
-        setLiveData(application.getApplicationContext());
+        mmOpenWeatherMapErrorMessage = new MutableLiveData<>();
+        setLiveData();
     }
 
     LiveData<DayPrayer> getDayPrayers() {
         return mDayPrayers;
+    }
+
+    LiveData<OpenWeatherMapResponse> getOpenWeatherData() {
+        return mOpenWeatherMapResponse;
     }
 
     LiveData<String> getError() {
@@ -76,7 +90,7 @@ public class HomeViewModel extends AndroidViewModel {
         super.onCleared();
     }
 
-    private void setLiveData(Context context) {
+    private void setLiveData() {
         TimingsService timingsService = timingServiceFactory.create(preferencesHelper.getCalculationMethod());
 
         compositeDisposable = new CompositeDisposable();
@@ -97,5 +111,24 @@ public class HomeViewModel extends AndroidViewModel {
                                 mErrorMessage.postValue(e.getMessage());
                             }
                         }));
+
+        compositeDisposable.add(
+                locationHelper.getLocation()
+                        .flatMap(
+                                location ->
+                                        openWeatherMapAPIService.getCurrentWeatherData(location.getLatitude(), location.getLongitude(), preferencesHelper.getOpenWeatherAPIKey(), TemperatureUnit.valueOf(preferencesHelper.getOpenWeatherUnit()))
+                        )
+                        .subscribeOn(AndroidSchedulers.mainThread())
+                        .subscribeWith(new DisposableSingleObserver<OpenWeatherMapResponse>() {
+                            @Override
+                            public void onSuccess(@NotNull OpenWeatherMapResponse openWeatherMapResponse) {
+                                mOpenWeatherMapResponse.postValue(openWeatherMapResponse);
+                            }
+
+                            @Override
+                            public void onError(@io.reactivex.rxjava3.annotations.NonNull Throwable e) {
+                            }
+                        })
+        );
     }
 }

@@ -75,10 +75,10 @@ public class Compass implements SensorEventListener {
             sensorManager.unregisterListener(this, rsensor);
 
             Log.e(TAG, "Device don't have enough sensors");
-            AlertHelper.displayDialogError(context, context.getString(com.hbouzidi.fiveprayers.R.string.dialog_message_sensor_not_exist), v -> {
+            AlertHelper.displayDialogError(context.getString(com.hbouzidi.fiveprayers.R.string.common_alert), context.getString(com.hbouzidi.fiveprayers.R.string.dialog_message_sensor_not_exist), context, v -> {
                 if (context instanceof Activity)
                     ((Activity) context).finish();
-            });
+            }, false);
         }
     }
 

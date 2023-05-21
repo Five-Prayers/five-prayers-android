@@ -8,6 +8,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.hbouzidi.fiveprayers.quran.dto.Ayah;
 import com.hbouzidi.fiveprayers.quran.dto.QuranPage;
+import com.hbouzidi.fiveprayers.quran.dto.QuranQuarterMeta;
 import com.hbouzidi.fiveprayers.quran.dto.Surah;
 
 import java.io.IOException;
@@ -35,10 +36,16 @@ public class QuranParser {
     private List<QuranPage> quranPages;
     private Map<String, List<Ayah>> todayVerses;
 
+    private Map<Integer, List<Integer>> quranPagesByQuarter;
+
+    private List<QuranQuarterMeta> quranQuarterMetas;
+
     private QuranParser() {
         surahList = new ArrayList<>();
         quranPages = new ArrayList<>();
         todayVerses = new HashMap<>();
+        quranPagesByQuarter = new HashMap<>();
+        quranQuarterMetas = new ArrayList<>();
     }
 
     public static QuranParser getInstance() {
@@ -67,6 +74,20 @@ public class QuranParser {
             parseVersesFromAssets(context);
         }
         return todayVerses;
+    }
+
+    public Map<Integer, List<Integer>> getQuranPageByQuarter(Context context) {
+        if (quranPagesByQuarter.isEmpty()) {
+            parsePagesByQuartersFromAssets(context);
+        }
+        return quranPagesByQuarter;
+    }
+
+    public List<QuranQuarterMeta> getQuranQuarterMetas(Context context) {
+        if (quranQuarterMetas.isEmpty()) {
+            parseQuranQuarterMetasFromAssets(context);
+        }
+        return quranQuarterMetas;
     }
 
     private void parseSurahsFromAssets(Context context) {
@@ -109,11 +130,42 @@ public class QuranParser {
             Gson gson = new Gson();
             Reader reader = new InputStreamReader(ims);
 
-            Type type = new TypeToken<Map<String,ArrayList<Ayah>>>() {
+            Type type = new TypeToken<Map<String, ArrayList<Ayah>>>() {
             }.getType();
             todayVerses = gson.fromJson(reader, type);
         } catch (IOException e) {
             Log.e(TAG, "cannot parse daily-verses.json", e);
+        }
+    }
+
+    private void parsePagesByQuartersFromAssets(Context context) {
+        AssetManager assetManager = context.getAssets();
+        try {
+            InputStream ims = assetManager.open("quran-page-by-quarter.json");
+            Gson gson = new Gson();
+            Reader reader = new InputStreamReader(ims);
+            Type type = new TypeToken<Map<Integer, List<Integer>>>() {
+            }.getType();
+            quranPagesByQuarter = gson.fromJson(reader, type);
+        } catch (IOException e) {
+            Log.e(TAG, "cannot parse quran-page-by-quarter.json", e);
+        }
+    }
+    private void parseQuranQuarterMetasFromAssets(Context context) {
+        AssetManager assetManager = context.getAssets();
+        try {
+            InputStream ims;
+            ims = assetManager.open("quarters-surahs-ayahs.json");
+
+            Gson gson = new Gson();
+            Reader reader = new InputStreamReader(ims);
+
+            Type type = new TypeToken<ArrayList<QuranQuarterMeta>>() {
+            }.getType();
+            quranQuarterMetas = gson.fromJson(reader, type);
+
+        } catch (IOException e) {
+            Log.e(TAG, "cannot parse quarters-surahs-ayahs.json", e);
         }
     }
 }

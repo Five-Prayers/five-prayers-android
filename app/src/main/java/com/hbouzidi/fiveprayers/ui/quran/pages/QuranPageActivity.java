@@ -37,6 +37,8 @@ public class QuranPageActivity extends BaseActivity {
     private RecyclerView PagesRecyclerView;
 
     private int pageToDisplay = 1;
+    private int startPage = 1;
+    private int endPage = 604;
     private int textColor, backgroundColor;
     private int lastpageShown = 1;
 
@@ -65,6 +67,8 @@ public class QuranPageActivity extends BaseActivity {
 
         if (bundle != null) {
             pageToDisplay = bundle.getInt("PAGE_NUMBER", 1);
+            startPage = bundle.getInt("START_PAGE_NUMBER", 1);
+            endPage = bundle.getInt("END_PAGE_NUMBER", 604);
             surahs = bundle.getParcelableArrayList("SURAHS");
         }
 
@@ -83,7 +87,7 @@ public class QuranPageActivity extends BaseActivity {
         PagesRecyclerView.setLayoutManager(manager);
         PagesRecyclerView.setHasFixedSize(true);
         PageAdapter pageAdapter = new PageAdapter(textColor, backgroundColor);
-        pageAdapter.setQuranPages(quranPages);
+        pageAdapter.setQuranPages(quranPages.subList(startPage - 1, endPage));
         pageAdapter.setSurahs(surahs);
         PagesRecyclerView.setAdapter(pageAdapter);
         PagesRecyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -91,7 +95,7 @@ public class QuranPageActivity extends BaseActivity {
         new PagerSnapHelper().attachToRecyclerView(PagesRecyclerView);
 
         pageAdapter.setPageShown((pos, holder) -> {
-            lastpageShown = pos + 1;
+            lastpageShown = pos + startPage;
             Intent resultIntent = new Intent();
 
             resultIntent.putExtra(QuranPageActivity.LAST_PAGE_SHOWN_IDENTIFIER, lastpageShown);

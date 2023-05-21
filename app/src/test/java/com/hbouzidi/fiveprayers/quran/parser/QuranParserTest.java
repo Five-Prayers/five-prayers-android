@@ -4,9 +4,11 @@ import android.content.Context;
 
 import androidx.test.core.app.ApplicationProvider;
 
+import com.google.gson.Gson;
 import com.hbouzidi.fiveprayers.FakeFivePrayerApplication;
 import com.hbouzidi.fiveprayers.quran.dto.Ayah;
 import com.hbouzidi.fiveprayers.quran.dto.QuranPage;
+import com.hbouzidi.fiveprayers.quran.dto.QuranQuarterMeta;
 import com.hbouzidi.fiveprayers.quran.dto.Surah;
 
 import org.assertj.core.api.Assertions;
@@ -60,6 +62,28 @@ public class QuranParserTest {
 
         Assertions.assertThat(quranPages).isNotEmpty();
         Assertions.assertThat(quranPages).hasSize(604);
+    }
+
+    @Test
+    @Ignore("Work on local only")
+    public void should_get_quran_page_by_quarter() {
+        QuranParser quranParser = QuranParser.getInstance();
+
+        Map<Integer, List<Integer>> quranPageByQuarter = quranParser.getQuranPageByQuarter(applicationContext);
+
+        Assertions.assertThat(quranPageByQuarter).isNotEmpty();
+        Assertions.assertThat(quranPageByQuarter).hasSize(240);
+    }
+
+    @Test
+    @Ignore("Work on local only")
+    public void should_get_quran_quarters_metas() {
+        QuranParser quranParser = QuranParser.getInstance();
+
+        List<QuranQuarterMeta> quranQuarterMetas = quranParser.getQuranQuarterMetas(applicationContext);
+
+        Assertions.assertThat(quranQuarterMetas).isNotEmpty();
+        Assertions.assertThat(quranQuarterMetas).hasSize(240);
     }
 
     @Test

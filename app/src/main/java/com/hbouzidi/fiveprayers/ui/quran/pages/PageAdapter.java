@@ -45,7 +45,6 @@ public class PageAdapter extends RecyclerView.Adapter<PageAdapter.Holder> {
     private PageShown pageShown;
     private List<Surah> surahs;
     private Context context;
-
     private final int textColor;
     private final int backgroundColor;
 

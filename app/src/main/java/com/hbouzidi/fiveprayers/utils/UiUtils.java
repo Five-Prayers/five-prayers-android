@@ -86,34 +86,16 @@ public class UiUtils {
     }
 
     public static String formatReadableGregorianDate(ZonedDateTime zonedDateTime) {
-        DateTimeFormatter formatter = DateTimeFormatter
-                .ofLocalizedDate(FormatStyle.FULL)
-                .withLocale(Locale.getDefault());
-
-        try {
-            return zonedDateTime.toLocalDate()
-                    .format(formatter.withDecimalStyle(DecimalStyle.of(Locale.getDefault()))).replaceAll("[٬،.]", "");
-        } catch (UnsupportedOperationException e) {
-            return zonedDateTime.toLocalDate().format(formatter).replaceAll("[٬،.]", "");
-        }
+        return formatReadableGregorianDate(zonedDateTime.toLocalDate(), FormatStyle.FULL);
     }
 
     public static String formatMediumReadableGregorianDate(ZonedDateTime zonedDateTime) {
-        DateTimeFormatter formatter = DateTimeFormatter
-                .ofLocalizedDate(FormatStyle.LONG)
-                .withLocale(Locale.getDefault());
-
-        try {
-            return zonedDateTime.toLocalDate()
-                    .format(formatter.withDecimalStyle(DecimalStyle.of(Locale.getDefault()))).replaceAll("[٬،.]", "");
-        } catch (UnsupportedOperationException e) {
-            return zonedDateTime.toLocalDate().format(formatter).replaceAll("[٬،.]", "");
-        }
+        return formatReadableGregorianDate(zonedDateTime.toLocalDate(), FormatStyle.LONG);
     }
 
-    public static String formatReadableGregorianDate(LocalDate localDate) {
+    public static String formatReadableGregorianDate(LocalDate localDate, FormatStyle dateStyle) {
         DateTimeFormatter formatter = DateTimeFormatter
-                .ofLocalizedDate(FormatStyle.FULL)
+                .ofLocalizedDate(dateStyle)
                 .withLocale(Locale.getDefault());
 
         try {

@@ -5,6 +5,7 @@ import com.hbouzidi.fiveprayers.di.module.NetworkModule;
 import com.hbouzidi.fiveprayers.ui.quran.index.BookmarkListAdapter;
 import com.hbouzidi.fiveprayers.ui.quran.index.SurahAdapter;
 import com.hbouzidi.fiveprayers.ui.quran.pages.PageAdapter;
+import com.hbouzidi.fiveprayers.ui.quran.index.ScheduleListAdapter;
 
 import javax.inject.Singleton;
 
@@ -28,4 +29,6 @@ public interface AdapterComponent {
     void inject(BookmarkListAdapter bookmarkListAdapter);
 
     void inject(SurahAdapter surahAdapter);
+
+    void inject(ScheduleListAdapter scheduleListAdapter);
 }

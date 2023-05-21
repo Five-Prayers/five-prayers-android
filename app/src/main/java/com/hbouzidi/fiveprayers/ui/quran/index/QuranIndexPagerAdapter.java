@@ -29,6 +29,9 @@ public class QuranIndexPagerAdapter extends FragmentStateAdapter {
                 fragment = SurahIndexFragment.newInstance();
                 break;
             case 1:
+                fragment = QuranScheduleIndexFragment.newInstance();
+                break;
+            case 2:
                 fragment = BookmarkIndexFragment.newInstance();
                 break;
         }
@@ -37,6 +40,6 @@ public class QuranIndexPagerAdapter extends FragmentStateAdapter {
 
     @Override
     public int getItemCount() {
-        return 2;
+        return 3;
     }
 }

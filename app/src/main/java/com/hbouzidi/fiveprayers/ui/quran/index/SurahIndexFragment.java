@@ -96,7 +96,7 @@ public class SurahIndexFragment extends QuranBaseIndexFragment {
         surahRecyclerView.setAdapter(surahAdapter);
         surahRecyclerView.setHasFixedSize(true);
 
-        surahAdapter.setSurahListner(pos -> gotoSuraa(pos, surahs));
+        surahAdapter.setSurahListner(pos -> gotoSuraa(pos, 1, 604, surahs));
     }
 
     private void initContentAndUpdateVisibility(QuranIndexViewModel quranIndexViewModel) {

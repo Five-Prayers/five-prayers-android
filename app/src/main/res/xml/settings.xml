@@ -100,6 +100,13 @@
         <CheckBoxPreference
             android:dependency="NOTIFICATIONS_ENABLED"
             android:defaultValue="true"
+            android:key="READING_SCHEDULER_NOTIFICATION_ENABLED"
+            android:layout="@layout/custom_switch_preference"
+            android:title="@string/reciting_notification_enabled" />
+
+        <CheckBoxPreference
+            android:dependency="NOTIFICATIONS_ENABLED"
+            android:defaultValue="true"
             android:key="ADHAN_VIBRATION_PREFERENCE"
             android:layout="@layout/custom_switch_preference"
             android:title="@string/title_adhan_vibration_preference" />

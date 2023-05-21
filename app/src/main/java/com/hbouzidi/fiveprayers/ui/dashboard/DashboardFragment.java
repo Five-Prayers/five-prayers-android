@@ -40,8 +40,8 @@ public class DashboardFragment extends Fragment {
 
         int subs[] = {R.string.desc_qibla_direction, R.string.desc_calendar_view_title, R.string.desc_gregorian_hijri_calendar, R.string.desc_quran, R.string.ndesc_ames_view_title, R.string.daily_verse__description};
 
-        int images[] = {R.drawable.ic_compass_24dp, R.drawable.ic_table_24dp, R.drawable.ic_calendar_24dp, R.drawable.ic_quran_24dp,
-                R.drawable.ic_alah_24dp, R.drawable.ic_book_24dp};
+        int images[] = {R.drawable.ic_compass_24dp, R.drawable.ic_table_24dp, R.drawable.ic_calendar_24dp, R.drawable.ic_quran_silhuoette,
+                R.drawable.ic_alah_24dp, R.drawable.ic_bismillah_24dp};
 
         Intent intents[] = {new Intent(getActivity(), CompassActivity.class),
                 new Intent(getActivity(), TimingTableActivity.class),

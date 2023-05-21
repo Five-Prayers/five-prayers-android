@@ -91,7 +91,7 @@ public class AlertHelper {
                 .setCancelable(false);
     }
 
-    public static void displayDialogError(final Context context, String message, View.OnClickListener onClickListener) {
+    public static void displayDialogError(String title, String message, Context context, View.OnClickListener onClickListener, boolean cancelable) {
         TypedArray typedArray = context.getTheme().obtainStyledAttributes(R.styleable.mainStyles);
         int topColor = typedArray.getColor(R.styleable.mainStyles_navigationBackgroundStartColor, ContextCompat.getColor(context, R.color.colorAccent));
         int iconTintColor = typedArray.getColor(R.styleable.mainStyles_iconsMainColor, ContextCompat.getColor(context, R.color.colorAccent));
@@ -100,20 +100,45 @@ public class AlertHelper {
         LovelyCustomDialog lovelyCustomDialog = new LovelyCustomDialog(context)
                 .setView(R.layout.custom_dialog_view)
                 .setTopColor(topColor)
-                .setTitle(context.getString(R.string.common_alert))
+                .setTitle(title)
                 .setTopTitleColor(topTitleColor)
                 .setTitleGravity(Gravity.CENTER_HORIZONTAL)
                 .setMessage(message)
                 .setMessageGravity(Gravity.FILL)
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .setIconTintColor(iconTintColor)
-                .setCancelable(false);
+                .setCancelable(cancelable);
 
         if (onClickListener != null) {
-            lovelyCustomDialog.setListener(R.id.btnOK, onClickListener);
+            lovelyCustomDialog.setListener(R.id.btnOK, true, onClickListener);
+        } else {
+            lovelyCustomDialog.setListener(R.id.btnOK, v -> lovelyCustomDialog.dismiss());
         }
-
-        lovelyCustomDialog.setListener(R.id.btnOK, v -> lovelyCustomDialog.dismiss());
         lovelyCustomDialog.show();
+    }
+
+    public static void displayDialogConformation(String title, String message, Context context, View.OnClickListener onClickListener, boolean cancelable) {
+        TypedArray typedArray = context.getTheme().obtainStyledAttributes(R.styleable.mainStyles);
+        int topColor = typedArray.getColor(R.styleable.mainStyles_navigationBackgroundStartColor, ContextCompat.getColor(context, R.color.colorAccent));
+        int iconTintColor = typedArray.getColor(R.styleable.mainStyles_iconsMainColor, ContextCompat.getColor(context, R.color.colorAccent));
+        int topTitleColor = typedArray.getColor(R.styleable.mainStyles_textColorPrimary, ContextCompat.getColor(context, R.color.textColorPrimary));
+        int colorAccent = typedArray.getColor(R.styleable.mainStyles_colorAccent, ContextCompat.getColor(context, R.color.colorAccent));
+
+        new LovelyStandardDialog(context, LovelyStandardDialog.ButtonLayout.VERTICAL)
+                .setCancelable(false)
+                .setTopColor(topColor)
+                .setButtonsColor(colorAccent)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setIconTintColor(iconTintColor)
+                .setTitle(title)
+                .setTopTitleColor(topTitleColor)
+                .setTitleGravity(Gravity.CENTER_HORIZONTAL)
+                .setMessageGravity(Gravity.FILL)
+                .setMessage(message)
+                .setPositiveButton(R.string.common_accept, onClickListener)
+                .setNeutralButton(R.string.common_decline, v -> {
+                })
+                .setCancelable(cancelable)
+                .show();
     }
 }

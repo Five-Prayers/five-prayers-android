@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/spacing_medium"
+    android:layout_marginEnd="@dimen/spacing_medium"
+    android:layout_marginBottom="@dimen/spacing_medium"
+    android:orientation="vertical"
+    app:cardCornerRadius="@dimen/spacing_middle">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/navigationBackgroundEndColor"
+        android:orientation="horizontal"
+        android:padding="@dimen/spacing_xsmall">
+
+        <TextView
+            android:id="@+id/number_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/spacing_xmedium"
+            android:gravity="center_vertical"
+            android:textColor="?attr/textColorSecondary"
+            android:textSize="@dimen/text_middle"
+            tools:text="@tools:sample/lorem" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:paddingStart="8dp">
+
+                <TextView
+                    android:id="@+id/quarter_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:fontFamily="@font/kitab"
+                    android:gravity="center_horizontal"
+                    android:textColor="?attr/textColorPrimary"
+                    android:textSize="@dimen/text_large"
+                    android:text="@string/quarter_to_display" />
+
+                <TextView
+                    android:id="@+id/reading_from_quarter_number_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/kitab"
+                    android:gravity="center_horizontal"
+                    android:textColor="?attr/textColorPrimary"
+                    android:textSize="@dimen/text_large"
+                    tools:text="@tools:sample/lorem" />
+
+                <TextView
+                    android:id="@+id/to_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:fontFamily="@font/kitab"
+                    android:gravity="center_horizontal"
+                    android:text="@string/common.to"
+                    android:textColor="?attr/textColorSecondary"
+                    android:textSize="@dimen/text_large" />
+
+                <TextView
+                    android:id="@+id/reading_to_quarter_number_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/kitab"
+                    android:gravity="center_horizontal"
+                    android:textColor="?attr/textColorPrimary"
+                    android:textSize="@dimen/text_large"
+                    tools:text="@tools:sample/lorem" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingStart="8dp">
+
+                <TextView
+                    android:id="@+id/from_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:fontFamily="@font/kitab"
+                    android:gravity="center_horizontal"
+                    android:textColor="?attr/textColorSecondary"
+                    android:textSize="@dimen/text_large"
+                    android:text="@string/common.from" />
+
+                <TextView
+                    android:id="@+id/reading_from_surah_name_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/kitab"
+                    android:gravity="center_horizontal"
+                    android:textColor="?attr/textColorPrimary"
+                    android:textSize="@dimen/text_large"
+                    tools:text="@tools:sample/lorem" />
+
+                <TextView
+                    android:id="@+id/from_ayah_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:fontFamily="@font/kitab"
+                    android:gravity="center_horizontal"
+                    android:text="@string/common.ayah"
+                    android:textColor="?attr/textColorPrimary"
+                    android:textSize="@dimen/text_large" />
+
+                <TextView
+                    android:id="@+id/reading_from_ayah_number_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:textColor="?attr/textColorPrimary"
+                    android:textSize="@dimen/text_large"
+                    tools:text="@tools:sample/lorem" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <CheckBox
+            android:id="@+id/status_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/spacing_xmedium"
+            android:gravity="center_vertical" />
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

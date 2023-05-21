@@ -277,4 +277,17 @@
     <style name="WindowTitleStyle" parent="TextAppearance.AppCompat.Title">
         <item name="android:textColor">?attr/textColorPrimary</item>
     </style>
+
+    <style name="CustomPickerDialogMaterialStyle" parent="@style/ThemeOverlay.MaterialComponents.MaterialCalendar">
+        <item name="colorPrimary">?attr/textColorPrimary</item>
+        <item name="android:textColorPrimary">?attr/textColorSecondary</item>
+        <item name="android:textColor">?attr/textColorSecondary</item>
+        <item name="colorSurface">?attr/navigationBackgroundStartColor</item>
+        <item name="android:buttonBarButtonStyle">@style/CustomButtonBarButtonStyle</item>
+    </style>
+
+    <style name="CustomButtonBarButtonStyle">
+        <item name="android:textColor">?attr/colorAccent</item>
+        <item name="backgroundTint">@android:color/transparent</item>
+    </style>
 </resources>

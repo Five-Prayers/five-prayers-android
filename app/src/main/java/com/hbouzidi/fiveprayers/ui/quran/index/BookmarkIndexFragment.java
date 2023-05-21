@@ -26,6 +26,8 @@ import java.util.stream.Collectors;
  */
 public class BookmarkIndexFragment extends QuranBaseIndexFragment {
 
+    private final int FIRST_QURAN_PAGE = 1;
+    private final int LAST_QURAN_PAGE = 604;
     private RecyclerView userMadeBookmarkRecyclerView;
     private RecyclerView automaticBookmarkRecyclerView;
     private TextView automaticBookmarkSectionTitle;
@@ -107,7 +109,7 @@ public class BookmarkIndexFragment extends QuranBaseIndexFragment {
             automaticBookmarkRecyclerView.setHasFixedSize(true);
             automaticBookmarkRecyclerView.setAdapter(automaticBookmarksListAdapter);
 
-            automaticBookmarksListAdapter.setBookmarkListner(pos -> gotoSuraa(pos, surahs));
+            automaticBookmarksListAdapter.setBookmarkListner(pos -> gotoSuraa(pos, FIRST_QURAN_PAGE, LAST_QURAN_PAGE, surahs));
 
             LinearLayoutManager userMadeLinearLayoutManager = new LinearLayoutManager(requireContext());
             userMAdeBookmarksListAdapter = new BookmarkListAdapter(requireContext());
@@ -118,7 +120,7 @@ public class BookmarkIndexFragment extends QuranBaseIndexFragment {
             userMadeBookmarkRecyclerView.setHasFixedSize(true);
             userMadeBookmarkRecyclerView.setAdapter(userMAdeBookmarksListAdapter);
 
-            userMAdeBookmarksListAdapter.setBookmarkListner(pos -> gotoSuraa(pos, surahs));
+            userMAdeBookmarksListAdapter.setBookmarkListner(pos -> gotoSuraa(pos, FIRST_QURAN_PAGE, LAST_QURAN_PAGE, surahs));
         }
     }
 }

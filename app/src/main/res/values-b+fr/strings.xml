@@ -1,6 +1,6 @@
 <resources>
-    <string name="whats_new_dialog_title">Correction de bogues</string>
-    <string name="whats_new_dialog_message">Correction d\'Adhan sur certains appareils</string>
+    <string name="whats_new_dialog_title">Nouvelle fonctionnalité !</string>
+    <string name="whats_new_dialog_message">Nous avons créé un programme quotidien de lecture du Coran pour vous aider à terminer la récitation à la fin de la période sélectionnée. Ramadan Moubarak</string>
 
     <string name="about_five_prayers">À propos de Five Prayers</string>
     <string name="open_source_projects_used">Projets Open Source</string>
@@ -41,7 +41,19 @@
     <string name="common.minutes.separator">m</string>
     <string name="common.in">dans</string>
     <string name="common.at">à</string>
+    <string name="common.from">depuis</string>
+    <string name="common.to">jusqu\'au</string>
+    <string name="common.ayah">verset</string>
+    <string name="common.day">Jour</string>
     <string name="common.update">Mise à jour</string>
+    <string name="common.startdate">Date de début</string>
+    <string name="common.once_in_four_month">Une fois dans quatre mois</string>
+    <string name="common.once_in_two_month">Une fois dans deux mois</string>
+    <string name="common.once_a_month">Une fois par mois</string>
+    <string name="common.once_in_three_weeks">Une fois toutes les trois semaines</string>
+    <string name="common.twice_a_month">Deux fois par mois</string>
+    <string name="common.three_times_a_month">Trois fois par mois</string>
+    <string name="common.four_times_a_month">Quatre fois par mois</string>
 
     <string name="location_alert_title">Erreur de localisation</string>
     <string name="location_alert_settings_button_title">Activer la localisation</string>
@@ -316,6 +328,7 @@
     <string name="daily_verse_notification_description">Lire le verset du jour : Surat %1$s - Ayah %2$d</string>
     <string name="daily_verse_notification_action_title">Voir plus</string>
 
+    <string name="quarter_to_display">Quart</string>
     <string name="juz_to_display">الجزء %d</string>
     <string name="hizb_to_display">الحزب %d</string>
     <string name="part_to_display">%s  الحزب  %d</string>
@@ -459,4 +472,16 @@
     <string name="title_temperature_unit_standard">Kelvin</string>
     <string name="title_temperature_unit_metric">Celsius</string>
     <string name="title_temperature_unit_imperial">Fahrenheit</string>
+
+    <string name="quran_daily_schedule">Programme de lecture du Coran</string>
+    <string name="quran_daily_schedule_desc">Coran quotidien</string>
+    <string name="create_quran_daily_schedule">Initializer le programme de lecture</string>
+    <string name="reset_quran_daily_schedule">Reinitializer le programme de lecture</string>
+    <string name="reset_quran_daily_schedule_confirmation">Voulez-vous réinitialiser le programme de lecture ?</string>
+    <string name="quran_daily_schedule_notification_title">Il est temps de réciter le Coran</string>
+    <string name="reciting_frequency">Fréquence de lecture</string>
+    <string name="notification_time">Heure de lecture</string>
+    <string name="reciting_notification_enabled">Activer le rappel de lecture du Coran</string>
+    <string name="reciting_total_days">Nombre total de jours</string>
+    <string name="reciting_remaining_days">Restant</string>
 </resources>

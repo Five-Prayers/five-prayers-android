@@ -354,7 +354,7 @@ public class HomeFragment extends Fragment {
         long timeBetween = TimingUtils.getTimeBetweenTwoPrayer(Objects.requireNonNull(timings.get(previousPrayerKey)), Objects.requireNonNull(timings.get(nextPrayerKey)));
 
         String prayerName = requireContext().getResources().getString(
-                getResources().getIdentifier(nextPrayerKey.toString(), "string", requireContext().getPackageName()));
+                getResources().getIdentifier("SHORT_" + nextPrayerKey, "string", requireContext().getPackageName()));
 
         prayerNametextView.setText(prayerName);
         prayerTimetextView.setText(UiUtils.formatTiming(Objects.requireNonNull(timings.get(nextPrayerKey))));

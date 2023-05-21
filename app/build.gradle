@@ -27,8 +27,8 @@ android {
         applicationId "com.hbouzidi.fiveprayers"
         minSdkVersion 16
         targetSdkVersion 33
-        versionCode 38
-        versionName "2.8.3"
+        versionCode 40
+        versionName "2.10.0"
         archivesBaseName = "$applicationId-v$versionCode($versionName)"
 
         vectorDrawables.useSupportLibrary = true
@@ -132,8 +132,8 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui:2.5.3'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
-    implementation "androidx.work:work-runtime:2.8.0"
-    implementation "androidx.work:work-rxjava3:2.8.0"
+    implementation "androidx.work:work-runtime:2.8.1"
+    implementation "androidx.work:work-rxjava3:2.8.1"
     implementation 'androidx.core:core:1.9.0'
     implementation 'androidx.media:media:1.6.0'
     implementation "androidx.preference:preference:1.2.0"
@@ -231,7 +231,7 @@ dependencies {
     //Testing
     testImplementation 'junit:junit:4.13.2'
     testImplementation 'androidx.test:core:1.5.0'
-    testImplementation 'androidx.work:work-testing:2.8.0'
+    testImplementation 'androidx.work:work-testing:2.8.1'
     testImplementation 'org.mockito:mockito-core:4.5.1'
     testImplementation 'org.robolectric:robolectric:4.8.1'
     testImplementation 'org.threeten:threetenbp:1.6.0'

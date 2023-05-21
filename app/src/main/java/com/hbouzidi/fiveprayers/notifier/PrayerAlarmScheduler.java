@@ -21,6 +21,7 @@ import com.hbouzidi.fiveprayers.utils.TimingUtils;
 import com.hbouzidi.fiveprayers.utils.UiUtils;
 
 import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Map;
@@ -74,6 +75,12 @@ public class PrayerAlarmScheduler {
 
         if (preferencesHelper.isDailyVerseEnabled()) {
             scheduleDailyVerse(dayPrayer);
+        }
+
+        if (preferencesHelper.isQuranReadingSchedulerNotificationEnabled()
+                && (LocalDate.now().isAfter(preferencesHelper.getReadingScheduleStartDateNotification())
+                        || LocalDate.now().isEqual(preferencesHelper.getReadingScheduleStartDateNotification()))) {
+            scheduleQuranReadingSchedulerNotification();
         }
     }
 
@@ -226,6 +233,27 @@ public class PrayerAlarmScheduler {
                 scheduleAlarm(sunriseTiming, alarmMgr, alarmIntent);
             }
         Log.i(TAG, "End scheduling Daily Verse for: " + dayPrayer.getDate());
+    }
+
+    private void scheduleQuranReadingSchedulerNotification() {
+        Log.i(TAG, "Start scheduling Quran Reading for: " + LocalDate.now());
+
+        LocalDateTime readingScheduleNotificationTime = LocalDate.now().atTime(preferencesHelper.getReadingScheduleNotificationTime());
+
+        if (LocalDateTime.now().isBefore(readingScheduleNotificationTime)) {
+            Log.i(TAG, "Scheduling Quran Reading at : " + TimingUtils.formatTiming(readingScheduleNotificationTime));
+
+            AlarmManager alarmMgr = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+            Intent intent = new Intent(context, QuranReadingReceiver.class);
+
+            intent.addFlags(Intent.FLAG_RECEIVER_FOREGROUND);
+
+            PendingIntent alarmIntent = PendingIntentCreator.getBroadcast(context, 543, intent, FLAG_UPDATE_CURRENT);
+            alarmMgr.cancel(alarmIntent);
+
+            scheduleAlarm(readingScheduleNotificationTime, alarmMgr, alarmIntent);
+        }
+        Log.i(TAG, "End scheduling Quran Reading for: " + LocalDate.now());
     }
 
     private PendingIntent getSilenterPendingIntent(int index, AlarmManager alarmMgr, boolean turnToSilent) {

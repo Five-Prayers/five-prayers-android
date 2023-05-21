@@ -1,6 +1,6 @@
 <resources>
-    <string name="whats_new_dialog_title">Bug fix</string>
-    <string name="whats_new_dialog_message">Fix Adhan in some devices</string>
+    <string name="whats_new_dialog_title">New feature !</string>
+    <string name="whats_new_dialog_message">We create a daily Quran Reading Schedule to help you finish reciting by the end of selected period. Ramadan Moubarak</string>
 
     <string name="about_five_prayers">About Five Prayers</string>
     <string name="open_source_projects_used">Open Source Projects Used</string>
@@ -43,7 +43,19 @@
     <string name="common.minutes.separator">m</string>
     <string name="common.in">in</string>
     <string name="common.at">at</string>
+    <string name="common.from">from</string>
+    <string name="common.to">to</string>
+    <string name="common.ayah">verse</string>
+    <string name="common.day">Day</string>
     <string name="common.update">Update</string>
+    <string name="common.startdate">Start Date</string>
+    <string name="common.once_in_four_month">Once in four months</string>
+    <string name="common.once_in_two_month">Once in two months</string>
+    <string name="common.once_a_month">Once a month</string>
+    <string name="common.once_in_three_weeks">Once in three weeks</string>
+    <string name="common.twice_a_month">Twice a month</string>
+    <string name="common.three_times_a_month">Three times a month</string>
+    <string name="common.four_times_a_month">Four times a month</string>
 
     <string name="location_alert_title">Location Error</string>
     <string name="location_alert_settings_button_title">Enable location service</string>
@@ -319,6 +331,7 @@
     <string name="daily_verse_notification_description">Read Today\'s verse: Surat %1$s - Ayah %2$d</string>
     <string name="daily_verse_notification_action_title">See more</string>
 
+    <string name="quarter_to_display">Quarter</string>
     <string name="juz_to_display">الجزء %d</string>
     <string name="hizb_to_display">الحزب %d</string>
     <string name="part_to_display">%s  الحزب  %d</string>
@@ -462,4 +475,16 @@
     <string name="title_temperature_unit_standard">Kelvin</string>
     <string name="title_temperature_unit_metric">Celsius</string>
     <string name="title_temperature_unit_imperial">Fahrenheit</string>
+
+    <string name="quran_daily_schedule">Quran Reading Schedule</string>
+    <string name="quran_daily_schedule_desc">Daily Quran</string>
+    <string name="create_quran_daily_schedule">Create Reading Schedule</string>
+    <string name="reset_quran_daily_schedule">Reset Reading Schedule</string>
+    <string name="reset_quran_daily_schedule_confirmation">Do you want to reset reading schedule ?</string>
+    <string name="quran_daily_schedule_notification_title">It\'s time to recite Quran</string>
+    <string name="reciting_frequency">Reading Frequency</string>
+    <string name="notification_time">Reading Time</string>
+    <string name="reciting_notification_enabled">Enable Quran reading reminder</string>
+    <string name="reciting_total_days">Total days</string>
+    <string name="reciting_remaining_days">Remaining</string>
 </resources>

@@ -30,6 +30,7 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.time.temporal.WeekFields;
 import java.util.Collections;
 import java.util.Iterator;
@@ -250,7 +251,7 @@ public class CalendarActivity extends BaseActivity {
 
             String readableHijriDate = UiUtils.formatHijriDate(Integer.parseInt(hijriDate.getDay()), hijriMonth, Integer.parseInt(hijriDate.getYear()));
 
-            String title = StringUtils.capitalize(UiUtils.formatReadableGregorianDate(selectedDate)) + " / " + readableHijriDate;
+            String title = StringUtils.capitalize(UiUtils.formatReadableGregorianDate(selectedDate, FormatStyle.FULL)) + " / " + readableHijriDate;
 
             selectedDateTextView.setText(title);
             selectedDateTextView.setVisibility(View.VISIBLE);

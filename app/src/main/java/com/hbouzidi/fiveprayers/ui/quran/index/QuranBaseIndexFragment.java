@@ -1,5 +1,7 @@
 package com.hbouzidi.fiveprayers.ui.quran.index;
 
+import static android.app.Activity.RESULT_OK;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,11 +16,13 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.hbouzidi.fiveprayers.FivePrayerApplication;
+import com.hbouzidi.fiveprayers.database.ReadingScheduleRegistry;
 import com.hbouzidi.fiveprayers.preferences.PreferencesHelper;
 import com.hbouzidi.fiveprayers.quran.dto.BookmarkType;
 import com.hbouzidi.fiveprayers.quran.dto.QuranBookmark;
 import com.hbouzidi.fiveprayers.quran.dto.QuranPage;
 import com.hbouzidi.fiveprayers.quran.dto.Surah;
+import com.hbouzidi.fiveprayers.quran.readingschedule.ReadingScheduleHelper;
 import com.hbouzidi.fiveprayers.ui.quran.pages.QuranPageActivity;
 
 import java.time.ZoneOffset;
@@ -27,8 +31,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
-
-import static android.app.Activity.RESULT_OK;
 
 /**
  * @author Hicham Bouzidi Idrissi
@@ -49,6 +51,12 @@ public class QuranBaseIndexFragment extends Fragment {
     @Inject
     PreferencesHelper preferencesHelper;
 
+    @Inject
+    ReadingScheduleHelper readingScheduleHelper;
+
+    @Inject
+    ReadingScheduleRegistry readingScheduleRegistry;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,9 +75,11 @@ public class QuranBaseIndexFragment extends Fragment {
         super.onAttach(context);
     }
 
-    protected void gotoSuraa(int pageNumber, List<Surah> surahs) {
+    protected void gotoSuraa(int targetPagePosition, int startPageNumber, int endPageNumber, List<Surah> surahs) {
         Bundle bundle = new Bundle();
-        bundle.putInt("PAGE_NUMBER", pageNumber);
+        bundle.putInt("PAGE_NUMBER", targetPagePosition);
+        bundle.putInt("START_PAGE_NUMBER", startPageNumber);
+        bundle.putInt("END_PAGE_NUMBER", endPageNumber);
         bundle.putParcelableArrayList("SURAHS", (ArrayList<? extends Parcelable>) surahs);
 
         Intent ayahsAcivity = new Intent(requireContext(), QuranPageActivity.class);

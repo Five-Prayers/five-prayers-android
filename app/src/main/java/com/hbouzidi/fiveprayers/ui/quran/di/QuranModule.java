@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.hbouzidi.fiveprayers.di.factory.viewmodel.ViewModelKey;
 import com.hbouzidi.fiveprayers.ui.quran.index.QuranIndexViewModel;
+import com.hbouzidi.fiveprayers.ui.quran.index.QuranScheduleIndexViewModel;
 import com.hbouzidi.fiveprayers.ui.quran.pages.QuranPageViewModel;
 
 import dagger.Binds;
@@ -26,5 +27,9 @@ public abstract class QuranModule {
     @Binds
     @IntoMap
     @ViewModelKey(QuranPageViewModel.class)
-    public abstract ViewModel bindsQuranPageViewModel(QuranPageViewModel quranPageViewModel);
+    public abstract ViewModel bindsQuranPageViewModel(QuranPageViewModel quranPageViewModel);    @Binds
+
+    @IntoMap
+    @ViewModelKey(QuranScheduleIndexViewModel.class)
+    public abstract ViewModel bindsQuranScheduleIndexViewModel(QuranScheduleIndexViewModel quranScheduleIndexViewModel);
 }

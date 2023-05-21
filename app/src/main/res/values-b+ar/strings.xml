@@ -1,6 +1,6 @@
 <resources>
-    <string name="whats_new_dialog_title">إصلاح الخلل</string>
-    <string name="whats_new_dialog_message">إصلاح الأذان في بعض الأجهزة</string>
+    <string name="whats_new_dialog_title">ميزة جديدة!</string>
+    <string name="whats_new_dialog_message">إنشاء جدول يومي لقراءة القرآن و مساعدتكم على إنهاء التلاوة بنهاية الفترة المحددة. رمضان مبارك</string>
 
     <string name="about_five_prayers">حول التطبيق</string>
     <string name="open_source_projects_used">مشاريع مفتوحة المصدر</string>
@@ -41,7 +41,19 @@
     <string name="common.minutes.separator">د</string>
     <string name="common.in">بعد</string>
     <string name="common.at">على</string>
+    <string name="common.from">من</string>
+    <string name="common.to">إلى</string>
+    <string name="common.ayah">آية</string>
+    <string name="common.day">يوم</string>
     <string name="common.update">تحديث</string>
+    <string name="common.startdate">تاريخ البدء</string>
+    <string name="common.once_in_four_month">مرة واحدة في أربعة أشهر</string>
+    <string name="common.once_in_two_month">مرة واحدة في شهرين</string>
+    <string name="common.once_a_month">مرة في الشهر</string>
+    <string name="common.once_in_three_weeks">مرة واحدة في ثلاثة أسابيع</string>
+    <string name="common.twice_a_month">مرتان في الشهر</string>
+    <string name="common.three_times_a_month">ثلاث مرات في الشهر</string>
+    <string name="common.four_times_a_month">أربع مرات في الشهر</string>
 
     <string name="location_alert_title">خطأ في الحصول على الموقع</string>
     <string name="location_alert_settings_button_title">تمكين الوصول إلى الموقع</string>
@@ -311,6 +323,7 @@
     <string name="daily_verse_notification_description">اقرأ آية اليوم: %1$s - آية %2$d</string>
     <string name="daily_verse_notification_action_title">شاهد المزيد</string>
 
+    <string name="quarter_to_display">ربع</string>
     <string name="juz_to_display">الجزء %d</string>
     <string name="hizb_to_display">الحزب %d</string>
     <string name="part_to_display">%s  الحزب  %d</string>
@@ -454,4 +467,16 @@
     <string name="title_temperature_unit_standard">وحدة الحرارة المطلقة</string>
     <string name="title_temperature_unit_metric">درجة مئوية/ سلسيوس</string>
     <string name="title_temperature_unit_imperial">فهرنهايت</string>
+
+    <string name="quran_daily_schedule">ورد القرآن اليومي</string>
+    <string name="quran_daily_schedule_desc">الورد اليومي</string>
+    <string name="create_quran_daily_schedule">جدولة ورد القرآن اليومي</string>
+    <string name="reset_quran_daily_schedule">إعادة تعيين برنامج التلاوة</string>
+    <string name="reset_quran_daily_schedule_confirmation">هل تريد إعادة ضبط جدول التلاوة؟</string>
+    <string name="quran_daily_schedule_notification_title">حان الوقت لتلاوة القرآن</string>
+    <string name="reciting_frequency">تردد التلاوة</string>
+    <string name="notification_time">وقت التلاوة</string>
+    <string name="reciting_notification_enabled">تفعيل التذكير بتلاوة القرآن</string>
+    <string name="reciting_total_days">مجموع الأيام</string>
+    <string name="reciting_remaining_days">متبقي</string>
 </resources>

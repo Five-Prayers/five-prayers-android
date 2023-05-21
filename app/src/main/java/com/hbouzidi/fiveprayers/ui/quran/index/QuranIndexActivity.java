@@ -26,7 +26,7 @@ public class QuranIndexActivity extends BaseActivity {
     @Inject
     PreferencesHelper preferencesHelper;
 
-    private final int[] titles = {R.string.surat, R.string.bookmarks};
+    private final int[] titles = {R.string.surat, R.string.quran_daily_schedule_desc, R.string.bookmarks};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +48,12 @@ public class QuranIndexActivity extends BaseActivity {
         new TabLayoutMediator(tabLayout, viewPager,
                 (tab, position) -> tab.setText(getString(titles[position]))
         ).attach();
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            int value = extras.getInt("tab_to_open", 0);
+            viewPager.setCurrentItem(value, false);
+        }
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(view -> finish());

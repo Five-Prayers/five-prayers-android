@@ -15,6 +15,7 @@ import com.google.gson.reflect.TypeToken;
 import com.hbouzidi.fiveprayers.R;
 import com.hbouzidi.fiveprayers.openweathermap.TemperatureUnit;
 import com.hbouzidi.fiveprayers.quran.dto.QuranBookmark;
+import com.hbouzidi.fiveprayers.quran.readingschedule.ReadingGoal;
 import com.hbouzidi.fiveprayers.timings.calculations.CalculationMethodEnum;
 import com.hbouzidi.fiveprayers.timings.calculations.CountryCalculationMethod;
 import com.hbouzidi.fiveprayers.timings.calculations.LatitudeAdjustmentMethod;
@@ -25,6 +26,10 @@ import com.hbouzidi.fiveprayers.utils.UiUtils;
 import com.hbouzidi.fiveprayers.utils.UserPreferencesUtils;
 
 import java.lang.reflect.Type;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -406,5 +411,64 @@ public class PreferencesHelper {
     public boolean isOfflineCalculationMode() {
         final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         return defaultSharedPreferences.getBoolean(PreferencesConstants.OFFLINE_CALCULATION_MODE, false);
+    }
+
+    public void setReadingScheduleFrequency(ReadingGoal readingGoal) {
+        final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+
+        SharedPreferences.Editor edit = defaultSharedPreferences.edit();
+        edit.putString(PreferencesConstants.READING_SCHEDULE_FREQUENCY, readingGoal.toString());
+        edit.apply();
+    }
+
+    public ReadingGoal getReadingScheduleFrequency() {
+        final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+
+        String readingGoalString = defaultSharedPreferences.getString(PreferencesConstants.READING_SCHEDULE_FREQUENCY, ReadingGoal.ONCE_A_MONTH.toString());
+
+        return ReadingGoal.valueOf(readingGoalString);
+    }
+
+    public void setReadingScheduleStartDateNotification(LocalDate startDate) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+
+
+        SharedPreferences.Editor edit = defaultSharedPreferences.edit();
+        edit.putString(PreferencesConstants.READING_SCHEDULE_START_DATE_NOTIFICATION, startDate.format(formatter));
+        edit.apply();
+    }
+
+    public LocalDate getReadingScheduleStartDateNotification() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+
+        String dateString = defaultSharedPreferences.getString(PreferencesConstants.READING_SCHEDULE_START_DATE_NOTIFICATION, LocalDate.now().format(formatter));
+
+        return LocalDate.parse(dateString, formatter);
+    }
+
+    public void setReadingScheduleNotificationTime(LocalTime time) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+
+
+        SharedPreferences.Editor edit = defaultSharedPreferences.edit();
+        edit.putString(PreferencesConstants.READING_SCHEDULE_NOTIFICATION_TIME, time.format(formatter));
+        edit.apply();
+    }
+
+    public LocalTime getReadingScheduleNotificationTime() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+
+        String dateString = defaultSharedPreferences.getString(PreferencesConstants.READING_SCHEDULE_NOTIFICATION_TIME, LocalDateTime.now().format(formatter));
+
+        return LocalTime.parse(dateString, formatter);
+    }
+
+    public boolean isQuranReadingSchedulerNotificationEnabled() {
+        final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return defaultSharedPreferences.getBoolean(PreferencesConstants.READING_SCHEDULER_NOTIFICATION_ENABLED, true);
     }
 }

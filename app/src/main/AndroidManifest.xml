@@ -18,7 +18,7 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
-    <uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -26,8 +26,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
-
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
@@ -43,7 +42,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.App">
         <activity android:name=".ui.names.NamesActivity" />
-        <activity android:name=".ui.quran.index.QuranIndexActivity" />
+        <activity android:name=".ui.quran.index.QuranIndexActivity" android:screenOrientation="portrait" />
         <activity
             android:name=".ui.quran.pages.QuranPageActivity"
             android:configChanges="orientation|screenSize"
@@ -79,22 +78,22 @@
             android:process=":error_activity" />
         <activity
             android:name=".ui.dailyverse.DailyVerseActivity"
+            android:excludeFromRecents="true"
             android:launchMode="singleTask"
-            android:taskAffinity=""
-            android:excludeFromRecents="true" />
+            android:taskAffinity="" />
 
         <receiver
             android:name=".ui.widget.ClockHomeScreenWidgetProvider"
-            android:exported="false"
-            android:enabled="@bool/lollipopAbove">
+            android:enabled="@bool/lollipopAbove"
+            android:exported="false">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
+
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/clock_home_screen_widget_info" />
         </receiver>
-
         <receiver
             android:name=".notifier.NotifierBootReceiver"
             android:enabled="true"
@@ -158,8 +157,10 @@
         </receiver>
         <receiver
             android:name=".notifier.DailyVerseReceiver"
+            android:enabled="true" /> <!-- Disable androidx.startup only for WorkManagerInitializer -->
+        <receiver
+            android:name=".notifier.QuranReadingReceiver"
             android:enabled="true" />
-        <!-- Disable androidx.startup only for WorkManagerInitializer -->
         <provider
             android:name="androidx.startup.InitializationProvider"
             android:authorities="${applicationId}.androidx-startup"

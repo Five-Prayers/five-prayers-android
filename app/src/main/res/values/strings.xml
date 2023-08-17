@@ -288,7 +288,7 @@
 
     <string name="title_qibla_direction">Qibla Direction</string>
     <string name="desc_qibla_direction">Locate Qibla direction</string>
-
+    <string name="facing_qibla">You are Facing Qibla</string>
     <string name="school_adjustment_method_shafii">Shafii (Default)</string>
     <string name="school_adjustment_method_hanafi">Hanafi</string>
     <string name="title_school_adjustment_method">School</string>

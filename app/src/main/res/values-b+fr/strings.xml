@@ -278,7 +278,7 @@
 
     <string name="title_qibla_direction">Direction de Qibla</string>
     <string name="desc_qibla_direction">Direction de la Mecque</string>
-
+    <string name="facing_qibla">Vous êtes en face de la Qibla</string>
     <string name="your_location">Votre position: </string>
     <string name="unable_to_get_your_location">Impossible d\'obtenir votre position</string>
     <string name="location_not_ready">Service de localisation pas encore prêt</string>

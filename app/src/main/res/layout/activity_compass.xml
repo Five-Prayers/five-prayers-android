@@ -11,9 +11,9 @@
         android:id="@+id/compass_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay"
-        android:elevation="2dp"
         android:background="?attr/toolbarBackgroundColor"
+        android:elevation="2dp"
+        android:theme="@style/AppTheme.AppBarOverlay"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -26,8 +26,8 @@
             android:minHeight="?actionBarSize"
             android:padding="@dimen/appbar_padding"
             android:text="@string/title_qibla_direction"
-            android:textColor="?attr/toolbarTextColorPrimary"
             android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
+            android:textColor="?attr/toolbarTextColorPrimary"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -57,43 +57,46 @@
         app:layout_constraintTop_toBottomOf="@+id/compass_toolbar"
         app:layout_constraintVertical_bias="0.20999998">
 
-        <ImageView
-            android:id="@+id/dial"
-            android:layout_width="@dimen/dial"
-            android:layout_height="@dimen/dial"
-            android:layout_centerInParent="true"
-            android:contentDescription="@string/compass_dial"
-            app:layout_constraintBottom_toBottomOf="@+id/qibla_indicator"
-            app:layout_constraintEnd_toEndOf="@+id/qibla_indicator"
-            app:layout_constraintStart_toStartOf="@+id/qibla_indicator"
-            app:layout_constraintTop_toTopOf="@+id/qibla_indicator"
-            app:srcCompat="@drawable/dial" />
+        <TextView
+            android:id="@+id/tvDirection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="0°"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/qibla_indicator"
-            android:layout_width="@dimen/qibla"
-            android:layout_height="@dimen/qibla"
-            android:layout_centerInParent="true"
-            android:contentDescription="@string/compass_hands"
-            android:scaleType="fitXY"
+            android:id="@+id/ivCompass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/qibla" />
+            app:srcCompat="@drawable/ic_compass_direction"
+            app:tint="?attr/faceTint" />
+
+        <ImageView
+            android:id="@+id/ivNeedle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/ivCompass"
+            app:layout_constraintEnd_toEndOf="@+id/ivCompass"
+            app:layout_constraintStart_toStartOf="@+id/ivCompass"
+            app:layout_constraintTop_toTopOf="@+id/ivCompass"
+            app:srcCompat="@drawable/compass_needle" />
 
         <TextView
-            android:id="@+id/angle"
-            android:layout_width="match_parent"
+            android:id="@+id/tvLocation"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:gravity="center_horizontal"
-            android:textColor="?attr/textColorPrimary"
-            android:textSize="20sp"
-            android:textStyle="bold"
+            android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/dial" />
+            app:layout_constraintTop_toBottomOf="@+id/ivCompass" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -119,18 +122,5 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/footer" />
-
-        <TextView
-            android:id="@+id/your_location"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:gravity="center_horizontal"
-            android:textColor="?attr/textColorPrimary"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/footer_image"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

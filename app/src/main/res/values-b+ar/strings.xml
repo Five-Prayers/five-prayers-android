@@ -275,6 +275,7 @@
 
     <string name="title_qibla_direction">اتجاه القبلة</string>
     <string name="desc_qibla_direction">تحديد اتجاه القبلة</string>
+    <string name="facing_qibla">أنتم أمام القبلة</string>
     <string name="your_location">موقعك:</string>
     <string name="unable_to_get_your_location">غير قادر على الحصول على موقعك</string>
     <string name="location_not_ready">خدمة الموقع ليست جاهزة بعد</string>

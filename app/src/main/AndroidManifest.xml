@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.hbouzidi.fiveprayers">
 
-    <uses-sdk tools:overrideLibrary="com.owl93.dpb, androidx.core.splashscreen" />
+    <uses-sdk tools:overrideLibrary="com.owl93.dpb, androidx.core.splashscreen, io.github.derysudrajat.compassqibla" />
 
     <queries>
         <intent>

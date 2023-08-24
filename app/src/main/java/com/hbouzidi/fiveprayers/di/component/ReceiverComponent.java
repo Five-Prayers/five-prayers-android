@@ -4,11 +4,12 @@ import com.hbouzidi.fiveprayers.di.module.AppModule;
 import com.hbouzidi.fiveprayers.di.module.NetworkModule;
 import com.hbouzidi.fiveprayers.di.module.WidgetModule;
 import com.hbouzidi.fiveprayers.notifier.DailyVerseReceiver;
-import com.hbouzidi.fiveprayers.notifier.QuranReadingReceiver;
-import com.hbouzidi.fiveprayers.notifier.ReminderReceiver;
+import com.hbouzidi.fiveprayers.notifier.InvocationsReceiver;
 import com.hbouzidi.fiveprayers.notifier.NotificationDismissedReceiver;
 import com.hbouzidi.fiveprayers.notifier.NotifierActionReceiver;
 import com.hbouzidi.fiveprayers.notifier.NotifierReceiver;
+import com.hbouzidi.fiveprayers.notifier.QuranReadingReceiver;
+import com.hbouzidi.fiveprayers.notifier.ReminderReceiver;
 import com.hbouzidi.fiveprayers.notifier.SilenterReceiver;
 
 import javax.inject.Singleton;
@@ -42,4 +43,6 @@ public interface ReceiverComponent {
     void inject(DailyVerseReceiver dailyVerseReceiver);
 
     void inject(QuranReadingReceiver quranReadingReceiver);
+
+    void inject(InvocationsReceiver invocationsReceiver);
 }

@@ -4,9 +4,9 @@ import android.content.Context;
 
 import androidx.test.core.app.ApplicationProvider;
 
-import com.google.gson.Gson;
 import com.hbouzidi.fiveprayers.FakeFivePrayerApplication;
 import com.hbouzidi.fiveprayers.quran.dto.Ayah;
+import com.hbouzidi.fiveprayers.quran.dto.Invocation;
 import com.hbouzidi.fiveprayers.quran.dto.QuranPage;
 import com.hbouzidi.fiveprayers.quran.dto.QuranQuarterMeta;
 import com.hbouzidi.fiveprayers.quran.dto.Surah;
@@ -99,6 +99,38 @@ public class QuranParserTest {
         for (int i = 0; i < todayVerses.keySet().size(); i++) {
             Assertions.assertThat(todayVerses.get(String.valueOf(i))).isNotNull();
             Assertions.assertThat(todayVerses.get(String.valueOf(i))).hasSize(3);
+        }
+    }
+
+    @Test
+    @Ignore("Work on local only")
+    public void should_parse_morning_invocations() {
+        QuranParser quranParser = QuranParser.getInstance();
+
+        Map<String, List<Invocation>> morningInvocations = quranParser.getMorningInvocations(applicationContext);
+
+        Assertions.assertThat(morningInvocations.keySet()).isNotEmpty();
+        Assertions.assertThat(morningInvocations.keySet()).hasSize(13);
+
+        for (int i = 0; i < morningInvocations.keySet().size(); i++) {
+            Assertions.assertThat(morningInvocations.get(String.valueOf(i))).isNotNull();
+            Assertions.assertThat(morningInvocations.get(String.valueOf(i))).hasSize(3);
+        }
+    }
+
+    @Test
+    @Ignore("Work on local only")
+    public void should_parse_evening_invocations() {
+        QuranParser quranParser = QuranParser.getInstance();
+
+        Map<String, List<Invocation>> eveningInvocations = quranParser.getEveningInvocations(applicationContext);
+
+        Assertions.assertThat(eveningInvocations.keySet()).isNotEmpty();
+        Assertions.assertThat(eveningInvocations.keySet()).hasSize(14);
+
+        for (int i = 0; i < eveningInvocations.keySet().size(); i++) {
+            Assertions.assertThat(eveningInvocations.get(String.valueOf(i))).isNotNull();
+            Assertions.assertThat(eveningInvocations.get(String.valueOf(i))).hasSize(3);
         }
     }
 }

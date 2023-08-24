@@ -326,7 +326,7 @@
     <string name="daily_verse__description">Lire le verset du jour</string>
     <string name="daily_verse_notification_title">Le verset du jour</string>
     <string name="daily_verse_notification_description">Lire le verset du jour : Surat %1$s - Ayah %2$d</string>
-    <string name="daily_verse_notification_action_title">Voir plus</string>
+    <string name="common_see_more">Voir plus</string>
 
     <string name="quarter_to_display">Quart</string>
     <string name="juz_to_display">الجزء %d</string>
@@ -484,4 +484,11 @@
     <string name="reciting_notification_enabled">Activer le rappel de lecture du Coran</string>
     <string name="reciting_total_days">Nombre total de jours</string>
     <string name="reciting_remaining_days">Restant</string>
+
+    <string name="morning_invocations">Invocations du matin</string>
+    <string name="read_morning_invocations">Lire les invocations du matin</string>
+
+    <string name="evening_invocations">Invocations du soir</string>
+    <string name="read_evening_invocations">Lire les invocations du soir</string>
+    <string name="invocation_title_preference">Activer les invocations quotidiennes</string>
 </resources>

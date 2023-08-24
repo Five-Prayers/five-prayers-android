@@ -100,6 +100,13 @@
         <CheckBoxPreference
             android:dependency="NOTIFICATIONS_ENABLED"
             android:defaultValue="true"
+            android:key="INVOCATIONS_NOTIFICATIONS_ENABLED"
+            android:layout="@layout/custom_switch_preference"
+            android:title="@string/invocation_title_preference" />
+
+        <CheckBoxPreference
+            android:dependency="NOTIFICATIONS_ENABLED"
+            android:defaultValue="true"
             android:key="READING_SCHEDULER_NOTIFICATION_ENABLED"
             android:layout="@layout/custom_switch_preference"
             android:title="@string/reciting_notification_enabled" />

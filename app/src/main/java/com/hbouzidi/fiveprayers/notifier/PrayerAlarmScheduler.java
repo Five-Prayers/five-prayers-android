@@ -79,8 +79,16 @@ public class PrayerAlarmScheduler {
 
         if (preferencesHelper.isQuranReadingSchedulerNotificationEnabled()
                 && (LocalDate.now().isAfter(preferencesHelper.getReadingScheduleStartDateNotification())
-                        || LocalDate.now().isEqual(preferencesHelper.getReadingScheduleStartDateNotification()))) {
+                || LocalDate.now().isEqual(preferencesHelper.getReadingScheduleStartDateNotification()))) {
             scheduleQuranReadingSchedulerNotification();
+        }
+
+        if (preferencesHelper.isInvocationsNotificationsEnabled()) {
+            scheduleInvocations(true, dayPrayer);
+        }
+
+        if (preferencesHelper.isInvocationsNotificationsEnabled()) {
+            scheduleInvocations(false, dayPrayer);
         }
     }
 
@@ -219,19 +227,19 @@ public class PrayerAlarmScheduler {
 
         LocalDateTime sunriseTiming = timings.get(ComplementaryTimingEnum.SUNRISE);
 
-            if (sunriseTiming != null && LocalDateTime.now().isBefore(sunriseTiming)) {
-                Log.i(TAG, "Scheduling Daily Verse at : " + TimingUtils.formatTiming(sunriseTiming));
+        if (sunriseTiming != null && LocalDateTime.now().isBefore(sunriseTiming)) {
+            Log.i(TAG, "Scheduling Daily Verse at : " + TimingUtils.formatTiming(sunriseTiming));
 
-                AlarmManager alarmMgr = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-                Intent intent = new Intent(context, DailyVerseReceiver.class);
+            AlarmManager alarmMgr = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+            Intent intent = new Intent(context, DailyVerseReceiver.class);
 
-                intent.addFlags(Intent.FLAG_RECEIVER_FOREGROUND);
+            intent.addFlags(Intent.FLAG_RECEIVER_FOREGROUND);
 
-                PendingIntent alarmIntent = PendingIntentCreator.getBroadcast(context, 542, intent, FLAG_UPDATE_CURRENT);
-                alarmMgr.cancel(alarmIntent);
+            PendingIntent alarmIntent = PendingIntentCreator.getBroadcast(context, 542, intent, FLAG_UPDATE_CURRENT);
+            alarmMgr.cancel(alarmIntent);
 
-                scheduleAlarm(sunriseTiming, alarmMgr, alarmIntent);
-            }
+            scheduleAlarm(sunriseTiming, alarmMgr, alarmIntent);
+        }
         Log.i(TAG, "End scheduling Daily Verse for: " + dayPrayer.getDate());
     }
 
@@ -254,6 +262,31 @@ public class PrayerAlarmScheduler {
             scheduleAlarm(readingScheduleNotificationTime, alarmMgr, alarmIntent);
         }
         Log.i(TAG, "End scheduling Quran Reading for: " + LocalDate.now());
+    }
+
+    private void scheduleInvocations(@NonNull boolean morningInvocation, DayPrayer dayPrayer) {
+        Log.i(TAG, "Start scheduling Notification for Invocations");
+
+        Map<PrayerEnum, LocalDateTime> timings = dayPrayer.getTimings();
+
+        LocalDateTime notificationTime = morningInvocation ? timings.get(PrayerEnum.FAJR).plus(30, ChronoUnit.MINUTES) : timings.get(PrayerEnum.MAGHRIB).plus(30, ChronoUnit.MINUTES);
+
+        if (notificationTime != null && LocalDateTime.now().isBefore(notificationTime)) {
+            Log.i(TAG, "Scheduling Invocations at : " + TimingUtils.formatTiming(notificationTime));
+
+            AlarmManager alarmMgr = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+            Intent intent = new Intent(context, InvocationsReceiver.class);
+            intent.putExtra("IS_MORNING_INVOCATIONS", morningInvocation);
+            intent.putExtra("NOTIFICATION_ID", 1629);
+
+            intent.addFlags(Intent.FLAG_RECEIVER_FOREGROUND);
+
+            PendingIntent alarmIntent = PendingIntentCreator.getBroadcast(context, 542, intent, FLAG_UPDATE_CURRENT);
+            alarmMgr.cancel(alarmIntent);
+
+            scheduleAlarm(notificationTime, alarmMgr, alarmIntent);
+        }
+        Log.i(TAG, "End scheduling Invocations for: " + dayPrayer.getDate());
     }
 
     private PendingIntent getSilenterPendingIntent(int index, AlarmManager alarmMgr, boolean turnToSilent) {

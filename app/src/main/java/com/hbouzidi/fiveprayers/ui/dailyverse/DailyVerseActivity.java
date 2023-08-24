@@ -2,14 +2,9 @@ package com.hbouzidi.fiveprayers.ui.dailyverse;
 
 import android.annotation.SuppressLint;
 import android.content.res.Resources;
-import android.graphics.Typeface;
 import android.os.Bundle;
-import android.text.Spannable;
-import android.text.SpannableStringBuilder;
-import android.text.style.RelativeSizeSpan;
 import android.widget.TextView;
 
-import androidx.core.content.res.ResourcesCompat;
 import androidx.core.os.ConfigurationCompat;
 
 import com.hbouzidi.fiveprayers.FivePrayerApplication;
@@ -18,7 +13,7 @@ import com.hbouzidi.fiveprayers.preferences.PreferencesHelper;
 import com.hbouzidi.fiveprayers.quran.dto.Ayah;
 import com.hbouzidi.fiveprayers.quran.parser.QuranParser;
 import com.hbouzidi.fiveprayers.ui.BaseActivity;
-import com.hbouzidi.fiveprayers.utils.CustomTypefaceSpan;
+import com.hbouzidi.fiveprayers.utils.UiUtils;
 
 import java.text.NumberFormat;
 import java.util.List;
@@ -70,13 +65,13 @@ public class DailyVerseActivity extends BaseActivity {
                 .orElse(null);
 
         TextView baslamaTextView = findViewById(R.id.baslama_text_view);
-        baslamaTextView.setText(getIslamicPhrase("6"));
+        baslamaTextView.setText(UiUtils.getIslamicPhrase("6", getApplicationContext()));
 
         TextView sadakaTextView = findViewById(R.id.sadaka_text_view);
-        sadakaTextView.setText(getIslamicPhrase("S"));
+        sadakaTextView.setText(UiUtils.getIslamicPhrase("S", getApplicationContext()));
 
         TextView separatorView = findViewById(R.id.ornaments_separator_text_view);
-        separatorView.setText(getIslamicPhrase("XXXXXXX"));
+        separatorView.setText(UiUtils.getIslamicPhrase("XXXXXXX", getApplicationContext()));
 
         TextView arabicMetaTextView = findViewById(R.id.arabic_meta_text_view);
         arabicMetaTextView.setText(ayahInArabicLanguage.getSurah().getName() + " - " + numberFormat.format(ayahInArabicLanguage.getNumberInSurah()));
@@ -89,15 +84,5 @@ public class DailyVerseActivity extends BaseActivity {
 
         TextView translationTextView = findViewById(R.id.translation_text_view);
         translationTextView.setText(ayahSystemLanguage != null ? ayahSystemLanguage.getText() : ayahInEnglishLanguage.getText());
-    }
-
-    private String getIslamicPhrase(String text) {
-        SpannableStringBuilder builder = new SpannableStringBuilder();
-        Typeface typeface = ResourcesCompat.getFont(getApplicationContext(), R.font.aga_islamic_phrases);
-        builder.append(text);
-        builder.setSpan(new CustomTypefaceSpan(typeface), 0, builder.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        builder.setSpan(new RelativeSizeSpan(2.5f), 0, builder.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-
-        return builder.toString();
     }
 }

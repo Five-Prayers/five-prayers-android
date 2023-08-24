@@ -12,15 +12,20 @@ import android.location.Location;
 import android.net.Uri;
 import android.os.Build;
 import android.text.Layout;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
 import android.text.StaticLayout;
 import android.text.TextDirectionHeuristics;
 import android.text.TextPaint;
+import android.text.style.RelativeSizeSpan;
 import android.view.Display;
 import android.view.WindowManager;
 
 import androidx.annotation.ColorRes;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
+
+import com.hbouzidi.fiveprayers.R;
 
 import java.text.NumberFormat;
 import java.time.LocalDate;
@@ -242,6 +247,16 @@ public class UiUtils {
         builder.append("'");
         builder.append(longitudeSplit[2]);
         builder.append("\"");
+
+        return builder.toString();
+    }
+
+    public static String getIslamicPhrase(String text, Context context) {
+        SpannableStringBuilder builder = new SpannableStringBuilder();
+        Typeface typeface = ResourcesCompat.getFont(context, R.font.aga_islamic_phrases);
+        builder.append(text);
+        builder.setSpan(new CustomTypefaceSpan(typeface), 0, builder.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        builder.setSpan(new RelativeSizeSpan(2.5f), 0, builder.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         return builder.toString();
     }

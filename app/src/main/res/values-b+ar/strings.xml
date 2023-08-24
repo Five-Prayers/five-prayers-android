@@ -322,7 +322,7 @@
     <string name="daily_verse__description">اقرأ آية اليوم</string>
     <string name="daily_verse_notification_title">آية اليوم</string>
     <string name="daily_verse_notification_description">اقرأ آية اليوم: %1$s - آية %2$d</string>
-    <string name="daily_verse_notification_action_title">شاهد المزيد</string>
+    <string name="common_see_more">شاهد المزيد</string>
 
     <string name="quarter_to_display">ربع</string>
     <string name="juz_to_display">الجزء %d</string>
@@ -480,4 +480,11 @@
     <string name="reciting_notification_enabled">تفعيل التذكير بتلاوة القرآن</string>
     <string name="reciting_total_days">مجموع الأيام</string>
     <string name="reciting_remaining_days">متبقي</string>
+
+    <string name="morning_invocations">أذكار الصباح</string>
+    <string name="read_morning_invocations">اقرأ أذكار الصباح</string>
+
+    <string name="evening_invocations">أذكار المساء</string>
+    <string name="read_evening_invocations">اقرأ أذكار المساء</string>
+    <string name="invocation_title_preference">تفعيل أذكار الصباح و المساء</string>
 </resources>

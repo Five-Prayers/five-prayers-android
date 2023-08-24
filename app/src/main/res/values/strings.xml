@@ -56,6 +56,7 @@
     <string name="common.twice_a_month">Twice a month</string>
     <string name="common.three_times_a_month">Three times a month</string>
     <string name="common.four_times_a_month">Four times a month</string>
+    <string name="common_see_more">See more</string>
 
     <string name="location_alert_title">Location Error</string>
     <string name="location_alert_settings_button_title">Enable location service</string>
@@ -329,7 +330,6 @@
     <string name="daily_verse__description">Read Today\'s verse</string>
     <string name="daily_verse_notification_title">Today\'s verse</string>
     <string name="daily_verse_notification_description">Read Today\'s verse: Surat %1$s - Ayah %2$d</string>
-    <string name="daily_verse_notification_action_title">See more</string>
 
     <string name="quarter_to_display">Quarter</string>
     <string name="juz_to_display">الجزء %d</string>
@@ -487,4 +487,11 @@
     <string name="reciting_notification_enabled">Enable Quran reading reminder</string>
     <string name="reciting_total_days">Total days</string>
     <string name="reciting_remaining_days">Remaining</string>
+
+    <string name="morning_invocations">Morning Invocations</string>
+    <string name="read_morning_invocations">Read Morning Invocations</string>
+
+    <string name="evening_invocations">Evening Invocations</string>
+    <string name="read_evening_invocations">Read Evening Invocations</string>
+    <string name="invocation_title_preference">Enable daily invocations</string>
 </resources>

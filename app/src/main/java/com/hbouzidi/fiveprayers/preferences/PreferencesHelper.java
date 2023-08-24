@@ -377,6 +377,11 @@ public class PreferencesHelper {
         return defaultSharedPreferences.getBoolean(PreferencesConstants.TODAY_VERSE_ENABLED, true);
     }
 
+    public boolean isInvocationsNotificationsEnabled() {
+        final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return defaultSharedPreferences.getBoolean(PreferencesConstants.INVOCATIONS_NOTIFICATIONS_ENABLED, true);
+    }
+
     public String getDailyVerseKey() {
         final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         return defaultSharedPreferences.getString(PreferencesConstants.TODAY_VERSE_KEY, "0");

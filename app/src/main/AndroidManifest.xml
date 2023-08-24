@@ -81,7 +81,8 @@
             android:excludeFromRecents="true"
             android:launchMode="singleTask"
             android:taskAffinity="" />
-
+        <activity android:name=".ui.invocations.MorningInvocationActivity" />
+        <activity android:name=".ui.invocations.EveningInvocationActivity" />
         <receiver
             android:name=".ui.widget.ClockHomeScreenWidgetProvider"
             android:enabled="@bool/lollipopAbove"
@@ -158,6 +159,9 @@
         <receiver
             android:name=".notifier.DailyVerseReceiver"
             android:enabled="true" /> <!-- Disable androidx.startup only for WorkManagerInitializer -->
+        <receiver
+            android:name=".notifier.InvocationsReceiver"
+            android:enabled="true" />
         <receiver
             android:name=".notifier.QuranReadingReceiver"
             android:enabled="true" />

@@ -66,7 +66,7 @@ public class TodayVerseNotification extends BaseNotification {
     public void createNotification(@NonNull List<Ayah> todayVerse) {
         String notificationTitle = context.getString(R.string.daily_verse_notification_title);
         String notificationDescription;
-        String actionTitle = context.getString(R.string.daily_verse_notification_action_title);
+        String actionTitle = context.getString(R.string.common_see_more);
 
         Locale systemLocale = ConfigurationCompat
                 .getLocales(Resources.getSystem().getConfiguration())

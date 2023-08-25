@@ -264,7 +264,7 @@ public class PrayerAlarmScheduler {
         Log.i(TAG, "End scheduling Quran Reading for: " + LocalDate.now());
     }
 
-    private void scheduleInvocations(@NonNull boolean morningInvocation, DayPrayer dayPrayer) {
+    private void scheduleInvocations(boolean morningInvocation, @NonNull DayPrayer dayPrayer) {
         Log.i(TAG, "Start scheduling Notification for Invocations");
 
         Map<PrayerEnum, LocalDateTime> timings = dayPrayer.getTimings();
@@ -277,11 +277,11 @@ public class PrayerAlarmScheduler {
             AlarmManager alarmMgr = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
             Intent intent = new Intent(context, InvocationsReceiver.class);
             intent.putExtra("IS_MORNING_INVOCATIONS", morningInvocation);
-            intent.putExtra("NOTIFICATION_ID", 1629);
+            intent.putExtra("NOTIFICATION_ID", morningInvocation ? 1629 : 1630);
 
             intent.addFlags(Intent.FLAG_RECEIVER_FOREGROUND);
 
-            PendingIntent alarmIntent = PendingIntentCreator.getBroadcast(context, 542, intent, FLAG_UPDATE_CURRENT);
+            PendingIntent alarmIntent = PendingIntentCreator.getBroadcast(context, morningInvocation ? 1529 : 1530, intent, FLAG_UPDATE_CURRENT);
             alarmMgr.cancel(alarmIntent);
 
             scheduleAlarm(notificationTime, alarmMgr, alarmIntent);

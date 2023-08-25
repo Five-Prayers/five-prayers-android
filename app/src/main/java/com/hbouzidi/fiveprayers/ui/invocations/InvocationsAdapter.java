@@ -67,6 +67,9 @@ public class InvocationsAdapter extends RecyclerView.Adapter<InvocationsAdapter.
         holder.separatorTextView.setText(UiUtils.getIslamicPhrase("XXXXXXX", context));
         holder.adhkarTextView.setText(invocationInArabicLanguage.getText());
         holder.adhkarTranslationTextView.setText(translatedInvocation);
+
+        String pageIndicator = i + 1 + "/" + invocations.size();
+        holder.invocationNumberTextView.setText(pageIndicator);
     }
 
     @Override
@@ -79,12 +82,14 @@ public class InvocationsAdapter extends RecyclerView.Adapter<InvocationsAdapter.
         final TextView adhkarTextView;
         final TextView adhkarTranslationTextView;
         final TextView separatorTextView;
+        final TextView invocationNumberTextView;
 
         public Holder(@NonNull View itemView) {
             super(itemView);
             adhkarTextView = itemView.findViewById(R.id.adhkar_text_view);
             adhkarTranslationTextView = itemView.findViewById(R.id.adhkar_translation_text_view);
             separatorTextView = itemView.findViewById(R.id.invocation_ornaments_separator_text_view);
+            invocationNumberTextView = itemView.findViewById(R.id.invocation_number_text_view);
 
         }
     }

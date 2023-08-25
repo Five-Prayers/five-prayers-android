@@ -106,7 +106,6 @@ public class TodayVerseNotification extends BaseNotification {
                 .addAction(R.drawable.ic_book_24dp, actionTitle, getNotificationIntent())
                 .setStyle(new NotificationCompat.BigPictureStyle()
                         .bigPicture(versePicture)
-                        .bigLargeIcon(null)
                 )
                 .setAutoCancel(true);
 

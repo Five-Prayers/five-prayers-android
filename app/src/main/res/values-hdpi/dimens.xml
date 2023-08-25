@@ -12,5 +12,6 @@
     <dimen name="widget_text_large">24sp</dimen>
     <dimen name="widget_text_xxxlarge">60sp</dimen>
 
-    <dimen name="quran_text_large">12sp</dimen>
+    <dimen name="arabic_text_large">12sp</dimen>
+    <dimen name="translation_text_large">12sp</dimen>
 </resources>

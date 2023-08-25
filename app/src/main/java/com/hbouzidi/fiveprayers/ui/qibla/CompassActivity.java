@@ -61,9 +61,9 @@ public class CompassActivity extends BaseActivity {
         CompassQibla.Builder builder = new CompassQibla.Builder(this);
         builder
                 .onPermissionDenied(() -> {
-                    Toast toast = new Toast(this);
-                    toast.setText("onPermissionDenied");
-                    toast.setDuration(Toast.LENGTH_SHORT);
+                    Toast
+                            .makeText(getApplicationContext(), R.string.quibla_permission_denied, Toast.LENGTH_LONG)
+                            .show();
                     return null;
                 })
                 .onGetLocationAddress(address -> {

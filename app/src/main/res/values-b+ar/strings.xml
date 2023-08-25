@@ -487,4 +487,6 @@
     <string name="evening_invocations">أذكار المساء</string>
     <string name="read_evening_invocations">اقرأ أذكار المساء</string>
     <string name="invocation_title_preference">تفعيل أذكار الصباح و المساء</string>
+
+    <string name="quibla_permission_denied">خطأ ! يحتاج التطبيق إلى معرفة موقعك لحساب اتجاه القبلة.</string>
 </resources>

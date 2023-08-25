@@ -491,4 +491,6 @@
     <string name="evening_invocations">Invocations du soir</string>
     <string name="read_evening_invocations">Lire les invocations du soir</string>
     <string name="invocation_title_preference">Activer les invocations quotidiennes</string>
+
+    <string name="quibla_permission_denied">Erreur ! L\'application doit connaître votre emplacement pour calculer la position de la Qibla.</string>
 </resources>

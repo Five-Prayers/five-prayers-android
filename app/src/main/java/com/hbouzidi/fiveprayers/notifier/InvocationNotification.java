@@ -71,12 +71,12 @@ public class InvocationNotification extends BaseNotification {
                 .setContentTitle(notificationTitle)
                 .setContentText(notificationDescription)
                 .setContentIntent(pendingIntent)
-                .addAction(isMorningInvocations ? R.drawable.ic_morning_invocations : R.drawable.ic_evening_invocations, actionTitle, getNotificationIntent(isMorningInvocations))
                 .setAutoCancel(true);
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             builder.setSmallIcon(android.R.drawable.ic_popup_reminder);
         } else {
+            builder.addAction(isMorningInvocations ? R.drawable.ic_morning_invocations : R.drawable.ic_evening_invocations, actionTitle, getNotificationIntent(isMorningInvocations));
             builder.setSmallIcon(isMorningInvocations ? R.drawable.ic_morning_invocations : R.drawable.ic_evening_invocations);
         }
 

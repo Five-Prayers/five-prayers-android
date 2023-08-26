@@ -103,7 +103,6 @@ public class TodayVerseNotification extends BaseNotification {
                 .setContentTitle(notificationTitle)
                 .setContentText(notificationDescription)
                 .setContentIntent(pendingIntent)
-                .addAction(R.drawable.ic_book_24dp, actionTitle, getNotificationIntent())
                 .setStyle(new NotificationCompat.BigPictureStyle()
                         .bigPicture(versePicture)
                 )
@@ -112,6 +111,7 @@ public class TodayVerseNotification extends BaseNotification {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             builder.setSmallIcon(android.R.drawable.ic_popup_reminder);
         } else {
+            builder.addAction(R.drawable.ic_book_24dp, actionTitle, getNotificationIntent());
             builder.setSmallIcon(getNotificationIcon());
         }
 

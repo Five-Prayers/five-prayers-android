@@ -71,9 +71,14 @@ class CannotScheduleExactAlarmNotification extends BaseNotification {
                 .setContentTitle(notificationTitle)
                 .setStyle(new NotificationCompat.BigTextStyle().bigText(content))
                 .setContentIntent(notificationIntent)
-                .setSmallIcon(android.R.drawable.ic_dialog_alert)
-                .addAction(android.R.drawable.ic_dialog_alert, grantActionTitle, getNotificationIntent())
                 .setAutoCancel(true);
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            builder.setSmallIcon(android.R.drawable.ic_dialog_alert);
+        } else {
+            builder.addAction(R.drawable.ic_alert, grantActionTitle, getNotificationIntent());
+            builder.setSmallIcon(getNotificationIcon());
+        }
 
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
 

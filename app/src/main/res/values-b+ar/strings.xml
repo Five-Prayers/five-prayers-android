@@ -488,5 +488,7 @@
     <string name="read_evening_invocations">اقرأ أذكار المساء</string>
     <string name="invocation_title_preference">تفعيل أذكار الصباح و المساء</string>
 
-    <string name="quibla_permission_denied">خطأ ! يحتاج التطبيق إلى معرفة موقعك لحساب اتجاه القبلة.</string>
+    <string name="qibla_permission_denied">لم يتم منح أذونات تحديد الموقع، قد يكون موضع القبلة خاطئًا!</string>
+    <string name="qibla_location_service_not_enabled">لم يتم تفعيل خدمات الموقع، قد يكون موضع القبلة خاطئًا!</string>
+    <string name="qibla_airplane_mode_on">وضع الطائرة قيد التشغيل! موقف القبلة قد يكون خاطئا!</string>
 </resources>

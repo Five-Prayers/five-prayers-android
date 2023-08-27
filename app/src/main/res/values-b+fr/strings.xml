@@ -1,6 +1,6 @@
 <resources>
     <string name="whats_new_dialog_title">Nouvelle fonctionnalité !</string>
-    <string name="whats_new_dialog_message">Nous avons créé un programme quotidien de lecture du Coran pour vous aider à terminer la récitation à la fin de la période sélectionnée. Ramadan Moubarak</string>
+    <string name="whats_new_dialog_message">La fonctionnalité Qibla a été améliorée avec une nouvelle implémentation. Nous avons également ajouté les invocations quotidiennes (Adhkar).</string>
 
     <string name="about_five_prayers">À propos de Five Prayers</string>
     <string name="open_source_projects_used">Projets Open Source</string>

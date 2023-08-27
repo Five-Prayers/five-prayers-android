@@ -29,7 +29,6 @@ public class QiblaViewModel extends AndroidViewModel {
     private final LocationHelper locationHelper;
     private final MutableLiveData<Location> mLocation;
     private final AddressHelper addressHelper;
-
     private CompositeDisposable compositeDisposable;
 
     @Inject

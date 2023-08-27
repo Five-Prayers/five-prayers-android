@@ -276,7 +276,7 @@
     <string name="title_hijri_day_adjustment_preference">Ajustement de la date Hijri</string>
     <string name="dialog_title_hijri_day_adjustment_preference">Ajuster la date Hijri</string>
 
-    <string name="title_qibla_direction">Direction de Qibla</string>
+    <string name="title_qibla_direction">Direction de la Qibla</string>
     <string name="desc_qibla_direction">Direction de la Mecque</string>
     <string name="facing_qibla">Vous êtes en face de la Qibla</string>
     <string name="your_location">Votre position: </string>
@@ -492,5 +492,7 @@
     <string name="read_evening_invocations">Lire les invocations du soir</string>
     <string name="invocation_title_preference">Activer les invocations quotidiennes</string>
 
-    <string name="quibla_permission_denied">Erreur ! L\'application doit connaître votre emplacement pour calculer la position de la Qibla.</string>
+    <string name="qibla_permission_denied">Les autorisations de localisation ne sont pas accordées, la position de la Qibla peut être erronée !</string>
+    <string name="qibla_location_service_not_enabled">Les services de localisation ne sont pas activés, la position de la Qibla peut-être erronée !</string>
+    <string name="qibla_airplane_mode_on">Le mode avion est activé ! La position de la Qibla peut-être erronée !</string>
 </resources>

@@ -228,8 +228,7 @@ dependencies {
     //https://github.com/intuit/ssp
     implementation 'com.intuit.ssp:ssp-android:1.1.0'
 
-    //https://github.com/derysudrajat/compass-qibla
-    implementation 'com.github.derysudrajat:compass-qibla:1.0.0'
+    implementation project(":compassqibla")
 
     //Testing
     testImplementation 'junit:junit:4.13.2'

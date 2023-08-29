@@ -10,7 +10,7 @@
 <a href="https://github.com/Five-Prayers/five-prayers-android/releases/latest" alt="Download: latest version" target="_blank"><img src="https://img.shields.io/github/v/release/Five-Prayers/five-prayers-android"></a>
 <a href="https://github.com/Five-Prayers/five-prayers-android/releases/latest" alt="Download: latest version" target="_blank"><img src="https://img.shields.io/github/downloads/Five-Prayers/five-prayers-android/total?logo=Github"></a>
 <a href="https://play.google.com/store/apps/details?id=com.hbouzidi.fiveprayers" alt="Download: latest version" target="_blank"><img src="https://PlayBadges.pavi2410.me/badge/downloads?id=com.hbouzidi.fiveprayers"></a>
- 
+<a href="https://apt.izzysoft.de/fdroid/index/apk/com.hbouzidi.fiveprayers/" alt="Download: latest version" target="_blank"><img src="https://img.shields.io/endpoint?url=https://apt.izzysoft.de/fdroid/api/v1/shield/com.hbouzidi.fiveprayers"></a>
 </p>
 
 <hr>
@@ -19,8 +19,9 @@
   <img alt="Android app on Google Play" src="https://developer.android.com/images/brand/en_app_rgb_wo_45.png"/>
 </a>
 
-F-Droid Repo:<br>
-Download the current version by adding the following repo to the F-Droid App
+F-Droid Repos:
+<br>
+- Download the current version by adding the following repo to the F-Droid App
 [https://raw.githubusercontent.com/Five-Prayers/fdroid-repo-stable/main/fdroid/repo](https://raw.githubusercontent.com/Five-Prayers/fdroid-repo-stable/main/fdroid/repo)
 
 You can use this fingerprint to validate repo's signature : 
@@ -28,9 +29,13 @@ You can use this fingerprint to validate repo's signature :
 ```
 C8 E3 6E 27 BA 66 CB 81 D9 24 9C 55 C6 7A 8E 53 21 AF DB CC F8 1E EB 0D 49 5E 8E 3A 01 FE 16 93
 ```
- 
+
+- The App is also available on IzzyOnDroid F-Droid Repository :
+
 <p align="center">
-  <img src="https://fdroid.gitlab.io/artwork/badge/get-it-on-en.svg" alt="Get it on F-Droid" height=80/> 
+  <a href="https://apt.izzysoft.de/fdroid/index/apk/com.hbouzidi.fiveprayers/" alt="IzzyOnDroid Link" target="_blank">
+    <img src="https://gitlab.com/IzzyOnDroid/repo/-/raw/master/assets/IzzyOnDroid.png" alt="Get it on IzzyOnDroid" height=80/>
+  </a>
 </p> 
 
 <hr>
@@ -42,14 +47,15 @@ C8 E3 6E 27 BA 66 CB 81 D9 24 9C 55 C6 7A 8E 53 21 AF DB CC F8 1E EB 0D 49 5E 8E
 
 [<img src="screenshots/pixel_4xl/Screenshot_0.png" width=160>](screenshots/pixel_4xl/Screenshot_0.png)
 [<img src="screenshots/pixel_4xl/Screenshot_1.png" width=160>](screenshots/pixel_4xl/Screenshot_1.png)
+[<img src="screenshots/pixel_4xl/Screenshot_2.png" width=160>](screenshots/pixel_4xl/Screenshot_2.png)
 [<img src="screenshots/pixel_4xl/Screenshot_3.png" width=160>](screenshots/pixel_4xl/Screenshot_3.png)
 [<img src="screenshots/pixel_4xl/Screenshot_4.png" width=160>](screenshots/pixel_4xl/Screenshot_4.png)
 [<img src="screenshots/pixel_4xl/Screenshot_5.png" width=160>](screenshots/pixel_4xl/Screenshot_5.png)
-[<img src="screenshots/pixel_4xl/Screenshot_7.png" width=160>](screenshots/pixel_4xl/Screenshot_7.png)
-[<img src="screenshots/pixel_4xl/Screenshot_8.png" width=160>](screenshots/pixel_4xl/Screenshot_8.png)
 [<img src="screenshots/pixel_4xl/Screenshot_9.png" width=160>](screenshots/pixel_4xl/Screenshot_9.png)
-[<img src="screenshots/pixel_4xl/Screenshot_10.png" width=160>](screenshots/pixel_4xl/Screenshot_10.png)
+[<img src="screenshots/pixel_4xl/Screenshot_11.png" width=160>](screenshots/pixel_4xl/Screenshot_11.png)
 [<img src="screenshots/pixel_4xl/Screenshot_12.png" width=160>](screenshots/pixel_4xl/Screenshot_12.png)
+[<img src="screenshots/pixel_4xl/Screenshot_13.png" width=160>](screenshots/pixel_4xl/Screenshot_13.png)
+[<img src="screenshots/pixel_4xl/Screenshot_17.png" width=160>](screenshots/pixel_4xl/Screenshot_17.png)
 
 ## Description
 

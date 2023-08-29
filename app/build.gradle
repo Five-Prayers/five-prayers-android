@@ -27,8 +27,8 @@ android {
         applicationId "com.hbouzidi.fiveprayers"
         minSdkVersion 16
         targetSdkVersion 33
-        versionCode 40
-        versionName "2.10.0"
+        versionCode 41
+        versionName "2.10.1"
         archivesBaseName = "$applicationId-v$versionCode($versionName)"
 
         vectorDrawables.useSupportLibrary = true
@@ -202,7 +202,7 @@ dependencies {
     implementation 'com.github.kizitonwose:CalendarView:1.0.4'
 
     //https://github.com/greenrobot/EventBus
-    implementation 'org.greenrobot:eventbus:3.2.0'
+    implementation 'org.greenrobot:eventbus:3.3.1'
 
     //https://github.com/AppIntro/AppIntro
     implementation 'com.github.AppIntro:AppIntro:6.2.0'

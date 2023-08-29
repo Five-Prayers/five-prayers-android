@@ -1,12 +1,10 @@
 package com.hbouzidi.compassqibla
 
-import android.annotation.SuppressLint
 import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.location.Location
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 
@@ -33,14 +31,6 @@ class CompassQibla {
             sensorManager.registerListener(
                     this, sensor, SensorManager.SENSOR_DELAY_GAME
             )
-        }
-
-        fun onPermissionGranted(onGranted: (permission: String) -> Unit) = apply {
-            model.permission.observe(activity) { if (it.first) onGranted(it.second) }
-        }
-
-        fun onPermissionDenied(onDenied: () -> Unit) = apply {
-            model.permission.observe(activity) { if (!it.first) onDenied() }
         }
 
         fun onDirectionChangeListener(onChange: (qiblaDirection: QiblaDirection) -> Unit) = apply {
@@ -73,20 +63,6 @@ class CompassQibla {
 
         override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
             model.updateAccuracy(sensor, accuracy)
-        }
-
-        @SuppressLint("NewApi")
-        fun requestLocationPermission() {
-            val locationPermissionRequest = activity.registerForActivityResult(
-                    ActivityResultContracts.RequestMultiplePermissions()
-            ) { permissions ->
-                LocationUtils.handlePermission(
-                        permissions,
-                        { model.onPermissionUpdate(true, it) },
-                        { model.onPermissionUpdate(false) }
-                )
-            }
-            LocationUtils.launchPermission(locationPermissionRequest)
         }
     }
 }

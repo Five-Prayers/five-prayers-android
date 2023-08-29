@@ -51,10 +51,15 @@ C8 E3 6E 27 BA 66 CB 81 D9 24 9C 55 C6 7A 8E 53 21 AF DB CC F8 1E EB 0D 49 5E 8E
 [<img src="screenshots/pixel_4xl/Screenshot_3.png" width=160>](screenshots/pixel_4xl/Screenshot_3.png)
 [<img src="screenshots/pixel_4xl/Screenshot_4.png" width=160>](screenshots/pixel_4xl/Screenshot_4.png)
 [<img src="screenshots/pixel_4xl/Screenshot_5.png" width=160>](screenshots/pixel_4xl/Screenshot_5.png)
+[<img src="screenshots/pixel_4xl/Screenshot_6.png" width=160>](screenshots/pixel_4xl/Screenshot_6.png)
+[<img src="screenshots/pixel_4xl/Screenshot_7.png" width=160>](screenshots/pixel_4xl/Screenshot_7.png)
+[<img src="screenshots/pixel_4xl/Screenshot_8.png" width=160>](screenshots/pixel_4xl/Screenshot_8.png)
 [<img src="screenshots/pixel_4xl/Screenshot_9.png" width=160>](screenshots/pixel_4xl/Screenshot_9.png)
+[<img src="screenshots/pixel_4xl/Screenshot_10.png" width=160>](screenshots/pixel_4xl/Screenshot_10.png)
 [<img src="screenshots/pixel_4xl/Screenshot_11.png" width=160>](screenshots/pixel_4xl/Screenshot_11.png)
 [<img src="screenshots/pixel_4xl/Screenshot_12.png" width=160>](screenshots/pixel_4xl/Screenshot_12.png)
 [<img src="screenshots/pixel_4xl/Screenshot_13.png" width=160>](screenshots/pixel_4xl/Screenshot_13.png)
+[<img src="screenshots/pixel_4xl/Screenshot_14.png" width=160>](screenshots/pixel_4xl/Screenshot_14.png)
 [<img src="screenshots/pixel_4xl/Screenshot_17.png" width=160>](screenshots/pixel_4xl/Screenshot_17.png)
 
 ## Description
@@ -107,9 +112,11 @@ Five Prayers Android is not Google Framework dependent, so this app can be used 
 * Switches Adhan to Silent by pressing down volume button
 * Automatically turn the phone to 'no disturb' mode after Adhan
 * Month Prayer times table
-* Qibla direction compass from [Android Qibla Direction](https://github.com/hassaanjamil/hj-android-lib-qibla-direction)
+* Qibla direction compass from [Compass Qibla Project](https://github.com/derysudrajat/compass-qibla)
 * Quran (Please consider this open-source project if your are looking for more features [Quran Android](https://github.com/quran/quran_android))
-* Daily Ayah notification
+* Quran Reading Schedule 
+* Daily Ayah notifications
+* Daily Invocations
 * 99 Names of God
 * Multiple Home Screen Widgets
 * Weather information in Clock Widget (Go to OpenWeatherMap and sign up for free. It may take a while before the API-Key is activated!)

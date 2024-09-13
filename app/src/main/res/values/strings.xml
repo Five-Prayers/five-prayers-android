@@ -103,12 +103,12 @@
         to update prayer timings even when the app is closed or not used, please select \"allow all the time option\" in the next screen (recommended)</string>
 
     <string name="app_intro_frag_4_title">Allow Five Prayers to send notifications</string>
-    <string name="app_intro_frag_4_description">We need your permission to send you Adhan notifications, without this, Adhan calls will not works !
+    <string name="app_intro_frag_4_description">We need your permission to send you Aẓān notifications, without this, Aẓān calls will not works !
         Please select \"allow\" in the next screen (recommended)</string>
 
     <string name="app_intro_frag_5_title">Enjoy !</string>
     <string name="app_intro_frag_5_description">Five Prayer Android introduces great features and capabilities for all users,
-        like : Worldwide Prayer Timings, different calculation methods, notifications, reads Adhan, Qibla direction and more</string>
+        like : Worldwide Prayer Timings, different calculation methods, notifications, reads Aẓān, Qibla direction and more</string>
 
     <string name="app_intro_permission_denied_dialog_title">Information</string>
     <string name="app_intro_permission_denied_dialog_message">The application needs to know your location to calculate prayer times correctly. You can set your location manually in the settings screen.</string>
@@ -119,64 +119,64 @@
     <string name="title_calendar">Prayer Calendar</string>
     <string name="desc_calendar_view_title">Monthly Prayer table</string>
 
-    <string name="FAJR">As`Sobh (Fajr)</string>
+    <string name="FAJR">As Ṣubḥ (Fajr)</string>
     <string name="SUNRISE">Sunrise</string>
-    <string name="DOHA">Ad`Dhuha</string>
-    <string name="DHOHR">Ad`Dohr</string>
-    <string name="ASR">Al Asr</string>
-    <string name="MAGHRIB">Al Maghreb</string>
-    <string name="ICHA">Al Ichaa</string>
+    <string name="DOHA">Ad Ḍuḥā</string>
+    <string name="DHOHR">Ad Ḍuḥr</string>
+    <string name="ASR">Al ʿAṣr</string>
+    <string name="MAGHRIB">Al Maghrib</string>
+    <string name="ICHA">Al ʿIshā</string>
     <string name="LAST_THIRD_OF_THE_NIGHT">Last third of the Night</string>
 
     <string name="SHORT_FAJR">Fajr</string>
     <string name="SHORT_SUNRISE">Sunrise</string>
-    <string name="SHORT_DHOHR">Dohr</string>
-    <string name="SHORT_ASR">Asr</string>
-    <string name="SHORT_MAGHRIB">Maghreb</string>
-    <string name="SHORT_ICHA">Ichaa</string>
+    <string name="SHORT_DHOHR">Ḍuḥr</string>
+    <string name="SHORT_ASR">ʿAṣr</string>
+    <string name="SHORT_MAGHRIB">Maghrib</string>
+    <string name="SHORT_ICHA">ʿIshā</string>
 
-    <string name="FIRST_DAY_OF_YEAR">Hijri new year</string>
-    <string name="YAWM_ASHURA">Yawm Ashura</string>
-    <string name="MAWLID_A_NABAWI">Al Mawlid A Nabawi</string>
-    <string name="LAILAT_AL_MIRAJ">Lailat Al Miiraj</string>
-    <string name="MID_SHAABAN_NIGHT">Laila Al Baraah</string>
-    <string name="MID_SHAABAN">Mid Of Shaaban</string>
-    <string name="FIRST_DAY_OF_RAMADAN">1st Day Of Ramadan</string>
-    <string name="DAY_20_OF_RAMADAN">Last days of Ramadan</string>
-    <string name="DAY_21_OF_RAMADAN">Last days of Ramadan</string>
-    <string name="DAY_22_OF_RAMADAN">Last days of Ramadan</string>
-    <string name="DAY_23_OF_RAMADAN">Last days of Ramadan</string>
-    <string name="DAY_24_OF_RAMADAN">Last days of Ramadan</string>
-    <string name="DAY_25_OF_RAMADAN">Last days of Ramadan</string>
-    <string name="DAY_26_OF_RAMADAN">Last days of Ramadan</string>
-    <string name="DAY_27_OF_RAMADAN">Last days of Ramadan</string>
-    <string name="DAY_28_OF_RAMADAN">Last days of Ramadan</string>
-    <string name="DAY_29_OF_RAMADAN">Last days of Ramadan</string>
-    <string name="DAY_30_OF_RAMADAN">Last days of Ramadan</string>
-    <string name="EID_AL_FITR">Eid Al Fitr</string>
-    <string name="FIRST_DAY_OF_AL_Hajj">Al Hajj</string>
+    <string name="FIRST_DAY_OF_YEAR">Hijrī new year</string>
+    <string name="YAWM_ASHURA">Yawm ʿĀshūrā</string>
+    <string name="MAWLID_A_NABAWI">Al Mawlid An Nabawī</string>
+    <string name="LAILAT_AL_MIRAJ">Laylat Al Miʿrāj</string>
+    <string name="MID_SHAABAN_NIGHT">Laylat Al Barāʿah</string>
+    <string name="MID_SHAABAN">Mid Of Shaʿbān</string>
+    <string name="FIRST_DAY_OF_RAMADAN">1st Day Of Ramaḍān</string>
+    <string name="DAY_20_OF_RAMADAN">Last days of Ramaḍān</string>
+    <string name="DAY_21_OF_RAMADAN">Last days of Ramaḍān</string>
+    <string name="DAY_22_OF_RAMADAN">Last days of Ramaḍān</string>
+    <string name="DAY_23_OF_RAMADAN">Last days of Ramaḍān</string>
+    <string name="DAY_24_OF_RAMADAN">Last days of Ramaḍān</string>
+    <string name="DAY_25_OF_RAMADAN">Last days of Ramaḍān</string>
+    <string name="DAY_26_OF_RAMADAN">Last days of Ramaḍān</string>
+    <string name="DAY_27_OF_RAMADAN">Last days of Ramaḍān</string>
+    <string name="DAY_28_OF_RAMADAN">Last days of Ramaḍān</string>
+    <string name="DAY_29_OF_RAMADAN">Last days of Ramaḍān</string>
+    <string name="DAY_30_OF_RAMADAN">Last days of Ramaḍān</string>
+    <string name="EID_AL_FITR">ʿĪd Al Fiṭr</string>
+    <string name="FIRST_DAY_OF_AL_Hajj">Al Ḥajj</string>
     <string name="DAY_OF_ARAFAH">Day Of Arafah</string>
-    <string name="EID_AL_ADHA">Eid Al Adha</string>
-    <string name="FOURTH_DAY_OF_AL_Hajj">Al Hajj</string>
-    <string name="FIFTH_DAY_OF_AL_Hajj">Al Hajj</string>
-    <string name="SIXT_DAY_OF_AL_Hajj">Al Hajj</string>
+    <string name="EID_AL_ADHA">ʿĪd Al Aḍḥā</string>
+    <string name="FOURTH_DAY_OF_AL_Hajj">Al Ḥajj</string>
+    <string name="FIFTH_DAY_OF_AL_Hajj">Al Ḥajj</string>
+    <string name="SIXT_DAY_OF_AL_Hajj">Al Ḥajj</string>
 
-    <string name="hijri">Hijri</string>
-    <string name="hijri_month_1">Mouharram</string>
-    <string name="hijri_month_2">Safar</string>
-    <string name="hijri_month_3">Rabii Al Awal</string>
-    <string name="hijri_month_4">Rabii Ath`Thani</string>
-    <string name="hijri_month_5">Joumada Al Oula</string>
-    <string name="hijri_month_6">Joumada Ath`Thania</string>
+    <string name="hijri">Hijrī</string>
+    <string name="hijri_month_1">Muḥarram</string>
+    <string name="hijri_month_2">Ṣafar</string>
+    <string name="hijri_month_3">Rabīʿ Al Awwal</string>
+    <string name="hijri_month_4">Rabīʿ Ath Thānī</string>
+    <string name="hijri_month_5">Jumādā Al Ūlā</string>
+    <string name="hijri_month_6">Jumādā Ath Thānī</string>
     <string name="hijri_month_7">Rajab</string>
-    <string name="hijri_month_8">Chaabane</string>
-    <string name="hijri_month_9">Ramadan</string>
-    <string name="hijri_month_10">Chawwal</string>
-    <string name="hijri_month_11">Dhou Al Qi`da</string>
-    <string name="hijri_month_12">Dhou Al Hijja</string>
+    <string name="hijri_month_8">Shaʿbān</string>
+    <string name="hijri_month_9">Ramaḍān</string>
+    <string name="hijri_month_10">Shawwāl</string>
+    <string name="hijri_month_11">Dhul Qaʿdah</string>
+    <string name="hijri_month_12">Dhul Ḥijjah</string>
 
     <string name="method_fajr_angle">Fajr angle</string>
-    <string name="method_ichaa_angle">Ichaa angle</string>
+    <string name="method_ichaa_angle">ʿIshā angle</string>
     <string name="method_shia_ithna_ansari">Shia Ithna Ashari, Leva Research Institute, Qum</string>
     <string name="method_university_of_islamic_sciences_karachi">University of Islamic Sciences, Karachi</string>
     <string name="method_islamic_society_of_north_america">Islamic Society of North America</string>
@@ -231,17 +231,17 @@
     <string name="settings_button_cancel" translatable="false">Cancel</string>
 
     <string name="title_location_preference_section">Location</string>
-    <string name="sub_title_reminder_preference_section">Adhan reminder</string>
-    <string name="sub_title_dhuha_reminder_preference_section">Dhuha prayer reminder</string>
+    <string name="sub_title_reminder_preference_section">Aẓān reminder</string>
+    <string name="sub_title_dhuha_reminder_preference_section">Ḍuḥā prayer reminder</string>
     <string name="sub_title_lton_reminder_preference_section">Last third of the Night reminder</string>
     <string name="title_checkbox_location_preference">Set location manually</string>
     <string name="title_adhan_notifications_preference">Enable Notifications</string>
     <string name="title_adhan_vibration_preference">Enable vibration</string>
-    <string name="title_douae_adhan_preference">Enable dua after Adhan</string>
-    <string name="title_adhan_reminder_preference">Enable reminder before Adhan</string>
+    <string name="title_douae_adhan_preference">Enable dua after Aẓān</string>
+    <string name="title_adhan_reminder_preference">Enable reminder before Aẓān</string>
     <string name="title_enable_reminder_sound_preference">Enable reminder</string>
     <string name="title_reminder_sound_preference">Enable reminder sound</string>
-    <string name="title_doha_reminder_preference">Enable reminder for Ad`Dhuha prayer</string>
+    <string name="title_doha_reminder_preference">Enable reminder for Ad Ḍuḥā prayer</string>
     <string name="title_adhan_reminder_interval_preference">Reminder interval (min)</string>
     <string name="title_edit_text_location_preference">Actual location</string>
     <string name="dialog_title_edit_text_location_preference">Search your City</string>
@@ -251,13 +251,13 @@
     <string name="title_edit_text_timing_adjustment_preference">Adjust prayer timings</string>
     <string name="dialog_title_edit_text_timing_adjustment_preference">Timings adjustment (in minutes)</string>
     <string name="preference_title_contact">Contact us</string>
-    <string name="preference_add_new_adhan">Add new Adhan file</string>
-    <string name="preference_unable_add_new_adhan">Unable to add new Adhan file</string>
+    <string name="preference_add_new_adhan">Add new Aẓān file</string>
+    <string name="preference_unable_add_new_adhan">Unable to add new Aẓān file</string>
 
     <string name="title_silenter_preference_section">Silent Mode</string>
     <string name="text_silenter_preference_section">Turn phone on \'do not disturb\' state during prayer times</string>
     <string name="error_summary_silenter_preference_section">The application is not allowed to change to \'Do Not Disturb\' state</string>
-    <string name="title_silenter_start_time">Start time after Adhan (in minutes)</string>
+    <string name="title_silenter_start_time">Start time after Aẓān (in minutes)</string>
     <string name="dialog_title_silenter_start_time">Start time</string>
     <string name="title_silenter_duration">Duration (in minutes)</string>
     <string name="title_silenter_duration_friday_prayer">Duration for Friday prayer (in minutes)</string>
@@ -271,10 +271,10 @@
     <string name="title_latitude_adjustment_method">Adjusting times in higher latitudes</string>
     <string name="dialog_title_latitude_adjustment_method">Choose a method</string>
     <string name="calendar">Calendar</string>
-    <string name="gregorian_hijri_calendar">Gregorian/Hijri Calendar</string>
-    <string name="desc_gregorian_hijri_calendar">Hijri dates and Holidays</string>
-    <string name="title_hijri_day_adjustment_preference">Hijri date adjustment</string>
-    <string name="dialog_title_hijri_day_adjustment_preference">Adjust Hijri date</string>
+    <string name="gregorian_hijri_calendar">Gregorian/Hijrī Calendar</string>
+    <string name="desc_gregorian_hijri_calendar">Hijrī dates and Holidays</string>
+    <string name="title_hijri_day_adjustment_preference">Hijrī date adjustment</string>
+    <string name="dialog_title_hijri_day_adjustment_preference">Adjust Hijrī date</string>
 
     <string name="compass_dial" translatable="false">Compass Dial</string>
     <string name="compass_hands" translatable="false">Compass Hands</string>
@@ -290,18 +290,18 @@
     <string name="title_qibla_direction">Qibla Direction</string>
     <string name="desc_qibla_direction">Locate Qibla direction</string>
     <string name="facing_qibla">You are Facing Qibla</string>
-    <string name="school_adjustment_method_shafii">Shafii (Default)</string>
-    <string name="school_adjustment_method_hanafi">Hanafi</string>
+    <string name="school_adjustment_method_shafii">Shāfiʿī (Default)</string>
+    <string name="school_adjustment_method_hanafi">Ḥanafī</string>
     <string name="title_school_adjustment_method">School</string>
     <string name="midnight_mode_adjustment_method_standard">Default (Mid Sunset to Sunrise)</string>
-    <string name="midnight_mode_adjustment_method_jafari">Jafari (Mid Sunset to Fajr)</string>
+    <string name="midnight_mode_adjustment_method_jafari">Jaʿfarī (Mid Sunset to Fajr)</string>
     <string name="title_midnight_mode_adjustment_method">Midnight mode</string>
     <string name="adthan_notification_title">It\'s time to pray</string>
     <string name="adthan_reminder_notification_title">The time for the next prayer is near</string>
     <string name="adthan_notification_close_action_title">Silent and close</string>
 
-    <string name="scheduling_adhan_alert_notification_title">Not able to schedule Adhan</string>
-    <string name="scheduling_adhan_alert_notification_text">Scheduling exact alarm permission was revoked on your phone, without it, you cannot receive any Adhan notification. Please grant this permission to continue using Five Prayers correctly</string>
+    <string name="scheduling_adhan_alert_notification_title">Not able to schedule Aẓān</string>
+    <string name="scheduling_adhan_alert_notification_text">Scheduling exact alarm permission was revoked on your phone, without it, you cannot receive any Aẓān notification. Please grant this permission to continue using Five Prayers correctly</string>
     <string name="scheduling_adhan_alert_notification_action_title">Grant this permission</string>
     <!--   User Messages    -->
 
@@ -309,17 +309,17 @@
     <string name="enable_to_reverse_geolocalisation">Unable to find your location : Please check your network connection</string>
     <string name="network_unavailable">Cannot update prayer timing : Please check your network connection</string>
 
-    <string name="message_wait_for_quran_files">Preparing Quran files, please wait…</string>
+    <string name="message_wait_for_quran_files">Preparing Qurʾān files, please wait…</string>
     <string name="message_download_quran_files_in_progress">Download in progress … %1$d%%</string>
-    <string name="message_unzip_quran_files_in_progress">Unzipping Quran files in progress … %1$d\/%2$d</string>
+    <string name="message_unzip_quran_files_in_progress">Unzipping Qurʾān files in progress … %1$d\/%2$d</string>
     <string name="message_download_quran_files_error">Download error ! please verify your storage and network and try later …</string>
     <string name="message_unzip_quran_files_error">Error while unzipping files ! please verify your storage and try later …</string>
 
 
     <string name="sura_rev_mackkia">Makkia</string>
     <string name="sura_rev_madniaa">Madania</string>
-    <string name="ayahs">Ayahs</string>
-    <string name="surat">Quran Suras</string>
+    <string name="ayahs">Āyahs</string>
+    <string name="surat">Qurʾān Sūrahs</string>
     <string name="bookmarks">Bookmarks</string>
     <string name="automatic_bookmarks_title">Continue reading</string>
     <string name="usermade_bookmarks_title">Favorites</string>
@@ -329,35 +329,35 @@
     <string name="daily_verse_title">Today\'s verse</string>
     <string name="daily_verse__description">Read Today\'s verse</string>
     <string name="daily_verse_notification_title">Today\'s verse</string>
-    <string name="daily_verse_notification_description">Read Today\'s verse: Surat %1$s - Ayah %2$d</string>
+    <string name="daily_verse_notification_description">Read Today\'s verse: Sūrah %1$s - Āyah %2$d</string>
 
     <string name="quarter_to_display">Quarter</string>
     <string name="juz_to_display">الجزء %d</string>
     <string name="hizb_to_display">الحزب %d</string>
     <string name="part_to_display">%s  الحزب  %d</string>
-    <string name="quran">The Noble Quran</string>
-    <string name="desc_quran">Recite the Holy Quran</string>
+    <string name="quran">The Noble Qurʾān</string>
+    <string name="desc_quran">Recite the Holy Qurʾān</string>
     <string name="title_checkbox_quran_night_mode">Night Mode</string>
     <string name="title_notification_section">Notifications</string>
-    <string name="dialog_title_fajr_adhan">Select Fajr Adhan</string>
-    <string name="dialog_title_adhan">Select Adhan</string>
+    <string name="dialog_title_fajr_adhan">Select Fajr Aẓān</string>
+    <string name="dialog_title_adhan">Select Aẓān</string>
 
     <string name="adhan_abdelbasset_abdessamad">Abdelbasset Abdessamad</string>
     <string name="adhan_al_haram_el_madani">Al Haram Al Madani</string>
     <string name="adhan_meshary_al_fasy">Mishary Rashid Al-Afasy</string>
     <string name="adhan_omar_al_kazabri">Omar Al Kazabri</string>
     <string name="adhan_riad_al_djazairi">Riad Al Djazairi</string>
-    <string name="short_prayer_call">Short Call (no Adhan)</string>
+    <string name="short_prayer_call">Short Call (no Aẓān)</string>
     <string name="takbeer_only_call">Takbeer only</string>
     <string name="adhan_manssour_el_zahrani">Manssour El Zahrani</string>
     <string name="adhan_nurdin_al_haddiwi_fajr_morocco">Nurdin Al Haddiwi</string>
     <string name="adhan_nurdin_hamza_al_maghriby">Nurdin Al Maghriby (Al Quds)</string>
     <string name="adhan_sayed_al_nakshabandi">Sayed Al Nakshabandi</string>
 
-    <string name="title_adhan_fajr">Fajr Adhan</string>
-    <string name="title_adhan_rest_prayers">Adhan of other prayers</string>
-    <string name="title_adhan">Adhan</string>
-    <string name="title_adhan_volume">Adhan Volume</string>
+    <string name="title_adhan_fajr">Fajr Aẓān</string>
+    <string name="title_adhan_rest_prayers">Aẓān of other prayers</string>
+    <string name="title_adhan">Aẓān</string>
+    <string name="title_adhan_volume">Aẓān Volume</string>
 
     <string name="names_view_title">Beautiful Names of God</string>
     <string name="ndesc_ames_view_title">99 Names of God</string>
@@ -476,15 +476,15 @@
     <string name="title_temperature_unit_metric">Celsius</string>
     <string name="title_temperature_unit_imperial">Fahrenheit</string>
 
-    <string name="quran_daily_schedule">Quran Reading Schedule</string>
-    <string name="quran_daily_schedule_desc">Daily Quran</string>
+    <string name="quran_daily_schedule">Qurʾān Reading Schedule</string>
+    <string name="quran_daily_schedule_desc">Daily Qurʾān</string>
     <string name="create_quran_daily_schedule">Create Reading Schedule</string>
     <string name="reset_quran_daily_schedule">Reset Reading Schedule</string>
     <string name="reset_quran_daily_schedule_confirmation">Do you want to reset reading schedule ?</string>
-    <string name="quran_daily_schedule_notification_title">It\'s time to recite Quran</string>
+    <string name="quran_daily_schedule_notification_title">It\'s time to recite Qurʾān</string>
     <string name="reciting_frequency">Reading Frequency</string>
     <string name="notification_time">Reading Time</string>
-    <string name="reciting_notification_enabled">Enable Quran reading reminder</string>
+    <string name="reciting_notification_enabled">Enable Qurʾān reading reminder</string>
     <string name="reciting_total_days">Total days</string>
     <string name="reciting_remaining_days">Remaining</string>
 

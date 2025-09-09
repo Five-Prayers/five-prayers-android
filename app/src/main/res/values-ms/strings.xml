@@ -1,0 +1,503 @@
+<resources>
+    <string name="whats_new_dialog_title">Fungsi Baharu !</string>
+    <string name="whats_new_dialog_message"></string>
+
+    <string name="about_five_prayers">Five Prayers</string>
+    <string name="open_source_projects_used">Projek Open Source</string>
+    <string name="privacy_policy_title">Polisi Privasi</string>
+    <string name="license_summary">GNU General Public License v3</string>
+    <string name="start_accept_privacy_policy">Demi mematuhi General Data Protection Regulation (GDPR), kami memerlukan perhatian anda kepada polisi privasi Five Prayers Android. Sila baca dengan teliti. \nAnda perlu menerima polisi untuk menghantar laporan bugs kepada kami</string>
+    <string name="read_privacy_policy">Baca Polisi Privasi</string>
+    <string name="sorry_string">Maaf, terdapat ralat telah berlaku</string>
+    <string name="what_happened_headline">Apa yang berlaku :</string>
+    <string name="info_labels">Bahasa Aplikasi:\\nTarikh UTC:\\nPakej:\\nVersi:\\nVersi OS:</string>
+    <string name="what_device_headline">Informasi :</string>
+    <string name="error_details_headline">Butiran :</string>
+    <string name="your_comment">Komen anda :</string>
+    <string name="error_report_button_text">Laporkan ralat ini guna e-mel</string>
+    <string name="error_report_open_github_notice">Sila semak sekiranya tiket mengenai isu anda sudah ada. Jika terdapat tiket yang sama, kami akan memerlukan masa untuk menyelesaikan isu yang telah dibangkit.</string>
+    <string name="copy_for_github">Salin format laporan</string>
+    <string name="error_report_open_issue_button_text">Isyarat di GitHub</string>
+    <string name="msg_copied">Disalin di clipboard</string>
+    <string name="share_dialog_title">Kongsi</string>
+    <string name="permission_denied">Tindakan dinafikan oleh sistem</string>
+
+    <string name="common.accept">Terima</string>
+    <string name="common.decline">Tolak</string>
+    <string name="common.cancel">Batal</string>
+    <string name="common.ok">OK</string>
+    <string name="common.error">Ralat / Error</string>
+    <string name="common_alert">Amaran</string>
+    <string name="common_page">Laman</string>
+    <string name="common.loading">Loading …</string>
+    <string name="common.sunrise">Matahari Terbit</string>
+    <string name="common.sunset">Matahari Terbenam</string>
+    <string name="common.close">Tutup</string>
+    <string name="common.license">Lesen</string>
+    <string name="common.offline">Luar Talian</string>
+    <string name="common.minutes">minit</string>
+    <string name="common.hours.separator">h</string>
+    <string name="common.minutes.separator">m</string>
+    <string name="common.in">dalam</string>
+    <string name="common.at">di</string>
+    <string name="common.from">dari</string>
+    <string name="common.to">hingga</string>
+    <string name="common.ayah">ayat</string>
+    <string name="common.day">Hari</string>
+    <string name="common.update">Kemaskini</string>
+    <string name="common.startdate">Tarikh mula</string>
+    <string name="common.once_in_four_month">Empat bulan sekali</string>
+    <string name="common.once_in_two_month">Dua bulan sekali</string>
+    <string name="common.once_a_month">Sebulan sekali</string>
+    <string name="common.once_in_three_weeks">Tiga minggu sekali</string>
+    <string name="common.twice_a_month">Sebulan dua kali</string>
+    <string name="common.three_times_a_month">Sebulan tiga kali</string>
+    <string name="common.four_times_a_month">Sebulan empat kali</string>
+
+    <string name="location_alert_title">Ralat lokasi</string>
+    <string name="location_alert_settings_button_title">Aktifkan lokasi</string>
+    <string name="location_alert_manual_position_button_title">Tetapkan lokasi secara manual</string>
+
+    <string name="app_name">Lima Waktu</string>
+    <string name="title_home">Solat</string>
+    <string name="title_dashboard">Servis</string>
+    <string name="title_settings">Parameter</string>
+    <string name="label.unknown_location">Lokasi tidak diketahui</string>
+
+    <!-- Widgets -->
+    <string name="simple_widget_description">Widget biasa</string>
+    <string name="clock_widget_description">Widget jam</string>
+    <string name="next_prayer_widget_description">Widget waktu solat seterusnya</string>
+
+    <!-- App Theme preferences -->
+    <string name="theme_preference_section">Penampilan</string>
+    <string name="theme_preference_title">Tema</string>
+    <string name="theme_preference_dialog_title">Pilih tema kegemaran anda</string>
+    <string name="theme_preference_name_white_blue">Langit Biru (default)</string>
+    <string name="theme_preference_name_dark_orange">Malam Oyen</string>
+    <string name="theme_preference_name_dark_Turquoise">Aurora petang</string>
+    <string name="theme_preference_use_arabic_locale">Mod Arab (الوضع العربي)</string>
+    <string name="theme_preference_use_arabic_locale_summay">Aplikasi akan diterjemahkan kepada Bahasa Arab</string>
+    <string name="theme_preference_numerals_title">Jenis nombor</string>
+    <string name="theme_preference_numerals_dialog_title">Pilih jenis digit nombor</string>
+    <string name="theme_preference_numerals_type_arabic_indic">Angka Arab-India</string>
+    <string name="theme_preference_numerals_type_arabic">Angka Arab</string>
+
+    <string name="calendar_view_title">Kalendar solat di</string>
+    <string name="title_calendar">Kalendar Solat</string>
+    <string name="desc_calendar_view_title">Table mensuelle de prière</string>
+
+    <string name="last_update_time_key">last_update_time_key</string>
+    
+    <!-- App Intro -->
+    <string name="app_intro_frag_1_title">Lima Waktu untuk Android</string>
+    <string name="app_intro_frag_1_description">Aplikasi islamik yang ringan, tiada iklan dan open source</string>
+
+    <string name="app_intro_frag_2_title">Polisi Privasi</string>
+    <string name="app_intro_frag_2_description">Project Lima Waktu Android mengutamakan privasi dan bebas iklan 
+        kepada semua pengguna. Oleh itu, aplikasi ini tidak akan mengambil apa-apa maklumat anda tanpa sebarang pengetahuan.</string>
+    
+    <string name="app_intro_frag_3_title">Guna data lokasi anda</string>
+    <string name="app_intro_frag_3_description">Untuk membuat kiraan waktu solat dengan tepat,
+        aplikasi ini memerlukan kebenaran anda untuk menggunakan data lokasi. (Disyorkan)</string>
+
+    <string name="app_intro_frag_3_5_description">Kami juga memerlukan kebenaran anda untuk menggunakan fungsi lokasi background
+        untuk mengemaskini masa solat ketika aplikasi ini telah ditutup atau tidak digunakan, sila pilih \"allow all the time option\" pada skrin seterusnya (disyorkan)</string>
+
+    <string name="app_intro_frag_4_title">Benarkan Lima Waktu untuk menghantar notifikasi</string>
+    <string name="app_intro_frag_4_description">Kami memerlukan kebenaran anda untuk menghantar notifikasi Azan, tanpa ini, feature panggilan Azan tidak dapat berfungsi !
+        Please select \"allow\" in the next screen (recommended)</string>
+
+    <string name="app_intro_frag_5_title">Selamat Beribadah !</string>
+    <string name="app_intro_frag_5_description">Lima Waktu Android memberikan fungsi-fungsi hebat kepada pengguna untuk beribadah,
+        seperti : Waktu Solat Dunia, jenis-jenis cara kiraan, notifikasi, panggilan Azan, arah Kiblat and lain-lain</string>
+
+    <string name="app_intro_permission_denied_dialog_title">Makluman</string>
+    <string name="app_intro_permission_denied_dialog_message">Aplikasi ini memerlukan lokasi anda untuk membuat kiraan waktu solat dengan tepat. Anda boleh menetapkan lokasi secara manual di skrin tetapan.</string>
+
+    <string name="last_update_time_key">last_update_time_key</string>
+
+    <string name="calendar_view_title">Kalendar Solat di</string>
+    <string name="title_calendar">Kalendar Solat</string>
+    <string name="desc_calendar_view_title">Jadual Solat Bulanan</string>
+
+    <string name="FAJR">Subuh</string>
+    <string name="SUNRISE">Matahari Terbit</string>
+    <string name="DOHA">Dhuha</string>
+    <string name="DHOHR">Zohor</string>
+    <string name="ASR">Asar</string>
+    <string name="MAGHRIB">Maghrib</string>
+    <string name="ICHA">Ishak</string>
+    <string name="LAST_THIRD_OF_THE_NIGHT">Sepertiga Malam Terakhir</string>
+
+    <string name="SHORT_FAJR">S</string>
+    <string name="SHORT_SUNRISE">Terbit</string>
+    <string name="SHORT_DHOHR">Z</string>
+    <string name="SHORT_ASR">A</string>
+    <string name="SHORT_MAGHRIB">M</string>
+    <string name="SHORT_ICHA">I</string>
+
+    <string name="FIRST_DAY_OF_YEAR">Tahun Baru Hijrah</string>
+    <string name="YAWM_ASHURA">Hari Ashura</string>
+    <string name="MAWLID_A_NABAWI">Maulidur Rasul</string>
+    <string name="LAILAT_AL_MIRAJ">Israk dan Mikraj</string>
+    <string name="MID_SHAABAN_NIGHT">Malan Nisfu Syaaban</string>
+    <string name="MID_SHAABAN">Nisfu Syaaban</string>
+    <string name="FIRST_DAY_OF_RAMADAN">Ramadan Pertama</string>
+    <string name="DAY_20_OF_RAMADAN">Ramadan ke-20</string>
+    <string name="DAY_21_OF_RAMADAN">Ramadan ke-21</string>
+    <string name="DAY_22_OF_RAMADAN">Ramadan ke-22</string>
+    <string name="DAY_23_OF_RAMADAN">Ramadan ke-23</string>
+    <string name="DAY_24_OF_RAMADAN">Ramadan ke-24</string>
+    <string name="DAY_25_OF_RAMADAN">Ramadan ke-25</string>
+    <string name="DAY_26_OF_RAMADAN">Ramadan ke-26</string>
+    <string name="DAY_27_OF_RAMADAN">Ramadan ke-27</string>
+    <string name="DAY_28_OF_RAMADAN">Ramadan ke-28</string>
+    <string name="DAY_29_OF_RAMADAN">Ramadan ke-29</string>
+    <string name="DAY_30_OF_RAMADAN">Ramadan ke-30</string>
+    <string name="EID_AL_FITR">Hari Raya Aidilfitri</string>
+    <string name="FIRST_DAY_OF_AL_Hajj">Hari Haji Pertama</string>
+    <string name="DAY_OF_ARAFAH">Hari Arafah</string>
+    <string name="EID_AL_ADHA">Hari Raya Aidiladha</string>
+    <string name="FOURTH_DAY_OF_AL_Hajj">Hari Haji ke-4</string>
+    <string name="FIFTH_DAY_OF_AL_Hajj">Hari Haji ke-5</string>
+    <string name="SIXT_DAY_OF_AL_Hajj">Hari Haji ke-6</string>
+
+    <string name="hijri">Hijrah</string>
+    <string name="hijri_month_1">Muharram</string>
+    <string name="hijri_month_2">Safar</string>
+    <string name="hijri_month_3">Rabi'ul Awal</string>
+    <string name="hijri_month_4">Rabi'ul Akhir</string>
+    <string name="hijri_month_5">Jamadil Awal</string>
+    <string name="hijri_month_6">Jamadil Akhir</string>
+    <string name="hijri_month_7">Rejab</string>
+    <string name="hijri_month_8">Syaaban</string>
+    <string name="hijri_month_9">Ramadan</string>
+    <string name="hijri_month_10">Syawal</string>
+    <string name="hijri_month_11">Zulkaidah</string>
+    <string name="hijri_month_12">Zulhijjah</string>
+
+    <string name="method_fajr_angle">Sudut Subuh</string>
+    <string name="method_ichaa_angle">Sudut Ishak</string>
+    <string name="method_shia_ithna_ansari">Shia Ithna Ashari, Leva Research Institute, Qum</string>
+    <string name="method_university_of_islamic_sciences_karachi">University of Islamic Sciences, Karachi</string>
+    <string name="method_islamic_society_of_north_america">Islamic Society of North America</string>
+    <string name="method_muslim_world_league">Muslim World League</string>
+    <string name="method_umm_al_qura_university_makkah">Umm al-Qura University</string>
+    <string name="method_egyptian_general_authority_of_survey">Egyptian General Authority of Survey</string>
+    <string name="method_institute_of_geophysics_university_of_tehran">Institute of Geophysics, University of Tehran</string>
+    <string name="method_gulf_region">Gulf Region</string>
+    <string name="method_kuwait">Kuwait Method</string>
+    <string name="method_qatar">Qatar Method</string>
+    <string name="method_majlis_ugama_islam_singapura">Majlis Ugama Islam Singapura</string>
+    <string name="method_union_organization_islamic_de_france">L\'Union des Organisations Islamiques de France (UOIF)</string>
+    <string name="method_diyanet_isleri_baskanligi_turkey">Diyanet İşleri Başkanlığı - Turkey</string>
+    <string name="method_spiritual_administration_of_muslims_of_russia">Spiritual Administration of Muslims of Russia</string>
+    <string name="method_moroccan_ministry_of_islamic_affairs">Ministry of Islamic Affairs - Morocco</string>
+    <string name="method_department_of_islamic_advancement_malaysia">Jabatan Kemajuan Islam - Malaysia</string>
+    <string name="method_kementerian_agama_ri_indonesia">Kementerian Agama RI - Indonesia</string>
+    <string name="method_mosquee_de_paris_france">Mosquée de Paris - France</string>
+    <string name="method_france_18">Angle 18° - France</string>
+    <string name="method_france_15">Angle 15° - France</string>
+    <string name="method_tunisian_ministry_of_religious_affairs">Ministry of religious affairs - Tunisia</string>
+    <string name="method_algerian_ministry_of_religious_affairs_and_wakfs">Ministry of Religious Affairs and wakfs- Algeria</string>
+    <string name="method_london_unified_prayer_times">London Unified Prayer Times</string>
+
+    <string name="short_method_shia_ithna_ansari">Shia Ithna Ashari</string>
+    <string name="short_method_university_of_islamic_sciences_karachi">University of Islamic Sciences</string>
+    <string name="short_method_islamic_society_of_north_america">ISNA</string>
+    <string name="short_method_muslim_world_league">Muslim World League</string>
+    <string name="short_method_umm_al_qura_university_makkah">Umm al-Qura University</string>
+    <string name="short_method_egyptian_general_authority_of_survey">General Authority of Survey</string>
+    <string name="short_method_institute_of_geophysics_university_of_tehran">University of Tehran</string>
+    <string name="short_method_gulf_region">Gulf Region</string>
+    <string name="short_method_kuwait">Kuwait Method</string>
+    <string name="short_method_qatar">Qatar Method</string>
+    <string name="short_method_majlis_ugama_islam_singapura">Majlis Ugama Islam</string>
+    <string name="short_method_union_organization_islamic_de_france">UOIF</string>
+    <string name="short_method_diyanet_isleri_baskanligi_turkey">Diyanet İşleri Başkanlığı</string>
+    <string name="short_method_spiritual_administration_of_muslims_of_russia">Spiritual Administration of Russia</string>
+    <string name="short_method_department_of_islamic_advancement_malaysia">Jabatan Kemajuan Islam</string>
+    <string name="short_method_kementerian_agama_ri_indonesia">Kementerian Agama RI</string>
+    <string name="short_method_mosquee_de_paris_france">Mosquée de Paris</string>
+    <string name="short_method_france_18">Angle 18° - France</string>
+    <string name="short_method_france_15">Angle 15° - France</string>
+    <string name="short_method_moroccan_ministry_of_islamic_affairs">Ministry of Islamic Affairs</string>
+    <string name="short_method_tunisian_ministry_of_religious_affairs">Ministry of religious affairs</string>
+    <string name="short_method_algerian_ministry_of_religious_affairs_and_wakfs">Ministry of Religious Affairs and wakfs</string>
+    <string name="short_method_london_unified_prayer_times">London Unified Prayer Times</string>
+
+    <string name="gps_settings_title" translatable="true">Tetapan GPS</string>
+    <string name="gps_settings_text" translatable="false">GPS tidak aktif. Buka skrin tetapan ?</string>
+    <string name="settings_button_ok" translatable="false">Tetapan</string>
+    <string name="settings_button_cancel" translatable="false">Batal</string>
+
+    <string name="title_location_preference_section">Lokasi</string>
+    <string name="sub_title_reminder_preference_section">Peringatan Azan</string>
+    <string name="sub_title_dhuha_reminder_preference_section">Peringatan Waktu Dhuha</string>
+    <string name="sub_title_lton_reminder_preference_section">Peringatan sepertiga malam terakhir</string>
+    <string name="title_checkbox_location_preference">Tetapkan lokasi secara manual</string>
+    <string name="title_adhan_notifications_preference">Notifikasi</string>
+    <string name="title_adhan_vibration_preference">Getaran / Vibration</string>
+    <string name="title_douae_adhan_preference">Doa selepas azan</string>
+    <string name="title_adhan_reminder_preference">Peringatan sebelum Azan</string>
+    <string name="title_enable_reminder_sound_preference">Peringatan</string>
+    <string name="title_reminder_sound_preference">Bunyi peringatan</string>
+    <string name="title_doha_reminder_preference">Peringatan untuk Solat Dhuha</string>
+    <string name="title_adhan_reminder_interval_preference">Interval peringatan (min)</string>
+    <string name="title_edit_text_location_preference">Lokasi sebenar</string>
+    <string name="dialog_title_edit_text_location_preference">Carian bandar</string>
+    <string name="title_prayer_timings_section">Kiraan waktu solat</string>
+    <string name="title_calculation_method_preference">Cara Kiraan</string>
+    <string name="dialog_title_calculation_method_preference">Cara Kiraan</string>
+    <string name="title_edit_text_timing_adjustment_preference">Ubah waktu solat</string>
+    <string name="dialog_title_edit_text_timing_adjustment_preference">Perubahan masa solat (minit)</string>
+    <string name="preference_title_contact">Hubungi Kami</string>
+    <string name="preference_add_new_adhan">Tambah fail Azan baru</string>
+    <string name="preference_unable_add_new_adhan">Tidak dapat menambah fail Azan baru</string>
+
+    <string name="title_silenter_preference_section">Mod Senyap</string>
+    <string name="text_silenter_preference_section">Set telefon ke \'Mod Senyap\' ketika waktu solat</string>
+    <string name="error_summary_silenter_preference_section">Aplikasi ini tidak dapat set ke \'Mod Senyap\' </string>
+    <string name="title_silenter_start_time">Waktu bermula selepas Azan (minit)</string>
+    <string name="dialog_title_silenter_start_time">Waktu bermula</string>
+    <string name="title_silenter_duration">Masa (minit)</string>
+    <string name="title_silenter_duration_friday_prayer">Masa diambil untuk Solat Jumaat (minit)</string>
+    <string name="dialog_title_silenter_duration">Masa diambil</string>
+
+    <string name="title_daily_verse_preference">Bacaan Harian</string>
+
+    <string name="latitude_adjustment_method_middle_of_the_night">Pertengahan malam</string>
+    <string name="latitude_adjustment_method_one_seventh">Satu ketujuh</string>
+    <string name="latitude_adjustment_method_angle_based">Bergantung kepada sudut</string>
+    <string name="title_latitude_adjustment_method">Ubah masa di latitud tinggi</string>
+    <string name="dialog_title_latitude_adjustment_method">Pilih cara kiraan latitud</string>
+    <string name="calendar">Kalendar</string>
+    <string name="gregorian_hijri_calendar">Kalendar Hijrah/Gregorian</string>
+    <string name="desc_gregorian_hijri_calendar">Tarikh Hijrah and Cuti</string>
+    <string name="title_hijri_day_adjustment_preference">Ubahan tarikh Hijrah</string>
+    <string name="dialog_title_hijri_day_adjustment_preference">Ubah tarikh Hijrah</string>
+
+    <string name="compass_dial" translatable="false">Dail Kompas</string>
+    <string name="compass_hands" translatable="false">Jejari Kompas</string>
+    <string name="your_location">Lokasi Anda: </string>
+    <string name="unable_to_get_your_location">Tidak dapat lokasi anda</string>
+    <string name="location_not_ready">Lokasi tidak tersedia.</string>
+    <string name="pls_enable_location">Sila hidupkan lokasi</string>
+    <string name="degree" translatable="false">°</string>
+    <string name="dialog_message_sensor_not_exist">Fon anda tidak mempunyai sensor yang diperlukan.</string>
+    <string name="dialog_title_sensor_not_calibrate">Perlukan kalibrasi</string>
+    <string name="dialog_message_sensor_not_calibrate">Sila lakukan kalibrasi sensor, dengan menunjukkan fon ke arah langit dan gerakkan dalam bentuk figure 8</string>
+
+    <string name="title_qibla_direction">Arah Kiblat</string>
+    <string name="desc_qibla_direction">Cara Arah Kiblat</string>
+    <string name="facing_qibla">Anda sedang menghadapi Kiblat</string>
+    <string name="school_adjustment_method_shafii">Syafi'e</string>
+    <string name="school_adjustment_method_hanafi">Hanafi</string>
+    <string name="title_school_adjustment_method">Mazhab</string>
+    <string name="midnight_mode_adjustment_method_standard">Default (Pertengahan matahari terbenam hingga matahari terbit)</string>
+    <string name="midnight_mode_adjustment_method_jafari">Jafari (Pertengahan matahari terbenam hingga Subuh)</string>
+    <string name="title_midnight_mode_adjustment_method">Mod tengah malam</string>
+    <string name="adthan_notification_title">Waktu untuk Solat</string>
+    <string name="adthan_reminder_notification_title">Waktu untuk solat seterusnya hampir tiba</string>
+    <string name="adthan_notification_close_action_title">Silent dan tutup</string>
+
+    <string name="scheduling_adhan_alert_notification_title">Tidak dapat menjadualkan Azan</string>
+    <string name="scheduling_adhan_alert_notification_text">Kebenaran setkan alarm yang tepat telah ditarik di fon anda, tanpa ini, anda tidak akan mendapat sebarang notifikasi Azan. Sila berikan kebenaran ini untuk memberi fungsi kepada aplikasi demi ia berfungsi dengan tepat.</string>
+    <string name="scheduling_adhan_alert_notification_action_title">Beri kebenaran</string>
+    <!--   User Messages    -->
+
+    <string name="location_service_unavailable">Gagal mencari lokasi anda: Sila pastikan bahawa servis lokasi diaktifkan pada fon anda atau setkan lokasi secari manual di skrin tetapan</string>
+    <string name="enable_to_reverse_geolocalisation">Gagal mencari lokasi : Sila check status network anda</string>
+    <string name="network_unavailable">Gagal mengemaskini masa Solat : Sila check status network anda</string>
+
+    <string name="message_wait_for_quran_files">Menyediakan kandungan Al-Quran, sila tunggu…</string>
+    <string name="message_download_quran_files_in_progress">Muat Turun … %1$d%%</string>
+    <string name="message_unzip_quran_files_in_progress">Unzipping kandungan Al-Quran … %1$d\/%2$d</string>
+    <string name="message_download_quran_files_error">Muat Turun Gagal ! Sila periksa saiz storan dan network fon dan cuba lagi …</string>
+    <string name="message_unzip_quran_files_error">Gagal unzip kandungan ! Sila periksa saiz storan fon dan cuba lagi …</string>
+
+
+    <string name="sura_rev_mackkia">Mekkah</string>
+    <string name="sura_rev_madniaa">Madinah</string>
+    <string name="ayahs">Ayat</string>
+    <string name="surat">Surah</string>
+    <string name="bookmarks">Bookmarks</string>
+    <string name="automatic_bookmarks_title">Sambung Membaca</string>
+    <string name="usermade_bookmarks_title">Favorites</string>
+    <string name="msg_delete_bookmark_confirmation">Buang bookmark ni ?</string>
+    <string name="msg_empty_bookmarks_place_holer">Tiada bookmarks !</string>
+
+    <string name="daily_verse_title">Bacaan Harian</string>
+    <string name="daily_verse__description">Baca ayat untuk hari ini</string>
+    <string name="daily_verse_notification_title">Bacaan Hari Ini</string>
+    <string name="daily_verse_notification_description">Bacaan Hari Ini: Surah %1$s - Ayat %2$d</string>
+
+    <string name="quarter_to_display">Quarter</string>
+    <string name="juz_to_display">الجزء %d</string>
+    <string name="hizb_to_display">الحزب %d</string>
+    <string name="part_to_display">%s  الحزب  %d</string>
+    <string name="quran">Al-Quran</string>
+    <string name="desc_quran">Baca Al-Quran</string>
+    <string name="title_checkbox_quran_night_mode">Mod Malam</string>
+    <string name="title_notification_section">Notifikasi</string>
+    <string name="dialog_title_fajr_adhan">Pilih Azan Subuh</string>
+    <string name="dialog_title_adhan">Pilih Azan</string>
+
+    <string name="adhan_abdelbasset_abdessamad">Abdelbasset Abdessamad</string>
+    <string name="adhan_al_haram_el_madani">Al Haram Al Madani</string>
+    <string name="adhan_meshary_al_fasy">Mishary Rashid Al-Afasy</string>
+    <string name="adhan_omar_al_kazabri">Omar Al Kazabri</string>
+    <string name="adhan_riad_al_djazairi">Riad Al Djazairi</string>
+    <string name="short_prayer_call">Azan Pendek</string>
+    <string name="takbeer_only_call">Takbir Sahaja</string>
+    <string name="adhan_manssour_el_zahrani">Manssour El Zahrani</string>
+    <string name="adhan_nurdin_al_haddiwi_fajr_morocco">Nurdin Al Haddiwi</string>
+    <string name="adhan_nurdin_hamza_al_maghriby">Nurdin Al Maghriby (Al Quds)</string>
+    <string name="adhan_sayed_al_nakshabandi">Sayed Al Nakshabandi</string>
+
+    <string name="title_adhan_fajr">Azan Subuh</string>
+    <string name="title_adhan_rest_prayers">Azan Solat lain</string>
+    <string name="title_adhan">Azan</string>
+    <string name="title_adhan_volume">Volume Azan</string>
+
+    <string name="names_view_title">Nama-nama Allah yang Indah</string>
+    <string name="ndesc_ames_view_title">99 Nama Allah</string>
+
+    <string name="ALLAH_NAME_0">The One and The True God</string>
+    <string name="ALLAH_NAME_1">Yang Maha Pengasih</string>
+    <string name="ALLAH_NAME_2">Yang Maha Penyayang</string>
+    <string name="ALLAH_NAME_3">Yang Maha Merajai/Memerintah</string>
+    <string name="ALLAH_NAME_4">Yang Maha Suci</string>
+    <string name="ALLAH_NAME_5">Maha Memberi Kesejahteraan</string>
+    <string name="ALLAH_NAME_6">Maha Memberi Keamanan</string>
+    <string name="ALLAH_NAME_7">Yang Maha Pemelihara</string>
+    <string name="ALLAH_NAME_8">Yang Maha Gagah</string>
+    <string name="ALLAH_NAME_9">Maha Perkasa</string>
+    <string name="ALLAH_NAME_10">Maha Megah, Yang Memiliki Kebesaran</string>
+    <string name="ALLAH_NAME_11">Maha Pencipta</string>
+    <string name="ALLAH_NAME_12">Yang Maha Melepaskan (Membuat, Membentuk, Menyimbangkan)</string>
+    <string name="ALLAH_NAME_13">Yang Membentuk Rupa (makhluknya)</string>
+    <string name="ALLAH_NAME_14">Maha Pengampun</string>
+    <string name="ALLAH_NAME_15">The Subduer, The Ever-Dominating</string>
+    <string name="ALLAH_NAME_16">The Giver of Gifts</string>
+    <string name="ALLAH_NAME_17">The Provider</string>
+    <string name="ALLAH_NAME_18">The Opener, The Judge</string>
+    <string name="ALLAH_NAME_19">The All-Knowing, The Omniscient</string>
+    <string name="ALLAH_NAME_20">The Withholder</string>
+    <string name="ALLAH_NAME_21">The Extender</string>
+    <string name="ALLAH_NAME_22">The Reducer, The Abaser</string>
+    <string name="ALLAH_NAME_23">The Exalter, The Elevator</string>
+    <string name="ALLAH_NAME_24">The Honourer, The Bestower</string>
+    <string name="ALLAH_NAME_25">The Dishonourer, The Humiliator</string>
+    <string name="ALLAH_NAME_26">The All-Hearing</string>
+    <string name="ALLAH_NAME_27">The All-Seeing</string>
+    <string name="ALLAH_NAME_28">The Judge, The Giver of Justice</string>
+    <string name="ALLAH_NAME_29">The Utterly Just</string>
+    <string name="ALLAH_NAME_30">The Subtle One, The Most Gentle</string>
+    <string name="ALLAH_NAME_31">The Acquainted, the All-Aware</string>
+    <string name="ALLAH_NAME_32">The Most Forbearing</string>
+    <string name="ALLAH_NAME_33">The Magnificent, The Supreme</string>
+    <string name="ALLAH_NAME_34">The Forgiving, The Exceedingly Forgiving</string>
+    <string name="ALLAH_NAME_35">The Most Appreciative</string>
+    <string name="ALLAH_NAME_36">The Most High, The Exalted</string>
+    <string name="ALLAH_NAME_37">The Greatest, The Most Grand</string>
+    <string name="ALLAH_NAME_38">The Preserver, The All-Heedful and All-Protecting</string>
+    <string name="ALLAH_NAME_39">The Sustainer</string>
+    <string name="ALLAH_NAME_40">The Reckoner, The Sufficient</string>
+    <string name="ALLAH_NAME_41">The Majestic</string>
+    <string name="ALLAH_NAME_42">The Most Generous, The Most Esteemed</string>
+    <string name="ALLAH_NAME_43">The Watchful</string>
+    <string name="ALLAH_NAME_44">The Responsive One</string>
+    <string name="ALLAH_NAME_45">The All-Encompassing, the Boundless</string>
+    <string name="ALLAH_NAME_46">The All-Wise</string>
+    <string name="ALLAH_NAME_47">The Most Loving</string>
+    <string name="ALLAH_NAME_48">The Glorious, The Most Honorable</string>
+    <string name="ALLAH_NAME_49">The Resurrector, The Raiser of the Dead</string>
+    <string name="ALLAH_NAME_50">The All- and Ever Witnessing</string>
+    <string name="ALLAH_NAME_51">The Absolute Truth</string>
+    <string name="ALLAH_NAME_52">The Trustee, The Disposer of Affairs</string>
+    <string name="ALLAH_NAME_53">The All-Strong</string>
+    <string name="ALLAH_NAME_54">The Firm, The Steadfast</string>
+    <string name="ALLAH_NAME_55">The Protecting Associate</string>
+    <string name="ALLAH_NAME_56">The Praiseworthy</string>
+    <string name="ALLAH_NAME_57">The All-Enumerating, The Counter</string>
+    <string name="ALLAH_NAME_58">The Originator, The Initiator</string>
+    <string name="ALLAH_NAME_59">The Restorer, The Reinstater</string>
+    <string name="ALLAH_NAME_60">The Giver of Life</string>
+    <string name="ALLAH_NAME_61">The Bringer of Death, the Destroyer</string>
+    <string name="ALLAH_NAME_62">The Ever-Living</string>
+    <string name="ALLAH_NAME_63">The Sustainer, The Self-Subsisting</string>
+    <string name="ALLAH_NAME_64">The Perceiver</string>
+    <string name="ALLAH_NAME_65">The Illustrious, the Magnificent</string>
+    <string name="ALLAH_NAME_66">The One</string>
+    <string name="ALLAH_NAME_67">The Unique, The Only One</string>
+    <string name="ALLAH_NAME_68">The Eternal, Satisfier of Needs</string>
+    <string name="ALLAH_NAME_69">The Capable, The Powerful</string>
+    <string name="ALLAH_NAME_70">The Omnipotent</string>
+    <string name="ALLAH_NAME_71">The Expediter, The Promoter</string>
+    <string name="ALLAH_NAME_72">The Delayer, the Retarder</string>
+    <string name="ALLAH_NAME_73">The First</string>
+    <string name="ALLAH_NAME_74">The Last</string>
+    <string name="ALLAH_NAME_75">The Manifest</string>
+    <string name="ALLAH_NAME_76">The Hidden One, Knower of the Hidden</string>
+    <string name="ALLAH_NAME_77">The Governor, The Patron</string>
+    <string name="ALLAH_NAME_78">The Self Exalted</string>
+    <string name="ALLAH_NAME_79">The Source of Goodness</string>
+    <string name="ALLAH_NAME_80">The Ever-Pardoning, The Relenting</string>
+    <string name="ALLAH_NAME_81">The Avenger</string>
+    <string name="ALLAH_NAME_82">The Pardoner</string>
+    <string name="ALLAH_NAME_83">The Most Kind</string>
+    <string name="ALLAH_NAME_84">Owner of the Dominion</string>
+    <string name="ALLAH_NAME_85">Possessor of Glory and Honour</string>
+    <string name="ALLAH_NAME_86">The Equitable, the Requiter</string>
+    <string name="ALLAH_NAME_87">The Gatherer, the Uniter</string>
+    <string name="ALLAH_NAME_88">The Self-Sufficient, The Wealthy</string>
+    <string name="ALLAH_NAME_89">The Enricher</string>
+    <string name="ALLAH_NAME_90">The Withholder</string>
+    <string name="ALLAH_NAME_91">The Distresser</string>
+    <string name="ALLAH_NAME_92">The Propitious, the Benefactor</string>
+    <string name="ALLAH_NAME_93">The Light, The Illuminator</string>
+    <string name="ALLAH_NAME_94">The Guide</string>
+    <string name="ALLAH_NAME_95">The Incomparable Originator</string>
+    <string name="ALLAH_NAME_96">The Ever-Surviving, The Everlasting</string>
+    <string name="ALLAH_NAME_97">The Inheritor, The Heir</string>
+    <string name="ALLAH_NAME_98">The Guide, Infallible Teacher</string>
+    <string name="ALLAH_NAME_99">The Forbearing, The Patient</string>
+    <string name="error_title">Error Activity</string>
+
+    <string name="title_weather_information_preference">Weather</string>
+    <string name="title_weather_api_key">API Key (from openweathermap.org)</string>
+    <string name="title_temperature_unit">Temperature unit</string>
+
+    <string name="temperature_unit_standard">K</string>
+    <string name="temperature_unit_metric">°C</string>
+    <string name="temperature_unit_imperial">°F</string>
+
+    <string name="title_temperature_unit_standard">Kelvin</string>
+    <string name="title_temperature_unit_metric">Celsius</string>
+    <string name="title_temperature_unit_imperial">Fahrenheit</string>
+
+    <string name="quran_daily_schedule">Quran Reading Schedule</string>
+    <string name="quran_daily_schedule_desc">Al-Quran Harian</string>
+    <string name="create_quran_daily_schedule">Buat Jadual Bacaan</string>
+    <string name="reset_quran_daily_schedule">Reset Jadual Bacaan</string>
+    <string name="reset_quran_daily_schedule_confirmation">Reset jadual bacaan ?</string>
+    <string name="quran_daily_schedule_notification_title">Masa untuk membaca Al-Quran</string>
+    <string name="reciting_frequency">Reading Frequency</string>
+    <string name="notification_time">Reading Time</string>
+    <string name="reciting_notification_enabled">Enable Quran reading reminder</string>
+    <string name="reciting_total_days">Total days</string>
+    <string name="reciting_remaining_days">Remaining</string>
+
+    <string name="morning_invocations">Morning Invocations</string>
+    <string name="read_morning_invocations">Read Morning Invocations</string>
+
+    <string name="evening_invocations">Evening Invocations</string>
+    <string name="read_evening_invocations">Read Evening Invocations</string>
+    <string name="invocation_title_preference">Enable daily invocations</string>
+
+    <string name="qibla_permission_denied">Location Permissions are not granted, Qibla position may be wrong !</string>
+    <string name="qibla_location_service_not_enabled">Location Services are not enabled, Qibla position may be wrong !</string>
+    <string name="qibla_airplane_mode_on">Airplane mode is on ! Qibla position may be wrong !</string>
+</resources>
